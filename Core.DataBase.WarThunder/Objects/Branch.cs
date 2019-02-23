@@ -1,0 +1,77 @@
+﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects;
+using Core.Enumerations.DataBase;
+using Core.Extensions;
+using Core.Objects.Interfaces;
+using NHibernate.Mapping.Attributes;
+
+namespace Core.Objects
+{
+    /// <summary> A nation's military branch. </summary>
+    [Class(Table = ETable.Branch)]
+    public class Branch : PersistentObjectWithIdAndName, IBranch
+    {
+        #region Fields
+
+        /// <summary>
+        /// The branch's nation.
+        /// This field is used by the <see cref="Nation"/> property.
+        /// </summary>
+        private INation _nation;
+
+        #endregion Fields
+        #region Persistent Properties
+
+        /// <summary> The branch's ID. </summary>
+        [Id(Column = EColumn.Id, TypeType = typeof(string), Name = nameof(Id))]
+        public override string Id
+        {
+            get { return _id; }
+            protected set { _id = value; }
+        }
+
+        /// <summary> The branch's Name. </summary>
+        [Property(NotNull = true)]
+        public override string Name
+        {
+            get { return _name; }
+            protected set { _name = value; }
+        }
+
+        /// <summary> The branch's nation. </summary>
+        [ManyToOne(Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation))]
+        public virtual INation Nation
+        {
+            get { return _nation; }
+            protected set { _nation = value; }
+        }
+
+        #endregion Persistent Properties
+        #region Constructors
+
+        /// <summary>
+        /// Creates a new transient object that can be persisted later.
+        /// This constructor is used by NHibernate to instantiate deserialized data read from a database.
+        /// </summary>
+        protected Branch()
+        {
+        }
+
+        /// <summary> Creates a new nation. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="id"> The branch's ID. </param>
+        /// <param name="name"> The branch's Name. </param>
+        /// <param name="nation"> The branch's nation. </param>
+        public Branch(IDataRepository dataRepository, string id, string name, INation nation)
+            : base(dataRepository, id, name)
+        {
+            _nation = nation;
+        }
+
+        #endregion Constructors
+
+        /// <summary> Returns a string that represents the instance. </summary>
+        /// <returns></returns>
+        public override string ToString() => $"{base.ToString().SkipLast(1)}, Nation: \"{_nation.ToString()}\")";
+    }
+}
