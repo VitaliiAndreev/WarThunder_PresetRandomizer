@@ -15,6 +15,14 @@ namespace Core.Extensions
         public static bool IsEmpty<T>(this IEnumerable<T> collection) =>
             !collection.Any();
 
+        /// <summary> Returns all items from a collection except the specified number of trailing items. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <param name="collection"> A source collection. </param>
+        /// <param name="amountOfItemsToSkip"> The amount of trailing items to skip. </param>
+        /// <returns></returns>
+        public static IEnumerable<T> SkipLast<T>(this IEnumerable<T> collection, int amountOfItemsToSkip) =>
+            collection.Take(collection.Count() - amountOfItemsToSkip);
+
         /// <summary> Fluently concatenates members of a collection using the specified separator between each member. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="collection"> A source collection. </param>

@@ -17,6 +17,13 @@ namespace Core.Extensions
         public static string FormatFluently(this string source, params object[] arguments) =>
             string.Format(source, arguments);
 
+        /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to skip. </param>
+        /// <returns></returns>
+        public static string SkipLast(this string sourceString, int amountOfCharactersToSkip) =>
+            sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
+
         #endregion Methods: Fluency
         #region Methods: Formatting
 

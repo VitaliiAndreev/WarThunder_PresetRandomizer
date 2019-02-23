@@ -70,5 +70,21 @@ namespace Core.Tests.Extensions
         }
 
         #endregion Tests: ResetFormattingPlaceholders()
+        #region Tests: SkipLast()
+
+        [TestMethod]
+        public void SkipLast_Carramba_SkipLast5_ReturnsCar()
+        {
+            // arrange
+            var originalString = "carramba";
+
+            // act
+            var trimmedString = originalString.SkipLast(5);
+
+            // assert
+            trimmedString.Should().Be("car");
+        }
+
+        #endregion Tests: SkipLast()
     }
 }
