@@ -38,11 +38,13 @@ namespace Core.DataBase.Objects
             _dataRepository = dataRepository;
             _dataRepository.NewObjects.Add(this);
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ToString()));
+            LogCreation();
         }
 
         #endregion Constructors
         #region Methods: Initialization
+
+        protected void LogCreation() => LogTrace(ECoreLogMessage.Created.FormatFluently(ToString()));
 
         /// <summary> Sets the <see cref="_logCategory"/> for the object. </summary>
         protected void SetLogCategory() => _logCategory = GetType().ToStringLikeCode();
@@ -107,11 +109,6 @@ namespace Core.DataBase.Objects
         {
             LogDebug(EDataBaseLogMessage.PreparingToCommitChangesTo.FormatFluently(ToString()));
 
-            if (_dataRepository == null)
-            {
-                LogDebug(EDataBaseLogMessage.NotAssignedToDataRepository_CommittingAborted);
-                return;
-            }
             if (_dataRepository.IsClosed)
             {
                 LogDebug(EDataBaseLogMessage.DataRepositoryClosed_CommittingAborted);

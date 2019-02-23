@@ -5,7 +5,7 @@ using Core.Extensions;
 namespace Core.DataBase.Objects
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a name. </summary>
-    public class PersistentObjectWithIdAndName : PersistentObjectWithId, IPersistentObjectWithIdAndName
+    public abstract class PersistentObjectWithIdAndName : PersistentObjectWithId, IPersistentObjectWithIdAndName
     {
         #region Fields
 

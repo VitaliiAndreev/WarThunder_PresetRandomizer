@@ -1,7 +1,5 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
-using Core.Extensions;
-using Core.Helpers.Logger.Enumerations;
 
 namespace Core.DataBase.Objects
 {
@@ -45,13 +43,13 @@ namespace Core.DataBase.Objects
         {
             _id = id;
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ToString()));
+            LogCreation();
         }
 
         #endregion Constructors
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{base.ToString()} ({Id})";
+        public override string ToString() => $"{base.ToString()} (ID: \"{_id}\")";
     }
 }

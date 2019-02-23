@@ -69,7 +69,7 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         public IEnumerable<T> Query<T>() where T : IPersistentObject
         {
-            LogDebug(EDataBaseLogMessage.QueryingObjects.FormatFluently(typeof(T)));
+            LogDebug(EDataBaseLogMessage.QueryingObjects.FormatFluently(typeof(T).Name));
 
             var cachedQuery = default(IEnumerable<T>);
 
