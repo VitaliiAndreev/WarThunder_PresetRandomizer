@@ -28,18 +28,18 @@ namespace Core.DataBase.Tests.Helpers
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var repository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
+            using (var dataRepository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
             {
                 var id = $"{fileName}/0";
 
                 // act
                 var fakeObject = new PersistentObjectFakeWithId(id);
-                fakeObject.InitializeNonPersistentFields(repository);
+                fakeObject.InitializeNonPersistentFields(dataRepository);
 
-                repository.NewObjects.Add(fakeObject);
-                repository.PersistNewObjects();
+                dataRepository.NewObjects.Add(fakeObject);
+                dataRepository.PersistNewObjects();
 
-                var query = repository.Query<PersistentObjectFakeWithId>();
+                var query = dataRepository.Query<PersistentObjectFakeWithId>();
 
                 // assert
                 query.Count().Should().Be(1);

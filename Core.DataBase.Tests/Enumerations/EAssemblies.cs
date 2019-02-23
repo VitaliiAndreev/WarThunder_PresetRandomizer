@@ -1,6 +1,6 @@
 ﻿namespace Core.DataBase.Tests.Enumerations
 {
-    /// <summary> Names of assemblies loaded for testing of schema creation. </summary>
+    /// <summary> Names of assemblies loaded for testing of schema creation and other fundamental components. </summary>
     public class EAssemblies
     {
         public const string AssemblyWithNoMapping = "Core.DataBase.Tests.Mapping.Empty";

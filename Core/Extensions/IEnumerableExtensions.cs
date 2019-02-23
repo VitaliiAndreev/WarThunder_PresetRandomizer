@@ -6,9 +6,10 @@ namespace Core.Extensions
     /// <summary> Methods extending the <see cref="IEnumerable{T}"/> class. </summary>
     public static class IEnumerableExtensions
     {
-        #region Fluency
+        #region Methods: Fluency
 
         /// <summary> Fluently checks whether a collection is empty. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="collection"> A source collection. </param>
         /// <returns></returns>
         public static bool IsEmpty<T>(this IEnumerable<T> collection) =>
@@ -37,6 +38,6 @@ namespace Core.Extensions
         public static string StringJoin<T>(this IEnumerable<T> collection, string separator) =>
             string.Join(separator, collection);
 
-        #endregion Fluency
+        #endregion Methods: Fluency
     }
 }

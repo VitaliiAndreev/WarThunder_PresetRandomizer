@@ -18,7 +18,7 @@ namespace Core.Extensions
             string.Format(source, arguments);
 
         #endregion Methods: Fluency
-        #region Formatting
+        #region Methods: Formatting
 
         /// <summary> Flattens a string by removing line breaks and inserting spaces in their stead, redundant space and punctuation marks are also removed. </summary>
         /// <param name="source"> A source string. </param>
@@ -71,6 +71,6 @@ namespace Core.Extensions
             return stringBuilder.ToString();
         }
 
-        #endregion Formatting
+        #endregion Methods: Formatting
     }
 }
