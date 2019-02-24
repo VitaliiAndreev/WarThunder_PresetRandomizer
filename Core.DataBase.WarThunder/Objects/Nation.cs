@@ -36,7 +36,9 @@ namespace Core.Objects
         #region Association Properties
 
         /// <summary> The nation's military branches. </summary>
-        [OneToMany(ClassType = typeof(Branch))]
+        [Bag(0, Name = nameof(Branches), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [OneToMany(1, ClassType = typeof(Branch))]
+        [Key(2, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
         public virtual IEnumerable<IBranch> Branches { get; protected set; }
 
         #endregion Association Properties

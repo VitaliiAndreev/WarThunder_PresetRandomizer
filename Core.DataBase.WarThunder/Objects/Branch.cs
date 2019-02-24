@@ -40,7 +40,8 @@ namespace Core.Objects
         }
 
         /// <summary> The branch's nation. </summary>
-        [ManyToOne(Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation))]
+        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
+        [Key(1)]
         public virtual INation Nation
         {
             get { return _nation; }
