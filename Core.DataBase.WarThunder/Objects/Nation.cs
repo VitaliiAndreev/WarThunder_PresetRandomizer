@@ -3,6 +3,7 @@ using Core.DataBase.Objects;
 using Core.Enumerations.DataBase;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
+using System;
 using System.Collections.Generic;
 
 namespace Core.Objects
@@ -14,8 +15,8 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The nation's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(string), Name = nameof(Id))] // The type and name of the identificator column have to be explicitly specified.
-        public override string Id // All persistent properties have to be public/protected virtual and have public/protected setters.
+        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))] // The type and name of the identificator column have to be explicitly specified.
+        public override Guid Id // All persistent properties have to be public/protected virtual and have public/protected setters.
         {
             get { return _id; }
             // Even though we don't want to change IDs after creation,
@@ -51,10 +52,9 @@ namespace Core.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The nation's ID. </param>
         /// <param name="name"> The nation's name. </param>
-        public Nation(IDataRepository dataRepository, string id, string name)
-            : base(dataRepository, id, name)
+        public Nation(IDataRepository dataRepository, string name)
+            : base(dataRepository, name)
         {
         }
 

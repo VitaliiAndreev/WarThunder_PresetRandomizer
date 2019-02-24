@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using System;
 
 namespace Core.DataBase.Objects
 {
@@ -12,13 +13,13 @@ namespace Core.DataBase.Objects
         /// The object's ID.
         /// This field is used by the <see cref="Id"/> property.
         /// </summary>
-        protected string _id;
+        protected Guid _id;
 
         #endregion Fields
         #region Properties
 
         /// <summary> The object's ID. </summary>
-        public virtual string Id
+        public virtual Guid Id
         {
             get { return _id; }
             protected set { _id = value; }
@@ -37,11 +38,10 @@ namespace Core.DataBase.Objects
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The object's ID. </param>
-        protected PersistentObjectWithId(IDataRepository dataRepository, string id)
+        protected PersistentObjectWithId(IDataRepository dataRepository)
             : base(dataRepository)
         {
-            _id = id;
+            _id = Guid.NewGuid();
 
             LogCreation();
         }

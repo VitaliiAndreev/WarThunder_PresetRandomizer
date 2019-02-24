@@ -33,12 +33,14 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             using (var dataRepository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 // act
-                new Nation(dataRepository, "0", "Zimbabwe").CommitChanges();
+                var zimbabwe = new Nation(dataRepository, "Zimbabwe");
+
+                dataRepository.PersistNewObjects();
 
                 var query = dataRepository.Query<INation>();
                 query.Count().Should().Be(1);
 
-                var zimbabwe = query.First();
+                var nation = query.First();
 
                 // assert
                 zimbabwe.Id.Should().Be("0");

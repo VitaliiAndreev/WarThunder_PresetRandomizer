@@ -4,6 +4,7 @@ using Core.Enumerations.DataBase;
 using Core.Extensions;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
+using System;
 
 namespace Core.Objects
 {
@@ -23,8 +24,8 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The branch's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(string), Name = nameof(Id))]
-        public override string Id
+        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))]
+        public override Guid Id
         {
             get { return _id; }
             protected set { _id = value; }
@@ -59,11 +60,10 @@ namespace Core.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The branch's ID. </param>
         /// <param name="name"> The branch's Name. </param>
         /// <param name="nation"> The branch's nation. </param>
-        public Branch(IDataRepository dataRepository, string id, string name, INation nation)
-            : base(dataRepository, id, name)
+        public Branch(IDataRepository dataRepository, string name, INation nation)
+            : base(dataRepository, name)
         {
             _nation = nation;
         }

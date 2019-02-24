@@ -92,7 +92,7 @@ namespace Core.Tests.Helpers.DataBase
                 using (var session = factory.OpenSession())
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(new PersistentObjectFakeWithIdAndName("id", "name"));
+                    session.Save(new PersistentObjectFakeWithIdAndName("name"));
                     transaction.Commit();
                 }
             };

@@ -1,9 +1,11 @@
-﻿namespace Core.DataBase.Objects.Interfaces
+﻿using System;
+
+namespace Core.DataBase.Objects.Interfaces
 {
     /// <summary> A persistent (stored in a database) object that has an ID. </summary>
     public interface IPersistentObjectWithId : IPersistentObject
     {
         /// <summary> The object's ID. </summary>
-        string Id { get; }
+        Guid Id { get; }
     }
 }

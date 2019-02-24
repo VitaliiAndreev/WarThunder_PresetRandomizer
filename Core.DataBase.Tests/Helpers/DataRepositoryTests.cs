@@ -3,6 +3,7 @@ using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -30,10 +31,8 @@ namespace Core.DataBase.Tests.Helpers
 
             using (var dataRepository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
             {
-                var id = $"{fileName}/0";
-
                 // act
-                var fakeObject = new PersistentObjectFakeWithId(id);
+                var fakeObject = new PersistentObjectFakeWithId(Guid.NewGuid());
                 fakeObject.InitializeNonPersistentFields(dataRepository);
 
                 dataRepository.NewObjects.Add(fakeObject);

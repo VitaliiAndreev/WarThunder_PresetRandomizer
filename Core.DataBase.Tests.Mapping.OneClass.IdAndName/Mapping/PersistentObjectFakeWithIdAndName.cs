@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
 using NHibernate.Mapping.Attributes;
+using System;
 
 namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
 {
@@ -8,8 +9,8 @@ namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
     {
         private string _name;
 
-        [Id(Column = nameof(Id), TypeType = typeof(string), Name = nameof(Id))]
-        public override string Id
+        [Id(Column = nameof(Id), TypeType = typeof(Guid), Name = nameof(Id))]
+        public override Guid Id
         {
             get { return _id; }
             protected set { _id = value; }
@@ -26,9 +27,9 @@ namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
         {
         }
 
-        public PersistentObjectFakeWithIdAndName(string id, string name)
-            : base(id)
+        public PersistentObjectFakeWithIdAndName(string name)
         {
+            _id = Guid.NewGuid();
             _name = name;
         }
     }

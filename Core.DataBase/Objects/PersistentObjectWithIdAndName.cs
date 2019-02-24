@@ -38,10 +38,9 @@ namespace Core.DataBase.Objects
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The object's ID. </param>
         /// <param name="name"> The object's name. </param>
-        protected PersistentObjectWithIdAndName(IDataRepository dataRepository, string id, string name)
-            : base(dataRepository, id)
+        protected PersistentObjectWithIdAndName(IDataRepository dataRepository, string name)
+            : base(dataRepository)
         {
             _name = name;
 
