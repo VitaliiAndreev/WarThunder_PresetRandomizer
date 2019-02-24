@@ -30,7 +30,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 // act
                 var zimbabwe = new Nation(dataRepository, "Zimbabwe");

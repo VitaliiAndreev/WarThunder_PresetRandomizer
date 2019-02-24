@@ -38,7 +38,7 @@ namespace Core.Tests.Helpers.DataBase
             // act
             Action buildDataBase = () =>
             {
-                using (var factory = new ConfiguredSessionFactory(fileName, false, Assembly.Load(EAssemblies.AssemblyWithNoMapping), Presets.Logger)) { }
+                using (var factory = new ConfiguredSessionFactory(fileName, true, Assembly.Load(EAssemblies.AssemblyWithNoMapping), Presets.Logger)) { }
             };
 
             // assert

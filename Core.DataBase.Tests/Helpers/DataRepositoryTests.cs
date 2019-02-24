@@ -29,7 +29,7 @@ namespace Core.DataBase.Tests.Helpers
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(fileName, false, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
+            using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
             {
                 // act
                 var fakeObject = new PersistentObjectFakeWithId(Guid.NewGuid());
