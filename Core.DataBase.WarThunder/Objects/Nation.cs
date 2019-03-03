@@ -57,7 +57,16 @@ namespace Core.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="name"> The nation's name. </param>
         public Nation(IDataRepository dataRepository, string name)
-            : base(dataRepository, name)
+            : this(dataRepository, Guid.NewGuid(), name)
+        {
+        }
+
+        /// <summary> Creates a new nation. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="id"> The nation's ID. </param>
+        /// <param name="name"> The nation's name. </param>
+        public Nation(IDataRepository dataRepository, Guid id, string name)
+            : base(dataRepository, id, name)
         {
         }
 

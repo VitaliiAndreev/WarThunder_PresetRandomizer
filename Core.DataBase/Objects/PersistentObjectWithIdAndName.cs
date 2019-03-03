@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.Extensions;
+using System;
 
 namespace Core.DataBase.Objects
 {
@@ -40,7 +41,16 @@ namespace Core.DataBase.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="name"> The object's name. </param>
         protected PersistentObjectWithIdAndName(IDataRepository dataRepository, string name)
-            : base(dataRepository)
+            : this(dataRepository, Guid.NewGuid(), name)
+        {
+        }
+
+        /// <summary> Creates a new transient object that can be persisted later. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="id"> The object's ID. </param>
+        /// <param name="name"> The object's name. </param>
+        protected PersistentObjectWithIdAndName(IDataRepository dataRepository, Guid id, string name)
+            : base(dataRepository, id)
         {
             _name = name;
 

@@ -66,6 +66,16 @@ namespace Core.Objects
         /// <param name="name"> The branch's Name. </param>
         /// <param name="nation"> The branch's nation. </param>
         public Branch(IDataRepository dataRepository, string name, INation nation)
+            : this(dataRepository, Guid.NewGuid(), name, nation)
+        {
+        }
+
+        /// <summary> Creates a new nation. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="id"> The branch's ID. </param>
+        /// <param name="name"> The branch's Name. </param>
+        /// <param name="nation"> The branch's nation. </param>
+        public Branch(IDataRepository dataRepository, Guid id, string name, INation nation)
             : base(dataRepository, name)
         {
             _nation = nation;

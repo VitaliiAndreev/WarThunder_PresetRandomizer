@@ -39,6 +39,14 @@ namespace Core.DataBase.Objects
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         protected PersistentObjectWithId(IDataRepository dataRepository)
+            : this(dataRepository, Guid.NewGuid())
+        {
+        }
+
+        /// <summary> Creates a new transient object that can be persisted later. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="id"> The object's ID. </param>
+        protected PersistentObjectWithId(IDataRepository dataRepository, Guid id)
             : base(dataRepository)
         {
             _id = Guid.NewGuid();
