@@ -51,5 +51,20 @@ namespace Core.DataBase.Objects
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
         public override string ToString() => $"{base.ToString()} (ID: \"{_id}\")";
+
+        /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
+        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
+        /// <returns></returns>
+        protected override bool IsEquivalentTo(IPersistentObject comparedPersistentObject)
+        {
+            if (base.IsEquivalentTo(comparedPersistentObject) && comparedPersistentObject is PersistentObjectWithId comparedPersistentObjectWithId)
+            {
+                if (Id != comparedPersistentObjectWithId.Id)
+                    return false;
+
+                return true;
+            }
+            return false;
+        }
     }
 }

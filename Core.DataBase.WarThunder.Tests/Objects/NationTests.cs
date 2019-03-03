@@ -43,8 +43,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var nation = query.First();
 
                 // assert
-                zimbabwe.Id.Should().Be("0");
-                zimbabwe.Name.Should().Be("Zimbabwe");
+                nation.IsEquivalentTo(zimbabwe, false).Should().BeTrue();
             }
         }
 

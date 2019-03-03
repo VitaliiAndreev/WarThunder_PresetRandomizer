@@ -109,6 +109,49 @@ namespace Core.DataBase.Objects
         public virtual IEnumerable<IPersistentObject> GetAllNestedObjects() =>
             new List<IPersistentObject>();
 
+        #region Methods: Equivalence
+
+        /// <summary>
+        /// Checks whether the specified instance can be considered equivalent to the current one.
+        /// All instances of the base class are considered equivalent because they do not have any persistent properties.
+        /// </summary>
+        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
+        /// <returns></returns>
+        protected virtual bool IsEquivalentTo(IPersistentObject comparedInstance)
+        {
+            if (comparedInstance is PersistentObject comparedPersistentObject)
+            {
+                if (_dataRepository != comparedPersistentObject._dataRepository)
+                    return false;
+                if (_logCategory != comparedPersistentObject._logCategory)
+                    return false;
+
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks whether the specified instance can be considered equivalent to the current one.
+        /// </summary>
+        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
+        /// <param name="includeNestedObjects"> Whether to use nested objects for comparison. </param>
+        /// <param name="recursionLevel"> The level of recursion up to which to compare nested objects. Use with CAUTION in case of cyclic links. Set to zero to disable recursion. </param>
+        /// <returns></returns>
+        public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, bool includeNestedObjects, int recursionLevel = 0)
+        {
+            if (IsEquivalentTo(comparedPersistentObject))
+            {
+                if (!includeNestedObjects)
+                    return true;
+
+                return GetAllNestedObjects().IsEquivalentTo(comparedPersistentObject.GetAllNestedObjects(), recursionLevel.IsPositive(), recursionLevel - 1);
+            }
+            return false;
+        }
+
+        #endregion Methods: Equivalence
+
         /// <summary> Commit changes to the current persistent object (persist if the object is transient) using the <see cref="IDataRepository"/> provided with the object's constructor. </summary>
         public virtual void CommitChanges()
         {
