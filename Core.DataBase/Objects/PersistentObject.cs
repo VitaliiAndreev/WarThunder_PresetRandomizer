@@ -4,6 +4,7 @@ using Core.DataBase.Objects.Interfaces;
 using Core.Extensions;
 using Core.Helpers.Logger.Enumerations;
 using System;
+using System.Collections.Generic;
 
 namespace Core.DataBase.Objects
 {
@@ -48,7 +49,7 @@ namespace Core.DataBase.Objects
         /// <summary> Sets the <see cref="_logCategory"/> for the object. </summary>
         protected void SetLogCategory() => _logCategory = GetType().ToStringLikeCode();
 
-        /// <summary> Initializes non-persistent fields of the object. Use this method to finalize reading from a database. </summary>
+        /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>
         /// <param name="dataRepository"> A data repository to assign the object to. </param>
         public virtual void InitializeNonPersistentFields(IDataRepository dataRepository)
         {
@@ -102,6 +103,11 @@ namespace Core.DataBase.Objects
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
         public override string ToString() => $"{this.GetTypeString()}";
+
+        /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
+        /// <returns></returns>
+        public virtual IEnumerable<IPersistentObject> GetAllNestedObjects() =>
+            new List<IPersistentObject>();
 
         /// <summary> Commit changes to the current persistent object (persist if the object is transient) using the <see cref="IDataRepository"/> provided with the object's constructor. </summary>
         public virtual void CommitChanges()

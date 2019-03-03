@@ -81,10 +81,21 @@ namespace Core.DataBase.Helpers
             }
 
             foreach (var instance in cachedQuery)
-                instance.InitializeNonPersistentFields(this);
+                InitializeNonPersistentFields(instance);
 
             LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
             return cachedQuery;
+        }
+
+        /// <summary> Initializes non-persistent fields of a persistent object. This method is required to finalize reading from a database. </summary>
+        /// <typeparam name="T"> The type of a persistent object to finilize initialization of. </typeparam>
+        /// <param name="instance"> The instance to finilize initialization of. </param>
+        private void InitializeNonPersistentFields<T>(T instance) where T : IPersistentObject
+        {
+            instance.InitializeNonPersistentFields(this);
+
+            foreach (var nestedObject in instance.GetAllNestedObjects())
+                nestedObject.InitializeNonPersistentFields(this);
         }
 
         /// <summary> Commits any changes to a specified object to the database. </summary>

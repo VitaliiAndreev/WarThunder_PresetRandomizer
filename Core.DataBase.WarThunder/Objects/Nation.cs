@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
+using Core.DataBase.Objects.Interfaces;
 using Core.Enumerations.DataBase;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
@@ -61,5 +62,9 @@ namespace Core.Objects
         }
 
         #endregion Constructors
+
+        /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
+        /// <returns></returns>
+        public override IEnumerable<IPersistentObject> GetAllNestedObjects() => Branches;
     }
 }

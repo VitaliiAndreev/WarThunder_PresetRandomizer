@@ -1,10 +1,12 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
+using Core.DataBase.Objects.Interfaces;
 using Core.Enumerations.DataBase;
 using Core.Extensions;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Objects
 {
@@ -74,5 +76,9 @@ namespace Core.Objects
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
         public override string ToString() => $"{base.ToString().SkipLast(1)}, Nation: \"{_nation?.ToString()}\")";
+
+        /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
+        /// <returns></returns>
+        public override IEnumerable<IPersistentObject> GetAllNestedObjects() => new List<IPersistentObject> { Nation };
     }
 }

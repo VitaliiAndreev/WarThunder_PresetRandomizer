@@ -31,11 +31,14 @@ namespace Core.DataBase.Tests.Helpers
 
             using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
             {
-                // act
-                var fakeObject = new PersistentObjectFakeWithId(Guid.NewGuid());
+                var id = Guid.NewGuid();
+
+                var fakeObject = new PersistentObjectFakeWithId(id);
                 fakeObject.InitializeNonPersistentFields(dataRepository);
 
                 dataRepository.NewObjects.Add(fakeObject);
+
+                // act
                 dataRepository.PersistNewObjects();
 
                 var query = dataRepository.Query<PersistentObjectFakeWithId>();
