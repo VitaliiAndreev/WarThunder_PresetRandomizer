@@ -38,8 +38,8 @@ namespace Core.Objects
 
         /// <summary> The nation's military branches. </summary>
         [Bag(0, Name = nameof(Branches), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [Key(1, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
         [OneToMany(1, ClassType = typeof(Branch))]
-        [Key(2, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
         public virtual IEnumerable<IBranch> Branches { get; protected set; }
 
         #endregion Association Properties
