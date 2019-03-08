@@ -23,6 +23,8 @@ namespace Core.Extensions
         public static IEnumerable<T> SkipLast<T>(this IEnumerable<T> collection, int amountOfItemsToSkip) =>
             collection.Take(collection.Count() - amountOfItemsToSkip);
 
+        #region StringJoin<T>()
+
         /// <summary> Fluently concatenates members of a collection using the specified separator between each member. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="collection"> A source collection. </param>
@@ -45,6 +47,8 @@ namespace Core.Extensions
         /// <returns></returns>
         public static string StringJoin<T>(this IEnumerable<T> collection, string separator) =>
             string.Join(separator, collection);
+
+        #endregion StringJoin<T>()
 
         #endregion Methods: Fluency
     }

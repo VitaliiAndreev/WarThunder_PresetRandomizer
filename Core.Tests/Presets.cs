@@ -1,9 +1,12 @@
-﻿using Core.Enumerations;
+﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Helpers;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Moq;
 using NLog;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core.DataBase.Tests
@@ -22,6 +25,9 @@ namespace Core.DataBase.Tests
         /// <summary> An instance of a logger. </summary>
         public static IConfiguredLogger Logger { get; private set; }
 
+        /// <summary> A pre-set instance of a bare-bone mock data repository. Create a mock locally if you need to customize it. </summary>
+        public static Mock<IDataRepository> MockDataRepository { get; private set; }
+
         #endregion Properties
         #region Constructors and Initialization
 
@@ -32,6 +38,7 @@ namespace Core.DataBase.Tests
             CleanUpLogs = false;
 
             InitializeLogger();
+            InitializeMockDataRepository();
         }
 
         /// <summary> Creates a <see cref="Logger"/> instance. </summary>
@@ -52,6 +59,18 @@ namespace Core.DataBase.Tests
 
                 Logger = mockLogger.Object;
             }
+        }
+
+        /// <summary> Creates a <see cref="MockDataRepository"/> instance. </summary>
+        private static void InitializeMockDataRepository()
+        {
+            MockDataRepository = new Mock<IDataRepository>();
+            MockDataRepository
+                .Setup(dataRepository => dataRepository.Logger)
+                .Returns(Logger);
+            MockDataRepository
+                .Setup(dataRepository => dataRepository.NewObjects)
+                .Returns(new List<IPersistentObject>());
         }
 
         #endregion Constructors and Initialization

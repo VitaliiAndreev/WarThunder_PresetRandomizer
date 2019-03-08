@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.DataBase\Core.DataBase.csproj">
+      <Project>{E011A25B-4920-4F8E-8373-58EB9AFE8991}</Project>
+      <Name>Core.DataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2cb4dc66-57b7-4d80-9c43-f3278bf76248}</Project>
       <Name>Core</Name>

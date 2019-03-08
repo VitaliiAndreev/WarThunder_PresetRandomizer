@@ -33,11 +33,11 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
             using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
-                // act
                 var zimbabwe = new Nation(dataRepository, "Zimbabwe");
                 var bycicleCorps = new Branch(dataRepository, "Bycicle Corps", zimbabwe);
                 zimbabwe.Branches = new List<IBranch> { bycicleCorps };
 
+                // act
                 dataRepository.PersistNewObjects();
 
                 var query = dataRepository.Query<IBranch>();
@@ -51,5 +51,59 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         #endregion Tests: CommitChanges() and Query()
+        #region Tests: IsEquivalentTo()
+
+        [TestMethod]
+        public void IsEquivalentTo_Self_ShouldBeTrue()
+        {
+            // arrange
+            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
+            var bycicleCorps = new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe);
+            zimbabwe.Branches = new List<IBranch> { bycicleCorps };
+
+            // act
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorps, true, 2);
+
+            // assert
+            isEquivalent.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void IsEquivalentTo_AnotherInstance_SameNation_ShouldBeTrue()
+        {
+            // arrange
+            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
+
+            var bycicleCorps = new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe);
+            var bycicleCorpsClone = new Branch(Presets.MockDataRepository.Object, bycicleCorps.Id, bycicleCorps.Name, bycicleCorps.Nation);
+            zimbabwe.Branches = new List<IBranch> { bycicleCorps, bycicleCorpsClone };
+
+            // act
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsClone, true, 2);
+
+            // assert
+            isEquivalent.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void IsEquivalentTo_AnotherInstance_DifferentNations_ShouldBeFalse()
+        {
+            // arrange
+            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
+            var bycicleCorps = new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe);
+            zimbabwe.Branches = new List<IBranch> { bycicleCorps };
+
+            var estonia = new Nation(Presets.MockDataRepository.Object, "Estonia");
+            var bycicleCorpsCloneFlawed = new Branch(Presets.MockDataRepository.Object, bycicleCorps.Name, estonia);
+            estonia.Branches = new List<IBranch> { bycicleCorpsCloneFlawed };
+
+            // act
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsCloneFlawed, true, 2);
+
+            // assert
+            isEquivalent.Should().BeFalse();
+        }
+
+        #endregion Tests: IsEquivalentTo()
     }
 }
