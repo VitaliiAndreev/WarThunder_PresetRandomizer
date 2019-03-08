@@ -49,7 +49,7 @@ namespace Core.DataBase.Objects
         protected PersistentObjectWithId(IDataRepository dataRepository, Guid id)
             : base(dataRepository)
         {
-            _id = Guid.NewGuid();
+            _id = id;
 
             LogCreation();
         }

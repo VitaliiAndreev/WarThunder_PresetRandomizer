@@ -76,7 +76,7 @@ namespace Core.Objects
         /// <param name="name"> The branch's Name. </param>
         /// <param name="nation"> The branch's nation. </param>
         public Branch(IDataRepository dataRepository, Guid id, string name, INation nation)
-            : base(dataRepository, name)
+            : base(dataRepository, id, name)
         {
             _nation = nation;
         }
