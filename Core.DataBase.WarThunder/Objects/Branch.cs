@@ -85,7 +85,7 @@ namespace Core.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{base.ToString().SkipLast(1)}, Nation: \"{_nation?.ToString()}\")";
+        public override string ToString() => $"{base.ToString()} of {_nation?.ToString() ?? "?"})";
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
         /// <returns></returns>

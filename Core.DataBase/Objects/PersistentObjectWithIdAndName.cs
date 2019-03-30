@@ -1,7 +1,9 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Extensions;
 using System;
+using System.Linq;
 
 namespace Core.DataBase.Objects
 {
@@ -61,7 +63,13 @@ namespace Core.DataBase.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{base.ToString().SkipLast(1)}, Name: \"{_name}\")";
+        public override string ToString()
+        {
+            var baseRepresentation = base.ToString().Split(ECharacter.Space);
+            var type = baseRepresentation.First();
+            var id = baseRepresentation.Last();
+            return $"{type} {_name} {id}";
+        }
 
         /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
         /// <param name="comparedPersistentObject"> An instance of a compared object. </param>

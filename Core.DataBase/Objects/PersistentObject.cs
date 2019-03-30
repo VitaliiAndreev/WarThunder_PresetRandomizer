@@ -102,7 +102,7 @@ namespace Core.DataBase.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{this.GetTypeString()}";
+        public override string ToString() => $"[{this.GetTypeString()}]";
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
         /// <returns></returns>
