@@ -50,8 +50,6 @@ namespace Core.DataBase.Objects
             : base(dataRepository)
         {
             _id = id;
-
-            LogCreation();
         }
 
         #endregion Constructors

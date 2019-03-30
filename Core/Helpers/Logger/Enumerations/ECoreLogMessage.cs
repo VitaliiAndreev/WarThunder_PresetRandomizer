@@ -136,6 +136,7 @@
         #endregion H
         #region I
 
+        protected const string _instantiated = " instantiated";
         protected const string _into = " into";
         protected const string _intoConfiguration = _into + _configuration;
         protected const string _is = " is";
@@ -200,6 +201,7 @@
         #endregion P
         #region Q
 
+        protected const string _queried = " queried";
         protected const string _query = " query";
         protected const string _Querying = "Querying";
 

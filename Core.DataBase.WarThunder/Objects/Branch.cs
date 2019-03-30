@@ -79,6 +79,8 @@ namespace Core.Objects
             : base(dataRepository, id, name)
         {
             _nation = nation;
+
+            LogCreation();
         }
 
         #endregion Constructors

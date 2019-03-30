@@ -37,8 +37,6 @@ namespace Core.DataBase.Objects
             SetLogCategory();
             _dataRepository = dataRepository;
             _dataRepository.NewObjects.Add(this);
-
-            LogCreation();
         }
 
         #endregion Constructors

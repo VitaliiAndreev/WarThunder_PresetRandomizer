@@ -28,6 +28,11 @@ namespace Core.DataBase.Enumerations.Logger
         public const string QueryingObjects = _Querying + _all + _SPC_FMT_Q + _objects + _FS;
         /// <summary>
         /// A message with formatting placeholders.
+        /// <para>1: object.</para>
+        /// </summary>
+        public const string InstantiatedFromQuery = _FMT + _instantiated + _from + _query + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
         /// <para>1: persistent object count.</para>
         /// </summary>
         public const string QueryReturnedObjects = _The + _query + _has + _returned + _SPC_FMT + _object_s + _FS;
@@ -36,7 +41,7 @@ namespace Core.DataBase.Enumerations.Logger
         /// A message with formatting placeholders.
         /// <para>1: string representation of an object.</para>
         /// </summary>
-        public const string CommittingChangesTo = _Committing + _changes + _to + _SPC_FMT_Q + _FS;
+        public const string CommittingChangesTo = _Committing + _changes + _to + _SPC_FMT + _FS;
         public const string ChangesCommitted = _Changes + _committed + _FS;
 
         /// <summary>

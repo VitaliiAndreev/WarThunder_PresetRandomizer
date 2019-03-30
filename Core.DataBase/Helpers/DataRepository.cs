@@ -81,7 +81,10 @@ namespace Core.DataBase.Helpers
             }
 
             foreach (var instance in cachedQuery)
+            {
                 InitializeNonPersistentFields(instance);
+                LogTrace(EDataBaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
+            }
 
             LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
             return cachedQuery;

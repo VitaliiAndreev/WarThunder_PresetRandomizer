@@ -68,6 +68,7 @@ namespace Core.Objects
         public Nation(IDataRepository dataRepository, Guid id, string name)
             : base(dataRepository, id, name)
         {
+            LogCreation();
         }
 
         #endregion Constructors
