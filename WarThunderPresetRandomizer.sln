@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataBase.WarThunder", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataBase.WarThunder.Tests", "Core.DataBase.WarThunder.Tests\Core.DataBase.WarThunder.Tests.csproj", "{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.WarThunderUnpackingToolsIntegration", "Core.WarThunderExtractionToolsIntegration\Core.WarThunderUnpackingToolsIntegration.csproj", "{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

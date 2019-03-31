@@ -9,6 +9,7 @@
         public const char Comma = ',';
         public const char Grave = '`';
         public const char NewLine = '\n';
+        public const char Period = '.';
         public const char Space = ' ';
     }
 }
