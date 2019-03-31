@@ -56,6 +56,7 @@
         protected const string _cancelled = " cancelled";
         protected const string _Changes = "Changes";
         protected const string _changes = " changes";
+        protected const string _Checking = "Checking";
         protected const string _class = " class";
         protected const string _closed = " closed";
         protected const string _Closing = "Closing";
@@ -116,8 +117,11 @@
         protected const string _file = " file";
         protected const string _file_s = _file + "(s)";
         protected const string _files = _file + "s";
+        protected const string _Filtering = "Filtering";
         protected const string _for = " for";
         protected const string _for_SPC_FMT_Q = _for + _SPC_FMT_Q;
+        protected const string _format = _for + "mat";
+        protected const string _formats = _format + "s";
         protected const string _found = " found";
         protected const string _from = " from";
 
@@ -220,12 +224,15 @@
         protected const string _schema = " schema";
         protected const string _Selected = "Selected";
         protected const string _Selecting = "Selecting";
+        protected const string _selection = " selection";
         protected const string _serialized = " serialized";
         protected const string _Serializing = "Serializing";
         protected const string _Session = "Session";
         protected const string _session = " session";
         protected const string _SessionFactory = _Session + _factory;
         protected const string _sessionFactory = _session + _factory;
+        protected const string _specified = " specified";
+        protected const string _subfolders = " subfolders";
         protected const string _Successfully = "Successfully";
 
         public const string W_Schema = _Schema;
@@ -304,11 +311,19 @@
 
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para>1st: file extensions.</para>
-        /// <para>2nd: directory path.</para>
+        /// <para>1: directory path.</para>
         /// </summary>
-        public const string SelectingFiles = _Selecting + _SPC_FMT_Q + _files + _from + _SPC_FMT_Q + _FS;
-        public const string SelectedFiles = _Selected + _SPC_FMT + _file_s + _FS;
+        public const string SelectingAllFilesFromDirectory = _Selecting + _all + _files + _from + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para>1: file extensions.</para>
+        /// </summary>
+        public const string FilteringFilesFromSelection = _Filtering + _SPC_FMT_Q + _files + _from + _selection + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para>1: file count.</para>
+        /// </summary>
+        public const string SelectedFileCount = _Selected + _SPC_FMT + _file_s + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para>1: file name.</para>
@@ -321,6 +336,12 @@
         public const string DeletingFiles = _Deleting + _SPC_FMT + _file_s + _FS;
         public const string FileDeleted = _File + _deleted + _FS;
         public const string FilesDeleted = _All + _files + _deleted + _FS;
+        public const string CheckingSubfolders = _Checking + _for + _subfolders + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para>1: subfolder count.</para>
+        /// </summary>
+        public const string SubfoldersFound = _SPC_FMT + _subfolders + _found + _FS;
 
         /// <summary>
         /// A message with formatting placeholders.
@@ -329,7 +350,13 @@
         public const string WarnDirectoryDoestExist_DeletingAborted =
             _TheDirectory_SPC_FMT_Q + _does + _not + _exist + _FS_SPC
             + _Deleting + _files + _safely + _aborted + _FS;
-        public const string WarnEmptyDirectory = _TheDirectory_SPC_FMT_Q + _is + _empty + _FS_SPC + _No + _files + _to + _delete + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para>1: directory name.</para>
+        /// </summary>
+        public const string WarnEmptyDirectory = _TheDirectory_SPC_FMT_Q + _is + _empty + _FS;
+        public const string WarnNoFilesOfSpecifiedFormatToDelete = _No + _files + _of + _specified + _format + _to + _delete + _FS;
+        public const string WarnNoSubfolders = _No + _subfolders + _FS;
 
         public const string ErrorDeletingFile = _AnErrorHasOccuredWhile + _deleting + _file + _FS;
         public const string ErrorDeletingFiles = _AnErrorHasOccuredWhile + _deleting + _one + _of + _the + _files + _FS;

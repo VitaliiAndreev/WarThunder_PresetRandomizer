@@ -45,6 +45,8 @@ namespace Core.Helpers
             LogTrace(ECoreLogMessage.FileDeleted);
         }
 
+        #region DeleteFiles()
+
         /// <summary> Deletes all files listed in the specified collection. </summary>
         /// <param name="files"> A collection of file information. </param>
         private void DeleteFiles(IEnumerable<FileInfo> files)
@@ -55,7 +57,7 @@ namespace Core.Helpers
             try
             {
                 foreach (var file in files)
-                   DeleteFile(file);
+                    DeleteFile(file);
             }
             catch (Exception exception)
             {
@@ -66,44 +68,119 @@ namespace Core.Helpers
             LogDebug(ECoreLogMessage.FilesDeleted);
         }
 
-        /// <summary> Deletes all files with the specified extension in a folder. </summary>
-        /// <param name="path"> The path to a folder. </param>
+        /// <summary> Deletes all files in a directory. </summary>
+        /// <param name="path"> The path to a directory. </param>
+        /// <param name="includeNested"> Whether to delete files in all nested directories. </param>
+        /// <param name="deleteEmptyDirectories"> Whether to delete directories if they are empty after file deletion regardless of whether they had files prior. </param>
+        public void DeleteFiles(string path, bool includeNested = false, bool deleteEmptyDirectories = false) =>
+            DeleteFiles(path, new List<string>(), includeNested, deleteEmptyDirectories);
+
+        /// <summary> Deletes all files with the specified extension in a directory. </summary>
+        /// <param name="path"> The path to a directory. </param>
         /// <param name="fileExtension"> A collection of file extensions to delete from the folder. </param>
         public void DeleteFiles(string path, params string[] fileExtensions) =>
             DeleteFiles(path, fileExtensions.ToList());
 
-        /// <summary> Deletes all files with specified extensions in a folder. </summary>
-        /// <param name="path"> The path to a folder. </param>
+        /// <summary> Deletes all files with specified extensions in a directory. </summary>
+        /// <param name="path"> The path to a directory. </param>
         /// <param name="fileExtension"> A collection of file extensions to delete from the folder. </param>
-        public void DeleteFiles(string path, IEnumerable<string> fileExtensions)
+        /// <param name="includeNested"> Whether to delete files in all nested directories. </param>
+        /// <param name="deleteEmptyDirectories"> Whether to delete directories if they are empty after file deletion regardless of whether they had files prior. </param>
+        public void DeleteFiles(string path, IEnumerable<string> fileExtensions, bool includeNested = false, bool deleteEmptyDirectories = false)
         {
-            var directory = new DirectoryInfo(path);
+            var rootDirectory = new DirectoryInfo(path);
 
-            if (!directory.Exists)
+            if (!rootDirectory.Exists)
             {
-                LogWarn(ECoreLogMessage.WarnDirectoryDoestExist_DeletingAborted.FormatFluently(directory.FullName));
+                LogWarn(ECoreLogMessage.WarnDirectoryDoestExist_DeletingAborted.FormatFluently(rootDirectory.FullName));
                 return;
             }
 
-            LogDebug(ECoreLogMessage.SelectingFiles.ResetFormattingPlaceholders().FormatFluently(fileExtensions.StringJoin(", "), directory.FullName));
-            var files = directory
-                .GetFiles()
-                .Where
-                (
-                    file => file.Extension.Substring(1).ToLower().IsIn(fileExtensions.Select(extension => extension.ToLower()))
-                        && !file.Attributes.HasFlag(FileAttributes.Directory | FileAttributes.Hidden | FileAttributes.ReadOnly | FileAttributes.System)
-                        && !file.IsReadOnly
-                )
-            ;
+            LogDebug(ECoreLogMessage.SelectingAllFilesFromDirectory.FormatFluently(rootDirectory.FullName));
 
+            var files = rootDirectory.GetFiles();
             if (files.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnEmptyDirectory.FormatFluently(directory.FullName));
+                LogDebug(ECoreLogMessage.WarnEmptyDirectory.FormatFluently(rootDirectory.FullName));
+
+                if (includeNested)
+                    DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
+
                 return;
             }
 
-            LogDebug(ECoreLogMessage.SelectedFiles.FormatFluently(files.Count()));
+            if (fileExtensions?.Any() ?? false)
+            {
+                LogDebug(ECoreLogMessage.FilteringFilesFromSelection.FormatFluently(fileExtensions.StringJoin(", ")));
+                files = files
+                    .Where
+                    (
+                        file => file.Extension.Substring(1).ToLower().IsIn(fileExtensions.Select(extension => extension.ToLower()))
+                            && !file.Attributes.HasFlag(FileAttributes.Directory | FileAttributes.Hidden | FileAttributes.ReadOnly | FileAttributes.System)
+                            && !file.IsReadOnly
+                    )
+                    .ToArray()
+                ;
+
+                if (files.IsEmpty())
+                {
+                    LogDebug(ECoreLogMessage.WarnNoFilesOfSpecifiedFormatToDelete);
+                    return;
+                }
+            }
+
+            LogDebug(ECoreLogMessage.SelectedFileCount.FormatFluently(files.Count()));
             DeleteFiles(files);
+
+            if (includeNested)
+                DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
+        }
+
+        #endregion DeleteFiles()
+        #region DeleteFilesInSubdirectories()
+
+        /// <summary> Deletes all files with specified extensions in all subfolders. </summary>
+        /// <param name="directory"> A directory from whose subfolders to delete files. </param>
+        /// <param name="fileExtension"> A collection of file extensions to delete from the folder. </param>
+        /// <param name="deleteEmptyDirectories"> Whether to delete directories if they are empty after file deletion regardless of whether they had files prior. </param>
+        private void DeleteFilesInSubdirectories(DirectoryInfo directory, IEnumerable<string> fileExtensions, bool deleteEmptyDirectories = false)
+        {
+            LogDebug(ECoreLogMessage.CheckingSubfolders);
+
+            var subdirectories = directory.GetDirectories();
+            if (subdirectories.IsEmpty())
+            {
+                LogDebug(ECoreLogMessage.WarnNoSubfolders);
+                return;
+            }
+
+            LogDebug(ECoreLogMessage.SubfoldersFound.FormatFluently(subdirectories.Count()));
+
+            for (var i = 0; i < subdirectories.Count(); i++)
+            {
+                var subdirectory = subdirectories[i];
+                DeleteFiles(subdirectory.FullName, fileExtensions, true, deleteEmptyDirectories);
+
+                if (deleteEmptyDirectories)
+                    Directory.Delete(subdirectory.FullName);
+            }
+        }
+
+        #endregion DeleteFilesInSubdirectories()
+
+        /// <summary> Empties the specified directory. </summary>
+        /// <param name="path"> The path to a directory. </param>
+        public void EmptyDirectory(string path) =>
+            DeleteFiles(path, true, true);
+
+        /// <summary> Deletes the specified directory. </summary>
+        /// <param name="path"> The path to a directory. </param>
+        public void DeleteDirectory(string path)
+        {
+            EmptyDirectory(path);
+
+            if (Directory.Exists(path))
+                Directory.Delete(path);
         }
 
         #endregion Methods: Deletion
