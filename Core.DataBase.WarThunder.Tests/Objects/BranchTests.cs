@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.Helpers;
 using Core.DataBase.Tests;
 using Core.DataBase.Tests.Enumerations;
+using Core.Helpers.Logger.Enumerations;
 using Core.Objects;
 using Core.Objects.Interfaces;
 using FluentAssertions;
@@ -20,7 +21,11 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public override string ToString() => nameof(NationTests);
 
         [TestCleanup]
-        public void CleanUp() => Presets.CleanUp();
+        public void CleanUp()
+        {
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.CleanUp();
+        }
 
         #endregion Internal Methods
         #region Tests: CommitChanges() and Query()

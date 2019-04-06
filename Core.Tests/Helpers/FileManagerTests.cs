@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.Tests;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
+using Core.Helpers.Logger.Enumerations;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -62,6 +63,7 @@ namespace Core.Tests.Helpers
             deleteFiles.Should().NotThrow();
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 
@@ -90,6 +92,7 @@ namespace Core.Tests.Helpers
             Directory.GetFiles(path).Count().Should().Be(2);
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 
@@ -124,6 +127,7 @@ namespace Core.Tests.Helpers
             fileNamesLeft.Should().Contain(fileName => fileName.Contains(".log"));
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 
@@ -170,6 +174,7 @@ namespace Core.Tests.Helpers
             fileNamesLeftInSubfolder.Should().Contain(fileName => fileName.Contains(".doc"));
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 
@@ -204,6 +209,7 @@ namespace Core.Tests.Helpers
             Directory.Exists(subfolderPath).Should().BeFalse();
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 
@@ -238,6 +244,7 @@ namespace Core.Tests.Helpers
             Directory.Exists(subfolderPath).Should().BeFalse();
 
             // clean up
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
             _fileManager.DeleteDirectory(path);
         }
 

@@ -432,5 +432,12 @@
         public const string Error = _AnErrorHasOccured + _FS;
 
         #endregion General
+        #region Unit Tests
+
+        private const string _LINE = "====================";
+
+        public const string CleanUpAfterUnitTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _unit + _test + _starts + _here + _FS + _SPC + _LINE;
+
+        #endregion Unit Tests
     }
 }

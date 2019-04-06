@@ -20,7 +20,7 @@ namespace Core.Helpers
         public FileManager(IConfiguredLogger logger)
             : base(logger, ECoreLogCategory.FileManager)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently("File Manager"));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.FileManager));
         }
 
         #endregion Constructors
@@ -30,7 +30,7 @@ namespace Core.Helpers
         /// <param name="file"> A file to delete. </param>
         private void DeleteFile(FileInfo file)
         {
-            LogTrace(ECoreLogMessage.DeletingFile.FormatFluently(file.Name));
+            LogTrace(ECoreLogMessage.Deleting.FormatFluently(file.Name));
 
             try
             {
@@ -145,16 +145,16 @@ namespace Core.Helpers
         /// <param name="deleteEmptyDirectories"> Whether to delete directories if they are empty after file deletion regardless of whether they had files prior. </param>
         private void DeleteFilesInSubdirectories(DirectoryInfo directory, IEnumerable<string> fileExtensions, bool deleteEmptyDirectories = false)
         {
-            LogDebug(ECoreLogMessage.CheckingSubfolders);
+            LogDebug(ECoreLogMessage.CheckingSubdirectories);
 
             var subdirectories = directory.GetDirectories();
             if (subdirectories.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnNoSubfolders);
+                LogDebug(ECoreLogMessage.WarnNoSubdirectories);
                 return;
             }
 
-            LogDebug(ECoreLogMessage.SubfoldersFound.FormatFluently(subdirectories.Count()));
+            LogDebug(ECoreLogMessage.SubdirectoriesFound.FormatFluently(subdirectories.Count()));
 
             for (var i = 0; i < subdirectories.Count(); i++)
             {

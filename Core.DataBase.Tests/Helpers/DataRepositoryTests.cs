@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.Helpers;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
+using Core.Helpers.Logger.Enumerations;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -18,7 +19,11 @@ namespace Core.DataBase.Tests.Helpers
         public override string ToString() => nameof(DataRepositoryTests);
 
         [TestCleanup]
-        public void CleanUp() => Presets.CleanUp();
+        public void CleanUp()
+        {
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.CleanUp();
+        }
 
         #endregion Internal Methods
         #region Tests: CommitChanges() and Query()

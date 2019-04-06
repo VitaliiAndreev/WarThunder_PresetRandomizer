@@ -4,6 +4,7 @@ using Core.DataBase.Tests;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping;
 using Core.Enumerations;
+using Core.Helpers.Logger.Enumerations;
 using FluentAssertions;
 using FluentNHibernate.Cfg;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,7 +24,11 @@ namespace Core.Tests.Helpers.DataBase
         public override string ToString() => nameof(ConfiguredSessionFactoryTests);
 
         [TestCleanup]
-        public void CleanUp() => Presets.CleanUp();
+        public void CleanUp()
+        {
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.CleanUp();
+        }
 
         #endregion Internal Methods
         #region Tests: ConfiguredSessionFactory()

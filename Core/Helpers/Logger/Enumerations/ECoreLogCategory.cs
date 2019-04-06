@@ -5,5 +5,6 @@
     {
         public const string FileManager = "File Manager";
         public const string Logger = "Logger";
+        public const string UnitTests = "Unit Tests";
     }
 }
