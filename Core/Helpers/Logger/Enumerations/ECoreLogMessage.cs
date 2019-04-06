@@ -34,6 +34,7 @@
         protected const string _A = "A";
         protected const string _a = " a";
         protected const string _aborted = _a + "borted";
+        protected const string _after = _a + "fter";
         protected const string _All = _A + "ll";
         protected const string _all = _a + "ll";
         protected const string _Already = _A + "lready";
@@ -58,6 +59,7 @@
         protected const string _changes = " changes";
         protected const string _Checking = "Checking";
         protected const string _class = " class";
+        protected const string _cleanup = " clean-up";
         protected const string _closed = " closed";
         protected const string _Closing = "Closing";
         protected const string _commit = " commit";
@@ -102,7 +104,9 @@
         #endregion D
         #region E
 
+        protected const string _emptied = " emptied";
         protected const string _empty = " empty";
+        protected const string _Emptying = "Emptying";
         protected const string _error = " error";
         protected const string _Exception = "Exception";
         protected const string _execution = " execution";
@@ -136,6 +140,8 @@
         #region H
 
         protected const string _has = " has";
+        protected const string _has_been = _has + _been;
+        protected const string _here = " here";
 
         #endregion H
         #region I
@@ -166,10 +172,12 @@
         #endregion M
         #region N
 
+        protected const string _need = " need";
         protected const string _new = " new";
         protected const string _No = "No";
+        protected const string _no = " no";
         protected const string _Not = _No + "t";
-        protected const string _not = " not";
+        protected const string _not = _no + "t";
 
         protected const string _SPC_NULL = _SPC + NULL;
 
@@ -232,6 +240,8 @@
         protected const string _SessionFactory = _Session + _factory;
         protected const string _sessionFactory = _session + _factory;
         protected const string _specified = " specified";
+        protected const string _starts = " starts";
+        protected const string _subdirectories = " subdirectories";
         protected const string _subfolders = " subfolders";
         protected const string _Successfully = "Successfully";
 
@@ -243,9 +253,12 @@
 
         protected const string _NOSPC_the = "the";
 
+        protected const string _test = " test";
         protected const string _The = "The";
         protected const string _TheDirectory_SPC_FMT_Q = _The + _directory + _SPC_FMT_Q;
         protected const string _the = _SPC + _NOSPC_the;
+        protected const string _There = _The + "re";
+        protected const string _there = _the + "re";
         protected const string _theAssembly_FMT_Q = _the + _assembly + _SPC_FMT_Q;
         protected const string _to = " to";
         protected const string _Trying = "Trying";
@@ -254,6 +267,7 @@
         #endregion T
         #region U
 
+        protected const string _unit = " unit";
         protected const string _using = " using";
 
         #endregion U
@@ -287,19 +301,19 @@
         public const string AlreadyClosed = _Already + _closed + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: object.</para>
+        /// <para> 1: object. </para>
         /// </summary>
         public const string IsNull_DisposalAborted = IsNull + _SPC_Disposal_aborted_FS;
         public const string Closing = _Closing + _FS;
 
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: object.</para>
+        /// <para> 1: object. </para>
         /// </summary>
         public const string PreparingToDisposeOf = _PreparingTo + _dispose + _of + _SPC_FMT + _FS;
-        public const string AlreadyDisposed = _Already + _disposed + _FS;
+        public const string AlreadyDisposed = _Already + _disposed + _of + _FS;
         public const string Disposing = _Disposing + _FS;
-        public const string SuccessfullyDisposed = _Successfully + _disposed + _FS;
+        public const string SuccessfullyDisposed = _Successfully + _disposed + _of + _FS;
 
         #endregion Dispose()
         #region Exception Formatter
@@ -311,52 +325,77 @@
 
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para>1: directory path.</para>
+        /// <para> 1: directory path / file name / etc. </para>
+        /// </summary>
+        public const string Deleting = _Deleting + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
+        /// </summary>
+        public const string DeletingEmptyDirectory = _Deleting + _empty + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
+        /// </summary>
+        public const string Deleted = _FMT_Q + _has_been + _deleted + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
+        /// </summary>
+        public const string EmptyingDirectory = _Emptying + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
+        /// </summary>
+        public const string DirectoryEmptied = _FMT_Q + _has_been + _emptied + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
         /// </summary>
         public const string SelectingAllFilesFromDirectory = _Selecting + _all + _files + _from + _SPC_FMT_Q + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para>1: file extensions.</para>
+        /// <para> 1: file extensions. </para>
         /// </summary>
         public const string FilteringFilesFromSelection = _Filtering + _SPC_FMT_Q + _files + _from + _selection + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para>1: file count.</para>
+        /// <para> 1: file count. </para>
         /// </summary>
         public const string SelectedFileCount = _Selected + _SPC_FMT + _file_s + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: file name.</para>
-        /// </summary>
-        public const string DeletingFile = _Deleting + _SPC_FMT_Q + _FS;
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para>1: file count.</para>
+        /// <para> 1: file count. </para>
         /// </summary>
         public const string DeletingFiles = _Deleting + _SPC_FMT + _file_s + _FS;
         public const string FileDeleted = _File + _deleted + _FS;
         public const string FilesDeleted = _All + _files + _deleted + _FS;
-        public const string CheckingSubfolders = _Checking + _for + _subfolders + _FS;
+        public const string CheckingSubdirectories = _Checking + _for + _subdirectories + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: subfolder count.</para>
+        /// <para> 1: subfolder count. </para>
         /// </summary>
-        public const string SubfoldersFound = _SPC_FMT + _subfolders + _found + _FS;
+        public const string SubdirectoriesFound = _FMT + _subdirectories + _found + _FS;
 
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: directory path.</para>
+        /// <para> 1: directory path. </para>
+        /// </summary>
+        public const string WarnAlreadyDeleted = _FMT_Q + _does + _not + _exist + _FS_SPC + _There + _is + _no + _need + _to + _delete + _it + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path. </para>
         /// </summary>
         public const string WarnDirectoryDoestExist_DeletingAborted =
             _TheDirectory_SPC_FMT_Q + _does + _not + _exist + _FS_SPC
             + _Deleting + _files + _safely + _aborted + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para>1: directory name.</para>
+        /// <para> 1: directory name. </para>
         /// </summary>
         public const string WarnEmptyDirectory = _TheDirectory_SPC_FMT_Q + _is + _empty + _FS;
         public const string WarnNoFilesOfSpecifiedFormatToDelete = _No + _files + _of + _specified + _format + _to + _delete + _FS;
-        public const string WarnNoSubfolders = _No + _subfolders + _FS;
+        public const string WarnNoSubdirectories = _No + _subdirectories + _FS;
 
         public const string ErrorDeletingFile = _AnErrorHasOccuredWhile + _deleting + _file + _FS;
         public const string ErrorDeletingFiles = _AnErrorHasOccuredWhile + _deleting + _one + _of + _the + _files + _FS;
@@ -366,25 +405,25 @@
 
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: object.</para>
+        /// <para> 1: object. </para>
         /// </summary>
         public const string Creating = _Creating + _SPC_FMT + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: object.</para>
+        /// <para> 1: object. </para>
         /// </summary>
         public const string Created = _FMT + _created + _FS;
 
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: object.</para>
+        /// <para> 1: object. </para>
         /// </summary>
         public const string IsNull = _FMT + _isNULL + _FS;
         public const string Success = _Successfully + _completed + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para>1: method name.</para>
-        /// <para>2: class name.</para>
+        /// <para> 1: method name. </para>
+        /// <para>2: class name. </para>
         /// </summary>
         public const string WarnNullGiven =
             _A + _SPC_NULL + _value + _has + _been + _given + _to + _the + _SPC_FMT_Q + _method + _from + _SPC_FMT_Q + _class + _FS_SPC

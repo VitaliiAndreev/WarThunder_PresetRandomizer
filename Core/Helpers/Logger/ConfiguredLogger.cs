@@ -33,7 +33,7 @@ namespace Core.Helpers.Logger
             ExceptionFormatter = exceptionFormatter;
 
             LogManager.Configuration.Variables[EVariableName.StartTime] = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            _logger = LogManager.GetLogger($"CoreLogger");
+            _logger = LogManager.GetLogger($"Core {ECoreLogCategory.Logger}");
             _messageFormat = "{0} : {1}{2}";
 
             LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.FormatFluently(_logger.Name));

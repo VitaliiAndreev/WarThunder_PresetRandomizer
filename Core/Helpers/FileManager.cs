@@ -162,7 +162,7 @@ namespace Core.Helpers
                 DeleteFiles(subdirectory.FullName, fileExtensions, true, deleteEmptyDirectories);
 
                 if (deleteEmptyDirectories)
-                    Directory.Delete(subdirectory.FullName);
+                    DeleteEmptyDirectory(subdirectory.FullName);
             }
         }
 
@@ -170,17 +170,39 @@ namespace Core.Helpers
 
         /// <summary> Empties the specified directory. </summary>
         /// <param name="path"> The path to a directory. </param>
-        public void EmptyDirectory(string path) =>
+        public void EmptyDirectory(string path)
+        {
+            LogDebug(ECoreLogMessage.EmptyingDirectory.FormatFluently(path));
+
             DeleteFiles(path, true, true);
+
+            LogDebug(ECoreLogMessage.DirectoryEmptied.FormatFluently(path));
+        }
+
+        /// <summary> Deletes an empty directory. It does not check whether the directory is empty or not. </summary>
+        /// <param name="path"> The path to a directory. </param>
+        private void DeleteEmptyDirectory(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                LogDebug(ECoreLogMessage.DeletingEmptyDirectory.FormatFluently(path));
+
+                Directory.Delete(path);
+
+                LogDebug(ECoreLogMessage.Deleted.FormatFluently(path));
+            }
+            else
+            {
+                LogDebug(ECoreLogMessage.WarnAlreadyDeleted.FormatFluently(path));
+            }
+        }
 
         /// <summary> Deletes the specified directory. </summary>
         /// <param name="path"> The path to a directory. </param>
         public void DeleteDirectory(string path)
         {
             EmptyDirectory(path);
-
-            if (Directory.Exists(path))
-                Directory.Delete(path);
+            DeleteEmptyDirectory(path);
         }
 
         #endregion Methods: Deletion
