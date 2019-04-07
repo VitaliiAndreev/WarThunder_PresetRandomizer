@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace Core.Tests.Helpers
 {
@@ -35,6 +36,140 @@ namespace Core.Tests.Helpers
         }
 
         #endregion Internal Methods
+        #region Method Tests: Copying
+
+        #region Tests: CopyFile()
+
+        [TestMethod]
+        public void CopyFile_NoFile_ShouldNotCopy()
+        {
+            // arrange
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
+
+            var fileName = $"{_rootDirectory}\\iDoNotExist.sad";
+            File.Exists(fileName).Should().BeFalse();
+
+            var destinationPath = $"{_rootDirectory}\\iDoNotExistEither";
+            Directory.Exists(destinationPath).Should().BeFalse();
+
+            // act
+            _fileManager.CopyFile(fileName, destinationPath);
+
+            // assert
+            Directory.Exists(destinationPath).Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void CopyFile_NoDestination_ShouldNotCopy()
+        {
+            // arrange
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
+
+            var fileName = $"{_rootDirectory}\\nice.kit";
+            File.Exists(fileName).Should().BeFalse();
+            File.Create(fileName).Close();
+
+            var destinationPath = $"{_rootDirectory}\\iDoNotExist";
+            Directory.Exists(destinationPath).Should().BeFalse();
+
+            // act
+            _fileManager.CopyFile(fileName, destinationPath);
+
+            // assert
+            Directory.Exists(destinationPath).Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void CopyFile_NoDestination_CreateDirectories_ShouldCopy()
+        {
+            // arrange
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
+
+            var fileName = $"{_rootDirectory}\\nice.kit";
+            File.Create(fileName).Close();
+
+            var destinationPath = $"{_rootDirectory}\\come\\one\\come\\all";
+            Directory.Exists(destinationPath).Should().BeFalse();
+
+            // act
+            _fileManager.CopyFile(fileName, destinationPath, createDirectories: true);
+
+            // assert
+            File.Exists(fileName).Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void CopyFile_AlreadyExists_ShouldNotCopy()
+        {
+            // arrange
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
+
+            var fileName = $"nice.kit";
+            var fileFullName = $"{_rootDirectory}\\{fileName}";
+            File.Create(fileName).Close();
+
+            var destinationPath = $"{_rootDirectory}\\subdirectory";
+            Directory.CreateDirectory(destinationPath);
+
+            var destinationFile = new FileInfo($"{destinationPath}\\{fileName}");
+            destinationFile.Create().Close();
+
+            var expectedTimeStamp = destinationFile.LastWriteTime;
+
+            // act
+            _fileManager.CopyFile(fileName, destinationPath);
+
+            // assert
+            File.GetLastWriteTime(destinationFile.FullName).Should().Be(expectedTimeStamp);
+        }
+
+        [TestMethod]
+        public void CopyFile_AlreadyExists_Overwrite_ShouldCopy()
+        {
+            // arrange
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
+
+            var fileName = $"nice.kit";
+            var fileFullName = $"{_rootDirectory}\\{fileName}";
+            File.Create(fileName).Close();
+
+            var destinationPath = $"{_rootDirectory}\\subdirectory";
+            Directory.CreateDirectory(destinationPath);
+
+            var destinationFile = new FileInfo($"{destinationPath}\\{fileName}");
+            destinationFile.Create().Close();
+
+            var oldTimeStamp = destinationFile.LastWriteTime;
+
+            // act
+            Thread.Sleep(500);
+            _fileManager.CopyFile(fileName, destinationPath, true);
+            destinationFile.Refresh();
+
+            // assert
+            File.GetLastWriteTime(destinationFile.FullName).Should().NotBe(oldTimeStamp);
+        }
+
+        #endregion Tests: CopyFile()
+
+        #endregion Method Tests: Copying
+        #region Method Tests: Deletion
+
         #region DeleteFiles()
 
         [TestMethod]
@@ -220,5 +355,7 @@ namespace Core.Tests.Helpers
         }
 
         #endregion DeleteDirectory()
+
+        #endregion Method Tests: Deletion
     }
 }
