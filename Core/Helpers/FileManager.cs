@@ -24,6 +24,58 @@ namespace Core.Helpers
         }
 
         #endregion Constructors
+        #region Methods: Copying
+
+        /// <summary> Copies a file into a specified directory. </summary>
+        /// <param name="path"> The absolute name of the file. </param>
+        /// <param name="destination"> The destination path. </param>
+        /// <param name="overwrite"> Whether to overwrite colliding files at the destination. </param>
+        /// <param name="createDirectories"> Whether to create the destination directory. </param>
+        public void CopyFile(string path, string destination, bool overwrite, bool createDirectories)
+        {
+            var file = new FileInfo(path);
+            var destinationDirectory = new DirectoryInfo(destination);
+
+            // Pre-copying checks and directory creation.
+
+            if (!file.Exists)
+            {
+                LogWarn(ECoreLogMessage.WarnDoestExist_CopyingAborted.FormatFluently(file.FullName));
+                return;
+            }
+            else if (!destinationDirectory.Exists)
+            {
+                if (createDirectories)
+                {
+                    LogDebug(ECoreLogMessage.Creating.FormatFluently(destinationDirectory.FullName));
+                    destinationDirectory.Create();
+                }
+                else
+                {
+                    LogWarn(ECoreLogMessage.WarnDoestExist_CopyingSomethingAborted.ResetFormattingPlaceholders().FormatFluently(destinationDirectory.FullName, file.FullName));
+                    return;
+                }
+            }
+
+            // Copying proper.
+
+            LogDebug(ECoreLogMessage.Copying.ResetFormattingPlaceholders().FormatFluently(file.FullName, destinationDirectory.FullName));
+
+            if (File.Exists($"{destinationDirectory.FullName}\\{file.Name}"))
+            {
+                if (!overwrite)
+                {
+                    LogWarn(ECoreLogMessage.WarnAlreadyExists_CopyingAborted.FormatFluently(file.FullName));
+                    return;
+                }
+                LogDebug(ECoreLogMessage.Overwriting);
+            }
+            file.CopyTo($"{destinationDirectory.FullName}\\{file.Name}", overwrite);
+
+            LogDebug(ECoreLogMessage.Copied.FormatFluently(file.FullName));
+        }
+
+        #endregion Methods: Copying
         #region Methods: Deletion
 
         /// <summary> Deletes the specified file. </summary>

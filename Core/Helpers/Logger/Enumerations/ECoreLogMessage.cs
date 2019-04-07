@@ -38,6 +38,7 @@
         protected const string _All = _A + "ll";
         protected const string _all = _a + "ll";
         protected const string _Already = _A + "lready";
+        protected const string _already = _a + "lready";
         protected const string _An = _A + "n";
         protected const string _AnErrorHasOccured = _An + _error + _has + _occured;
         protected const string _AnErrorHasOccuredWhile = _AnErrorHasOccured + _while;
@@ -67,6 +68,9 @@
         protected const string _Committing = "Committing";
         protected const string _completed = " completed";
         protected const string _configuration = " configuration";
+        protected const string _Copied = "Copied";
+        protected const string _copied = " copied";
+        protected const string _Copying = "Copying";
         protected const string _created = " created";
         protected const string _Creating = "Creating";
         protected const string _CreatingA = _Creating + _a;
@@ -111,6 +115,7 @@
         protected const string _Exception = "Exception";
         protected const string _execution = " execution";
         protected const string _exist = " exist";
+        protected const string _exists = _exist + "s";
 
         #endregion E
         #region F
@@ -326,6 +331,19 @@
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
+        /// <para> 2: destination directory path. </para>
+        /// </summary>
+        public const string Copying = _Copying + _SPC_FMT_Q + _into + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
+        /// <para> 2: destination directory path. </para>
+        /// </summary>
+        public const string Copied = _FMT_Q + _copied + _FS;
+        public const string Overwriting = _Overwriting + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
         public const string Deleting = _Deleting + _SPC_FMT_Q + _FS;
         /// <summary> 
@@ -379,9 +397,31 @@
 
         /// <summary>
         /// A message with formatting placeholders.
+        /// <para> 1: directory / file path. </para>
+        /// </summary>
+        public const string WarnAlreadyExists_CopyingAborted =
+            _FMT_Q + _already + _exists + _FS_SPC
+            + _Copying + _safely + _aborted + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
         public const string WarnAlreadyDeleted = _FMT_Q + _does + _not + _exist + _FS_SPC + _There + _is + _no + _need + _to + _delete + _it + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: directory / file path. </para>
+        /// </summary>
+        public const string WarnDoestExist_CopyingAborted =
+            _FMT_Q + _does + _not + _exist + _FS_SPC
+            + _Copying + _safely + _aborted + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: destination directory. </para>
+        /// <para> 2: directory / file path. </para>
+        /// </summary>
+        public const string WarnDoestExist_CopyingSomethingAborted =
+            _FMT_Q + _does + _not + _exist + _FS_SPC
+            + _Copying + _SPC_FMT_Q + _safely + _aborted + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>

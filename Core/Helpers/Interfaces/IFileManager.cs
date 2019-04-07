@@ -5,6 +5,18 @@ namespace Core.Helpers.Interfaces
     /// <summary> Provides methods to manage files. </summary>
     public interface IFileManager
     {
+        #region Methods: Copying
+
+        /// <summary> Copies a file into a specified directory. </summary>
+        /// <param name="path"> The absolute name of the file. </param>
+        /// <param name="destination"> The destination path. </param>
+        /// <param name="overwrite"> Whether to overwrite colliding files at the destination. </param>
+        /// <param name="createDirectories"> Whether to create the destination directory. </param>
+        void CopyFile(string path, string destination, bool overwrite = false, bool createDirectories = false);
+
+        #endregion Methods: Copying
+        #region Methods: Deletion
+
         #region DeleteFiles()
 
         /// <summary> Deletes all files in a folder. </summary>
@@ -34,5 +46,7 @@ namespace Core.Helpers.Interfaces
         /// <summary> Deletes the specified directory. </summary>
         /// <param name="path"> The path to a directory. </param>
         void DeleteDirectory(string path);
+
+        #endregion Methods: Deletion
     }
 }
