@@ -57,7 +57,9 @@
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Helpers\FileReader.cs" />
     <Compile Include="Helpers\Interfaces\IFileManager.cs" />
+    <Compile Include="Helpers\Interfaces\IFileReader.cs" />
     <Compile Include="Helpers\Logger\Enumerations\ECoreLogCategory.cs" />
     <Compile Include="Extensions\CharExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />

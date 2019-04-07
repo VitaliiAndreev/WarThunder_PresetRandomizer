@@ -58,6 +58,7 @@
         protected const string _cancelled = " cancelled";
         protected const string _Changes = "Changes";
         protected const string _changes = " changes";
+        protected const string _characters = " characters";
         protected const string _Checking = "Checking";
         protected const string _class = " class";
         protected const string _cleanup = " clean-up";
@@ -225,7 +226,9 @@
         #endregion Q
         #region R
 
+        protected const string _Read = "Read";
         protected const string _read = " read";
+        protected const string _Reading = _Read + "ing";
         protected const string _repository = " repository";
         protected const string _returned = " returned";
 
@@ -441,6 +444,27 @@
         public const string ErrorDeletingFiles = _AnErrorHasOccuredWhile + _deleting + _one + _of + _the + _files + _FS;
 
         #endregion File Manager
+        #region File Reader
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
+        /// </summary>
+        public const string NotFound = _FMT_Q + _not + _found + _FS;
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
+        /// </summary>
+        public const string Reading = _Reading + _SPC_FMT_Q + _FS;
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: character count. </para>
+        /// </summary>
+        public const string ReadCharacters = _Read + _SPC_FMT + _characters + _FS;
+
+        #endregion File Reader
         #region General
 
         /// <summary>
