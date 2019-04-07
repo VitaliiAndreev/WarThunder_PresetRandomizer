@@ -16,6 +16,7 @@ namespace Core.Tests.Helpers
     public class FileManagerTests
     {
         private IFileManager _fileManager;
+        private string _rootDirectory;
 
         #region Internal Methods
 
@@ -23,6 +24,14 @@ namespace Core.Tests.Helpers
         public void CreateFileManager()
         {
             _fileManager = new FileManager(Presets.Logger);
+            _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
+        }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            _fileManager.DeleteDirectory(_rootDirectory);
         }
 
         #endregion Internal Methods
@@ -32,13 +41,11 @@ namespace Core.Tests.Helpers
         public void DeleteFiles_All_FolderDoesntExist_ShouldNotThrow()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            _fileManager.DeleteDirectory(path);
-            Directory.Exists(path).Should().BeFalse();
+            _fileManager.DeleteDirectory(_rootDirectory);
+            Directory.Exists(_rootDirectory).Should().BeFalse();
 
             // act
-            Action deleteFiles = () => _fileManager.DeleteFiles(path);
+            Action deleteFiles = () => _fileManager.DeleteFiles(_rootDirectory);
 
             // assert
             deleteFiles.Should().NotThrow();
@@ -48,69 +55,55 @@ namespace Core.Tests.Helpers
         public void DeleteFiles_All_FolderExists_FolderIsEmpty_ShouldReturn()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
             // act
-            Directory.GetFiles(path).Should().BeEmpty();
-            Action deleteFiles = () =>_fileManager.DeleteFiles(path);
+            Directory.GetFiles(_rootDirectory).Should().BeEmpty();
+            Action deleteFiles = () =>_fileManager.DeleteFiles(_rootDirectory);
 
             // assert
             deleteFiles.Should().NotThrow();
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
         }
 
         [TestMethod]
         public void DeleteFiles_Specific_FolderExists_FilesDontExist_ShouldReturn()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
-            var fileNameCfg = $"{path}\\0.cfg";
-            var fileNameLog = $"{path}\\1.log";
+            var fileNameCfg = $"{_rootDirectory}\\0.cfg";
+            var fileNameLog = $"{_rootDirectory}\\1.log";
 
             File.Create(fileNameCfg).Close();
             File.Create(fileNameLog).Close();
 
             // act
-            Directory.GetFiles(path).Count().Should().Be(2);
-            _fileManager.DeleteFiles(path, "txt");
+            Directory.GetFiles(_rootDirectory).Count().Should().Be(2);
+            _fileManager.DeleteFiles(_rootDirectory, "txt");
 
             // assert
-            Directory.GetFiles(path).Count().Should().Be(2);
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
+            Directory.GetFiles(_rootDirectory).Count().Should().Be(2);
         }
 
         [TestMethod]
         public void DeleteFiles_Specific_FolderExists_FilesExist_ShouldRemove()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
-            var fileNameCfg = $"{path}\\0.cfg";
-            var fileNameLog = $"{path}\\1.log";
-            var fileNameTxtA = $"{path}\\2.txt";
-            var fileNameTxtB = $"{path}\\3.txt";
+            var fileNameCfg = $"{_rootDirectory}\\0.cfg";
+            var fileNameLog = $"{_rootDirectory}\\1.log";
+            var fileNameTxtA = $"{_rootDirectory}\\2.txt";
+            var fileNameTxtB = $"{_rootDirectory}\\3.txt";
 
             File.Create(fileNameCfg).Close();
             File.Create(fileNameLog).Close();
@@ -118,37 +111,31 @@ namespace Core.Tests.Helpers
             File.Create(fileNameTxtB).Close();
 
             // act
-            _fileManager.DeleteFiles(path, "txt");
+            _fileManager.DeleteFiles(_rootDirectory, "txt");
 
             // assert
-            var fileNamesLeft = Directory.GetFiles(path);
+            var fileNamesLeft = Directory.GetFiles(_rootDirectory);
             fileNamesLeft.Count().Should().Be(2);
             fileNamesLeft.Should().Contain(fileName => fileName.Contains(".cfg"));
             fileNamesLeft.Should().Contain(fileName => fileName.Contains(".log"));
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
         }
 
         [TestMethod]
         public void DeleteFilesInSubfolders_Specific_FolderExists_FilesExist_ShouldRemove()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
-            var subfolderPath = $"{path}\\subfolder";
+            var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
-            var fileNameCfg = $"{path}\\0.cfg";
-            var fileNameLog = $"{path}\\1.log";
-            var fileNameTxtA = $"{path}\\2.txt";
-            var fileNameTxtB = $"{path}\\3.txt";
+            var fileNameCfg = $"{_rootDirectory}\\0.cfg";
+            var fileNameLog = $"{_rootDirectory}\\1.log";
+            var fileNameTxtA = $"{_rootDirectory}\\2.txt";
+            var fileNameTxtB = $"{_rootDirectory}\\3.txt";
             var fileNameTxtC = $"{subfolderPath}\\4.txt";
             var fileNameDocA = $"{subfolderPath}\\5.doc";
 
@@ -160,10 +147,10 @@ namespace Core.Tests.Helpers
             File.Create(fileNameDocA).Close();
 
             // act
-            _fileManager.DeleteFiles(path, new List<string> { "txt" }, true);
+            _fileManager.DeleteFiles(_rootDirectory, new List<string> { "txt" }, true);
 
             // assert
-            var fileNamesLeftInRootFolder = Directory.GetFiles(path);
+            var fileNamesLeftInRootFolder = Directory.GetFiles(_rootDirectory);
             var fileNamesLeftInSubfolder = Directory.GetFiles(subfolderPath);
 
             fileNamesLeftInRootFolder.Count().Should().Be(2);
@@ -172,10 +159,6 @@ namespace Core.Tests.Helpers
 
             fileNamesLeftInSubfolder.Count().Should().Be(1);
             fileNamesLeftInSubfolder.Should().Contain(fileName => fileName.Contains(".doc"));
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
         }
 
         #endregion DeleteFiles()
@@ -185,32 +168,26 @@ namespace Core.Tests.Helpers
         public void EmptyDirectory_ShouldRemoveFilesAndFolders()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
-            var subfolderPath = $"{path}\\subfolder";
+            var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
-            var filePathA = $"{path}\\A.txt";
+            var filePathA = $"{_rootDirectory}\\A.txt";
             var filePathB = $"{subfolderPath}\\B.txt";
 
             File.Create(filePathA).Close();
             File.Create(filePathB).Close();
 
             // act
-            _fileManager.EmptyDirectory(path);
+            _fileManager.EmptyDirectory(_rootDirectory);
 
             // assert
-            Directory.GetFiles(path).Should().BeEmpty();
+            Directory.GetFiles(_rootDirectory).Should().BeEmpty();
             Directory.Exists(subfolderPath).Should().BeFalse();
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
         }
 
         #endregion EmptyDirectory()
@@ -220,32 +197,26 @@ namespace Core.Tests.Helpers
         public void DeleteDirectory_ShouldRemoveFilesAndFolders()
         {
             // arrange
-            var path = $"{Directory.GetCurrentDirectory()}\\TestFiles";
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
             else
-                _fileManager.EmptyDirectory(path);
+                _fileManager.EmptyDirectory(_rootDirectory);
 
-            var subfolderPath = $"{path}\\subfolder";
+            var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
-            var filePathA = $"{path}\\A.txt";
+            var filePathA = $"{_rootDirectory}\\A.txt";
             var filePathB = $"{subfolderPath}\\B.txt";
 
             File.Create(filePathA).Close();
             File.Create(filePathB).Close();
 
             // act
-            _fileManager.DeleteDirectory(path);
+            _fileManager.DeleteDirectory(_rootDirectory);
 
             // assert
-            Directory.Exists(path).Should().BeFalse();
+            Directory.Exists(_rootDirectory).Should().BeFalse();
             Directory.Exists(subfolderPath).Should().BeFalse();
-
-            // clean up
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
-            _fileManager.DeleteDirectory(path);
         }
 
         #endregion DeleteDirectory()
