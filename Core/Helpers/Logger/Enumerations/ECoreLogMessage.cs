@@ -452,7 +452,17 @@
         /// A message with formatting placeholders.
         /// <para> 1: object. </para>
         /// </summary>
+        public const string Creating_InQuotes = _Creating + _SPC_FMT_Q + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object. </para>
+        /// </summary>
         public const string Created = _FMT + _created + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object. </para>
+        /// </summary>
+        public const string Created_InQuotes = _FMT_Q + _created + _FS;
 
         /// <summary>
         /// A message with formatting placeholders.

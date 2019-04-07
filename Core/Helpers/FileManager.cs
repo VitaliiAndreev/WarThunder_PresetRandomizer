@@ -47,8 +47,11 @@ namespace Core.Helpers
             {
                 if (createDirectories)
                 {
-                    LogDebug(ECoreLogMessage.Creating.FormatFluently(destinationDirectory.FullName));
+                    LogDebug(ECoreLogMessage.Creating_InQuotes.FormatFluently(destinationDirectory.FullName));
+
                     destinationDirectory.Create();
+
+                    LogDebug(ECoreLogMessage.Created_InQuotes.FormatFluently(destinationDirectory.FullName));
                 }
                 else
                 {
