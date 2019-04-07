@@ -66,13 +66,12 @@ namespace Core.Extensions
                 .Concat(substringsWithoutFirst)
                 .ToList();
 
-            var formatPlaceholderCounter = default(int);
             var stringBuilder = new StringBuilder();
 
             for (var i = 0; i < substrings.Count; i++)
             {
                 stringBuilder.Append(substrings[i]);
-                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{ECharacter.BraceLeft}{formatPlaceholderCounter++}{ECharacter.BraceRight}");
+                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{ECharacter.BraceLeft}{i}{ECharacter.BraceRight}");
             }
 
             return stringBuilder.ToString();
