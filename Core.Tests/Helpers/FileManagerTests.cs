@@ -26,6 +26,11 @@ namespace Core.Tests.Helpers
         {
             _fileManager = new FileManager(Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
+
+            if (!Directory.Exists(_rootDirectory))
+                Directory.CreateDirectory(_rootDirectory);
+            else
+                _fileManager.EmptyDirectory(_rootDirectory);
         }
 
         [TestCleanup]
@@ -44,11 +49,6 @@ namespace Core.Tests.Helpers
         public void CopyFile_NoFile_ShouldNotCopy()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileName = $"{_rootDirectory}\\iDoNotExist.sad";
             File.Exists(fileName).Should().BeFalse();
 
@@ -66,11 +66,6 @@ namespace Core.Tests.Helpers
         public void CopyFile_NoDestination_ShouldNotCopy()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileName = $"{_rootDirectory}\\nice.kit";
             File.Exists(fileName).Should().BeFalse();
             File.Create(fileName).Close();
@@ -89,11 +84,6 @@ namespace Core.Tests.Helpers
         public void CopyFile_NoDestination_CreateDirectories_ShouldCopy()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileName = $"{_rootDirectory}\\nice.kit";
             File.Create(fileName).Close();
 
@@ -111,11 +101,6 @@ namespace Core.Tests.Helpers
         public void CopyFile_AlreadyExists_ShouldNotCopy()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileName = $"nice.kit";
             var fileFullName = $"{_rootDirectory}\\{fileName}";
             File.Create(fileName).Close();
@@ -139,11 +124,6 @@ namespace Core.Tests.Helpers
         public void CopyFile_AlreadyExists_Overwrite_ShouldCopy()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileName = $"nice.kit";
             var fileFullName = $"{_rootDirectory}\\{fileName}";
             File.Create(fileName).Close();
@@ -190,13 +170,9 @@ namespace Core.Tests.Helpers
         public void DeleteFiles_All_FolderExists_FolderIsEmpty_ShouldReturn()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
+            Directory.GetFiles(_rootDirectory).Should().BeEmpty();
 
             // act
-            Directory.GetFiles(_rootDirectory).Should().BeEmpty();
             Action deleteFiles = () =>_fileManager.DeleteFiles(_rootDirectory);
 
             // assert
@@ -207,19 +183,14 @@ namespace Core.Tests.Helpers
         public void DeleteFiles_Specific_FolderExists_FilesDontExist_ShouldReturn()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var fileNameCfg = $"{_rootDirectory}\\0.cfg";
             var fileNameLog = $"{_rootDirectory}\\1.log";
 
             File.Create(fileNameCfg).Close();
             File.Create(fileNameLog).Close();
+            Directory.GetFiles(_rootDirectory).Count().Should().Be(2);
 
             // act
-            Directory.GetFiles(_rootDirectory).Count().Should().Be(2);
             _fileManager.DeleteFiles(_rootDirectory, "txt");
 
             // assert
@@ -230,10 +201,6 @@ namespace Core.Tests.Helpers
         public void DeleteFiles_Specific_FolderExists_FilesExist_ShouldRemove()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
 
             var fileNameCfg = $"{_rootDirectory}\\0.cfg";
             var fileNameLog = $"{_rootDirectory}\\1.log";
@@ -259,11 +226,6 @@ namespace Core.Tests.Helpers
         public void DeleteFilesInSubfolders_Specific_FolderExists_FilesExist_ShouldRemove()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
@@ -303,11 +265,6 @@ namespace Core.Tests.Helpers
         public void EmptyDirectory_ShouldRemoveFilesAndFolders()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
@@ -332,11 +289,6 @@ namespace Core.Tests.Helpers
         public void DeleteDirectory_ShouldRemoveFilesAndFolders()
         {
             // arrange
-            if (!Directory.Exists(_rootDirectory))
-                Directory.CreateDirectory(_rootDirectory);
-            else
-                _fileManager.EmptyDirectory(_rootDirectory);
-
             var subfolderPath = $"{_rootDirectory}\\subfolder";
             Directory.CreateDirectory(subfolderPath);
 
