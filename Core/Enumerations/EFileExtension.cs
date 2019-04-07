@@ -7,5 +7,6 @@
         public const string Exe = "exe";
         public const string Log = "log";
         public const string SqLite3 = "sqlite3";
+        public const string Yup = "yup";
     }
 }

@@ -24,6 +24,25 @@ namespace Core.Extensions
         public static string SkipLast(this string sourceString, int amountOfCharactersToSkip) =>
             sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
 
+        #region Split()
+
+        /// <summary> Splits the string into substrings by the specified separator with set split option. </summary>
+        /// <param name="sourceString"> The string to split. </param>
+        /// <param name="separator"> A separator to split by. </param>
+        /// <param name="options"> split options. </param>
+        /// <returns></returns>
+        public static string[] Split(this string sourceString, char separator, StringSplitOptions options) =>
+            sourceString.Split(new char[] { separator }, options);
+
+        /// <summary> Splits the string into substrings by the specified separator. </summary>
+        /// <param name="sourceString"> The string to split. </param>
+        /// <param name="separator"> A separator to split by. </param>
+        /// <returns></returns>
+        public static string[] Split(this string sourceString, string separator) =>
+            sourceString.Split(new string[] { separator }, StringSplitOptions.None);
+
+        #endregion Split()
+
         #endregion Methods: Fluency
         #region Methods: Formatting
 

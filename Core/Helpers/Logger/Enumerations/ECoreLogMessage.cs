@@ -62,6 +62,8 @@
         protected const string _Checking = "Checking";
         protected const string _class = " class";
         protected const string _cleanup = " clean-up";
+        protected const string _Client = "Client";
+        protected const string _client = " client";
         protected const string _closed = " closed";
         protected const string _Closing = "Closing";
         protected const string _commit = " commit";
@@ -112,6 +114,7 @@
         protected const string _emptied = " emptied";
         protected const string _empty = " empty";
         protected const string _Emptying = "Emptying";
+        protected const string _Error = "Error";
         protected const string _error = " error";
         protected const string _Exception = "Exception";
         protected const string _execution = " execution";
@@ -147,13 +150,16 @@
 
         protected const string _has = " has";
         protected const string _has_been = _has + _been;
+        protected const string _have = " have";
         protected const string _here = " here";
 
         #endregion H
         #region I
 
-        protected const string _instantiated = " instantiated";
-        protected const string _into = " into";
+        protected const string _in = " in";
+        protected const string _install = _in + "stall";
+        protected const string _instantiated = _in + "stantiated";
+        protected const string _into = _in + "to";
         protected const string _intoConfiguration = _into + _configuration;
         protected const string _is = " is";
         protected const string _isNULL = _is + _SPC_NULL;
@@ -172,6 +178,7 @@
         #region M
 
         protected const string _mapping = " mapping";
+        protected const string _markers = " markers";
         protected const string _Method = "Method";
         protected const string _method = " method";
 
@@ -211,6 +218,7 @@
         #endregion O
         #region P
 
+        protected const string _parsing = " parsing";
         protected const string _persisted = " persisted";
         protected const string _Persisting = "Persisting";
         protected const string _Preparing = "Preparing";
@@ -226,9 +234,11 @@
         #endregion Q
         #region R
 
+        protected const string _raw = " raw";
         protected const string _Read = "Read";
         protected const string _read = " read";
         protected const string _Reading = _Read + "ing";
+        protected const string _reading = _read + "ing";
         protected const string _repository = " repository";
         protected const string _returned = " returned";
 
@@ -247,8 +257,10 @@
         protected const string _session = " session";
         protected const string _SessionFactory = _Session + _factory;
         protected const string _sessionFactory = _session + _factory;
+        protected const string _source = " source";
         protected const string _specified = " specified";
         protected const string _starts = " starts";
+        protected const string _string = " string";
         protected const string _subdirectories = " subdirectories";
         protected const string _subfolders = " subfolders";
         protected const string _Successfully = "Successfully";
@@ -282,6 +294,7 @@
         #region V
 
         protected const string _value = " value";
+        protected const string _version = " version";
 
         #endregion V
         #region W
@@ -506,6 +519,15 @@
         public const string Error = _AnErrorHasOccured + _FS;
 
         #endregion General
+        #region Parser
+
+        public const string ReadingClientVersion = _Reading + _the + _client + _version + _FS;
+
+        public const string ErrorVersionNotFoundInSourceString = _Client + _version + _markers + _have + _not + _been + _found + _in + _the + _source + _string + _FS;
+        public const string ErrorReadingRawInstallData = _Error + _reading + _raw + _install + _data + _FS;
+        public const string ErrorParsingVersionString = _Error + _parsing + _version + _string + _FS;
+
+        #endregion Parser
         #region Unit Tests
 
         private const string _LINE = "====================";
