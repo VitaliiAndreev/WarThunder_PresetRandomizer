@@ -96,18 +96,22 @@ namespace Core.Helpers
                 return;
             }
 
+            // Reading all file information.
+
             LogDebug(ECoreLogMessage.SelectingAllFilesFromDirectory.FormatFluently(rootDirectory.FullName));
 
             var files = rootDirectory.GetFiles();
             if (files.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnEmptyDirectory.FormatFluently(rootDirectory.FullName));
+                LogWarn(ECoreLogMessage.WarnEmptyDirectory.FormatFluently(rootDirectory.FullName));
 
                 if (includeNested)
                     DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
 
                 return;
             }
+
+            // Filtering files by specified extensions.
 
             if (fileExtensions?.Any() ?? false)
             {
@@ -124,10 +128,12 @@ namespace Core.Helpers
 
                 if (files.IsEmpty())
                 {
-                    LogDebug(ECoreLogMessage.WarnNoFilesOfSpecifiedFormatToDelete);
+                    LogWarn(ECoreLogMessage.WarnNoFilesOfSpecifiedFormatToDelete);
                     return;
                 }
             }
+
+            // Deleting files.
 
             LogDebug(ECoreLogMessage.SelectedFileCount.FormatFluently(files.Count()));
             DeleteFiles(files);
@@ -150,7 +156,7 @@ namespace Core.Helpers
             var subdirectories = directory.GetDirectories();
             if (subdirectories.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnNoSubdirectories);
+                LogWarn(ECoreLogMessage.WarnNoSubdirectories);
                 return;
             }
 
@@ -193,7 +199,7 @@ namespace Core.Helpers
             }
             else
             {
-                LogDebug(ECoreLogMessage.WarnAlreadyDeleted.FormatFluently(path));
+                LogWarn(ECoreLogMessage.WarnAlreadyDeleted.FormatFluently(path));
             }
         }
 
