@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace Core.Helpers
 {
+    /// <summary> Provides methods to read files. </summary>
     public class FileReader : LoggerFluency, IFileReader
     {
         #region Constructors

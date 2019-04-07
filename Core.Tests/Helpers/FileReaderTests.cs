@@ -20,7 +20,7 @@ namespace Core.Tests.Helpers
         #region Internal Methods
 
         [TestInitialize]
-        public void CreateFileManager()
+        public void Initialize()
         {
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
