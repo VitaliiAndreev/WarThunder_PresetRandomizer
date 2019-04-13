@@ -249,6 +249,7 @@
         protected const string _Schema = "Schema";
         protected const string _schema = " schema";
         protected const string _Selected = "Selected";
+        protected const string _selected = " _selected";
         protected const string _Selecting = "Selecting";
         protected const string _selection = " selection";
         protected const string _serialized = " serialized";
@@ -281,6 +282,7 @@
         protected const string _there = _the + "re";
         protected const string _theAssembly_FMT_Q = _the + _assembly + _SPC_FMT_Q;
         protected const string _to = " to";
+        protected const string _tools = _to + "ols";
         protected const string _Trying = "Trying";
         protected const string _TryingTo = _Trying + _to;
 
@@ -288,6 +290,8 @@
         #region U
 
         protected const string _unit = " unit";
+        protected const string _Unpacking = "Unpacking";
+        protected const string _unpacking = " unpacking";
         protected const string _using = " using";
 
         #endregion U
@@ -540,5 +544,20 @@
         public const string CleanUpAfterUnitTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _unit + _test + _starts + _here + _FS + _SPC + _LINE;
 
         #endregion Unit Tests
+        #region Unpacker
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: unpacking tool file name. </para>
+        /// </summary>
+        public const string UnpackingToolSelected = _FMT_Q + _selected + _FS;
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file extension. </para>
+        /// </summary>
+        public const string FileExtensionNotSupportedByUnpackingTools = _No + _unpacking + _tools + _found + _for + _SPC_FMT_Q + _files + _FS;
+
+        #endregion Unpacker
     }
 }

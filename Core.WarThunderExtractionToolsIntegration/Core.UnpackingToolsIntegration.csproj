@@ -44,6 +44,7 @@
     <Compile Include="Enumerations\EClientVersion.cs" />
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
+    <Compile Include="Exceptions\FileExtensionNotSupportedException.cs" />
     <Compile Include="Exceptions\YupFileParsingException.cs" />
     <Compile Include="Helpers\WarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileReader.cs" />
