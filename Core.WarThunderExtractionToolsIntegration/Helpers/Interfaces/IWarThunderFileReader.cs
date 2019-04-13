@@ -1,7 +1,7 @@
 ﻿using Core.Helpers.Interfaces;
-using Core.WarThunderUnpackingToolsIntegration.Enumerations;
+using Core.UnpackingToolsIntegration.Enumerations;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Helpers.Interfaces
+namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
 {
     /// <summary> Provides methods to read War Thunder files. </summary>
     public interface IWarThunderFileReader : IFileReader

@@ -1,10 +1,10 @@
 ﻿using Core.Helpers;
 using Core.Helpers.Logger.Interfaces;
+using Core.UnpackingToolsIntegration.Enumerations;
+using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
-using Core.WarThunderUnpackingToolsIntegration.Enumerations;
-using Core.WarThunderUnpackingToolsIntegration.Helpers.Interfaces;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Helpers
+namespace Core.UnpackingToolsIntegration.Helpers
 {
     /// <summary> Provides methods to read War Thunder files. </summary>
     public class WarThunderFileReader : FileReader, IWarThunderFileReader

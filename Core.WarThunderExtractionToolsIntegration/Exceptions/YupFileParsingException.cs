@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Exceptions
+namespace Core.UnpackingToolsIntegration.Exceptions
 {
     /// <summary> A custom exception to catch when there are errors in parsing .yup files. </summary>
     public class YupFileParsingException : Exception

@@ -1,16 +1,13 @@
 ﻿using Core.Extensions;
-using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
-using Core.WarThunderUnpackingToolsIntegration.Enumerations;
-using Core.WarThunderUnpackingToolsIntegration.Exceptions;
-using Core.WarThunderUnpackingToolsIntegration.Helpers.Interfaces;
+using Core.UnpackingToolsIntegration.Exceptions;
+using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Helpers
+namespace Core.UnpackingToolsIntegration.Helpers
 {
     /// <summary> Provides methods to parse file contents. </summary>
     public class Parser : LoggerFluency, IParser

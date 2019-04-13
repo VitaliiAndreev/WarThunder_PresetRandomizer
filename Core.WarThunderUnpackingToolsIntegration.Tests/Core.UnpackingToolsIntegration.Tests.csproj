@@ -8,8 +8,8 @@
     <ProjectGuid>{5B2AAE48-6AB1-46B6-B9F1-0A7A071BF0D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.WarThunderUnpackingToolsIntegration.Tests</RootNamespace>
-    <AssemblyName>Core.WarThunderUnpackingToolsIntegration.Tests</AssemblyName>
+    <RootNamespace>Core.UnpackingToolsIntegration.Tests</RootNamespace>
+    <AssemblyName>Core.UnpackingToolsIntegration.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -66,9 +66,9 @@
       <Project>{760b95cd-a280-4b45-9c90-ae7301c94961}</Project>
       <Name>Core.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.WarThunderExtractionToolsIntegration\Core.WarThunderUnpackingToolsIntegration.csproj">
+    <ProjectReference Include="..\Core.WarThunderExtractionToolsIntegration\Core.UnpackingToolsIntegration.csproj">
       <Project>{fc4d7bad-d02f-4417-8e99-7b1e9b255f08}</Project>
-      <Name>Core.WarThunderUnpackingToolsIntegration</Name>
+      <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2cb4dc66-57b7-4d80-9c43-f3278bf76248}</Project>

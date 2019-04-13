@@ -1,6 +1,6 @@
 ﻿using Core.Enumerations;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Enumerations
+namespace Core.UnpackingToolsIntegration.Enumerations
 {
     public class EFile
     {

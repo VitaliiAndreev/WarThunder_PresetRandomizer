@@ -1,7 +1,6 @@
-﻿using Core.WarThunderUnpackingToolsIntegration.Enumerations;
-using System;
+﻿using System;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Helpers.Interfaces
+namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
 {
     /// <summary> Provides methods to parse file contents. </summary>
     public interface IParser

@@ -7,8 +7,8 @@
     <ProjectGuid>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.WarThunderUnpackingToolsIntegration</RootNamespace>
-    <AssemblyName>Core.WarThunderUnpackingToolsIntegration</AssemblyName>
+    <RootNamespace>Core.UnpackingToolsIntegration</RootNamespace>
+    <AssemblyName>Core.UnpackingToolsIntegration</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -48,7 +48,9 @@
     <Compile Include="Helpers\WarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IParser.cs" />
+    <Compile Include="Helpers\Interfaces\IUnpacker.cs" />
     <Compile Include="Helpers\Parser.cs" />
+    <Compile Include="Helpers\Unpacker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>

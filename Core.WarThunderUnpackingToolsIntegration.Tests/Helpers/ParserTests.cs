@@ -2,15 +2,15 @@
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Enumerations;
+using Core.UnpackingToolsIntegration.Enumerations;
+using Core.UnpackingToolsIntegration.Helpers;
+using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
-using Core.WarThunderUnpackingToolsIntegration.Enumerations;
-using Core.WarThunderUnpackingToolsIntegration.Helpers;
-using Core.WarThunderUnpackingToolsIntegration.Helpers.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace Core.WarThunderUnpackingToolsIntegration.Tests.Helpers
+namespace Core.UnpackingToolsIntegration.Tests.Helpers
 {
     /// <summary>
     /// See <see cref="Parser"/>.
