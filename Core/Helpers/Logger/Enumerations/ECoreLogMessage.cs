@@ -522,6 +522,11 @@
         #region Parser
 
         public const string ReadingClientVersion = _Reading + _the + _client + _version + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: client version. </para>
+        /// </summary>
+        public const string ClientVersionIs = _Client + _version + _is + _SPC_FMT + _FS;
 
         public const string ErrorVersionNotFoundInSourceString = _Client + _version + _markers + _have + _not + _been + _found + _in + _the + _source + _string + _FS;
         public const string ErrorReadingRawInstallData = _Error + _reading + _raw + _install + _data + _FS;

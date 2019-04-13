@@ -57,6 +57,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 throw;
             }
 
+            LogDebug(ECoreLogMessage.ClientVersionIs.FormatFluently(version.ToString(4)));
             return version;
         }
     }
