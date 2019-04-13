@@ -38,14 +38,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         #endregion Constructors
 
-        /// <summary> Selects an appropriate unpacking tool file name (see <see cref="ETool"/>) for a given file path/name. </summary>
-        /// <param name="fileName"> An absolute or a relative name of the file. </param>
+        /// <summary> Selects an appropriate unpacking tool file name (see <see cref="ETool"/>) for a given file extension. </summary>
+        /// <param name="fileExtension"> The file extension to look for a match for. The register and period characters are ignored. </param>
         /// <returns></returns>
-        private string GetToolFileNameByTargetFile(string fileName)
+        private string GetToolFileNameByFileExtension(string fileExtension)
         {
-            var fileExtension = fileName.Split(ECharacter.Period).Last().ToLower();
-
-            if (_toolFileNames.TryGetValue(fileExtension, out var toolFileName))
+            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Except(new char[] { ECharacter.Period }).StringJoin(), out var toolFileName))
             {
                 LogDebug(ECoreLogMessage.UnpackingToolSelected);
                 return toolFileName;
