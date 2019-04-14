@@ -29,6 +29,19 @@ namespace Core.Tests.Extensions
         #region Tests: SkipLast<T>()
 
         [TestMethod]
+        public void SkipLast_OneThroughFive_SkipLast_ReturnsOneThroughFour()
+        {
+            // arrange
+            var originalCollection = new int[] { 1, 2, 3, 4, 5, };
+
+            // act
+            var trimmedCollection = originalCollection.SkipLast();
+
+            // assert
+            trimmedCollection.Should().BeEquivalentTo(new int[] { 1, 2, 3, 4, });
+        }
+
+        [TestMethod]
         public void SkipLast_OneThroughFive_SkipLast2_ReturnsOneThroughThree()
         {
             // arrange
