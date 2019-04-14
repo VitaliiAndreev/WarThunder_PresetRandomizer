@@ -40,7 +40,7 @@ namespace Core.Helpers
 
             if (!file.Exists)
             {
-                LogWarn(ECoreLogMessage.WarnDoesntExist_CopyingAborted.FormatFluently(file.FullName));
+                LogWarn(ECoreLogMessage.WarnDoesNotExist_CopyingAborted.FormatFluently(file.FullName));
                 return;
             }
             else if (!destinationDirectory.Exists)
@@ -55,7 +55,7 @@ namespace Core.Helpers
                 }
                 else
                 {
-                    LogWarn(ECoreLogMessage.WarnDoesntExist_CopyingSomethingAborted.ResetFormattingPlaceholders().FormatFluently(destinationDirectory.FullName, file.FullName));
+                    LogWarn(ECoreLogMessage.WarnDoesNotExist_CopyingSomethingAborted.ResetFormattingPlaceholders().FormatFluently(destinationDirectory.FullName, file.FullName));
                     return;
                 }
             }
@@ -147,7 +147,7 @@ namespace Core.Helpers
 
             if (!rootDirectory.Exists)
             {
-                LogWarn(ECoreLogMessage.WarnDirectoryDoesntExist_DeletingAborted.FormatFluently(rootDirectory.FullName));
+                LogWarn(ECoreLogMessage.WarnDirectoryDoesNotExist_DeletingAborted.FormatFluently(rootDirectory.FullName));
                 return;
             }
 

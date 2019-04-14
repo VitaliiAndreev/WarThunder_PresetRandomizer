@@ -440,7 +440,7 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory / file path. </para>
         /// </summary>
-        public const string WarnDoesntExist_CopyingAborted =
+        public const string WarnDoesNotExist_CopyingAborted =
             _FMT_Q + _does + _not + _exist + _FS_SPC
             + _Copying + _safely + _aborted + _FS;
         /// <summary>
@@ -448,14 +448,14 @@
         /// <para> 1: destination directory. </para>
         /// <para> 2: directory / file path. </para>
         /// </summary>
-        public const string WarnDoesntExist_CopyingSomethingAborted =
+        public const string WarnDoesNotExist_CopyingSomethingAborted =
             _FMT_Q + _does + _not + _exist + _FS_SPC
             + _Copying + _SPC_FMT_Q + _safely + _aborted + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string WarnDirectoryDoesntExist_DeletingAborted =
+        public const string WarnDirectoryDoesNotExist_DeletingAborted =
             _TheDirectory_SPC_FMT_Q + _does + _not + _exist + _FS_SPC
             + _Deleting + _files + _safely + _aborted + _FS;
         /// <summary> 
