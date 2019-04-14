@@ -50,11 +50,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
             else
             {
-                var message = ECoreLogMessage.FileExtensionNotSupportedByUnpackingTools.FormatFluently(fileExtension);
-                var exception = new FileExtensionNotSupportedException(message);
-
-                LogError(message, exception);
-                throw exception;
+                LogErrorAndThrow<FileExtensionNotSupportedException>
+                (
+                    ECoreLogMessage.FileExtensionNotSupportedByUnpackingTools.FormatFluently(fileExtension),
+                    ECoreLogMessage.ErrorMatchingUnpakingToolToFileExtension
+                );
+                return null;
             }
         }
     }

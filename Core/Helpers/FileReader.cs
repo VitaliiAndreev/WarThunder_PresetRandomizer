@@ -33,11 +33,12 @@ namespace Core.Helpers
 
             if (!file.Exists)
             {
-                var message = ECoreLogMessage.NotFound.FormatFluently(file.FullName);
-                var exception = new FileNotFoundException(message, file.FullName);
-
-                LogError(message, exception);
-                throw exception;
+                LogErrorAndThrow<FileNotFoundException>
+                (
+                    ECoreLogMessage.NotFound.FormatFluently(file.FullName),
+                    ECoreLogMessage.ErrorReadingFile
+                );
+                return null;
             }
 
             LogDebug(ECoreLogMessage.Reading.FormatFluently(file.FullName));

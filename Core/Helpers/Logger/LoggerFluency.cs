@@ -29,6 +29,8 @@ namespace Core.Helpers.Logger
         #endregion Constructors
         #region Methods
 
+        #region Methods: Logging
+
         /// <summary> Creates a log entry of the "Trace" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
@@ -66,6 +68,23 @@ namespace Core.Helpers.Logger
         /// <param name="exception"> An exception whose data to log. </param>
         protected void LogFatal(string message, Exception exception) =>
             _logger.LogFatal(_logCategory, message, exception);
+
+        #endregion Methods: Logging
+        #region Methods: Fluency
+
+        /// <summary> Throws an exception of the specified type after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
+        /// <typeparam name="T"> The type of the exception. </typeparam>
+        /// <param name="exceptionMessage"> The exception message. </param>
+        /// <param name="logMessage"> The nessage to log. </param>
+        public void LogErrorAndThrow<T>(string exceptionMessage, string logMessage) where T : Exception
+        {
+            var exception = Activator.CreateInstance(typeof(T), exceptionMessage) as T;
+
+            LogError(logMessage, exception);
+            throw exception;
+        }
+
+        #endregion Methods: Fluency
 
         #endregion Methods
     }

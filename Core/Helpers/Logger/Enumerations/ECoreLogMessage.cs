@@ -40,9 +40,10 @@
         protected const string _Already = _A + "lready";
         protected const string _already = _a + "lready";
         protected const string _An = _A + "n";
+        protected const string _an = _a + "n";
         protected const string _AnErrorHasOccured = _An + _error + _has + _occured;
         protected const string _AnErrorHasOccuredWhile = _AnErrorHasOccured + _while;
-        protected const string _and = _a + "nd";
+        protected const string _and = _an + "n";
         protected const string _assembly = _a + "ssembly";
         protected const string _Assigned = _A + "ssigned";
         protected const string _attributes = _a + "ttributes";
@@ -120,6 +121,7 @@
         protected const string _execution = " execution";
         protected const string _exist = " exist";
         protected const string _exists = _exist + "s";
+        protected const string _extension = " extension";
 
         #endregion E
         #region F
@@ -179,6 +181,7 @@
 
         protected const string _mapping = " mapping";
         protected const string _markers = " markers";
+        protected const string _matching = " matching";
         protected const string _Method = "Method";
         protected const string _method = " method";
 
@@ -241,6 +244,7 @@
         protected const string _reading = _read + "ing";
         protected const string _repository = " repository";
         protected const string _returned = " returned";
+        protected const string _running = " running";
 
         #endregion R
         #region S
@@ -282,16 +286,21 @@
         protected const string _there = _the + "re";
         protected const string _theAssembly_FMT_Q = _the + _assembly + _SPC_FMT_Q;
         protected const string _to = " to";
-        protected const string _tools = _to + "ols";
+        protected const string _tool = _to + "ol";
+        protected const string _tools = _tool + "s";
         protected const string _Trying = "Trying";
+        protected const string _trying = " trying";
         protected const string _TryingTo = _Trying + _to;
+        protected const string _tryingTo = _trying + _to;
 
         #endregion T
         #region U
 
         protected const string _unit = " unit";
+        protected const string _unpack = " unpack";
+        protected const string _Unpacked = "Unpacked";
         protected const string _Unpacking = "Unpacking";
-        protected const string _unpacking = " unpacking";
+        protected const string _unpacking = _unpack + "ing";
         protected const string _using = " using";
 
         #endregion U
@@ -468,18 +477,18 @@
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
         public const string NotFound = _FMT_Q + _not + _found + _FS;
-
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
         public const string Reading = _Reading + _SPC_FMT_Q + _FS;
-
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
         /// </summary>
         public const string ReadCharacters = _Read + _SPC_FMT + _characters + _FS;
+
+        public const string ErrorReadingFile = _Error + _reading + _a + _file + _FS;
 
         #endregion File Reader
         #region General
@@ -514,7 +523,7 @@
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: method name. </para>
-        /// <para>2: class name. </para>
+        /// <para> 2: class name. </para>
         /// </summary>
         public const string WarnNullGiven =
             _A + _SPC_NULL + _value + _has + _been + _given + _to + _the + _SPC_FMT_Q + _method + _from + _SPC_FMT_Q + _class + _FS_SPC
@@ -557,6 +566,8 @@
         /// <para> 1: file extension. </para>
         /// </summary>
         public const string FileExtensionNotSupportedByUnpackingTools = _No + _unpacking + _tools + _found + _for + _SPC_FMT_Q + _files + _FS;
+
+        public const string ErrorMatchingUnpakingToolToFileExtension = _Error + _matching + _an + _unpacking + _tool + _to + _a + _file + _extension + _FS;
 
         #endregion Unpacker
     }
