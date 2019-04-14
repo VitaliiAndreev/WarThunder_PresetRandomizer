@@ -9,7 +9,7 @@ namespace Core.Extensions
     {
         #region Methods: Equivalence
 
-        public static bool IsEquivalentTo(this IEnumerable<IPersistentObject> sourceCollection, IEnumerable<IPersistentObject> comparedCollection, bool includeNestedObjects, int recursionLevel = 0)
+        public static bool IsEquivalentTo(this IEnumerable<IPersistentObject> sourceCollection, IEnumerable<IPersistentObject> comparedCollection, int recursionLevel = 0)
         {
             if (sourceCollection.Count() == comparedCollection.Count())
             {

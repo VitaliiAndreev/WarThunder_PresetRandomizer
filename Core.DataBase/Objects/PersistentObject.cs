@@ -143,7 +143,7 @@ namespace Core.DataBase.Objects
                 if (!includeNestedObjects)
                     return true;
 
-                return GetAllNestedObjects().IsEquivalentTo(comparedPersistentObject.GetAllNestedObjects(), recursionLevel.IsPositive(), recursionLevel - 1);
+                return GetAllNestedObjects().IsEquivalentTo(comparedPersistentObject.GetAllNestedObjects(), recursionLevel - 1);
             }
             return false;
         }

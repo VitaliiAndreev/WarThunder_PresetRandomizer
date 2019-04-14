@@ -42,7 +42,7 @@ namespace Core.DataBase.Tests.Extensions
             var collectionB = new List<IPersistentObject> { collectionA.First(), collectionA.Last() };
 
             // act
-            var isEquivalent = collectionA.IsEquivalentTo(collectionB, true, 1);
+            var isEquivalent = collectionA.IsEquivalentTo(collectionB, 1);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -56,7 +56,7 @@ namespace Core.DataBase.Tests.Extensions
             var collectionB = new List<IPersistentObject> { collectionA.First() };
 
             // act
-            var isEquivalent = collectionA.IsEquivalentTo(collectionB, true, 1);
+            var isEquivalent = collectionA.IsEquivalentTo(collectionB, 1);
 
             // assert
             isEquivalent.Should().BeFalse();
