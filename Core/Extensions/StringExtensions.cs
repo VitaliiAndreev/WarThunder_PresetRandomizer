@@ -10,6 +10,13 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
+        /// <summary> Checks whether the specified character is in the string. </summary>
+        /// <param name="source"> A source string. </param>
+        /// <param name="character"> The character to look for. </param>
+        /// <returns></returns>
+        public static bool Contains(this string sourceString, char character) =>
+            sourceString.Contains(character.ToString());
+
         /// <summary> Fluently replaces format placeholders in a string with members of an argument array. </summary>
         /// <param name="source"> A source string. </param>
         /// <param name="arguments"> An array of objects whose string representations to insert into the source string. </param>
