@@ -530,6 +530,11 @@
             + _Method + _execution + _safely + _cancelled + _FS;
 
         public const string Error = _AnErrorHasOccured + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: directory/file path/name. </para>
+        /// </summary>
+        public const string DoesNotExist = _FMT_Q + _does + _not + _exist + _FS;
 
         #endregion General
         #region Parser
@@ -557,6 +562,21 @@
 
         /// <summary> 
         /// A message with formatting placeholders.
+        /// <para> 1: file name. </para>
+        /// </summary>
+        public const string PreparingToUnpack = _PreparingTo + _unpack + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file name. </para>
+        /// </summary>
+        public const string Unpacking = _Unpacking + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file name. </para>
+        /// </summary>
+        public const string Unpacked = _Unpacked + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
         /// <para> 1: unpacking tool file name. </para>
         /// </summary>
         public const string UnpackingToolSelected = _FMT_Q + _selected + _FS;
@@ -568,6 +588,7 @@
         public const string FileExtensionNotSupportedByUnpackingTools = _No + _unpacking + _tools + _found + _for + _SPC_FMT_Q + _files + _FS;
 
         public const string ErrorMatchingUnpakingToolToFileExtension = _Error + _matching + _an + _unpacking + _tool + _to + _a + _file + _extension + _FS;
+        public const string ErrorRunningUnpackingTool = _Error + _running + _the + _unpacking + _tool + _FS;
 
         #endregion Unpacker
     }

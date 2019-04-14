@@ -45,7 +45,9 @@
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
     <Compile Include="Exceptions\FileExtensionNotSupportedException.cs" />
+    <Compile Include="Exceptions\OutputDirectoryNotFoundException.cs" />
     <Compile Include="Exceptions\YupFileParsingException.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\WarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IParser.cs" />
