@@ -1,4 +1,5 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,6 +9,37 @@ namespace Core.Tests.Extensions
     [TestClass]
     public class StringExtensionsTests
     {
+        #region Tests: Contains()
+
+        [TestMethod]
+        public void Contains_CharacterNotPresent_ReturnsFalse()
+        {
+            // arrange
+            var sourceString = "whatsitsface.gif";
+            var searchedCharacter = ECharacter.Comma;
+
+            // act
+            var containsCharacter = sourceString.Contains(searchedCharacter);
+
+            // assert
+            containsCharacter.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void Contains_CharacterPresent_ReturnsTrue()
+        {
+            // arrange
+            var sourceString = "whatsitsface.gif";
+            var searchedCharacter = ECharacter.Period;
+
+            // act
+            var containsCharacter = sourceString.Contains(searchedCharacter);
+
+            // assert
+            containsCharacter.Should().BeTrue();
+        }
+
+        #endregion Tests: Contains()
         #region Tests: Flatten()
 
         [TestMethod]
