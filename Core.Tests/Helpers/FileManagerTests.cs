@@ -102,7 +102,6 @@ namespace Core.Tests.Helpers
         {
             // arrange
             var fileName = $"nice.kit";
-            var fileFullName = $"{_rootDirectory}\\{fileName}";
             File.Create(fileName).Close();
 
             var destinationPath = $"{_rootDirectory}\\subdirectory";
@@ -125,7 +124,6 @@ namespace Core.Tests.Helpers
         {
             // arrange
             var fileName = $"nice.kit";
-            var fileFullName = $"{_rootDirectory}\\{fileName}";
             File.Create(fileName).Close();
 
             var destinationPath = $"{_rootDirectory}\\subdirectory";
@@ -137,7 +135,7 @@ namespace Core.Tests.Helpers
             var oldTimeStamp = destinationFile.LastWriteTime;
 
             // act
-            Thread.Sleep(500);
+            Thread.Sleep(2000);
             _fileManager.CopyFile(fileName, destinationPath, true);
             destinationFile.Refresh();
 
