@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Core.Helpers.Interfaces
 {
@@ -48,5 +49,14 @@ namespace Core.Helpers.Interfaces
         void DeleteDirectory(string path);
 
         #endregion Methods: Deletion
+        #region Methods: Fluency
+
+        /// <summary> Creates a new instance of <see cref="FileInfo"/> with a directory path and a file name. </summary>
+        /// <param name="directoryPath"> The directory path. </param>
+        /// <param name="fileName"> The file name. </param>
+        /// <returns></returns>
+        FileInfo GetFileInfo(string directoryPath, string fileName);
+
+        #endregion Methods: Fluency
     }
 }

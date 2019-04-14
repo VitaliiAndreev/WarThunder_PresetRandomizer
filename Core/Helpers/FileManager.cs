@@ -267,5 +267,15 @@ namespace Core.Helpers
         }
 
         #endregion Methods: Deletion
+        #region Methods: Fluency
+
+        /// <summary> Creates a new instance of <see cref="FileInfo"/> with a directory path and a file name. </summary>
+        /// <param name="directoryPath"> The directory path. </param>
+        /// <param name="fileName"> The file name. </param>
+        /// <returns></returns>
+        public FileInfo GetFileInfo(string directoryPath, string fileName) =>
+            new FileInfo($@"{directoryPath}\{fileName}");
+
+        #endregion Methods: Fluency
     }
 }
