@@ -50,7 +50,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 { EFileExtension.Clog, ETool.ClogUnpacker },
                 { EFileExtension.Ddsx, ETool.DdsxUnpacker },
                 { EFileExtension.Dxp, ETool.DxpUnpacker },
-                { EFileExtension.VromfsBin, ETool.VromfsUnpacker },
+                { EFileExtension.Bin, ETool.VromfsBinUnpacker },
                 { EFileExtension.Wrpl, ETool.WrplUnpacker },
             };
         }

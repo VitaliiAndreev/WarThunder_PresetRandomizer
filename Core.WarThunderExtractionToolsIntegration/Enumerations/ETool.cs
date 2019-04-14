@@ -13,7 +13,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         public const string ClogUnpacker = "clog" + _unpack + _exe;
         public const string DdsxUnpacker = "ddsx" + _unpack + _exe;
         public const string DxpUnpacker = "dxp" + _unpack + _exe;
-        public const string VromfsUnpacker = EFile.Vromfs + _unpacker + _exe;
+        public const string VromfsBinUnpacker = EFile.Vromfs + _unpacker + _exe;
         public const string WrplUnpacker = "wrpl" + _unpacker + _exe;
     }
 }
