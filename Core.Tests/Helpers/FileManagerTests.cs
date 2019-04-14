@@ -135,7 +135,7 @@ namespace Core.Tests.Helpers
             var oldTimeStamp = destinationFile.LastWriteTime;
 
             // act
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             _fileManager.CopyFile(fileName, destinationPath, true);
             destinationFile.Refresh();
 
