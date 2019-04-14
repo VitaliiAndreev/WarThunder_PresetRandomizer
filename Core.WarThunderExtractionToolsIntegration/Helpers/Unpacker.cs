@@ -79,7 +79,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             if (_toolFileNames.TryGetValue(fileExtension.ToLower().Except(new char[] { ECharacter.Period }).StringJoin(), out var toolFileName))
             {
-                LogDebug(ECoreLogMessage.UnpackingToolSelected);
+                LogDebug(ECoreLogMessage.UnpackingToolSelected.FormatFluently(toolFileName));
                 return toolFileName;
             }
             else

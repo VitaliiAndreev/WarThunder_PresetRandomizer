@@ -253,7 +253,7 @@
         protected const string _Schema = "Schema";
         protected const string _schema = " schema";
         protected const string _Selected = "Selected";
-        protected const string _selected = " _selected";
+        protected const string _selected = " selected";
         protected const string _Selecting = "Selecting";
         protected const string _selection = " selection";
         protected const string _serialized = " serialized";
