@@ -53,6 +53,7 @@
     <Compile Include="Enumerations\ECharacterString.cs" />
     <Compile Include="Enumerations\ECharacter.cs" />
     <Compile Include="Enumerations\EFileExtension.cs" />
+    <Compile Include="Extensions\FileInfoExtensions.cs" />
     <Compile Include="Extensions\GenericExtensions.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
