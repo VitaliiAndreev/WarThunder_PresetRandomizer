@@ -11,7 +11,7 @@ namespace Core.Extensions
         /// <returns></returns>
         public static string GetFileNameWithoutExtension(this FileInfo fileInfo) =>
             fileInfo.Name.Contains(ECharacter.Period)
-                ? fileInfo.Name.Split(ECharacter.Period).SkipLast(1).StringJoin()
+                ? fileInfo.Name.Split(ECharacter.Period).SkipLast(1).StringJoin(ECharacter.Period)
                 : fileInfo.Name;
     }
 }
