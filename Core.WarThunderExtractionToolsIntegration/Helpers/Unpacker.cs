@@ -93,15 +93,6 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
         }
 
-        /// <summary> Copies files required for unpacking into the temp directory. </summary>
-        /// <param name="unpackingToolFile"> The file used as an unpacking tool. </param>
-        /// <param name="targetFile"> The file to unpack. </param>
-        private void CopyFilesIntoTempDirectory(FileInfo unpackingToolFile, FileInfo targetFile)
-        {
-            _fileManager.CopyFile(unpackingToolFile.FullName, Settings.TempLocation);
-            _fileManager.CopyFile(targetFile.FullName, Settings.TempLocation);
-        }
-
         /// <summary> Copies both the unpacking tool (because the output folder is relative to it) and the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks the file. </summary>
         /// <param name="sourceFile"> The file to unpack. </param>
         /// <returns></returns>
@@ -111,11 +102,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             LogDebug(ECoreLogMessage.PreparingToUnpack.FormatFluently(sourceFile.Name));
 
-            var toolFileName = GetToolFileNameByFileExtension(sourceFile.Extension);
+            _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation);
 
-            CopyFilesIntoTempDirectory(GetToolFileInfo(toolFileName), sourceFile);
-
-            var tempToolFile = GetTempFileInfo(toolFileName);
+            var toolFile = GetToolFileInfo(GetToolFileNameByFileExtension(sourceFile.Extension));
             var tempFile = GetTempFileInfo(sourceFile.Name);
 
             // Unpacking proper.
