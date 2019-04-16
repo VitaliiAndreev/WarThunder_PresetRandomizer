@@ -94,7 +94,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
         }
 
-        /// <summary> Copies both the unpacking tool (because the output folder is relative to it) and the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks the file. </summary>
+        /// <summary> Copies the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks it. </summary>
         /// <param name="sourceFile"> The file to unpack. </param>
         /// <returns></returns>
         public DirectoryInfo Unpack(FileInfo sourceFile)
