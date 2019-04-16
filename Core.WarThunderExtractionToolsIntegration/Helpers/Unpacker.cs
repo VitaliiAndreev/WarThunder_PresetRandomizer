@@ -128,7 +128,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
                 var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.GetFileNameWithoutExtension()}{_outputDirectorySuffix}");
 
-                if (!outputDirectory.Exists)
+                if (outputDirectory.Exists)
                 {
                     LogDebug(ECoreLogMessage.Unpacked.FormatFluently(tempFile.Name));
                     return outputDirectory;
