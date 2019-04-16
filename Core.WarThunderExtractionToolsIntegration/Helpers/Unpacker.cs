@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -114,6 +115,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
             try
             {
                 Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolFile.FullName}\" \"{tempFile.FullName}\"\""));
+                Thread.Sleep(1000); // Based on UT runs it might be required to pause for a bit to register the output directory.
 
                 var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.Name}{_outputDirectorySuffix}");
 
