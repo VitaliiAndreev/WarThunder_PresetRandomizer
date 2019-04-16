@@ -126,7 +126,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
             {
                 Process.Start(new ProcessStartInfo(tempToolFile.FullName, tempFile.FullName));
 
-                var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.GetFileNameWithoutExtension()}{_outputDirectorySuffix}");
+                var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.Name}{_outputDirectorySuffix}");
 
                 if (outputDirectory.Exists)
                 {
