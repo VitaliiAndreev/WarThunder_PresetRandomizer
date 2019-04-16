@@ -124,7 +124,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                Process.Start(new ProcessStartInfo(tempToolFile.FullName, tempFile.FullName));
+                Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolFile.FullName}\" \"{tempFile.FullName}\"\""));
 
                 var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.Name}{_outputDirectorySuffix}");
 
