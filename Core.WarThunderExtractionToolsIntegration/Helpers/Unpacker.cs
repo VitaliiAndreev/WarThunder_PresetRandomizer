@@ -139,7 +139,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             // Preparing temp files.
 
-            LogDebug(ECoreLogMessage.PreparingToUnpack.FormatFluently(sourceFile.Name));
+            LogDebug(ECoreLogMessage.PreparingToUnpack.FormatFluently(sourceFile.FullName));
 
             _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation);
 
