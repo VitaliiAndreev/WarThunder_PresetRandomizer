@@ -145,6 +145,7 @@
         #endregion F
         #region G
 
+        protected const string _generation = " generation";
         protected const string _given = " given";
 
         #endregion G
@@ -158,6 +159,7 @@
         #endregion H
         #region I
 
+        protected const string _implemented = " implemented";
         protected const string _in = " in";
         protected const string _install = _in + "stall";
         protected const string _instantiated = _in + "stantiated";
@@ -212,6 +214,7 @@
         protected const string _one = " one";
         protected const string _ORM = "ORM";
         protected const string _ORM_MappingFromAttributes = _ORM + _mapping + _from + _attributes;
+        protected const string _Output = "Output";
         protected const string _Overwriting = "Overwriting";
         protected const string _overwriting = " overwriting";
 
@@ -222,6 +225,7 @@
         #region P
 
         protected const string _parsing = " parsing";
+        protected const string _path = " path";
         protected const string _persisted = " persisted";
         protected const string _Persisting = "Persisting";
         protected const string _Preparing = "Preparing";
@@ -321,6 +325,8 @@
 
         #endregion X
         #region Y
+
+        protected const string _yet = " yet";
 
         #endregion Y
         #region Z
@@ -586,7 +592,11 @@
         /// <para> 1: file extension. </para>
         /// </summary>
         public const string FileExtensionNotSupportedByUnpackingTools = _No + _unpacking + _tools + _found + _for + _SPC_FMT_Q + _files + _FS;
-
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file extension. </para>
+        /// </summary>
+        public const string FileExtensionNotYetSupported = _Output + _path + _generation + _for + _SPC_FMT_Q + _files + _is + _not + _yet + _implemented + _FS;
         public const string ErrorMatchingUnpakingToolToFileExtension = _Error + _matching + _an + _unpacking + _tool + _to + _a + _file + _extension + _FS;
         public const string ErrorRunningUnpackingTool = _Error + _running + _the + _unpacking + _tool + _FS;
 

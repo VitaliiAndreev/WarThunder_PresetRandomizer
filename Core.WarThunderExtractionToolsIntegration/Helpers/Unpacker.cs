@@ -23,6 +23,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Constants
 
         private const string _outputDirectorySuffix = "_u";
+        private const string _outputFileSuffix = "x";
 
         #endregion Constants
         #region Fields
@@ -94,10 +95,47 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
         }
 
+        /// <summary> Gets an output path for the specified file according to its extension. </summary>
+        /// <param name="file"> The file for which to generate the output path. </param>
+        /// <returns> A patched version of the output path. </returns>
+        private string GetOutputPath(FileInfo file)
+        {
+            var outputPath = $@"{file.Directory}\{file.Name}";
+
+            switch (file.Extension.Split(ECharacter.Period).Last().ToLower())
+            {
+                case EFileExtension.Bin:
+                    {
+                        outputPath = $"{outputPath}{_outputDirectorySuffix}";
+                        var outputDirectory = new DirectoryInfo(outputPath);
+
+                        if (!outputDirectory.Exists)
+                            throw new OutputDirectoryNotFoundException(ECoreLogMessage.DoesNotExist.FormatFluently(outputDirectory.FullName));
+
+                        break;
+                    }
+                case EFileExtension.Blk:
+                    {
+                        outputPath = $"{outputPath}{_outputFileSuffix}";
+                        var outputFile = new FileInfo(outputPath);
+
+                        if (!outputFile.Exists)
+                            throw new OutputFileNotFoundException(ECoreLogMessage.DoesNotExist.FormatFluently(outputFile.FullName));
+
+                        break;
+                    }
+                default:
+                    {
+                        throw new NotImplementedException(ECoreLogMessage.FileExtensionNotYetSupported.FormatFluently(file.Extension));
+                    }
+            }
+            return outputPath;
+        }
+
         /// <summary> Copies the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks it. </summary>
         /// <param name="sourceFile"> The file to unpack. </param>
-        /// <returns></returns>
-        public DirectoryInfo Unpack(FileInfo sourceFile)
+        /// <returns> The path to the output file / directory. </returns>
+        public string Unpack(FileInfo sourceFile)
         {
             // Preparing temp files.
 
@@ -115,19 +153,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
             try
             {
                 Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolFile.FullName}\" \"{tempFile.FullName}\"\""));
-                Thread.Sleep(2000); // Based on UT runs it might be required to pause for a bit to register the output directory.
+                Thread.Sleep(2000); // Based on UT runs it might be required to pause for a bit to register the output file / directory.
 
-                var outputDirectory = new DirectoryInfo($@"{tempFile.Directory}\{tempFile.Name}{_outputDirectorySuffix}");
+                var outputPath = GetOutputPath(tempFile);
 
-                if (outputDirectory.Exists)
-                {
-                    LogDebug(ECoreLogMessage.Unpacked.FormatFluently(tempFile.Name));
-                    return outputDirectory;
-                }
-                else
-                {
-                    throw new OutputDirectoryNotFoundException(ECoreLogMessage.DoesNotExist.FormatFluently(outputDirectory.FullName));
-                }
+                LogDebug(ECoreLogMessage.Unpacked.FormatFluently(tempFile.Name));
+                return outputPath;
             }
             catch (Exception exception)
             {

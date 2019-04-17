@@ -59,7 +59,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
             var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters);
 
             // act
-            var outputDirectory = _unpacker.Unpack(sourceFile);
+            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
 
             // assert
             outputDirectory.GetFiles().Should().NotBeEmpty();
