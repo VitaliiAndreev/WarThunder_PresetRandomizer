@@ -84,6 +84,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
             return result;
         }
 
+        /// <summary> Logs a general error and rethrows the exception that caused it. </summary>
+        /// <param name="exception"> The exception that has been thrown. </param>
+        private void LogErrorAndRethrow(Exception exception)
+        {
+            LogError(ECoreLogMessage.ErrorRunningUnpackingTool, exception);
+            throw exception;
+        }
+
         #endregion Methods: Fluency
 
         /// <summary> Selects an appropriate unpacking tool file name (see <see cref="ETool"/>) for a given file extension. </summary>
@@ -172,8 +180,8 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
             catch (Exception exception)
             {
-                LogError(ECoreLogMessage.ErrorRunningUnpackingTool, exception);
-                throw;
+                LogErrorAndRethrow(exception);
+                return null;
             }
         }
     }
