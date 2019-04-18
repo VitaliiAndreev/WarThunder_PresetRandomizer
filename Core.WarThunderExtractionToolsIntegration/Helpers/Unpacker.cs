@@ -72,6 +72,18 @@ namespace Core.UnpackingToolsIntegration.Helpers
         private FileInfo GetTempFileInfo(string fileName) =>
             _fileManager.GetFileInfo(Settings.TempLocation, fileName);
 
+        /// <summary> Runs a shell command that calls the specified tool with the given directory/file as a parameter. </summary>
+        /// <param name="toolPath"> The path to the tool file. </param>
+        /// <param name="argumentFilePath"> The path to the argument file. </param>
+        /// <returns></returns>
+        private Process RunShellCommand(string toolPath, string argumentFilePath)
+        {
+            var result = Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolPath}\" \"{argumentFilePath}\"\""));
+            Thread.Sleep(2000); // Based on UT runs it might be required to pause for a bit to register the output file / directory.
+
+            return result;
+        }
+
         #endregion Methods: Fluency
 
         /// <summary> Selects an appropriate unpacking tool file name (see <see cref="ETool"/>) for a given file extension. </summary>
@@ -152,9 +164,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolFile.FullName}\" \"{tempFile.FullName}\"\""));
-                Thread.Sleep(2000); // Based on UT runs it might be required to pause for a bit to register the output file / directory.
-
+                RunShellCommand(toolFile.FullName, tempFile.FullName);
                 var outputPath = GetOutputPath(tempFile);
 
                 LogDebug(ECoreLogMessage.Unpacked.FormatFluently(tempFile.Name));
