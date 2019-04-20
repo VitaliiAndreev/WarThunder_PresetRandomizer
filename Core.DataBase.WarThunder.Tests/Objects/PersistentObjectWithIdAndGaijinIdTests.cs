@@ -1,10 +1,11 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
+using Core.DataBase.Tests;
+using Core.DataBase.WarThunder.Objects;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Core.DataBase.Tests.Objects
+namespace Core.DataBase.WarThunder.Tests.Objects
 {
     /// <summary> See <see cref="PersistentObjectWithIdAndGaijinId"/>. </summary>
     [TestClass]

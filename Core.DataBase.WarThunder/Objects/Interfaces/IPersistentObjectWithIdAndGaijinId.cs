@@ -1,4 +1,6 @@
-﻿namespace Core.DataBase.Objects.Interfaces
+﻿using Core.DataBase.Objects.Interfaces;
+
+namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a Gaijin ID. </summary>
     public interface IPersistentObjectWithIdAndGaijinId : IPersistentObjectWithId

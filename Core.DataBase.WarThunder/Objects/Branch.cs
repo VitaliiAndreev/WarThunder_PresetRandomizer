@@ -1,6 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects;
 using Core.Enumerations.DataBase;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
@@ -13,41 +13,20 @@ namespace Core.Objects
     [Class(Table = ETable.Branch)]
     public class Branch : PersistentObjectWithIdAndGaijinId, IBranch
     {
-        #region Fields
-
-        /// <summary>
-        /// The branch's nation.
-        /// This field is used by the <see cref="Nation"/> property.
-        /// </summary>
-        private INation _nation;
-
-        #endregion Fields
         #region Persistent Properties
 
         /// <summary> The branch's ID. </summary>
         [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))]
-        public override Guid Id
-        {
-            get { return _id; }
-            protected set { _id = value; }
-        }
+        public override Guid Id { get; protected set; }
 
         /// <summary> The branch's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
-        public override string GaijinId
-        {
-            get { return _gaijinId; }
-            protected set { _gaijinId = value; }
-        }
+        public override string GaijinId { get; protected set; }
 
         /// <summary> The branch's nation. </summary>
         [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
         [Key(1)]
-        public virtual INation Nation
-        {
-            get { return _nation; }
-            protected set { _nation = value; }
-        }
+        public virtual INation Nation { get; protected set; }
 
         #endregion Persistent Properties
         #region Constructors
@@ -77,7 +56,7 @@ namespace Core.Objects
         public Branch(IDataRepository dataRepository, Guid id, string gaijinId, INation nation)
             : base(dataRepository, id, gaijinId)
         {
-            _nation = nation;
+            Nation = nation;
 
             LogCreation();
         }
@@ -86,7 +65,7 @@ namespace Core.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{base.ToString()} of {_nation?.ToString() ?? "?"})";
+        public override string ToString() => $"{base.ToString()} of {Nation?.ToString() ?? "?"})";
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
         /// <returns></returns>

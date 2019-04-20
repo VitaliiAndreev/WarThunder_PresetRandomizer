@@ -1,6 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects;
 using Core.Enumerations.DataBase;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
@@ -17,21 +17,11 @@ namespace Core.Objects
 
         /// <summary> The nation's ID. </summary>
         [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))] // The type and name of the identificator column have to be explicitly specified.
-        public override Guid Id // All persistent properties have to be public/protected virtual and have public/protected setters.
-        {
-            get { return _id; }
-            // Even though we don't want to change IDs after creation,
-            // a setter is required by NHibernate to initialize persistent properties of an object after reading data from a database and instantiating the object with the parameterless constructor.
-            protected set { _id = value; }
-        }
+        public override Guid Id { get; protected set; }
 
         /// <summary> The nation's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
-        public override string GaijinId
-        {
-            get { return _gaijinId; }
-            protected set { _gaijinId = value; }
-        }
+        public override string GaijinId { get; protected set; }
 
         #endregion Persistent Properties
         #region Association Properties

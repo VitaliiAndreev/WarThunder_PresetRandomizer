@@ -1,4 +1,4 @@
-﻿using Core.DataBase.Objects.Interfaces;
+﻿using Core.DataBase.WarThunder.Objects.Interfaces;
 
 namespace Core.Objects.Interfaces
 {

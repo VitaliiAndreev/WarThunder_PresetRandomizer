@@ -103,6 +103,7 @@
     <Compile Include="Enumerations\EAssemblies.cs" />
     <Compile Include="Objects\BranchTests.cs" />
     <Compile Include="Objects\NationTests.cs" />
+    <Compile Include="Objects\PersistentObjectWithIdAndGaijinIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

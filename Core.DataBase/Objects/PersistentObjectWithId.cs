@@ -7,23 +7,13 @@ namespace Core.DataBase.Objects
     /// <summary> A persistent (stored in a database) object that has an ID. </summary>
     public abstract class PersistentObjectWithId : PersistentObject, IPersistentObjectWithId
     {
-        #region Fields
-
-        /// <summary>
-        /// The object's ID.
-        /// This field is used by the <see cref="Id"/> property.
-        /// </summary>
-        protected Guid _id;
-
-        #endregion Fields
         #region Properties
 
         /// <summary> The object's ID. </summary>
-        public virtual Guid Id
-        {
-            get { return _id; }
-            protected set { _id = value; }
-        }
+        public virtual Guid Id { get; protected set; }
+        // All persistent properties have to be public/protected virtual and have public/protected setters.
+        // Even though we don't want to change IDs after creation,
+        // a setter is required by NHibernate to initialize persistent properties of an object after reading data from a database and instantiating the object with the parameterless constructor.
 
         #endregion Properties
         #region Constructors
@@ -49,14 +39,14 @@ namespace Core.DataBase.Objects
         protected PersistentObjectWithId(IDataRepository dataRepository, Guid id)
             : base(dataRepository)
         {
-            _id = id;
+            Id = id;
         }
 
         #endregion Constructors
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{base.ToString()} ({_id})";
+        public override string ToString() => $"{base.ToString()} ({Id})";
 
         /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
         /// <param name="comparedPersistentObject"> An instance of a compared object. </param>

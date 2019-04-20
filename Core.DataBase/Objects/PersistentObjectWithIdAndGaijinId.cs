@@ -1,31 +1,21 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.Enumerations;
 using System;
 using System.Linq;
 
-namespace Core.DataBase.Objects
+namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a name. </summary>
     public abstract class PersistentObjectWithIdAndGaijinId : PersistentObjectWithId, IPersistentObjectWithIdAndGaijinId
     {
-        #region Fields
-
-        /// <summary>
-        /// The object's Gaijin ID.
-        /// This field is used by the <see cref="GaijinId"/> property.
-        /// </summary>
-        protected string _gaijinId;
-
-        #endregion Fields
         #region Properties
 
         /// <summary> The object's Gaijin ID. </summary>
-        public virtual string GaijinId
-        {
-            get { return _gaijinId; }
-            protected set { _gaijinId = value; }
-        }
+        public virtual string GaijinId { get; protected set; }
 
         #endregion Properties
         #region Constructors
@@ -53,7 +43,7 @@ namespace Core.DataBase.Objects
         protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, Guid id, string gaijinId)
             : base(dataRepository, id)
         {
-            _gaijinId = gaijinId;
+            GaijinId = gaijinId;
         }
 
         #endregion Constructors
@@ -65,7 +55,7 @@ namespace Core.DataBase.Objects
             var baseRepresentation = base.ToString().Split(ECharacter.Space);
             var type = baseRepresentation.First();
             var id = baseRepresentation.Last();
-            return $"{type} [{_gaijinId}] {id}";
+            return $"{type} [{GaijinId}] {id}";
         }
 
         /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>

@@ -8,11 +8,7 @@ namespace Core.DataBase.Tests.Mapping.OneClass.Id.Mapping
     public class PersistentObjectFakeWithId : PersistentObjectWithId
     {
         [Id(Column = nameof(Id), TypeType = typeof(Guid), Name = nameof(Id))]
-        public override Guid Id
-        {
-            get { return _id; }
-            protected set { _id = value; }
-        }
+        public override Guid Id { get; protected set; }
 
         protected PersistentObjectFakeWithId()
         {
@@ -20,7 +16,7 @@ namespace Core.DataBase.Tests.Mapping.OneClass.Id.Mapping
 
         public PersistentObjectFakeWithId(Guid id)
         {
-            _id = id;
+            Id = id;
         }
     }
 }
