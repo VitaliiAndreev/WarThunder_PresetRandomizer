@@ -78,10 +78,10 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         private Process RunShellCommand(string toolPath, string argumentFilePath)
         {
-            var result = Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolPath}\" \"{argumentFilePath}\"\""));
-            Thread.Sleep(2000); // Based on UT runs it might be required to pause for a bit to register the output file / directory.
+            var process = Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolPath}\" \"{argumentFilePath}\"\""));
+            process.WaitForExit();
 
-            return result;
+            return process;
         }
 
         /// <summary> Logs a general error and rethrows the exception that caused it. </summary>
