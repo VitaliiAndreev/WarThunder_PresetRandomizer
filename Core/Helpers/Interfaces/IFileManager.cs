@@ -9,11 +9,18 @@ namespace Core.Helpers.Interfaces
         #region Methods: Copying
 
         /// <summary> Copies a file into a specified directory. </summary>
-        /// <param name="path"> The absolute name of the file. </param>
+        /// <param name="filePath"> The absolute name of the file. </param>
         /// <param name="destination"> The destination path. </param>
         /// <param name="overwrite"> Whether to overwrite colliding files at the destination. </param>
         /// <param name="createDirectories"> Whether to create the destination directory. </param>
-        void CopyFile(string path, string destination, bool overwrite = false, bool createDirectories = false);
+        void CopyFile(string filePath, string destination, bool overwrite = false, bool createDirectories = false);
+
+        /// <summary> Copies a file into a specified directory. </summary>
+        /// <param name="file"> The file to copy. </param>
+        /// <param name="destination"> The destination path. </param>
+        /// <param name="overwrite"> Whether to overwrite colliding files at the destination. </param>
+        /// <param name="createDirectories"> Whether to create the destination directory. </param>
+        void CopyFile(FileInfo file, string destination, bool overwrite = false, bool createDirectories = false);
 
         #endregion Methods: Copying
         #region Methods: Deletion
