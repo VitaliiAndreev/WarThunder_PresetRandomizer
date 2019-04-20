@@ -11,7 +11,7 @@ namespace Core.Objects
 {
     /// <summary> A nation in the game. </summary>
     [Class(Table = ETable.Nation)]
-    public class Nation : PersistentObjectWithIdAndName, INation
+    public class Nation : PersistentObjectWithIdAndGaijinId, INation
     {
         #region Persistent Properties
 
@@ -25,12 +25,12 @@ namespace Core.Objects
             protected set { _id = value; }
         }
 
-        /// <summary> The nation's Name. </summary>
-        [Property(NotNull = true)]
-        public override string Name
+        /// <summary> The nation's Gaijin ID. </summary>
+        [Property(NotNull = true, Unique = true)]
+        public override string GaijinId
         {
-            get { return _name; }
-            protected set { _name = value; }
+            get { return _gaijinId; }
+            protected set { _gaijinId = value; }
         }
 
         #endregion Persistent Properties

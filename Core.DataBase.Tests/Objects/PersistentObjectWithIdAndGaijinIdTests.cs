@@ -6,23 +6,23 @@ using System;
 
 namespace Core.DataBase.Tests.Objects
 {
-    /// <summary> See <see cref="PersistentObjectWithIdAndName"/>. </summary>
+    /// <summary> See <see cref="PersistentObjectWithIdAndGaijinId"/>. </summary>
     [TestClass]
-    public class PersistentObjectWithIdAndNameTests
+    public class PersistentObjectWithIdAndGaijinIdTests
     {
         #region Fake Classes
 
-        private class MockPersistentObjectWithIdAndName : PersistentObjectWithIdAndName
+        private class MockPersistentObjectWithIdAndGaijinId : PersistentObjectWithIdAndGaijinId
         {
             #region Constructors
 
-            public MockPersistentObjectWithIdAndName(IDataRepository dataRepository, string name)
-                : this(dataRepository, Guid.NewGuid(), name)
+            public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, string gaijinId)
+                : this(dataRepository, Guid.NewGuid(), gaijinId)
             {
             }
 
-            public MockPersistentObjectWithIdAndName(IDataRepository dataRepository, Guid id, string name)
-                : base(dataRepository, id, name)
+            public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, Guid id, string gaijinId)
+                : base(dataRepository, id, gaijinId)
             {
             }
 
@@ -36,7 +36,7 @@ namespace Core.DataBase.Tests.Objects
         public void IsEquivalentTo_Self_ShouldBeTrue()
         {
             // arrange
-            var mockPersistentObject = new MockPersistentObjectWithIdAndName(Presets.MockDataRepository.Object, "Carramba!");
+            var mockPersistentObject = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Carramba!");
 
             // act
             var isEquivalent = mockPersistentObject.IsEquivalentTo(mockPersistentObject, true, 1);
@@ -49,8 +49,8 @@ namespace Core.DataBase.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_SameName_ShouldBeTrue()
         {
             // arrange
-            var mockPersistentObjectA = new MockPersistentObjectWithIdAndName(Presets.MockDataRepository.Object, "Carramba!");
-            var mockPersistentObjectB = new MockPersistentObjectWithIdAndName(Presets.MockDataRepository.Object, mockPersistentObjectA.Id, mockPersistentObjectA.Name);
+            var mockPersistentObjectA = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Carramba!");
+            var mockPersistentObjectB = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, mockPersistentObjectA.Id, mockPersistentObjectA.GaijinId);
 
             // act
             var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);
@@ -63,8 +63,8 @@ namespace Core.DataBase.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_DifferentName_ShouldBeFalse()
         {
             // arrange
-            var mockPersistentObjectA = new MockPersistentObjectWithIdAndName(Presets.MockDataRepository.Object, "Carramba!");
-            var mockPersistentObjectB = new MockPersistentObjectWithIdAndName(Presets.MockDataRepository.Object, "Bananza!");
+            var mockPersistentObjectA = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Carramba!");
+            var mockPersistentObjectB = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Bananza!");
 
             // act
             var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);

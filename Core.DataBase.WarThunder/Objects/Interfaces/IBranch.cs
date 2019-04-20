@@ -3,7 +3,7 @@
 namespace Core.Objects.Interfaces
 {
     /// <summary> A nation's military branch. </summary>
-    public interface IBranch : IPersistentObjectWithIdAndName
+    public interface IBranch : IPersistentObjectWithIdAndGaijinId
     {
         /// <summary> The branch's nation. </summary>
         INation Nation { get; }

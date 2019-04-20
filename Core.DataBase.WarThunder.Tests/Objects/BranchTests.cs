@@ -80,7 +80,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
 
             var bycicleCorps = new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe);
-            var bycicleCorpsClone = new Branch(Presets.MockDataRepository.Object, bycicleCorps.Id, bycicleCorps.Name, bycicleCorps.Nation);
+            var bycicleCorpsClone = new Branch(Presets.MockDataRepository.Object, bycicleCorps.Id, bycicleCorps.GaijinId, bycicleCorps.Nation);
             zimbabwe.Branches = new List<IBranch> { bycicleCorps, bycicleCorpsClone };
 
             // act
@@ -99,7 +99,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { bycicleCorps };
 
             var estonia = new Nation(Presets.MockDataRepository.Object, "Estonia");
-            var bycicleCorpsCloneFlawed = new Branch(Presets.MockDataRepository.Object, bycicleCorps.Name, estonia);
+            var bycicleCorpsCloneFlawed = new Branch(Presets.MockDataRepository.Object, bycicleCorps.GaijinId, estonia);
             estonia.Branches = new List<IBranch> { bycicleCorpsCloneFlawed };
 
             // act

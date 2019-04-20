@@ -107,8 +107,8 @@
     <Compile Include="Helpers\Interfaces\IDataRepository.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithId.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObject.cs" />
-    <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndName.cs" />
-    <Compile Include="Objects\PersistentObjectWithIdAndName.cs" />
+    <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
+    <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\PersistentObjectWithId.cs" />
     <Compile Include="Objects\PersistentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

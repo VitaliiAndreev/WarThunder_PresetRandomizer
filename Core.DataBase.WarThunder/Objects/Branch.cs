@@ -2,7 +2,6 @@
 using Core.DataBase.Objects;
 using Core.DataBase.Objects.Interfaces;
 using Core.Enumerations.DataBase;
-using Core.Extensions;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
 using System;
@@ -12,7 +11,7 @@ namespace Core.Objects
 {
     /// <summary> A nation's military branch. </summary>
     [Class(Table = ETable.Branch)]
-    public class Branch : PersistentObjectWithIdAndName, IBranch
+    public class Branch : PersistentObjectWithIdAndGaijinId, IBranch
     {
         #region Fields
 
@@ -33,12 +32,12 @@ namespace Core.Objects
             protected set { _id = value; }
         }
 
-        /// <summary> The branch's Name. </summary>
-        [Property(NotNull = true)]
-        public override string Name
+        /// <summary> The branch's Gaijin ID. </summary>
+        [Property(NotNull = true, Unique = true)]
+        public override string GaijinId
         {
-            get { return _name; }
-            protected set { _name = value; }
+            get { return _gaijinId; }
+            protected set { _gaijinId = value; }
         }
 
         /// <summary> The branch's nation. </summary>

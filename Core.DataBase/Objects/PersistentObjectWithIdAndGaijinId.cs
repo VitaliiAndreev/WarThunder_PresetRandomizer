@@ -1,31 +1,30 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.Enumerations;
-using Core.Extensions;
 using System;
 using System.Linq;
 
 namespace Core.DataBase.Objects
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a name. </summary>
-    public abstract class PersistentObjectWithIdAndName : PersistentObjectWithId, IPersistentObjectWithIdAndName
+    public abstract class PersistentObjectWithIdAndGaijinId : PersistentObjectWithId, IPersistentObjectWithIdAndGaijinId
     {
         #region Fields
 
         /// <summary>
-        /// The object's name.
-        /// This field is used by the <see cref="Name"/> property.
+        /// The object's Gaijin ID.
+        /// This field is used by the <see cref="GaijinId"/> property.
         /// </summary>
-        protected string _name;
+        protected string _gaijinId;
 
         #endregion Fields
         #region Properties
 
-        /// <summary> The object's name. </summary>
-        public virtual string Name
+        /// <summary> The object's Gaijin ID. </summary>
+        public virtual string GaijinId
         {
-            get { return _name; }
-            protected set { _name = value; }
+            get { return _gaijinId; }
+            protected set { _gaijinId = value; }
         }
 
         #endregion Properties
@@ -35,26 +34,26 @@ namespace Core.DataBase.Objects
         /// Creates a new transient object that can be persisted later.
         /// This constructor is used to maintain inheritance of class composition required for NHibernate mapping.
         /// </summary>
-        protected PersistentObjectWithIdAndName()
+        protected PersistentObjectWithIdAndGaijinId()
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="name"> The object's name. </param>
-        protected PersistentObjectWithIdAndName(IDataRepository dataRepository, string name)
-            : this(dataRepository, Guid.NewGuid(), name)
+        /// <param name="gaijinId"> The object's Gaijin ID. </param>
+        protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, string gaijinId)
+            : this(dataRepository, Guid.NewGuid(), gaijinId)
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The object's ID. </param>
-        /// <param name="name"> The object's name. </param>
-        protected PersistentObjectWithIdAndName(IDataRepository dataRepository, Guid id, string name)
+        /// <param name="gaijinId"> The object's Gaijin ID. </param>
+        protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, Guid id, string gaijinId)
             : base(dataRepository, id)
         {
-            _name = name;
+            _gaijinId = gaijinId;
         }
 
         #endregion Constructors
@@ -66,7 +65,7 @@ namespace Core.DataBase.Objects
             var baseRepresentation = base.ToString().Split(ECharacter.Space);
             var type = baseRepresentation.First();
             var id = baseRepresentation.Last();
-            return $"{type} {_name} {id}";
+            return $"{type} [{_gaijinId}] {id}";
         }
 
         /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
@@ -74,9 +73,9 @@ namespace Core.DataBase.Objects
         /// <returns></returns>
         protected override bool IsEquivalentTo(IPersistentObject comparedPersistentObject)
         {
-            if (base.IsEquivalentTo(comparedPersistentObject) && comparedPersistentObject is PersistentObjectWithIdAndName comparedPersistentObjectWithIdAndName)
+            if (base.IsEquivalentTo(comparedPersistentObject) && comparedPersistentObject is PersistentObjectWithIdAndGaijinId comparedPersistentObjectWithIdAndName)
             {
-                if (Name != comparedPersistentObjectWithIdAndName.Name)
+                if (GaijinId != comparedPersistentObjectWithIdAndName.GaijinId)
                     return false;
 
                 return true;

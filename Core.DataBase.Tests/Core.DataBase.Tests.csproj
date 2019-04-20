@@ -131,7 +131,7 @@
     <Compile Include="Helpers\ConfiguredSessionFactoryTests.cs" />
     <Compile Include="Helpers\DataRepositoryTests.cs" />
     <Compile Include="Objects\PersistentObjectTests.cs" />
-    <Compile Include="Objects\PersistentObjectWithIdAndNameTests.cs" />
+    <Compile Include="Objects\PersistentObjectWithIdAndGaijinIdTests.cs" />
     <Compile Include="Objects\PersistentObjectWithIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
