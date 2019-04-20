@@ -55,18 +55,18 @@ namespace Core.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="name"> The nation's name. </param>
-        public Nation(IDataRepository dataRepository, string name)
-            : this(dataRepository, Guid.NewGuid(), name)
+        /// <param name="gaijinId"> The nation's Gaijin ID. </param>
+        public Nation(IDataRepository dataRepository, string gaijinId)
+            : this(dataRepository, Guid.NewGuid(), gaijinId)
         {
         }
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The nation's ID. </param>
-        /// <param name="name"> The nation's name. </param>
-        public Nation(IDataRepository dataRepository, Guid id, string name)
-            : base(dataRepository, id, name)
+        /// <param name="gaijinId"> The nation's Gaijin ID. </param>
+        public Nation(IDataRepository dataRepository, Guid id, string gaijinId)
+            : base(dataRepository, id, gaijinId)
         {
             LogCreation();
         }

@@ -62,20 +62,20 @@ namespace Core.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="name"> The branch's Name. </param>
+        /// <param name="gaijinId"> The branch's Gaijin ID. </param>
         /// <param name="nation"> The branch's nation. </param>
-        public Branch(IDataRepository dataRepository, string name, INation nation)
-            : this(dataRepository, Guid.NewGuid(), name, nation)
+        public Branch(IDataRepository dataRepository, string gaijinId, INation nation)
+            : this(dataRepository, Guid.NewGuid(), gaijinId, nation)
         {
         }
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The branch's ID. </param>
-        /// <param name="name"> The branch's Name. </param>
+        /// <param name="gaijinId"> The branch's Gaijin ID. </param>
         /// <param name="nation"> The branch's nation. </param>
-        public Branch(IDataRepository dataRepository, Guid id, string name, INation nation)
-            : base(dataRepository, id, name)
+        public Branch(IDataRepository dataRepository, Guid id, string gaijinId, INation nation)
+            : base(dataRepository, id, gaijinId)
         {
             _nation = nation;
 
