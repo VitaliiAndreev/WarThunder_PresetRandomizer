@@ -68,25 +68,11 @@ namespace WarThunderSimpleUpdateChecker
             foreach (var unpackedDirectory in unpackedDirectories)
                 _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
 
-            var unwantedFiles = GetAllFiles(gameFileCopyDirectory, file => !file.Extension.Contains(EFileExtension.Blkx), true).ToList();
+            var unwantedFiles = gameFileCopyDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
 
             Thread.Sleep(1000);
             for (var i = 0; i < unwantedFiles.Count(); i++)
                 unwantedFiles[i].Delete();
-        }
-
-        private static IEnumerable<FileInfo> GetAllFiles(DirectoryInfo directory, Predicate<FileInfo> condition, bool includeSelf = false)
-        {
-            var files = new List<FileInfo>();
-            if (includeSelf)
-                files.AddRange(directory.GetFiles().Where(file => condition(file)));
-
-            foreach (var subdirectory in directory.GetDirectories())
-            {
-                files.AddRange(subdirectory.GetFiles().Where(file => condition(file)));
-                files.AddRange(GetAllFiles(subdirectory, condition));
-            }
-            return files;
         }
     }
 }

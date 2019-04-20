@@ -3,6 +3,7 @@
     /// <summary> Characters. </summary>
     public class ECharacter
     {
+        public const char Asterisk = '*';
         public const char BraceLeft = '{';
         public const char BraceRight = '}';
         public const char CarriageReturn = '\r';
