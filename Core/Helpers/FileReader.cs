@@ -23,12 +23,17 @@ namespace Core.Helpers
 
         #endregion Constructors
 
-        /// <summary> Reads contents of the specified file. </summary>
+        /// <summary> Reads contents of the file under specified path. </summary>
         /// <param name="path"> The absolute name of the file. </param>
         /// <returns></returns>
-        public string Read(string path)
+        public string Read(string path) =>
+            Read(new FileInfo(path));
+
+        /// <summary> Reads contents of the specified file. </summary>
+        /// <param name="file"> The file to read. </param>
+        /// <returns></returns>
+        public string Read(FileInfo file)
         {
-            var file = new FileInfo(path);
             var fileContents = default(string);
 
             if (!file.Exists)
