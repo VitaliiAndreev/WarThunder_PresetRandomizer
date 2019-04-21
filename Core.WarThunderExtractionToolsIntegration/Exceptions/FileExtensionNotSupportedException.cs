@@ -7,19 +7,16 @@ namespace Core.UnpackingToolsIntegration.Exceptions
     {
         public FileExtensionNotSupportedException()
         {
-
         }
 
         public FileExtensionNotSupportedException(string message)
             : base(message)
         {
-
         }
 
         public FileExtensionNotSupportedException(string message, Exception innerException)
             : base(message, innerException)
         {
-
         }
     }
 }

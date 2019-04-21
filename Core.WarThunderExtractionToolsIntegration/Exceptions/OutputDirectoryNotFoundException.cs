@@ -7,19 +7,16 @@ namespace Core.UnpackingToolsIntegration.Exceptions
     {
         public OutputDirectoryNotFoundException()
         {
-
         }
 
         public OutputDirectoryNotFoundException(string message)
             : base(message)
         {
-
         }
 
         public OutputDirectoryNotFoundException(string message, Exception innerException)
             : base(message, innerException)
         {
-
         }
     }
 }

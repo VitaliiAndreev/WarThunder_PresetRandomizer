@@ -7,19 +7,16 @@ namespace Core.UnpackingToolsIntegration.Exceptions
     {
         public YupFileParsingException()
         {
-
         }
 
         public YupFileParsingException(string message)
             : base(message)
         {
-
         }
 
         public YupFileParsingException(string message, Exception innerException)
             : base(message, innerException)
         {
-
         }
     }
 }

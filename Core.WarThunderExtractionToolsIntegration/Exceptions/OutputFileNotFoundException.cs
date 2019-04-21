@@ -8,19 +8,16 @@ namespace Core.UnpackingToolsIntegration.Exceptions
     {
         public OutputFileNotFoundException()
         {
-
         }
 
         public OutputFileNotFoundException(string message)
             : base(message)
         {
-
         }
 
         public OutputFileNotFoundException(string message, Exception innerException)
             : base(message, innerException)
         {
-
         }
     }
 }
