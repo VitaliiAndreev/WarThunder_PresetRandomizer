@@ -7,6 +7,8 @@ using System;
 
 namespace Core.DataBase.WarThunder.Objects
 {
+    /// <summary> A vehicle (air, ground, or sea). </summary>
+    [Class(Table = ETable.Vehicle)]
     public class Vehicle : PersistentObjectWithIdAndGaijinId, IVehicle
     {
         #region Persistent Properties
