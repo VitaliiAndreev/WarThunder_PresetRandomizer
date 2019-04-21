@@ -9,6 +9,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
 
         #region Root Folder
 
+        private const string _blkx = ECharacterString.Period + EFileExtension.Blkx;
         private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
         private const string _yup = ECharacterString.Period + EFileExtension.Yup;
 
@@ -23,5 +24,10 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         public const string PreviousVersionInstallData = warthunder + "_old" + _yup;
 
         #endregion Root Folder
+        #region CharVromfs
+
+        public const string GeneralVehicleData = "wpcost" + _blkx;
+
+        #endregion CharVromfs
     }
 }
