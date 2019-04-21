@@ -74,6 +74,8 @@
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
+    <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
