@@ -67,6 +67,7 @@
         protected const string _client = " client";
         protected const string _closed = " closed";
         protected const string _Closing = "Closing";
+        protected const string _collection = " collection";
         protected const string _commit = " commit";
         protected const string _committed = _commit + "ted";
         protected const string _Committing = "Committing";
@@ -96,6 +97,9 @@
         protected const string _deleted = _delete + "d";
         protected const string _Deleting = "Deleting";
         protected const string _deleting = " deleting";
+        protected const string _deserialize = " deserialize";
+        protected const string _deserialized = _deserialize + "d";
+        protected const string _deserializing = " deserializing";
         protected const string _directory = " directory";
         protected const string _disabled = " disabled";
         protected const string _Disposal = "Disposal";
@@ -162,6 +166,8 @@
         protected const string _implemented = " implemented";
         protected const string _in = " in";
         protected const string _install = _in + "stall";
+        protected const string _instance = _in + "stance";
+        protected const string _instances = _instance + "s";
         protected const string _instantiated = _in + "stantiated";
         protected const string _into = _in + "to";
         protected const string _intoConfiguration = _into + _configuration;
@@ -171,6 +177,8 @@
 
         #endregion I
         #region J
+
+        protected const string _JSON = " JSON";
 
         #endregion J
         #region K
@@ -186,7 +194,7 @@
         protected const string _matching = " matching";
         protected const string _Method = "Method";
         protected const string _method = " method";
-
+        
         #endregion M
         #region N
 
@@ -273,6 +281,7 @@
         protected const string _subdirectories = " subdirectories";
         protected const string _subfolders = " subfolders";
         protected const string _Successfully = "Successfully";
+        protected const string _successfully = " successfully";
 
         public const string W_Schema = _Schema;
         public const string W_TheSessionFactory = _The + _sessionFactory;
@@ -543,6 +552,31 @@
         public const string DoesNotExist = _FMT_Q + _does + _not + _exist + _FS;
 
         #endregion General
+        #region JSON Helper
+
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: character count. </para>
+        /// <para> 2: object type. </para>
+        /// </summary>
+        public const string TryingToDeserializeJsonStringIntoObject = _TryingTo + _deserialize + _a + _SPC + _JSON + _string + _of + _SPC_FMT + _characters + _into + _an + _instance + _of + _SPC_FMT_Q + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: character count. </para>
+        /// <para> 2: object type. </para>
+        /// </summary>
+        public const string TryingToDeserializeJsonStringIntoCollection = _TryingTo + _deserialize + _a + _SPC + _JSON + _string + _of + _SPC_FMT + _characters + _into + _a + _collection + _of + _SPC_FMT_Q + _instances + _FS;
+        public const string DeserializedInstance = _An + _instance + _has_been + _successfully + _deserialized + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: instance count. </para>
+        /// </summary>
+        public const string DeserializedInstances = _FMT + _instances + _have + _been + _deserialized + _FS;
+
+        public const string JsonStringEmpty = _The + _JSON + _string + _is + _empty + _FS;
+        public const string ErrorDeserializingJsonData = _Error + _deserializing + _JSON + _data + _FS;
+
+        #endregion JSON Helper
         #region Parser
 
         public const string ReadingClientVersion = _Reading + _the + _client + _version + _FS;
