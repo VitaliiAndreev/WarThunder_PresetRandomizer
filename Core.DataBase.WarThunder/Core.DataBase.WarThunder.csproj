@@ -73,8 +73,10 @@
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
+    <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
+    <Compile Include="Objects\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
