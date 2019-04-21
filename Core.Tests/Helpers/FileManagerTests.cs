@@ -124,9 +124,10 @@ namespace Core.Tests.Helpers
         {
             // arrange
             var fileName = $"nice.kit";
-            File.Create(fileName).Close();
+            var fileLocation = $@"{ _rootDirectory}\{fileName}";
+            File.Create(fileLocation).Close();
 
-            var destinationPath = $"{_rootDirectory}\\subdirectory";
+            var destinationPath = $@"{_rootDirectory}\subdirectory";
             Directory.CreateDirectory(destinationPath);
 
             var destinationFile = new FileInfo($"{destinationPath}\\{fileName}");
@@ -135,8 +136,8 @@ namespace Core.Tests.Helpers
             var oldTimeStamp = destinationFile.LastWriteTimeUtc;
 
             // act
-            Thread.Sleep(7000); // Test results had proven to be unstable when waiting less than this.
-            _fileManager.CopyFile(fileName, destinationPath, true);
+            Thread.Sleep(10000); // Test results had proven to be unstable when waiting less than this.
+            _fileManager.CopyFile(fileLocation, destinationPath, true);
             destinationFile.Refresh();
 
             // assert
