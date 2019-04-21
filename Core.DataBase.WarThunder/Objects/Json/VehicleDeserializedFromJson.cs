@@ -24,24 +24,24 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string SpawnType { get; set; } // requires impelementation and testing
 
         [JsonProperty("value", Required = Required.DisallowNull)]
-        public long PurchaseCostInSilver { get; set; } // requires impelementation and testing
+        public int PurchaseCostInSilver { get; set; } // requires impelementation and testing
 
         [JsonProperty("numSpawnsPerBattleSimulation", Required = Required.DisallowNull)]
-        public long NumSpawnsPerBattleSimulation { get; set; } // requires impelementation and testing
+        public int NumSpawnsPerBattleSimulation { get; set; } // requires impelementation and testing
 
         #region Crew
 
         [JsonProperty("trainCost", Required = Required.DisallowNull)]
-        public long BaseCrewTrainCostInSilver { get; set; } // requires impelementation and testing
+        public int BaseCrewTrainCostInSilver { get; set; } // requires impelementation and testing
 
         [JsonProperty("train2Cost", Required = Required.DisallowNull)]
-        public long ExpertCrewTrainCostInSilver { get; set; } // requires impelementation and testing
+        public int ExpertCrewTrainCostInSilver { get; set; } // requires impelementation and testing
 
         [JsonProperty("train3Cost_gold", Required = Required.DisallowNull)]
-        public long Train3CostGold { get; set; } // requires impelementation and testing
+        public int Train3CostGold { get; set; } // requires impelementation and testing
 
         [JsonProperty("train3Cost_exp", Required = Required.DisallowNull)]
-        public long Train3CostExp { get; set; } // requires impelementation and testing
+        public int Train3CostExp { get; set; } // requires impelementation and testing
 
         [JsonProperty("crewTotalCount", Required = Required.DisallowNull)]
         public int CrewTotalCount { get; set; } // requires impelementation and testing
@@ -190,16 +190,16 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region NotRequired
 
         [JsonProperty("reqExp")]
-        public long? UnlockCostInResearch { get; set; } // requires impelementation and testing
+        public int? UnlockCostInResearch { get; set; } // requires impelementation and testing
 
         [JsonProperty("costGold")]
-        public long? CostGold { get; set; } // requires impelementation and testing
+        public int? CostGold { get; set; } // requires impelementation and testing
 
         [JsonProperty("showOnlyWhenBought")]
         public bool? ShowOnlyWhenBought { get; set; } // requires impelementation and testing
 
         [JsonProperty("freeRepairs")]
-        public long? FreeRepairs { get; set; } // requires impelementation and testing
+        public int? FreeRepairs { get; set; } // requires impelementation and testing
 
         [JsonProperty("reqAir")]
         public string VehicleRequired { get; set; } // requires impelementation and testing
@@ -207,7 +207,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Graphics
 
         [JsonProperty("bulletsIconParam")]
-        public long? BulletsIconParam { get; set; } // requires impelementation and testing
+        public int? BulletsIconParam { get; set; } // requires impelementation and testing
 
         [JsonProperty("customClassIco")]
         public string CustomClassIco { get; set; } // requires impelementation and testing
