@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarThunderSimpleUpdateCheck
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Json", "Core.Json\Core.Json.csproj", "{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Json.WarThunder", "Core.Json.WarThunder\Core.Json.WarThunder.csproj", "{80045B74-FC1D-433E-8F78-E2020A13D817}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80045B74-FC1D-433E-8F78-E2020A13D817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80045B74-FC1D-433E-8F78-E2020A13D817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80045B74-FC1D-433E-8F78-E2020A13D817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80045B74-FC1D-433E-8F78-E2020A13D817}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
