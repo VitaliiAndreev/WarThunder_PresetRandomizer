@@ -49,7 +49,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var nation = query.First();
 
                 // assert
-                nation.IsEquivalentTo(zimbabwe, false).Should().BeTrue();
+                nation.IsEquivalentTo(zimbabwe, 1).Should().BeTrue();
             }
         }
 
@@ -64,7 +64,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabwe, true, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabwe, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -81,7 +81,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             { Branches = new List<IBranch> { zimbabwe.Branches.First() } };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweClone, true, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweClone, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -98,7 +98,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabweCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "SledCorps", zimbabweCloneFlawed) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweCloneFlawed, true, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweCloneFlawed, 2);
 
             // assert
             isEquivalent.Should().BeFalse();

@@ -51,7 +51,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var branch = query.First();
 
                 // assert
-                branch.IsEquivalentTo(bycicleCorps, true, 2);
+                branch.IsEquivalentTo(bycicleCorps, 2);
             }
         }
 
@@ -67,7 +67,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { bycicleCorps };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorps, true, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorps, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -84,7 +84,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { bycicleCorps, bycicleCorpsClone };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsClone, true, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsClone, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -103,7 +103,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             estonia.Branches = new List<IBranch> { bycicleCorpsCloneFlawed };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsCloneFlawed, true, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsCloneFlawed, 2);
 
             // assert
             isEquivalent.Should().BeFalse();

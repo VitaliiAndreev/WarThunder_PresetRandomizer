@@ -39,7 +39,7 @@ namespace Core.DataBase.Tests.Objects
             var mockPersistentObject = new MockPersistentObjectWithId(Presets.MockDataRepository.Object);
 
             // act
-            var isEquivalent = mockPersistentObject.IsEquivalentTo(mockPersistentObject, true, 1);
+            var isEquivalent = mockPersistentObject.IsEquivalentTo(mockPersistentObject, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -53,7 +53,7 @@ namespace Core.DataBase.Tests.Objects
             var mockPersistentObjectB = new MockPersistentObjectWithId(Presets.MockDataRepository.Object, mockPersistentObjectA.Id);
 
             // act
-            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);
+            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -67,7 +67,7 @@ namespace Core.DataBase.Tests.Objects
             var mockPersistentObjectB = new MockPersistentObjectWithId(Presets.MockDataRepository.Object);
 
             // act
-            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);
+            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, 2);
 
             // assert
             isEquivalent.Should().BeFalse();

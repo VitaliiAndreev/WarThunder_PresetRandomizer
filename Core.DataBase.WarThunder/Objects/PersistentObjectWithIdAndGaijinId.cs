@@ -58,21 +58,6 @@ namespace Core.DataBase.WarThunder.Objects
             return $"{type} [{GaijinId}] {id}";
         }
 
-        /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
-        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
-        /// <returns></returns>
-        protected override bool IsEquivalentTo(IPersistentObject comparedPersistentObject)
-        {
-            if (base.IsEquivalentTo(comparedPersistentObject) && comparedPersistentObject is PersistentObjectWithIdAndGaijinId comparedPersistentObjectWithIdAndName)
-            {
-                if (GaijinId != comparedPersistentObjectWithIdAndName.GaijinId)
-                    return false;
-
-                return true;
-            }
-            return false;
-        }
-
         /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
         protected virtual void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)

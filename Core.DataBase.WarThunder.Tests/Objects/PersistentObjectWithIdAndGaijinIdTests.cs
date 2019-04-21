@@ -40,7 +40,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var mockPersistentObject = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Carramba!");
 
             // act
-            var isEquivalent = mockPersistentObject.IsEquivalentTo(mockPersistentObject, true, 1);
+            var isEquivalent = mockPersistentObject.IsEquivalentTo(mockPersistentObject, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -54,7 +54,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var mockPersistentObjectB = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, mockPersistentObjectA.Id, mockPersistentObjectA.GaijinId);
 
             // act
-            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);
+            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, 2);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -68,7 +68,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var mockPersistentObjectB = new MockPersistentObjectWithIdAndGaijinId(Presets.MockDataRepository.Object, "Bananza!");
 
             // act
-            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, true, 1);
+            var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, 2);
 
             // assert
             isEquivalent.Should().BeFalse();

@@ -50,7 +50,7 @@ namespace Core.DataBase.Tests.Helpers
 
                 // assert
                 query.Count().Should().Be(1);
-                query.First().IsEquivalentTo(fakeObject, false).Should().BeTrue();
+                query.First().IsEquivalentTo(fakeObject, 1).Should().BeTrue();
             }
         }
 

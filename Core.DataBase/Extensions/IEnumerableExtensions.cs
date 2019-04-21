@@ -14,7 +14,7 @@ namespace Core.Extensions
             if (sourceCollection.Count() == comparedCollection.Count())
             {
                 return sourceCollection
-                    .Zip(comparedCollection, (source, target) => source.IsEquivalentTo(target, recursionLevel.IsPositive(), recursionLevel - 1))
+                    .Zip(comparedCollection, (source, target) => source.IsEquivalentTo(target, recursionLevel - 1))
                     .All(isEquivalent => isEquivalent)
                 ;
             }

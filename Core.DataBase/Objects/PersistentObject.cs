@@ -5,6 +5,8 @@ using Core.Extensions;
 using Core.Helpers.Logger.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Core.DataBase.Objects
 {
@@ -129,23 +131,56 @@ namespace Core.DataBase.Objects
             return false;
         }
 
-        /// <summary>
-        /// Checks whether the specified instance can be considered equivalent to the current one.
-        /// </summary>
-        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
+        /// <summary> Checks whether the specified values can be considered equivalent. </summary>
+        /// <param name="thisValue"> The first of the values. </param>
+        /// <param name="comparedValue"> The second of the values. </param>
         /// <param name="includeNestedObjects"> Whether to use nested objects for comparison. </param>
         /// <param name="recursionLevel"> The level of recursion up to which to compare nested objects. Use with CAUTION in case of cyclic links. Set to zero to disable recursion. </param>
         /// <returns></returns>
-        public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, bool includeNestedObjects, int recursionLevel = 0)
+        private bool IsEquivalentTo(object thisValue, object comparedValue, bool includeNestedObjects, int recursionLevel)
         {
-            if (IsEquivalentTo(comparedPersistentObject))
-            {
-                if (!includeNestedObjects)
-                    return true;
+            if (thisValue.GetType() != comparedValue.GetType())
+                return false;
 
-                return GetAllNestedObjects().IsEquivalentTo(comparedPersistentObject.GetAllNestedObjects(), recursionLevel - 1);
+            if (thisValue is IPersistentObject persistentMemberValue && comparedValue is IPersistentObject comparedPersistentMemberValue && includeNestedObjects)
+            {
+                if (!persistentMemberValue.IsEquivalentTo(comparedPersistentMemberValue, recursionLevel - 1))
+                    return false;
             }
-            return false;
+            else if (thisValue is IEnumerable<IPersistentObject> persistentCollectionValue && comparedValue is IEnumerable<IPersistentObject> comparedPersistentCollectionValue && includeNestedObjects)
+            {
+                if (!persistentCollectionValue.IsEquivalentTo(comparedPersistentCollectionValue, recursionLevel - 1))
+                    return false;
+            }
+            else
+            {
+                if (!thisValue.Equals(comparedValue))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks whether the specified instance can be considered equivalent to the current one. </summary>
+        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
+        /// <param name="recursionLevel">
+        /// The level of recursion up to which to compare nested objects. Use with CAUTION in case of cyclic links.
+        /// <para>Set to zero to disable recursion. It also prevents the method from cheking <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence.</para>
+        /// <para>Set to one to check <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence using the same recursion rules as here.</para>
+        /// </param>
+        /// <returns></returns>
+        public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, int recursionLevel = 0)
+        {
+            var includeNestedObjects = recursionLevel.IsPositive();
+
+            foreach (var property in GetType().GetProperties())
+            {
+                if (comparedPersistentObject.GetType().GetProperties().FirstOrDefault(comparedProperty => comparedProperty.Name == property.Name) is null)
+                    continue;
+
+                if (!IsEquivalentTo(property.GetValue(this), property.GetValue(comparedPersistentObject), includeNestedObjects, recursionLevel))
+                    return false;
+            }
+            return true;
         }
 
         #endregion Methods: Equivalence
