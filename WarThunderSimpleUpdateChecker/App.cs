@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Interfaces;
@@ -7,7 +8,6 @@ using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,7 +68,7 @@ namespace WarThunderSimpleUpdateChecker
             foreach (var unpackedDirectory in unpackedDirectories)
                 _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
 
-            var unwantedFiles = gameFileCopyDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => file.Extension != $"{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories).ToList();
 
             Thread.Sleep(1000);
             for (var i = 0; i < unwantedFiles.Count(); i++)
