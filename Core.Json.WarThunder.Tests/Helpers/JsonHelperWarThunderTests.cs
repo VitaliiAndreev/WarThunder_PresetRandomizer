@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.Tests;
-using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers;
@@ -13,7 +12,6 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
