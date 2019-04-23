@@ -21,6 +21,13 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        /// <summary>
+        /// The purchase cost in Silver Lions.
+        /// Zero means that the vehicle cannot be bought for Silver Lions.
+        /// </summary>
+        [Property()]
+        public virtual int PurchaseCostInSilver { get; protected set; }
+
         #endregion Persistent Properties
         #region Constructors
 
@@ -38,6 +45,15 @@ namespace Core.DataBase.WarThunder.Objects
         public Vehicle(IDataRepository dataRepository, string gaijinId)
             : this(dataRepository, Guid.NewGuid(), gaijinId)
         {
+        }
+
+        /// <summary> Creates a new nation. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="instanceSerializedFromJson"> A non-persistent instance serialized from JSON data to initialize this instance with. </param>
+        public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJson instanceSerializedFromJson)
+            : this(dataRepository, Guid.NewGuid(), instanceSerializedFromJson.GaijinId)
+        {
+            InitializeWithDeserializedJson(instanceSerializedFromJson);
         }
 
         /// <summary> Creates a new nation. </summary>

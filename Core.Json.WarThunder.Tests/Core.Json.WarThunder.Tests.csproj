@@ -85,7 +85,7 @@
       <Project>{760B95CD-A280-4B45-9C90-AE7301C94961}</Project>
       <Name>Core.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.WarThunderExtractionToolsIntegration\Core.UnpackingToolsIntegration.csproj">
+    <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
       <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
       <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>

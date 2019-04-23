@@ -64,8 +64,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.WarThunderExtractionToolsIntegration\Core.UnpackingToolsIntegration.csproj">
-      <Project>{fc4d7bad-d02f-4417-8e99-7b1e9b255f08}</Project>
+    <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
+      <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
       <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
