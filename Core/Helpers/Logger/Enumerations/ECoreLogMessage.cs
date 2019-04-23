@@ -169,6 +169,7 @@
         protected const string _instance = _in + "stance";
         protected const string _instances = _instance + "s";
         protected const string _instantiated = _in + "stantiated";
+        protected const string _integration = _in + "tegration";
         protected const string _into = _in + "to";
         protected const string _intoConfiguration = _into + _configuration;
         protected const string _is = " is";
@@ -596,6 +597,7 @@
         private const string _LINE = "====================";
 
         public const string CleanUpAfterUnitTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _unit + _test + _starts + _here + _FS + _SPC + _LINE;
+        public const string CleanUpAfterIntegrationTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _integration + _test + _starts + _here + _FS + _SPC + _LINE;
 
         #endregion Unit Tests
         #region Unpacker
