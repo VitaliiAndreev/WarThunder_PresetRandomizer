@@ -44,6 +44,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         public void CleanUp()
         {
             Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
 
             Settings.TempLocation = _defaultTempDirectory;
