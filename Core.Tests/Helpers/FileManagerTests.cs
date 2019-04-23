@@ -136,7 +136,7 @@ namespace Core.Tests.Helpers
             var oldTimeStamp = destinationFile.LastWriteTimeUtc;
 
             // act
-            Thread.Sleep(10000); // Test results had proven to be unstable when waiting less than this.
+            Thread.Sleep(13000); // Test results had proven to be unstable when waiting less than this.
             _fileManager.CopyFile(fileLocation, destinationPath, true);
             destinationFile.Refresh();
 
