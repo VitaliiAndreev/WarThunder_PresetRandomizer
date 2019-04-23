@@ -94,7 +94,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
 
             // assert
             vehicles.Count().Should().BeGreaterThan(1300);
-            vehicles.All(vehicle => !vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently());
+            vehicles.All(vehicle => !vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
         }
 
         #endregion Methods: Deserialization
