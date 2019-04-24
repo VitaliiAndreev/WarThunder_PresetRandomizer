@@ -111,26 +111,6 @@ namespace Core.DataBase.Objects
 
         #region Methods: Equivalence
 
-        /// <summary>
-        /// Checks whether the specified instance can be considered equivalent to the current one.
-        /// All instances of the base class are considered equivalent because they do not have any persistent properties.
-        /// </summary>
-        /// <param name="comparedPersistentObject"> An instance of a compared object. </param>
-        /// <returns></returns>
-        protected virtual bool IsEquivalentTo(IPersistentObject comparedInstance)
-        {
-            if (comparedInstance is PersistentObject comparedPersistentObject)
-            {
-                if (_dataRepository != comparedPersistentObject._dataRepository)
-                    return false;
-                if (_logCategory != comparedPersistentObject._logCategory)
-                    return false;
-
-                return true;
-            }
-            return false;
-        }
-
         /// <summary> Checks whether the specified values can be considered equivalent. </summary>
         /// <param name="thisValue"> The first of the values. </param>
         /// <param name="comparedValue"> The second of the values. </param>
@@ -171,6 +151,14 @@ namespace Core.DataBase.Objects
         public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, int recursionLevel = 0)
         {
             var includeNestedObjects = recursionLevel.IsPositive();
+
+            if (comparedPersistentObject is PersistentObject comparedObject)
+            {
+                if (_dataRepository != comparedObject._dataRepository)
+                    return false;
+                if (_logCategory != comparedObject._logCategory)
+                    return false;
+            }
 
             foreach (var property in GetType().GetProperties())
             {
