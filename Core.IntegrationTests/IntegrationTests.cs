@@ -100,15 +100,22 @@ namespace Core.IntegrationTests
 
             using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
+                void assert(IEnumerable<IVehicle> vehicleCollection)
+                {
+                    vehicleCollection.Count().Should().BeGreaterThan(1300);
+                    vehicleCollection.All(vehicle => vehicle.Id != null).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+                }
+
                 foreach (var cachedVehicle in vehicles)
                     new Vehicle(dataRepository, cachedVehicle.Value);
+
+                assert(dataRepository.NewObjects.OfType<IVehicle>());
 
                 dataRepository.PersistNewObjects();
 
                 var query = dataRepository.Query<IVehicle>();
-                query.Count().Should().BeGreaterThan(1300);
-                query.All(persistentVehicle => persistentVehicle.Id != null).Should().BeTrue();
-                query.All(persistentVehicle => !persistentVehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+                assert(query);
             }
         }
     }
