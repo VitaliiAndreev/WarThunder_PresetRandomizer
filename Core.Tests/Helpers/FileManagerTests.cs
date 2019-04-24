@@ -127,22 +127,21 @@ namespace Core.Tests.Helpers
             var fileName = $"nice.kit";
             var fileLocation = $@"{ _rootDirectory}\{fileName}";
             File.Create(fileLocation).Close();
+            File.WriteAllText(fileLocation, "A");
 
             var destinationPath = $@"{_rootDirectory}\subdirectory";
             Directory.CreateDirectory(destinationPath);
 
             var destinationFile = new FileInfo($"{destinationPath}\\{fileName}");
             destinationFile.Create().Close();
-
-            var oldTimeStamp = destinationFile.LastWriteTimeUtc;
+            File.WriteAllText(destinationFile.FullName, "B");
 
             // act
-            Thread.Sleep(13000); // Test results had proven to be unstable when waiting less than this.
             _fileManager.CopyFile(fileLocation, destinationPath, true);
             destinationFile.Refresh();
 
             // assert
-            destinationFile.LastWriteTimeUtc.Should().NotBe(oldTimeStamp);
+            File.ReadAllText(destinationFile.FullName).Should().Be("A");
         }
 
         #endregion Tests: CopyFile()
