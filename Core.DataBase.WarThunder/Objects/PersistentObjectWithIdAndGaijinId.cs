@@ -68,7 +68,7 @@ namespace Core.DataBase.WarThunder.Objects
             foreach (var jsonProperty in jsonProperties)
             {
                 if (properties.ContainsKey(jsonProperty.Key))
-                    properties[jsonProperty.Key] = jsonProperty.Value;
+                    properties[jsonProperty.Key].SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
             }
         }
     }
