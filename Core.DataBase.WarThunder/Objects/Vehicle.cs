@@ -21,6 +21,13 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        /// <summary>
+        /// The purchase cost in Silver Lions.
+        /// Zero means that the vehicle cannot be bought for Silver Lions.
+        /// </summary>
+        [Property()]
+        public virtual int PurchaseCostInSilver { get; protected set; }
+
         #endregion Persistent Properties
         #region Constructors
 

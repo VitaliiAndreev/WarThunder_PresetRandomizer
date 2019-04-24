@@ -24,7 +24,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string SpawnType { get; set; } // requires impelementation and testing
 
         [JsonProperty("value", Required = Required.DisallowNull)]
-        public int PurchaseCostInSilver { get; set; } // requires impelementation and testing
+        public int PurchaseCostInSilver { get; set; }
 
         [JsonProperty("numSpawnsPerBattleSimulation", Required = Required.DisallowNull)]
         public int NumSpawnsPerBattleSimulation { get; set; } // requires impelementation and testing
