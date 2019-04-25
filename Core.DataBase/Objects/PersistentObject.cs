@@ -119,6 +119,9 @@ namespace Core.DataBase.Objects
         /// <returns></returns>
         private bool IsEquivalentTo(object thisValue, object comparedValue, bool includeNestedObjects, int recursionLevel)
         {
+            if (thisValue is null || comparedValue is null)
+                return thisValue == comparedValue;
+
             if (thisValue.GetType() != comparedValue.GetType())
                 return false;
 
