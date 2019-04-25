@@ -105,8 +105,12 @@ namespace Core.IntegrationTests
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
                     vehicleCollection.All(vehicle => vehicle.Id != null).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver == 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver > 0).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == null).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == 1).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == 2).Should().BeTrue();
                 }
 
                 foreach (var cachedVehicle in vehicles)

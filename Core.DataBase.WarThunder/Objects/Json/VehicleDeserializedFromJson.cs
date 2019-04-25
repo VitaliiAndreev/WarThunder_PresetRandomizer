@@ -15,7 +15,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string Country { get; set; } // requires impelementation and testing
 
         [JsonProperty("unitMoveType", Required = Required.Always)]
-        public string MoveType { get; set; } // requires impelementation and testing
+        public string MoveType { get; set; }
 
         [JsonProperty("unitClass", Required = Required.Always)]
         public string UnitClass { get; set; } // requires impelementation and testing
@@ -178,7 +178,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string SpawnType { get; set; } // requires impelementation and testing
 
         [JsonProperty("numSpawnsPerBattleSimulation")]
-        public int? NumberOfSpawnsInSimulation { get; set; } // requires impelementation and testing
+        public int? NumberOfSpawnsInSimulation { get; set; }
 
         #region Graphics
 
