@@ -1,7 +1,9 @@
 ﻿using Core.Enumerations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Core.Extensions
 {
@@ -37,6 +39,23 @@ namespace Core.Extensions
         public static string SkipLast(this string sourceString, int amountOfCharactersToSkip) =>
             sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
 
+        #region Regular Expressions
+
+        /// <summary> Checks whether the string patches the specified regular expression pattern. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="regularExpression"> The pattern to match against. </param>
+        /// <returns></returns>
+        public static bool Matches(this string sourceString, string regularExpression) =>
+            new Regex(regularExpression).IsMatch(sourceString);
+
+        /// <summary> Matches the string against the specified regular expression pattern and returns all occurrences. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="regularExpression"> The pattern to match against. </param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetMatchesWith(this string sourceString, string regularExpression) =>
+            new Regex(regularExpression).Matches(sourceString).OfType<string>();
+
+        #endregion Regular Expressions
         #region Split()
 
         /// <summary> Splits the string into substrings by the specified separator with set split option. </summary>
