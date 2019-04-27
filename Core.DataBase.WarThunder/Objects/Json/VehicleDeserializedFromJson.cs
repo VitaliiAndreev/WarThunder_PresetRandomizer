@@ -29,7 +29,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int BaseCrewTrainCostInSilver { get; set; }
 
         [JsonProperty("train2Cost", Required = Required.Always)]
-        public int ExpertCrewTrainCostInSilver { get; set; } // requires impelementation and testing
+        public int ExpertCrewTrainCostInSilver { get; set; }
 
         [JsonProperty("train3Cost_gold", Required = Required.Always)]
         public int AceCrewTrainCostInGold { get; set; } // requires impelementation and testing

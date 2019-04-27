@@ -109,6 +109,8 @@ namespace Core.Json.WarThunder.Tests.Helpers
 
             vehicles.Any(vehicle => vehicle.Value.BaseCrewTrainCostInSilver == 0).Should().BeTrue(); // reserve vehicles
             vehicles.Any(vehicle => vehicle.Value.BaseCrewTrainCostInSilver > 0).Should().BeTrue();
+
+            vehicles.All(vehicle => vehicle.Value.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
         }
 
         #endregion Methods: Deserialization

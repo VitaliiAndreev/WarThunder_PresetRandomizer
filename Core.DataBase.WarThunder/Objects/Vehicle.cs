@@ -13,6 +13,8 @@ namespace Core.DataBase.WarThunder.Objects
     {
         #region Persistent Properties
 
+        #region General
+
         /// <summary> The vehicle's ID. </summary>
         [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))]
         public override Guid Id { get; protected set; }
@@ -22,28 +24,31 @@ namespace Core.DataBase.WarThunder.Objects
         public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle's nation. </summary>
-        [Property()]
-        public virtual string Nation { get; protected set; }
+        [Property()] public virtual string Nation { get; protected set; }
 
-        [Property()]
-        public virtual string MoveType { get; protected set; }
+        [Property()] public virtual string MoveType { get; protected set; }
 
-        [Property()]
-        public virtual string Class { get; protected set; }
+        [Property()] public virtual string Class { get; protected set; }
 
         /// <summary>
         /// The purchase cost in Silver Lions.
         /// Zero means that the vehicle cannot be bought for Silver Lions.
         /// </summary>
-        [Property()]
-        public virtual int PurchaseCostInSilver { get; protected set; }
+        [Property()] public virtual int PurchaseCostInSilver { get; protected set; }
 
         /// <summary> The amount of times the vehicle can go on a sortie in Simulator Battles. </summary>
-        [Property()]
-        public virtual int? NumberOfSpawnsInSimulation { get; protected set; }
+        [Property()] public virtual int? NumberOfSpawnsInSimulation { get; protected set; }
 
-        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot. </summary>
-        public virtual int BaseCrewTrainCostInSilver { get; protected set; }
+        #endregion General
+        #region Crew
+
+        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot (except for reserve vehicles). </summary>
+        [Property()] public virtual int BaseCrewTrainCostInSilver { get; protected set; }
+
+        /// <summary> The expert crew train cost in Silver Lions. </summary>
+        [Property()] public virtual int ExpertCrewTrainCostInSilver { get; protected set; }
+
+        #endregion Crew
 
         #endregion Persistent Properties
         #region Constructors

@@ -5,6 +5,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     /// <summary> A vehicle (air, ground, or sea). </summary>
     public interface IVehicle : IPersistentObjectWithIdAndGaijinId
     {
+        #region Persistent Properties
+
+        #region General
+
         /// <summary> The vehicle's nation. </summary>
         string Nation { get; }
 
@@ -21,7 +25,17 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The amount of times the vehicle can go on a sortie in Simulator Battles. </summary>
         int? NumberOfSpawnsInSimulation { get; }
 
-        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot. </summary>
+        #endregion General
+        #region Crew
+
+        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot (except for reserve vehicles). </summary>
         int BaseCrewTrainCostInSilver { get; }
+
+        /// <summary> The expert crew train cost in Silver Lions. </summary>
+        int ExpertCrewTrainCostInSilver { get; }
+
+        #endregion Crew
+
+        #endregion Persistent Properties
     }
 }
