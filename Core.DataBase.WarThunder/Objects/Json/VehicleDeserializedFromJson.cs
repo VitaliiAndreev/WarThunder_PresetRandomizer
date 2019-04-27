@@ -26,16 +26,16 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Crew
 
         [JsonProperty("trainCost", Required = Required.Always)]
-        public int BaseCrewTrainCostInSilver { get; set; } // requires impelementation and testing
+        public int BaseCrewTrainCostInSilver { get; set; }
 
         [JsonProperty("train2Cost", Required = Required.Always)]
         public int ExpertCrewTrainCostInSilver { get; set; } // requires impelementation and testing
 
         [JsonProperty("train3Cost_gold", Required = Required.Always)]
-        public int Train3CostGold { get; set; } // requires impelementation and testing
+        public int AceCrewTrainCostInGold { get; set; } // requires impelementation and testing
 
         [JsonProperty("train3Cost_exp", Required = Required.Always)]
-        public int Train3CostExp { get; set; } // requires impelementation and testing
+        public int AceCrewTrainCostInResearch { get; set; } // requires impelementation and testing
 
         [JsonProperty("crewTotalCount", Required = Required.Always)]
         public int CrewTotalCount { get; set; } // requires impelementation and testing

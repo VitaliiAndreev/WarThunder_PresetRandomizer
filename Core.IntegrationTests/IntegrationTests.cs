@@ -116,6 +116,8 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == null).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == 1).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == 2).Should().BeTrue();
+
+                    vehicleCollection.All(vehicle => vehicle.BaseCrewTrainCostInSilver > 0).Should().BeTrue();
                 }
 
                 foreach (var cachedVehicle in cachedVehicles)

@@ -42,6 +42,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()]
         public virtual int? NumberOfSpawnsInSimulation { get; protected set; }
 
+        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot. </summary>
+        public virtual int BaseCrewTrainCostInSilver { get; protected set; }
+
         #endregion Persistent Properties
         #region Constructors
 

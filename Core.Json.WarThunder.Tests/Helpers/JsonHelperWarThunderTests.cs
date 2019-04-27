@@ -100,11 +100,15 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => !vehicle.Value.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
             vehicles.All(vehicle => !vehicle.Value.Class.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
 
-            vehicles.Any(vehicle => vehicle.Value.PurchaseCostInSilver == 0).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Value.PurchaseCostInSilver == 0).Should().BeTrue(); // non-purchasable
             vehicles.Any(vehicle => vehicle.Value.PurchaseCostInSilver > 0).Should().BeTrue();
-            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == null).Should().BeTrue();
-            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == 1).Should().BeTrue();
-            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == 2).Should().BeTrue();
+
+            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == null).Should().BeTrue(); // air and naval vehicles, plus some heavy tanks
+            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == 1).Should().BeTrue(); // attack helicopters and some tanks
+            vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation == 2).Should().BeTrue(); // SPAAGs and other ground vehicles
+
+            vehicles.Any(vehicle => vehicle.Value.BaseCrewTrainCostInSilver == 0).Should().BeTrue(); // reserve vehicles
+            vehicles.Any(vehicle => vehicle.Value.BaseCrewTrainCostInSilver > 0).Should().BeTrue();
         }
 
         #endregion Methods: Deserialization

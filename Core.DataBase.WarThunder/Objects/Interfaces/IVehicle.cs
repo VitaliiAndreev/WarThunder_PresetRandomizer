@@ -20,5 +20,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> The amount of times the vehicle can go on a sortie in Simulator Battles. </summary>
         int? NumberOfSpawnsInSimulation { get; }
+
+        /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot. </summary>
+        int BaseCrewTrainCostInSilver { get; }
     }
 }
