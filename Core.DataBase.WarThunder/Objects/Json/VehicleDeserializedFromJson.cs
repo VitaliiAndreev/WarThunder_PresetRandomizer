@@ -32,182 +32,179 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int ExpertCrewTrainCostInSilver { get; set; }
 
         [JsonProperty("train3Cost_gold", Required = Required.Always)]
-        public int AceCrewTrainCostInGold { get; set; } // requires impelementation and testing
+        public int AceCrewTrainCostInGold { get; set; }
 
         [JsonProperty("train3Cost_exp", Required = Required.Always)]
-        public int AceCrewTrainCostInResearch { get; set; } // requires impelementation and testing
+        public int AceCrewTrainCostInResearch { get; set; }
 
         [JsonProperty("crewTotalCount", Required = Required.Always)]
-        public int CrewTotalCount { get; set; } // requires impelementation and testing
+        public int CrewCount { get; set; }
 
         [JsonProperty("gunnersCount", Required = Required.Always)]
-        public int GunnersCount { get; set; } // requires impelementation and testing
+        public int GunnersCount { get; set; }
 
         #endregion Crew
         #region Modifications
 
         [JsonProperty("needBuyToOpenNextInTier1", Required = Required.Always)]
-        public int NeedBuyToOpenNextInTier1 { get; set; } // requires impelementation and testing
+        public int AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 { get; set; }
 
         [JsonProperty("needBuyToOpenNextInTier2", Required = Required.Always)]
-        public int NeedBuyToOpenNextInTier2 { get; set; } // requires impelementation and testing
+        public int AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 { get; set; }
 
         [JsonProperty("needBuyToOpenNextInTier3", Required = Required.Always)]
-        public int NeedBuyToOpenNextInTier3 { get; set; } // requires impelementation and testing
+        public int AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 { get; set; }
 
         [JsonProperty("needBuyToOpenNextInTier4", Required = Required.Always)]
-        public int NeedBuyToOpenNextInTier4 { get; set; } // requires impelementation and testing
+        public int AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 { get; set; }
 
         #endregion Modifications
         #region Rank
 
         [JsonProperty("rank", Required = Required.Always)]
-        public int Rank { get; set; } // requires impelementation and testing
+        public int Rank { get; set; }
 
         [JsonProperty("economicRankArcade", Required = Required.Always)]
-        public int EconomicRankInArcade { get; set; } // requires impelementation and testing
+        public int EconomicRankInArcade { get; set; }
 
         [JsonProperty("economicRankHistorical", Required = Required.Always)]
-        public int EconomicRankInHistorical { get; set; } // requires impelementation and testing
+        public int EconomicRankInRealistic { get; set; }
 
         #endregion Rank
         #region Repairs
 
         [JsonProperty("repairTimeHrsArcade", Required = Required.Always)]
-        public decimal RepairTimeInArcade { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsHistorical", Required = Required.Always)]
-        public decimal RepairTimeInHistorical { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsSimulation", Required = Required.Always)]
-        public decimal RepairTimeInSimulation { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithCrewInSimulation { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewArcade", Required = Required.Always)]
-        public decimal RepairTimeInNoCrewArcade { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithoutCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewHistorical", Required = Required.Always)]
-        public decimal RepairTimeInNoCrewHistorical { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithoutCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewSimulation", Required = Required.Always)]
-        public decimal RepairTimeInNoCrewSimulation { get; set; } // requires impelementation and testing
+        public decimal RepairTimeWithoutCrewInSimulation { get; set; }
 
         [JsonProperty("repairCostArcade", Required = Required.Always)]
-        public int RepairCostInArcade { get; set; } // requires impelementation and testing
+        public int RepairCostInArcade { get; set; }
 
         [JsonProperty("repairCostHistorical", Required = Required.Always)]
-        public int RepairCostInHistorical { get; set; } // requires impelementation and testing
+        public int RepairCostInRealistic { get; set; }
 
         [JsonProperty("repairCostSimulation", Required = Required.Always)]
-        public int RepairCostInSimulation { get; set; } // requires impelementation and testing
+        public int RepairCostInSimulation { get; set; }
 
         #endregion Repairs
         #region Rewards
 
         [JsonProperty("battleTimeAwardArcade", Required = Required.Always)]
-        public int BattleTimeAwardInArcade { get; set; } // requires impelementation and testing
+        public int BattleTimeAwardInArcade { get; set; }
 
         [JsonProperty("battleTimeAwardHistorical", Required = Required.Always)]
-        public int BattleTimeAwardInHistorical { get; set; } // requires impelementation and testing
+        public int BattleTimeAwardInRealistic { get; set; }
 
         [JsonProperty("battleTimeAwardSimulation", Required = Required.Always)]
-        public int BattleTimeAwardInSimulation { get; set; } // requires impelementation and testing
+        public int BattleTimeAwardInSimulation { get; set; }
 
         [JsonProperty("avgAwardArcade", Required = Required.Always)]
-        public int AverageAwardinArcade { get; set; } // requires impelementation and testing
+        public int AverageAwardInArcade { get; set; }
 
         [JsonProperty("avgAwardHistorical", Required = Required.Always)]
-        public int AverageAwardinHistorical { get; set; } // requires impelementation and testing
+        public int AverageAwardInRealistic { get; set; }
 
         [JsonProperty("avgAwardSimulation", Required = Required.Always)]
-        public int AverageAwardinSimulation { get; set; } // requires impelementation and testing
+        public int AverageAwardInSimulation { get; set; }
 
         [JsonProperty("rewardMulArcade", Required = Required.Always)]
-        public decimal RewardMultiplierInArcade { get; set; } // requires impelementation and testing
+        public decimal RewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulHistorical", Required = Required.Always)]
-        public decimal RewardMultiplierInHistorical { get; set; } // requires impelementation and testing
+        public decimal RewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulSimulation", Required = Required.Always)]
-        public decimal RewardMultiplierInSimulation { get; set; } // requires impelementation and testing
+        public decimal RewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("rewardMulVisualArcade", Required = Required.Always)]
-        public decimal VisualRewardMultiplierInArcade { get; set; } // requires impelementation and testing
+        public decimal VisualRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulVisualHistorical", Required = Required.Always)]
-        public decimal VisualRewardMultiplierInHistorical { get; set; } // requires impelementation and testing
+        public decimal VisualRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulVisualSimulation", Required = Required.Always)]
-        public decimal VisualRewardMultiplierInSimulation { get; set; } // requires impelementation and testing
+        public decimal VisualRewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("expMul", Required = Required.Always)]
-        public decimal ExpMul { get; set; } // requires impelementation and testing
+        public decimal ResearchRewardMultiplier { get; set; }
 
         [JsonProperty("groundKillMul", Required = Required.Always)]
-        public decimal GroundKillMul { get; set; } // requires impelementation and testing
+        public decimal GroundKillRewardMultiplier { get; set; }
 
         [JsonProperty("battleTimeArcade", Required = Required.Always)]
-        public decimal BattleTimeArcade { get; set; } // requires impelementation and testing
+        public decimal BattleTimeArcade { get; set; }
 
         [JsonProperty("battleTimeHistorical", Required = Required.Always)]
-        public decimal BattleTimeHistorical { get; set; } // requires impelementation and testing
+        public decimal BattleTimeRealistic { get; set; }
 
         [JsonProperty("battleTimeSimulation", Required = Required.Always)]
-        public decimal BattleTimeSimulation { get; set; } // requires impelementation and testing
+        public decimal BattleTimeSimulation { get; set; }
 
         #endregion Rewards
 
         #endregion Required
         #region NotRequired
 
+        [JsonProperty("showOnlyWhenBought")]
+        public bool? ShowOnlyWhenBought { get; set; }
+
         [JsonProperty("reqExp")]
-        public int? UnlockCostInResearch { get; set; } // requires impelementation and testing
+        public int? UnlockCostInResearch { get; set; }
 
         [JsonProperty("costGold")]
-        public int? CostGold { get; set; } // requires impelementation and testing
-
-        [JsonProperty("showOnlyWhenBought")]
-        public bool? ShowOnlyWhenBought { get; set; } // requires impelementation and testing
-
-        [JsonProperty("freeRepairs")]
-        public int? FreeRepairs { get; set; } // requires impelementation and testing
+        public int? PurchaseCostInGold { get; set; }
 
         [JsonProperty("reqAir")]
-        public string VehicleRequired { get; set; } // requires impelementation and testing
+        public string VehicleRequired { get; set; }
 
         [JsonProperty("spawnType")]
-        public string SpawnType { get; set; } // requires impelementation and testing
+        public string SpawnType { get; set; }
 
         [JsonProperty("numSpawnsPerBattleSimulation")]
         public int? NumberOfSpawnsInSimulation { get; set; }
 
         #region Graphics
 
-        [JsonProperty("commonWeaponImage")]
-        public string CommonWeaponImage { get; set; } // requires impelementation and testing
-
-        [JsonProperty("bulletsIconParam")]
-        public int? BulletsIconParam { get; set; } // requires impelementation and testing
-
         [JsonProperty("customClassIco")]
-        public string CustomClassIco { get; set; } // requires impelementation and testing
+        public string CustomClassIco { get; set; }
 
         [JsonProperty("customImage")]
-        public string CustomImage { get; set; } // requires impelementation and testing
+        public string CustomImage { get; set; }
 
         [JsonProperty("customTooltipImage")]
-        public string CustomTooltipImage { get; set; } // requires impelementation and testing
+        public string CustomTooltipImage { get; set; }
+
+        [JsonProperty("commonWeaponImage")]
+        public string CommonWeaponImage { get; set; }
+
+        [JsonProperty("bulletsIconParam")]
+        public int? BulletsIconParam { get; set; }
 
         #endregion Graphics
         #region Modifications
 
         [JsonProperty("weaponUpgrade1")]
-        public string WeaponUpgrade1 { get; set; } // requires impelementation and testing
+        public string WeaponUpgrade1 { get; set; }
 
         [JsonProperty("weaponUpgrade2")]
-        public string WeaponUpgrade2 { get; set; } // requires impelementation and testing
+        public string WeaponUpgrade2 { get; set; }
 
         [JsonProperty("weaponUpgrade3")]
-        public string WeaponUpgrade3 { get; set; } // requires impelementation and testing
+        public string WeaponUpgrade3 { get; set; }
 
         #endregion Modifications
         #region Performance
@@ -234,6 +231,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int? EconomicRankInSimulation { get; set; } // requires impelementation and testing
 
         #endregion Rank
+        #region Repairs
+
+        [JsonProperty("freeRepairs")]
+        public int? FreeRepairs { get; set; }
+
+        #endregion Repairs
         #region Rewards
 
         [JsonProperty("premRewardMulVisualArcade")]
