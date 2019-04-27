@@ -18,7 +18,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string MoveType { get; set; }
 
         [JsonProperty("unitClass", Required = Required.Always)]
-        public string UnitClass { get; set; } // requires impelementation and testing
+        public string Class { get; set; }
 
         [JsonProperty("value", Required = Required.Always)]
         public int PurchaseCostInSilver { get; set; }

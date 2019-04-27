@@ -28,6 +28,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()]
         public virtual string MoveType { get; protected set; }
 
+        [Property()]
+        public virtual string Class { get; protected set; }
+
         /// <summary>
         /// The purchase cost in Silver Lions.
         /// Zero means that the vehicle cannot be bought for Silver Lions.

@@ -108,6 +108,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => !vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.Nation.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver == 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver > 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == null).Should().BeTrue();
