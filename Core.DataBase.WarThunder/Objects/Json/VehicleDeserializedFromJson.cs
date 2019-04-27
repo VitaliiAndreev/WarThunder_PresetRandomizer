@@ -12,7 +12,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Required
 
         [JsonProperty("country", Required = Required.Always)]
-        public string Country { get; set; } // requires impelementation and testing
+        public string Nation { get; set; }
 
         [JsonProperty("unitMoveType", Required = Required.Always)]
         public string MoveType { get; set; }

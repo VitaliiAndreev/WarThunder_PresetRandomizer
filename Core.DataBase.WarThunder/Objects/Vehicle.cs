@@ -21,6 +21,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        /// <summary> The vehicle's nation. </summary>
+        [Property()]
+        public virtual string Nation { get; protected set; }
+
         [Property()]
         public virtual string MoveType { get; protected set; }
 

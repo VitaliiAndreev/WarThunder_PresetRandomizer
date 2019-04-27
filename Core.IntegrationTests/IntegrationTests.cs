@@ -105,6 +105,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
                     vehicleCollection.All(vehicle => vehicle.Id != null).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !vehicle.Nation.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver == 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver > 0).Should().BeTrue();

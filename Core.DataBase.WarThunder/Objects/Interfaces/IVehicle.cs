@@ -5,6 +5,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     /// <summary> A vehicle (air, ground, or sea). </summary>
     public interface IVehicle : IPersistentObjectWithIdAndGaijinId
     {
+        /// <summary> The vehicle's nation. </summary>
+        string Nation { get; }
+
         string MoveType { get; }
 
         /// <summary>
