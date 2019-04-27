@@ -188,7 +188,7 @@ namespace Core.IntegrationTests
 
                 // assert
                 assert(vehiclesAfterPersistence);
-                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence).Should().BeTrue();
+                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence, 1).Should().BeTrue();
             }
         }
     }

@@ -114,16 +114,21 @@ namespace Core.DataBase.Objects
         /// <summary> Checks whether the specified values can be considered equivalent. </summary>
         /// <param name="thisValue"> The first of the values. </param>
         /// <param name="comparedValue"> The second of the values. </param>
-        /// <param name="includeNestedObjects"> Whether to use nested objects for comparison. </param>
-        /// <param name="recursionLevel"> The level of recursion up to which to compare nested objects. Use with CAUTION in case of cyclic links. Set to zero to disable recursion. </param>
+        /// <param name="recursionLevel">
+        /// The level of recursion up to which to compare nested objects. Use with CAUTION in case of cyclic links.
+        /// <para>Set to zero to disable recursion. It also prevents the method from cheking <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence.</para>
+        /// <para>Set to one to check <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence using the same recursion rules as here.</para>
+        /// </param>
         /// <returns></returns>
-        private bool IsEquivalentTo(object thisValue, object comparedValue, bool includeNestedObjects, int recursionLevel)
+        private bool IsEquivalentTo(object thisValue, object comparedValue, int recursionLevel)
         {
             if (thisValue is null || comparedValue is null)
                 return thisValue == comparedValue;
 
             if (thisValue.GetType() != comparedValue.GetType())
                 return false;
+
+            var includeNestedObjects = recursionLevel.IsPositive();
 
             if (thisValue is IPersistentObject persistentMemberValue && comparedValue is IPersistentObject comparedPersistentMemberValue && includeNestedObjects)
             {
@@ -135,9 +140,19 @@ namespace Core.DataBase.Objects
                 if (!persistentCollectionValue.IsEquivalentTo(comparedPersistentCollectionValue, recursionLevel - 1))
                     return false;
             }
+            else if (thisValue is IEnumerable<object> collection && comparedValue is IEnumerable<object> comparedCollection)
+            {
+                if (includeNestedObjects && collection.Zip(comparedCollection, (left, right) => left == right).Any(comparisonResult => comparisonResult == false))
+                    return false;
+            }
+            else if (thisValue is decimal decimalValue && comparedValue is decimal comparedDecimal)
+            {
+                if (decimalValue != comparedDecimal)
+                    return false;
+            }
             else
             {
-                if (!thisValue.Equals(comparedValue))
+                if (thisValue.ToString() != comparedValue.ToString())
                     return false;
             }
             return true;
@@ -168,7 +183,7 @@ namespace Core.DataBase.Objects
                 if (comparedPersistentObject.GetType().GetProperties().FirstOrDefault(comparedProperty => comparedProperty.Name == property.Name) is null)
                     continue;
 
-                if (!IsEquivalentTo(property.GetValue(this), property.GetValue(comparedPersistentObject), includeNestedObjects, recursionLevel))
+                if (!IsEquivalentTo(property.GetValue(this), property.GetValue(comparedPersistentObject), recursionLevel - 1))
                     return false;
             }
             return true;
