@@ -90,11 +90,12 @@ namespace Core.IntegrationTests
             foreach (var outputDirectory in outputDirectories)
                 blkxFiles.AddRange(outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories));
 
+            // act
             var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
-            var vehicles = _jsonHelper.DeserializeVehicleList(wpCostJson);
+            var cachedVehicles = _jsonHelper.DeserializeVehicleList(wpCostJson);
 
-            vehicles.Count().Should().BeGreaterThan(1300);
-            vehicles.All(vehicle => !vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+            cachedVehicles.Count().Should().BeGreaterThan(1300);
+            cachedVehicles.All(vehicle => !vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
 
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
@@ -114,15 +115,21 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == 2).Should().BeTrue();
                 }
 
-                foreach (var cachedVehicle in vehicles)
+                foreach (var cachedVehicle in cachedVehicles)
                     new Vehicle(dataRepository, cachedVehicle.Value);
+
+                var vehiclesBeforePersistence = new Vehicle[dataRepository.NewObjects.Count()];
+                dataRepository.NewObjects.CopyTo(vehiclesBeforePersistence, 0);
 
                 assert(dataRepository.NewObjects.OfType<IVehicle>());
 
                 dataRepository.PersistNewObjects();
 
-                var query = dataRepository.Query<IVehicle>();
-                assert(query);
+                var vehiclesAfterPersistence = dataRepository.Query<IVehicle>();
+
+                // assert
+                assert(vehiclesAfterPersistence);
+                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence).Should().BeTrue();
             }
         }
     }
