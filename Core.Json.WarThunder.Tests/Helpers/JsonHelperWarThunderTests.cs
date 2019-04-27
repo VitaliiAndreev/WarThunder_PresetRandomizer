@@ -95,14 +95,14 @@ namespace Core.Json.WarThunder.Tests.Helpers
             // assert
             vehicles.Count().Should().BeGreaterThan(1300);
 
-                // crew
+            /// crew
             vehicles.All(vehicle => vehicle.Value.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AceCrewTrainCostInGold > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AceCrewTrainCostInResearch > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.CrewCount > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.GunnersCount >= 0).Should().BeTrue();
-                // general
+            /// general
             vehicles.Any(vehicle => vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Value.Nation.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Value.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
@@ -111,29 +111,34 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.Value.PurchaseCostInSilver >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.Value.PurchaseCostInGold < 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Value.NumberOfSpawnsInSimulation <= 0).Should().BeFalse();
-                // graphical
+            /// graphical
             vehicles.Any(vehicle => vehicle.Value.BulletsIconParam < 0).Should().BeFalse();
-                // modifications
+            /// modifications
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 >= 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 >= 1).Should().BeTrue();
-                // rank
+            /// performance
+            vehicles.Any(vehicle => vehicle.Value.Speed <= 0m).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Value.TurretTraverseSpeeds?.Any (value => value <= 0m) ?? false).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Value.CannonReloadTime <= 0m).Should().BeFalse();
+            /// rank
             vehicles.All(vehicle => vehicle.Value.Rank > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.EconomicRankInArcade >= 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.EconomicRankInRealistic >= 0).Should().BeTrue();
-                // repairs
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInArcade > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInRealistic > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInSimulation > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInArcade > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInRealistic > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInSimulation > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairCostInArcade > 0).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairCostInRealistic > 0).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Value.RepairCostInSimulation > 0).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Value.EconomicRankInSimulation < 0).Should().BeFalse();
+            /// repairs
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInArcade >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInRealistic >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithCrewInSimulation >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInArcade >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInRealistic >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairTimeWithoutCrewInSimulation >= 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairCostInArcade >= 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairCostInRealistic >= 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.RepairCostInSimulation >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.Value.FreeRepairs < 0).Should().BeFalse();
-                // rewards
+            /// rewards
             vehicles.All(vehicle => vehicle.Value.BattleTimeAwardInArcade > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.BattleTimeAwardInRealistic > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.BattleTimeAwardInSimulation > 0).Should().BeTrue();
@@ -146,6 +151,9 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.Value.VisualRewardMultiplierInArcade > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.VisualRewardMultiplierInRealistic > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.VisualRewardMultiplierInSimulation > 0m).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Value.VisualPremiumRewardMultiplierInArcade <= 0m).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Value.VisualPremiumRewardMultiplierInRealistic <= 0m).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Value.VisualPremiumRewardMultiplierInSimulation <= 0m).Should().BeFalse();
             vehicles.All(vehicle => vehicle.Value.ResearchRewardMultiplier > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.GroundKillRewardMultiplier > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.BattleTimeArcade > 0m).Should().BeTrue();

@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.Objects.Interfaces;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -41,6 +42,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> Whether this vehicle is hidden. </summary>
         bool? ShowOnlyWhenBought { get; }
+
+        /// <summary> The category of hidden vehicles this one belongs to. </summary>
+        string CategoryOfHiddenVehicles { get; }
 
         /// <summary> The amount of research required to unlock the vehicle. </summary>
         int? UnlockCostInResearch { get; }
@@ -109,6 +113,24 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         int AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 { get; }
 
         #endregion Modifications
+        #region Performance
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? Speed { get; }
+
+        /// <summary> The vehicle's turret traverse speeds. </summary>
+        List<decimal> TurretTraverseSpeeds { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? CannonReloadTime { get; }
+
+        /// <summary> Whether the vehicle's main armament comes equipped with an auto-loader (grants fixed reload speed that doesn't depend on the loader and doesn't improve with the loader's skill). </summary>
+        bool? PrimaryWeaponHasAutoLoader { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? MaximumRocketDeltaAngle { get; }
+
+        #endregion Performance
         #region Rank
 
         /// <summary> The vehicle's research rank. </summary>
@@ -120,40 +142,73 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInRealistic"/>) in Realistic Battles. The battle rating is being calculated from it. </summary>
         int EconomicRankInRealistic { get; }
 
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInSimulation"/>) in Simulator Battles. The battle rating is being calculated from it. </summary>
+        int? EconomicRankInSimulation { get; }
+
         /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Arcade Battles. </summary>
         string BattleRatingInArcade { get; }
 
         /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Realistic Battles. </summary>
         string BattleRatingInRealistic { get; }
 
+        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Simulator Battles. </summary>
+        string BattleRatingInSimulation { get; }
+
         #endregion Rank
         #region Repairs
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Arcade Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Arcade Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithCrewInArcade { get; }
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Realistic Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Realistic Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithCrewInRealistic { get; }
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Simulator Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Simulator Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithCrewInSimulation { get; }
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Arcade Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Arcade Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithoutCrewInArcade { get; }
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Realistic Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Realistic Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithoutCrewInRealistic { get; }
 
-        /// <summary> The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Simulator Battles. </summary>
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Simulator Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         decimal RepairTimeWithoutCrewInSimulation { get; }
 
-        /// <summary> The full Silver Lion cost for repairing or auto-repairing the vehicle in Arcade Battles. </summary>
+        /// <summary>
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Arcade Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         int RepairCostInArcade { get; }
 
-        /// <summary> The full Silver Lion cost for repairing or auto-repairing the vehicle in Realistic Battles. </summary>
+        /// <summary>
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Realistic Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         int RepairCostInRealistic { get; }
 
-        /// <summary> The full Silver Lion cost for repairing or auto-repairing the vehicle in Simulator Battles. </summary>
+        /// <summary>
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Simulator Battles.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
         int RepairCostInSimulation { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
@@ -197,6 +252,15 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal VisualRewardMultiplierInSimulation { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? VisualPremiumRewardMultiplierInArcade { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? VisualPremiumRewardMultiplierInRealistic { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? VisualPremiumRewardMultiplierInSimulation { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal ResearchRewardMultiplier { get; }

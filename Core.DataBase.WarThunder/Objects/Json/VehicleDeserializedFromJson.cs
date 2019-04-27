@@ -46,6 +46,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #endregion Crew
         #region Modifications
 
+        /*[JsonProperty("weapons", Required = Required.Always)]
+        public IEnumerable<string> Weapons { get; set; }
+
+        [JsonProperty("modifications", Required = Required.Always)]
+        public IEnumerable<string> Modifications { get; set; }*/
+
         [JsonProperty("needBuyToOpenNextInTier1", Required = Required.Always)]
         public int AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 { get; set; }
 
@@ -57,6 +63,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("needBuyToOpenNextInTier4", Required = Required.Always)]
         public int AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 { get; set; }
+
+        /*[JsonProperty("spare", Required = Required.Always)]
+        public Spare Spare { get; set; }*/
 
         #endregion Modifications
         #region Rank
@@ -162,6 +171,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("showOnlyWhenBought")]
         public bool? ShowOnlyWhenBought { get; set; }
 
+        [JsonProperty("gift")]
+        public string CategoryOfHiddenVehicles { get; set; }
+
         [JsonProperty("reqExp")]
         public int? UnlockCostInResearch { get; set; }
 
@@ -210,25 +222,25 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Performance
 
         [JsonProperty("speed")]
-        public decimal? Speed { get; set; } // requires impelementation and testing
+        public decimal? Speed { get; set; }
 
         [JsonProperty("turretSpeed")]
-        public List<decimal> TurretSpeed { get; set; } // requires impelementation and testing
+        public List<decimal> TurretTraverseSpeeds { get; set; }
 
         [JsonProperty("reloadTime_cannon")]
-        public decimal? ReloadTimeCannon { get; set; } // requires impelementation and testing
+        public decimal? CannonReloadTime { get; set; }
 
         [JsonProperty("primaryWeaponAutoLoader")]
-        public bool? PrimaryWeaponAutoLoader { get; set; } // requires impelementation and testing
+        public bool? PrimaryWeaponHasAutoLoader { get; set; }
 
         [JsonProperty("maxDeltaAngle_rockets")]
-        public decimal? MaxDeltaAngleRockets { get; set; } // requires impelementation and testing
+        public decimal? MaximumRocketDeltaAngle { get; set; }
 
         #endregion Performance
         #region Rank
 
         [JsonProperty("economicRankSimulation")]
-        public int? EconomicRankInSimulation { get; set; } // requires impelementation and testing
+        public int? EconomicRankInSimulation { get; set; }
 
         #endregion Rank
         #region Repairs
@@ -240,28 +252,16 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Rewards
 
         [JsonProperty("premRewardMulVisualArcade")]
-        public decimal? PremRewardMulVisualArcade { get; set; } // requires impelementation and testing
+        public decimal? VisualPremiumRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("premRewardMulVisualHistorical")]
-        public decimal? PremRewardMulVisualHistorical { get; set; } // requires impelementation and testing
+        public decimal? VisualPremiumRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("premRewardMulVisualSimulation")]
-        public decimal? PremRewardMulVisualSimulation { get; set; } // requires impelementation and testing
+        public decimal? VisualPremiumRewardMultiplierInSimulation { get; set; }
 
         #endregion Rewards
 
         #endregion NotRequired
-
-        /*[JsonProperty("weapons")]
-        public Weapons Weapons { get; set; } // requires impelementation and testing
-
-        [JsonProperty("modifications")]
-        public Modifications Modifications { get; set; } // requires impelementation and testing
-
-        [JsonProperty("spare")]
-        public Spare Spare { get; set; } // requires impelementation and testing*/
-
-        /*[JsonProperty("gift")]
-        public Gift? Gift { get; set; } // requires impelementation and testing*/
     }
 }
