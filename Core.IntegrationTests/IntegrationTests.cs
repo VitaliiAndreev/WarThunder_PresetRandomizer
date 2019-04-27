@@ -104,11 +104,13 @@ namespace Core.IntegrationTests
                 void assert(IEnumerable<IVehicle> vehicleCollection)
                 {
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
+
                     vehicleCollection.All(vehicle => vehicle.Id != null).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.Nation.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
                     vehicleCollection.All(vehicle => !vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver == 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInSilver > 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation == null).Should().BeTrue();
@@ -122,7 +124,7 @@ namespace Core.IntegrationTests
                 var vehiclesBeforePersistence = new Vehicle[dataRepository.NewObjects.Count()];
                 dataRepository.NewObjects.CopyTo(vehiclesBeforePersistence, 0);
 
-                assert(dataRepository.NewObjects.OfType<IVehicle>());
+                assert(vehiclesBeforePersistence);
 
                 dataRepository.PersistNewObjects();
 
