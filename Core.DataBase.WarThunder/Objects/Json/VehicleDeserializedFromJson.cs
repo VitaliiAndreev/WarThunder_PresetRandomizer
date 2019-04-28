@@ -174,11 +174,26 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("gift")]
         public string CategoryOfHiddenVehicles { get; set; }
 
+        [JsonProperty("giftParam")]
+        public string OwnershipGiftPrerequisite { get; set; }
+
+        [JsonProperty("isFirstBattleAward")]
+        public bool? GiftedToNewPlayersForSelectingTheirFirstBranch { get; set; }
+
+        [JsonProperty("purchaseTrophyGiftOnce")]
+        public string OwnershipPurchasePrerequisite { get; set; }
+
+        [JsonProperty("researchType")]
+        public string ResearchUnlockType { get; set; }
+
         [JsonProperty("reqExp")]
         public int? UnlockCostInResearch { get; set; }
 
         [JsonProperty("costGold")]
         public int? PurchaseCostInGold { get; set; }
+
+        [JsonProperty("minOpenCostGold")]
+        public int? DiscountedPurchaseCostInGold { get; set; }
 
         [JsonProperty("reqAir")]
         public string VehicleRequired { get; set; }
@@ -186,9 +201,27 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("spawnType")]
         public string SpawnType { get; set; }
 
+        [JsonProperty("numSpawnsPerBattle")]
+        public int? NumberOfSpawnsInEvents { get; set; }
+
+        [JsonProperty("numSpawnsPerBattleArcade")]
+        public int? NumberOfSpawnsInArcade { get; set; }
+
+        [JsonProperty("numSpawnsPerBattleHistorical")]
+        public int? NumberOfSpawnsInRealistic { get; set; }
+
         [JsonProperty("numSpawnsPerBattleSimulation")]
         public int? NumberOfSpawnsInSimulation { get; set; }
 
+        [JsonProperty("killStreak")]
+        public bool? CanSpawnAsKillStreak { get; set; }
+
+        #region Crew
+
+        [JsonProperty("minCrewMemberAliveCount")]
+        public int? MinumumCrewCountToOperate { get; set; }
+
+        #endregion Crew
         #region Graphics
 
         [JsonProperty("customClassIco")]
@@ -202,6 +235,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("commonWeaponImage")]
         public string CommonWeaponImage { get; set; }
+
+        [JsonProperty("weaponmask")]
+        public int? WeaponMask { get; set; }
 
         [JsonProperty("bulletsIconParam")]
         public int? BulletsIconParam { get; set; }
@@ -218,23 +254,49 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("weaponUpgrade3")]
         public string WeaponUpgrade3 { get; set; }
 
+        [JsonProperty("weaponUpgrade4")]
+        public string WeaponUpgrade4 { get; set; }
+
         #endregion Modifications
         #region Performance
+
+        // "Shop"
 
         [JsonProperty("speed")]
         public decimal? Speed { get; set; }
 
+        [JsonProperty("maxFlightTimeMinutes")]
+        public int? MaximumFlightTime { get; set; }
+
         [JsonProperty("turretSpeed")]
         public List<decimal> TurretTraverseSpeeds { get; set; }
 
+        [JsonProperty("reloadTime_mgun")]
+        public decimal? MachineGunReloadTime { get; set; }
+
         [JsonProperty("reloadTime_cannon")]
         public decimal? CannonReloadTime { get; set; }
+
+        [JsonProperty("reloadTime_gunner")]
+        public decimal? GunnerReloadTime { get; set; }
+
+        [JsonProperty("maxAmmo")]
+        public int? MaximumAmmunition { get; set; }
 
         [JsonProperty("primaryWeaponAutoLoader")]
         public bool? PrimaryWeaponHasAutoLoader { get; set; }
 
         [JsonProperty("maxDeltaAngle_rockets")]
         public decimal? MaximumRocketDeltaAngle { get; set; }
+
+        [JsonProperty("maxDeltaAngle_atgm")]
+        public decimal? MaximumAtgmDeltaAngle { get; set; }
+
+        [JsonProperty("extinguisherMinTime")]
+        public decimal? MaximumFireExtinguishingTime { get; set; }
+
+        [JsonProperty("breachRepairSpeed")]
+        public decimal? HullBreachRepairSpeed { get; set; }
 
         #endregion Performance
         #region Rank

@@ -16,7 +16,7 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The nation's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))] // The type and name of the identificator column have to be explicitly specified.
+        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id), Generator = "guid.comb")] // The type and name of the identificator column have to be explicitly specified.
         public override Guid Id { get; protected set; }
 
         /// <summary> The nation's Gaijin ID. </summary>

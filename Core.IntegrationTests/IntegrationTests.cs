@@ -112,6 +112,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.AceCrewTrainCostInGold > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.AceCrewTrainCostInResearch > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.CrewCount > 0).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.MinumumCrewCountToOperate <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
                     // general
                     vehicleCollection.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
@@ -121,9 +122,14 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.PurchaseCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.NumberOfSpawnsInEvents is null || vehicle.NumberOfSpawnsInEvents == 3).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInArcade <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInRealistic <= 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawnsInSimulation <= 0).Should().BeFalse();
                     // graphical
                     vehicleCollection.Any(vehicle => vehicle.BulletsIconParam < 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.WeaponMask < 0).Should().BeFalse();
                     // modifications
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
@@ -132,7 +138,12 @@ namespace Core.IntegrationTests
                     // performance
                     vehicleCollection.Any(vehicle => vehicle.Speed <= 0m).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.CannonReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.HullBreachRepairSpeed <= 0).Should().BeFalse();
                     // rank
                     vehicleCollection.All(vehicle => vehicle.Rank > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomicRankInArcade >= 0).Should().BeTrue();

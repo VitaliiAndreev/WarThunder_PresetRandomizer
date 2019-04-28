@@ -16,7 +16,7 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The branch's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id))]
+        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id), Generator = "guid.comb")]
         public override Guid Id { get; protected set; }
 
         /// <summary> The branch's Gaijin ID. </summary>
