@@ -122,8 +122,14 @@ namespace Core.DataBase.Helpers
         {
             LogDebug(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
-            foreach (var instance in NewObjects.ToList())
-                instance.CommitChanges();
+            using (var session = SessionFactory.OpenSession())
+            using (var transaction = session.BeginTransaction())
+            {
+                foreach (var instance in NewObjects.ToList())
+                    session.Save(instance);
+
+                transaction.Commit();
+            }
 
             LogDebug(EDataBaseLogMessage.AllNewObjectsPersisted);
         }
