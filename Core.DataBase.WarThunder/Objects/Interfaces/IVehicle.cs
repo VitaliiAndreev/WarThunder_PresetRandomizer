@@ -1,5 +1,4 @@
-﻿using Core.DataBase.Objects.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -354,6 +353,509 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         decimal BattleTimeSimulation { get; }
 
         #endregion Rewards
+        #region Weapons
+
+        decimal? ShipMainCaliberReloadTime_76mm_F34_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_F34_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_30mm_MK103_38_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_30mm_MK103_38_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_7_92mm_MG15_navy_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_7_92mm_MG15_navy_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_15mm_MG151_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_15mm_MG151_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_MG151_20_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_MG151_20_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_40mm_QF_2pdr_mk_XV_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_40mm_QF_2pdr_mk_XV_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_40mm_2pdr_Rolls_Royce_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_40mm_2pdr_Rolls_Royce_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_7_7mm_Vikkers_GO_No5_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_7_7mm_Vikkers_GO_No5_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_37mm_AN_M4_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_37mm_AN_M4_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_85mm_ZiS_S_53_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_85mm_ZiS_S_53_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_88mm_SKC_35_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_88mm_SKC_35_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_37mm_SKC_30_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_37mm_SKC_30_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_15mm_MG_M38_t_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_15mm_MG_M38_t_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_57mm_6pdr_7CWT_QF_Mk_11A_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_57mm_6pdr_7CWT_QF_Mk_11A_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_12_7mm_DShK_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_37mm_FlaKM42_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_37mm_FlaKM42_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_25mm_2M_3_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_25mm_2M_3_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_40mm_L70_Bofors_MEL_58_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_40mm_L70_Bofors_MEL_58_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_114mm_8cwt_QF_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_114mm_8cwt_QF_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_120mm_Mark_XII_CP_XIX_mount_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_120mm_Mark_XII_CP_XIX_mount_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_40mm_QF_2pdr_mk_XV_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_40mm_QF_2pdr_mk_XV_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_14_5mm_KPVT_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_14_5mm_KPVT_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_130mm_B_13_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_130mm_B_13_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_34K_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_34K_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_37mm_70_K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_Oerlikon_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_127mm_5_38_Mark_12_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_127mm_5_38_Mark_12_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_127mm_skc34_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_127mm_skc34_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_37mm_SKC_30_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_37mm_SKC_30_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_20mm_FlaK38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_20mm_FlaK38_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_zwilling_MG_C38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_7_92mm_MG34_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_7_92mm_MG34_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_105mm_SK_C32_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_105mm_SK_C32_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_MGC30_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_MGC30_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_Melara_76_62_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_Melara_76_62_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_7_92mm_MG34_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_7_92mm_MG34_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_FlaK38_vierling_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_88mm_Flak36_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_88mm_Flak36_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_20mm_FlaK38_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_20mm_FlaK38_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_81mm_mk_2_mortar_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_81mm_mk_2_mortar_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_12_7mm_M2_HB_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_50cal_mk34_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_50cal_mk34_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_3_50_mk10_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_3_50_mk10_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_3_50_mk10_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_3_50_mk10_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_102mm_Mark_V_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_102mm_Mark_V_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_150mm_l_48_c_36_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_150mm_l_48_c_36_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_105mm_SK_C32_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_105mm_SK_C32_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_40mm_4cm_flak_bofors_28_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_40mm_4cm_flak_bofors_28_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_152mm_6inch_53_mk_12_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_152mm_6inch_53_mk_12_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_28mm_75_mk_1_chicago_piano_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_28mm_75_mk_1_chicago_piano_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_180mm_b1k_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_180mm_b1k_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_100mm_50_manizini_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_100mm_50_manizini_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_30mm_ak_230_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_30mm_ak_230_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_102mm_50_4inch_mk9_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_102mm_50_4inch_mk9_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_3_23_mk4_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_3_23_mk4_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_120mm_l_45_mark_8_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_120mm_l_45_mark_8_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_20mm_shvak_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_20mm_shvak_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_34K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_34K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_ak_726_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_ak_726_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_14_5mm_KPVT_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_14_5mm_KPVT_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_57mm_ak_725_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_57mm_ak_725_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_25mm_2M_3_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_25mm_2M_3_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_85mm_90_K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_85mm_90_K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_76mm_D56_TS_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_76mm_D56_TS_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_30mm_bp_30_mortar_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_30mm_bp_30_mortar_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_102mm_60_1911_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_102mm_60_1911_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_1914_lender_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_1914_lender_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_7_7mm_mg_lewis_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_7_7mm_mg_lewis_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_QQF_3in_20cwt_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_QQF_3in_20cwt_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_102mm_Mark_V_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_102mm_Mark_V_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_7_7mm_mg_lewis_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_7_7mm_mg_lewis_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_47mm_qf3pdr_hotchkiss_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_47mm_qf3pdr_hotchkiss_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipAntiAirMaxAngle_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipAuxMaxAngle_7_7mm_lewis_amg_1916_naval_user_machinegun { get; }
+
+        decimal? ShipAuxCaliberReloadTime_40mm_2pdr_Rolls_Royce_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_40mm_2pdr_Rolls_Royce_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberMaxAngle_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; }
+
+        decimal? ShipMainCaliberReloadTime_114mm_45_QF_MkIV_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_114mm_45_QF_MkIV_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_102mm_33_4inch_qf_mkXXIII_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_102mm_33_4inch_qf_mkXXIII_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_40mm_l60_bofors_mk3_single_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_102mm_45_BL_Mk_IX_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_102mm_45_BL_Mk_IX_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_3_40_12cwt_qf_mk5_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_3_40_12cwt_qf_mk5_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_37mm_AN_M4_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_37mm_AN_M4_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_40mm_l60_bofors_mk2_quad_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_40mm_l60_bofors_mk2_quad_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_130mm_55_obr1913_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_130mm_55_obr1913_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_39K_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_39K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_150mm_60_skc_25_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_150mm_60_skc_25_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_88mm_76_skc_32_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_88mm_76_skc_32_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_20mm_MGC30_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_20mm_MGC30_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_133mm_5_25inch_50_qf_mk1_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_133mm_5_25inch_50_qf_mk1_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_28mm_75_mk_1_chicago_piano_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_28mm_75_mk_1_chicago_piano_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_152mm_6inch_47_mk_16_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_152mm_6inch_47_mk_16_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_127mm_5inch_25_Mark_13_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_127mm_5inch_25_Mark_13_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_152mm_6inch_50_bl_mk_xxiii_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_152mm_6inch_50_bl_mk_xxiii_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_180mm_b1p_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_180mm_b1p_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_100mm_56_b34_1940_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_100mm_56_b34_1940_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirCaliberReloadTime_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipAntiAirMaxAngle_45mm_21K_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberReloadTime_152mm_6inch_50_qf_mk_5_naval_user_cannon { get; }
+
+        decimal? ShipMainCaliberMaxAngle_152mm_6inch_50_qf_mk_5_naval_user_cannon { get; }
+
+        decimal? ShipAuxCaliberReloadTime_76mm_70_mark_6_naval_user_cannon { get; }
+
+        decimal? ShipAuxMaxAngle_76mm_70_mark_6_naval_user_cannon { get; }
+
+        #endregion Weapons
 
         #endregion Persistent Properties
     }
