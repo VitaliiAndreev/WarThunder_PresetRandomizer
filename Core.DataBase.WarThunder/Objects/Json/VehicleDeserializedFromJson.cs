@@ -64,8 +64,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("needBuyToOpenNextInTier4", Required = Required.Always)]
         public int AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 { get; set; }
 
-        /*[JsonProperty("spare", Required = Required.Always)]
-        public Spare Spare { get; set; }*/
+        [JsonProperty("spare", Required = Required.Always)]
+        public BackupSortieDeserializedFromJson BackupSortie { get; set; }
 
         #endregion Modifications
         #region Rank

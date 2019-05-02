@@ -154,6 +154,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The amount of researched modifications of the third tier required to unlock modifications of the fourth tier. </summary>
         int AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 { get; }
 
+        /// <summary> The price of purchasing backup sorties for the vehicle (consumable once a match on a vehicle by vehicle basis) with Golden Eagles (a piece). </summary>
+        int BackupSortieCostInGold { get; }
+
         #endregion Modifications
         #region Performance
 

@@ -124,6 +124,8 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 >= 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Value.AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 >= 1).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.BackupSortie.PurchaseCostInSilver == 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Value.BackupSortie.PurchaseCostInGold > 0).Should().BeTrue();
             /// performance
             vehicles.Any(vehicle => vehicle.Value.Speed <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Value.TurretTraverseSpeeds?.Any (value => value <= 0m) ?? false).Should().BeFalse();
