@@ -11,18 +11,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
     {
         #region Required
 
-        [JsonProperty("country", Required = Required.Always)]
-        public string Nation { get; set; }
-
-        [JsonProperty("unitMoveType", Required = Required.Always)]
-        public string MoveType { get; set; }
-
-        [JsonProperty("unitClass", Required = Required.Always)]
-        public string Class { get; set; }
-
-        [JsonProperty("value", Required = Required.Always)]
-        public int PurchaseCostInSilver { get; set; }
-
         #region Crew
 
         [JsonProperty("trainCost", Required = Required.Always)]
@@ -44,12 +32,24 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int GunnersCount { get; set; }
 
         #endregion Crew
+        #region General
+
+        [JsonProperty("country", Required = Required.Always)]
+        public string Nation { get; set; }
+
+        [JsonProperty("unitMoveType", Required = Required.Always)]
+        public string MoveType { get; set; }
+
+        [JsonProperty("unitClass", Required = Required.Always)]
+        public string Class { get; set; }
+
+        [JsonProperty("value", Required = Required.Always)]
+        public int PurchaseCostInSilver { get; set; }
+
+        #endregion General
         #region Modifications
 
-        /*[JsonProperty("weapons", Required = Required.Always)]
-        public IEnumerable<string> Weapons { get; set; }
-
-        [JsonProperty("modifications", Required = Required.Always)]
+        /*[JsonProperty("modifications", Required = Required.Always)]
         public IEnumerable<string> Modifications { get; set; }*/
 
         [JsonProperty("needBuyToOpenNextInTier1", Required = Required.Always)]
@@ -164,9 +164,23 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public decimal BattleTimeSimulation { get; set; }
 
         #endregion Rewards
+        #region Weapons
+
+        /*[JsonProperty("weapons", Required = Required.Always)]
+        public IEnumerable<string> Weapons { get; set; }*/
+
+        #endregion Weapons
 
         #endregion Required
         #region NotRequired
+
+        #region Crew
+
+        [JsonProperty("minCrewMemberAliveCount")]
+        public int? MinumumCrewCountToOperate { get; set; }
+
+        #endregion Crew
+        #region General
 
         [JsonProperty("showOnlyWhenBought")]
         public bool? ShowOnlyWhenBought { get; set; }
@@ -216,12 +230,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("killStreak")]
         public bool? CanSpawnAsKillStreak { get; set; }
 
-        #region Crew
-
-        [JsonProperty("minCrewMemberAliveCount")]
-        public int? MinumumCrewCountToOperate { get; set; }
-
-        #endregion Crew
+        #endregion General
         #region Graphics
 
         [JsonProperty("customClassIco")]
@@ -243,21 +252,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int? BulletsIconParam { get; set; }
 
         #endregion Graphics
-        #region Modifications
-
-        [JsonProperty("weaponUpgrade1")]
-        public string WeaponUpgrade1 { get; set; }
-
-        [JsonProperty("weaponUpgrade2")]
-        public string WeaponUpgrade2 { get; set; }
-
-        [JsonProperty("weaponUpgrade3")]
-        public string WeaponUpgrade3 { get; set; }
-
-        [JsonProperty("weaponUpgrade4")]
-        public string WeaponUpgrade4 { get; set; }
-
-        #endregion Modifications
         #region Performance
 
         // "Shop"
@@ -267,30 +261,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("maxFlightTimeMinutes")]
         public int? MaximumFlightTime { get; set; }
-
-        [JsonProperty("turretSpeed")]
-        public List<decimal> TurretTraverseSpeeds { get; set; }
-
-        [JsonProperty("reloadTime_mgun")]
-        public decimal? MachineGunReloadTime { get; set; }
-
-        [JsonProperty("reloadTime_cannon")]
-        public decimal? CannonReloadTime { get; set; }
-
-        [JsonProperty("reloadTime_gunner")]
-        public decimal? GunnerReloadTime { get; set; }
-
-        [JsonProperty("maxAmmo")]
-        public int? MaximumAmmunition { get; set; }
-
-        [JsonProperty("primaryWeaponAutoLoader")]
-        public bool? PrimaryWeaponHasAutoLoader { get; set; }
-
-        [JsonProperty("maxDeltaAngle_rockets")]
-        public decimal? MaximumRocketDeltaAngle { get; set; }
-
-        [JsonProperty("maxDeltaAngle_atgm")]
-        public decimal? MaximumAtgmDeltaAngle { get; set; }
 
         [JsonProperty("extinguisherMinTime")]
         public decimal? MaximumFireExtinguishingTime { get; set; }
@@ -324,6 +294,44 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         #endregion Rewards
         #region Weapons
+
+        [JsonProperty("turretSpeed")]
+        public List<decimal> TurretTraverseSpeeds { get; set; }
+
+        [JsonProperty("reloadTime_mgun")]
+        public decimal? MachineGunReloadTime { get; set; }
+
+        [JsonProperty("reloadTime_cannon")]
+        public decimal? CannonReloadTime { get; set; }
+
+        [JsonProperty("reloadTime_gunner")]
+        public decimal? GunnerReloadTime { get; set; }
+
+        [JsonProperty("maxAmmo")]
+        public int? MaximumAmmunition { get; set; }
+
+        [JsonProperty("primaryWeaponAutoLoader")]
+        public bool? PrimaryWeaponHasAutoLoader { get; set; }
+
+        [JsonProperty("maxDeltaAngle_rockets")]
+        public decimal? MaximumRocketDeltaAngle { get; set; }
+
+        [JsonProperty("maxDeltaAngle_atgm")]
+        public decimal? MaximumAtgmDeltaAngle { get; set; }
+
+        [JsonProperty("weaponUpgrade1")]
+        public string WeaponUpgrade1 { get; set; }
+
+        [JsonProperty("weaponUpgrade2")]
+        public string WeaponUpgrade2 { get; set; }
+
+        [JsonProperty("weaponUpgrade3")]
+        public string WeaponUpgrade3 { get; set; }
+
+        [JsonProperty("weaponUpgrade4")]
+        public string WeaponUpgrade4 { get; set; }
+
+        // Properties in this group below are here to match JSON object composition, even though these should not be here.
 
         [JsonProperty("shipMainCaliberReloadTime_76mm_F34_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_76mm_F34_naval_user_cannon { get; set; }

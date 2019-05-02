@@ -164,18 +164,6 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Graphics
         #region Modifications
 
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        [Property()] public virtual string WeaponUpgrade1 { get; protected set; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        [Property()] public virtual string WeaponUpgrade2 { get; protected set; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        [Property()] public virtual string WeaponUpgrade3 { get; protected set; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        [Property()] public virtual string WeaponUpgrade4 { get; protected set; }
-
         /// <summary>
         /// [NOT VISUALLY USED IN GAME CLIENT]
         /// The amount of researched modifications of the zeroth tier required to unlock modifications of the first tier.
@@ -199,30 +187,6 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Maximum flight time (in munutes). Applies only to planes and indicates for how long one can fly with a full tank of fuel. </summary>
         [Property()] public virtual int? MaximumFlightTime { get; protected set; }
-
-        /// <summary> The vehicle's turret traverse speeds. </summary>
-        [Property()] public virtual List<decimal> TurretTraverseSpeeds { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? MachineGunReloadTime { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? CannonReloadTime { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? GunnerReloadTime { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, VEHICLES WITHOUT PRIMARY ARMAMENT DON"T HAVE THIS PROPERTY] </summary>
-        [Property()] public virtual int? MaximumAmmunition { get; protected set; }
-
-        /// <summary> Whether the vehicle's main armament comes equipped with an auto-loader (grants fixed reload speed that doesn't depend on the loader and doesn't improve with the loader's skill). </summary>
-        [Property()] public virtual bool? PrimaryWeaponHasAutoLoader { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? MaximumRocketDeltaAngle { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? MaximumAtgmDeltaAngle { get; protected set; }
 
         /// <summary> The baseline time of fire extinguishing for inexperienced naval crewmen. </summary>
         [Property()] public virtual decimal? MaximumFireExtinguishingTime { get; protected set; }
@@ -380,6 +344,44 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Rewards
         #region Weapons
+
+        /// <summary> The vehicle's turret traverse speeds. </summary>
+        [Property()] public virtual List<decimal> TurretTraverseSpeeds { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [Property()] public virtual decimal? MachineGunReloadTime { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [Property()] public virtual decimal? CannonReloadTime { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [Property()] public virtual decimal? GunnerReloadTime { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, VEHICLES WITHOUT PRIMARY ARMAMENT DON"T HAVE THIS PROPERTY] </summary>
+        [Property()] public virtual int? MaximumAmmunition { get; protected set; }
+
+        /// <summary> Whether the vehicle's main armament comes equipped with an auto-loader (grants fixed reload speed that doesn't depend on the loader and doesn't improve with the loader's skill). </summary>
+        [Property()] public virtual bool? PrimaryWeaponHasAutoLoader { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [Property()] public virtual decimal? MaximumRocketDeltaAngle { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [Property()] public virtual decimal? MaximumAtgmDeltaAngle { get; protected set; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        [Property()] public virtual string WeaponUpgrade1 { get; protected set; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        [Property()] public virtual string WeaponUpgrade2 { get; protected set; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        [Property()] public virtual string WeaponUpgrade3 { get; protected set; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        [Property()] public virtual string WeaponUpgrade4 { get; protected set; }
+
+        // Properties in this group below are here to match JSON object composition, even though these should not be here.
 
         [Property()] public virtual decimal? ShipMainCaliberReloadTime_76mm_F34_naval_user_cannon { get; protected set; }
 

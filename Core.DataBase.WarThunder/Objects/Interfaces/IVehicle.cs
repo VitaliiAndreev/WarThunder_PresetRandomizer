@@ -139,18 +139,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Graphics
         #region Modifications
 
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        string WeaponUpgrade1 { get; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        string WeaponUpgrade2 { get; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        string WeaponUpgrade3 { get; }
-
-        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
-        string WeaponUpgrade4 { get; }
-
         /// <summary>
         /// [NOT VISUALLY USED IN GAME CLIENT]
         /// The amount of researched modifications of the zeroth tier required to unlock modifications of the first tier.
@@ -174,30 +162,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> Maximum flight time (in munutes). Applies only to planes and indicates for how long one can fly with a full tank of fuel. </summary>
         int? MaximumFlightTime { get; }
-
-        /// <summary> The vehicle's turret traverse speeds. </summary>
-        List<decimal> TurretTraverseSpeeds { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? MachineGunReloadTime { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? CannonReloadTime { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? GunnerReloadTime { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, VEHICLES WITHOUT PRIMARY ARMAMENT DON"T HAVE THIS PROPERTY] </summary>
-        int? MaximumAmmunition { get; }
-
-        /// <summary> Whether the vehicle's main armament comes equipped with an auto-loader (grants fixed reload speed that doesn't depend on the loader and doesn't improve with the loader's skill). </summary>
-        bool? PrimaryWeaponHasAutoLoader { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? MaximumRocketDeltaAngle { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? MaximumAtgmDeltaAngle { get; }
 
         /// <summary> The baseline time of fire extinguishing for inexperienced naval crewmen. </summary>
         decimal? MaximumFireExtinguishingTime { get; }
@@ -354,6 +318,44 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #endregion Rewards
         #region Weapons
+
+        /// <summary> The vehicle's turret traverse speeds. </summary>
+        List<decimal> TurretTraverseSpeeds { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? MachineGunReloadTime { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? CannonReloadTime { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? GunnerReloadTime { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, VEHICLES WITHOUT PRIMARY ARMAMENT DON"T HAVE THIS PROPERTY] </summary>
+        int? MaximumAmmunition { get; }
+
+        /// <summary> Whether the vehicle's main armament comes equipped with an auto-loader (grants fixed reload speed that doesn't depend on the loader and doesn't improve with the loader's skill). </summary>
+        bool? PrimaryWeaponHasAutoLoader { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? MaximumRocketDeltaAngle { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        decimal? MaximumAtgmDeltaAngle { get; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        string WeaponUpgrade1 { get; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        string WeaponUpgrade2 { get; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        string WeaponUpgrade3 { get; }
+
+        /// <summary> The modification that is considered an upgrade of the vehicle's armaments. </summary>
+        string WeaponUpgrade4 { get; }
+
+        // Properties in this group below are here to match JSON object composition, even though these should not be here.
 
         decimal? ShipMainCaliberReloadTime_76mm_F34_naval_user_cannon { get; }
 
