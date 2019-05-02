@@ -198,7 +198,7 @@ namespace Core.DataBase.Objects
 
             if (_dataRepository.IsClosed)
             {
-                LogDebug(EDataBaseLogMessage.DataRepositoryClosed_CommittingAborted);
+                LogWarn(EDataBaseLogMessage.DataRepositoryClosed_CommittingAborted);
                 return;
             }
 

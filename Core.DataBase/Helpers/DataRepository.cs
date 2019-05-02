@@ -126,7 +126,10 @@ namespace Core.DataBase.Helpers
             using (var transaction = session.BeginTransaction())
             {
                 foreach (var instance in NewObjects.ToList())
+                {
+                    LogTrace(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
                     session.Save(instance);
+                }
 
                 transaction.Commit();
             }

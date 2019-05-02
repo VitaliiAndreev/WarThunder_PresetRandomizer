@@ -66,7 +66,7 @@ namespace Core.DataBase.Enumerations.Logger
         /// <para> 1: object. </para>
         /// </summary>
         public const string PreparingToCommitChangesTo = _PreparingTo + _commit + _changes + _to + _SPC_FMT + _FS;
-        public const string NotAssignedToDataRepository_CommittingAborted = _Not + _Assigned + _to + _dataRepository + _FS_SPC + _CommittingAborted;
+
         public const string DataRepositoryClosed_CommittingAborted = _The + _dataRepository + _is + _closed + _FS_SPC + _CommittingAborted;
 
         #endregion PersistentObject
