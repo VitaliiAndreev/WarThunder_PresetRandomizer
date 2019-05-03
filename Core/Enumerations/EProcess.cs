@@ -1,5 +1,6 @@
 ﻿namespace Core.Enumerations
 {
+    /// <summary> Operating system processes. </summary>
     public class EProcess
     {
         private const string _c = @"C:\";

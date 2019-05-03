@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\JsonDeserializationException.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Interfaces\IJsonHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
