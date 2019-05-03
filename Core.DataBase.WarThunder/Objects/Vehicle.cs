@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.Enumerations;
 using Core.Enumerations.DataBase;
 using NHibernate.Mapping.Attributes;
@@ -93,7 +94,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// or are purchased with Golden Eagles, with discount (see <see cref="DiscountedPurchaseCostInGold"/>) if some research progress is made.
         /// </para>
         /// </summary>
-        public virtual string ResearchUnlockType { get; protected set; }
+        [Property()] public virtual string ResearchUnlockType { get; protected set; }
 
         /// <summary> The amount of research required to unlock the vehicle. </summary>
         [Property()] public virtual int? UnlockCostInResearch { get; protected set; }
@@ -927,6 +928,16 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Constructors
+
+        protected override void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
+        {
+            base.InitializeWithDeserializedJson(instanceDeserializedFromJson);
+
+            if (instanceDeserializedFromJson is VehicleDeserializedFromJson deserializedVehicle)
+            {
+                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
+            }
+        }
 
         /// <summary> Calculates the vehicle's battle rating from the obsolete <see cref="EconomicRankInArcade"/>, <see cref="EconomicRankInRealistic"/>, or <see cref="EconomicRankInSimulation"/>. </summary>
         /// <param name="economicRank"> The vehicle's <see cref="EconomicRankInArcade"/>, <see cref="EconomicRankInRealistic"/>, or <see cref="EconomicRankInSimulation"/> to calculate the battle rating from. </param>

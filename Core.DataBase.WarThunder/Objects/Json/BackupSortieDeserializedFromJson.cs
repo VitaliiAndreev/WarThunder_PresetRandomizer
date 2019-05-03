@@ -11,7 +11,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int PurchaseCostInSilver { get; set; }
 
         [JsonProperty("costGold", Required = Required.Always)]
-        public int? PurchaseCostInGold { get; set; }
+        public int PurchaseCostInGold { get; set; }
 
         #endregion Required
     }
