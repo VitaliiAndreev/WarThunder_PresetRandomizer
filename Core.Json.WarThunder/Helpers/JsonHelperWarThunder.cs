@@ -1,10 +1,9 @@
-﻿using Core.DataBase.WarThunder.Objects.Json;
-using Core.Enumerations;
+﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Core.Json.Helpers
 {
@@ -23,47 +22,36 @@ namespace Core.Json.Helpers
         #endregion Constructors
         #region Methods: Deserialization
 
-        /// <summary>
-        /// Deserializes JSON data and creates a collection of vehicle instances from it.
-        /// A custom implimentation is necessary because entities are not defined uniformly in "wpcost.blkx" and a singular approach is not enough to successfully deserialize the entirety of the the vehicle set.
-        /// </summary>
-        /// <param name="jsonData"> The JSON data to deserialize. </param>
-        /// <returns></returns>
-        public Dictionary<string, VehicleDeserializedFromJson> DeserializeVehicleList(string jsonData)
+        private IEnumerable<T> SetGaijinIds<T>(Dictionary<string, T> dictionary) where T : DeserializedFromJson
         {
-            var entities = DeserializeList<dynamic>(jsonData);
-            var vehicles = new List<VehicleDeserializedFromJson>();
+            foreach (var pair in dictionary)
+                pair.Value.GaijinId = pair.Key;
 
-            foreach (var entity in entities)
+            return dictionary.Values;
+        }
+
+        /// <summary> Deserializes given JSON data into instances of interim non-persistent objects. </summary>
+        /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
+        /// <param name="jsonData"> JSON data to deserialize. </param>
+        /// <returns></returns>
+        public IEnumerable<T> DeserializeList<T>(string jsonData) where T: DeserializedFromJson =>
+            SetGaijinIds(DeserializeDictionary<T>(jsonData));
+
+        /// <summary> Deserializes given JSON data into instances persistent objects. </summary>
+        /// <typeparam name="T"> A generic type of persistent objects. </typeparam>
+        /// <param name="dataRepository"> The data repository to assign new instances to. </param>
+        /// <param name="jsonData"> JSON data to deserialize. </param>
+        /// <returns></returns>
+        public IEnumerable<T> DeserializeList<T>(IDataRepository dataRepository, string jsonData) where T : PersistentObjectWithIdAndGaijinId
+        {
+            var deserializedInstances = new List<T>();
+
+            if (typeof(T) == typeof(Vehicle))
             {
-                VehicleDeserializedFromJson deserialize(string jsonEntity)
-                {
-                    var vehicle = DeserializeObject<VehicleDeserializedFromJson>(jsonEntity);
-                    vehicle.GaijinId = entity.Key;
-                    return vehicle;
-                }
-
-                if (entity.Value is JObject jsonObject)
-                {
-                    vehicles.Add(deserialize(jsonObject.ToString()));
-                }
-                else if (entity.Value is JArray jsonArray)
-                {
-                    var rebuiltJsonObject = new JObject();
-
-                    foreach (var fragmentedEntity in jsonArray)
-                    {
-                        foreach (var childToken in fragmentedEntity.Children())
-                        {
-                            var key = childToken.Path.Split(ECharacter.Period).Last();
-                            if (!rebuiltJsonObject.Properties().Select(property => property.Name).Contains(key))
-                                rebuiltJsonObject.Add(key, childToken.First());
-                        }
-                    }
-                    vehicles.Add(deserialize(rebuiltJsonObject.ToString()));
-                }
+                foreach (var deserializedData in DeserializeList<VehicleDeserializedFromJson>(jsonData))
+                    deserializedInstances.Add(new Vehicle(dataRepository, deserializedData) as T);
             }
-            return vehicles.ToDictionary(vehicle => vehicle.GaijinId);
+            return deserializedInstances;
         }
 
         #endregion Methods: Deserialization

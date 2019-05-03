@@ -11,13 +11,13 @@ namespace Core.Json.Helpers.Interfaces
         /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
         /// <param name="jsonData"> The JSON data to deserialize. </param>
         /// <returns></returns>
-        T DeserializeObject<T>(string jsonData) where T : class, new();
+        T DeserializeObject<T>(string jsonData);
 
         /// <summary> Deserializes JSON data and creates a collection of object instances from it. </summary>
         /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
         /// <param name="jsonData"> The JSON data to deserialize. </param>
         /// <returns> A collection of object instances. </returns>
-        Dictionary<string, T> DeserializeList<T>(string jsonData) where T : class, new();
+        Dictionary<string, T> DeserializeDictionary<T>(string jsonData);
 
         #endregion Methods: Deserialization
     }

@@ -93,14 +93,9 @@ namespace Core.IntegrationTests
 
             // act
             var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
-            var cachedVehicles = _jsonHelper.DeserializeVehicleList(wpCostJson);
+            var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            cachedVehicles.Count().Should().BeGreaterThan(1300);
-            cachedVehicles.All(vehicle => !vehicle.Value.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
-
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
-
-            using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepository(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 void assert(IEnumerable<IVehicle> vehicleCollection)
                 {
@@ -186,16 +181,10 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
                 }
 
-                foreach (var cachedVehicle in cachedVehicles)
-                    new Vehicle(dataRepository, cachedVehicle.Value);
-
-                var vehiclesBeforePersistence = new Vehicle[dataRepository.NewObjects.Count()];
-                dataRepository.NewObjects.CopyTo(vehiclesBeforePersistence, 0);
-
+                var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJson);
                 assert(vehiclesBeforePersistence);
 
                 dataRepository.PersistNewObjects();
-
                 var vehiclesAfterPersistence = dataRepository.Query<IVehicle>();
 
                 // assert
