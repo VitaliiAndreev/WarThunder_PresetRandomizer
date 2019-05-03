@@ -54,8 +54,8 @@ namespace Core.DataBase.WarThunder.Objects
         #region General
 
         /// <summary> The vehicle's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id), Generator = "guid.comb")]
-        public override Guid Id { get; protected set; }
+        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")]
+        public override long Id { get; protected set; }
 
         /// <summary> The vehicle's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
@@ -903,7 +903,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="gaijinId"> The nation's Gaijin ID. </param>
         public Vehicle(IDataRepository dataRepository, string gaijinId)
-            : this(dataRepository, Guid.NewGuid(), gaijinId)
+            : this(dataRepository, -1L, gaijinId)
         {
         }
 
@@ -911,7 +911,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="instanceSerializedFromJson"> A non-persistent instance serialized from JSON data to initialize this instance with. </param>
         public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJson instanceSerializedFromJson)
-            : this(dataRepository, Guid.NewGuid(), instanceSerializedFromJson.GaijinId)
+            : this(dataRepository, -1L, instanceSerializedFromJson.GaijinId)
         {
             InitializeWithDeserializedJson(instanceSerializedFromJson);
         }
@@ -920,7 +920,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The nation's ID. </param>
         /// <param name="gaijinId"> The nation's Gaijin ID. </param>
-        public Vehicle(IDataRepository dataRepository, Guid id, string gaijinId)
+        public Vehicle(IDataRepository dataRepository, long id, string gaijinId)
             : base(dataRepository, id, gaijinId)
         {
             LogCreation();

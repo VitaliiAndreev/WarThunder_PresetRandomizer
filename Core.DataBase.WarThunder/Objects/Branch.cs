@@ -16,8 +16,8 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The branch's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id), Generator = "guid.comb")]
-        public override Guid Id { get; protected set; }
+        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")]
+        public override long Id { get; protected set; }
 
         /// <summary> The branch's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
@@ -44,7 +44,7 @@ namespace Core.Objects
         /// <param name="gaijinId"> The branch's Gaijin ID. </param>
         /// <param name="nation"> The branch's nation. </param>
         public Branch(IDataRepository dataRepository, string gaijinId, INation nation)
-            : this(dataRepository, Guid.NewGuid(), gaijinId, nation)
+            : this(dataRepository, -1L, gaijinId, nation)
         {
         }
 
@@ -53,7 +53,7 @@ namespace Core.Objects
         /// <param name="id"> The branch's ID. </param>
         /// <param name="gaijinId"> The branch's Gaijin ID. </param>
         /// <param name="nation"> The branch's nation. </param>
-        public Branch(IDataRepository dataRepository, Guid id, string gaijinId, INation nation)
+        public Branch(IDataRepository dataRepository, long id, string gaijinId, INation nation)
             : base(dataRepository, id, gaijinId)
         {
             Nation = nation;

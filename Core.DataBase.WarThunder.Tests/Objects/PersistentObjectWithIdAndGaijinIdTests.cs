@@ -18,11 +18,11 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             #region Constructors
 
             public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, string gaijinId)
-                : this(dataRepository, Guid.NewGuid(), gaijinId)
+                : this(dataRepository, -1L, gaijinId)
             {
             }
 
-            public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, Guid id, string gaijinId)
+            public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, long id, string gaijinId)
                 : base(dataRepository, id, gaijinId)
             {
             }

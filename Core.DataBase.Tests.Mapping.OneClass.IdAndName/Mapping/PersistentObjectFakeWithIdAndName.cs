@@ -7,8 +7,8 @@ namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
     [Class(Table = nameof(PersistentObjectFakeWithIdAndName))]
     public class PersistentObjectFakeWithIdAndName : PersistentObjectFakeWithId
     {
-        [Id(Column = nameof(Id), TypeType = typeof(Guid), Name = nameof(Id))]
-        public override Guid Id { get; protected set; }
+        [Id(Column = nameof(Id), TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")]
+        public override long Id { get; protected set; }
 
         [Property()]
         public virtual string Name { get; protected set; }
@@ -19,7 +19,7 @@ namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
 
         public PersistentObjectFakeWithIdAndName(string name)
         {
-            Id = Guid.NewGuid();
+            Id = -1L;
             Name = name;
         }
     }

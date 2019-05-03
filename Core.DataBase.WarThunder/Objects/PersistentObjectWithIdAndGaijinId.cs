@@ -32,7 +32,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="gaijinId"> The object's Gaijin ID. </param>
         protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, string gaijinId)
-            : this(dataRepository, Guid.NewGuid(), gaijinId)
+            : this(dataRepository, -1L, gaijinId)
         {
         }
 
@@ -40,7 +40,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The object's ID. </param>
         /// <param name="gaijinId"> The object's Gaijin ID. </param>
-        protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, Guid id, string gaijinId)
+        protected PersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, long id, string gaijinId)
             : base(dataRepository, id)
         {
             GaijinId = gaijinId;

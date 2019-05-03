@@ -6,6 +6,6 @@ namespace Core.DataBase.Objects.Interfaces
     public interface IPersistentObjectWithId : IPersistentObject
     {
         /// <summary> The object's ID. </summary>
-        Guid Id { get; }
+        long Id { get; }
     }
 }

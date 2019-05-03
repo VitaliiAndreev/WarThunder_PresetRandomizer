@@ -17,11 +17,11 @@ namespace Core.DataBase.Tests.Objects
             #region Constructors
 
             public MockPersistentObjectWithId(IDataRepository dataRepository)
-                : this(dataRepository, Guid.NewGuid())
+                : this(dataRepository, -1L)
             {
             }
 
-            public MockPersistentObjectWithId(IDataRepository dataRepository, Guid id)
+            public MockPersistentObjectWithId(IDataRepository dataRepository, long id)
                 : base(dataRepository, id)
             {
             }
@@ -63,8 +63,8 @@ namespace Core.DataBase.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_DifferentId_ShouldBeFalse()
         {
             // arrange
-            var mockPersistentObjectA = new MockPersistentObjectWithId(Presets.MockDataRepository.Object);
-            var mockPersistentObjectB = new MockPersistentObjectWithId(Presets.MockDataRepository.Object);
+            var mockPersistentObjectA = new MockPersistentObjectWithId(Presets.MockDataRepository.Object, 0L);
+            var mockPersistentObjectB = new MockPersistentObjectWithId(Presets.MockDataRepository.Object, 1L);
 
             // act
             var isEquivalent = mockPersistentObjectA.IsEquivalentTo(mockPersistentObjectB, 2);

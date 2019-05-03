@@ -16,8 +16,8 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The nation's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(Guid), Name = nameof(Id), Generator = "guid.comb")] // The type and name of the identificator column have to be explicitly specified.
-        public override Guid Id { get; protected set; }
+        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")] // The type and name of the identificator column have to be explicitly specified.
+        public override long Id { get; protected set; }
 
         /// <summary> The nation's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
@@ -47,7 +47,7 @@ namespace Core.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="gaijinId"> The nation's Gaijin ID. </param>
         public Nation(IDataRepository dataRepository, string gaijinId)
-            : this(dataRepository, Guid.NewGuid(), gaijinId)
+            : this(dataRepository, -1L, gaijinId)
         {
         }
 
@@ -55,7 +55,7 @@ namespace Core.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The nation's ID. </param>
         /// <param name="gaijinId"> The nation's Gaijin ID. </param>
-        public Nation(IDataRepository dataRepository, Guid id, string gaijinId)
+        public Nation(IDataRepository dataRepository, long id, string gaijinId)
             : base(dataRepository, id, gaijinId)
         {
             LogCreation();

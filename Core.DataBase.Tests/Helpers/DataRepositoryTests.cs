@@ -36,7 +36,7 @@ namespace Core.DataBase.Tests.Helpers
 
             using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.AssemblyWithMappingBase), Presets.Logger))
             {
-                var id = Guid.NewGuid();
+                var id = -1L;
 
                 var fakeObject = new PersistentObjectFakeWithId(id);
                 fakeObject.InitializeNonPersistentFields(dataRepository);
