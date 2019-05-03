@@ -8,6 +8,8 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
+        #region IsEmpty(), HasSingle(), HasMany()
+
         /// <summary> Fluently checks whether a collection is empty. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="collection"> A source collection. </param>
@@ -15,6 +17,21 @@ namespace Core.Extensions
         public static bool IsEmpty<T>(this IEnumerable<T> collection) =>
             !collection.Any();
 
+        /// <summary> Fluently checks whether a collection contains exactly one item. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <param name="collection"> A source collection. </param>
+        /// <returns></returns>
+        public static bool HasSingle<T>(this IEnumerable<T> collection) =>
+            collection.Count() == 1;
+
+        /// <summary> Fluently checks whether a collection contains more than one item. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <param name="collection"> A source collection. </param>
+        /// <returns></returns>
+        public static bool HasSeveral<T>(this IEnumerable<T> collection) =>
+            collection.Count() > 1;
+
+        #endregion IsEmpty(), HasSingle(), HasMany()
         #region SkipLast()
 
         /// <summary> Returns all items from a collection except the last one. </summary>
