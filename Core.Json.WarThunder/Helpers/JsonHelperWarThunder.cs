@@ -22,7 +22,7 @@ namespace Core.Json.Helpers
         #endregion Constructors
         #region Methods: Deserialization
 
-        private IEnumerable<T> SetGaijinIds<T>(Dictionary<string, T> dictionary) where T : DeserializedFromJson
+        private IEnumerable<T> ConvertToCollectionWithGaijinIdsSet<T>(Dictionary<string, T> dictionary) where T : DeserializedFromJson
         {
             foreach (var pair in dictionary)
                 pair.Value.GaijinId = pair.Key;
@@ -35,7 +35,7 @@ namespace Core.Json.Helpers
         /// <param name="jsonData"> JSON data to deserialize. </param>
         /// <returns></returns>
         public IEnumerable<T> DeserializeList<T>(string jsonData) where T: DeserializedFromJson =>
-            SetGaijinIds(DeserializeDictionary<T>(jsonData));
+            ConvertToCollectionWithGaijinIdsSet(DeserializeDictionary<T>(jsonData));
 
         /// <summary> Deserializes given JSON data into instances persistent objects. </summary>
         /// <typeparam name="T"> A generic type of persistent objects. </typeparam>
