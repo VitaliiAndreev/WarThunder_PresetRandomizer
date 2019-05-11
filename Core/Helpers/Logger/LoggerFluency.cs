@@ -75,7 +75,7 @@ namespace Core.Helpers.Logger
         /// <summary> Throws the specified exception after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
         /// <param name="logMessage"> The nessage to log. </param>
         /// <param name="exception"> The exception to throw. </param>
-        private void LogErrorAndThrow(string logMessage, Exception exception)
+        public void LogErrorAndThrow(string logMessage, Exception exception)
         {
             LogError(logMessage, exception);
             throw exception;
