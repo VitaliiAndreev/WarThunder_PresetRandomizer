@@ -72,17 +72,21 @@ namespace Core.Helpers.Logger
         #endregion Methods: Logging
         #region Methods: Fluency
 
+        /// <summary> Throws the specified exception after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
+        /// <param name="logMessage"> The nessage to log. </param>
+        /// <param name="exception"> The exception to throw. </param>
+        private void LogErrorAndThrow(string logMessage, Exception exception)
+        {
+            LogError(logMessage, exception);
+            throw exception;
+        }
+
         /// <summary> Throws an exception of the specified type after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
         /// <typeparam name="T"> The type of the exception. </typeparam>
         /// <param name="exceptionMessage"> The exception message. </param>
         /// <param name="logMessage"> The nessage to log. </param>
-        public void LogErrorAndThrow<T>(string exceptionMessage, string logMessage) where T : Exception
-        {
-            var exception = Activator.CreateInstance(typeof(T), exceptionMessage) as T;
-
-            LogError(logMessage, exception);
-            throw exception;
-        }
+        public void LogErrorAndThrow<T>(string exceptionMessage, string logMessage) where T : Exception =>
+            LogErrorAndThrow(logMessage, Activator.CreateInstance(typeof(T), exceptionMessage) as T);
 
         #endregion Methods: Fluency
 
