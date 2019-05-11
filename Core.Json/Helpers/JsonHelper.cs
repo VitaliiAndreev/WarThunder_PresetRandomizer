@@ -105,7 +105,7 @@ namespace Core.Json.Helpers
         /// </summary>
         /// <param name="container"> The JSON data to standardize. </param>
         /// <returns></returns>
-        private Dictionary<string, JObject> StandardizeObjects(string jsonData)
+        private IDictionary<string, JObject> StandardizeObjects(string jsonData)
         {
             var entities = DeserializeDictionary<dynamic>(jsonData);
             var standardizedJsonObjects = new Dictionary<string, JObject>();
@@ -148,7 +148,7 @@ namespace Core.Json.Helpers
         /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
         /// <param name="jsonData"> The JSON data to deserialize. </param>
         /// <returns> A collection of object instances. </returns>
-        public virtual Dictionary<string, T> DeserializeDictionary<T>(string jsonData)
+        public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonData)
         {
             LogDebug(ECoreLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonData.Count(), typeof(T).Name));
             var deserializedInstances = new Dictionary<string, T>();

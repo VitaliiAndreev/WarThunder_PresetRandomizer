@@ -31,7 +31,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         private readonly IFileManager _fileManager;
 
         /// <summary> A map of unpacking tool file names onto file extensions. </summary>
-        private readonly Dictionary<string, string> _toolFileNames;
+        private readonly IDictionary<string, string> _toolFileNames;
 
         #endregion Fields
         #region Constructors

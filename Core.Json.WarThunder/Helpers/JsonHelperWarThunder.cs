@@ -22,7 +22,7 @@ namespace Core.Json.Helpers
         #endregion Constructors
         #region Methods: Deserialization
 
-        private IEnumerable<T> ConvertToCollectionWithGaijinIdsSet<T>(Dictionary<string, T> dictionary) where T : DeserializedFromJson
+        private IEnumerable<T> ConvertToCollectionWithGaijinIdsSet<T>(IDictionary<string, T> dictionary) where T : DeserializedFromJson
         {
             foreach (var pair in dictionary)
                 pair.Value.GaijinId = pair.Key;
