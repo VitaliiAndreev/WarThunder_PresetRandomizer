@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\JsonDeserializationException.cs" />
+    <Compile Include="Extensions\JArrayExtensions.cs" />
     <Compile Include="Extensions\JsonTextReaderExtensions.cs" />
     <Compile Include="Extensions\JTokenExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IJsonHelper.cs" />
