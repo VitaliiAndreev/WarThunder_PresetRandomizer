@@ -253,6 +253,7 @@
         protected const string _raw = " raw";
         protected const string _Read = "Read";
         protected const string _read = " read";
+        protected const string _reader = _read + "er";
         protected const string _Reading = _Read + "ing";
         protected const string _reading = _read + "ing";
         protected const string _repository = " repository";
@@ -278,6 +279,7 @@
         protected const string _source = " source";
         protected const string _specified = " specified";
         protected const string _starts = " starts";
+        protected const string _stream = " stream";
         protected const string _string = " string";
         protected const string _subdirectories = " subdirectories";
         protected const string _subfolders = " subfolders";
@@ -293,6 +295,7 @@
         protected const string _NOSPC_the = "the";
 
         protected const string _test = " test";
+        protected const string _text = " text";
         protected const string _The = "The";
         protected const string _TheDirectory_SPC_FMT_Q = _The + _directory + _SPC_FMT_Q;
         protected const string _the = _SPC + _NOSPC_the;
@@ -497,7 +500,17 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
+        public const string CreatingStreamReader = _Creating + _a + _stream + _reader + _from + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
+        /// </summary>
         public const string Reading = _Reading + _SPC_FMT_Q + _FS;
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / etc. </para>
+        /// </summary>
+        public const string CreatedStreamReader = _A + _stream + _reader + _has_been + _created + _from + _SPC_FMT_Q + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
