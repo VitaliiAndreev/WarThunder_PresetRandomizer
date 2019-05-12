@@ -5,19 +5,19 @@ namespace Core.Helpers.Interfaces
     /// <summary> Provides methods to read files. </summary>
     public interface IFileReader
     {
-        #region Methods: CreateStreamReader()
+        #region Methods: CreateTextReader()
 
-        /// <summary> Creates a stream reader from the file under the specified path. </summary>
+        /// <summary> Creates a text reader from the file under the specified path. </summary>
         /// <param name="path"> The full path to the file. </param>
         /// <returns></returns>
-        StreamReader CreateStreamReader(string path);
+        TextReader CreateTextReader(string path);
 
-        /// <summary> Creates a stream reader from the specified file. </summary>
-        /// <param name="file"> The file to create a stream reader with. </param>
+        /// <summary> Creates a text reader from the specified file. </summary>
+        /// <param name="file"> The file to create a text reader with. </param>
         /// <returns></returns>
-        StreamReader CreateStreamReader(FileInfo file);
+        TextReader CreateTextReader(FileInfo file);
 
-        #endregion Methods: CreateStreamReader()
+        #endregion Methods: CreateTextReader()
         #region Methods: Read()
 
         /// <summary> Reads contents of the file under the specified path. </summary>

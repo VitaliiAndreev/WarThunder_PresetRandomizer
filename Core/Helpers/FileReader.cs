@@ -22,18 +22,18 @@ namespace Core.Helpers
         }
 
         #endregion Constructors
-        #region Methods: CreateStreamReader()
+        #region Methods: CreateTextReader()
 
-        /// <summary> Creates a stream reader from the file under the specified path. </summary>
+        /// <summary> Creates a text reader from the file under the specified path. </summary>
         /// <param name="path"> The full path to the file. </param>
         /// <returns></returns>
-        public StreamReader CreateStreamReader(string path) =>
-            CreateStreamReader(new FileInfo(path));
+        public TextReader CreateTextReader(string path) =>
+            CreateTextReader(new FileInfo(path));
 
-        /// <summary> Creates a stream reader from the specified file. </summary>
-        /// <param name="file"> The file to create a stream reader with. </param>
+        /// <summary> Creates a text reader from the specified file. </summary>
+        /// <param name="file"> The file to create a text reader with. </param>
         /// <returns></returns>
-        public StreamReader CreateStreamReader(FileInfo file)
+        public TextReader CreateTextReader(FileInfo file)
         {
             if (!file.Exists)
             {
@@ -54,7 +54,7 @@ namespace Core.Helpers
             return streamReader;
         }
 
-        #endregion Methods: CreateStreamReader()
+        #endregion Methods: CreateTextReader()
         #region Methods: Read()
 
         /// <summary> Reads contents of the file under the specified path. </summary>
@@ -72,8 +72,8 @@ namespace Core.Helpers
 
             LogDebug(ECoreLogMessage.Reading.FormatFluently(file.FullName));
 
-            using (var streamReader = CreateStreamReader(file.FullName))
-                fileContents = streamReader.ReadToEnd();
+            using (var textReader = CreateTextReader(file.FullName))
+                fileContents = textReader.ReadToEnd();
 
             LogDebug(ECoreLogMessage.ReadCharacters.FormatFluently(fileContents.Count()));
 
