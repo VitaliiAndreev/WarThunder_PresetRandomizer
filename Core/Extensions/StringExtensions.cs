@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -129,5 +130,20 @@ namespace Core.Extensions
         }
 
         #endregion Methods: Formatting
+
+        /// <summary> Creates a new text reader with the given string. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <returns></returns>
+        public static TextReader CreateTextReader(this string sourceString)
+        {
+            var memoryStream = new MemoryStream();
+            var streamWriter = new StreamWriter(memoryStream);
+
+            streamWriter.Write(sourceString);
+            streamWriter.Flush();
+            memoryStream.Position = 0;
+
+            return new StreamReader(memoryStream);
+        }
     }
 }
