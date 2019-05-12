@@ -588,7 +588,7 @@
         public const string DeserializedInstances = _FMT + _instances + _have + _been + _deserialized + _FS;
 
         public const string JsonStringEmpty = _The + _JSON + _string + _is + _empty + _FS;
-        public const string ErrorDeserializingJsonData = _Error + _deserializing + _JSON + _data + _FS;
+        public const string ErrorDeserializingJsonText = _Error + _deserializing + _JSON + _text + _FS;
 
         #endregion JSON Helper
         #region Parser
