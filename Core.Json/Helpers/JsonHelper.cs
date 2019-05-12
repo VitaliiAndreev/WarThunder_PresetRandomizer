@@ -122,7 +122,7 @@ namespace Core.Json.Helpers
             if (entity is JContainer container)
                 return StandardizeContainer(container);
             else
-                return null;
+                return entity;
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Core.Json.Helpers
                 return rebuiltJsonObject;
             }
             else
-                return null;
+                throw new NotImplementedException();
         }
 
         /// <summary>
