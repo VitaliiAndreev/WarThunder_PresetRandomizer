@@ -9,7 +9,7 @@ namespace Core.Json.Extensions
         /// <summary> Converts the JSON token into a JSON array with the token put into it. </summary>
         /// <param name="jsonToken"> A JSON token to convert. </param>
         /// <returns></returns>
-        public static JArray CovertToArray(this JToken jsonToken)
+        public static JArray ConvertIntoArray(this JToken jsonToken)
         {
             var jsonArray = new JArray();
 
