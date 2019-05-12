@@ -34,25 +34,25 @@ namespace Core.Json.Helpers
             return dictionary.Values;
         }
 
-        /// <summary> Deserializes given JSON data into instances of interim non-persistent objects. </summary>
+        /// <summary> Deserializes given JSON text into instances of interim non-persistent objects. </summary>
         /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
-        /// <param name="jsonData"> JSON data to deserialize. </param>
+        /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        public IEnumerable<T> DeserializeList<T>(string jsonData) where T: DeserializedFromJson =>
-            SetGaijinIdsAndReturnDictionaryValues(DeserializeDictionary<T>(jsonData));
+        public IEnumerable<T> DeserializeList<T>(string jsonText) where T: DeserializedFromJson =>
+            SetGaijinIdsAndReturnDictionaryValues(DeserializeDictionary<T>(jsonText));
 
-        /// <summary> Deserializes given JSON data into instances persistent objects. </summary>
+        /// <summary> Deserializes given JSON text into instances persistent objects. </summary>
         /// <typeparam name="T"> A generic type of persistent objects. </typeparam>
         /// <param name="dataRepository"> The data repository to assign new instances to. </param>
-        /// <param name="jsonData"> JSON data to deserialize. </param>
+        /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        public IEnumerable<T> DeserializeList<T>(IDataRepository dataRepository, string jsonData) where T : PersistentObjectWithIdAndGaijinId
+        public IEnumerable<T> DeserializeList<T>(IDataRepository dataRepository, string jsonText) where T : PersistentObjectWithIdAndGaijinId
         {
             var deserializedInstances = new List<T>();
 
             if (typeof(T) == typeof(Vehicle))
             {
-                foreach (var deserializedData in DeserializeList<VehicleDeserializedFromJson>(jsonData))
+                foreach (var deserializedData in DeserializeList<VehicleDeserializedFromJson>(jsonText))
                     deserializedInstances.Add(new Vehicle(dataRepository, deserializedData) as T);
             }
             return deserializedInstances;
