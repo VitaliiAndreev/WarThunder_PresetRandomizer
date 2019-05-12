@@ -48,6 +48,7 @@
     <Compile Include="Extensions\JArrayExtensions.cs" />
     <Compile Include="Extensions\JsonTextReaderExtensions.cs" />
     <Compile Include="Extensions\JTokenExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IJsonHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
