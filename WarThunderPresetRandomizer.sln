@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.UnpackingToolsIntegrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IntegrationTests", "Core.IntegrationTests\Core.IntegrationTests.csproj", "{315966B6-2115-4CCD-AD3F-8E0D2C0051DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Json.Tests", "Core.Json.Tests\Core.Json.Tests.csproj", "{43EB404B-6A49-46C2-AD58-D8578FCB460A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{315966B6-2115-4CCD-AD3F-8E0D2C0051DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{315966B6-2115-4CCD-AD3F-8E0D2C0051DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{315966B6-2115-4CCD-AD3F-8E0D2C0051DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

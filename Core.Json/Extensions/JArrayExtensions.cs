@@ -12,7 +12,7 @@ namespace Core.Json.Extensions
         {
             if (jsonToken.Type == JTokenType.Array)
             {
-                foreach (var jsonChildToken in jsonToken.Children())
+                foreach (var jsonChildToken in jsonToken)
                     jsonArray.Add(jsonChildToken);
             }
             else
