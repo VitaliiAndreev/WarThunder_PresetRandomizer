@@ -356,7 +356,7 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual decimal? MachineGunReloadTime { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? CannonReloadTime { get; protected set; }
+        [Property()] public virtual List<decimal> CannonReloadTime { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual decimal? GunnerReloadTime { get; protected set; }

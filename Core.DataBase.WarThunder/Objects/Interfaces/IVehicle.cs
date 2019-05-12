@@ -329,7 +329,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         decimal? MachineGunReloadTime { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? CannonReloadTime { get; }
+        List<decimal> CannonReloadTime { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal? GunnerReloadTime { get; }

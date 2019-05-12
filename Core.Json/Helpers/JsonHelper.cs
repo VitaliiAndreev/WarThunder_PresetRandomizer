@@ -4,6 +4,7 @@ using Core.Helpers.Logger;
 using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Exceptions;
+using Core.Json.Extensions;
 using Core.Json.Helpers.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -99,102 +100,147 @@ namespace Core.Json.Helpers
         }
 
         #endregion Methods: GetPotentiallyDuplicatePropertyNames()
+        #region Methods: Deserialization with Standardization
 
         /// <summary>
-        /// Standardizes JSON text of a single object.
+        /// Deserializes and standardizes JSON text into a JSON object.
         /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
         /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
         /// </summary>
-        /// <param name="jsonData"> The JSON data to standardize. </param>
+        /// <param name="jsonText"> The JSON text to standardize. </param>
         /// <returns></returns>
-        private JObject StandardizeObject(string jsonData) =>
-            StandardizeEntity(DeserializeObject<dynamic>(jsonData));
+        private JObject StandardizeAndDeserializeObject(string jsonText)
+        {
+            var entity = DeserializeObject<dynamic>(jsonText);
+
+            return StandardizeAndDeserializeObject(entity, GetPotentiallyDuplicatePropertyNames(entity));
+        }
 
         /// <summary>
-        /// Standardizes JSON text.
+        /// Deserializes and standardizes the specified JSON entity into a JSON object.
         /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
         /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
         /// </summary>
         /// <param name="entity"> The deserialized JSON entity. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
         /// <returns></returns>
-        private JObject StandardizeEntity(dynamic entity)
+        private JObject StandardizeAndDeserializeObject(dynamic entity, IEnumerable<string> duplicatePropertyNames)
         {
             if (entity is JContainer container)
-                return StandardizeContainer(container);
+                return StandardizeContainer(container, duplicatePropertyNames);
             else
                 return entity;
         }
 
+        /// <summary> Handles potentially duplicate property names in the specified JSON object. </summary>
+        /// <param name="jsonObject"> The JSON object to process. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
+        /// <returns></returns>
+        private JObject HandlePotentiallyDuplicatePropertyNames(JObject jsonObject, IEnumerable<string> duplicatePropertyNames)
+        {
+            foreach (var jsonProperty in jsonObject)
+            {
+                if (jsonProperty.Key.IsIn(duplicatePropertyNames))
+                    jsonProperty.Value.ConvertIntoArray();
+            }
+            return jsonObject;
+        }
+
+        /// <summary> Handles potentially duplicate property names in the specified JSON array. </summary>
+        /// <param name="jsonArray"> The JSON array to process. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
+        /// <returns></returns>
+        private JObject HandlePotentiallyDuplicatePropertyNames(JArray jsonArray, IEnumerable<string> duplicatePropertyNames)
+        {
+            var rebuiltJsonObject = new JObject();
+
+            foreach (var fragmentedJsonToken in jsonArray)
+            {
+                if (fragmentedJsonToken is JObject fragmentedJsonObject)
+                {
+                    foreach (var jsonProperty in fragmentedJsonObject)
+                    {
+                        if (jsonProperty.Key.IsIn(duplicatePropertyNames))
+                        {
+                            if (rebuiltJsonObject.Properties().Select(property => property.Name).Contains(jsonProperty.Key))
+                            {
+                                if (rebuiltJsonObject[jsonProperty.Key] is JArray existingJsonArray)
+                                    existingJsonArray.Add(jsonProperty.Value);
+                                else
+                                    throw new NotImplementedException();
+                            }
+                            else
+                                rebuiltJsonObject.Add(new JProperty(jsonProperty.Key, new JArray(jsonProperty.Value)));
+                        }
+                        else
+                        {
+                            rebuiltJsonObject.Add(new JProperty(jsonProperty.Key, jsonProperty.Value));
+                        }
+                    }
+                }
+                else
+                    throw new NotImplementedException();
+            }
+            return rebuiltJsonObject;
+        }
+
         /// <summary>
-        /// Standardizes JSON text of a single object.
+        /// Standardizes the specified JSON container into a JSON object.
         /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
         /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
         /// </summary>
-        /// <param name="container"> The JSON container to standardize. </param>
+        /// <param name="jsonContainer"> The JSON container to standardize. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
         /// <returns></returns>
-        private JObject StandardizeContainer(JContainer container)
+        private JObject StandardizeContainer(JContainer jsonContainer, IEnumerable<string> duplicatePropertyNames)
         {
-            if (container is JObject jsonObject)
-            {
-                return jsonObject;
-            }
-            else if (container is JArray jsonArray)
-            {
-                var rebuiltJsonObject = new JObject();
-
-                foreach (var fragmentedEntity in jsonArray)
-                {
-                    foreach (var childToken in fragmentedEntity.Children())
-                    {
-                        var key = childToken.Path.Split(ECharacter.Period).Last();
-                        if (!rebuiltJsonObject.Properties().Select(property => property.Name).Contains(key))
-                            rebuiltJsonObject.Add(key, childToken.First());
-                    }
-                }
-                return rebuiltJsonObject;
-            }
+            if (jsonContainer is JObject jsonObject)
+                return HandlePotentiallyDuplicatePropertyNames(jsonObject, duplicatePropertyNames);
+            else if (jsonContainer is JArray jsonArray)
+                return HandlePotentiallyDuplicatePropertyNames(jsonArray, duplicatePropertyNames);
             else
                 throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Standardizes JSON text of a collection of objects.
+        /// Deserializes and standardizes JSON text into a dictionary of JSON objects.
         /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
         /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
         /// </summary>
-        /// <param name="container"> The JSON text to standardize. </param>
+        /// <param name="jsonText"> The JSON text to standardize. </param>
         /// <returns></returns>
-        private IDictionary<string, JObject> StandardizeObjects(string jsonText)
+        private IDictionary<string, JObject> StandardizeAndDeserializeObjects(string jsonText)
         {
             var entities = DeserializeDictionary<dynamic>(jsonText);
             var standardizedJsonObjects = new Dictionary<string, JObject>();
+            var duplicatePropertyNames = GetPotentiallyDuplicatePropertyNames(entities);
 
-            foreach (var entity in entities)
-                standardizedJsonObjects.Add(entity.Key, StandardizeEntity(entity.Value));
+            foreach (var keyValuePair in entities)
+                standardizedJsonObjects.Add(keyValuePair.Key, StandardizeAndDeserializeObject(keyValuePair.Value, duplicatePropertyNames));
 
             return standardizedJsonObjects;
         }
 
+        #endregion Methods: Deserialization with Standardization
         #region Methods: Deserialization
 
         /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
         /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
-        /// <param name="jsonData"> The JSON data to deserialize. </param>
+        /// <param name="jsonText"> The JSON text to deserialize. </param>
         /// <returns></returns>
-        public T DeserializeObject<T>(string jsonData)
+        public T DeserializeObject<T>(string jsonText)
         {
-            LogDebug(ECoreLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonData.Count(), typeof(T).Name));
+            LogDebug(ECoreLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
             var deserializedInstance = default(T);
 
             try
             {
-                ThrowIfJsonDataIsInvalid(jsonData);
+                ThrowIfJsonTextIsInvalid(jsonText);
 
-                var standardizedJsonData = typeof(T).Name.Contains(EConstants.ObjectClassName.ToString()) // To avoid cyclical calls of DeserializeObject<dynamic>().
-                    ? jsonData
-                    : StandardizeObject(jsonData).ToString();
-
-                deserializedInstance = JsonConvert.DeserializeObject<T>(standardizedJsonData);
+                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
+                    deserializedInstance = JsonConvert.DeserializeObject<T>(jsonText);
+                else
+                    deserializedInstance = StandardizeAndDeserializeObject(jsonText).ToObject<T>();
             }
             catch (Exception exception)
             {
@@ -224,9 +270,9 @@ namespace Core.Json.Helpers
                 }
                 else
                 {
-                    foreach (var jsonObject in StandardizeObjects(jsonText))
+                    foreach (var jsonObject in StandardizeAndDeserializeObjects(jsonText))
                     {
-                        var deserializedObject = JsonConvert.DeserializeObject<T>(jsonObject.Value.ToString());
+                        var deserializedObject = jsonObject.Value.ToObject<T>();
                         deserializedInstances.Add(jsonObject.Key, deserializedObject);
                     }
                 }

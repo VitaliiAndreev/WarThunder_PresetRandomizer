@@ -134,7 +134,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.Speed <= 0m).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.CannonReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
