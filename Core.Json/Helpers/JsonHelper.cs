@@ -43,6 +43,62 @@ namespace Core.Json.Helpers
             LogErrorAndThrow(ECoreLogMessage.ErrorDeserializingJsonText, exception);
 
         #endregion Methods: Private
+        #region Methods: GetPotentiallyDuplicatePropertyNames()
+
+        /// <summary> Looks through the specified JSON container and records property names that would occur more than once after standardization. </summary>
+        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
+        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former while values assigned to duplicate property names are combined into arrays. </para>
+        /// <param name="jsonContainer"> The JSON container to search in. </param>
+        /// <returns></returns>
+        private IEnumerable<string> GetPotentiallyDuplicatePropertyNamesInContainer(JContainer jsonContainer)
+        {
+            var duplicatePropertyNames = new List<string>();
+
+            if (jsonContainer is JArray jsonArray)
+            {
+                var propertyNames = jsonArray
+                    .Children()
+                    .OfType<JObject>()
+                    .SelectMany(fragmentedJsonObject => fragmentedJsonObject.Properties().Select(jsonProperty => jsonProperty.Name))
+                ;
+
+                duplicatePropertyNames.AddRange(propertyNames.Where(propertyName => propertyNames.Count(item => item == propertyName) > 1));
+            }
+
+            return duplicatePropertyNames.Distinct();
+        }
+
+        /// <summary> Looks through the specified entity and records property names that would occur more than once after standardization. </summary>
+        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
+        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former while values assigned to duplicate property names are combined into arrays. </para>
+        /// <param name="entity"> The entity to search in. </param>
+        /// <returns></returns>
+        private IEnumerable<string> GetPotentiallyDuplicatePropertyNames(dynamic entity)
+        {
+            var duplicatePropertyNames = new List<string>();
+
+            if (entity is JContainer jsonContainer)
+                duplicatePropertyNames.AddRange(GetPotentiallyDuplicatePropertyNamesInContainer(jsonContainer));
+
+            return duplicatePropertyNames.Distinct();
+        }
+
+        /// <summary> Looks through the specified dictionary of entities and records property names that would occur more than once after standardization. </summary>
+        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
+        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former while values assigned to duplicate property names are combined into arrays. </para>
+        /// <param name="entity"> The dictionary of entities to search in. </param>
+        /// <returns></returns>
+        private IEnumerable<string> GetPotentiallyDuplicatePropertyNames(IDictionary<string, dynamic> entities)
+        {
+            var duplicatePropertyNames = new List<string>();
+
+            foreach (var keyValuePair in entities)
+                duplicatePropertyNames.AddRange(GetPotentiallyDuplicatePropertyNames(keyValuePair.Value));
+
+            return duplicatePropertyNames.Distinct();
+        }
+
+        #endregion Methods: GetPotentiallyDuplicatePropertyNames()
 
         /// <summary>
         /// Standardizes JSON text of a single object.
