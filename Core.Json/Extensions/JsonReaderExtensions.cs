@@ -119,7 +119,7 @@ namespace Core.Json.Extensions
             {
                 existingJsonArray.AddIndividually(newJsonToken);
             }
-            else if (existingJsonToken.Type == JTokenType.Object)
+            else
             {
                 var jsonArray = existingJsonToken.ConvertIntoArray();
                 jsonArray.AddIndividually(newJsonToken);
