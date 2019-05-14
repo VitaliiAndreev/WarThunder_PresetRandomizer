@@ -1,4 +1,5 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
@@ -6,6 +7,7 @@ using Core.UnpackingToolsIntegration.Exceptions;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -36,10 +38,31 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                versionString = rawFileContents.Split("version9:").LastOrDefault()?.Split("11:yup_version")?.FirstOrDefault();
+                var regularExpression = new Regex("(version[0-9]{1,}:[0-9]{1,}.[0-9]{1,}.[0-9]{1,}.[0-9]{1,}:yup_version)");
+                var match = regularExpression.Match(rawFileContents);
 
-                if (versionString is null)
+                if (match is null)
                     throw new YupFileParsingException(ECoreLogMessage.ErrorVersionNotFoundInSourceString);
+
+                var matchStrings = match.Value.Split(ECharacter.Colon);
+
+                var versionParameterNumberString = matchStrings.First().Where(character => character.IsDigitFluently()).StringJoin();
+                var versionParameterNumber = int.Parse(versionParameterNumberString);
+
+                var versionStringRaw = matchStrings[1];
+
+                var yupVersionParameterNumberString = default(string);
+                var yupVersionParameterNumberLength = 0;
+                var yupVersionParameterNumber = default(int);
+
+                do
+                {
+                    yupVersionParameterNumberString = versionStringRaw.TakeLast(++yupVersionParameterNumberLength);
+                    yupVersionParameterNumber = int.Parse(yupVersionParameterNumberString);
+
+                } while (yupVersionParameterNumber <= versionParameterNumber);
+
+                versionString = versionStringRaw.SkipLast(yupVersionParameterNumberString.Count());
             }
             catch (Exception exception)
             {
