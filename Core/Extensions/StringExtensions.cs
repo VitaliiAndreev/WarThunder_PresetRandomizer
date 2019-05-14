@@ -33,6 +33,18 @@ namespace Core.Extensions
         public static bool IsNullOrWhiteSpaceFluently(this string source) =>
             string.IsNullOrWhiteSpace(source);
 
+        /// <summary> Creates a new string from the source by taking the specified amount of characters from the tail end of it. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to take. </param>
+        /// <returns></returns>
+        public static string TakeLast(this string sourceString, int amountOfCharactersToSkip)
+        {
+            if (amountOfCharactersToSkip >= sourceString.Count())
+                return sourceString;
+
+            return sourceString.Substring(sourceString.Length - amountOfCharactersToSkip - 1, amountOfCharactersToSkip);
+        }
+
         /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>
         /// <param name="sourceString"> A source string. </param>
         /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to skip. </param>
