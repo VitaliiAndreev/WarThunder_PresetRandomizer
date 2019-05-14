@@ -1,6 +1,6 @@
-﻿using System;
-using System.IO;
-using Core.DataBase.Tests;
+﻿using Core.DataBase.Tests;
+using Core.Enumerations;
+using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Enumerations;
@@ -10,6 +10,8 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
 
 namespace Core.UnpackingToolsIntegration.Tests.Helpers
 {
@@ -54,7 +56,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         #region Tests: Unpack
 
         [TestMethod]
-        public void Unpack_OutputFolderShouldContainFiles()
+        public void Unpack_Bin_OutputFolderShouldContainFiles()
         {
             // arrange
             var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters);
@@ -64,6 +66,22 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
 
             // assert
             outputDirectory.GetFiles().Should().NotBeEmpty();
+        }
+
+        [TestMethod]
+        public void Unpack_Blkx_OutputFolderShouldContainFiles()
+        {
+            // arrange
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.WorldWarParameters);
+            var binOutputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
+            var blkFile = binOutputDirectory.GetDirectories().First().GetDirectories().First().GetFiles(file => file.Extension.ToLower().Contains(EFileExtension.Blk)).First();
+
+            // act
+            var blkxOutput = new FileInfo(_unpacker.Unpack(blkFile));
+
+            // assert
+            blkxOutput.Exists.Should().BeTrue();
+            blkxOutput.Extension.ToLower().Should().Contain(EFileExtension.Blkx);
         }
 
         #endregion Tests: Unpack
