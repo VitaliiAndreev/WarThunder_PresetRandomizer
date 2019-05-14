@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Extensions\JArrayExtensionsTests.cs" />
     <Compile Include="Extensions\JsonReaderExtensionsTests.cs" />
+    <Compile Include="Helpers\JsonHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,14 @@
     <ProjectReference Include="..\Core.Json\Core.Json.csproj">
       <Project>{2b7a7d01-a40f-4086-8b2c-151e94b0b0b1}</Project>
       <Name>Core.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Tests\Core.Tests.csproj">
+      <Project>{760B95CD-A280-4B45-9C90-AE7301C94961}</Project>
+      <Name>Core.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{2CB4DC66-57B7-4D80-9C43-F3278BF76248}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

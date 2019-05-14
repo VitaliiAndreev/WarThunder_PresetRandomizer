@@ -28,7 +28,7 @@ namespace Core.Json.Helpers
         }
 
         #endregion Constructors
-        #region Methods: Private
+        #region Methods: [Private]
 
         /// <summary> Throws a <see cref="JsonDeserializationException"/> if specified JSON text is not considered valid. </summary>
         /// <param name="jsonText"> JSON text to check. </param>
@@ -43,8 +43,8 @@ namespace Core.Json.Helpers
         private void LogAndRethrow(Exception exception) =>
             LogErrorAndThrow(ECoreLogMessage.ErrorDeserializingJsonText, exception);
 
-        #endregion Methods: Private
-        #region Methods: GetPotentiallyDuplicatePropertyNames()
+        #endregion Methods: [Private]
+        #region Methods: [Private] GetPotentiallyDuplicatePropertyNames()
 
         /// <summary> Looks through the specified JSON container and records property names that would occur more than once after standardization. </summary>
         /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
@@ -99,8 +99,8 @@ namespace Core.Json.Helpers
             return duplicatePropertyNames.Distinct();
         }
 
-        #endregion Methods: GetPotentiallyDuplicatePropertyNames()
-        #region Methods: Deserialization with Standardization
+        #endregion Methods: [Private] GetPotentiallyDuplicatePropertyNames()
+        #region Methods: [Private] Deserialization with Standardization
 
         /// <summary>
         /// Deserializes and standardizes JSON text into a JSON object.
@@ -221,7 +221,7 @@ namespace Core.Json.Helpers
             return standardizedJsonObjects;
         }
 
-        #endregion Methods: Deserialization with Standardization
+        #endregion [Private] Methods: Deserialization with Standardization
         #region Methods: Deserialization
 
         /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
