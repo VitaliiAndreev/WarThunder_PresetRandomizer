@@ -37,8 +37,13 @@ namespace Core.Extensions
         /// <param name="sourceString"> A source string. </param>
         /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to skip. </param>
         /// <returns></returns>
-        public static string SkipLast(this string sourceString, int amountOfCharactersToSkip) =>
-            sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
+        public static string SkipLast(this string sourceString, int amountOfCharactersToSkip)
+        {
+            if (amountOfCharactersToSkip >= sourceString.Count())
+                return string.Empty;
+
+            return sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
+        }
 
         #region Regular Expressions
 
