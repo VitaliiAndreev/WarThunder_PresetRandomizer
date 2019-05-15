@@ -3,7 +3,7 @@
 namespace Core.UnpackingToolsIntegration.Exceptions
 {
     /// <summary> A custom exception to catch when there are errors in selecting appropriate unpackers for given file extensions. </summary>
-    class FileExtensionNotSupportedException : Exception
+    public class FileExtensionNotSupportedException : Exception
     {
         public FileExtensionNotSupportedException()
         {

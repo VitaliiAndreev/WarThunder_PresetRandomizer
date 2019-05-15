@@ -3,7 +3,7 @@
 namespace Core.UnpackingToolsIntegration.Exceptions
 {
     /// <summary> A custom exception to catch when the output directory for file unpacking is not found. </summary>
-    class OutputDirectoryNotFoundException : Exception
+    public class OutputDirectoryNotFoundException : Exception
     {
         public OutputDirectoryNotFoundException()
         {

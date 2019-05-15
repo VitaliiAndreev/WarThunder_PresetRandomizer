@@ -10,6 +10,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         #region Root Folder
 
         private const string _blkx = ECharacterString.Period + EFileExtension.Blkx;
+        private const string _exe = ECharacterString.Period + EFileExtension.Exe;
         private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
         private const string _yup = ECharacterString.Period + EFileExtension.Yup;
 
@@ -23,6 +24,8 @@ namespace Core.UnpackingToolsIntegration.Enumerations
 
         public const string CurrentIntallData = warthunder + _yup;
         public const string PreviousVersionInstallData = warthunder + "_old" + _yup;
+
+        public const string Launcher = "launcher" + _exe;
 
         #endregion Root Folder
         #region CharVromfs

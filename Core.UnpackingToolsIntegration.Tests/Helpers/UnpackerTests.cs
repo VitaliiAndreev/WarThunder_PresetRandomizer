@@ -5,11 +5,13 @@ using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Enumerations;
 using Core.UnpackingToolsIntegration.Enumerations;
+using Core.UnpackingToolsIntegration.Exceptions;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -82,6 +84,19 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
             // assert
             blkxOutput.Exists.Should().BeTrue();
             blkxOutput.Extension.ToLower().Should().Contain(EFileExtension.Blkx);
+        }
+
+        [TestMethod]
+        public void Unpack_Exe_ShouldThrow()
+        {
+            // arrange
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.Launcher);
+
+            // act
+            Action unpack = () => new DirectoryInfo(_unpacker.Unpack(sourceFile));
+
+            // assert
+            unpack.Should().Throw<FileExtensionNotSupportedException>();
         }
 
         #endregion Tests: Unpack
