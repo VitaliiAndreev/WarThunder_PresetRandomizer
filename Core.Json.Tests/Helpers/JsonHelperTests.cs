@@ -4,7 +4,6 @@ using Core.Json.Helpers;
 using Core.Json.Helpers.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace Core.Json.Tests.Helpers
 {
@@ -19,6 +18,11 @@ namespace Core.Json.Tests.Helpers
             public int Property1 { get; set; }
 
             public int[] Array1 { get; set; }
+        }
+
+        private class TestClass_DuplicatesAggregated
+        {
+            public int[] Property1 { get; set; }
         }
 
         #endregion Fake Classes
@@ -58,7 +62,23 @@ namespace Core.Json.Tests.Helpers
 
             // assert
             testObject.Property1.Should().Be(propertyValue1);
-            testObject.Array1.Zip(arrayValue1.ToList(), (left, right) => left == right).All(result => result == true).Should().BeTrue();
+            testObject.Array1.Should().BeEquivalentTo(arrayValue1);
+        }
+
+        [TestMethod]
+        public void DeserializeObject_DuplicatesAggregatedIntoArrays()
+        {
+            // arrange
+            var propertyName1 = "Property1";
+            var propertyValue1 = 17;
+            var propertyValue1d = 42;
+            var jsonObjectText = "[\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1 + "\r\n},\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1d + "\r\n}\r\n]";
+
+            // act
+            var testObject = _jsonHelper.DeserializeObject<TestClass_DuplicatesAggregated>(jsonObjectText);
+
+            // assert
+            testObject.Property1.Should().BeEquivalentTo(new int[] { propertyValue1, propertyValue1d });
         }
 
         #endregion Tests: DeserializeObject()
