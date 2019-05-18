@@ -66,6 +66,12 @@ namespace Core.Json.Helpers
                 duplicatePropertyNames.AddRange(propertyNames.Where(propertyName => propertyNames.Count(item => item == propertyName) > 1));
             }
 
+            foreach (var jsonToken in jsonContainer)
+            {
+                if (jsonToken is JContainer childJsonContainer)
+                    duplicatePropertyNames.AddRange(GetPotentiallyDuplicatePropertyNamesInContainer(childJsonContainer));
+            }
+
             return duplicatePropertyNames.Distinct();
         }
 
@@ -106,21 +112,22 @@ namespace Core.Json.Helpers
         /// <param name="jsonObject"> The JSON object to process. </param>
         /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
         /// <returns></returns>
-        private JObject HandlePotentiallyDuplicatePropertyNames(JObject jsonObject, IEnumerable<string> duplicatePropertyNames)
+        private JObject StandardizeObject(JObject jsonObject, IEnumerable<string> duplicatePropertyNames)
         {
-            foreach (var jsonProperty in jsonObject)
+            foreach (var jsonPropertyName in jsonObject.GetPropertyNames())
             {
-                if (jsonProperty.Key.IsIn(duplicatePropertyNames))
-                    jsonProperty.Value.ConvertIntoArray();
+                var jsonToken = jsonObject[jsonPropertyName];
+
+                if (jsonPropertyName.IsIn(duplicatePropertyNames))
+                    jsonToken.ConvertIntoArray();
+
+                if (jsonToken is JContainer jsonContainer)
+                    jsonToken = StandardizeContainer(jsonContainer, duplicatePropertyNames);
             }
             return jsonObject;
         }
 
-        /// <summary> Handles potentially duplicate property names in the specified JSON array. </summary>
-        /// <param name="jsonArray"> The JSON array to process. </param>
-        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
-        /// <returns></returns>
-        private JObject HandlePotentiallyDuplicatePropertyNames(JArray jsonArray, IEnumerable<string> duplicatePropertyNames)
+        private JObject ReconstructObjectFromArray(JArray jsonArray, IEnumerable<string> duplicatePropertyNames)
         {
             var rebuiltJsonObject = new JObject();
 
@@ -135,12 +142,12 @@ namespace Core.Json.Helpers
                             if (rebuiltJsonObject.Properties().Select(property => property.Name).Contains(jsonProperty.Key))
                             {
                                 if (rebuiltJsonObject[jsonProperty.Key] is JArray existingJsonArray)
-                                    existingJsonArray.Add(jsonProperty.Value);
+                                    existingJsonArray.Add(jsonProperty.Value is JArray ? jsonProperty.Value.First() : jsonProperty.Value);
                                 else
                                     throw new NotImplementedException();
                             }
                             else
-                                rebuiltJsonObject.Add(new JProperty(jsonProperty.Key, new JArray(jsonProperty.Value)));
+                                rebuiltJsonObject.Add(new JProperty(jsonProperty.Key, jsonProperty.Value is JArray ? jsonProperty.Value : new JArray(jsonProperty.Value)));
                         }
                         else
                         {
@@ -151,7 +158,28 @@ namespace Core.Json.Helpers
                 else
                     throw new NotImplementedException();
             }
+
             return rebuiltJsonObject;
+        }
+
+        /// <summary> Handles potentially duplicate property names in the specified JSON array. </summary>
+        /// <param name="jsonArray"> The JSON array to process. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
+        /// <returns></returns>
+        private JContainer StandardizeArray(JArray jsonArray, IEnumerable<string> duplicatePropertyNames)
+        {
+            for (var i = 0; i < jsonArray.Count(); i++)
+            {
+                var jsonToken = jsonArray[i];
+
+                if (jsonToken is JContainer jsonContainer)
+                    jsonArray[i] = StandardizeContainer(jsonContainer, duplicatePropertyNames);
+            }
+
+            if (jsonArray.HasPotentiallyDuplicateProperties())
+                return ReconstructObjectFromArray(jsonArray, duplicatePropertyNames);
+
+            return jsonArray;
         }
 
         /// <summary>
@@ -162,12 +190,12 @@ namespace Core.Json.Helpers
         /// <param name="jsonContainer"> The JSON container to standardize. </param>
         /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
         /// <returns></returns>
-        private JObject StandardizeContainer(JContainer jsonContainer, IEnumerable<string> duplicatePropertyNames)
+        private JContainer StandardizeContainer(JContainer jsonContainer, IEnumerable<string> duplicatePropertyNames)
         {
             if (jsonContainer is JObject jsonObject)
-                return HandlePotentiallyDuplicatePropertyNames(jsonObject, duplicatePropertyNames);
+                return StandardizeObject(jsonObject, duplicatePropertyNames);
             else if (jsonContainer is JArray jsonArray)
-                return HandlePotentiallyDuplicatePropertyNames(jsonArray, duplicatePropertyNames);
+                return StandardizeArray(jsonArray, duplicatePropertyNames);
             else
                 throw new NotImplementedException();
         }
@@ -183,7 +211,7 @@ namespace Core.Json.Helpers
         private JObject StandardizeAndDeserializeObject(dynamic entity, IEnumerable<string> duplicatePropertyNames)
         {
             if (entity is JContainer container)
-                return StandardizeContainer(container, duplicatePropertyNames);
+                return StandardizeContainer(container, duplicatePropertyNames) as JObject;
             else
                 return entity;
         }
