@@ -75,7 +75,7 @@ namespace Core.Helpers
             {
                 if (!overwrite)
                 {
-                    LogWarn(ECoreLogMessage.WarnAlreadyExists_CopyingAborted.FormatFluently(file.FullName));
+                    LogWarn(ECoreLogMessage.WarnAlreadyExists_CopyingAborted.FormatFluently(file.Name));
                     return;
                 }
                 LogDebug(ECoreLogMessage.Overwriting);
