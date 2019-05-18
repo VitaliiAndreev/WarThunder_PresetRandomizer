@@ -11,6 +11,18 @@ namespace Core.Json.WarThunder.Helpers.Interfaces
     {
         #region Methods: Deserialization
 
+        /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
+        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
+        /// <param name="jsonText"> The JSON text to deserialize. </param>
+        /// <returns></returns>
+        T DeserializeObject<T>(string jsonText);
+
+        /// <summary> Deserializes JSON text and creates a collection of object instances from it. </summary>
+        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
+        /// <param name="jsonText"> The JSON text to deserialize. </param>
+        /// <returns> A collection of object instances. </returns>
+        IDictionary<string, T> DeserializeDictionary<T>(string jsonText);
+
         /// <summary> Deserializes given JSON text into instances of interim non-persistent objects. </summary>
         /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
         /// <param name="jsonText"> JSON text to deserialize. </param>

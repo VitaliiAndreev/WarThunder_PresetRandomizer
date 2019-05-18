@@ -23,6 +23,23 @@ namespace Core.Json.WarThunder.Tests.Helpers
     [TestClass]
     public class JsonHelperWarThunderTests
     {
+        #region Fake Classes
+
+        private class TestClass_NoDuplicates
+        {
+            public int Property1 { get; set; }
+
+            public int[] Array1 { get; set; }
+        }
+
+        private class TestClass_DuplicatesAggregated
+        {
+            public int[] Property1 { get; set; }
+        }
+
+        #endregion Fake Classes
+        #region Fields
+
         private IFileManager _fileManager;
         private IFileReader _fileReader;
         private IUnpacker _unpacker;
@@ -30,6 +47,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         private string _rootDirectory;
         private string _defaultTempDirectory;
 
+        #endregion Fields
         #region Internal Methods
 
         [TestInitialize]
@@ -61,10 +79,47 @@ namespace Core.Json.WarThunder.Tests.Helpers
         }
 
         #endregion Internal Methods
-        #region Methods: Deserialization
+        #region Tests: DeserializeObject()
 
         [TestMethod]
-        public void DeserializeVehicleList()
+        public void DeserializeObject_NoDuplicates()
+        {
+            // arrange
+            var propertyName1 = "Property1";
+            var propertyValue1 = 17;
+            var arrayName1 = "Array1";
+            var arrayValue1 = new int[] { 1, 2 };
+            var jsonObjectText = "\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + arrayName1 + "\":\r\n[\r\n" + arrayValue1[0] + ",\r\n" + arrayValue1[1] + "\r\n]\r\n}";
+
+            // act
+            var testObject = _jsonHelper.DeserializeObject<TestClass_NoDuplicates>(jsonObjectText);
+
+            // assert
+            testObject.Property1.Should().Be(propertyValue1);
+            testObject.Array1.Should().BeEquivalentTo(arrayValue1);
+        }
+
+        [TestMethod]
+        public void DeserializeObject_DuplicatesAggregatedIntoArrays()
+        {
+            // arrange
+            var propertyName1 = "Property1";
+            var propertyValue1 = 17;
+            var propertyValue1d = 42;
+            var jsonObjectText = "[\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1 + "\r\n},\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1d + "\r\n}\r\n]";
+
+            // act
+            var testObject = _jsonHelper.DeserializeObject<TestClass_DuplicatesAggregated>(jsonObjectText);
+
+            // assert
+            testObject.Property1.Should().BeEquivalentTo(new int[] { propertyValue1, propertyValue1d });
+        }
+
+        #endregion Tests: DeserializeObject()
+        #region Tests: DeserializeList()
+
+        [TestMethod]
+        public void DeserializeList_Vehicles()
         {
             // arrange
             var sourceFiles = new List<FileInfo>
@@ -175,6 +230,6 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
         }
 
-        #endregion Methods: Deserialization
+        #endregion Tests: DeserializeList()
     }
 }
