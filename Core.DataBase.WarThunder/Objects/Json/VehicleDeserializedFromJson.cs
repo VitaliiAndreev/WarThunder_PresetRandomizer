@@ -296,13 +296,13 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Weapons
 
         [JsonProperty("turretSpeed")]
-        public IEnumerable<decimal> TurretTraverseSpeeds { get; set; }
+        public List<decimal> TurretTraverseSpeeds { get; set; }
 
         [JsonProperty("reloadTime_mgun")]
         public decimal? MachineGunReloadTime { get; set; }
 
         [JsonProperty("reloadTime_cannon")]
-        public IEnumerable<decimal> CannonReloadTime { get; set; }
+        public List<decimal> CannonReloadTime { get; set; }
 
         [JsonProperty("reloadTime_gunner")]
         public decimal? GunnerReloadTime { get; set; }
