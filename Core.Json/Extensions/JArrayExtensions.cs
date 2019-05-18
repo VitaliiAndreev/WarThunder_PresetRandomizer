@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Core.Extensions;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace Core.Json.Extensions
 {
@@ -20,5 +22,11 @@ namespace Core.Json.Extensions
                 jsonArray.Add(jsonToken);
             }
         }
+
+        /// <summary> Checks whether the JSON array has exclusively single-property JSON objects in it that would create duplicate properties if flattenned into a single JSON object. </summary>
+        /// <param name="jsonArray"> A source JSON array. </param>
+        /// <returns></returns>
+        public static bool HasPotentiallyDuplicateProperties(this JArray jsonArray) =>
+            jsonArray.All(jsonChildToken => jsonChildToken is JObject jsonChildObject && jsonChildObject.Children().HasSingle());
     }
 }
