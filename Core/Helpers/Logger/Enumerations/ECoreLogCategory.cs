@@ -3,6 +3,7 @@
     /// <summary> Categories of events provided to a logger. </summary>
     public class ECoreLogCategory
     {
+        public const string Empty = "";
         public const string FileManager = "File Manager";
         public const string IntegrationTests = "Integration Tests";
         public const string JsonHelper = "JSON Helper";
