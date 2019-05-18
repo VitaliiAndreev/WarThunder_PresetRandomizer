@@ -7,7 +7,6 @@ using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
-using Moq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
