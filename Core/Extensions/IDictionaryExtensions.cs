@@ -2,7 +2,7 @@
 
 namespace Core.Extensions
 {
-    /// <summary> Methods extending the <see cref="IDictionary{TKey, TValue}"/> class. </summary>
+    /// <summary> Methods extending the <see cref="IDictionary{TKey, TValue}"/> interface. </summary>
     public static class IDictionaryExtensions
     {
         /// <summary> Creates a copy of the dictionary, i.e. a new dictionary with same contents. </summary>

@@ -2,7 +2,7 @@
 
 namespace Core.Extensions
 {
-    /// <summary> Methods extending the <see cref="ICollection{T}"/> class. </summary>
+    /// <summary> Methods extending the <see cref="ICollection{T}"/> interface. </summary>
     public static class ICollectionExtensions
     {
         /// <summary> Creates a copy of the collection, i.e. a new collection with same contents. </summary>

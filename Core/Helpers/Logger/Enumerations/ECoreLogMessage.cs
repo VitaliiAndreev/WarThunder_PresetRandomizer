@@ -1,6 +1,6 @@
 ﻿namespace Core.Helpers.Logger.Enumerations
 {
-    /// <summary> Log message strings related to the <see cref="Core"/> assembly. </summary>
+    /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
     public class ECoreLogMessage
     {
         #region Language

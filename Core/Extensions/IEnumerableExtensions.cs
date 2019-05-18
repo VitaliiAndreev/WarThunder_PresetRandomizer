@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Core.Extensions
 {
-    /// <summary> Methods extending the <see cref="IEnumerable{T}"/> class. </summary>
+    /// <summary> Methods extending the <see cref="IEnumerable{T}"/> interface. </summary>
     public static class IEnumerableExtensions
     {
         #region Methods: Fluency
