@@ -41,8 +41,10 @@ namespace Core.Extensions
         {
             if (amountOfCharactersToSkip >= sourceString.Count())
                 return sourceString;
+            else if (amountOfCharactersToSkip < 0)
+                return string.Empty;
 
-            return sourceString.Substring(sourceString.Length - amountOfCharactersToSkip - 1, amountOfCharactersToSkip);
+            return sourceString.Substring(sourceString.Count() - amountOfCharactersToSkip, amountOfCharactersToSkip);
         }
 
         /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>
@@ -53,8 +55,10 @@ namespace Core.Extensions
         {
             if (amountOfCharactersToSkip >= sourceString.Count())
                 return string.Empty;
+            else if (amountOfCharactersToSkip < 0)
+                return sourceString;
 
-            return sourceString.Substring(0, sourceString.Length - amountOfCharactersToSkip);
+            return sourceString.Substring(0, sourceString.Count() - amountOfCharactersToSkip);
         }
 
         #region Regular Expressions
