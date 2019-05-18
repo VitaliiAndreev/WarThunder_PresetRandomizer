@@ -71,7 +71,7 @@
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\FileManager.cs" />
-    <Compile Include="Helpers\Logger\ConfiguredLogger.cs" />
+    <Compile Include="Helpers\Logger\ConfiguredNLogger.cs" />
     <Compile Include="Helpers\Logger\Enumerations\ECoreLogMessage.cs" />
     <Compile Include="Helpers\Logger\Enumerations\EVariableName.cs" />
     <Compile Include="Helpers\Logger\ExceptionFormatter.cs" />

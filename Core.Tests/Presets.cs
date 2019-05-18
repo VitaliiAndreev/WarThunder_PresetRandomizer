@@ -46,7 +46,7 @@ namespace Core.DataBase.Tests
         {
             if (UseLiveLogging)
             {
-                Logger = new ConfiguredLogger(new ExceptionFormatter());
+                Logger = new ConfiguredNLogger(new ExceptionFormatter());
             }
             else
             {

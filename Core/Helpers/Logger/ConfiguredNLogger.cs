@@ -6,8 +6,8 @@ using System;
 
 namespace Core.Helpers.Logger
 {
-    /// <summary> A configured logger that wraps around an <see cref="ILogger"/>. </summary>
-    public class ConfiguredLogger : IConfiguredLogger
+    /// <summary> A configured logger that wraps around an <see cref="ILogger"/> (of <see cref="NLog"/>). </summary>
+    public class ConfiguredNLogger : IConfiguredLogger
     {
         #region Fields
 
@@ -28,7 +28,7 @@ namespace Core.Helpers.Logger
 
         /// <summary> Creates and configures a new logger. </summary>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
-        public ConfiguredLogger(IExceptionFormatter exceptionFormatter)
+        public ConfiguredNLogger(IExceptionFormatter exceptionFormatter)
         {
             ExceptionFormatter = exceptionFormatter;
 
