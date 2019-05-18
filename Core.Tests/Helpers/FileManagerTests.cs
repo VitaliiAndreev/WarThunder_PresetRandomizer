@@ -1,5 +1,4 @@
-﻿using Core.DataBase.Tests;
-using Core.Helpers;
+﻿using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Enumerations;
 using FluentAssertions;
@@ -8,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 
 namespace Core.Tests.Helpers
 {

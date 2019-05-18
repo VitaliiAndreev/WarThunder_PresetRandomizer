@@ -1,7 +1,7 @@
-﻿using Core.DataBase.Tests;
-using Core.Helpers.Logger.Enumerations;
+﻿using Core.Helpers.Logger.Enumerations;
 using Core.Json.Helpers;
 using Core.Json.Helpers.Interfaces;
+using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -2,9 +2,9 @@
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
 using Core.Helpers.Logger.Enumerations;
+using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
 using System.Reflection;
 

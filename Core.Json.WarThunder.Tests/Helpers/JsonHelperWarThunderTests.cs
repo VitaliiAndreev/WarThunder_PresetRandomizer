@@ -1,5 +1,4 @@
-﻿using Core.DataBase.Tests;
-using Core.DataBase.WarThunder.Objects.Json;
+﻿using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers;
@@ -7,6 +6,7 @@ using Core.Helpers.Interfaces;
 using Core.Helpers.Logger.Enumerations;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
+using Core.Tests;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;

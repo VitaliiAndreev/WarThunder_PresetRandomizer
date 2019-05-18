@@ -1,9 +1,8 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Tests;
 using Core.DataBase.WarThunder.Objects;
+using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Core.DataBase.WarThunder.Tests.Objects
 {

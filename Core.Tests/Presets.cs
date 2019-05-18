@@ -10,7 +10,7 @@ using NLog;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Core.DataBase.Tests
+namespace Core.Tests
 {
     /// <summary> Presets for unit tests. </summary>
     public static class Presets

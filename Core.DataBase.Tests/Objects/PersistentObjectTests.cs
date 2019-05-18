@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
+using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

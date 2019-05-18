@@ -1,9 +1,9 @@
 ﻿using Core.DataBase.Helpers;
-using Core.DataBase.Tests;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Enumerations;
+using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
