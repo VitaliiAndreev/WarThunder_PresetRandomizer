@@ -28,12 +28,14 @@ namespace Core.Helpers.Logger
 
         /// <summary> Creates and configures a new logger. </summary>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
-        public ConfiguredNLogger(IExceptionFormatter exceptionFormatter)
+        public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter)
         {
             ExceptionFormatter = exceptionFormatter;
 
             LogManager.Configuration.Variables[EVariableName.StartTime] = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            _logger = LogManager.GetLogger($"Core {ECoreLogCategory.Logger}");
+            LogManager.Configuration.Variables[EVariableName.Layout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
+
+            _logger = LogManager.GetLogger(loggerName.ToString());
             _messageFormat = "{0} : {1}{2}";
 
             LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.FormatFluently(_logger.Name));

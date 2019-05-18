@@ -3,6 +3,7 @@ using Core.DataBase.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Helpers;
 using Core.Helpers.Logger;
+using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Moq;
 using NLog;
@@ -46,7 +47,7 @@ namespace Core.DataBase.Tests
         {
             if (UseLiveLogging)
             {
-                Logger = new ConfiguredNLogger(new ExceptionFormatter());
+                Logger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter());
             }
             else
             {

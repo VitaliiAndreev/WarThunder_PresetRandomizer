@@ -4,5 +4,6 @@
     public class EVariableName
     {
         public const string StartTime = "startTime";
+        public const string Layout = "layout";
     }
 }
