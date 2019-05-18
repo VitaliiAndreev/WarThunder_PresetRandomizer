@@ -323,13 +323,13 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region Weapons
 
         /// <summary> The vehicle's turret traverse speeds. </summary>
-        List<decimal> TurretTraverseSpeeds { get; }
+        IEnumerable<decimal> TurretTraverseSpeeds { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal? MachineGunReloadTime { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        List<decimal> CannonReloadTime { get; }
+        IEnumerable<decimal> CannonReloadTime { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal? GunnerReloadTime { get; }
