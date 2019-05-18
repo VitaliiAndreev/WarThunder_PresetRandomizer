@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\Logger\ECoreJsonLogCategory.cs" />
+    <Compile Include="Enumerations\Logger\ECoreJsonLogMessage.cs" />
     <Compile Include="Exceptions\JsonDeserializationException.cs" />
     <Compile Include="Extensions\JArrayExtensions.cs" />
     <Compile Include="Extensions\JObjectExtensions.cs" />
