@@ -102,36 +102,6 @@ namespace Core.Json.Helpers
         #endregion Methods: [Private] GetPotentiallyDuplicatePropertyNames()
         #region Methods: [Private] Deserialization with Standardization
 
-        /// <summary>
-        /// Deserializes and standardizes JSON text into a JSON object.
-        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
-        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
-        /// </summary>
-        /// <param name="jsonText"> The JSON text to standardize. </param>
-        /// <returns></returns>
-        private JObject StandardizeAndDeserializeObject(string jsonText)
-        {
-            var entity = DeserializeObject<dynamic>(jsonText);
-
-            return StandardizeAndDeserializeObject(entity, GetPotentiallyDuplicatePropertyNames(entity));
-        }
-
-        /// <summary>
-        /// Deserializes and standardizes the specified JSON entity into a JSON object.
-        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
-        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
-        /// </summary>
-        /// <param name="entity"> The deserialized JSON entity. </param>
-        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
-        /// <returns></returns>
-        private JObject StandardizeAndDeserializeObject(dynamic entity, IEnumerable<string> duplicatePropertyNames)
-        {
-            if (entity is JContainer container)
-                return StandardizeContainer(container, duplicatePropertyNames);
-            else
-                return entity;
-        }
-
         /// <summary> Handles potentially duplicate property names in the specified JSON object. </summary>
         /// <param name="jsonObject"> The JSON object to process. </param>
         /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
@@ -200,6 +170,36 @@ namespace Core.Json.Helpers
                 return HandlePotentiallyDuplicatePropertyNames(jsonArray, duplicatePropertyNames);
             else
                 throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Deserializes and standardizes the specified JSON entity into a JSON object.
+        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
+        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
+        /// </summary>
+        /// <param name="entity"> The deserialized JSON entity. </param>
+        /// <param name="duplicatePropertyNames"> A collection of duplicate property names whose values are to be aggregated into arrays. </param>
+        /// <returns></returns>
+        private JObject StandardizeAndDeserializeObject(dynamic entity, IEnumerable<string> duplicatePropertyNames)
+        {
+            if (entity is JContainer container)
+                return StandardizeContainer(container, duplicatePropertyNames);
+            else
+                return entity;
+        }
+
+        /// <summary>
+        /// Deserializes and standardizes JSON text into a JSON object.
+        /// <para> In some instances (when duplicate JSON propery names are present) JSON objects are being presented not as a set of properties and their values, but as an array key-value pairs. </para>
+        /// <para> To deserialize both implementations as instances of one type, the latter case is converted to look like the former. </para>
+        /// </summary>
+        /// <param name="jsonText"> The JSON text to standardize. </param>
+        /// <returns></returns>
+        private JObject StandardizeAndDeserializeObject(string jsonText)
+        {
+            var entity = DeserializeObject<dynamic>(jsonText);
+
+            return StandardizeAndDeserializeObject(entity, GetPotentiallyDuplicatePropertyNames(entity));
         }
 
         /// <summary>
