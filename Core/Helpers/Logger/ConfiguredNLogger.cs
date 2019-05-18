@@ -32,8 +32,10 @@ namespace Core.Helpers.Logger
         {
             ExceptionFormatter = exceptionFormatter;
 
+            LogManager.Configuration.Variables[EVariableName.ConsoleLayout] = "${message}";
+            LogManager.Configuration.Variables[EVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
+            LogManager.Configuration.Variables[EVariableName.FileName] = @"Logs\Log_${var:startTime}.log";
             LogManager.Configuration.Variables[EVariableName.StartTime] = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            LogManager.Configuration.Variables[EVariableName.Layout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
 
             _logger = LogManager.GetLogger(loggerName.ToString());
             _messageFormat = "{0} : {1}{2}";
