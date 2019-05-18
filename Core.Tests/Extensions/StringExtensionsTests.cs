@@ -105,18 +105,164 @@ namespace Core.Tests.Extensions
         #region Tests: SkipLast()
 
         [TestMethod]
-        public void SkipLast_Carramba_SkipLast5_ReturnsCar()
+        public void SkipLast_Minus1_OutOf_3()
         {
             // arrange
-            var originalString = "carramba";
+            var originalString = "ABC";
 
             // act
-            var trimmedString = originalString.SkipLast(5);
+            var trimmedString = originalString.SkipLast(-1);
 
             // assert
-            trimmedString.Should().Be("car");
+            trimmedString.Should().Be("ABC");
+        }
+
+        [TestMethod]
+        public void SkipLast_0_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.SkipLast(0);
+
+            // assert
+            trimmedString.Should().Be("ABC");
+        }
+
+        [TestMethod]
+        public void SkipLast_1_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.SkipLast(1);
+
+            // assert
+            trimmedString.Should().Be("AB");
+        }
+
+        [TestMethod]
+        public void SkipLast_2_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.SkipLast(2);
+
+            // assert
+            trimmedString.Should().Be("A");
+        }
+
+        [TestMethod]
+        public void SkipLast_3_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.SkipLast(3);
+
+            // assert
+            trimmedString.Should().Be(string.Empty);
+        }
+
+        [TestMethod]
+        public void SkipLast_4_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.SkipLast(4);
+
+            // assert
+            trimmedString.Should().Be(string.Empty);
         }
 
         #endregion Tests: SkipLast()
+        #region Tests: TakeLast()
+
+        [TestMethod]
+        public void TakeLast_Minus1_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(-1);
+
+            // assert
+            trimmedString.Should().Be(string.Empty);
+        }
+
+        [TestMethod]
+        public void TakeLast_0_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(0);
+
+            // assert
+            trimmedString.Should().Be(string.Empty);
+        }
+
+        [TestMethod]
+        public void TakeLast_1_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(1);
+
+            // assert
+            trimmedString.Should().Be("C");
+        }
+
+        [TestMethod]
+        public void TakeLast_2_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(2);
+
+            // assert
+            trimmedString.Should().Be("BC");
+        }
+
+        [TestMethod]
+        public void TakeLast_3_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(3);
+
+            // assert
+            trimmedString.Should().Be("ABC");
+        }
+
+        [TestMethod]
+        public void TakeLast_4_OutOf_3()
+        {
+            // arrange
+            var originalString = "ABC";
+
+            // act
+            var trimmedString = originalString.TakeLast(4);
+
+            // assert
+            trimmedString.Should().Be("ABC");
+        }
+
+        #endregion Tests: TakeLast()
     }
 }

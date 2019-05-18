@@ -33,20 +33,6 @@ namespace Core.Extensions
         public static bool IsNullOrWhiteSpaceFluently(this string source) =>
             string.IsNullOrWhiteSpace(source);
 
-        /// <summary> Creates a new string from the source by taking the specified amount of characters from the tail end of it. </summary>
-        /// <param name="sourceString"> A source string. </param>
-        /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to take. </param>
-        /// <returns></returns>
-        public static string TakeLast(this string sourceString, int amountOfCharactersToSkip)
-        {
-            if (amountOfCharactersToSkip >= sourceString.Count())
-                return sourceString;
-            else if (amountOfCharactersToSkip < 0)
-                return string.Empty;
-
-            return sourceString.Substring(sourceString.Count() - amountOfCharactersToSkip, amountOfCharactersToSkip);
-        }
-
         /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>
         /// <param name="sourceString"> A source string. </param>
         /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to skip. </param>
@@ -59,6 +45,20 @@ namespace Core.Extensions
                 return sourceString;
 
             return sourceString.Substring(0, sourceString.Count() - amountOfCharactersToSkip);
+        }
+
+        /// <summary> Creates a new string from the source by taking the specified amount of characters from the tail end of it. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="amountOfCharactersToSkip"> The amount of trailing characters to take. </param>
+        /// <returns></returns>
+        public static string TakeLast(this string sourceString, int amountOfCharactersToSkip)
+        {
+            if (amountOfCharactersToSkip >= sourceString.Count())
+                return sourceString;
+            else if (amountOfCharactersToSkip < 0)
+                return string.Empty;
+
+            return sourceString.Substring(sourceString.Count() - amountOfCharactersToSkip, amountOfCharactersToSkip);
         }
 
         #region Regular Expressions
