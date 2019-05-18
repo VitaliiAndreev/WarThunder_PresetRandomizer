@@ -47,6 +47,7 @@
     <Compile Include="Enumerations\Logger\ECoreJsonLogCategory.cs" />
     <Compile Include="Enumerations\Logger\ECoreJsonLogMessage.cs" />
     <Compile Include="Exceptions\JsonDeserializationException.cs" />
+    <Compile Include="Exceptions\JsonStandardizationException.cs" />
     <Compile Include="Extensions\JArrayExtensions.cs" />
     <Compile Include="Extensions\JObjectExtensions.cs" />
     <Compile Include="Extensions\JsonReaderExtensions.cs" />

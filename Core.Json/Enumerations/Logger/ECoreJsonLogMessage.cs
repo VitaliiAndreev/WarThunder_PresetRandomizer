@@ -28,6 +28,7 @@ namespace Core.Json.Enumerations.Logger
 
         public const string ErrorJsonStringEmpty = _The + _JSON + _string + _is + _empty + _FS;
         public const string ErrorDeserializingJsonText = _Error + _deserializing + _JSON + _text + _FS;
+        public const string ErrorMustBeJsonContainerToStandardize = _Must + _be + _a + _JSON + _container + _to + _be + _standardized + _FS;
 
         #endregion JSON Helper
     }

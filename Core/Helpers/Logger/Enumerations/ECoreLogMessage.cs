@@ -51,7 +51,8 @@
         #endregion A
         #region B
 
-        protected const string _been = " been";
+        protected const string _be = " be";
+        protected const string _been = _be + "en";
 
         #endregion B
         #region C
@@ -73,6 +74,7 @@
         protected const string _Committing = "Committing";
         protected const string _completed = " completed";
         protected const string _configuration = " configuration";
+        protected const string _container = " container";
         protected const string _Copied = "Copied";
         protected const string _copied = " copied";
         protected const string _Copying = "Copying";
@@ -195,6 +197,7 @@
         protected const string _matching = " matching";
         protected const string _Method = "Method";
         protected const string _method = " method";
+        protected const string _Must = "Must";
         
         #endregion M
         #region N
@@ -278,6 +281,7 @@
         protected const string _sessionFactory = _session + _factory;
         protected const string _source = " source";
         protected const string _specified = " specified";
+        protected const string _standardized = " standardized";
         protected const string _starts = " starts";
         protected const string _stream = " stream";
         protected const string _string = " string";
