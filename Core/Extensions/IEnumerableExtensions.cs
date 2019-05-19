@@ -7,6 +7,14 @@ namespace Core.Extensions
     public static class IEnumerableExtensions
     {
         #region Methods: Fluency
+        
+        /// <summary> Gets all values from a collection of key-value pairs as <see cref="IDictionary{TKey, TValue}.Values"/> does. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <typeparam name="U"> A generic type. </typeparam>
+        /// <param name="keyValuePairs"> A collection of key-value pairs. </param>
+        /// <returns></returns>
+        public static IEnumerable<U> GetValues<T, U>(this IEnumerable<KeyValuePair<T, U>> keyValuePairs) =>
+            keyValuePairs.Select(keyValuePair => keyValuePair.Value);
 
         #region IsEmpty(), HasSingle(), HasMany()
 
