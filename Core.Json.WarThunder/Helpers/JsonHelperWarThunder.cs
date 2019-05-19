@@ -6,6 +6,7 @@ using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;
 using Core.Json.Extensions;
+using Core.Json.WarThunder.Extensions;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
@@ -239,24 +240,12 @@ namespace Core.Json.Helpers
         #endregion [Protected] Methods: Deserialization with Standardization
         #region Methods: [Public] Deserialization
 
-        /// <summary> Initializes <see cref="DeserializedFromJson.GaijinId"/> values with corresponding keys from the specified dictionary and outputs a collection of resulting objects. </summary>
-        /// <typeparam name="T"> A generic JSON mapping type. </typeparam>
-        /// <param name="dictionary"> The dictionary to process. </param>
-        /// <returns></returns>
-        private IEnumerable<T> SetGaijinIdsAndReturnDictionaryValues<T>(IDictionary<string, T> dictionary) where T : DeserializedFromJson
-        {
-            foreach (var pair in dictionary)
-                pair.Value.GaijinId = pair.Key;
-
-            return dictionary.Values;
-        }
-
         /// <summary> Deserializes given JSON text into instances of interim non-persistent objects. </summary>
         /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
         public IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJson =>
-            SetGaijinIdsAndReturnDictionaryValues(DeserializeDictionary<T>(jsonText));
+            DeserializeDictionary<T>(jsonText).FinalizeDeserialization().Values;
 
         /// <summary> Deserializes given JSON text into instances persistent objects. </summary>
         /// <typeparam name="T"> A generic type of persistent objects. </typeparam>

@@ -75,9 +75,11 @@
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Json\VehicleDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Vehicle.cs" />

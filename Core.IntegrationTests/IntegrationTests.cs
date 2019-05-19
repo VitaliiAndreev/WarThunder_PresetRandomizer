@@ -132,11 +132,6 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.BackupSortieCostInGold > 0).Should().BeTrue();
                     // performance
                     vehicleCollection.Any(vehicle => vehicle.Speed <= 0m).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.HullBreachRepairSpeed <= 0).Should().BeFalse();
                     // rank
@@ -178,6 +173,12 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.BattleTimeArcade > 0m).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BattleTimeRealistic > 0m).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
+                    // weapons
+                    vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
                 }
 
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJson);

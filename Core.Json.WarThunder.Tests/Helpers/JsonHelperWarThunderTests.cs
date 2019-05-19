@@ -184,11 +184,6 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.BackupSortie.PurchaseCostInGold > 0).Should().BeTrue();
             /// performance
             vehicles.Any(vehicle => vehicle.Speed <= 0m).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any (value => value <= 0m) ?? false).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.HullBreachRepairSpeed <= 0).Should().BeFalse();
             /// rank
@@ -228,6 +223,17 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.BattleTimeArcade > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeRealistic > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
+            /// weapons
+            vehicles.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.GaijinId.IsNullOrWhiteSpaceFluently())).Should().BeFalse();
+            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.Owner == vehicle)).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.PurchaseCostInSilver >= 0)).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MaximumStockpileAmount < 0)).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MassPerSecond < 0m)).Should().BeFalse();
         }
 
         #endregion Tests: DeserializeList()

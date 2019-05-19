@@ -166,8 +166,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #endregion Rewards
         #region Weapons
 
-        /*[JsonProperty("weapons", Required = Required.Always)]
-        public IEnumerable<string> Weapons { get; set; }*/
+        [JsonProperty("weapons", Required = Required.Always)]
+        public Dictionary<string, WeaponDeserializedFromJson> Weapons { get; set; }
 
         #endregion Weapons
 
