@@ -1,14 +1,12 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;
 using Core.Json.Extensions;
 using Core.Json.WarThunder.Helpers.Interfaces;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -91,7 +89,7 @@ namespace Core.Json.Helpers
         }
 
         #endregion Methods: [Private] GetPotentiallyDuplicatePropertyNames()
-        #region Methods: [Private] Deserialization with Standardization
+        #region Methods: [Protected] Deserialization with Standardization
 
         /// <summary> Handles potentially duplicate property names in the specified JSON object. </summary>
         /// <param name="jsonObject"> The JSON object to process. </param>
@@ -212,7 +210,7 @@ namespace Core.Json.Helpers
         /// </summary>
         /// <param name="jsonText"> The JSON text to standardize. </param>
         /// <returns></returns>
-        private JObject StandardizeAndDeserializeObject(string jsonText)
+        protected override JObject StandardizeAndDeserializeObject(string jsonText)
         {
             var entity = DeserializeObject<dynamic>(jsonText);
 
@@ -226,7 +224,7 @@ namespace Core.Json.Helpers
         /// </summary>
         /// <param name="jsonText"> The JSON text to standardize. </param>
         /// <returns></returns>
-        private IDictionary<string, JObject> StandardizeAndDeserializeObjects(string jsonText)
+        protected override IDictionary<string, JObject> StandardizeAndDeserializeObjects(string jsonText)
         {
             var entities = DeserializeDictionary<dynamic>(jsonText);
             var standardizedJsonObjects = new Dictionary<string, JObject>();
@@ -238,7 +236,7 @@ namespace Core.Json.Helpers
             return standardizedJsonObjects;
         }
 
-        #endregion [Private] Methods: Deserialization with Standardization
+        #endregion [Protected] Methods: Deserialization with Standardization
         #region Methods: [Public] Deserialization
 
         /// <summary> Initializes <see cref="DeserializedFromJson.GaijinId"/> values with corresponding keys from the specified dictionary and outputs a collection of resulting objects. </summary>
@@ -251,68 +249,6 @@ namespace Core.Json.Helpers
                 pair.Value.GaijinId = pair.Key;
 
             return dictionary.Values;
-        }
-
-        /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
-        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
-        /// <param name="jsonText"> The JSON text to deserialize. </param>
-        /// <returns></returns>
-        public T DeserializeObject<T>(string jsonText)
-        {
-            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
-            var deserializedInstance = default(T);
-
-            try
-            {
-                ThrowIfJsonTextIsInvalid(jsonText);
-
-                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
-                    deserializedInstance = JsonConvert.DeserializeObject<T>(jsonText);
-                else
-                    deserializedInstance = StandardizeAndDeserializeObject(jsonText).ToObject<T>();
-            }
-            catch (Exception exception)
-            {
-                LogAndRethrow(exception);
-            }
-
-            LogDebug(ECoreJsonLogMessage.DeserializedInstance);
-            return deserializedInstance;
-        }
-
-        /// <summary> Deserializes JSON text and creates a collection of object instances from it. </summary>
-        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
-        /// <param name="jsonText"> The JSON text to deserialize. </param>
-        /// <returns> A collection of object instances. </returns>
-        public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonText)
-        {
-            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
-            var deserializedInstances = new Dictionary<string, T>();
-
-            try
-            {
-                ThrowIfJsonTextIsInvalid(jsonText);
-
-                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
-                {
-                    deserializedInstances = JsonConvert.DeserializeObject<Dictionary<string, T>>(jsonText);
-                }
-                else
-                {
-                    foreach (var jsonObject in StandardizeAndDeserializeObjects(jsonText))
-                    {
-                        var deserializedObject = jsonObject.Value.ToObject<T>();
-                        deserializedInstances.Add(jsonObject.Key, deserializedObject);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                LogAndRethrow(exception);
-            }
-
-            LogDebug(ECoreJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
-            return deserializedInstances;
         }
 
         /// <summary> Deserializes given JSON text into instances of interim non-persistent objects. </summary>
@@ -339,6 +275,6 @@ namespace Core.Json.Helpers
             return deserializedInstances;
         }
 
-        #endregion Methods: Deserialization
+        #endregion Methods: [Public] Deserialization
     }
 }

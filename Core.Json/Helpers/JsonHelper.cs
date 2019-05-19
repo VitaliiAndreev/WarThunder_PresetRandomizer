@@ -1,16 +1,21 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;
 using Core.Json.Helpers.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Json.Helpers
 {
     /// <summary> Provide methods to work with JSON data. </summary>
-    public class JsonHelper : LoggerFluency, IJsonHelper
+    public abstract class JsonHelper : LoggerFluency, IJsonHelper
     {
         #region Constructors
 
@@ -23,6 +28,7 @@ namespace Core.Json.Helpers
         }
 
         #endregion Constructors
+        #region Methods: [Protected]
 
         /// <summary> Throws a <see cref="JsonDeserializationException"/> if specified JSON text is not considered valid. </summary>
         /// <param name="jsonText"> JSON text to check. </param>
@@ -36,5 +42,87 @@ namespace Core.Json.Helpers
         /// <param name="exception"> The exception to throw. </param>
         protected void LogAndRethrow(Exception exception) =>
             LogErrorAndThrow(ECoreJsonLogMessage.ErrorDeserializingJsonText, exception);
+
+        #endregion Methods: [Protected]
+        #region Methods: [Protected Virtual] Standardization
+
+        /// <summary> Deserializes and standardizes JSON text into a JSON object. </summary>
+        /// <param name="jsonText"> The JSON text to standardize. </param>
+        /// <returns></returns>
+        protected virtual JObject StandardizeAndDeserializeObject(string jsonText) =>
+            throw new NotImplementedException();
+
+        /// <summary> Deserializes and standardizes JSON text into a dictionary of JSON objects. </summary>
+        /// <param name="jsonText"> The JSON text to standardize. </param>
+        /// <returns></returns>
+        protected virtual IDictionary<string, JObject> StandardizeAndDeserializeObjects(string jsonText) =>
+            throw new NotImplementedException();
+
+        #endregion Methods: [Protected Virtual] Standardization
+        #region Methods: [Public] Deserialization
+
+        /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
+        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
+        /// <param name="jsonText"> The JSON text to deserialize. </param>
+        /// <returns></returns>
+        public T DeserializeObject<T>(string jsonText)
+        {
+            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            var deserializedInstance = default(T);
+
+            try
+            {
+                ThrowIfJsonTextIsInvalid(jsonText);
+
+                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
+                    deserializedInstance = JsonConvert.DeserializeObject<T>(jsonText);
+                else
+                    deserializedInstance = StandardizeAndDeserializeObject(jsonText).ToObject<T>();
+            }
+            catch (Exception exception)
+            {
+                LogAndRethrow(exception);
+            }
+
+            LogDebug(ECoreJsonLogMessage.DeserializedInstance);
+            return deserializedInstance;
+        }
+
+        /// <summary> Deserializes JSON text and creates a collection of object instances from it. </summary>
+        /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
+        /// <param name="jsonText"> The JSON text to deserialize. </param>
+        /// <returns> A collection of object instances. </returns>
+        public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonText)
+        {
+            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            var deserializedInstances = new Dictionary<string, T>();
+
+            try
+            {
+                ThrowIfJsonTextIsInvalid(jsonText);
+
+                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
+                {
+                    deserializedInstances = JsonConvert.DeserializeObject<Dictionary<string, T>>(jsonText);
+                }
+                else
+                {
+                    foreach (var jsonObject in StandardizeAndDeserializeObjects(jsonText))
+                    {
+                        var deserializedObject = jsonObject.Value.ToObject<T>();
+                        deserializedInstances.Add(jsonObject.Key, deserializedObject);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                LogAndRethrow(exception);
+            }
+
+            LogDebug(ECoreJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
+            return deserializedInstances;
+        }
+
+        #endregion Methods: [Public] Deserialization
     }
 }
