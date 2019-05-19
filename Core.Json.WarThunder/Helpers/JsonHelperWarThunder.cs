@@ -105,7 +105,7 @@ namespace Core.Json.Helpers
                     jsonToken.ConvertIntoArray();
 
                 if (jsonToken is JContainer jsonContainer)
-                    jsonToken = StandardizeContainer(jsonContainer, duplicatePropertyNames);
+                    jsonObject[jsonPropertyName] = StandardizeContainer(jsonContainer, duplicatePropertyNames);
             }
             return jsonObject;
         }
