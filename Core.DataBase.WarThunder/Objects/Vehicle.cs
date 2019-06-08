@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
@@ -214,15 +215,15 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual int? EconomicRankInSimulation { get; protected set; }
 
         /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Arcade Battles. </summary>
-        public virtual string BattleRatingInArcade { get => GetBattleRating(EconomicRankInArcade).ToString(_battleRatingFormat); protected set { } }
+        public virtual string BattleRatingInArcade { get => Calculator.GetBattleRating(EconomicRankInArcade).ToString(_battleRatingFormat); protected set { } }
 
         /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Realistic Battles. </summary>
-        public virtual string BattleRatingInRealistic { get => GetBattleRating(EconomicRankInRealistic).ToString(_battleRatingFormat); protected set { } }
+        public virtual string BattleRatingInRealistic { get => Calculator.GetBattleRating(EconomicRankInRealistic).ToString(_battleRatingFormat); protected set { } }
 
         /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Simulator Battles. </summary>
         public virtual string BattleRatingInSimulation
         {
-            get => EconomicRankInSimulation.HasValue ? GetBattleRating(EconomicRankInSimulation.Value).ToString(_battleRatingFormat) : ECharacterString.Null;
+            get => EconomicRankInSimulation.HasValue ? Calculator.GetBattleRating(EconomicRankInSimulation.Value).ToString(_battleRatingFormat) : ECharacterString.Null;
             protected set { }
         }
 
@@ -948,10 +949,5 @@ namespace Core.DataBase.WarThunder.Objects
             else if (deserializedVehicle.SpawnType == null)
                 SpawnType = "default";
         }
-
-        /// <summary> Calculates the vehicle's battle rating from the obsolete <see cref="EconomicRankInArcade"/>, <see cref="EconomicRankInRealistic"/>, or <see cref="EconomicRankInSimulation"/>. </summary>
-        /// <param name="economicRank"> The vehicle's <see cref="EconomicRankInArcade"/>, <see cref="EconomicRankInRealistic"/>, or <see cref="EconomicRankInSimulation"/> to calculate the battle rating from. </param>
-        /// <returns></returns>
-        protected virtual decimal GetBattleRating(int economicRank) => economicRank / 3 + 1;
     }
 }

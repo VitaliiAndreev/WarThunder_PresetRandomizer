@@ -69,6 +69,7 @@
     <Compile Include="Enumerations\DataBase\ETable.cs" />
     <Compile Include="Enumerations\Objects\EBranch.cs" />
     <Compile Include="Enumerations\Objects\ENation.cs" />
+    <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />
