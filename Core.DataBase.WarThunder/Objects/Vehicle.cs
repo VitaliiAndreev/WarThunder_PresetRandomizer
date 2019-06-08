@@ -936,7 +936,17 @@ namespace Core.DataBase.WarThunder.Objects
             if (instanceDeserializedFromJson is VehicleDeserializedFromJson deserializedVehicle)
             {
                 BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
+
+                PatchSpawnType(deserializedVehicle);
             }
+        }
+
+        protected virtual void PatchSpawnType(VehicleDeserializedFromJson deserializedVehicle)
+        {
+            if (deserializedVehicle.SpawnType == "ah")
+                SpawnType = "walker (ah)";
+            else if (deserializedVehicle.SpawnType == null)
+                SpawnType = "default";
         }
 
         /// <summary> Calculates the vehicle's battle rating from the obsolete <see cref="EconomicRankInArcade"/>, <see cref="EconomicRankInRealistic"/>, or <see cref="EconomicRankInSimulation"/>. </summary>
