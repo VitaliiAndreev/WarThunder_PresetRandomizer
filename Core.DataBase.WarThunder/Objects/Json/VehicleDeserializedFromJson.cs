@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Core.DataBase.WarThunder.Attributes;
+using Core.DataBase.WarThunder.Enumerations;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Json
@@ -74,78 +76,101 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int Rank { get; set; }
 
         [JsonProperty("economicRankArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Arcade)]
         public int EconomicRankInArcade { get; set; }
 
         [JsonProperty("economicRankHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Realistic)]
         public int EconomicRankInRealistic { get; set; }
 
         #endregion Rank
         #region Repairs
 
         [JsonProperty("repairTimeHrsArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Arcade)]
         public decimal RepairTimeWithCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Realistic)]
         public decimal RepairTimeWithCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Simulator)]
         public decimal RepairTimeWithCrewInSimulation { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Arcade)]
         public decimal RepairTimeWithoutCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Realistic)]
         public decimal RepairTimeWithoutCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Simulator)]
         public decimal RepairTimeWithoutCrewInSimulation { get; set; }
 
         [JsonProperty("repairCostArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Arcade)]
         public int RepairCostInArcade { get; set; }
 
         [JsonProperty("repairCostHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Realistic)]
         public int RepairCostInRealistic { get; set; }
 
         [JsonProperty("repairCostSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Simulator)]
         public int RepairCostInSimulation { get; set; }
 
         #endregion Repairs
         #region Rewards
 
         [JsonProperty("battleTimeAwardArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Arcade)]
         public int BattleTimeAwardInArcade { get; set; }
 
         [JsonProperty("battleTimeAwardHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Realistic)]
         public int BattleTimeAwardInRealistic { get; set; }
 
         [JsonProperty("battleTimeAwardSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Simulator)]
         public int BattleTimeAwardInSimulation { get; set; }
 
         [JsonProperty("avgAwardArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Arcade)]
         public int AverageAwardInArcade { get; set; }
 
         [JsonProperty("avgAwardHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Realistic)]
         public int AverageAwardInRealistic { get; set; }
 
         [JsonProperty("avgAwardSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Simulator)]
         public int AverageAwardInSimulation { get; set; }
 
         [JsonProperty("rewardMulArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Arcade)]
         public decimal RewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Realistic)]
         public decimal RewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Simulator)]
         public decimal RewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("rewardMulVisualArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Arcade)]
         public decimal VisualRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulVisualHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Realistic)]
         public decimal VisualRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulVisualSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Simulator)]
         public decimal VisualRewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("expMul", Required = Required.Always)]
@@ -155,12 +180,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public decimal GroundKillRewardMultiplier { get; set; }
 
         [JsonProperty("battleTimeArcade", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Arcade)]
         public decimal BattleTimeArcade { get; set; }
 
         [JsonProperty("battleTimeHistorical", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Realistic)]
         public decimal BattleTimeRealistic { get; set; }
 
         [JsonProperty("battleTimeSimulation", Required = Required.Always)]
+        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Simulator)]
         public decimal BattleTimeSimulation { get; set; }
 
         #endregion Rewards
@@ -215,16 +243,22 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("spawnType")]
         public string SpawnType { get; set; }
 
+        /// <summary> This property is used only by walking tanks introduced in 1st April 2015 and later used in Operation S.U.M.M.E.R. </summary>
         [JsonProperty("numSpawnsPerBattle")]
+        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Event)]
         public int? NumberOfSpawnsInEvents { get; set; }
 
         [JsonProperty("numSpawnsPerBattleArcade")]
+        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Arcade)]
         public int? NumberOfSpawnsInArcade { get; set; }
 
         [JsonProperty("numSpawnsPerBattleHistorical")]
+        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Realistic)]
         public int? NumberOfSpawnsInRealistic { get; set; }
 
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, NULL VALUES SEEM TO MEAN 1 YET THERE ARE EXPLICIT ONES FOR NAVY, HELICOPTERS, AND SOME HEAVY TANKS] </summary>
         [JsonProperty("numSpawnsPerBattleSimulation")]
+        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Simulator)]
         public int? NumberOfSpawnsInSimulation { get; set; }
 
         [JsonProperty("killStreak")]
@@ -272,6 +306,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Rank
 
         [JsonProperty("economicRankSimulation")]
+        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Simulator)]
         public int? EconomicRankInSimulation { get; set; }
 
         #endregion Rank
@@ -284,12 +319,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Rewards
 
         [JsonProperty("premRewardMulVisualArcade")]
+        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Arcade)]
         public decimal? VisualPremiumRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("premRewardMulVisualHistorical")]
+        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Realistic)]
         public decimal? VisualPremiumRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("premRewardMulVisualSimulation")]
+        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Simulator)]
         public decimal? VisualPremiumRewardMultiplierInSimulation { get; set; }
 
         #endregion Rewards

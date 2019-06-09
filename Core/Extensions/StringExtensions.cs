@@ -1,5 +1,6 @@
 ﻿using Core.Enumerations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,27 +12,7 @@ namespace Core.Extensions
     /// <summary> Methods extending the <see cref="string"/> class. </summary>
     public static class StringExtensions
     {
-        #region Methods: Fluency
-
-        /// <summary> Checks whether the specified character is in the string. </summary>
-        /// <param name="source"> A source string. </param>
-        /// <param name="character"> The character to look for. </param>
-        /// <returns></returns>
-        public static bool Contains(this string sourceString, char character) =>
-            sourceString.Contains(character.ToString());
-
-        /// <summary> Fluently replaces format placeholders in a string with members of an argument array. </summary>
-        /// <param name="source"> A source string. </param>
-        /// <param name="arguments"> An array of objects whose string representations to insert into the source string. </param>
-        /// <returns></returns>
-        public static string FormatFluently(this string source, params object[] arguments) =>
-            string.Format(source, arguments);
-
-        /// <summary> Fluently checks whether the string is null, empty, or consists only of white-space characters. </summary>
-        /// <param name="source"> A source string. </param>
-        /// <returns></returns>
-        public static bool IsNullOrWhiteSpaceFluently(this string source) =>
-            string.IsNullOrWhiteSpace(source);
+        #region Methods: Filtering
 
         /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>
         /// <param name="sourceString"> A source string. </param>
@@ -60,6 +41,22 @@ namespace Core.Extensions
 
             return sourceString.Substring(sourceString.Count() - amountOfCharactersToSkip, amountOfCharactersToSkip);
         }
+
+        #endregion Methods: Filtering
+        #region Methods: Fluency
+
+        /// <summary> Fluently replaces format placeholders in a string with members of an argument array. </summary>
+        /// <param name="source"> A source string. </param>
+        /// <param name="arguments"> An array of objects whose string representations to insert into the source string. </param>
+        /// <returns></returns>
+        public static string FormatFluently(this string source, params object[] arguments) =>
+            string.Format(source, arguments);
+
+        /// <summary> Fluently checks whether the string is null, empty, or consists only of white-space characters. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <returns></returns>
+        public static bool IsNullOrWhiteSpaceFluently(this string sourceString) =>
+            string.IsNullOrWhiteSpace(sourceString);
 
         #region Regular Expressions
 
@@ -151,6 +148,31 @@ namespace Core.Extensions
         }
 
         #endregion Methods: Formatting
+        #region Methods: Searching
+
+        /// <summary> Checks whether the specified character is in the string. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="character"> The character to look for. </param>
+        /// <returns></returns>
+        public static bool Contains(this string sourceString, char character) =>
+            sourceString.Contains(character.ToString());
+
+        /// <summary> Checks whether the string occurrs within the specified string. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="targetString"> The string to search in. </param>
+        /// <returns></returns>
+        public static bool IsIn(this string sourceString, string targetString) =>
+            targetString.Contains(sourceString);
+
+        /// <summary> Checks whether the string occurrs within any of strings in the collection. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="stringCollection"> The collection to search in. </param>
+        /// <returns></returns>
+        public static bool IsPartiallyIn(this string sourceString, IEnumerable<string> stringCollection) =>
+            stringCollection
+                .Any(stringInCollection => stringInCollection.Contains(sourceString));
+
+        #endregion Methods: Searching
 
         /// <summary> Creates a new text reader with the given string. </summary>
         /// <param name="sourceString"> A source string. </param>

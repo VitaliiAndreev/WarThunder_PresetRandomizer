@@ -1,13 +1,19 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Attributes;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
-using Core.Enumerations;
 using Core.Enumerations.DataBase;
+using Core.Extensions;
+using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
-using System;
+using NHibernate.Mapping.ByCode;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -17,10 +23,10 @@ namespace Core.DataBase.WarThunder.Objects
     {
         #region Constants
 
-        /// <summary> The formatting string for output of <see cref="BattleRatingInArcade"/>, <see cref="BattleRatingInRealistic"/>, or <see cref="BattleRatingInSimulator"/>. </summary>
+        /// <summary> The formatting string for output of <see cref="BattleRatings"/>, <see cref="BattleRatingInRealistic"/>, or <see cref="BattleRatingInSimulator"/>. </summary>
         protected const string _battleRatingFormat = "#.0";
 
-        /// <summary> The regular experession matching <see cref="_battleRatingFormat"/> to check validity of <see cref="BattleRatingInArcade"/>, <see cref="BattleRatingInRealistic"/>, and <see cref="BattleRatingInSimulator"/> values. </summary>
+        /// <summary> The regular experession matching <see cref="_battleRatingFormat"/> to check validity of <see cref="BattleRatings"/>, <see cref="BattleRatingInRealistic"/>, and <see cref="BattleRatingInSimulator"/> values. </summary>
         public const string BattleRatingRegExPattern = "[1-9]{1}[0-9]{0,}.[037]{1}";
 
         #endregion Constants
@@ -119,25 +125,11 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual string SpawnType { get; protected set; }
 
         /// <summary>
-        /// The number of times this vehicle can sortie per match in Event Battles.
-        /// This property is used only by walking tanks introduced in 1st April 2015 and later used in Operation S.U.M.M.E.R.
-        /// </summary>
-        [Property()] public virtual int? NumberOfSpawnsInEvents { get; protected set; }
-
-        /// <summary>
-        /// The number of times this vehicle can sortie per match in Arcade Battles.
+        /// The number of times this vehicle can sortie per match.
         /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
         /// </summary>
-        [Property()] public virtual int? NumberOfSpawnsInArcade { get; protected set; }
-
-        /// <summary>
-        /// The number of times this vehicle can sortie per match in Realistic Battles.
-        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
-        /// </summary>
-        [Property()] public virtual int? NumberOfSpawnsInRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, NULL VALUES SEEM TO MEAN 1 YET THERE ARE EXPLICIT ONES FOR NAVY, HELICOPTERS, AND SOME HEAVY TANKS] </summary>
-        [Property()] public virtual int? NumberOfSpawnsInSimulation { get; protected set; }
+        [GameModeDictionary(EAttributeKey.NumberOfSpawns)]
+        [Property()] public virtual Dictionary<EGameMode, int?> NumberOfSpawns { get; protected set; }
 
         /// <summary> Whether this vehicle can spawn as a kill streak aircraft in Arcade Battles. </summary>
         [Property()] public virtual bool? CanSpawnAsKillStreak { get; protected set; }
@@ -205,81 +197,37 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle's research rank. </summary>
         [Property()] public virtual int Rank { get; protected set; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInArcade"/>) in Arcade Battles. The battle rating is being calculated from it. </summary>
-        [Property()] public virtual int EconomicRankInArcade { get; protected set; }
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRatings"/>). The battle rating is being calculated from these. </summary>
+        [GameModeDictionary(EAttributeKey.EconomicRank)]
+        [Property()] public virtual Dictionary<EGameMode, int?> EconomicRanks { get; protected set; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInRealistic"/>) in Realistic Battles. The battle rating is being calculated from it. </summary>
-        [Property()] public virtual int EconomicRankInRealistic { get; protected set; }
-
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInSimulation"/>) in Simulator Battles. The battle rating is being calculated from it. </summary>
-        [Property()] public virtual int? EconomicRankInSimulation { get; protected set; }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Arcade Battles. </summary>
-        public virtual string BattleRatingInArcade { get => Calculator.GetBattleRating(EconomicRankInArcade).ToString(_battleRatingFormat); protected set { } }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Realistic Battles. </summary>
-        public virtual string BattleRatingInRealistic { get => Calculator.GetBattleRating(EconomicRankInRealistic).ToString(_battleRatingFormat); protected set { } }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Simulator Battles. </summary>
-        public virtual string BattleRatingInSimulation
-        {
-            get => EconomicRankInSimulation.HasValue ? Calculator.GetBattleRating(EconomicRankInSimulation.Value).ToString(_battleRatingFormat) : ECharacterString.Null;
-            protected set { }
-        }
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        [GameModeDictionary(EAttributeKey.BattleRating)]
+        [Property()] public virtual Dictionary<EGameMode, string> BattleRatings { get; protected set; }
 
         #endregion Rank
         #region Repairs
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Arcade Battles.
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        [Property()] public virtual decimal RepairTimeWithCrewInArcade { get; protected set; }
+        [GameModeDictionary(EAttributeKey.RepairTimeWithCrew)]
+        [Property()] public virtual Dictionary<EGameMode, decimal> RepairTimesWithCrew { get; protected set; }
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Realistic Battles.
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        [Property()] public virtual decimal RepairTimeWithCrewInRealistic { get; protected set; }
+        [GameModeDictionary(EAttributeKey.RepairTimeWithoutCrew)]
+        [Property()] public virtual Dictionary<EGameMode, decimal> RepairTimesWithoutCrew { get; protected set; }
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Simulator Battles.
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        [Property()] public virtual decimal RepairTimeWithCrewInSimulation { get; protected set; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Arcade Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [Property()] public virtual decimal RepairTimeWithoutCrewInArcade { get; protected set; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Realistic Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [Property()] public virtual decimal RepairTimeWithoutCrewInRealistic { get; protected set; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Simulator Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [Property()] public virtual decimal RepairTimeWithoutCrewInSimulation { get; protected set; }
-
-        /// <summary> The full Silver Lion cost for repairing or auto-repairing the vehicle in Arcade Battles. </summary>
-        [Property()] public virtual int RepairCostInArcade { get; protected set; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Realistic Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [Property()] public virtual int RepairCostInRealistic { get; protected set; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Simulator Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [Property()] public virtual int RepairCostInSimulation { get; protected set; }
+        [GameModeDictionary(EAttributeKey.RepairCost)]
+        [Property()] public virtual Dictionary<EGameMode, int> RepairCosts { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
         [Property()] public virtual int? FreeRepairs { get; protected set; }
@@ -288,49 +236,24 @@ namespace Core.DataBase.WarThunder.Objects
         #region Rewards
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int BattleTimeAwardInArcade { get; protected set; }
+        [GameModeDictionary(EAttributeKey.BattleTimeAward)]
+        [Property()] public virtual Dictionary<EGameMode, int> BattleTimeAwards { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int BattleTimeAwardInRealistic { get; protected set; }
+        [GameModeDictionary(EAttributeKey.AverageAward)]
+        [Property()] public virtual Dictionary<EGameMode, int> AverageAwards { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int BattleTimeAwardInSimulation { get; protected set; }
+        [GameModeDictionary(EAttributeKey.RewardMultiplier)]
+        [Property()] public virtual Dictionary<EGameMode, decimal> RewardMultipliers { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int AverageAwardInArcade { get; protected set; }
+        [GameModeDictionary(EAttributeKey.VisualRewardMultiplier)]
+        [Property()] public virtual Dictionary<EGameMode, decimal> VisualRewardMultipliers { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int AverageAwardInRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual int AverageAwardInSimulation { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal RewardMultiplierInArcade { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal RewardMultiplierInRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal RewardMultiplierInSimulation { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal VisualRewardMultiplierInArcade { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal VisualRewardMultiplierInRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal VisualRewardMultiplierInSimulation { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? VisualPremiumRewardMultiplierInArcade { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? VisualPremiumRewardMultiplierInRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal? VisualPremiumRewardMultiplierInSimulation { get; protected set; }
+        [GameModeDictionary(EAttributeKey.VisualPremiumRewardMultiplier)]
+        [Property()] public virtual Dictionary<EGameMode, decimal?> VisualPremiumRewardMultipliers { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual decimal ResearchRewardMultiplier { get; protected set; }
@@ -339,13 +262,8 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual decimal GroundKillRewardMultiplier { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal BattleTimeArcade { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal BattleTimeRealistic { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal BattleTimeSimulation { get; protected set; }
+        [GameModeDictionary(EAttributeKey.BattleTime)]
+        [Property()] public virtual Dictionary<EGameMode, decimal> BattleTimes { get; protected set; }
 
         #endregion Rewards
         #region Weapons
@@ -930,15 +848,74 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Constructors
 
+        /// <summary> Consolidates values of JSON properties for stats across different <see cref="EGameMode"/>s into dictionaries defined in the persistent class. </summary>
+        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
+        protected virtual void ConsolidateGameModeSpecificPropertiesIntoDictionaries(IDeserializedFromJson instanceDeserializedFromJson)
+        {
+            var dictionaryProperties = GetType() // To look through this class once we first gather all the dictionary properties.
+                .GetProperties()
+                .Where(attribute => attribute.GetCustomAttributes<GameModeDictionaryAttribute>().Any())
+                .ToDictionary(item => item.GetCustomAttribute<GameModeDictionaryAttribute>().Key)
+            ;
+
+            foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // There's only need to look through the JSON mapping class once.
+            {
+                var persistAsDictionaryItemAttribute = jsonProperty.GetCustomAttribute<PersistAsDictionaryItemAttribute>();
+
+                if (persistAsDictionaryItemAttribute is null) // We are not interested in any classes not marked for consolidation via PersistAsDictionaryItemAttribute.
+                    continue;
+
+                var dictionaryProperty = dictionaryProperties[persistAsDictionaryItemAttribute.Key];
+                var dictionaryPropertyType = dictionaryProperty.GetPropertyOrFieldType();
+                var dictionaryPropertyValueAsDictionary = dictionaryProperty.GetValue(this) as IDictionary;
+
+                if (dictionaryPropertyValueAsDictionary is null) // Dictionaries need to be instantiated first.
+                {
+                    dictionaryProperty.SetValue(this, dictionaryPropertyType.CreateInstance());
+                    dictionaryPropertyValueAsDictionary = dictionaryProperty.GetValue(this) as IDictionary;
+                }
+
+                var jsonPropertyValue = jsonProperty.GetValue(instanceDeserializedFromJson);
+
+                #region Adjust value inputs for nullability of dictionary values (in case of non-required JSON properties)
+
+                if (jsonProperty.PropertyType == typeof(int) && dictionaryPropertyType.GetGenericArguments().Last() == typeof(int?))
+                    jsonPropertyValue = new int?((int)jsonPropertyValue);
+
+                else if (jsonProperty.PropertyType == typeof(decimal) && dictionaryPropertyType.GetGenericArguments().Last() == typeof(decimal?))
+                    jsonPropertyValue = new decimal?((decimal)jsonPropertyValue);
+
+                #endregion Adjust value inputs for nullability of dictionary values (in case of non-required JSON properties
+
+                dictionaryPropertyValueAsDictionary.TryAdding(persistAsDictionaryItemAttribute.GameMode, jsonPropertyValue);
+            }
+
+            #region Battle ratings have to be initialized explicitly because they are absent in JSON data.
+
+            string getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value).ToString(_battleRatingFormat) : "?.?";
+
+            BattleRatings = new Dictionary<EGameMode, string>
+            {
+                { EGameMode.Arcade, getBattleRating(EconomicRanks[EGameMode.Arcade]) },
+                { EGameMode.Realistic, getBattleRating(EconomicRanks[EGameMode.Realistic]) },
+                { EGameMode.Simulator, getBattleRating(EconomicRanks[EGameMode.Simulator]) },
+            };
+
+            #endregion Battle ratings have to be initialized explicitly because they are absent in JSON data.
+        }
+
+        /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
+        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
         protected override void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
         {
             base.InitializeWithDeserializedJson(instanceDeserializedFromJson);
 
+            ConsolidateGameModeSpecificPropertiesIntoDictionaries(instanceDeserializedFromJson);
+
             if (instanceDeserializedFromJson is VehicleDeserializedFromJson deserializedVehicle)
             {
-                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
-
                 PatchSpawnType(deserializedVehicle);
+                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
             }
         }
 

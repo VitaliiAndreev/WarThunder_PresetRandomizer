@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -92,25 +93,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         string SpawnType { get; }
 
         /// <summary>
-        /// The number of times this vehicle can sortie per match in Event Battles.
-        /// This property is used only by walking tanks introduced in 1st April 2015 and later used in Operation S.U.M.M.E.R.
-        /// </summary>
-        int? NumberOfSpawnsInEvents { get; }
-
-        /// <summary>
-        /// The number of times this vehicle can sortie per match in Arcade Battles.
+        /// The number of times this vehicle can sortie per match.
         /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
         /// </summary>
-        int? NumberOfSpawnsInArcade { get; }
-
-        /// <summary>
-        /// The number of times this vehicle can sortie per match in Realistic Battles.
-        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
-        /// </summary>
-        int? NumberOfSpawnsInRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, NULL VALUES SEEM TO MEAN 1 YET THERE ARE EXPLICIT ONES FOR NAVY, HELICOPTERS, AND SOME HEAVY TANKS] </summary>
-        int? NumberOfSpawnsInSimulation { get; }
+        Dictionary<EGameMode, int?> NumberOfSpawns { get; }
 
         /// <summary> Whether this vehicle can spawn as a kill streak aircraft in Arcade Battles. </summary>
         bool? CanSpawnAsKillStreak { get; }
@@ -178,80 +164,32 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's research rank. </summary>
         int Rank { get; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInArcade"/>) in Arcade Battles. The battle rating is being calculated from it. </summary>
-        int EconomicRankInArcade { get; }
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRatings"/>). The battle rating is being calculated from these. </summary>
+        Dictionary<EGameMode, int?> EconomicRanks { get; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInRealistic"/>) in Realistic Battles. The battle rating is being calculated from it. </summary>
-        int EconomicRankInRealistic { get; }
-
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUE] The vehicle's rank (the predecessor of the <see cref="BattleRatingInSimulation"/>) in Simulator Battles. The battle rating is being calculated from it. </summary>
-        int? EconomicRankInSimulation { get; }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Arcade Battles. </summary>
-        string BattleRatingInArcade { get; }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Realistic Battles. </summary>
-        string BattleRatingInRealistic { get; }
-
-        /// <summary> The value used for matchmaking (falling into a ± 1.0 battle rating bracket) in Simulator Battles. </summary>
-        string BattleRatingInSimulation { get; }
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        Dictionary<EGameMode, string> BattleRatings { get; }
 
         #endregion Rank
         #region Repairs
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Arcade Battles.
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        decimal RepairTimeWithCrewInArcade { get; }
+        Dictionary<EGameMode, decimal> RepairTimesWithCrew { get; }
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Realistic Battles.
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        decimal RepairTimeWithCrewInRealistic { get; }
+        Dictionary<EGameMode, decimal> RepairTimesWithoutCrew { get; }
 
         /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset in Simulator Battles.
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        decimal RepairTimeWithCrewInSimulation { get; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Arcade Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        decimal RepairTimeWithoutCrewInArcade { get; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Realistic Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        decimal RepairTimeWithoutCrewInRealistic { get; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset in Simulator Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        decimal RepairTimeWithoutCrewInSimulation { get; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Arcade Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        int RepairCostInArcade { get; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Realistic Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        int RepairCostInRealistic { get; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle in Simulator Battles.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        int RepairCostInSimulation { get; }
+        Dictionary<EGameMode, int> RepairCosts { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
         int? FreeRepairs { get; }
@@ -260,49 +198,19 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region Rewards
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int BattleTimeAwardInArcade { get; }
+        Dictionary<EGameMode, int> BattleTimeAwards { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int BattleTimeAwardInRealistic { get; }
+        Dictionary<EGameMode, int> AverageAwards { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int BattleTimeAwardInSimulation { get; }
+        Dictionary<EGameMode, decimal> RewardMultipliers { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int AverageAwardInArcade { get; }
+        Dictionary<EGameMode, decimal> VisualRewardMultipliers { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int AverageAwardInRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        int AverageAwardInSimulation { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal RewardMultiplierInArcade { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal RewardMultiplierInRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal RewardMultiplierInSimulation { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal VisualRewardMultiplierInArcade { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal VisualRewardMultiplierInRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal VisualRewardMultiplierInSimulation { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? VisualPremiumRewardMultiplierInArcade { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? VisualPremiumRewardMultiplierInRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal? VisualPremiumRewardMultiplierInSimulation { get; }
+        Dictionary<EGameMode, decimal?> VisualPremiumRewardMultipliers { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal ResearchRewardMultiplier { get; }
@@ -311,13 +219,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         decimal GroundKillRewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal BattleTimeArcade { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal BattleTimeRealistic { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal BattleTimeSimulation { get; }
+        Dictionary<EGameMode, decimal> BattleTimes { get; }
 
         #endregion Rewards
         #region Weapons
