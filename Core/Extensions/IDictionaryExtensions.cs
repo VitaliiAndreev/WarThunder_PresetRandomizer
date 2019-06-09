@@ -58,24 +58,5 @@ namespace Core.Extensions
 
             return newDictionary;
         }
-
-        /// <summary> Merges two dictionaries in a way that integer values corresponding to keys are added together in case of duplicates. </summary>
-        /// <typeparam name="T"> A generic type. </typeparam>
-        /// <param name="sourceDictionary"> A source dictionary. </param>
-        /// <param name="targetDictionary"> The dictionary to merge with. </param>
-        /// <returns></returns>
-        public static IDictionary<T, int> MergeIntegerValues<T>(this IDictionary<T, int> sourceDictionary, IDictionary<T, int> targetDictionary)
-        {
-            var newDictionary = sourceDictionary.Copy();
-
-            foreach (var keyValuePair in targetDictionary)
-            {
-                if (sourceDictionary.ContainsKey(keyValuePair.Key))
-                    sourceDictionary[keyValuePair.Key] += keyValuePair.Value;
-                else
-                    sourceDictionary.Add(keyValuePair);
-            }
-            return newDictionary;
-        }
     }
 }
