@@ -2,6 +2,7 @@
 using Core.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Core.Tests.Extensions
 {
@@ -57,6 +58,27 @@ namespace Core.Tests.Extensions
         }
 
         #endregion Tests: Flatten()
+        #region Tests: IsPartiallyIn()
+
+        [TestMethod]
+        public void IsPartiallyIn()
+        {
+            // arrange
+            var stringList = new List<string>
+            {
+                "Upheaval",
+                "Placeholder",
+                "Maintenance",
+            };
+
+            // act
+            var isIn = "holder".IsPartiallyIn(stringList);
+
+            // assert
+            isIn.Should().BeTrue();
+        }
+
+        #endregion Tests: IsPartiallyIn()
         #region Tests: ResetFormattingPlaceholders()
 
         [TestMethod]
