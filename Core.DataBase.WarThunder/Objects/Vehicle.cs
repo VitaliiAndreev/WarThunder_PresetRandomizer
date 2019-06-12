@@ -1,4 +1,5 @@
-﻿using Core.DataBase.Helpers.Interfaces;
+﻿using Core.DataBase.Enumerations;
+using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
@@ -62,7 +63,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region General
 
         /// <summary> The vehicle's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")]
+        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
         /// <summary> The vehicle's Gaijin ID. </summary>

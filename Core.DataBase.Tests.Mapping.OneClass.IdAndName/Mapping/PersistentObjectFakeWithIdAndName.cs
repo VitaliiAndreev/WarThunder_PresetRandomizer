@@ -1,4 +1,5 @@
-﻿using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
+﻿using Core.DataBase.Enumerations;
+using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
 using NHibernate.Mapping.Attributes;
 using System;
 
@@ -7,7 +8,7 @@ namespace Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping
     [Class(Table = nameof(PersistentObjectFakeWithIdAndName))]
     public class PersistentObjectFakeWithIdAndName : PersistentObjectFakeWithId
     {
-        [Id(Column = nameof(Id), TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")]
+        [Id(Column = nameof(Id), TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
         [Property()]

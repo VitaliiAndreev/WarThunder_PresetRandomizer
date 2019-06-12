@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\EIdGenerator.cs" />
     <Compile Include="Enumerations\Logger\EDataBaseLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EDataBaseLogMessage.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />

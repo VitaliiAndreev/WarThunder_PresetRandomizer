@@ -1,4 +1,5 @@
-﻿using Core.DataBase.Helpers.Interfaces;
+﻿using Core.DataBase.Enumerations;
+using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects;
 using Core.Enumerations.DataBase;
@@ -16,7 +17,7 @@ namespace Core.Objects
         #region Persistent Properties
 
         /// <summary> The nation's ID. </summary>
-        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = "hilo")] // The type and name of the identificator column have to be explicitly specified.
+        [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)] // The type and name of the identificator column have to be explicitly specified.
         public override long Id { get; protected set; }
 
         /// <summary> The nation's Gaijin ID. </summary>
