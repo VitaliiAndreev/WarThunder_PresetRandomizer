@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Objects;
 using Core.Enumerations.DataBase;
 using Core.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
-using System;
 using System.Collections.Generic;
 
 namespace Core.Objects
@@ -36,10 +35,7 @@ namespace Core.Objects
         #endregion Association Properties
         #region Constructors
 
-        /// <summary>
-        /// Creates a new transient object that can be persisted later.
-        /// This constructor is used by NHibernate to instantiate deserialized data read from a database.
-        /// </summary>
+        /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>
         protected Nation()
         {
         }

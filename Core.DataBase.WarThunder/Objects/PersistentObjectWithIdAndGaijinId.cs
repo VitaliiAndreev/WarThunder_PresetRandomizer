@@ -1,10 +1,8 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
-using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.Enumerations;
-using System;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
@@ -20,10 +18,7 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Properties
         #region Constructors
 
-        /// <summary>
-        /// Creates a new transient object that can be persisted later.
-        /// This constructor is used to maintain inheritance of class composition required for NHibernate mapping.
-        /// </summary>
+        /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>
         protected PersistentObjectWithIdAndGaijinId()
         {
         }

@@ -23,10 +23,7 @@ namespace Core.DataBase.Objects
         #endregion Fields
         #region Constructors
 
-        /// <summary>
-        /// Creates a new transient object that can be persisted later.
-        /// This constructor is used to maintain inheritance of class composition required for NHibernate mapping.
-        /// </summary>
+        /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>
         protected PersistentObject()
         {
         }

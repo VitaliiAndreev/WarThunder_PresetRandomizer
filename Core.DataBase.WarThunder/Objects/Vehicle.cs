@@ -812,10 +812,7 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Persistent Properties
         #region Constructors
 
-        /// <summary>
-        /// Creates a new transient object that can be persisted later.
-        /// This constructor is used by NHibernate to instantiate deserialized data read from a database.
-        /// </summary>
+        /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>
         protected Vehicle()
         {
         }

@@ -1,7 +1,6 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Objects;
 using NHibernate.Mapping.Attributes;
-using System;
 
 namespace Core.DataBase.Tests.Mapping.OneClass.Id.Mapping
 {
