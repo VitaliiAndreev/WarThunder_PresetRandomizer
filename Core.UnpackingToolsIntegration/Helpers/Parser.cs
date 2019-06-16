@@ -38,7 +38,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                var regularExpression = new Regex("(version[0-9]{1,}:[0-9]{1,}.[0-9]{1,}.[0-9]{1,}.[0-9]{1,}:yup_version)");
+                var regularExpression = new Regex("(version" + ERegularExpression.AtLeastOneNumber + ":" + ERegularExpression.VersionFull + ":yup_version)");
                 var match = regularExpression.Match(rawFileContents);
 
                 if (match is null)
