@@ -1,6 +1,5 @@
 ﻿using Core.Enumerations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -180,10 +179,13 @@ namespace Core.Extensions
         public static TextReader CreateTextReader(this string sourceString)
         {
             var memoryStream = new MemoryStream();
-            var streamWriter = new StreamWriter(memoryStream);
 
-            streamWriter.Write(sourceString);
-            streamWriter.Flush();
+            using (var streamWriter = new StreamWriter(memoryStream))
+            {
+                streamWriter.Write(sourceString);
+                streamWriter.Flush();
+            }
+
             memoryStream.Position = 0;
 
             return new StreamReader(memoryStream);
