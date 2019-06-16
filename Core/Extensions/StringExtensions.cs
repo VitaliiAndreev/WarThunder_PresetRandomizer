@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -176,16 +177,14 @@ namespace Core.Extensions
         /// <summary> Creates a new text reader with the given string. </summary>
         /// <param name="sourceString"> A source string. </param>
         /// <returns></returns>
+        [SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "StreamWriter cannot be closed here.")]
         public static TextReader CreateTextReader(this string sourceString)
         {
             var memoryStream = new MemoryStream();
-
-            using (var streamWriter = new StreamWriter(memoryStream))
-            {
-                streamWriter.Write(sourceString);
-                streamWriter.Flush();
-            }
-
+            var streamWriter = new StreamWriter(memoryStream);
+                
+            streamWriter.Write(sourceString);
+            streamWriter.Flush();
             memoryStream.Position = 0;
 
             return new StreamReader(memoryStream);
