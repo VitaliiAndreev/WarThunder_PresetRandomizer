@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\EAssemblies.cs" />
+    <Compile Include="Helpers\CalculatorTests.cs" />
     <Compile Include="Objects\BranchTests.cs" />
     <Compile Include="Objects\NationTests.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinIdTests.cs" />
