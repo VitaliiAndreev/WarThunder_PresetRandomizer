@@ -5,6 +5,7 @@
     {
         public const string Empty = "";
         public const string FileManager = "File Manager";
+        public const string FileReader = "File Reader";
         public const string IntegrationTests = "Integration Tests";
         public const string Logger = "Logger";
         public const string Parser = "Parser";
