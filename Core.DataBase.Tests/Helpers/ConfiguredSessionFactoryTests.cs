@@ -43,7 +43,7 @@ namespace Core.Tests.Helpers.DataBase
             // act
             Action buildDataBase = () =>
             {
-                using (var factory = new ConfiguredSessionFactory(fileName, true, Assembly.Load(EAssemblies.AssemblyWithNoMapping), Presets.Logger)) { }
+                using (var factory = new ConfiguredSessionFactory(fileName, true, Assembly.Load(EAssembly.AssemblyWithNoMapping), Presets.Logger)) { }
             };
 
             // assert
@@ -55,7 +55,7 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_DontOverwriteExistingDataBase_DataBaseDoesntExist_ShouldCreateNewFile()
         {
             // arrange
-            var assemblyName = EAssemblies.AssemblyWithMappingBase;
+            var assemblyName = EAssembly.AssemblyWithMappingBase;
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
@@ -81,8 +81,8 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_DontOverwriteExistingDataBase_SchemaMismatches_ShouldThrow()
         {
             // arrange
-            var firstAssemblyName = EAssemblies.AssemblyWithMappingBase;
-            var secondAssemblyName = EAssemblies.AssemblyWithMappingAltered;
+            var firstAssemblyName = EAssembly.AssemblyWithMappingBase;
+            var secondAssemblyName = EAssembly.AssemblyWithMappingAltered;
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory(string assemblyName) =>
@@ -111,7 +111,7 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_DontOverwriteExistingDataBase_SchemaMatches_ShouldNotWriteOverFile()
         {
             // arrange
-            var assemblyName = EAssemblies.AssemblyWithMappingBase;
+            var assemblyName = EAssembly.AssemblyWithMappingBase;
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
@@ -132,7 +132,7 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_OverwriteExistingDataBase_DataBaseDoesntExist_ShouldCreateNewFile()
         {
             // arrange
-            var assemblyName = EAssemblies.AssemblyWithMappingBase;
+            var assemblyName = EAssembly.AssemblyWithMappingBase;
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
@@ -158,7 +158,7 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_OverwriteExistingDataBase_DataBaseExists_ShouldWriteOverFile()
         {
             // arrange
-            var assemblyName = EAssemblies.AssemblyWithMappingBase;
+            var assemblyName = EAssembly.AssemblyWithMappingBase;
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>

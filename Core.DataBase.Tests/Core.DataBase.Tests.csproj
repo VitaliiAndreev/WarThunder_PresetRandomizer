@@ -123,7 +123,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\EAssemblies.cs" />
+    <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Extensions\IEnumerableExtensionsTests.cs" />
     <Compile Include="Helpers\ConfiguredSessionFactoryTests.cs" />
     <Compile Include="Helpers\DataRepositoryTests.cs" />

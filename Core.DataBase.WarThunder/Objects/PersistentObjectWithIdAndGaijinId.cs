@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
 {
-    /// <summary> A persistent (stored in a database) object that has an ID and a name. </summary>
+    /// <summary> A persistent (stored in a database) object that has an ID and a Gaijin ID. </summary>
     public abstract class PersistentObjectWithIdAndGaijinId : PersistentObjectWithId, IPersistentObjectWithIdAndGaijinId
     {
         #region Properties
