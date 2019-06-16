@@ -5,7 +5,8 @@
     {
         #region General
 
-        internal const string Id = "ID";
+        internal const string Id = "Id";
+        internal const string GaijinId = "GaijinId";
 
         #endregion General
     }

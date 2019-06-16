@@ -1,5 +1,4 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -96,7 +95,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// The number of times this vehicle can sortie per match.
         /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
         /// </summary>
-        Dictionary<EGameMode, int?> NumberOfSpawns { get; }
+        VehicleGameModeParameterSet.Integer.NumberOfSpawns NumberOfSpawns { get; }
 
         /// <summary> Whether this vehicle can spawn as a kill streak aircraft in Arcade Battles. </summary>
         bool? CanSpawnAsKillStreak { get; }
@@ -164,11 +163,11 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's research rank. </summary>
         int Rank { get; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRatings"/>). The battle rating is being calculated from these. </summary>
-        Dictionary<EGameMode, int?> EconomicRanks { get; }
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
+        VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        Dictionary<EGameMode, string> BattleRatings { get; }
+        VehicleGameModeParameterSet.String.BattleRating BattleRating { get; }
 
         #endregion Rank
         #region Repairs
@@ -177,19 +176,19 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        Dictionary<EGameMode, decimal> RepairTimesWithCrew { get; }
+        VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew RepairTimeWithCrew { get; }
 
         /// <summary>
         /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        Dictionary<EGameMode, decimal> RepairTimesWithoutCrew { get; }
+        VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew RepairTimeWithoutCrew { get; }
 
         /// <summary>
         /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
         /// Reserve vehicles don't need repairs.
         /// </summary>
-        Dictionary<EGameMode, int> RepairCosts { get; }
+        VehicleGameModeParameterSet.Integer.RepairCost RepairCost { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
         int? FreeRepairs { get; }
@@ -198,19 +197,19 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region Rewards
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, int> BattleTimeAwards { get; }
+        VehicleGameModeParameterSet.Integer.BattleTimeAward BattleTimeAward { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, int> AverageAwards { get; }
+        VehicleGameModeParameterSet.Integer.AverageAward AverageAward { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, decimal> RewardMultipliers { get; }
+        VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, decimal> VisualRewardMultipliers { get; }
+        VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, decimal?> VisualPremiumRewardMultipliers { get; }
+        VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier VisualPremiumRewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal ResearchRewardMultiplier { get; }
@@ -219,7 +218,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         decimal GroundKillRewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        Dictionary<EGameMode, decimal> BattleTimes { get; }
+        VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; }
 
         #endregion Rewards
         #region Weapons

@@ -65,18 +65,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\GameModeDictionaryAttribute.cs" />
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
     <Compile Include="Enumerations\EAttributeKey.cs" />
     <Compile Include="Enumerations\EGameMode.cs" />
+    <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSet.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSetBase.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
@@ -86,6 +88,19 @@
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleTime.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualPremiumRewardMultiplier.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualRewardMultiplier.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RewardMultiplier.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithoutCrew.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithCrew.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\AverageAward.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\BattleTimeAward.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\RepairCost.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\EconomicRank.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\NumberOfSpawns.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\String\BattleRating.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\VehicleGameModeParameterSetBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
