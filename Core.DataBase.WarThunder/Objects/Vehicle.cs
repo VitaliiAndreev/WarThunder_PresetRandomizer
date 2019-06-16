@@ -2,12 +2,12 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
-using Core.Enumerations.DataBase;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;

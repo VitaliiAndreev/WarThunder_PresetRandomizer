@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations.DataBase
+﻿namespace Core.DataBase.WarThunder.Enumerations.DataBase
 {
     /// <summary> Tables in the local database. </summary>
     internal class ETable
