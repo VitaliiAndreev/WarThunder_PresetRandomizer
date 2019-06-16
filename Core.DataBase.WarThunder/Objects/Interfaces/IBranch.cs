@@ -1,6 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Objects.Interfaces;
 
-namespace Core.Objects.Interfaces
+namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A nation's military branch. </summary>
     public interface IBranch : IPersistentObjectWithIdAndGaijinId

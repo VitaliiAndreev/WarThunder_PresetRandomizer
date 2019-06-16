@@ -2,12 +2,11 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
-using Core.DataBase.WarThunder.Objects;
-using Core.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
 
-namespace Core.Objects
+namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A nation's military branch. </summary>
     [Class(Table = ETable.Branch)]
