@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace WarThunderSimpleUpdateChecker
 {
-    class App
+    class Application
     {
         private const string _commonPath = @"D:\";
         private const string _warThunderPath = _commonPath + @"Games\_Steam\steamapps\common\War Thunder\";
