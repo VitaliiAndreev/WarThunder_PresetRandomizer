@@ -68,7 +68,6 @@
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
-    <Compile Include="Enumerations\EAttributeKey.cs" />
     <Compile Include="Enumerations\EGameMode.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />

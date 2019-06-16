@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -76,101 +77,101 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int Rank { get; set; }
 
         [JsonProperty("economicRankArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.EconomicRank), EGameMode.Arcade)]
         public int EconomicRankInArcade { get; set; }
 
         [JsonProperty("economicRankHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.EconomicRank), EGameMode.Realistic)]
         public int EconomicRankInRealistic { get; set; }
 
         #endregion Rank
         #region Repairs
 
         [JsonProperty("repairTimeHrsArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithCrew), EGameMode.Arcade)]
         public decimal RepairTimeWithCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithCrew), EGameMode.Realistic)]
         public decimal RepairTimeWithCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithCrew, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithCrew), EGameMode.Simulator)]
         public decimal RepairTimeWithCrewInSimulation { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithoutCrew), EGameMode.Arcade)]
         public decimal RepairTimeWithoutCrewInArcade { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithoutCrew), EGameMode.Realistic)]
         public decimal RepairTimeWithoutCrewInRealistic { get; set; }
 
         [JsonProperty("repairTimeHrsNoCrewSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairTimeWithoutCrew, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairTimeWithoutCrew), EGameMode.Simulator)]
         public decimal RepairTimeWithoutCrewInSimulation { get; set; }
 
         [JsonProperty("repairCostArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairCost), EGameMode.Arcade)]
         public int RepairCostInArcade { get; set; }
 
         [JsonProperty("repairCostHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairCost), EGameMode.Realistic)]
         public int RepairCostInRealistic { get; set; }
 
         [JsonProperty("repairCostSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RepairCost, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RepairCost), EGameMode.Simulator)]
         public int RepairCostInSimulation { get; set; }
 
         #endregion Repairs
         #region Rewards
 
         [JsonProperty("battleTimeAwardArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTimeAward), EGameMode.Arcade)]
         public int BattleTimeAwardInArcade { get; set; }
 
         [JsonProperty("battleTimeAwardHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTimeAward), EGameMode.Realistic)]
         public int BattleTimeAwardInRealistic { get; set; }
 
         [JsonProperty("battleTimeAwardSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTimeAward, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTimeAward), EGameMode.Simulator)]
         public int BattleTimeAwardInSimulation { get; set; }
 
         [JsonProperty("avgAwardArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.AverageAward), EGameMode.Arcade)]
         public int AverageAwardInArcade { get; set; }
 
         [JsonProperty("avgAwardHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.AverageAward), EGameMode.Realistic)]
         public int AverageAwardInRealistic { get; set; }
 
         [JsonProperty("avgAwardSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.AverageAward, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.AverageAward), EGameMode.Simulator)]
         public int AverageAwardInSimulation { get; set; }
 
         [JsonProperty("rewardMulArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RewardMultiplier), EGameMode.Arcade)]
         public decimal RewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RewardMultiplier), EGameMode.Realistic)]
         public decimal RewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.RewardMultiplier, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.RewardMultiplier), EGameMode.Simulator)]
         public decimal RewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("rewardMulVisualArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualRewardMultiplier), EGameMode.Arcade)]
         public decimal VisualRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulVisualHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualRewardMultiplier), EGameMode.Realistic)]
         public decimal VisualRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulVisualSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.VisualRewardMultiplier, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualRewardMultiplier), EGameMode.Simulator)]
         public decimal VisualRewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("expMul", Required = Required.Always)]
@@ -180,15 +181,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public decimal GroundKillRewardMultiplier { get; set; }
 
         [JsonProperty("battleTimeArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTime), EGameMode.Arcade)]
         public decimal BattleTimeArcade { get; set; }
 
         [JsonProperty("battleTimeHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTime), EGameMode.Realistic)]
         public decimal BattleTimeRealistic { get; set; }
 
         [JsonProperty("battleTimeSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(EAttributeKey.BattleTime, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.BattleTime), EGameMode.Simulator)]
         public decimal BattleTimeSimulation { get; set; }
 
         #endregion Rewards
@@ -245,20 +246,20 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         /// <summary> This property is used only by walking tanks introduced in 1st April 2015 and later used in Operation S.U.M.M.E.R. </summary>
         [JsonProperty("numSpawnsPerBattle")]
-        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Event)]
+        [PersistAsDictionaryItem(nameof(IVehicle.NumberOfSpawns), EGameMode.Event)]
         public int? NumberOfSpawnsInEvents { get; set; }
 
         [JsonProperty("numSpawnsPerBattleArcade")]
-        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.NumberOfSpawns), EGameMode.Arcade)]
         public int? NumberOfSpawnsInArcade { get; set; }
 
         [JsonProperty("numSpawnsPerBattleHistorical")]
-        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.NumberOfSpawns), EGameMode.Realistic)]
         public int? NumberOfSpawnsInRealistic { get; set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, NULL VALUES SEEM TO MEAN 1 YET THERE ARE EXPLICIT ONES FOR NAVY, HELICOPTERS, AND SOME HEAVY TANKS] </summary>
         [JsonProperty("numSpawnsPerBattleSimulation")]
-        [PersistAsDictionaryItem(EAttributeKey.NumberOfSpawns, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.NumberOfSpawns), EGameMode.Simulator)]
         public int? NumberOfSpawnsInSimulation { get; set; }
 
         [JsonProperty("killStreak")]
@@ -306,7 +307,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Rank
 
         [JsonProperty("economicRankSimulation")]
-        [PersistAsDictionaryItem(EAttributeKey.EconomicRank, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.EconomicRank), EGameMode.Simulator)]
         public int? EconomicRankInSimulation { get; set; }
 
         #endregion Rank
@@ -319,15 +320,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region Rewards
 
         [JsonProperty("premRewardMulVisualArcade")]
-        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualPremiumRewardMultiplier), EGameMode.Arcade)]
         public decimal? VisualPremiumRewardMultiplierInArcade { get; set; }
 
         [JsonProperty("premRewardMulVisualHistorical")]
-        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualPremiumRewardMultiplier), EGameMode.Realistic)]
         public decimal? VisualPremiumRewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("premRewardMulVisualSimulation")]
-        [PersistAsDictionaryItem(EAttributeKey.VisualPremiumRewardMultiplier, EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicle.VisualPremiumRewardMultiplier), EGameMode.Simulator)]
         public decimal? VisualPremiumRewardMultiplierInSimulation { get; set; }
 
         #endregion Rewards
