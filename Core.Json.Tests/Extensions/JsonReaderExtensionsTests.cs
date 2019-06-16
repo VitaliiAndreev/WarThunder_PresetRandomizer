@@ -21,10 +21,12 @@ namespace Core.Json.Tests.Extensions
             var arrayName1 = "Array1";
             var arrayValue1 = new int[] { 1, 2 };
             var jsonObjectText = "\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + arrayName1 + "\":\r\n[\r\n" + arrayValue1[0] + ",\r\n" + arrayValue1[1] + "\r\n]\r\n}";
-            var jsonReader = jsonObjectText.CreateJsonReader();
+            var jsonObject = default(JObject);
 
             // act
-            var jsonObject = jsonReader.Deserialize() as JObject;
+            using (var jsonReader = jsonObjectText.CreateJsonReader())
+                jsonObject = jsonReader.Deserialize() as JObject;
+
             var property1 = jsonObject[propertyName1];
             var array1 = jsonObject[arrayName1];
 
@@ -46,10 +48,12 @@ namespace Core.Json.Tests.Extensions
             var propertyValue1 = 17;
             var propertyValue1d = 42;
             var jsonObjectText = "{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + propertyName1 + "\": " + propertyValue1d + ",\r\n}";
-            var jsonReader = jsonObjectText.CreateJsonReader();
+            var jsonObject = default(JObject);
 
             // act
-            var jsonObject = jsonReader.Deserialize() as JObject;
+            using (var jsonReader = jsonObjectText.CreateJsonReader())
+                jsonObject = jsonReader.Deserialize() as JObject;
+
             var property1 = jsonObject[propertyName1];
 
             // assert
@@ -69,10 +73,12 @@ namespace Core.Json.Tests.Extensions
             var arrayName1 = "Array1";
             var arrayValue1 = new int[] { 1, 2 };
             var jsonObjectText = "\r\n{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + arrayName1 + "\":\r\n[\r\n" + arrayValue1[0] + ",\r\n" + arrayValue1[1] + "\r\n]\r\n}";
-            var jsonReader = jsonObjectText.CreateJsonReader();
+            var jsonObject = default(JObject);
 
             // act
-            var jsonObject = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JObject;
+            using (var jsonReader = jsonObjectText.CreateJsonReader())
+                jsonObject = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JObject;
+
             var property1 = jsonObject[propertyName1];
             var array1 = jsonObject[arrayName1];
 
@@ -94,10 +100,12 @@ namespace Core.Json.Tests.Extensions
             var propertyValue1 = 17;
             var propertyValue1d = 42;
             var jsonObjectText = "{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + propertyName1 + "\": " + propertyValue1d + ",\r\n}";
-            var jsonReader = jsonObjectText.CreateJsonReader();
+            var jsonObject = default(JObject);
 
             // act
-            var jsonObject = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JObject;
+            using (var jsonReader = jsonObjectText.CreateJsonReader())
+                jsonObject = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JObject;
+
             var property1 = jsonObject[propertyName1];
 
             // assert
@@ -117,10 +125,11 @@ namespace Core.Json.Tests.Extensions
             var jsonObjectText1 = "{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n\"" + propertyName1 + "\": " + propertyValue1d + ",\r\n}";
             var jsonObjectText2 = "{\r\n\"" + propertyName1 + "\": " + propertyValue1 + ",\r\n}";
             var jsonText = "[\r\n" + jsonObjectText1 + ",\r\n" + jsonObjectText2 + "\r\n]";
-            var jsonReader = jsonText.CreateJsonReader();
+            var jsonArray = default(JArray);
 
             // act
-            var jsonArray = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JArray;
+            using (var jsonReader = jsonText.CreateJsonReader())
+                jsonArray = jsonReader.DeserializeAndCombineDuplicatesLoosely() as JArray;
 
             var jsonObject1 = jsonArray[0] as JObject;
             var jsonObject2 = jsonArray[1] as JObject;

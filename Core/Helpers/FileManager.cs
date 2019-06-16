@@ -281,7 +281,7 @@ namespace Core.Helpers
         /// <param name="fileName"> The file name. </param>
         /// <returns></returns>
         public FileInfo GetFileInfo(string directoryPath, string fileName) =>
-            new FileInfo($@"{directoryPath}\{fileName}");
+            new FileInfo(Path.Combine(directoryPath, fileName));
 
         #endregion Methods: Fluency
     }
