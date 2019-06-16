@@ -8,7 +8,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// <summary> Calculates battle rating from economic rank. </summary>
         /// <param name="economicRank"> An economic rank to calculate the battle rating from. </param>
         /// <returns></returns>
-        public static decimal GetBattleRating(int economicRank) => economicRank / 3 + 1;
+        public static decimal GetBattleRating(int economicRank) => Math.Round(economicRank / 3.0m + 1, 1);
 
         /// <summary> Calculates economic rank from battle rating. </summary>
         /// <param name="battleRating"> A battle rating to calculate the economic rank from. </param>
