@@ -155,14 +155,15 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Copies the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks it. </summary>
         /// <param name="sourceFile"> The file to unpack. </param>
+        /// <param name="overwrite"> Whether to overwrite existing files. </param>
         /// <returns> The path to the output file / directory. </returns>
-        public string Unpack(FileInfo sourceFile)
+        public string Unpack(FileInfo sourceFile, bool overwrite = false)
         {
             // Preparing temp files.
 
             LogDebug(ECoreLogMessage.PreparingToUnpack.FormatFluently(sourceFile.FullName));
 
-            _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation);
+            _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation, overwrite, true);
 
             var toolFile = GetToolFileInfo(GetToolFileNameByFileExtension(sourceFile.Extension));
             var tempFile = GetTempFileInfo(sourceFile.Name);

@@ -11,7 +11,7 @@ namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
         /// <summary> Copies the file to unpack into the <see cref="Settings.TempLocation"/> and unpacks it. </summary>
         /// <param name="sourceFile"> The file to unpack. </param>
         /// <returns> The path to the output file / directory. </returns>
-        string Unpack(FileInfo sourceFile);
+        string Unpack(FileInfo sourceFile, bool overwrite = false);
 
         /// <summary> Unpacks all valid files in the specified folder with the given tool. </summary>
         /// <param name="sourceDirectory"> The directory to unpack unpack files from. </param>
