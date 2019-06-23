@@ -84,6 +84,7 @@
     <Compile Include="Extensions\TypeExtensionsTests.cs" />
     <Compile Include="Helpers\FileManagerTests.cs" />
     <Compile Include="Helpers\FileReaderTests.cs" />
+    <Compile Include="Objects\IntervalDecimalTests.cs" />
     <Compile Include="Presets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
