@@ -32,7 +32,7 @@ namespace Core.Helpers.Logger
         {
             ExceptionFormatter = exceptionFormatter;
 
-            LogManager.Configuration.Variables[EVariableName.ConsoleLayout] = "${message}";
+            LogManager.Configuration.Variables[EVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
             LogManager.Configuration.Variables[EVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
             LogManager.Configuration.Variables[EVariableName.FileName] = @"Logs\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
 
