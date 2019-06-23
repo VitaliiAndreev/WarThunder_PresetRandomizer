@@ -864,7 +864,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
         /// <param name="jsonProperty"> The JSON property whose value is being inserted. </param>
         /// <param name="parameterSets"> The dictionary of available game mode parameter sets. </param>
-        protected virtual void InsertJsonPropertyValueIntoGameModeParameterSet(IDeserializedFromJson instanceDeserializedFromJson, PropertyInfo jsonProperty, Dictionary<string, VehicleGameModeParameterSetBase> parameterSets)
+        private void InsertJsonPropertyValueIntoGameModeParameterSet(IDeserializedFromJson instanceDeserializedFromJson, PropertyInfo jsonProperty, Dictionary<string, VehicleGameModeParameterSetBase> parameterSets)
         {
             var persistAsDictionaryItemAttribute = jsonProperty.GetCustomAttribute<PersistAsDictionaryItemAttribute>();
 
@@ -904,7 +904,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Consolidates values of JSON properties for <see cref="EGameMode"/> parameters into sets defined in the persistent class. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        protected virtual void ConsolidateGameModeParameterPropertiesIntoSets(IDeserializedFromJson instanceDeserializedFromJson)
+        private void ConsolidateGameModeParameterPropertiesIntoSets(IDeserializedFromJson instanceDeserializedFromJson)
         {
             var parameterSets = new Dictionary<string, VehicleGameModeParameterSetBase>
             {
@@ -977,7 +977,9 @@ namespace Core.DataBase.WarThunder.Objects
             BattleRatingFormatted = new VehicleGameModeParameterSet.String.BattleRating(formatBattleRating(BattleRating.Arcade), formatBattleRating(BattleRating.Realistic), formatBattleRating(BattleRating.Simulator), _unknownBattleRating);
         }
 
-        protected virtual void PatchSpawnType(VehicleDeserializedFromJson deserializedVehicle)
+        /// <summary> Clarifies <see cref="SpawnType"/> values. </summary>
+        /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
+        private void PatchSpawnType(VehicleDeserializedFromJson deserializedVehicle)
         {
             if (deserializedVehicle.SpawnType == "ah")
                 SpawnType = "walker (ah)";
