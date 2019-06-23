@@ -9,6 +9,23 @@ namespace Core.Tests.Extensions
     [TestClass]
     public class FileInfoExtensionsTests
     {
+        #region Tests: GetExtensionWithoutPeriod()
+
+        [TestMethod]
+        public void GetExtensionWithoutPeriod()
+        {
+            // arrange
+            var exectedFileExtensionWithoutPeriod = "gif";
+            var fileInfo = new FileInfo($@"{Directory.GetCurrentDirectory()}\whatsitsface.{exectedFileExtensionWithoutPeriod}");
+
+            // act
+            var actualFileExtensionWithoutPeriod = fileInfo.GetExtensionWithoutPeriod();
+
+            // assert
+            actualFileExtensionWithoutPeriod.Should().Be(exectedFileExtensionWithoutPeriod);
+        }
+
+        #endregion Tests: GetExtensionWithoutPeriod()
         #region Tests: GetFileNameWithoutExtension()
 
         [TestMethod]
