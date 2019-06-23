@@ -81,6 +81,8 @@
     <Compile Include="Helpers\Logger\Interfaces\IConfiguredLogger.cs" />
     <Compile Include="Helpers\Logger\Interfaces\IExceptionFormatter.cs" />
     <Compile Include="Helpers\Logger\LoggerFluency.cs" />
+    <Compile Include="Objects\Abstract\IntervalBase.cs" />
+    <Compile Include="Objects\IntervalDecimal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
