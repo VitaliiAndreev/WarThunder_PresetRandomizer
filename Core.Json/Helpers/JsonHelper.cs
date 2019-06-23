@@ -94,7 +94,7 @@ namespace Core.Json.Helpers
         /// <returns> A collection of object instances. </returns>
         public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonText)
         {
-            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            LogInfo(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
             var deserializedInstances = new Dictionary<string, T>();
 
             try
@@ -119,7 +119,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(ECoreJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
+            LogInfo(ECoreJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
             return deserializedInstances;
         }
 

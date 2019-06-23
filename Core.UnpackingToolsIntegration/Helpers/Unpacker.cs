@@ -192,12 +192,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="toolName"> The name of the unpacking tool to use. </param>
         public void Unpack(DirectoryInfo sourceDirectory, string toolName)
         {
-            LogDebug(ECoreLogMessage.Unpacking.FormatFluently(sourceDirectory.FullName));
+            LogInfo(ECoreLogMessage.Unpacking.FormatFluently(sourceDirectory.FullName));
 
             try
             {
                 RunShellCommand(GetToolFileInfo(toolName).FullName, sourceDirectory.FullName);
-                LogDebug(ECoreLogMessage.Unpacked.FormatFluently(sourceDirectory.Name));
+                LogInfo(ECoreLogMessage.Unpacked.FormatFluently(sourceDirectory.Name));
             }
             catch (Exception exception)
             {

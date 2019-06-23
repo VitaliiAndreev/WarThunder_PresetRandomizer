@@ -70,12 +70,12 @@ namespace Core.Helpers
         {
             var fileContents = default(string);
 
-            LogDebug(ECoreLogMessage.Reading.FormatFluently(file.FullName));
+            LogInfo(ECoreLogMessage.Reading.FormatFluently(file.FullName));
 
             using (var textReader = CreateTextReader(file.FullName))
                 fileContents = textReader.ReadToEnd();
 
-            LogDebug(ECoreLogMessage.ReadCharacters.FormatFluently(fileContents.Count()));
+            LogInfo(ECoreLogMessage.ReadCharacters.FormatFluently(fileContents.Count()));
 
             return fileContents;
         }

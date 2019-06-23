@@ -45,7 +45,7 @@ namespace Core.DataBase.Helpers
         public DataRepository(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
             : base(EDataBaseLogCategory.DataRepository, loggers)
         {
-            LogDebug
+            LogInfo
             (
                 EDataBaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
                 (
@@ -58,7 +58,7 @@ namespace Core.DataBase.Helpers
             SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
             NewObjects = new List<IPersistentObject>();
 
-            LogDebug(EDataBaseLogMessage.DataRepositoryCreated);
+            LogInfo(EDataBaseLogMessage.DataRepositoryCreated);
         }
 
         #endregion Constructors
@@ -69,7 +69,7 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         public IEnumerable<T> Query<T>() where T : IPersistentObject
         {
-            LogDebug(EDataBaseLogMessage.QueryingObjects.FormatFluently(typeof(T).Name));
+            LogInfo(EDataBaseLogMessage.QueryingObjects.FormatFluently(typeof(T).Name));
 
             var cachedQuery = default(IEnumerable<T>);
 
@@ -86,7 +86,7 @@ namespace Core.DataBase.Helpers
                 LogTrace(EDataBaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
             }
 
-            LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            LogInfo(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
             return cachedQuery;
         }
 
@@ -120,7 +120,7 @@ namespace Core.DataBase.Helpers
         /// <summary> Persists any transient objects cached in the repository. </summary>
         public void PersistNewObjects()
         {
-            LogDebug(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
+            LogInfo(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
             using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
@@ -134,7 +134,7 @@ namespace Core.DataBase.Helpers
                 transaction.Commit();
             }
 
-            LogDebug(EDataBaseLogMessage.AllNewObjectsPersisted);
+            LogInfo(EDataBaseLogMessage.AllNewObjectsPersisted);
         }
 
         #endregion Methods: IDataRepository Members
