@@ -87,6 +87,7 @@
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleTime.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualPremiumRewardMultiplier.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualRewardMultiplier.cs" />

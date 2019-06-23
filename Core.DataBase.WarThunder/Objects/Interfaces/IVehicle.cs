@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -167,7 +168,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        VehicleGameModeParameterSet.String.BattleRating BattleRating { get; }
+        VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
 
         #endregion Rank
         #region Repairs

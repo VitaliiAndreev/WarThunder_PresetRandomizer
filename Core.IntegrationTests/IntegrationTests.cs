@@ -138,7 +138,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.Rank > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomicRank.Arcade >= 0 && vehicle.EconomicRank.Realistic >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomicRank.Simulator < 0).Should().BeFalse();
-                    vehicleCollection.All(vehicle => vehicle.BattleRating.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRating.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleRatingFormatted.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRatingFormatted.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
                     // repairs
                     vehicleCollection.All(vehicle => vehicle.RepairTimeWithCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.RepairTimeWithoutCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();

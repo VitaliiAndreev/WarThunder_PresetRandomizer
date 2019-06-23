@@ -23,6 +23,8 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> The formatting string for output of <see cref="BattleRating"/>. </summary>
         private const string _battleRatingFormat = "#.0";
+        /// <summary> The string representing an unknown battle rating. </summary>
+        private const string _unknownBattleRating = "?.?";
 
         /// <summary> The regular experession matching <see cref="_battleRatingFormat"/> to check validity of <see cref="BattleRating"/> values. </summary>
         public const string BattleRatingRegExPattern = "[1-9]{1}[0-9]{0,}.[037]{1}";
@@ -200,8 +202,11 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.String.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.String.BattleRating.Vehicle))]
-        public virtual VehicleGameModeParameterSet.String.BattleRating BattleRating { get; protected set; }
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
         #endregion Rank
         #region Repairs
@@ -846,6 +851,15 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Constructors
 
+        /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>
+        /// <param name="dataRepository"> A data repository to assign the object to. </param>
+        public override void InitializeNonPersistentFields(IDataRepository dataRepository)
+        {
+            base.InitializeNonPersistentFields(dataRepository);
+
+            InitializeVisualBattleRatings();
+        }
+
         /// <summary> Tries to insert the value of the specified jSON property into the relevant game mode parameter set. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
         /// <param name="jsonProperty"> The JSON property whose value is being inserted. </param>
@@ -937,9 +951,11 @@ namespace Core.DataBase.WarThunder.Objects
 
             #region Battle ratings have to be initialized explicitly because they are absent in JSON data.
 
-            string getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value).ToString(_battleRatingFormat) : "?.?";
+            decimal? getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value) : default(decimal?);
 
-            BattleRating = new VehicleGameModeParameterSet.String.BattleRating(_dataRepository, this, getBattleRating(EconomicRank.Arcade), getBattleRating(EconomicRank.Realistic), getBattleRating(EconomicRank.Simulator), null);
+            BattleRating = new VehicleGameModeParameterSet.Decimal.BattleRating(_dataRepository, this, getBattleRating(EconomicRank.Arcade), getBattleRating(EconomicRank.Realistic), getBattleRating(EconomicRank.Simulator), null);
+
+            InitializeVisualBattleRatings();
 
             #endregion Battle ratings have been initialized.
 
@@ -948,6 +964,17 @@ namespace Core.DataBase.WarThunder.Objects
                 PatchSpawnType(deserializedVehicle);
                 BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
             }
+        }
+
+        /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
+        private void InitializeVisualBattleRatings()
+        {
+            string formatBattleRating(decimal? nullableValue) => nullableValue.HasValue ? nullableValue.Value.ToString(_battleRatingFormat) : _unknownBattleRating;
+
+            if (BattleRating is null)
+                return;
+
+            BattleRatingFormatted = new VehicleGameModeParameterSet.String.BattleRating(formatBattleRating(BattleRating.Arcade), formatBattleRating(BattleRating.Realistic), formatBattleRating(BattleRating.Simulator), _unknownBattleRating);
         }
 
         protected virtual void PatchSpawnType(VehicleDeserializedFromJson deserializedVehicle)
