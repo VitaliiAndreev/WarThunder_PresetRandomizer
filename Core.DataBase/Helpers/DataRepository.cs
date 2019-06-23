@@ -19,8 +19,8 @@ namespace Core.DataBase.Helpers
     {
         #region Properties
 
-        /// <summary> An instance of a logger. </summary>
-        public IConfiguredLogger Logger { get { return _logger; } }
+        /// <summary> Instances of loggers. </summary>
+        public IEnumerable<IConfiguredLogger> Loggers { get { return _loggers; } }
 
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         public bool IsClosed { get; private set; }
@@ -41,9 +41,9 @@ namespace Core.DataBase.Helpers
         /// <param name="dataBaseFileName"> The name of an SQLite database file (without an extension). </param>
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="SessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
-        /// <param name="logger"> An instance of a logger. </param>
-        public DataRepository(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, IConfiguredLogger logger)
-            : base(logger, EDataBaseLogCategory.DataRepository)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public DataRepository(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+            : base(EDataBaseLogCategory.DataRepository, loggers)
         {
             LogDebug
             (
@@ -55,7 +55,7 @@ namespace Core.DataBase.Helpers
                 )
             );
 
-            SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, logger);
+            SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
             NewObjects = new List<IPersistentObject>();
 
             LogDebug(EDataBaseLogMessage.DataRepositoryCreated);

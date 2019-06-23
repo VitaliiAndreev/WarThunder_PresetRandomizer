@@ -16,9 +16,9 @@ namespace Core.Helpers
         #region Constructors
 
         /// <summary> Creates a new file manager. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public FileManager(IConfiguredLogger logger)
-            : base(logger, ECoreLogCategory.FileManager)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public FileManager(params IConfiguredLogger[] loggers)
+            : base(ECoreLogCategory.FileManager, loggers)
         {
             LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.FileManager));
         }

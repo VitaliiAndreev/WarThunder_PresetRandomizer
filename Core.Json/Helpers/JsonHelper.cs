@@ -20,9 +20,9 @@ namespace Core.Json.Helpers
         #region Constructors
 
         /// <summary> Creates a new JSON helper. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public JsonHelper(IConfiguredLogger logger)
-            : base(logger, ECoreJsonLogCategory.JsonHelper)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public JsonHelper(params IConfiguredLogger[] loggers)
+            : base(ECoreJsonLogCategory.JsonHelper, loggers)
         {
             LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreJsonLogCategory.JsonHelper));
         }

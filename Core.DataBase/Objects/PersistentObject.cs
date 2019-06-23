@@ -59,40 +59,58 @@ namespace Core.DataBase.Objects
         /// <summary> Creates a log entry of the "Trace" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
-        protected void LogTrace(string message) =>
-            _dataRepository.Logger.LogTrace(_logCategory, message);
+        protected void LogTrace(string message)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogTrace(_logCategory, message);
+        }
 
         /// <summary> Creates a log entry of the "Debug" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
-        protected void LogDebug(string message) =>
-            _dataRepository.Logger.LogDebug(_logCategory, message);
+        protected void LogDebug(string message)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogDebug(_logCategory, message);
+        }
 
         /// <summary> Creates a log entry of the "Info" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
-        protected void LogInfo(string message) =>
-            _dataRepository.Logger.LogInfo(_logCategory, message);
+        protected void LogInfo(string message)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogInfo(_logCategory, message);
+        }
 
         /// <summary> Creates a log entry of the "Warn" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
-        protected void LogWarn(string message) =>
-            _dataRepository.Logger.LogWarn(_logCategory, message);
+        protected void LogWarn(string message)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogWarn(_logCategory, message);
+        }
 
         /// <summary> Creates a log entry of the "Error" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
-        protected void LogError(string message, Exception exception) =>
-            _dataRepository.Logger.LogError(_logCategory, message, exception);
+        protected void LogError(string message, Exception exception)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogError(_logCategory, message, exception);
+        }
 
         /// <summary> Creates a log entry of the "Fatal" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
-        protected void LogFatal(string message, Exception exception) =>
-            _dataRepository.Logger.LogFatal(_logCategory, message, exception);
+        protected void LogFatal(string message, Exception exception)
+        {
+            foreach (var logger in _dataRepository.Loggers)
+                logger.LogFatal(_logCategory, message, exception);
+        }
 
         #endregion Methods: Logging
 

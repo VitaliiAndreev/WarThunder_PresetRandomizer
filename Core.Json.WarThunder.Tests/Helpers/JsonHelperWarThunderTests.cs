@@ -55,7 +55,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         {
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
-            _unpacker = new Unpacker(Presets.Logger, _fileManager);
+            _unpacker = new Unpacker(_fileManager, Presets.Logger);
             _jsonHelper = new JsonHelperWarThunder(Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;

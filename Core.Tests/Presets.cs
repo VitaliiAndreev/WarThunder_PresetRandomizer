@@ -65,10 +65,12 @@ namespace Core.Tests
         /// <summary> Creates a <see cref="MockDataRepository"/> instance. </summary>
         private static void InitializeMockDataRepository()
         {
+            var loggers = new List<IConfiguredLogger> { Logger };
+
             MockDataRepository = new Mock<IDataRepository>();
             MockDataRepository
-                .Setup(dataRepository => dataRepository.Logger)
-                .Returns(Logger);
+                .Setup(dataRepository => dataRepository.Loggers)
+                .Returns(loggers);
             MockDataRepository
                 .Setup(dataRepository => dataRepository.NewObjects)
                 .Returns(new List<IPersistentObject>());

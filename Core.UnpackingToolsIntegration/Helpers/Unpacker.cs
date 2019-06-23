@@ -37,10 +37,10 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Constructors
 
         /// <summary> Creates a new unpacker. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
+        /// <param name="loggers"> Instances of loggers. </param>
         /// <param name="fileManager"> An instance of a file manager. </param>
-        public Unpacker(IConfiguredLogger logger, IFileManager fileManager)
-            : base(logger, ECoreLogCategory.Unpacker)
+        public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
+            : base(ECoreLogCategory.Unpacker, loggers)
         {
             LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.Unpacker));
 

@@ -27,7 +27,7 @@ namespace WarThunderSimpleUpdateChecker
         private static readonly IFileManager _fileManager = new FileManager(_logger);
         private static readonly IFileReader _fileReader = new FileReader(_logger);
         private static readonly IParser _parser = new Parser(_logger);
-        private static readonly IUnpacker _unpacker = new Unpacker(_logger, _fileManager);
+        private static readonly IUnpacker _unpacker = new Unpacker(_fileManager, _logger);
 
         static void Main()
         {

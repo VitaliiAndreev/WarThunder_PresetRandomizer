@@ -46,9 +46,9 @@ namespace Core.DataBase.Helpers
         /// <param name="dataBaseFileName"> The name of an SQLite database file (with an extension). </param>
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="ISessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
-        /// <param name="logger"> An instance of a logger. </param>
-        public ConfiguredSessionFactory(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, IConfiguredLogger logger)
-            : base(logger, EDataBaseLogCategory.SessionFactory)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public ConfiguredSessionFactory(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+            : base(EDataBaseLogCategory.SessionFactory, loggers)
         {
             DataBaseFileName = dataBaseFileName;
             _overwriteExistingDataBase = overwriteExistingDataBase;

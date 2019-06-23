@@ -14,9 +14,9 @@ namespace Core.Helpers
         #region Constructors
 
         /// <summary> Creates a new file reader. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public FileReader(IConfiguredLogger logger)
-            : base(logger, ECoreLogCategory.FileReader)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public FileReader(params IConfiguredLogger[] loggers)
+            : base(ECoreLogCategory.FileReader, loggers)
         {
             LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.FileReader));
         }

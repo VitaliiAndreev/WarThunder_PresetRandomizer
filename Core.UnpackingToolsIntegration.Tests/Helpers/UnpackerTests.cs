@@ -32,7 +32,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         public void Initialize()
         {
             _fileManager = new FileManager(Presets.Logger);
-            _unpacker = new Unpacker(Presets.Logger, _fileManager);
+            _unpacker = new Unpacker(_fileManager, Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;
 

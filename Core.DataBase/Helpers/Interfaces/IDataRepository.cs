@@ -10,8 +10,8 @@ namespace Core.DataBase.Helpers.Interfaces
     {
         #region Properties
 
-        /// <summary> An instance of a logger. </summary>
-        IConfiguredLogger Logger { get; }
+        /// <summary> Instances of loggers. </summary>
+        IEnumerable<IConfiguredLogger> Loggers { get; }
 
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         bool IsClosed { get; }
