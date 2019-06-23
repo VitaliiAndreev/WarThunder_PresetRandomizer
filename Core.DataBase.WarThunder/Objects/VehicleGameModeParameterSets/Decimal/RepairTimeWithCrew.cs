@@ -8,7 +8,7 @@ using NHibernate.Mapping.Attributes;
 
 namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
 {
-    /// <summary> A set of nullable integer parameters that vary depending on the game mode. </summary>
+    /// <summary> A set of nullable decimal parameters that vary depending on the game mode. </summary>
     [Class(Table = ETable.VehicleRepairTimeWithCrew)]
     public class RepairTimeWithCrew: VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<decimal?>
     {
