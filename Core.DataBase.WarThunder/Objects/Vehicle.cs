@@ -21,10 +21,10 @@ namespace Core.DataBase.WarThunder.Objects
     {
         #region Constants
 
-        /// <summary> The formatting string for output of <see cref="BattleRating"/>, <see cref="BattleRatingInRealistic"/>, or <see cref="BattleRatingInSimulator"/>. </summary>
-        protected const string _battleRatingFormat = "#.0";
+        /// <summary> The formatting string for output of <see cref="BattleRating"/>. </summary>
+        private const string _battleRatingFormat = "#.0";
 
-        /// <summary> The regular experession matching <see cref="_battleRatingFormat"/> to check validity of <see cref="BattleRating"/>, <see cref="BattleRatingInRealistic"/>, and <see cref="BattleRatingInSimulator"/> values. </summary>
+        /// <summary> The regular experession matching <see cref="_battleRatingFormat"/> to check validity of <see cref="BattleRating"/> values. </summary>
         public const string BattleRatingRegExPattern = "[1-9]{1}[0-9]{0,}.[037]{1}";
 
         #endregion Constants
@@ -824,11 +824,11 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="instanceSerializedFromJson"> A non-persistent instance serialized from JSON data to initialize this instance with. </param>
-        public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJson instanceSerializedFromJson)
-            : this(dataRepository, -1L, instanceSerializedFromJson.GaijinId)
+        /// <param name="instanceDerializedFromJson"> A non-persistent instance deserialized from JSON data to initialize this instance with. </param>
+        public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJson instanceDerializedFromJson)
+            : this(dataRepository, -1L, instanceDerializedFromJson.GaijinId)
         {
-            InitializeWithDeserializedJson(instanceSerializedFromJson);
+            InitializeWithDeserializedJson(instanceDerializedFromJson);
         }
 
         /// <summary> Creates a new nation. </summary>
