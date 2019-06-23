@@ -12,9 +12,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Constructors
 
         /// <summary> Creates a new file reader. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public WarThunderFileReader(IConfiguredLogger logger)
-            : base(logger)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public WarThunderFileReader(params IConfiguredLogger[] loggers)
+            : base(loggers)
         {
         }
 

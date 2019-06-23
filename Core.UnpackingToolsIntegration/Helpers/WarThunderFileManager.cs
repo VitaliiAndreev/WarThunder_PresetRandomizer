@@ -16,9 +16,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Constructors
 
         /// <summary> Creates a new database updater. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public WarThunderFileManager(IConfiguredLogger logger)
-            : base(logger)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public WarThunderFileManager(params IConfiguredLogger[] loggers)
+            : base(loggers)
         {
         }
 

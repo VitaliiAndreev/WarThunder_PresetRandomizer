@@ -21,9 +21,9 @@ namespace Core.Json.Helpers
         #region Constructors
 
         /// <summary> Creates a new War Thunder JSON helper. </summary>
-        /// <param name="logger"> An instance of a logger. </param>
-        public JsonHelperWarThunder(IConfiguredLogger logger)
-            : base(logger)
+        /// <param name="loggers"> Instances of loggers. </param>
+        public JsonHelperWarThunder(params IConfiguredLogger[] loggers)
+            : base(loggers)
         {
         }
 
