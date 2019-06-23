@@ -143,6 +143,7 @@
         protected const string _for_SPC_FMT_Q = _for + _SPC_FMT_Q;
         protected const string _format = _for + "mat";
         protected const string _formats = _format + "s";
+        protected const string _Found = "Found";
         protected const string _found = " found";
         protected const string _from = " from";
 

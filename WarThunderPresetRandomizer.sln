@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IntegrationTests", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Json.Tests", "Core.Json.Tests\Core.Json.Tests.csproj", "{43EB404B-6A49-46C2-AD58-D8578FCB460A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Console", "Client.Console\Client.Console.csproj", "{D8D8624D-4A74-4318-B261-686B9691EE6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43EB404B-6A49-46C2-AD58-D8578FCB460A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D8624D-4A74-4318-B261-686B9691EE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D8624D-4A74-4318-B261-686B9691EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D8624D-4A74-4318-B261-686B9691EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D8624D-4A74-4318-B261-686B9691EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
