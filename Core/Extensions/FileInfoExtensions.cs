@@ -9,7 +9,7 @@ namespace Core.Extensions
         /// <summary> Get the file name without an extension (if any). </summary>
         /// <param name="fileInfo"> A source file information instance. </param>
         /// <returns></returns>
-        public static string GetFileNameWithoutExtension(this FileInfo fileInfo) =>
+        public static string GetNameWithoutExtension(this FileInfo fileInfo) =>
             fileInfo.Name.Contains(ECharacter.Period)
                 ? fileInfo.Name.Split(ECharacter.Period).SkipLast(1).StringJoin(ECharacter.Period)
                 : fileInfo.Name;

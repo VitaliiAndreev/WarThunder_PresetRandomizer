@@ -19,7 +19,7 @@ namespace Core.Tests.Extensions
             var fileInfo = new FileInfo($@"{Directory.GetCurrentDirectory()}\{expectedFileNameWithoutExtension}.gif");
 
             // act
-            var actualFileNameWithoutExtension = fileInfo.GetFileNameWithoutExtension();
+            var actualFileNameWithoutExtension = fileInfo.GetNameWithoutExtension();
 
             // assert
             actualFileNameWithoutExtension.Should().Be(expectedFileNameWithoutExtension);
