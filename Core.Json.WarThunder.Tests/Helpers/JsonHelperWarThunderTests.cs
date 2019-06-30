@@ -146,7 +146,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
 
             // act
-            var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJson>(wpCostJson);
+            var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonWpCost>(wpCostJson);
 
             // assert
             vehicles.Count().Should().BeGreaterThan(1300);

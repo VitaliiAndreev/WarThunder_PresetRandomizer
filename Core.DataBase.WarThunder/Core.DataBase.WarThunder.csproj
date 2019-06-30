@@ -82,7 +82,7 @@
     <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
-    <Compile Include="Objects\Json\VehicleDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\VehicleDeserializedFromJsonWpCost.cs" />
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />

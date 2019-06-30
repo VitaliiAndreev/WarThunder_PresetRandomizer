@@ -36,7 +36,7 @@ namespace Core.Json.WarThunder.Extensions
 
             foreach (var keyValuePair in dictionary)
             {
-                if (keyValuePair.Value is VehicleDeserializedFromJson vehicle)
+                if (keyValuePair.Value is VehicleDeserializedFromJsonWpCost vehicle)
                     vehicle.Weapons.SetGaijinIds().SetOwners(vehicle);
             }
             return dictionary;

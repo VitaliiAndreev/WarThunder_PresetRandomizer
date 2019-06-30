@@ -258,7 +258,7 @@ namespace Core.Json.Helpers
 
             if (typeof(T) == typeof(Vehicle))
             {
-                foreach (var deserializedData in DeserializeList<VehicleDeserializedFromJson>(jsonText))
+                foreach (var deserializedData in DeserializeList<VehicleDeserializedFromJsonWpCost>(jsonText))
                     deserializedInstances.Add(new Vehicle(dataRepository, deserializedData) as T);
             }
             return deserializedInstances;

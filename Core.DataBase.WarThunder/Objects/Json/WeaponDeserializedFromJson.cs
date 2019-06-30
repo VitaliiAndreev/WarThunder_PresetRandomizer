@@ -5,7 +5,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
 {
     /// <summary> A mapping entity used for automated deserialization of JSON data before passing it on into persistent objects. </summary>
     [JsonObject()]
-    public class WeaponDeserializedFromJson : DeserializedFromJsonWithOwner<VehicleDeserializedFromJson>
+    public class WeaponDeserializedFromJson : DeserializedFromJsonWithOwner<VehicleDeserializedFromJsonWpCost>
     {
         [JsonProperty("value", Required = Required.Always)]
         public int PurchaseCostInSilver { get; set; }

@@ -328,7 +328,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="instanceDerializedFromJson"> A non-persistent instance deserialized from JSON data to initialize this instance with. </param>
-        public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJson instanceDerializedFromJson)
+        public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJsonWpCost instanceDerializedFromJson)
             : this(dataRepository, -1L, instanceDerializedFromJson.GaijinId)
         {
             InitializeWithDeserializedJson(instanceDerializedFromJson);
@@ -457,7 +457,7 @@ namespace Core.DataBase.WarThunder.Objects
 
             #endregion Battle ratings have been initialized.
 
-            if (instanceDeserializedFromJson is VehicleDeserializedFromJson deserializedVehicle)
+            if (instanceDeserializedFromJson is VehicleDeserializedFromJsonWpCost deserializedVehicle)
             {
                 PatchSpawnType(deserializedVehicle);
                 BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
@@ -477,7 +477,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Clarifies <see cref="SpawnType"/> values. </summary>
         /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
-        private void PatchSpawnType(VehicleDeserializedFromJson deserializedVehicle)
+        private void PatchSpawnType(VehicleDeserializedFromJsonWpCost deserializedVehicle)
         {
             if (deserializedVehicle.SpawnType == "ah")
                 SpawnType = "walker (ah)";
