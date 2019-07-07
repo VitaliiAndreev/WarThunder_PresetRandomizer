@@ -74,7 +74,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> The vehicle's nation. </summary>
         [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
-        [Key(1)] public virtual INation Nation { get; protected set; }
+        [Key(1)] public virtual INation Nation { get; protected internal set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string MoveType { get; protected set; }
