@@ -30,6 +30,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         #endregion Root Folder
         #region CharVromfs
 
+        public const string RankData = "rank" + _blkx;
         public const string GeneralVehicleData = "wpcost" + _blkx;
 
         #endregion CharVromfs

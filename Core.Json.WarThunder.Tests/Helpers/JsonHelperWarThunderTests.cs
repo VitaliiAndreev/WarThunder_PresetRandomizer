@@ -13,6 +13,7 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -118,35 +119,48 @@ namespace Core.Json.WarThunder.Tests.Helpers
         #endregion Tests: DeserializeObject()
         #region Tests: DeserializeList()
 
+        #region Helper Methods
+
+        private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
+        {
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, sourceFileName);
+            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
+
+            _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+
+            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+        }
+
+        private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
+        {
+            return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
+        }
+
+        #endregion Helper Methods
+
+        [TestMethod]
+        public void DeserializeList_Nations()
+        {
+            // arrange
+            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.RankData);
+
+            // act
+            var ranksInfo = _jsonHelper.DeserializeObject<RankDeserializedFromJson>(jsonText, true);
+
+            // assert
+            ranksInfo.Nations.Count().Should().BeGreaterOrEqualTo(7);
+        }
+
         [TestMethod]
         public void DeserializeList_Vehicles()
         {
             // arrange
-            var sourceFiles = new List<FileInfo>
-            {
-                _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters)
-            };
-
-            var outputDirectories = new List<DirectoryInfo>();
-
-            foreach (var sourceFile in sourceFiles)
-            {
-                var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-                outputDirectories.Add(outputDirectory);
-                _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
-            }
-
-            var blkxFiles = new List<FileInfo>();
-
-            foreach (var outputDirectory in outputDirectories)
-            {
-                blkxFiles.AddRange(outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories));
-            }
-
-            var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
+            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.GeneralVehicleData);
 
             // act
-            var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonWpCost>(wpCostJson);
+            var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonWpCost>(jsonText);
 
             // assert
             vehicles.Count().Should().BeGreaterThan(1300);
