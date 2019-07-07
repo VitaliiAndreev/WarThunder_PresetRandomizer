@@ -1,7 +1,6 @@
-﻿using Core.DataBase.Helpers;
-using Core.DataBase.Tests.Enumerations;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
+using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -97,7 +96,7 @@ namespace Core.IntegrationTests
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositoryWarThunder(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 void assert(IEnumerable<INation> nationCollection)
                 {
@@ -127,7 +126,7 @@ namespace Core.IntegrationTests
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositoryWarThunder(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 void assert(IEnumerable<IVehicle> vehicleCollection)
                 {

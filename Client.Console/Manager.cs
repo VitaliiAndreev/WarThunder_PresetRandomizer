@@ -1,10 +1,10 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Enumerations.Logger;
 using Client.Console.Interfaces;
-using Core.DataBase.Helpers;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Extensions;
+using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -92,7 +92,7 @@ namespace Client.Console
             else
             {
                 LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
-                _dataRepository = new DataRepository(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+                _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
             }
 
             _cache.AddRange(_dataRepository.Query<IVehicle>());
@@ -122,7 +122,7 @@ namespace Client.Console
 
             var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
 
-            _dataRepository = new DataRepository(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+            _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
             _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJson);
             _dataRepository.PersistNewObjects();

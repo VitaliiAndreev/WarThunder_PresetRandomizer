@@ -1,5 +1,5 @@
-﻿using Core.DataBase.Helpers;
-using Core.DataBase.Tests.Enumerations;
+﻿using Core.DataBase.Tests.Enumerations;
+using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Enumerations;
@@ -36,7 +36,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositoryWarThunder(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
                 var zimbabwe = new Nation(dataRepository, "Zimbabwe");
                 var bycicleCorps = new Branch(dataRepository, "Bycicle Corps", zimbabwe);

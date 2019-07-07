@@ -118,16 +118,14 @@ namespace Core.DataBase.Helpers
         }
 
         /// <summary> Persists any transient objects cached in the repository. </summary>
-        public void PersistNewObjects()
+        public virtual void PersistNewObjects()
         {
             LogInfo(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
             using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
-                var sortedNewObjects = NewObjects.OrderBy(newObject => $"{newObject.GetType()}{(newObject as IPersistentObjectWithId)?.Id}");
-
-                foreach (var instance in sortedNewObjects)
+                foreach (var instance in NewObjects)
                 {
                     LogTrace(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
                     session.Save(instance);
