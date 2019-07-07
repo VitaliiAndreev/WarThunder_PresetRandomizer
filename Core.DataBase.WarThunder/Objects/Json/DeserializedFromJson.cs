@@ -6,6 +6,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
     public class DeserializedFromJson : IDeserializedFromJson
     {
         /// <summary> The entity's Gaijin ID. </summary>
-        public string GaijinId { get; set; }
+        public virtual string GaijinId { get; set; }
     }
 }

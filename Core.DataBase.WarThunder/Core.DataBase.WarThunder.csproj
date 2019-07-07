@@ -79,9 +79,11 @@
     <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSetBase.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\NationDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\RankDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\VehicleDeserializedFromJsonWpCost.cs" />
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Nation.cs" />

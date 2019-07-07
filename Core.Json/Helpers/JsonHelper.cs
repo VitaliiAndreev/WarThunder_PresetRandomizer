@@ -64,8 +64,9 @@ namespace Core.Json.Helpers
         /// <summary> Deserializes JSON text and creates an object instance from it. </summary>
         /// <typeparam name="T"> The object time into which to deserialize. </typeparam>
         /// <param name="jsonText"> The JSON text to deserialize. </param>
+        /// <param name="suppressStandardization"> Whether to avoid doing any pre-processing of JSON entities. </param>
         /// <returns></returns>
-        public T DeserializeObject<T>(string jsonText)
+        public T DeserializeObject<T>(string jsonText, bool suppressStandardization = false)
         {
             LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
             var deserializedInstance = default(T);
@@ -74,7 +75,7 @@ namespace Core.Json.Helpers
             {
                 ThrowIfJsonTextIsInvalid(jsonText);
 
-                if (typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To avoid cyclical calls of DeserializeObject<dynamic>().
+                if (suppressStandardization || typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To skip standardization or to avoid cyclical calls of DeserializeObject<dynamic>().
                     deserializedInstance = JsonConvert.DeserializeObject<T>(jsonText);
                 else
                     deserializedInstance = StandardizeAndDeserializeObject(jsonText).ToObject<T>();
