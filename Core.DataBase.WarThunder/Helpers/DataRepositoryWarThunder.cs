@@ -41,7 +41,7 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(NewObjects.OfType<IVehicleGameModeParameterSetBase>());
 
             if (sortedNewObjects.Count() != NewObjects.Count())
-                throw new ArgumentException("Not all object type have been included in sorting");
+                throw new ArgumentException($"Not all object types have been included in sorting of the {nameof(NewObjects)} collection.");
 
             NewObjects.ReplaceBy(sortedNewObjects);
 
