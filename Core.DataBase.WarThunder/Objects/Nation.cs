@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
-    /// <summary> A nation in the game. </summary>
+    /// <summary> A nation (with their own research trees) in the game. </summary>
     [Class(Table = ETable.Nation)]
     public class Nation : PersistentObjectWithIdAndGaijinId, INation
     {

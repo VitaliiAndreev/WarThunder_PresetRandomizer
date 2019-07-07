@@ -317,15 +317,15 @@ namespace Core.DataBase.WarThunder.Objects
         {
         }
 
-        /// <summary> Creates a new nation. </summary>
+        /// <summary> Creates a new vehicle. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="gaijinId"> The nation's Gaijin ID. </param>
+        /// <param name="gaijinId"> The vehicle's Gaijin ID. </param>
         public Vehicle(IDataRepository dataRepository, string gaijinId)
             : this(dataRepository, -1L, gaijinId)
         {
         }
 
-        /// <summary> Creates a new nation. </summary>
+        /// <summary> Creates a new vehicle. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="instanceDerializedFromJson"> A non-persistent instance deserialized from JSON data to initialize this instance with. </param>
         public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJsonWpCost instanceDerializedFromJson)
@@ -334,10 +334,10 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeWithDeserializedJson(instanceDerializedFromJson);
         }
 
-        /// <summary> Creates a new nation. </summary>
+        /// <summary> Creates a new vehicle. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The nation's ID. </param>
-        /// <param name="gaijinId"> The nation's Gaijin ID. </param>
+        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="gaijinId"> The vehicle's Gaijin ID. </param>
         public Vehicle(IDataRepository dataRepository, long id, string gaijinId)
             : base(dataRepository, id, gaijinId)
         {

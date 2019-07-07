@@ -139,7 +139,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         #endregion Helper Methods
 
         [TestMethod]
-        public void DeserializeList_Nations()
+        public void DeserializeObject_Rank_Nations()
         {
             // arrange
             var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);

@@ -247,7 +247,7 @@ namespace Core.Json.Helpers
         public IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJson =>
             DeserializeDictionary<T>(jsonText).FinalizeDeserialization().Values;
 
-        /// <summary> Deserializes given JSON text into instances persistent objects. </summary>
+        /// <summary> Deserializes given JSON text into instances of persistent objects. </summary>
         /// <typeparam name="T"> A generic type of persistent objects. </typeparam>
         /// <param name="dataRepository"> The data repository to assign new instances to. </param>
         /// <param name="jsonText"> JSON text to deserialize. </param>
