@@ -18,5 +18,17 @@ namespace Core.Extensions
 
             return newCollection;
         }
+
+        /// <summary> Replaces contents of the collection with those of the given collection. </summary>
+        /// <typeparam name="T"> The type of collection elements. </typeparam>
+        /// <param name="sourceCollection"> The source collection. </param>
+        /// <param name="donorCollection"> The collection whose contents replace those of the source collection. </param>
+        public static void ReplaceBy<T>(this ICollection<T> sourceCollection, IEnumerable<T> donorCollection)
+        {
+            sourceCollection.Clear();
+
+            foreach (var element in donorCollection)
+                sourceCollection.Add(element);
+        }
     }
 }
