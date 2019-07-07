@@ -2,6 +2,7 @@
 using Core.Helpers.Logger.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.DataBase.Helpers.Interfaces
 {
@@ -28,10 +29,11 @@ namespace Core.DataBase.Helpers.Interfaces
         #endregion Properties
         #region Methods
 
-        /// <summary> Read all instances of a specified persistent class from the database in a cached collection. </summary>
+        /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
+        /// <param name="filter"> The filter by which to query objects from the database. </param>
         /// <returns></returns>
-        IEnumerable<T> Query<T>() where T : IPersistentObject;
+        IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject;
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
         /// <param name="instance"> An object to create/update. </param>

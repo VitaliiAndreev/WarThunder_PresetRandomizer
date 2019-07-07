@@ -437,7 +437,7 @@ namespace Core.DataBase.WarThunder.Objects
             if (instanceDeserializedFromJson is VehicleDeserializedFromJsonWpCost deserializedVehicle)
             {
                 Nation = _dataRepository.NewObjects.OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
-                    ?? _dataRepository.Query<INation>().FirstOrDefault(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)
+                    ?? _dataRepository.Query<INation>(query => query.Where(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)).FirstOrDefault()
                     ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
 
                 PatchSpawnType(deserializedVehicle);

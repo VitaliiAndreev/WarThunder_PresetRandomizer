@@ -64,20 +64,27 @@ namespace Core.DataBase.Helpers
         #endregion Constructors
         #region Methods: IDataRepository Members
 
-        /// <summary> Read all instances of a specified persistent class from the database and caches them into a collection. </summary>
+        /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
+        /// <param name="filter"> The filter by which to query objects from the database. </param>
         /// <returns></returns>
-        public IEnumerable<T> Query<T>() where T : IPersistentObject
+        public IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
-            LogInfo(EDataBaseLogMessage.QueryingObjects.FormatFluently(typeof(T).Name));
+            LogInfo((filter is null ? EDataBaseLogMessage.QueryingAllObjects : EDataBaseLogMessage.QueryingObjects).FormatFluently(typeof(T).Name));
 
             var cachedQuery = default(IEnumerable<T>);
 
             using (var session = SessionFactory.OpenSession())
             {
-                cachedQuery = session
-                    .Query<T>()
-                    .ToList();
+                var query = session.Query<T>();
+                
+                if (!(filter is null))
+                {
+                    query = filter(query);
+                    LogInfo(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                }
+
+                cachedQuery = query.ToList();
             }
 
             foreach (var instance in cachedQuery)

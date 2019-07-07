@@ -25,7 +25,17 @@ namespace Core.DataBase.Enumerations.Logger
         /// A message with formatting placeholders.
         /// <para> 1: persistent object type. </para>
         /// </summary>
-        public const string QueryingObjects = _Querying + _all + _SPC_FMT_Q + _objects + _FS;
+        public const string QueryingObjects = _Querying + _SPC_FMT_Q + _objects + _with + _a + _filter + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: persistent object type. </para>
+        /// </summary>
+        public const string QueryingAllObjects = _Querying + _all + _SPC_FMT_Q + _objects + _FS;
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: filtered LINQ query. </para>
+        /// </summary>
+        public const string FilteredQueryIs = _The + _filtered + _query + _is + _SPC_FMT + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: object. </para>

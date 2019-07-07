@@ -139,6 +139,8 @@
         protected const string _file_s = _file + "(s)";
         protected const string _files = _file + "s";
         protected const string _Filtering = "Filtering";
+        protected const string _filter = " filter";
+        protected const string _filtered = _filter + "ed";
         protected const string _for = " for";
         protected const string _for_SPC_FMT_Q = _for + _SPC_FMT_Q;
         protected const string _format = _for + "mat";
@@ -335,6 +337,7 @@
         #region W
 
         protected const string _while = " while";
+        protected const string _with = " with";
         protected const string _write = " write";
         protected const string _written = " written";
 
