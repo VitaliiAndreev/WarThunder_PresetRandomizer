@@ -3,6 +3,7 @@ using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
 
@@ -31,6 +32,12 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToMany(1, ClassType = typeof(Branch))]
         public virtual IEnumerable<IBranch> Branches { get; protected internal set; } = new List<IBranch>();
 
+        /// <summary> The nation's vehicles. </summary>
+        [Bag(0, Name = nameof(Vehicles), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [Key(1, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
+        [OneToMany(1, ClassType = typeof(Vehicle))]
+        public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();
+
         #endregion Association Properties
         #region Constructors
 
@@ -49,6 +56,14 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a new nation. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
+        /// <param name="instanceDerializedFromJson"> A non-persistent instance deserialized from JSON data to initialize this instance with. </param>
+        public Nation(IDataRepository dataRepository, NationDeserializedFromJson instanceDerializedFromJson)
+            : this(dataRepository, -1L, instanceDerializedFromJson.GaijinId)
+        {
+        }
+
+        /// <summary> Creates a new nation. </summary>
+        /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The nation's ID. </param>
         /// <param name="gaijinId"> The nation's Gaijin ID. </param>
         public Nation(IDataRepository dataRepository, long id, string gaijinId)
@@ -61,6 +76,14 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
         /// <returns></returns>
-        public override IEnumerable<IPersistentObject> GetAllNestedObjects() => Branches;
+        public override IEnumerable<IPersistentObject> GetAllNestedObjects()
+        {
+            var nestedObjects = new List<IPersistentObject>();
+
+            nestedObjects.AddRange(Branches);
+            nestedObjects.AddRange(Vehicles);
+
+            return nestedObjects;
+        }
     }
 }

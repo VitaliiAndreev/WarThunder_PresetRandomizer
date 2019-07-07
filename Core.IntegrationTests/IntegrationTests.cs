@@ -68,32 +68,63 @@ namespace Core.IntegrationTests
         public override string ToString() => nameof(IntegrationTests);
 
         #endregion Internal Methods
+        #region Helper Methods
+
+        private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
+        {
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, sourceFileName);
+            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
+
+            _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+
+            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+        }
+
+        private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
+        {
+            return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
+        }
+
+        #endregion Helper Methods
+        [TestMethod]
+
+        public void DeserializeAndPersistNationList()
+        {
+            // arrange
+            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
+            var rankJsonText = GetJsonText(blkxFiles, EFile.RankData);
+
+            // act
+            var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
+
+            using (var dataRepository = new DataRepository(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            {
+                void assert(IEnumerable<INation> nationCollection)
+                {
+                    nationCollection.Count().Should().BeGreaterOrEqualTo(7);
+                    nationCollection.Any(nation => nation.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+                }
+
+                var nationsBeforePersistence = _jsonHelper.DeserializeList<Nation>(dataRepository, rankJsonText);
+                assert(nationsBeforePersistence);
+
+                dataRepository.PersistNewObjects();
+                var nationsAfterPersistence = dataRepository.Query<INation>();
+
+                // assert
+                assert(nationsAfterPersistence);
+                nationsAfterPersistence.IsEquivalentTo(nationsBeforePersistence, 1).Should().BeTrue();
+            }
+        }
 
         [TestMethod]
         public void DeserializeAndPersistVehicleList()
         {
             // arrange
-            var sourceFiles = new List<FileInfo>
-            {
-                _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters)
-            };
-
-            var outputDirectories = new List<DirectoryInfo>();
-
-            foreach (var sourceFile in sourceFiles)
-            {
-                var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-                outputDirectories.Add(outputDirectory);
-                _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
-            }
-
-            var blkxFiles = new List<FileInfo>();
-
-            foreach (var outputDirectory in outputDirectories)
-                blkxFiles.AddRange(outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories));
+            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
+            var wpCostJsonText = GetJsonText(blkxFiles, EFile.GeneralVehicleData);
 
             // act
-            var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
             using (var dataRepository = new DataRepository(databaseFileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
@@ -112,7 +143,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
                     // general
                     vehicleCollection.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.Nation.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+                    vehicleCollection.All(vehicle => !vehicle.Nation?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
@@ -161,7 +192,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
                 }
 
-                var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJson);
+                var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText);
                 assert(vehiclesBeforePersistence);
 
                 dataRepository.PersistNewObjects();

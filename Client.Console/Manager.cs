@@ -147,7 +147,7 @@ namespace Client.Console
             }
 
             return _cache.OfType<IVehicle>()
-                .Where(vehicle => vehicle.Nation == _nations[specification.Nation])
+                .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
                 .Where(vehicle => battleRatingIsValid(vehicle))
                 .Take(10)
             ;

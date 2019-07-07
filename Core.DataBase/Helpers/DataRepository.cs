@@ -125,7 +125,9 @@ namespace Core.DataBase.Helpers
             using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
-                foreach (var instance in NewObjects.ToList())
+                var sortedNewObjects = NewObjects.OrderBy(newObject => $"{newObject.GetType()}{(newObject as IPersistentObjectWithId)?.Id}");
+
+                foreach (var instance in sortedNewObjects)
                 {
                     LogTrace(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
                     session.Save(instance);

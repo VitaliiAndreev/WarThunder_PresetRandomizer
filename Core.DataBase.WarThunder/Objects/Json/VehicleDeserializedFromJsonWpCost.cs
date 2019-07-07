@@ -38,7 +38,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region General
 
         [JsonProperty("country", Required = Required.Always)]
-        public string Nation { get; set; }
+        public string NationGaijinId { get; set; }
 
         [JsonProperty("unitMoveType", Required = Required.Always)]
         public string MoveType { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
@@ -11,6 +12,8 @@ using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Objects
@@ -70,7 +73,8 @@ namespace Core.DataBase.WarThunder.Objects
         public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle's nation. </summary>
-        [Property()] public virtual string Nation { get; protected set; }
+        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
+        [Key(1)] public virtual INation Nation { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string MoveType { get; protected set; }
@@ -348,6 +352,7 @@ namespace Core.DataBase.WarThunder.Objects
         // That is done when deserializing instances from JSON.
 
         #endregion Constructors
+        #region Methods: Initialization
 
         /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>
         /// <param name="dataRepository"> A data repository to assign the object to. </param>
@@ -429,6 +434,16 @@ namespace Core.DataBase.WarThunder.Objects
         {
             base.InitializeWithDeserializedJson(instanceDeserializedFromJson);
 
+            if (instanceDeserializedFromJson is VehicleDeserializedFromJsonWpCost deserializedVehicle)
+            {
+                Nation = _dataRepository.NewObjects.OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
+                    ?? _dataRepository.Query<INation>().FirstOrDefault(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)
+                    ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
+
+                PatchSpawnType(deserializedVehicle);
+                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
+            }
+
             #region Instantialize all game mode parameter set properties.
 
             AverageAward = new VehicleGameModeParameterSet.Integer.AverageAward(_dataRepository, this);
@@ -456,12 +471,6 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
 
             #endregion Battle ratings have been initialized.
-
-            if (instanceDeserializedFromJson is VehicleDeserializedFromJsonWpCost deserializedVehicle)
-            {
-                PatchSpawnType(deserializedVehicle);
-                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
-            }
         }
 
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
@@ -483,6 +492,20 @@ namespace Core.DataBase.WarThunder.Objects
                 SpawnType = "walker (ah)";
             else if (deserializedVehicle.SpawnType == null)
                 SpawnType = "default";
+        }
+
+        #endregion Methods: Initialization
+
+        /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
+        /// <returns></returns>
+        public override IEnumerable<IPersistentObject> GetAllNestedObjects()
+        {
+            var nestedObjects = new List<IPersistentObject>()
+            {
+                Nation,
+            };
+
+            return nestedObjects;
         }
     }
 }

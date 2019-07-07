@@ -38,7 +38,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region General
 
         /// <summary> The vehicle's nation. </summary>
-        string Nation { get; }
+        INation Nation { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string MoveType { get; }

@@ -175,7 +175,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
             /// general
             vehicles.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.Nation.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.NationGaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
