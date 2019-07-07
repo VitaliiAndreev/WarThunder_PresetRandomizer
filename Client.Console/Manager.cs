@@ -103,7 +103,7 @@ namespace Client.Console
         {
             var sourceFiles = new List<FileInfo>
                 {
-                    _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters)
+                    _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.RootFolder.StatAndBalanceParameters)
                 };
 
             var outputDirectories = new List<DirectoryInfo>();
@@ -120,7 +120,7 @@ namespace Client.Console
             foreach (var outputDirectory in outputDirectories)
                 blkxFiles.AddRange(outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories));
 
-            var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.GeneralVehicleData)));
+            var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.CharVromfs.GeneralVehicleData)));
 
             _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 

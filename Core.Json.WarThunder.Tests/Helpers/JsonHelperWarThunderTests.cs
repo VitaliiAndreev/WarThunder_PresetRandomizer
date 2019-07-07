@@ -142,8 +142,8 @@ namespace Core.Json.WarThunder.Tests.Helpers
         public void DeserializeObject_Rank_Nations()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
-            var jsonText = GetJsonText(blkxFiles, EFile.RankData);
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
             var ranksInfo = _jsonHelper.DeserializeObject<RankDeserializedFromJson>(jsonText, true);
@@ -156,8 +156,8 @@ namespace Core.Json.WarThunder.Tests.Helpers
         public void DeserializeList_Vehicles()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
-            var jsonText = GetJsonText(blkxFiles, EFile.GeneralVehicleData);
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
 
             // act
             var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonWpCost>(jsonText);

@@ -61,7 +61,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         public void Unpack_Bin_OutputFolderShouldContainFiles()
         {
             // arrange
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.StatAndBalanceParameters);
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.RootFolder.StatAndBalanceParameters);
 
             // act
             var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
@@ -74,7 +74,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         public void Unpack_Blkx_OutputFolderShouldContainFiles()
         {
             // arrange
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.WorldWarParameters);
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.RootFolder.WorldWarParameters);
             var binOutputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
             var blkFile = binOutputDirectory.GetDirectories().First().GetDirectories().First().GetFiles(file => file.Extension.ToLower().Contains(EFileExtension.Blk)).First();
 
@@ -90,7 +90,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         public void Unpack_Exe_ShouldThrow()
         {
             // arrange
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.Launcher);
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.RootFolder.Launcher);
 
             // act
             Action unpack = () => new DirectoryInfo(_unpacker.Unpack(sourceFile));

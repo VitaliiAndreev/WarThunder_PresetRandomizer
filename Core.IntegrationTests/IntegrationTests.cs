@@ -90,8 +90,8 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistNationList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
-            var rankJsonText = GetJsonText(blkxFiles, EFile.RankData);
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var rankJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
@@ -120,8 +120,8 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistVehicleList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.StatAndBalanceParameters);
-            var wpCostJsonText = GetJsonText(blkxFiles, EFile.GeneralVehicleData);
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
 
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";

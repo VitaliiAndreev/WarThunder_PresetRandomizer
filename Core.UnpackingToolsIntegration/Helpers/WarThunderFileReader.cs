@@ -33,10 +33,10 @@ namespace Core.UnpackingToolsIntegration.Helpers
             switch (version)
             {
                 case EClientVersion.Current:
-                    filePath = $"{Settings.WarThunderLocation}\\{EFile.CurrentIntallData}";
+                    filePath = $"{Settings.WarThunderLocation}\\{EFile.RootFolder.CurrentIntallData}";
                     break;
                 case EClientVersion.Previous:
-                    filePath = $"{Settings.WarThunderLocation}\\{EFile.PreviousVersionInstallData}";
+                    filePath = $"{Settings.WarThunderLocation}\\{EFile.RootFolder.PreviousVersionInstallData}";
                     break;
             }
             return Read(filePath);
