@@ -1,4 +1,3 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
@@ -36,9 +35,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #endregion Crew
         #region General
-
-        /// <summary> The vehicle's nation. </summary>
-        INation Nation { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string MoveType { get; }
@@ -266,5 +262,11 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Weapons
 
         #endregion Persistent Properties
+        #region Association Properties
+
+        /// <summary> The vehicle's nation. </summary>
+        INation Nation { get; }
+
+        #endregion Association Properties
     }
 }
