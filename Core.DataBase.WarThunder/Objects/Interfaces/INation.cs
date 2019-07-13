@@ -1,5 +1,4 @@
-﻿using Core.DataBase.WarThunder.Objects.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {

@@ -87,11 +87,13 @@ namespace Client.Console
             if (upToDateExxtractedDataBaseName is string && !_gameClientVersion.IsIn(upToDateExxtractedDataBaseName))
             {
                 LogInfo(EConsoleUiLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
+
                 UnpackDeserializePersist();
             }
             else
             {
                 LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
+
                 _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
             }
 
