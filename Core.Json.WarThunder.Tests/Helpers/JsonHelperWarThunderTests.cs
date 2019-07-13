@@ -153,7 +153,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         }
 
         [TestMethod]
-        public void DeserializeList_Vehicles()
+        public void DeserializeList_Vehicles_WpCost()
         {
             // arrange
             var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
@@ -248,6 +248,22 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.PurchaseCostInSilver >= 0)).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MaximumStockpileAmount < 0)).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MassPerSecond < 0m)).Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void DeserializeList_Vehicles_UnitTags()
+        {
+            // arrange
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+
+            // act
+            var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(jsonText);
+
+            // assert
+            vehicles.Count().Should().BeGreaterThan(1300);
+
+            vehicles.All(vehicle => !vehicle.BranchGaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
         }
 
         #endregion Tests: DeserializeList()
