@@ -37,9 +37,13 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
             using (var dataRepository = new DataRepositoryWarThunder(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
             {
+                var zimbabwe = new Nation(dataRepository, "Zimbabwe");
+                var bicycleCorps = new Branch(dataRepository, "Bicycle Corps", zimbabwe);
+
                 var wingedBicycle = new Vehicle(dataRepository, "Winged Bycicle")
                 {
-                    Nation = new Nation(dataRepository, "Zimbabwe")
+                    Nation = zimbabwe,
+                    Branch = bicycleCorps,
                 };
 
                 // act
