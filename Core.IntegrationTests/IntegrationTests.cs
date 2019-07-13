@@ -3,6 +3,7 @@ using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers;
@@ -121,7 +122,11 @@ namespace Core.IntegrationTests
         {
             // arrange
             var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
+            var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+
+            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText);
 
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
@@ -132,6 +137,9 @@ namespace Core.IntegrationTests
                 {
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
 
+                    // association
+                    vehicleCollection.All(vehicle => !vehicle.Nation?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !vehicle.Branch?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
                     // crew
                     vehicleCollection.All(vehicle => vehicle.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
@@ -142,7 +150,6 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
                     // general
                     vehicleCollection.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-                    vehicleCollection.All(vehicle => !vehicle.Nation?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
@@ -192,6 +199,11 @@ namespace Core.IntegrationTests
                 }
 
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText);
+                
+                foreach (var vehicle in vehiclesBeforePersistence)
+                    if (additionalVehicleData.FirstOrDefault(item => item.GaijinId == vehicle.GaijinId) is VehicleDeserializedFromJsonUnitTags matchedData)
+                        vehicle.DoPostInitalization(matchedData);
+
                 assert(vehiclesBeforePersistence);
 
                 dataRepository.PersistNewObjects();
