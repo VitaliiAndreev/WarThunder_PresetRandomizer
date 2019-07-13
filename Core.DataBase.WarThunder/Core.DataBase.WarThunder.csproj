@@ -86,6 +86,7 @@
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Json\RankDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\VehicleDeserializedFromJsonUnitTags.cs" />
     <Compile Include="Objects\Json\VehicleDeserializedFromJsonWpCost.cs" />
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Nation.cs" />
