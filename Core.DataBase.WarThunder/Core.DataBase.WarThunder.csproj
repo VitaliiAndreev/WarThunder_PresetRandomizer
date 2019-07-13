@@ -69,6 +69,7 @@
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
     <Compile Include="Enumerations\EGameMode.cs" />
+    <Compile Include="Enumerations\ENation.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Helpers\DataRepositoryWarThunder.cs" />
