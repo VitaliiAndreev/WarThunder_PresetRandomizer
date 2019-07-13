@@ -1,3 +1,4 @@
+﻿using Core.DataBase.WarThunder.Objects.Json;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
@@ -267,6 +268,11 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's nation. </summary>
         INation Nation { get; }
 
+        /// <summary> The vehicle's branch. </summary>
+        IBranch Branch { get; }
+
         #endregion Association Properties
+
+        void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
     }
 }

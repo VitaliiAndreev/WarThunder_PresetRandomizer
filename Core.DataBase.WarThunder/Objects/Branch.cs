@@ -22,12 +22,21 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        #endregion Persistent Properties
+        #region Association Properties
+
         /// <summary> The branch's nation. </summary>
         [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
         [Key(1)]
         public virtual INation Nation { get; protected set; }
 
-        #endregion Persistent Properties
+        /// <summary> The branch's vehicles. </summary>
+        [Bag(0, Name = nameof(Vehicles), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [Key(1, Column = ETable.Branch + "_" + EColumn.Id, NotNull = true)]
+        [OneToMany(1, ClassType = typeof(Vehicle))]
+        public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();
+
+        #endregion Association Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>

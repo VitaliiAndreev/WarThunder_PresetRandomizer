@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -6,5 +7,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     {
         /// <summary> The branch's nation. </summary>
         INation Nation { get; }
+
+        /// <summary> The branch's vehicles. </summary>
+        IEnumerable<IVehicle> Vehicles { get; }
     }
 }

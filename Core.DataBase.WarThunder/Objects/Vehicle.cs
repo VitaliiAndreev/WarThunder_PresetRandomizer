@@ -315,6 +315,10 @@ namespace Core.DataBase.WarThunder.Objects
         [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
         [Key(1)] public virtual INation Nation { get; protected internal set; }
 
+        /// <summary> The vehicle's branch. </summary>
+        [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), Lazy = Laziness.False, NotNull = true)]
+        [Key(1)] public virtual IBranch Branch { get; protected internal set; }
+
         #endregion Association Properties
         #region Constructors
 
@@ -473,6 +477,15 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
 
             #endregion Battle ratings have been initialized.
+        }
+
+        /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
+        /// <param name="deserializedVehicleData"></param>
+        public virtual void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
+        {
+            Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == deserializedVehicleData.BranchGaijinId)
+                ?? _dataRepository.Query<IBranch>(query => query.Where(branch => branch.GaijinId == deserializedVehicleData.BranchGaijinId)).FirstOrDefault()
+                ?? new Branch(_dataRepository, deserializedVehicleData.BranchGaijinId, Nation);
         }
 
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>

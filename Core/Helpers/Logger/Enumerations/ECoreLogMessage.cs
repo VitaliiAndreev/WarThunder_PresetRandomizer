@@ -7,6 +7,8 @@
 
         #region Characters
 
+        /// <summary> A comma. </summary>
+        protected const string _COMMA = ",";
         /// <summary> A full stop. </summary>
         protected const string _FS = ".";
         /// <summary> A full stop followed by a space. </summary>
@@ -15,18 +17,29 @@
         protected const string _FMT = "{0}";
         /// <summary> A format placeholder inside quotation marks. </summary>
         protected const string _FMT_Q = "\"" + _FMT + "\"";
+        /// <summary> A minus. </summary>
+        protected const string _MINUS = "-";
+        /// <summary> A more than character. </summary>
+        protected const string _MORE = ">";
         /// <summary> A space. </summary>
         protected const string _SPC = " ";
         /// <summary> A format placeholder preceeded by a space. </summary>
         protected const string _SPC_FMT = _SPC + _FMT;
         /// <summary> A format placeholder inside quotation marks preceeded by a space. </summary>
         protected const string _SPC_FMT_Q = _SPC + _FMT_Q;
+        /// <summary> An opening parenthesis with a preceeding space. </summary>
+        protected const string _SPC_PARENTHESIS_OPEN = " (";
         /// <summary> An opening parenthesis. </summary>
         protected const string _PARENTHESIS_OPEN = "(";
         /// <summary> A closing parenthesis. </summary>
         protected const string _PARENTHESIS_CLOSE = ")";
 
         #endregion Characters
+        #region Numbers
+
+        protected const string _4 = "4";
+
+        #endregion Numbers
         #region Words
 
         #region A
@@ -44,6 +57,7 @@
         protected const string _AnErrorHasOccured = _An + _error + _has + _occured;
         protected const string _AnErrorHasOccuredWhile = _AnErrorHasOccured + _while;
         protected const string _and = _an + "n";
+        protected const string _arguments = _a + "rguments";
         protected const string _assembly = _a + "ssembly";
         protected const string _Assigned = _A + "ssigned";
         protected const string _attributes = _a + "ttributes";
@@ -51,12 +65,17 @@
         #endregion A
         #region B
 
+        protected const string _battle = " battle";
         protected const string _be = " be";
         protected const string _been = _be + "en";
+        protected const string _BR = "BR";
+        protected const string _branch = " branch";
+        protected const string _by = " by";
 
         #endregion B
         #region C
 
+        protected const string _Caching = "Caching";
         protected const string _cancelled = " cancelled";
         protected const string _Changes = "Changes";
         protected const string _changes = " changes";
@@ -72,8 +91,11 @@
         protected const string _commit = " commit";
         protected const string _committed = _commit + "ted";
         protected const string _Committing = "Committing";
-        protected const string _completed = " completed";
+        protected const string _complete = " complete";
+        protected const string _completed = _complete + "d";
         protected const string _configuration = " configuration";
+        protected const string _Connection = "Connection";
+        protected const string _connection = " connection";
         protected const string _container = " container";
         protected const string _Copied = "Copied";
         protected const string _copied = " copied";
@@ -113,7 +135,7 @@
 
         protected const string _SPC_Disposal_aborted_FS = _SPC + _Disposal_aborted_FS;
 
-        public const string W_dont_SPC = _NOSPC_dont + _SPC;
+        public const string _NOSPC_dont_SPC = _NOSPC_dont + _SPC;
 
         #endregion D
         #region E
@@ -123,6 +145,7 @@
         protected const string _Emptying = "Emptying";
         protected const string _Error = "Error";
         protected const string _error = " error";
+        protected const string _established = " established";
         protected const string _Exception = "Exception";
         protected const string _execution = " execution";
         protected const string _exist = " exist";
@@ -154,8 +177,12 @@
         #endregion F
         #region G
 
+        protected const string _Game = "Game";
+        protected const string _game = _SPC + _NOSPC_game;
         protected const string _generation = " generation";
         protected const string _given = " given";
+
+        protected const string _NOSPC_game = "game";
 
         #endregion G
         #region H
@@ -170,6 +197,10 @@
 
         protected const string _implemented = " implemented";
         protected const string _in = " in";
+        protected const string _Incorrect = "Incorrect";
+        protected const string _initialized = _in + "itialized";
+        protected const string _Initializing = "Initializing";
+        protected const string _input = _in + "put";
         protected const string _install = _in + "stall";
         protected const string _instance = _in + "stance";
         protected const string _instances = _instance + "s";
@@ -200,17 +231,24 @@
         protected const string _matching = " matching";
         protected const string _Method = "Method";
         protected const string _method = " method";
+        protected const string _mode = " mode";
         protected const string _Must = "Must";
+
+        protected const string _NOSPC_must = "must";
         
         #endregion M
         #region N
 
-        protected const string _need = " need";
+        protected const string _nation = " nation";
+        protected const string _need = _SPC + _NOSPC_need;
         protected const string _new = " new";
         protected const string _No = "No";
         protected const string _no = " no";
         protected const string _Not = _No + "t";
         protected const string _not = _no + "t";
+        protected const string _number = " number";
+
+        protected const string _NOSPC_need = "need";
 
         protected const string _SPC_NULL = _SPC + NULL;
 
@@ -243,6 +281,7 @@
         protected const string _path = " path";
         protected const string _persisted = " persisted";
         protected const string _Persisting = "Persisting";
+        protected const string _prepared = " prepared";
         protected const string _Preparing = "Preparing";
         protected const string _PreparingTo = _Preparing + _to;
 
@@ -256,6 +295,7 @@
         #endregion Q
         #region R
 
+        protected const string _rating = " rating";
         protected const string _raw = " raw";
         protected const string _Read = "Read";
         protected const string _read = " read";
@@ -276,6 +316,7 @@
         protected const string _selected = " selected";
         protected const string _Selecting = "Selecting";
         protected const string _selection = " selection";
+        protected const string _separated = " separated";
         protected const string _serialized = " serialized";
         protected const string _Serializing = "Serializing";
         protected const string _Session = "Session";
@@ -283,6 +324,8 @@
         protected const string _SessionFactory = _Session + _factory;
         protected const string _sessionFactory = _session + _factory;
         protected const string _source = " source";
+        protected const string _spaces = " spaces";
+        protected const string _Specification = "Specification";
         protected const string _specified = " specified";
         protected const string _standardized = " standardized";
         protected const string _starts = " starts";

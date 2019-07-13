@@ -8,6 +8,7 @@ using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers.Logger;
@@ -57,6 +58,14 @@ namespace Client.Console
             { ENation.Italy, "country_italy" },
             { ENation.France, "country_france" },
         };
+        /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
+        private readonly IDictionary<EBranch, string> _branches = new Dictionary<EBranch, string>
+        {
+            { EBranch.Army, "tank" },
+            { EBranch.Aviation, "aircraft" },
+            { EBranch.Fleet, "ship" },
+            { EBranch.Helicopters, "helicopter" },
+        };
 
         /// <summary> An instance of a data repository. </summary>
         private IDataRepository _dataRepository;
@@ -95,39 +104,60 @@ namespace Client.Console
                 LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
 
                 _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+
+                LogInfo(EConsoleUiLogMessage.DataBaseConnectionEstablished);
             }
 
+            LogInfo(EConsoleUiLogMessage.CachingObjects);
+
             _cache.AddRange(_dataRepository.Query<IVehicle>());
+
+            LogInfo(EConsoleUiLogMessage.CachingComplete);
+        }
+
+        private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
+        {
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, sourceFileName);
+            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
+
+            _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+
+            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+        }
+
+        private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
+        {
+            return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
         }
 
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
         private void UnpackDeserializePersist()
         {
-            var sourceFiles = new List<FileInfo>
-                {
-                    _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.RootFolder.StatAndBalanceParameters)
-                };
+            LogInfo(EConsoleUiLogMessage.PreparingGameFiles);
 
-            var outputDirectories = new List<DirectoryInfo>();
+            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
 
-            foreach (var sourceFile in sourceFiles)
-            {
-                var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-                outputDirectories.Add(outputDirectory);
-                _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
-            }
+            var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
+            var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
 
-            var blkxFiles = new List<FileInfo>();
-
-            foreach (var outputDirectory in outputDirectories)
-                blkxFiles.AddRange(outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories));
-
-            var wpCostJson = _fileReader.Read(blkxFiles.First(file => file.Name.Contains(EFile.CharVromfs.GeneralVehicleData)));
+            LogInfo(EConsoleUiLogMessage.GameFilesPrepared);
+            LogInfo(EConsoleUiLogMessage.CreatingDatabase);
 
             _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
-            _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJson);
+            LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
+            LogInfo(EConsoleUiLogMessage.InitializingDatabase);
+
+            var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
+            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText);
+
+            foreach (var vehicle in vehicles)
+                if (additionalVehicleData.FirstOrDefault(item => item.GaijinId == vehicle.GaijinId) is VehicleDeserializedFromJsonUnitTags matchedData)
+                    vehicle.DoPostInitalization(matchedData);
+
             _dataRepository.PersistNewObjects();
+
+            LogInfo(EConsoleUiLogMessage.DatabaseInitialized);
         }
 
         /// <summary> Selects vehicles based on the given specification. </summary>
@@ -150,7 +180,9 @@ namespace Client.Console
 
             return _cache.OfType<IVehicle>()
                 .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
+                .Where(vehicle => vehicle.Branch.GaijinId == _branches[specification.Branch])
                 .Where(vehicle => battleRatingIsValid(vehicle))
+                .OrderByDescending(vehicle => vehicle.BattleRating.AsDictionary()[specification.GameMode])
                 .Take(10)
             ;
         }

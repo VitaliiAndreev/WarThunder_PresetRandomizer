@@ -1,6 +1,6 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Console.Enumerations.Logger;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
-using Core.Randomizer.Enumerations;
 using Core.Randomizer.Objects.SearchSpecifications;
 using System;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Client.Console
         /// <returns></returns>
         private static string TakeSpecificationInput()
         {
-            System.Console.Write("Specification (nation, game mode, BR - separated by spaces) > ");
+            System.Console.Write(EConsoleUiLogMessage.InputSpecification);
 
             return System.Console.ReadLine();
         }
@@ -33,17 +33,83 @@ namespace Client.Console
         {
             var parameters = specificationInput.Split(" ");
 
-            if (parameters.Count() != 3)
+            if (parameters.Count() != 4)
             {
-                System.Console.WriteLine("Incorrect Input (need 3 arguments)");
+                System.Console.WriteLine(EConsoleUiLogMessage.IncorrectInput);
                 return ParseSpecification(TakeSpecificationInput());
             }
 
-            var nation = ParseNation(parameters[0]);
-            var gamemode = ParseGameMode(parameters[1]);
-            var battleRating = Math.Round(decimal.Parse(parameters[2]), 1);
+            var gamemode = ParseGameMode(parameters[0]);
+            var nation = ParseNation(parameters[1]);
+            var branch = ParseBranch(parameters[2]);
 
-            return new Specification(gamemode, nation, battleRating);
+            if (gamemode == EGameMode.None)
+            {
+                System.Console.WriteLine(EConsoleUiLogMessage.IncorrectGameMode);
+                return ParseSpecification(TakeSpecificationInput());
+            }
+            if (nation == ENation.None)
+            {
+                System.Console.WriteLine(EConsoleUiLogMessage.IncorrectNation);
+                return ParseSpecification(TakeSpecificationInput());
+            }
+            if (branch == EBranch.None)
+            {
+                System.Console.WriteLine(EConsoleUiLogMessage.IncorrectBranch);
+                return ParseSpecification(TakeSpecificationInput());
+            }
+            if (!decimal.TryParse(parameters[3], out var battleRating))
+            {
+                System.Console.WriteLine(EConsoleUiLogMessage.IncorrectBattleRating);
+                return ParseSpecification(TakeSpecificationInput());
+            }
+
+            return new Specification(gamemode, nation, branch, Math.Round(battleRating, 1));
+        }
+
+        /// <summary> Parses a given string into a corresponding military branch enumeration value. </summary>
+        /// <param name="branchInput"> The name of the branch. </param>
+        /// <returns></returns>
+        private static EBranch ParseBranch(string branchInput)
+        {
+            switch (branchInput.ToLower())
+            {
+                case "army":
+                case "t":
+                case "tank":
+                case "tanks":
+                case "g":
+                case "ground":
+                    return EBranch.Army;
+                case "a":
+                case "aviation":
+                case "air":
+                case "aircraft":
+                case "p":
+                case "plane":
+                case "planes":
+                    return EBranch.Aviation;
+                case "f":
+                case "fleet":
+                case "s":
+                case "ship":
+                case "ships":
+                case "b":
+                case "boat":
+                case "boats":
+                    return EBranch.Fleet;
+                case "h":
+                case "heli":
+                case "helicopter":
+                case "helicopters":
+                case "helo":
+                case "c":
+                case "chopper":
+                case "choppers":
+                    return EBranch.Helicopters;
+                default:
+                    return EBranch.None;
+            }
         }
 
         /// <summary> Parses a given string into a corresponding nation enumeration value. </summary>

@@ -45,12 +45,12 @@ namespace Core.DataBase.Helpers
         public DataRepository(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
             : base(EDataBaseLogCategory.DataRepository, loggers)
         {
-            LogInfo
+            LogDebug
             (
                 EDataBaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
                 (
                     $"{dataBaseFileName}.{EFileExtension.SqLite3}",
-                    overwriteExistingDataBase ? string.Empty : ECoreLogMessage.W_dont_SPC,
+                    overwriteExistingDataBase ? string.Empty : ECoreLogMessage._NOSPC_dont_SPC,
                     assemblyWithMapping
                 )
             );
@@ -58,7 +58,7 @@ namespace Core.DataBase.Helpers
             SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
             NewObjects = new List<IPersistentObject>();
 
-            LogInfo(EDataBaseLogMessage.DataRepositoryCreated);
+            LogDebug(EDataBaseLogMessage.DataRepositoryCreated);
         }
 
         #endregion Constructors
@@ -70,7 +70,7 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         public IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
-            LogInfo((filter is null ? EDataBaseLogMessage.QueryingAllObjects : EDataBaseLogMessage.QueryingObjects).FormatFluently(typeof(T).Name));
+            LogDebug((filter is null ? EDataBaseLogMessage.QueryingAllObjects : EDataBaseLogMessage.QueryingObjects).FormatFluently(typeof(T).Name));
 
             var cachedQuery = default(IEnumerable<T>);
 
@@ -81,7 +81,7 @@ namespace Core.DataBase.Helpers
                 if (!(filter is null))
                 {
                     query = filter(query);
-                    LogInfo(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                    LogDebug(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
                 }
 
                 cachedQuery = query.ToList();
@@ -93,7 +93,7 @@ namespace Core.DataBase.Helpers
                 LogTrace(EDataBaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
             }
 
-            LogInfo(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
             return cachedQuery;
         }
 
@@ -127,7 +127,7 @@ namespace Core.DataBase.Helpers
         /// <summary> Persists any transient objects cached in the repository. </summary>
         public virtual void PersistNewObjects()
         {
-            LogInfo(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
+            LogDebug(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
             using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
@@ -141,7 +141,7 @@ namespace Core.DataBase.Helpers
                 transaction.Commit();
             }
 
-            LogInfo(EDataBaseLogMessage.AllNewObjectsPersisted);
+            LogDebug(EDataBaseLogMessage.AllNewObjectsPersisted);
         }
 
         #endregion Methods: IDataRepository Members

@@ -71,7 +71,7 @@ namespace Core.DataBase.Helpers
                 EDataBaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
                 (
                     DataBaseFileName,
-                    _overwriteExistingDataBase ? string.Empty : ECoreLogMessage.W_dont_SPC,
+                    _overwriteExistingDataBase ? string.Empty : ECoreLogMessage._NOSPC_dont_SPC,
                     _assemblyWithMapping
                 )
             );

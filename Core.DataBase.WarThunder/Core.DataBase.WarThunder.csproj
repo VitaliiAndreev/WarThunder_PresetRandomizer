@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
+    <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
     <Compile Include="Enumerations\EGameMode.cs" />
