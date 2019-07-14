@@ -36,6 +36,7 @@ namespace Client.Console
         private const decimal _maximumBattleRatingDifference = 0.2m;
 
         #endregion Constants
+        #region Fields
 
         /// <summary> An instance of a file manager. </summary>
         private readonly IWarThunderFileManager _fileManager;
@@ -76,6 +77,9 @@ namespace Client.Console
         /// <summary> An instance of a data repository. </summary>
         private IDataRepository _dataRepository;
 
+        #endregion Fields
+        #region Constructors
+
         /// <summary> Creates a new manager. </summary>
         public Manager()
             : base(EConsoleUiLogCategory.Manager, new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter()), new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter()))
@@ -93,6 +97,9 @@ namespace Client.Console
 
             CacheVehicles();
         }
+
+        #endregion Constructors
+        #region Methods
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         private void CacheVehicles()
@@ -196,5 +203,7 @@ namespace Client.Console
         /// <summary> Releases unmanaged resources. </summary>
         public void Dispose() =>
             _dataRepository.Dispose();
+
+        #endregion Methods
     }
 }

@@ -5,6 +5,8 @@ namespace Core.DataBase.WarThunder.Helpers
     /// <summary> Provide calculation methods. </summary>
     public static class Calculator
     {
+        #region Methods
+
         /// <summary> Calculates battle rating from economic rank. </summary>
         /// <param name="economicRank"> An economic rank to calculate the battle rating from. </param>
         /// <returns></returns>
@@ -14,5 +16,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// <param name="battleRating"> A battle rating to calculate the economic rank from. </param>
         /// <returns></returns>
         public static int GetEconomicRank(decimal battleRating) => Convert.ToInt32(Math.Round((battleRating - 1m) * 3m));
+
+        #endregion Methods
     }
 }
