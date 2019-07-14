@@ -1,5 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Randomizer.Objects.SearchSpecifications;
+using Core.Organization.Objects.SearchSpecifications;
 using System;
 using System.Collections.Generic;
 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}</ProjectGuid>
+    <ProjectGuid>{5642C09F-DBEA-4AFF-AC47-9434E455899E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Randomizer</RootNamespace>
-    <AssemblyName>Core.Randomizer</AssemblyName>
+    <RootNamespace>Core.Organization</RootNamespace>
+    <AssemblyName>Core.Organization</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,22 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\SearchSpecifications\Interfaces\ISpecificationT.cs" />
     <Compile Include="Objects\SearchSpecifications\Specification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enumerations\" />
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.DataBase.WarThunder\Core.DataBase.WarThunder.csproj">
-      <Project>{275FF668-2CDD-46C0-9595-6051004181C7}</Project>
-      <Name>Core.DataBase.WarThunder</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

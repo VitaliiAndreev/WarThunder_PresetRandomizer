@@ -120,9 +120,9 @@
       <Project>{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}</Project>
       <Name>Core.Json</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Randomizer\Core.Randomizer.csproj">
-      <Project>{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}</Project>
-      <Name>Core.Randomizer</Name>
+    <ProjectReference Include="..\Core.Organization\Core.Organization.csproj">
+      <Project>{5642C09F-DBEA-4AFF-AC47-9434E455899E}</Project>
+      <Name>Core.Organization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
       <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>

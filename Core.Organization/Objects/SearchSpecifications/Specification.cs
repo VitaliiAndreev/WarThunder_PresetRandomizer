@@ -1,6 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 
-namespace Core.Randomizer.Objects.SearchSpecifications
+namespace Core.Organization.Objects.SearchSpecifications
 {
     public class Specification
     {

@@ -16,7 +16,7 @@ using Core.Helpers.Logger;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Objects;
-using Core.Randomizer.Objects.SearchSpecifications;
+using Core.Organization.Objects.SearchSpecifications;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;

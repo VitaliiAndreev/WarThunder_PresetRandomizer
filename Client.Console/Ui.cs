@@ -1,8 +1,8 @@
 ﻿using Client.Console.Enumerations.Logger;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
-using Core.Randomizer.Objects.SearchSpecifications;
 using System;
+using Core.Organization.Objects.SearchSpecifications;
 using System.Linq;
 
 namespace Client.Console
