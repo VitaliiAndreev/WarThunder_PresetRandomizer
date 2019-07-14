@@ -1,8 +1,8 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
-using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Exceptions;
@@ -37,8 +37,8 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Constructors
 
         /// <summary> Creates a new unpacker. </summary>
-        /// <param name="loggers"> Instances of loggers. </param>
         /// <param name="fileManager"> An instance of a file manager. </param>
+        /// <param name="loggers"> Instances of loggers. </param>
         public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
             : base(ECoreLogCategory.Unpacker, loggers)
         {

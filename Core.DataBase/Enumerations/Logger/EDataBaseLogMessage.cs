@@ -1,4 +1,4 @@
-﻿using Core.Helpers.Logger.Enumerations;
+﻿using Core.Enumerations.Logger;
 
 namespace Core.DataBase.Enumerations.Logger
 {

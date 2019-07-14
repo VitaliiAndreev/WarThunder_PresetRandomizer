@@ -1,7 +1,7 @@
 ﻿using Core.DataBase.Helpers;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.Id.Mapping;
-using Core.Helpers.Logger.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,7 +1,7 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
-using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Exceptions;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;

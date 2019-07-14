@@ -201,7 +201,7 @@ namespace Core.Json.Helpers
             if (jsonToken is JContainer container)
                 return StandardizeContainer(container, duplicatePropertyNames) as JObject;
             else
-                throw new JsonStandardizationException(ECoreJsonLogMessage.ErrorMustBeJsonContainerToStandardize);
+                throw new JsonStandardizationException(EJsonLogMessage.ErrorMustBeJsonContainerToStandardize);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Core.Helpers.Logger.Enumerations
+﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Categories of events provided to a logger. </summary>
     public class ECoreLogCategory

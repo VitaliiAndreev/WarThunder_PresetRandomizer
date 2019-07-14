@@ -1,7 +1,7 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
-using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;
@@ -22,9 +22,9 @@ namespace Core.Json.Helpers
         /// <summary> Creates a new JSON helper. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public JsonHelper(params IConfiguredLogger[] loggers)
-            : base(ECoreJsonLogCategory.JsonHelper, loggers)
+            : base(EJsonLogCategory.JsonHelper, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreJsonLogCategory.JsonHelper));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(EJsonLogCategory.JsonHelper));
         }
 
         #endregion Constructors
@@ -35,13 +35,13 @@ namespace Core.Json.Helpers
         protected void ThrowIfJsonTextIsInvalid(string jsonText)
         {
             if (jsonText.IsNullOrWhiteSpaceFluently())
-                throw new JsonDeserializationException(ECoreJsonLogMessage.ErrorJsonStringEmpty);
+                throw new JsonDeserializationException(EJsonLogMessage.ErrorJsonStringEmpty);
         }
 
         /// <summary> Throws the specified exception after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
         /// <param name="exception"> The exception to throw. </param>
         protected void LogAndRethrow(Exception exception) =>
-            LogErrorAndThrow(ECoreJsonLogMessage.ErrorDeserializingJsonText, exception);
+            LogErrorAndThrow(EJsonLogMessage.ErrorDeserializingJsonText, exception);
 
         #endregion Methods: [Protected]
         #region Methods: [Protected Virtual] Standardization
@@ -68,7 +68,7 @@ namespace Core.Json.Helpers
         /// <returns></returns>
         public T DeserializeObject<T>(string jsonText, bool suppressStandardization = false)
         {
-            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
             var deserializedInstance = default(T);
 
             try
@@ -85,7 +85,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(ECoreJsonLogMessage.DeserializedInstance);
+            LogDebug(EJsonLogMessage.DeserializedInstance);
             return deserializedInstance;
         }
 
@@ -95,7 +95,7 @@ namespace Core.Json.Helpers
         /// <returns> A collection of object instances. </returns>
         public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonText)
         {
-            LogDebug(ECoreJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
             var deserializedInstances = new Dictionary<string, T>();
 
             try
@@ -120,7 +120,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(ECoreJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
+            LogDebug(EJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
             return deserializedInstances;
         }
 

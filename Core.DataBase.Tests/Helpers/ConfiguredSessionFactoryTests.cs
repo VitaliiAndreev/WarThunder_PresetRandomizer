@@ -1,10 +1,9 @@
 ﻿using Core.DataBase.Helpers;
 using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Tests;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping;
 using Core.Enumerations;
-using Core.Helpers.Logger.Enumerations;
+using Core.Enumerations.Logger;
 using FluentAssertions;
 using FluentNHibernate.Cfg;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

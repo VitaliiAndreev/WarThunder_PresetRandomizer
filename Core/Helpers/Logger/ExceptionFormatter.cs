@@ -1,6 +1,6 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
-using Core.Helpers.Logger.Enumerations;
 using Core.Helpers.Logger.Interfaces;
 using System;
 using System.Collections.Generic;

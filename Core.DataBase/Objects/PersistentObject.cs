@@ -1,8 +1,8 @@
 ﻿using Core.DataBase.Enumerations.Logger;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.Enumerations.Logger;
 using Core.Extensions;
-using Core.Helpers.Logger.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
-﻿using Core.Helpers;
+﻿using Core.Enumerations.Logger;
+using Core.Helpers;
 using Core.Helpers.Interfaces;
-using Core.Helpers.Logger.Enumerations;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

@@ -1,4 +1,4 @@
-﻿namespace Core.Helpers.Logger.Enumerations
+﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Names of XML variables. </summary>
     public class EVariableName

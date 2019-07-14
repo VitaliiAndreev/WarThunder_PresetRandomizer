@@ -1,4 +1,4 @@
-﻿using Core.Helpers.Logger.Enumerations;
+﻿using Core.Enumerations.Logger;
 
 namespace Client.Console.Enumerations.Logger
 {
@@ -35,6 +35,6 @@ namespace Client.Console.Enumerations.Logger
         public const string IncorrectGameMode = _Incorrect + _game + _mode + _FS;
         public const string IncorrectNation = _Incorrect + _nation + _FS;
         public const string IncorrectBranch = _Incorrect + _branch + _FS;
-        public const string IncorrectBattleRating = _Incorrect + _battle + _rating + _SPC_PARENTHESIS_OPEN + _NOSPC_must + _be + _a + _number + _PARENTHESIS_CLOSE + _FS;//"Incorrect battle rating (must be a number)."
+        public const string IncorrectBattleRating = _Incorrect + _battle + _rating + _SPC_PARENTHESIS_OPEN + _NOSPC_must + _be + _a + _number + _PARENTHESIS_CLOSE + _FS;
     }
 }
