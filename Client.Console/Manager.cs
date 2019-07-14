@@ -31,6 +31,12 @@ namespace Client.Console
     /// <summary> Controls the flow of the application. </summary>
     public class Manager : LoggerFluency, IManager
     {
+        #region Constants
+
+        private const decimal _maximumBattleRatingDifference = 0.2m;
+
+        #endregion Constants
+
         /// <summary> An instance of a file manager. </summary>
         private readonly IWarThunderFileManager _fileManager;
         /// <summary> An instance of a file reader. </summary>
@@ -165,7 +171,7 @@ namespace Client.Console
         /// <returns></returns>
         public IEnumerable<IVehicle> GetVehicles(Specification specification)
         {
-            var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - 2.0m, specification.BattleRating, true);
+            var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
 
             bool battleRatingIsValid(IVehicle vehicle)
             {
