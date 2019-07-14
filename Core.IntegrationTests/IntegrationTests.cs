@@ -1,4 +1,5 @@
-﻿using Core.DataBase.Tests.Enumerations;
+﻿using Core.DataBase.Extensions;
+using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;

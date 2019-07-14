@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core.DataBase.Extensions
 {
     /// <summary> Methods extending the <see cref="IEnumerable{T}"/> class. </summary>
     public static class IEnumerableExtensions
