@@ -1,4 +1,6 @@
-﻿namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
+﻿using Core.DataBase.WarThunder.Enumerations;
+
+namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
 {
     /// <summary>
     /// A set of string parameters that vary depending on the game mode.
@@ -37,5 +39,28 @@
         }
 
         #endregion Constructors
+
+        /// <summary> Return value of the game mode parameter corresponding to the given enumeration value. </summary>
+        /// <param name="gameMode"> The game mode the value for which to get. </param>
+        /// <returns></returns>
+        public string this[EGameMode gameMode]
+        {
+            get
+            {
+                switch (gameMode)
+                {
+                    case EGameMode.Arcade:
+                        return Arcade;
+                    case EGameMode.Realistic:
+                        return Realistic;
+                    case EGameMode.Simulator:
+                        return Simulator;
+                    case EGameMode.Event:
+                        return Event;
+                    default:
+                        return null;
+                }
+            }
+        }
     }
 }

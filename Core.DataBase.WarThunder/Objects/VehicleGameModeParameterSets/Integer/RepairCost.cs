@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
@@ -156,5 +157,28 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         }
 
         #endregion Constructors
+
+        /// <summary> Return value of the game mode parameter corresponding to the given enumeration value. </summary>
+        /// <param name="gameMode"> The game mode the value for which to get. </param>
+        /// <returns></returns>
+        public int? this[EGameMode gameMode]
+        {
+            get
+            {
+                switch (gameMode)
+                {
+                    case EGameMode.Arcade:
+                        return Arcade;
+                    case EGameMode.Realistic:
+                        return Realistic;
+                    case EGameMode.Simulator:
+                        return Simulator;
+                    case EGameMode.Event:
+                        return Event;
+                    default:
+                        return null;
+                }
+            }
+        }
     }
 }

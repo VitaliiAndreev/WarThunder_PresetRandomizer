@@ -4,7 +4,6 @@ using Client.Console.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -182,7 +181,7 @@ namespace Client.Console
 
             bool battleRatingIsValid(IVehicle vehicle)
             {
-                var battleRating = vehicle.BattleRating.AsDictionary()[specification.GameMode];
+                var battleRating = vehicle.BattleRating[specification.GameMode];
 
                 if (battleRating.HasValue)
                     return battleRatingBracket.Contains(battleRating.Value);
@@ -195,7 +194,7 @@ namespace Client.Console
                 .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
                 .Where(vehicle => vehicle.Branch.GaijinId == _branches[specification.Branch])
                 .Where(vehicle => battleRatingIsValid(vehicle))
-                .OrderByDescending(vehicle => vehicle.BattleRating.AsDictionary()[specification.GameMode])
+                .OrderByDescending(vehicle => vehicle.BattleRating[specification.GameMode])
                 .Take(10)
             ;
         }
