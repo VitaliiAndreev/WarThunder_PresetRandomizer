@@ -1,7 +1,7 @@
 ﻿using Client.Console.Enumerations.Logger;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Helpers;
 using Core.Extensions;
-using System;
 using Core.Organization.Objects.SearchSpecifications;
 using System.Linq;
 
@@ -64,7 +64,7 @@ namespace Client.Console
                 return ParseSpecification(TakeSpecificationInput());
             }
 
-            return new Specification(gamemode, nation, branch, Math.Round(battleRating, 1));
+            return new Specification(gamemode, nation, branch, Calculator.GetRoundedBattleRating(battleRating));
         }
 
         /// <summary> Parses a given string into a corresponding military branch enumeration value. </summary>
