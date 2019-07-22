@@ -32,7 +32,7 @@ namespace Client.Console
     {
         #region Constants
 
-        private const decimal _maximumBattleRatingDifference = 0.2m;
+        private const decimal _maximumBattleRatingDifference = 2.0m;
 
         #endregion Constants
         #region Fields
