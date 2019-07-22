@@ -90,5 +90,48 @@ namespace Core.DataBase.WarThunder.Tests.Helpers
         }
 
         #endregion Tests: GetEconomicRank()
+        #region Tests: GetRoundedBattleRating()
+
+        [TestMethod]
+        public void GetRoundedBattleRating()
+        {
+            // arrange
+            var input = new List<decimal>
+            {
+                0.0m,
+                0.1m,
+                0.2m,
+                0.3m,
+                0.4m,
+                0.5m,
+                0.6m,
+                0.7m,
+                0.8m,
+                0.9m,
+            };
+            var expected = new List<decimal>
+            {
+                0.0m,
+                0.0m,
+                0.0m,
+                0.3m,
+                0.3m,
+                0.3m,
+                0.3m,
+                0.7m,
+                0.7m,
+                0.7m,
+            };
+            var actual = new List<decimal>();
+
+            // act
+            foreach (var number in input)
+                actual.Add(Calculator.GetRoundedBattleRating(number));
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        #endregion Tests: GetRoundedBattleRating()
     }
 }
