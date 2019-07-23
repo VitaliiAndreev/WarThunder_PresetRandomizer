@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Extensions;
+using System;
 
 namespace Core.DataBase.WarThunder.Helpers
 {
@@ -10,6 +11,9 @@ namespace Core.DataBase.WarThunder.Helpers
         private const decimal _firstBattleRatingStep = 0.0m;
         private const decimal _secondBattleRatingStep = 0.3m;
         private const decimal _thirdBattleRatingStep = 0.7m;
+
+        public const decimal MinimumBattleRatingStep = 0.3m;
+        public const decimal MaximumBattleRatingStep = 0.4m;
 
         #endregion Constants
         #region Methods
