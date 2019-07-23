@@ -172,10 +172,10 @@ namespace Client.Console
             LogInfo(EConsoleUiLogMessage.DatabaseInitialized);
         }
 
-        /// <summary> Selects vehicles based on the given specification. </summary>
+        /// <summary> Randomly selects vehicles based on the given specification. </summary>
         /// <param name="specification"> The specification to base the selection on. </param>
         /// <returns></returns>
-        public IEnumerable<IVehicle> GetVehicles(Specification specification)
+        public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
         {
             var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
 
