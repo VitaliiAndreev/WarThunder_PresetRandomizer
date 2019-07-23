@@ -363,6 +363,7 @@
         #endregion T
         #region U
 
+        protected const string _unfininshed = " unfininshed";
         protected const string _unit = " unit";
         protected const string _unpack = " unpack";
         protected const string _Unpacked = "Unpacked";
@@ -454,7 +455,7 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string Deleted = _FMT_Q + _has_been + _deleted + _FS;
+        public const string Deleted = _FMT_Q + _deleted + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
