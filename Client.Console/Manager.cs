@@ -15,7 +15,12 @@ using Core.Helpers.Logger;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Objects;
+using Core.Organization.Extensions;
+using Core.Organization.Helpers;
+using Core.Organization.Helpers.Interfaces;
 using Core.Organization.Objects.SearchSpecifications;
+using Core.Randomization.Helpers;
+using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
@@ -47,6 +52,10 @@ namespace Client.Console
         private readonly IUnpacker _unpacker;
         /// <summary> An instance of a JSON helper. </summary>
         private readonly IJsonHelperWarThunder _jsonHelper;
+        /// <summary> An instance of a randomizer. </summary>
+        private readonly IRandomizer _randomizer;
+        /// <summary> An instance of a vehicle selector. </summary>
+        private readonly IVehicleSelector _vehicleSelector;
 
         /// <summary> The string representation of the game client version. </summary>
         private readonly string _gameClientVersion;
@@ -88,6 +97,8 @@ namespace Client.Console
             _parser = new Parser(_loggers);
             _unpacker = new Unpacker(_fileManager, _loggers);
             _jsonHelper = new JsonHelperWarThunder(_loggers);
+            _randomizer = new CustomRandomizer(_loggers);
+            _vehicleSelector = new VehicleSelector(_randomizer, _loggers);
 
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
             _cache = new List<IPersistentObject>();
@@ -194,22 +205,11 @@ namespace Client.Console
         {
             var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
 
-            bool battleRatingIsValid(IVehicle vehicle)
-            {
-                var battleRating = vehicle.BattleRating[specification.GameMode];
-
-                if (battleRating.HasValue)
-                    return battleRatingBracket.Contains(battleRating.Value);
-
-                else
-                    return false;
-            }
-
             return _cache.OfType<IVehicle>()
                 .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
                 .Where(vehicle => vehicle.Branch.GaijinId == _branches[specification.Branch])
-                .Where(vehicle => battleRatingIsValid(vehicle))
-                .OrderByDescending(vehicle => vehicle.BattleRating[specification.GameMode])
+                .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
+                .GetRandomizedVehicles(_vehicleSelector)
                 .Take(10)
             ;
         }
