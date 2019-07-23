@@ -19,6 +19,16 @@ namespace Core.Extensions
             return newCollection;
         }
 
+        /// <summary> Removes from this collection first occurrences of the objects present in the specified collection. </summary>
+        /// <typeparam name="T"> The type of collection elements. </typeparam>
+        /// <param name="sourceCollection"> The source collection to remove from. </param>
+        /// <param name="elementsToDelete"> The collection whose contents should be removed from the <paramref name="sourceCollection"/>. </param>
+        public static void RemoveRange<T>(this ICollection<T> sourceCollection, IEnumerable<T> elementsToDelete)
+        {
+            foreach (var element in elementsToDelete)
+                sourceCollection.Remove(element);
+        }
+
         /// <summary> Replaces contents of the collection with those of the given collection. </summary>
         /// <typeparam name="T"> The type of collection elements. </typeparam>
         /// <param name="sourceCollection"> The source collection. </param>
