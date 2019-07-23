@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Randomization", "Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Randomization.Tests", "Core.Randomization.Tests\Core.Randomization.Tests.csproj", "{E4EC63E3-82EA-4F29-AE9A-1338EB447CD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Organization.Tests", "Core.Organization.Tests\Core.Organization.Tests.csproj", "{575943BA-01F6-4D97-9D58-5D8587C7F9EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,10 @@ Global
 		{E4EC63E3-82EA-4F29-AE9A-1338EB447CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4EC63E3-82EA-4F29-AE9A-1338EB447CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4EC63E3-82EA-4F29-AE9A-1338EB447CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575943BA-01F6-4D97-9D58-5D8587C7F9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575943BA-01F6-4D97-9D58-5D8587C7F9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575943BA-01F6-4D97-9D58-5D8587C7F9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575943BA-01F6-4D97-9D58-5D8587C7F9EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
