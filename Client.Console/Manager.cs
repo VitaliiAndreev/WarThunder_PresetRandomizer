@@ -145,6 +145,11 @@ namespace Client.Console
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
         private void UnpackDeserializePersist()
         {
+            LogInfo(EConsoleUiLogMessage.CreatingDatabase);
+
+            _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+
+            LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
             LogInfo(EConsoleUiLogMessage.PreparingGameFiles);
 
             var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
@@ -153,11 +158,6 @@ namespace Client.Console
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
 
             LogInfo(EConsoleUiLogMessage.GameFilesPrepared);
-            LogInfo(EConsoleUiLogMessage.CreatingDatabase);
-
-            _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
-
-            LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
             LogInfo(EConsoleUiLogMessage.InitializingDatabase);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
