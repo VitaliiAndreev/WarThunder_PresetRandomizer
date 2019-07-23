@@ -237,9 +237,9 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.BattleTimeRealistic > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
             /// weapons
-            vehicles.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value <= 0m) ?? false).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value < 0m) ?? false).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.CannonReloadTime?.All(value => value <= 0m) ?? false).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.CannonReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.GaijinId.IsNullOrWhiteSpaceFluently())).Should().BeFalse();
