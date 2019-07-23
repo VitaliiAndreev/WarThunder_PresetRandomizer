@@ -1,8 +1,10 @@
 ﻿using Client.Console.Enumerations.Logger;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Organization.Objects.SearchSpecifications;
+using System;
 using System.Linq;
 
 namespace Client.Console
@@ -12,10 +14,25 @@ namespace Client.Console
         /// <summary> The entry point. </summary>
         static void Main()
         {
-            using (var manager = new Manager())
-                while (true)
-                    foreach (var vehicle in manager.GetVehicles(ParseSpecification(TakeSpecificationInput())))
-                        System.Console.WriteLine($"\t {vehicle.GaijinId}");
+            try
+            {
+                using (var manager = new Manager())
+                {
+                    while (true)
+                    {
+                        var specification = ParseSpecification(TakeSpecificationInput());
+
+                        foreach (var vehicle in manager.GetRandomVehicles(specification))
+                            System.Console.WriteLine($"\t {vehicle.BattleRatingFormatted[specification.GameMode]} {vehicle.GaijinId}");
+                    }
+                }
+            }
+            catch
+            {
+                System.Console.Write($"\n{ECoreLogMessage.AnErrorHasOccurred} {EConsoleUiLogMessage.PressAnyKeyToExit} ");
+                System.Console.ReadKey(true);
+                Environment.Exit(0);
+            }
         }
 
         /// <summary> Takes a specification string from keyboard input. </summary>

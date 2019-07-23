@@ -36,5 +36,7 @@ namespace Client.Console.Enumerations.Logger
         public const string IncorrectNation = _Incorrect + _nation + _FS;
         public const string IncorrectBranch = _Incorrect + _branch + _FS;
         public const string IncorrectBattleRating = _Incorrect + _battle + _rating + _SPC_PARENTHESIS_OPEN + _NOSPC_must + _be + _a + _number + _PARENTHESIS_CLOSE + _FS;
+
+        public const string PressAnyKeyToExit = _Press + _any + _key + _to + _exit + _FS;
     }
 }

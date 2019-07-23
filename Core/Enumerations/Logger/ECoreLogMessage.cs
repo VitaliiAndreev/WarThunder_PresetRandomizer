@@ -57,6 +57,7 @@
         protected const string _AnErrorHasOccured = _An + _error + _has + _occured;
         protected const string _AnErrorHasOccuredWhile = _AnErrorHasOccured + _while;
         protected const string _and = _an + "n";
+        protected const string _any = _an + "y";
         protected const string _arguments = _a + "rguments";
         protected const string _assembly = _a + "ssembly";
         protected const string _Assigned = _A + "ssigned";
@@ -151,6 +152,7 @@
         protected const string _execution = " execution";
         protected const string _exist = " exist";
         protected const string _exists = _exist + "s";
+        protected const string _exit = " exit";
         protected const string _extension = " extension";
 
         #endregion E
@@ -221,6 +223,8 @@
         #endregion J
         #region K
 
+        protected const string _key = " key";
+
         #endregion K
         #region L
 
@@ -285,6 +289,7 @@
         protected const string _prepared = " prepared";
         protected const string _Preparing = "Preparing";
         protected const string _PreparingTo = _Preparing + _to;
+        protected const string _Press = "Press";
 
         #endregion P
         #region Q

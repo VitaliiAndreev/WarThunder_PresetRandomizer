@@ -109,7 +109,22 @@ namespace Client.Console
             {
                 LogInfo(EConsoleUiLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
 
-                UnpackDeserializePersist();
+                try
+                {
+                    UnpackDeserializePersist();
+                }
+                catch
+                {
+                    var databaseFile = $"{_gameClientVersion}{ECharacter.Period}{EFileExtension.SqLite3}";
+
+                    LogInfo(ECoreLogMessage.Deleting.FormatFluently(databaseFile));
+
+                    _fileManager.DeleteFileSafely(databaseFile);
+
+                    LogInfo(ECoreLogMessage.Deleted.FormatFluently(databaseFile));
+
+                    throw;
+                }
             }
             else
             {
