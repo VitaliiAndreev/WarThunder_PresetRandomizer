@@ -506,7 +506,7 @@
             + _Copying + _safely + _aborted + _FS;
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para> 1: directory path. </para>
+        /// <para> 1: directory / file path. </para>
         /// </summary>
         public const string DoesNotExist_NoNeedToDelete = DoesNotExist + _SPC + _No + _need + _to + _delete + _it + _FS;
         /// <summary>

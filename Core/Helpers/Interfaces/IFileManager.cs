@@ -24,6 +24,14 @@ namespace Core.Helpers.Interfaces
 
         #endregion Methods: Copying
         #region Methods: Deletion
+        
+        /// <summary> Deletes the file with the specified name if it exists. </summary>
+        /// <param name="fileName"> The name of the file to delete. </param>
+        void DeleteFileSafely(string fileName);
+
+        /// <summary> Deletes the specified file if it exists. </summary>
+        /// <param name="file"> The file to delete. </param>
+        void DeleteFileSafely(FileInfo file);
 
         #region DeleteFiles()
 

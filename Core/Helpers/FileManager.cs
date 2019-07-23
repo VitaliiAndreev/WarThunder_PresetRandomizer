@@ -88,15 +88,25 @@ namespace Core.Helpers
         #endregion Methods: Copying
         #region Methods: Deletion
 
-        /// <summary> Deletes the specified file. </summary>
-        /// <param name="file"> A file to delete. </param>
-        private void DeleteFile(FileInfo file)
+        /// <summary> Deletes the file with the specified name if it exists. </summary>
+        /// <param name="fileName"> The name of the file to delete. </param>
+        public void DeleteFileSafely(string fileName) =>
+            DeleteFileSafely(new FileInfo(fileName));
+
+        /// <summary> Deletes the specified file if it exists. </summary>
+        /// <param name="file"> The file to delete. </param>
+        public void DeleteFileSafely(FileInfo file)
         {
             LogTrace(ECoreLogMessage.Deleting.FormatFluently(file.Name));
 
             try
             {
-                file.Delete();
+                file.Refresh();
+
+                if (file.Exists)
+                    file.Delete();
+                else
+                    LogTrace(ECoreLogMessage.DoesNotExist_NoNeedToDelete.FormatFluently(file.Name));
             }
             catch (Exception exception)
             {
@@ -119,7 +129,7 @@ namespace Core.Helpers
             try
             {
                 foreach (var file in files)
-                    DeleteFile(file);
+                    DeleteFileSafely(file);
             }
             catch (Exception exception)
             {
