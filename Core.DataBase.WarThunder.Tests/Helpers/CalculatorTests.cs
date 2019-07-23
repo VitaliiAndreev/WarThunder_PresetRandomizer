@@ -23,7 +23,7 @@ namespace Core.DataBase.WarThunder.Tests.Helpers
             }
         }
 
-        private readonly IList<EconomicRankBattleRatingPair> referenceTable = new List<EconomicRankBattleRatingPair>
+        private readonly IList<EconomicRankBattleRatingPair> _referenceTable = new List<EconomicRankBattleRatingPair>
         {
             new EconomicRankBattleRatingPair(00, 01.0m),
             new EconomicRankBattleRatingPair(01, 01.3m),
@@ -62,7 +62,7 @@ namespace Core.DataBase.WarThunder.Tests.Helpers
         public void GetBattleRating()
         {
             // arrange
-            foreach (var referencePair in referenceTable)
+            foreach (var referencePair in _referenceTable)
             {
                 // act
                 var battleRating = Calculator.GetBattleRating(referencePair.EconomicRank);
@@ -79,7 +79,7 @@ namespace Core.DataBase.WarThunder.Tests.Helpers
         public void GetEconomicRank()
         {
             // arrange
-            foreach (var referencePair in referenceTable)
+            foreach (var referencePair in _referenceTable)
             {
                 // act
                 var economicRank = Calculator.GetEconomicRank(referencePair.BattleRating);
