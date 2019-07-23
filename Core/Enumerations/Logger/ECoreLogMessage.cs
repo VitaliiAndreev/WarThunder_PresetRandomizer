@@ -132,6 +132,7 @@
         protected const string _disposed = _dispose + "d";
         protected const string _Disposing = "Disposing";
         protected const string _does = " does";
+        protected const string _does_not_exist = " does" + _not + _exist;
 
         protected const string _SPC_Disposal_aborted_FS = _SPC + _Disposal_aborted_FS;
 
@@ -310,6 +311,7 @@
         #region S
 
         protected const string _safely = " safely";
+        protected const string _safely_aborted = " safely" + _aborted;
         protected const string _Schema = "Schema";
         protected const string _schema = " schema";
         protected const string _Selected = "Selected";
@@ -506,29 +508,23 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string WarnAlreadyDeleted = _FMT_Q + _does + _not + _exist + _FS_SPC + _There + _is + _no + _need + _to + _delete + _it + _FS;
+        public const string DoesNotExist_NoNeedToDelete = DoesNotExist + _SPC + _No + _need + _to + _delete + _it + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory / file path. </para>
         /// </summary>
-        public const string WarnDoesNotExist_CopyingAborted =
-            _FMT_Q + _does + _not + _exist + _FS_SPC
-            + _Copying + _safely + _aborted + _FS;
+        public const string DoesNotExist_CopyingAborted = DoesNotExist + _SPC + _Copying + _safely_aborted + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: destination directory. </para>
         /// <para> 2: directory / file path. </para>
         /// </summary>
-        public const string WarnDoesNotExist_CopyingSomethingAborted =
-            _FMT_Q + _does + _not + _exist + _FS_SPC
-            + _Copying + _SPC_FMT_Q + _safely + _aborted + _FS;
+        public const string DoesNotExist_CopyingSomethingAborted = DoesNotExist + _SPC + _Copying + _SPC_FMT_Q + _safely_aborted + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string WarnDirectoryDoesNotExist_DeletingAborted =
-            _TheDirectory_SPC_FMT_Q + _does + _not + _exist + _FS_SPC
-            + _Deleting + _files + _safely + _aborted + _FS;
+        public const string DirectoryDoesNotExist_DeletingAborted = _TheDirectory_SPC_FMT_Q + _does_not_exist + _FS_SPC + _Deleting + _files + _safely_aborted + _FS;
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory name. </para>
@@ -615,7 +611,7 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory/file path/name. </para>
         /// </summary>
-        public const string DoesNotExist = _FMT_Q + _does + _not + _exist + _FS;
+        public const string DoesNotExist = _FMT_Q + _does_not_exist + _FS;
 
         #endregion General
         #region Parser
