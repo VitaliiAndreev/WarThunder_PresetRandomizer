@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Console", "Client.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Organization", "Core.Organization\Core.Organization.csproj", "{5642C09F-DBEA-4AFF-AC47-9434E455899E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Randomization", "Core.Randomization\Core.Randomization.csproj", "{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{5642C09F-DBEA-4AFF-AC47-9434E455899E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5642C09F-DBEA-4AFF-AC47-9434E455899E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5642C09F-DBEA-4AFF-AC47-9434E455899E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
