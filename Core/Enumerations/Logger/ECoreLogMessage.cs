@@ -610,7 +610,7 @@
             _A + _SPC_NULL + _value + _has + _been + _given + _to + _the + _SPC_FMT_Q + _method + _from + _SPC_FMT_Q + _class + _FS_SPC
             + _Method + _execution + _safely + _cancelled + _FS;
 
-        public const string Error = _AnErrorHasOccured + _FS;
+        public const string AnErrorHasOccurred = _AnErrorHasOccured + _FS;
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory/file path/name. </para>

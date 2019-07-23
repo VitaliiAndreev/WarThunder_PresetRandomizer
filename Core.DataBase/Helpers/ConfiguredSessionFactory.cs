@@ -109,7 +109,7 @@ namespace Core.DataBase.Helpers
             }
             catch (Exception exception)
             {
-                LogError(ECoreLogMessage.Error, exception);
+                LogError(ECoreLogMessage.AnErrorHasOccurred, exception);
                 throw;
             }
 
