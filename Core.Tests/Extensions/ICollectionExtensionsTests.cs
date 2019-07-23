@@ -26,6 +26,37 @@ namespace Core.Tests.Extensions
         }
 
         #endregion Tests: Copy()
+        #region Tests: RemoveRange()
+
+        [TestMethod]
+        public void RemoveRange_StructureElements()
+        {
+            // arrange
+            var sourceCollection = new List<int> { 1, 2, 3, 4 };
+            var elementsToRemove = new List<int> { 1, 4, 5 };
+
+            // act
+            sourceCollection.RemoveRange(elementsToRemove);
+
+            // assert
+            sourceCollection.Should().BeEquivalentTo(new List<int> { 2, 3 });
+        }
+
+        [TestMethod]
+        public void RemoveRange_ClassElements()
+        {
+            // arrange
+            var sourceCollection = new List<string> { "A", "B", "C", "D" };
+            var elementsToRemove = new List<string> { "A", "D", "E" };
+
+            // act
+            sourceCollection.RemoveRange(elementsToRemove);
+
+            // assert
+            sourceCollection.Should().BeEquivalentTo(new List<string> { "B", "C" });
+        }
+
+        #endregion Tests: RemoveRange()
         #region Tests: ReplaceBy()
 
         [TestMethod]
