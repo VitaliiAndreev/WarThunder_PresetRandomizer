@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\OutputDirectoryNotFoundException.cs" />
     <Compile Include="Exceptions\OutputFileNotFoundException.cs" />
     <Compile Include="Exceptions\YupFileParsingException.cs" />
+    <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileManager.cs" />
     <Compile Include="Helpers\WarThunderFileManager.cs" />
     <Compile Include="Helpers\WarThunderFileReader.cs" />

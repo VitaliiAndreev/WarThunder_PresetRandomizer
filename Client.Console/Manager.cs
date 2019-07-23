@@ -103,9 +103,9 @@ namespace Client.Console
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         private void CacheVehicles()
         {
-            var upToDateExtractedDataBaseName = _fileManager.GetWarThunderDataBaseFileNames().Max();
+            var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
 
-            if (upToDateExtractedDataBaseName is string && !_gameClientVersion.IsIn(upToDateExtractedDataBaseName))
+            if (availableDatabaseVersions.IsEmpty() || !_gameClientVersion.IsIn(availableDatabaseVersions.Max().ToString()))
             {
                 LogInfo(EConsoleUiLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
 
