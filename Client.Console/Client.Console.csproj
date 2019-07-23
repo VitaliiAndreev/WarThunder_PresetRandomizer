@@ -124,6 +124,10 @@
       <Project>{5642C09F-DBEA-4AFF-AC47-9434E455899E}</Project>
       <Name>Core.Organization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Randomization\Core.Randomization.csproj">
+      <Project>{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}</Project>
+      <Name>Core.Randomization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
       <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
       <Name>Core.UnpackingToolsIntegration</Name>
