@@ -43,7 +43,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
         /// <summary> Return value of the game mode parameter corresponding to the given enumeration value. </summary>
         /// <param name="gameMode"> The game mode the value for which to get. </param>
         /// <returns></returns>
-        public string this[EGameMode gameMode]
+        public virtual string this[EGameMode gameMode]
         {
             get
             {
