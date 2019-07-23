@@ -7,14 +7,13 @@ namespace Core.Extensions
     public static class IEnumerableExtensions
     {
         #region Methods: Fluency
-        
-        /// <summary> Gets all values from a collection of key-value pairs as <see cref="IDictionary{TKey, TValue}.Values"/> does. </summary>
+
+        /// <summary> Adds the elements of the collection to the end of the specified list. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
-        /// <typeparam name="U"> A generic type. </typeparam>
-        /// <param name="keyValuePairs"> A collection of key-value pairs. </param>
-        /// <returns></returns>
-        public static IEnumerable<U> GetValues<T, U>(this IEnumerable<KeyValuePair<T, U>> keyValuePairs) =>
-            keyValuePairs.Select(keyValuePair => keyValuePair.Value);
+        /// <param name="sourceCollection"> A source collection. </param>
+        /// <param name="targetCollection"> The list to which to add into. </param>
+        public static void AddInto<T>(this IEnumerable<T> sourceCollection, List<T> targetCollection) =>
+            targetCollection.AddRange(sourceCollection);
 
         #region IsEmpty(), HasSingle(), HasMany()
 
