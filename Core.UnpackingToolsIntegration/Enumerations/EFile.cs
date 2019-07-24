@@ -18,7 +18,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
             public const string GuiParameters = "gui" + _vromfsBin;
             public const string LocalizationParameters = "lang" + _vromfsBin;
             public const string MissionParameters = "mis" + _vromfsBin;
-            public const string WebUiParameters = "webgUi" + _vromfsBin;
+            public const string WebUiParameters = "webUi" + _vromfsBin;
             public const string WorldWarParameters = "wwdata" + _vromfsBin;
 
             public const string CurrentIntallData = warthunder + _yup;
