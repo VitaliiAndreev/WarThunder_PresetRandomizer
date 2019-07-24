@@ -320,6 +320,12 @@ namespace Core.DataBase.WarThunder.Objects
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
         #endregion Association Properties
+        #region Non-Persistent Properties
+
+        /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
+        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought.HasValue || !(CategoryOfHiddenVehicles is null) && CategoryOfHiddenVehicles.Any();
+
+        #endregion Non-Persistent Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>

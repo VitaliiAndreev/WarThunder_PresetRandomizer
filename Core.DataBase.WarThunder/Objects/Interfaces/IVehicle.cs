@@ -272,6 +272,12 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         IBranch Branch { get; }
 
         #endregion Association Properties
+        #region Non-Persistent Properties
+
+        /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
+        bool NotResearchable { get; }
+
+        #endregion Non-Persistent Properties
 
         void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
     }
