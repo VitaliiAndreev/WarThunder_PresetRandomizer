@@ -4,6 +4,8 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Organization.Objects.SearchSpecifications;
+using Core.UnpackingToolsIntegration.Enumerations;
+using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Linq;
 
@@ -18,6 +20,19 @@ namespace Client.Console
             {
                 using (var manager = new Manager())
                 {
+                    while (!manager.SettingsManager.WarThunderLocationIsValid())
+                    {
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.WarThunder));
+                        manager.SettingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
+                    }
+                    while (!manager.SettingsManager.UnpackingToolsLocationIsValid())
+                    {
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.KlensysWarThunderTools));
+                        manager.SettingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
+                    }
+
+                    manager.CacheVehicles();
+
                     while (true)
                     {
                         var specification = ParseSpecification(TakeSpecificationInput());

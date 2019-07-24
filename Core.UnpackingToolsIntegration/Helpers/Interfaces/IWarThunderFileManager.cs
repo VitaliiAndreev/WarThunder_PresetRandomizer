@@ -18,5 +18,11 @@ namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
 
         /// <summary> Removes all directories and files in <see cref="Settings.TempLocation"/>. </summary>
         void CleanUpTempDirectory();
+
+        /// <summary> Checks whether the directory with the specified path has all required files as listed with public constants in the given type (See <see cref="EFile"/>). </summary>
+        /// <param name="path"> The path of the directory to validate. </param>
+        /// <param name="constantType"> The type that contains public constants whose values correspond with required files. </param>
+        /// <returns></returns>
+        bool LocationIsValid(string path, Type constantType);
     }
 }

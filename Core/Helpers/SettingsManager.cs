@@ -15,13 +15,13 @@ namespace Core.Helpers
         #region Constants
 
         /// <summary> A template for settings expressions. </summary>
-        private const string _settingsExpressionTemplate = ECharacterString.Slash + "Settings" + ECharacterString.Slash + "{0}";
+        protected const string _settingsExpressionTemplate = ECharacterString.Slash + "Settings" + ECharacterString.Slash + "{0}";
 
         #endregion Constants
         #region Fields
 
         /// <summary> The settings file. </summary>
-        private readonly FileInfo _settingsFile;
+        protected readonly FileInfo _settingsFile;
 
         #endregion Fields
         #region Constructors
@@ -78,7 +78,7 @@ namespace Core.Helpers
         /// <param name="settingName">Node of XML to read</param>
         /// <param name="newValue">Value to write to that node</param>
         /// <returns></returns>
-        public void Save(string settingName, string newValue)
+        public virtual void Save(string settingName, string newValue)
         {
             var document = Read();
             var rootElement = document.DocumentElement;

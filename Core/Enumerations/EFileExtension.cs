@@ -14,6 +14,7 @@
         public const string Log = "log";
         public const string SqLite3 = "sqlite3";
         public const string Wrpl = "wrpl";
+        public const string Xml = "xml";
         public const string Yup = "yup";
     }
 }

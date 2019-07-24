@@ -86,6 +86,12 @@ namespace Client.Console
         private IDataRepository _dataRepository;
 
         #endregion Fields
+        #region Properties
+
+        /// <summary> An instance of a settings manager. </summary>
+        public IWarThunderSettingsManager SettingsManager { get; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new manager. </summary>
@@ -94,6 +100,7 @@ namespace Client.Console
         {
             _fileManager = new WarThunderFileManager(_loggers);
             _fileReader = new WarThunderFileReader(_loggers);
+            SettingsManager = new WarThunderSettingsManager(_fileManager, EConsoleClientFile.Settings, _loggers);
             _parser = new Parser(_loggers);
             _unpacker = new Unpacker(_fileManager, _loggers);
             _jsonHelper = new JsonHelperWarThunder(_loggers);
@@ -105,14 +112,14 @@ namespace Client.Console
 
             _fileManager.CleanUpTempDirectory();
 
-            CacheVehicles();
+            LoadSettings();
         }
 
         #endregion Constructors
         #region Methods: Initialization
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
-        private void CacheVehicles()
+        public void CacheVehicles()
         {
             var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
 
@@ -199,6 +206,16 @@ namespace Client.Console
         }
 
         #endregion Methods: Initialization
+        #region Methods: Settings
+
+        /// <summary> Loads settings from the file attached to <see cref="SettingsManager"/>. </summary>
+        private void LoadSettings()
+        {
+            Settings.UnpackingToolsLocation = SettingsManager.Load(nameof(Settings.UnpackingToolsLocation));
+            Settings.WarThunderLocation = SettingsManager.Load(nameof(Settings.WarThunderLocation));
+        }
+
+        #endregion Methods: Settings
 
         /// <summary> Randomly selects vehicles based on the given specification. </summary>
         /// <param name="specification"> The specification to base the selection on. </param>

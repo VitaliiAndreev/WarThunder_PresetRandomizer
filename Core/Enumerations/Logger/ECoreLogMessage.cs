@@ -8,6 +8,8 @@
         #region Characters
 
         /// <summary> A comma. </summary>
+        protected const string _COLON = ":";
+        /// <summary> A comma. </summary>
         protected const string _COMMA = ",";
         /// <summary> A full stop. </summary>
         protected const string _FS = ".";
@@ -228,6 +230,8 @@
         #endregion K
         #region L
 
+        protected const string _location = " location";
+
         #endregion L
         #region M
 
@@ -321,9 +325,10 @@
         protected const string _safely_aborted = " safely" + _aborted;
         protected const string _Schema = "Schema";
         protected const string _schema = " schema";
-        protected const string _Selected = "Selected";
+        protected const string _Select = "Select";
+        protected const string _Selected = _Select + "ed";
         protected const string _selected = " selected";
-        protected const string _Selecting = "Selecting";
+        protected const string _Selecting = _Select + "ing";
         protected const string _selection = " selection";
         protected const string _separated = " separated";
         protected const string _serialized = " serialized";
@@ -383,6 +388,7 @@
         #endregion U
         #region V
 
+        protected const string _valid = " valid";
         protected const string _value = " value";
         protected const string _version = " version";
 

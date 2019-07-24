@@ -4,6 +4,12 @@ namespace Client.Console.Enumerations.Logger
 {
     public class EConsoleUiLogMessage : ECoreLogMessage
     {
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: application whose location to select. </para>
+        /// </summary>
+        public const string SelectValidLocation = _Select + _valid + _SPC_FMT + _location + _COLON + _SPC;
+
         public const string PreparingGameFiles = _Preparing + _game + _files + _FS;
         public const string GameFilesPrepared = _Game + _files + _prepared + _FS;
 

@@ -2,6 +2,7 @@
 using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Logger.Interfaces;
+using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Extensions;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -48,6 +50,31 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             if (tempDirectory.Exists)
                 EmptyDirectory(tempDirectory.FullName);
+        }
+
+        /// <summary> Checks whether the directory with the specified path has all required files as listed with public constants in the given type (See <see cref="EFile"/>). </summary>
+        /// <param name="path"> The path of the directory to validate. </param>
+        /// <param name="constantType"> The type that contains public constants whose values correspond with required files. </param>
+        /// <returns></returns>
+        public bool LocationIsValid(string path, Type constantType)
+        {
+            if (path.IsNullOrWhiteSpaceFluently() || Path.GetInvalidPathChars().ToList().Intersect(path).Any() || !Path.IsPathRooted(path))
+                return false;
+            
+            var directory = new DirectoryInfo(path);
+            
+            if (!directory.Exists)
+                return false;
+
+            var files = directory.GetFiles().Select(file => file.Name);
+            var requiredFiles = constantType.GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.IsLiteral && !field.IsInitOnly).Select(constant => constant.GetRawConstantValue());
+
+            foreach (var requiredFile in requiredFiles)
+            {
+                if (!requiredFile.IsIn(files))
+                    return false;
+            }
+            return true;
         }
     }
 }

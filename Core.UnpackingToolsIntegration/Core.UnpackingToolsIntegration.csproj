@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\EApplication.cs" />
     <Compile Include="Enumerations\EClientVersion.cs" />
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Exceptions\YupFileParsingException.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileManager.cs" />
+    <Compile Include="Helpers\Interfaces\IWarThunderSettingsManager.cs" />
     <Compile Include="Helpers\WarThunderFileManager.cs" />
     <Compile Include="Helpers\WarThunderFileReader.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileReader.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Helpers\Interfaces\IUnpacker.cs" />
     <Compile Include="Helpers\Parser.cs" />
     <Compile Include="Helpers\Unpacker.cs" />
+    <Compile Include="Helpers\WarThunderSettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
