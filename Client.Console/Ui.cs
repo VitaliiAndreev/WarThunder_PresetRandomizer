@@ -16,6 +16,8 @@ namespace Client.Console
         /// <summary> The entry point. </summary>
         static void Main()
         {
+            var defaultColor = ConsoleColor.Gray;
+
             try
             {
                 using (var manager = new Manager())
@@ -30,6 +32,7 @@ namespace Client.Console
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.KlensysWarThunderTools));
                         manager.SettingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
                     }
+                    System.Console.WriteLine();
 
                     manager.CacheVehicles();
 
@@ -38,7 +41,16 @@ namespace Client.Console
                         var specification = ParseSpecification(TakeSpecificationInput());
 
                         foreach (var vehicle in manager.GetRandomVehicles(specification))
+                        {
+                            if (vehicle.NotResearchable)
+                                System.Console.ForegroundColor = ConsoleColor.Yellow;
+                            else
+                                System.Console.ForegroundColor = ConsoleColor.White;
+
                             System.Console.WriteLine($"\t {vehicle.BattleRatingFormatted[specification.GameMode]} {vehicle.GaijinId}");
+                        }
+
+                        System.Console.ForegroundColor = defaultColor;
                     }
                 }
             }
