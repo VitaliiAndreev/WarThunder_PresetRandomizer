@@ -14,9 +14,12 @@ namespace Core.Tests.Helpers
     [TestClass]
     public class FileManagerTests
     {
+        #region Fields
+
         private IFileManager _fileManager;
         private string _rootDirectory;
 
+        #endregion Fields
         #region Internal Methods
 
         [TestInitialize]

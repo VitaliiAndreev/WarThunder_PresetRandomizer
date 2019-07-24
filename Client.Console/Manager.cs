@@ -109,7 +109,7 @@ namespace Client.Console
         }
 
         #endregion Constructors
-        #region Methods
+        #region Methods: Initialization
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         private void CacheVehicles()
@@ -198,6 +198,8 @@ namespace Client.Console
             LogInfo(EConsoleUiLogMessage.DatabaseInitialized);
         }
 
+        #endregion Methods: Initialization
+
         /// <summary> Randomly selects vehicles based on the given specification. </summary>
         /// <param name="specification"> The specification to base the selection on. </param>
         /// <returns></returns>
@@ -217,7 +219,5 @@ namespace Client.Console
         /// <summary> Releases unmanaged resources. </summary>
         public void Dispose() =>
             _dataRepository.Dispose();
-
-        #endregion Methods
     }
 }

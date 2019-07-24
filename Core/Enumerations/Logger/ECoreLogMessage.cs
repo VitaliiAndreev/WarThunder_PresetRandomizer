@@ -552,7 +552,7 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
-        public const string NotFound = _FMT_Q + _not + _found + _FS;
+        public const string NotFound = _FMT_Q + _not_found_FS;
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>

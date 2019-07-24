@@ -36,7 +36,7 @@ namespace Core.Tests
         static Presets()
         {
             UseLiveLogging = true;
-            CleanUpLogs = false;
+            CleanUpLogs = true;
 
             InitializeLogger();
             InitializeMockDataRepository();
