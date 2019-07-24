@@ -12,6 +12,7 @@
         public const char Grave = '`';
         public const char NewLine = '\n';
         public const char Period = '.';
+        public const char Slash = '/';
         public const char Space = ' ';
     }
 }

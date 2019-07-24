@@ -249,8 +249,10 @@
         protected const string _new = " new";
         protected const string _No = "No";
         protected const string _no = " no";
+        protected const string _node = _no + "de";
         protected const string _Not = _No + "t";
         protected const string _not = _no + "t";
+        protected const string _not_found_FS = _not + _found + _FS;
         protected const string _number = " number";
 
         protected const string _NOSPC_need = "need";
@@ -394,6 +396,8 @@
 
         #endregion W
         #region X
+
+        protected const string _XML = "XML";
 
         #endregion X
         #region Y
@@ -633,6 +637,15 @@
         public const string ErrorParsingVersionString = _Error + _parsing + _version + _string + _FS;
 
         #endregion Parser
+        #region Settings Manager
+
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: XML node name. </para>
+        /// </summary>
+        public const string XmlNodeNotFound = _FMT_Q + _SPC + _XML + _node + _not_found_FS;
+
+        #endregion Settings Manager
         #region Unit Tests
 
         private const string _LINE = "====================";

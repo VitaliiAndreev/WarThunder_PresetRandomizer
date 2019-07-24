@@ -9,6 +9,7 @@
         public const string IntegrationTests = "Integration Tests";
         public const string Logger = "Logger";
         public const string Parser = "Parser";
+        public const string SettingsManager = "Settings Manager";
         public const string UnitTests = "Unit Tests";
         public const string Unpacker = "Unpacker";
     }

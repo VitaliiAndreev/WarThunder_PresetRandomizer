@@ -5,5 +5,6 @@
     {
         public const string Null = "NULL";
         public const string Period = ".";
+        public const string Slash = "/";
     }
 }
