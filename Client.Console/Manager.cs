@@ -37,6 +37,10 @@ namespace Client.Console
     {
         #region Constants
 
+        /// <summary>
+        /// The maximum difference in battle rating from the battle rating selected by user.
+        /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
+        /// </summary>
         private const decimal _maximumBattleRatingDifference = 2.0m;
 
         #endregion Constants

@@ -28,6 +28,15 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         #endregion Constructors
 
+        /// <summary> Removes all directories and files in <see cref="Settings.TempLocation"/>. </summary>
+        public void CleanUpTempDirectory()
+        {
+            var tempDirectory = new DirectoryInfo(Settings.TempLocation);
+
+            if (tempDirectory.Exists)
+                EmptyDirectory(tempDirectory.FullName);
+        }
+
         /// <summary> Gets all <see cref="EFileExtension.SqLite3"/> database files for specific game versions. </summary>
         /// <returns></returns>
         private IEnumerable<FileInfo> GetWarThunderDatabaseFiles() =>
@@ -42,15 +51,6 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         public IEnumerable<Version> GetWarThunderDatabaseVersions() =>
             GetWarThunderDatabaseFiles().Select(file => new Version(file.GetNameWithoutExtension()));
-
-        /// <summary> Removes all directories and files in <see cref="Settings.TempLocation"/>. </summary>
-        public void CleanUpTempDirectory()
-        {
-            var tempDirectory = new DirectoryInfo(Settings.TempLocation);
-
-            if (tempDirectory.Exists)
-                EmptyDirectory(tempDirectory.FullName);
-        }
 
         /// <summary> Checks whether the directory with the specified path has all required files as listed with public constants in the given type (See <see cref="EFile"/>). </summary>
         /// <param name="path"> The path of the directory to validate. </param>
