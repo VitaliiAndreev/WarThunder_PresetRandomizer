@@ -7,10 +7,6 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         internal const string Vromfs = "vromfs";
         internal const string warthunder = "warthunder";
 
-        public class Unpacker
-        {
-            public const string Settings = "Settings" + ECharacterString.Period + EFileExtension.SqLite3;
-        }
         public class RootFolder
         {
             private const string _exe = ECharacterString.Period + EFileExtension.Exe;
