@@ -178,7 +178,7 @@ namespace Client.Console
             LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
             LogInfo(EConsoleUiLogMessage.PreparingGameFiles);
 
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);

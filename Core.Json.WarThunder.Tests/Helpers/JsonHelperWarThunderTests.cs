@@ -141,7 +141,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         public void DeserializeObject_Rank_Nations()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
             var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
@@ -155,7 +155,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         public void DeserializeList_Vehicles_WpCost()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
             var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
 
             // act
@@ -253,7 +253,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         public void DeserializeList_Vehicles_UnitTags()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
             var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
 
             // act

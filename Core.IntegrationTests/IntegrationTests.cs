@@ -92,7 +92,7 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistNationList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
             var rankJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
@@ -122,7 +122,7 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistVehicleList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.RootFolder.StatAndBalanceParameters);
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);

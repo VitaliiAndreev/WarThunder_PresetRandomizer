@@ -61,8 +61,8 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         {
             // arrange
             void copyFile(string relativeFilePath) => _fileManager.CopyFile($"{Settings.WarThunderLocation}\\{relativeFilePath}", _rootDirectory, true, true);
-            copyFile(EFile.RootFolder.CurrentIntallData);
-            copyFile(EFile.RootFolder.PreviousVersionInstallData);
+            copyFile(EFile.WarThunder.CurrentIntallData);
+            copyFile(EFile.WarThunder.PreviousVersionInstallData);
 
             Settings.WarThunderLocation = _rootDirectory;
 

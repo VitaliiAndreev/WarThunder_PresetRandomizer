@@ -7,7 +7,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         internal const string Vromfs = "vromfs";
         internal const string warthunder = "warthunder";
 
-        public class RootFolder
+        public class WarThunder
         {
             private const string _exe = ECharacterString.Period + EFileExtension.Exe;
             private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
