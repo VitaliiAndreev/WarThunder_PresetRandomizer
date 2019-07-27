@@ -16,6 +16,7 @@ namespace Client.Console
         /// <summary> The entry point. </summary>
         static void Main()
         {
+            System.Console.Title = EApplication.WarThunderPresetRandomizer;
             var defaultColor = ConsoleColor.Gray;
 
             try
