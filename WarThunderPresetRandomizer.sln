@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Randomization.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Organization.Tests", "Core.Organization.Tests\Core.Organization.Tests.csproj", "{575943BA-01F6-4D97-9D58-5D8587C7F9EB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Mapping Assemblies", "Test Mapping Assemblies", "{C1A2EAB9-D118-46C2-BD7B-07F5187347F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -148,6 +150,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{248E1780-F838-494C-BC20-D2D9C5EE3BB0} = {C1A2EAB9-D118-46C2-BD7B-07F5187347F5}
+		{A39696FF-EC21-4173-8B19-04DC32A136F3} = {C1A2EAB9-D118-46C2-BD7B-07F5187347F5}
+		{03E94FF8-BA0E-4129-9F2E-DE733E3641D4} = {C1A2EAB9-D118-46C2-BD7B-07F5187347F5}
 		{79981D41-15FD-4F80-8909-5BC78F0E09EB} = {1D3F044B-5461-41C2-9392-D6C8E03EF23B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
