@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\Logger\ESelectorLogCategory.cs" />
+    <Compile Include="Enumerations\Logger\EOrganizationLogCategory.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IVehicleSelector.cs" />

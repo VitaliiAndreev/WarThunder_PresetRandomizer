@@ -35,11 +35,11 @@ namespace Core.Organization.Helpers
         /// <param name="randomizer"> An instance of a randomizer. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public VehicleSelector(IRandomizer randomizer, params IConfiguredLogger[] loggers)
-            : base(ESelectorLogCategory.VehicleSelector, loggers)
+            : base(EOrganizationLogCategory.VehicleSelector, loggers)
         {
             _randomizer = randomizer;
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ESelectorLogCategory.VehicleSelector));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.VehicleSelector));
         }
 
         #endregion Constructors

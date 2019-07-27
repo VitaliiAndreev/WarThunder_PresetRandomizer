@@ -2,7 +2,7 @@
 
 namespace Core.Organization.Enumerations.Logger
 {
-    public class ESelectorLogCategory : ECoreLogCategory
+    public class EOrganizationLogCategory : ECoreLogCategory
     {
         public const string VehicleSelector = "Vehicle Selector";
     }
