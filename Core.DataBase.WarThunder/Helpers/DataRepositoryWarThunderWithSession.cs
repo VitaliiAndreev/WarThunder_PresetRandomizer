@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Helpers
 {
-    public class DataRepositoryWarThunderWithoutSession : DataRepositoryWithoutSession
+    public class DataRepositoryWarThunderWithSession : DataRepositoryWithSession
     {
         #region Constructors
 
@@ -15,7 +15,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="SessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public DataRepositoryWarThunderWithoutSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+        public DataRepositoryWarThunderWithSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
             : base(dataBaseFileName, overwriteExistingDataBase, assemblyWithMapping, loggers)
         {
         }
