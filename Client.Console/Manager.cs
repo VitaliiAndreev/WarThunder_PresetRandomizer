@@ -2,7 +2,6 @@
 using Client.Console.Enumerations.Logger;
 using Client.Console.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
@@ -63,8 +62,6 @@ namespace Client.Console
 
         /// <summary> The string representation of the game client version. </summary>
         private readonly string _gameClientVersion;
-        /// <summary> The cache of persistent objects. </summary>
-        private readonly List<IPersistentObject> _cache;
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
         private readonly IDictionary<ENation, string> _nations = new Dictionary<ENation, string>
         {
@@ -112,7 +109,6 @@ namespace Client.Console
             _vehicleSelector = new VehicleSelector(_randomizer, _loggers);
 
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
-            _cache = new List<IPersistentObject>();
 
             _fileManager.CleanUpTempDirectory();
 
@@ -122,7 +118,7 @@ namespace Client.Console
         #endregion Constructors
         #region Methods: Initialization
 
-        /// <summary> Fills the <see cref="_cache"/> up. </summary>
+        /// <summary> Queries vehicles from the database and caches them. </summary>
         public void CacheVehicles()
         {
             var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
@@ -152,14 +148,14 @@ namespace Client.Console
             {
                 LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
 
-                _dataRepository = new DataRepositoryWarThunderWithoutSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+                _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
                 LogInfo(EConsoleUiLogMessage.DataBaseConnectionEstablished);
             }
 
             LogInfo(EConsoleUiLogMessage.CachingObjects);
 
-            _cache.AddRange(_dataRepository.Query<IVehicle>());
+            _dataRepository.Query<IVehicle>();
 
             LogInfo(EConsoleUiLogMessage.CachingComplete);
         }
@@ -184,7 +180,7 @@ namespace Client.Console
         {
             LogInfo(EConsoleUiLogMessage.CreatingDatabase);
 
-            _dataRepository = new DataRepositoryWarThunderWithoutSession(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+            _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
             LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
             LogInfo(EConsoleUiLogMessage.PreparingGameFiles);
@@ -228,7 +224,8 @@ namespace Client.Console
         {
             var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
 
-            return _cache.OfType<IVehicle>()
+            return _dataRepository
+                .Query<IVehicle>()
                 .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
                 .Where(vehicle => vehicle.Branch.GaijinId.Contains(_branches[specification.Branch]))
                 .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)

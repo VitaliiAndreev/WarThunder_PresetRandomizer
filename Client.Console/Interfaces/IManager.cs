@@ -14,7 +14,7 @@ namespace Client.Console.Interfaces
 
         #region Methods: Initialization
 
-        /// <summary> Caches vehicles from the database in runtime memory. </summary>
+        /// <summary> Queries vehicles from the database and caches them. </summary>
         void CacheVehicles();
 
         #endregion Methods: Initialization
