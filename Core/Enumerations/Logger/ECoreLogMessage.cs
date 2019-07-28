@@ -202,6 +202,7 @@
 
         protected const string _implemented = " implemented";
         protected const string _in = " in";
+        protected const string _included = _in + "cluded";
         protected const string _Incorrect = "Incorrect";
         protected const string _initialized = _in + "itialized";
         protected const string _Initializing = "Initializing";
@@ -337,6 +338,7 @@
         protected const string _session = " session";
         protected const string _SessionFactory = _Session + _factory;
         protected const string _sessionFactory = _session + _factory;
+        protected const string _sorting = " sorting";
         protected const string _source = " source";
         protected const string _spaces = " spaces";
         protected const string _Specification = "Specification";
@@ -373,6 +375,7 @@
         protected const string _trying = " trying";
         protected const string _TryingTo = _Trying + _to;
         protected const string _tryingTo = _trying + _to;
+        protected const string _types = " types";
 
         #endregion T
         #region U

@@ -61,6 +61,12 @@ namespace Core.DataBase.Enumerations.Logger
         public const string PersistingNewObjects = _Persisting + _SPC_FMT + _new + _object_s + _FS;
         public const string AllNewObjectsPersisted = _All + _new + _objects + _persisted + _FS;
 
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: name of the collection. </para>
+        /// </summary>
+        public const string NotAllObjectTypesHaveBeenIncludedInSortingOfCollection = _Not + _all + _object + _types + _have + _been + _included + _in + _sorting + _of + _the + _SPC_FMT + _collection + _FS;
+
         #endregion DataRepository
         #region General
 

@@ -152,7 +152,7 @@ namespace Client.Console
             {
                 LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
 
-                _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+                _dataRepository = new DataRepositoryWarThunderWithoutSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
                 LogInfo(EConsoleUiLogMessage.DataBaseConnectionEstablished);
             }
@@ -184,7 +184,7 @@ namespace Client.Console
         {
             LogInfo(EConsoleUiLogMessage.CreatingDatabase);
 
-            _dataRepository = new DataRepositoryWarThunder(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+            _dataRepository = new DataRepositoryWarThunderWithoutSession(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
             LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
             LogInfo(EConsoleUiLogMessage.PreparingGameFiles);

@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace Core.DataBase.Tests.Helpers
 {
-    /// <summary> See <see cref="DataRepository"/>. </summary>
+    /// <summary> See <see cref="DataRepositoryWithoutSession"/>. </summary>
     [TestClass]
     public class DataRepositoryTests
     {
@@ -34,7 +34,7 @@ namespace Core.DataBase.Tests.Helpers
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepository(fileName, true, Assembly.Load(EAssembly.AssemblyWithMappingBase), Presets.Logger))
+            using (var dataRepository = new DataRepositoryWithoutSession(fileName, true, Assembly.Load(EAssembly.AssemblyWithMappingBase), Presets.Logger))
             {
                 var id = -1L;
 

@@ -1,9 +1,11 @@
-﻿using Core.DataBase.Helpers;
+﻿using Core.DataBase.Enumerations.Logger;
+using Core.DataBase.Helpers;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Helpers
 {
-    public class DataRepositoryWarThunder : DataRepository
+    public class DataRepositoryWarThunderWithoutSession : DataRepositoryWithoutSession
     {
         #region Constructors
 
@@ -20,7 +22,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="SessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public DataRepositoryWarThunder(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+        public DataRepositoryWarThunderWithoutSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
             : base(dataBaseFileName, overwriteExistingDataBase, assemblyWithMapping, loggers)
         {
         }
@@ -31,7 +33,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// Persists any transient objects cached in the repository.
         /// This override is used to reorder the <see cref="IDataRepository.NewObjects"/> collection before persisting its contents so that the latter adhere to foreign key constraints when committed.
         /// </summary>
-        public override void PersistNewObjects()
+        protected override void PersistNewObjects(ISession session)
         {
             var sortedNewObjects = new List<IPersistentObject>();
             
@@ -41,11 +43,11 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(NewObjects.OfType<IVehicleGameModeParameterSetBase>());
 
             if (sortedNewObjects.Count() != NewObjects.Count())
-                throw new ArgumentException($"Not all object types have been included in sorting of the {nameof(NewObjects)} collection.");
+                throw new ArgumentException(EDataBaseLogMessage.NotAllObjectTypesHaveBeenIncludedInSortingOfCollection.FormatFluently(nameof(NewObjects)));
 
             NewObjects.ReplaceBy(sortedNewObjects);
 
-            base.PersistNewObjects();
+            base.PersistNewObjects(session);
         }
     }
 }

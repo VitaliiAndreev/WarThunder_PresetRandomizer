@@ -73,7 +73,7 @@
     <Compile Include="Enumerations\ENation.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
-    <Compile Include="Helpers\DataRepositoryWarThunder.cs" />
+    <Compile Include="Helpers\DataRepositoryWarThunderWithoutSession.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />

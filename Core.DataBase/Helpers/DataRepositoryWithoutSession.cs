@@ -15,7 +15,7 @@ using System.Reflection;
 namespace Core.DataBase.Helpers
 {
     /// <summary> Handles connections to and actions over an SQLite database. </summary>
-    public class DataRepository : LoggerFluency, IDataRepository
+    public class DataRepositoryWithoutSession : LoggerFluency, IDataRepository
     {
         #region Properties
 
@@ -42,7 +42,7 @@ namespace Core.DataBase.Helpers
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="SessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public DataRepository(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+        public DataRepositoryWithoutSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
             : base(EDataBaseLogCategory.DataRepository, loggers)
         {
             LogDebug
@@ -66,26 +66,22 @@ namespace Core.DataBase.Helpers
 
         /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
+        /// <param name="session"> The session in whose scope to query. </param>
         /// <param name="filter"> The filter by which to query objects from the database. </param>
         /// <returns></returns>
-        public IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
+        protected IEnumerable<T> Query<T>(ISession session, Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
             LogDebug((filter is null ? EDataBaseLogMessage.QueryingAllObjects : EDataBaseLogMessage.QueryingObjects).FormatFluently(typeof(T).Name));
 
-            var cachedQuery = default(IEnumerable<T>);
+            var query = session.Query<T>();
 
-            using (var session = SessionFactory.OpenSession())
+            if (!(filter is null))
             {
-                var query = session.Query<T>();
-                
-                if (!(filter is null))
-                {
-                    query = filter(query);
-                    LogDebug(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
-                }
-
-                cachedQuery = query.ToList();
+                query = filter(query);
+                LogDebug(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
             }
+
+            var cachedQuery = query.ToList();
 
             foreach (var instance in cachedQuery)
             {
@@ -94,6 +90,20 @@ namespace Core.DataBase.Helpers
             }
 
             LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            return cachedQuery;
+        }
+
+        /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
+        /// <typeparam name="T"> The type of objects to look for. </typeparam>
+        /// <param name="filter"> The filter by which to query objects from the database. </param>
+        /// <returns></returns>
+        public IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
+        {
+            var cachedQuery = default(IEnumerable<T>);
+
+            using (var session = SessionFactory.OpenSession())
+                cachedQuery = Query(session, filter);
+
             return cachedQuery;
         }
 
@@ -109,12 +119,12 @@ namespace Core.DataBase.Helpers
         }
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
-        /// <param name="instance"> An object to create/update. </param>
-        public void CommitChanges(IPersistentObject instance)
+        /// <param name="session"> The session in whose scope to commit. </param>
+        /// <param name="instance"> The object instance to create/update. </param>
+        protected void CommitChanges(ISession session, IPersistentObject instance)
         {
             LogDebug(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
 
-            using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
                 session.Save(instance);
@@ -124,12 +134,18 @@ namespace Core.DataBase.Helpers
             LogDebug(EDataBaseLogMessage.ChangesCommitted);
         }
 
-        /// <summary> Persists any transient objects cached in the repository. </summary>
-        public virtual void PersistNewObjects()
+        /// <summary> Commits any changes to a specified object to the database. </summary>
+        /// <param name="instance"> the object instance to create/update. </param>
+        public void CommitChanges(IPersistentObject instance)
+        {
+            using (var session = SessionFactory.OpenSession())
+                CommitChanges(session, instance);
+        }
+
+        protected virtual void PersistNewObjects(ISession session)
         {
             LogDebug(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
-            using (var session = SessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
                 foreach (var instance in NewObjects)
@@ -142,6 +158,13 @@ namespace Core.DataBase.Helpers
             }
 
             LogDebug(EDataBaseLogMessage.AllNewObjectsPersisted);
+        }
+
+        /// <summary> Persists any transient objects cached in the repository. </summary>
+        public virtual void PersistNewObjects()
+        {
+            using (var session = SessionFactory.OpenSession())
+                PersistNewObjects(session);
         }
 
         #endregion Methods: IDataRepository Members
