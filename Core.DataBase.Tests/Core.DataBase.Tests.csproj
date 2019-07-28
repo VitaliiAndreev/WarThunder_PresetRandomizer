@@ -127,6 +127,7 @@
     <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Extensions\IEnumerableExtensionsTests.cs" />
     <Compile Include="Helpers\ConfiguredSessionFactoryTests.cs" />
+    <Compile Include="Helpers\DataRepositoryWithSessionTests.cs" />
     <Compile Include="Helpers\DataRepositoryWithoutSessionTests.cs" />
     <Compile Include="Objects\PersistentObjectTests.cs" />
     <Compile Include="Objects\PersistentObjectWithIdTests.cs" />
