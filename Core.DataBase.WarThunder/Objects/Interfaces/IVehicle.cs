@@ -279,6 +279,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #endregion Non-Persistent Properties
 
+        /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
+        /// <param name="deserializedVehicleData"></param>
         void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
     }
 }

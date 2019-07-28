@@ -9,6 +9,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
+using Core.Enumerations;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
@@ -485,13 +486,35 @@ namespace Core.DataBase.WarThunder.Objects
             #endregion Battle ratings have been initialized.
         }
 
+        /// <summary>
+        /// Gets an existing branch or creates a new one with the specified <see cref="IPersistentObjectWithIdAndGaijinId.GaijinId"/>.
+        /// <para>
+        /// First not-yet-persisted objects are checked for the given branch, after that the database is queried, and only then a new branch is created.
+        /// </para>
+        /// </summary>
+        /// <param name="branchGaijinId"> The <see cref="IPersistentObjectWithIdAndGaijinId.GaijinId"/> of the branch to look for or create. </param>
+        /// <returns></returns>
+        private IBranch GetOrCreateBranch(string branchGaijinId)
+        {
+            var newBranch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchGaijinId);
+
+            if (newBranch is null)
+                newBranch = _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchGaijinId)).FirstOrDefault();
+
+            if (newBranch is null)
+                newBranch = new Branch(_dataRepository, branchGaijinId, Nation);
+
+            return newBranch;
+        }
+
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
         public virtual void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
         {
-            Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == deserializedVehicleData.BranchGaijinId)
-                ?? _dataRepository.Query<IBranch>(query => query.Where(branch => branch.GaijinId == deserializedVehicleData.BranchGaijinId)).FirstOrDefault()
-                ?? new Branch(_dataRepository, deserializedVehicleData.BranchGaijinId, Nation);
+            // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
+            var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
+
+            Branch = GetOrCreateBranch(branchIdAppended);
         }
 
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
