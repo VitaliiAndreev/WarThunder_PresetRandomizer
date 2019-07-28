@@ -230,7 +230,7 @@ namespace Client.Console
 
             return _cache.OfType<IVehicle>()
                 .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
-                .Where(vehicle => vehicle.Branch.GaijinId == _branches[specification.Branch])
+                .Where(vehicle => vehicle.Branch.GaijinId.Contains(_branches[specification.Branch]))
                 .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
                 .GetRandomizedVehicles(_vehicleSelector)
                 .Take(10)
