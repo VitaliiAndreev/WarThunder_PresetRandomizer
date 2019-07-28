@@ -12,11 +12,11 @@ namespace Core.DataBase.Tests.Helpers
 {
     /// <summary> See <see cref="DataRepositoryWithoutSession"/>. </summary>
     [TestClass]
-    public class DataRepositoryTests
+    public class DataRepositoryWithoutSessionTests
     {
         #region Internal Methods
 
-        public override string ToString() => nameof(DataRepositoryTests);
+        public override string ToString() => nameof(DataRepositoryWithoutSessionTests);
 
         [TestCleanup]
         public void CleanUp()
