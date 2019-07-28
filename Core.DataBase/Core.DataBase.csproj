@@ -104,6 +104,7 @@
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\ConfiguredSessionFactory.cs" />
     <Compile Include="Helpers\DataRepositoryWithoutSession.cs" />
+    <Compile Include="Helpers\DataRepositoryWithSession.cs" />
     <Compile Include="Helpers\Interfaces\IConfiguredSessionFactory.cs" />
     <Compile Include="Helpers\Interfaces\IDataRepository.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithId.cs" />

@@ -97,7 +97,7 @@ namespace Core.DataBase.Helpers
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
         /// <param name="filter"> The filter by which to query objects from the database. </param>
         /// <returns></returns>
-        public IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
+        public virtual IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
             var cachedQuery = default(IEnumerable<T>);
 
@@ -136,7 +136,7 @@ namespace Core.DataBase.Helpers
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
         /// <param name="instance"> the object instance to create/update. </param>
-        public void CommitChanges(IPersistentObject instance)
+        public virtual void CommitChanges(IPersistentObject instance)
         {
             using (var session = SessionFactory.OpenSession())
                 CommitChanges(session, instance);
