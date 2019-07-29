@@ -1,6 +1,5 @@
 ﻿using Core.Helpers.Logger.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace Core.Helpers.Logger
 {

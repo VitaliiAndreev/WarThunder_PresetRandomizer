@@ -161,6 +161,7 @@ namespace Core.Organization.Helpers
             return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
         }
 
+        /// <summary> Creates the database for the current War Thunder client version. </summary>
         private void CreateDataBase()
         {
             LogInfo(EOrganizationLogMessage.CreatingDatabase);
