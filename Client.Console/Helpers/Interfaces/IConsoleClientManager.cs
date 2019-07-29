@@ -1,24 +1,13 @@
 ﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Organization.Helpers.Interfaces;
 using Core.Organization.Objects.SearchSpecifications;
-using Core.UnpackingToolsIntegration.Helpers.Interfaces;
-using System;
 using System.Collections.Generic;
 
-namespace Client.Console.Interfaces
+namespace Client.Console.Helpers.Interfaces
 {
     /// <summary> Controls the flow of the application. </summary>
-    interface IManager : IDisposable
+    public interface IConsoleClientManager : IManager
     {
-        /// <summary> An instance of a settings manager. </summary>
-        IWarThunderSettingsManager SettingsManager { get; }
-
-        #region Methods: Initialization
-
-        /// <summary> Queries vehicles from the database and caches them. </summary>
-        void CacheVehicles();
-
-        #endregion Methods: Initialization
-
         /// <summary> Randomly selects vehicles based on the given specification. </summary>
         /// <param name="specification"> The specification to base the selection on. </param>
         /// <returns></returns>

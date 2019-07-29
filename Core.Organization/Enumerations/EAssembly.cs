@@ -1,4 +1,4 @@
-﻿namespace Client.Console.Enumerations
+﻿namespace Core.Organization.Enumerations
 {
     /// <summary> Names of assemblies used for schema creation. </summary>
     public class EAssembly

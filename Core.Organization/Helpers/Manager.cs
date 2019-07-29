@@ -1,8 +1,5 @@
-﻿using Client.Console.Enumerations;
-using Client.Console.Enumerations.Logger;
-using Client.Console.Interfaces;
-using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -11,17 +8,13 @@ using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
-using Core.Json.Helpers;
+using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
-using Core.Objects;
-using Core.Organization.Extensions;
-using Core.Organization.Helpers;
+using Core.Organization.Enumerations;
+using Core.Organization.Enumerations.Logger;
 using Core.Organization.Helpers.Interfaces;
-using Core.Organization.Objects.SearchSpecifications;
-using Core.Randomization.Helpers;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
-using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
@@ -29,7 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Client.Console
+namespace Core.Organization.Helpers
 {
     /// <summary> Controls the flow of the application. </summary>
     public class Manager : LoggerFluency, IManager
@@ -40,51 +33,33 @@ namespace Client.Console
         /// The maximum difference in battle rating from the battle rating selected by user.
         /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
         /// </summary>
-        private const decimal _maximumBattleRatingDifference = 2.0m;
+        protected const decimal _maximumBattleRatingDifference = 2.0m;
 
         #endregion Constants
         #region Fields
 
         /// <summary> An instance of a file manager. </summary>
-        private readonly IWarThunderFileManager _fileManager;
+        protected readonly IWarThunderFileManager _fileManager;
         /// <summary> An instance of a file reader. </summary>
-        private readonly IWarThunderFileReader _fileReader;
+        protected readonly IWarThunderFileReader _fileReader;
         /// <summary> An instance of a parser. </summary>
-        private readonly IParser _parser;
+        protected readonly IParser _parser;
         /// <summary> An instance of an unpacker. </summary>
-        private readonly IUnpacker _unpacker;
+        protected readonly IUnpacker _unpacker;
         /// <summary> An instance of a JSON helper. </summary>
-        private readonly IJsonHelperWarThunder _jsonHelper;
+        protected readonly IWarThunderJsonHelper _jsonHelper;
         /// <summary> An instance of a randomizer. </summary>
-        private readonly IRandomizer _randomizer;
+        protected readonly IRandomizer _randomizer;
         /// <summary> An instance of a vehicle selector. </summary>
-        private readonly IVehicleSelector _vehicleSelector;
+        protected readonly IVehicleSelector _vehicleSelector;
 
         /// <summary> The string representation of the game client version. </summary>
         private readonly string _gameClientVersion;
-        /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
-        private readonly IDictionary<ENation, string> _nations = new Dictionary<ENation, string>
-        {
-            { ENation.None, "country_0" },
-            { ENation.Usa, "country_usa" },
-            { ENation.Germany, "country_germany" },
-            { ENation.Ussr, "country_ussr" },
-            { ENation.Commonwealth, "country_britain" },
-            { ENation.Japan, "country_japan" },
-            { ENation.Italy, "country_italy" },
-            { ENation.France, "country_france" },
-        };
-        /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
-        private readonly IDictionary<EBranch, string> _branches = new Dictionary<EBranch, string>
-        {
-            { EBranch.Army, "tank" },
-            { EBranch.Aviation, "aircraft" },
-            { EBranch.Fleet, "ship" },
-            { EBranch.Helicopters, "helicopter" },
-        };
 
         /// <summary> An instance of a data repository. </summary>
-        private IDataRepository _dataRepository;
+        protected IDataRepository _dataRepository;
+        /// <summary> The cache of persistent objects. </summary>
+        protected readonly List<IPersistentObject> _cache;
 
         #endregion Fields
         #region Properties
@@ -96,36 +71,47 @@ namespace Client.Console
         #region Constructors
 
         /// <summary> Creates a new manager. </summary>
-        public Manager()
-            : base(EConsoleUiLogCategory.Manager, new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter()), new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter()))
+        public Manager
+        (
+            IWarThunderFileManager fileManager,
+            IWarThunderFileReader fileReader,
+            IWarThunderSettingsManager settingsManager,
+            IParser parser,
+            IUnpacker unpacker,
+            IWarThunderJsonHelper jsonHelper,
+            IRandomizer randomizer,
+            IVehicleSelector vehicleSelector,
+            params IConfiguredLogger[] loggers
+        ) : base(EOrganizationLogCategory.Manager, loggers)
         {
-            _fileManager = new WarThunderFileManager(_loggers);
-            _fileReader = new WarThunderFileReader(_loggers);
-            SettingsManager = new WarThunderSettingsManager(_fileManager, EConsoleClientFile.Settings, _loggers);
-            _parser = new Parser(_loggers);
-            _unpacker = new Unpacker(_fileManager, _loggers);
-            _jsonHelper = new JsonHelperWarThunder(_loggers);
-            _randomizer = new CustomRandomizer(_loggers);
-            _vehicleSelector = new VehicleSelector(_randomizer, _loggers);
+            _fileManager = fileManager;
+            _fileReader = fileReader;
+            _parser = parser;
+            _unpacker = unpacker;
+            _jsonHelper = jsonHelper;
+            _randomizer = randomizer;
+            _vehicleSelector = vehicleSelector;
+            _cache = new List<IPersistentObject>();
 
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
             _fileManager.CleanUpTempDirectory();
 
+            SettingsManager = settingsManager;
             LoadSettings();
         }
 
         #endregion Constructors
         #region Methods: Initialization
 
-        /// <summary> Queries vehicles from the database and caches them. </summary>
+        /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public void CacheVehicles()
         {
             var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
 
             if (availableDatabaseVersions.IsEmpty() || !_gameClientVersion.IsIn(availableDatabaseVersions.Max().ToString()))
             {
-                LogInfo(EConsoleUiLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
+                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
 
                 try
                 {
@@ -146,18 +132,18 @@ namespace Client.Console
             }
             else
             {
-                LogInfo(EConsoleUiLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
+                LogInfo(EOrganizationLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
 
                 _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
-                LogInfo(EConsoleUiLogMessage.DataBaseConnectionEstablished);
+                LogInfo(EOrganizationLogMessage.DataBaseConnectionEstablished);
             }
 
-            LogInfo(EConsoleUiLogMessage.CachingObjects);
+            LogInfo(EOrganizationLogMessage.CachingObjects);
 
-            _dataRepository.Query<IVehicle>();
+            _cache.AddRange(_dataRepository.Query<IVehicle>());
 
-            LogInfo(EConsoleUiLogMessage.CachingComplete);
+            LogInfo(EOrganizationLogMessage.CachingComplete);
         }
 
         private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
@@ -175,23 +161,29 @@ namespace Client.Console
             return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
         }
 
-        /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
-        private void UnpackDeserializePersist()
+        private void CreateDataBase()
         {
-            LogInfo(EConsoleUiLogMessage.CreatingDatabase);
+            LogInfo(EOrganizationLogMessage.CreatingDatabase);
 
             _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
-            LogInfo(EConsoleUiLogMessage.DatabaseCreatedConnectionEstablished);
-            LogInfo(EConsoleUiLogMessage.PreparingGameFiles);
+            LogInfo(EOrganizationLogMessage.DatabaseCreatedConnectionEstablished);
+        }
+
+        /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
+        private void UnpackDeserializePersist()
+        {
+            CreateDataBase();
+
+            LogInfo(EOrganizationLogMessage.PreparingGameFiles);
 
             var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
 
-            LogInfo(EConsoleUiLogMessage.GameFilesPrepared);
-            LogInfo(EConsoleUiLogMessage.InitializingDatabase);
+            LogInfo(EOrganizationLogMessage.GameFilesPrepared);
+            LogInfo(EOrganizationLogMessage.InitializingDatabase);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText);
@@ -202,7 +194,7 @@ namespace Client.Console
 
             _dataRepository.PersistNewObjects();
 
-            LogInfo(EConsoleUiLogMessage.DatabaseInitialized);
+            LogInfo(EOrganizationLogMessage.DatabaseInitialized);
         }
 
         #endregion Methods: Initialization
@@ -216,23 +208,6 @@ namespace Client.Console
         }
 
         #endregion Methods: Settings
-
-        /// <summary> Randomly selects vehicles based on the given specification. </summary>
-        /// <param name="specification"> The specification to base the selection on. </param>
-        /// <returns></returns>
-        public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
-        {
-            var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
-
-            return _dataRepository
-                .Query<IVehicle>()
-                .Where(vehicle => vehicle.Nation.GaijinId == _nations[specification.Nation])
-                .Where(vehicle => vehicle.Branch.GaijinId.Contains(_branches[specification.Branch]))
-                .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
-                .GetRandomizedVehicles(_vehicleSelector)
-                .Take(10)
-            ;
-        }
 
         /// <summary> Releases unmanaged resources. </summary>
         public void Dispose() =>

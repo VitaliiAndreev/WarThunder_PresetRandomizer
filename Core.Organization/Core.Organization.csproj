@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\EAssembly.cs" />
+    <Compile Include="Enumerations\EReference.cs" />
+    <Compile Include="Enumerations\Logger\EOrganizationLogMessage.cs" />
     <Compile Include="Enumerations\Logger\EOrganizationLogCategory.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Helpers\Interfaces\IManager.cs" />
     <Compile Include="Helpers\Interfaces\IVehicleSelector.cs" />
+    <Compile Include="Helpers\Manager.cs" />
     <Compile Include="Helpers\VehicleSelector.cs" />
     <Compile Include="Objects\SearchSpecifications\Specification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,9 +63,21 @@
       <Project>{E011A25B-4920-4F8E-8373-58EB9AFE8991}</Project>
       <Name>Core.DataBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Json.WarThunder\Core.Json.WarThunder.csproj">
+      <Project>{80045B74-FC1D-433E-8F78-E2020A13D817}</Project>
+      <Name>Core.Json.WarThunder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Json\Core.Json.csproj">
+      <Project>{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}</Project>
+      <Name>Core.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Randomization\Core.Randomization.csproj">
       <Project>{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}</Project>
       <Name>Core.Randomization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
+      <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
+      <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2CB4DC66-57B7-4D80-9C43-F3278BF76248}</Project>

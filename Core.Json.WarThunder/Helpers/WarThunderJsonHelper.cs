@@ -16,13 +16,13 @@ using System.Linq;
 namespace Core.Json.Helpers
 {
     /// <summary> Provide methods to work with JSON data specific to War Thunder. </summary>
-    public class JsonHelperWarThunder : JsonHelper, IJsonHelperWarThunder
+    public class WarThunderJsonHelper : JsonHelper, IWarThunderJsonHelper
     {
         #region Constructors
 
         /// <summary> Creates a new War Thunder JSON helper. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
-        public JsonHelperWarThunder(params IConfiguredLogger[] loggers)
+        public WarThunderJsonHelper(params IConfiguredLogger[] loggers)
             : base(loggers)
         {
         }

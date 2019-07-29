@@ -32,7 +32,7 @@ namespace Core.IntegrationTests
         private IFileManager _fileManager;
         private IFileReader _fileReader;
         private IUnpacker _unpacker;
-        private IJsonHelperWarThunder _jsonHelper;
+        private IWarThunderJsonHelper _jsonHelper;
         private string _rootDirectory;
         private string _defaultTempDirectory;
 
@@ -44,7 +44,7 @@ namespace Core.IntegrationTests
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
             _unpacker = new Unpacker(_fileManager, Presets.Logger);
-            _jsonHelper = new JsonHelperWarThunder(Presets.Logger);
+            _jsonHelper = new WarThunderJsonHelper(Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;
 

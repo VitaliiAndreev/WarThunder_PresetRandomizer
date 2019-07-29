@@ -1,10 +1,18 @@
-﻿using Client.Console.Enumerations.Logger;
+﻿using Client.Console.Enumerations;
+using Client.Console.Enumerations.Logger;
+using Client.Console.Helpers;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.Enumerations.Logger;
 using Core.Extensions;
+using Core.Helpers.Logger;
+using Core.Helpers.Logger.Interfaces;
+using Core.Json.Helpers;
+using Core.Organization.Helpers;
 using Core.Organization.Objects.SearchSpecifications;
+using Core.Randomization.Helpers;
 using Core.UnpackingToolsIntegration.Enumerations;
+using Core.UnpackingToolsIntegration.Helpers;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Linq;
@@ -21,7 +29,21 @@ namespace Client.Console
 
             try
             {
-                using (var manager = new Manager())
+                var loggers = new IConfiguredLogger[]
+                {
+                    new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter()),
+                    new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter()),
+                };
+                var fileManager = new WarThunderFileManager(loggers);
+                var fileReader = new WarThunderFileReader(loggers);
+                var settingsManager = new WarThunderSettingsManager(fileManager, EConsoleClientFile.Settings, loggers);
+                var parser = new Parser(loggers);
+                var unpacker = new Unpacker(fileManager, loggers);
+                var jsonHelper = new WarThunderJsonHelper(loggers);
+                var randomizer = new CustomRandomizer(loggers);
+                var vehicleSelector = new VehicleSelector(randomizer, loggers);
+
+                using (var manager = new ConsoleClientManager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, randomizer, vehicleSelector, loggers))
                 {
                     while (!manager.SettingsManager.WarThunderLocationIsValid())
                     {

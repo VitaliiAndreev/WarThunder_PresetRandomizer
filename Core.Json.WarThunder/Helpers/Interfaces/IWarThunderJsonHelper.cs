@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Core.Json.WarThunder.Helpers.Interfaces
 {
     /// <summary> Provide methods to work with JSON data specific to War Thunder. </summary>
-    public interface IJsonHelperWarThunder : IJsonHelper
+    public interface IWarThunderJsonHelper : IJsonHelper
     {
         #region Methods: Deserialization
 

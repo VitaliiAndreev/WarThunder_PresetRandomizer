@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
-    <Compile Include="Helpers\Interfaces\IJsonHelperWarThunder.cs" />
-    <Compile Include="Helpers\JsonHelperWarThunder.cs" />
+    <Compile Include="Helpers\Interfaces\IWarThunderJsonHelper.cs" />
+    <Compile Include="Helpers\WarThunderJsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
