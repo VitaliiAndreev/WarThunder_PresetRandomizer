@@ -56,6 +56,8 @@
     <Compile Include="Enumerations\EFileExtension.cs" />
     <Compile Include="Enumerations\EProcess.cs" />
     <Compile Include="Enumerations\ERegularExpression.cs" />
+    <Compile Include="Enumerations\EVocabulary.cs" />
+    <Compile Include="Enumerations\EWord.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\ICollectionExtensions.cs" />

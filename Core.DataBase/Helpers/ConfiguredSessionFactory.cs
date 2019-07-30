@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Enumerations.Logger;
 using Core.DataBase.Helpers.Interfaces;
+using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
@@ -71,7 +72,7 @@ namespace Core.DataBase.Helpers
                 EDataBaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
                 (
                     DataBaseFileName,
-                    _overwriteExistingDataBase ? string.Empty : ECoreLogMessage._NOSPC_dont_SPC,
+                    _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont} ",
                     _assemblyWithMapping
                 )
             );
@@ -141,7 +142,7 @@ namespace Core.DataBase.Helpers
                 LogDebug(EDataBaseLogMessage.CreatingFileWithSchema);
 
             new SchemaExport(configuration).Create(false, true);
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogMessage.W_Schema));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(EWord.Schema));
         }
 
         #endregion Methods: Creation and Configuration
@@ -178,7 +179,7 @@ namespace Core.DataBase.Helpers
             {
                 if (_sessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(ECoreLogMessage.W_TheSessionFactory));
+                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EWord.TheSessionFactory));
                     return;
                 }
 

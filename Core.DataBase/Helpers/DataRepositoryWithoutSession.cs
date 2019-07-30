@@ -50,7 +50,7 @@ namespace Core.DataBase.Helpers
                 EDataBaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
                 (
                     $"{dataBaseFileName}.{EFileExtension.SqLite3}",
-                    overwriteExistingDataBase ? string.Empty : ECoreLogMessage._NOSPC_dont_SPC,
+                    overwriteExistingDataBase ? string.Empty : $"{EWord.Dont} ",
                     assemblyWithMapping
                 )
             );
@@ -181,7 +181,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDataBaseLogMessage.DataRepositoryFor_noFS.FormatFluently(SessionFactory?.DataBaseFileName ?? ECoreLogMessage.NULL)));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDataBaseLogMessage.DataRepositoryFor_noFS.FormatFluently(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
 
             if (IsClosed)
             {
@@ -193,7 +193,7 @@ namespace Core.DataBase.Helpers
             {
                 if (SessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(ECoreLogMessage.W_TheSessionFactory));
+                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EWord.TheSessionFactory));
                     return;
                 }
                 else
