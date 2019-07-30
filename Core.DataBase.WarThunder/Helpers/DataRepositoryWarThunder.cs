@@ -12,7 +12,7 @@ namespace Core.DataBase.WarThunder.Helpers
 {
     public static class DataRepositoryWarThunder
     {
-        public static void ReorderNewObjectsToAdhereToForeignKeys(IDataRepository dataRepository, ISession session)
+        public static void ReorderNewObjectsToAdhereToForeignKeys(IDataRepository dataRepository)
         {
             var sortedNewObjects = new List<IPersistentObject>();
 

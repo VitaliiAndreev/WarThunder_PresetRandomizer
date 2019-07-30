@@ -28,7 +28,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// </summary>
         protected override void PersistNewObjects(ISession session)
         {
-            DataRepositoryWarThunder.ReorderNewObjectsToAdhereToForeignKeys(this, session);
+            DataRepositoryWarThunder.ReorderNewObjectsToAdhereToForeignKeys(this);
 
             base.PersistNewObjects(session);
         }
