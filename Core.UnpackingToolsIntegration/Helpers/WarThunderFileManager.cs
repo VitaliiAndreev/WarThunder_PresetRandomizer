@@ -58,7 +58,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         public bool LocationIsValid(string path, Type constantType)
         {
-            if (path.IsNullOrWhiteSpaceFluently() || Path.GetInvalidPathChars().ToList().Intersect(path).Any() || !Path.IsPathRooted(path))
+            if (string.IsNullOrWhiteSpace(path) || Path.GetInvalidPathChars().ToList().Intersect(path).Any() || !Path.IsPathRooted(path))
                 return false;
             
             var directory = new DirectoryInfo(path);

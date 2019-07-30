@@ -103,7 +103,7 @@ namespace Core.IntegrationTests
                 void assert(IEnumerable<INation> nationCollection)
                 {
                     nationCollection.Count().Should().BeGreaterOrEqualTo(7);
-                    nationCollection.Any(nation => nation.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+                    nationCollection.Any(nation => string.IsNullOrWhiteSpace(nation.GaijinId)).Should().BeFalse();
                 }
 
                 var nationsBeforePersistence = _jsonHelper.DeserializeList<Nation>(dataRepository, rankJsonText);
@@ -139,8 +139,8 @@ namespace Core.IntegrationTests
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
 
                     // association
-                    vehicleCollection.All(vehicle => !vehicle.Nation?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
-                    vehicleCollection.All(vehicle => !vehicle.Branch?.GaijinId.IsNullOrWhiteSpaceFluently() ?? false).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Branch?.GaijinId)).Should().BeTrue();
                     // crew
                     vehicleCollection.All(vehicle => vehicle.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
@@ -150,9 +150,9 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.MinumumCrewCountToOperate <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
                     // general
-                    vehicleCollection.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.MoveType)).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.Class)).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.PurchaseCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();

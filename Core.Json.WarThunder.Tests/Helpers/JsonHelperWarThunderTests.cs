@@ -173,10 +173,10 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.MinumumCrewCountToOperate <= 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
             /// general
-            vehicles.Any(vehicle => vehicle.GaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.NationGaijinId.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.MoveType.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.Class.IsNullOrWhiteSpaceFluently()).Should().BeFalse();
+            vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
+            vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.NationGaijinId)).Should().BeFalse();
+            vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.MoveType)).Should().BeFalse();
+            vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.Class)).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.PurchaseCostInSilver >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
@@ -242,11 +242,11 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.CannonReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.GaijinId.IsNullOrWhiteSpaceFluently())).Should().BeFalse();
-            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.Owner == vehicle)).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.PurchaseCostInSilver >= 0)).Should().BeTrue();
-            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MaximumStockpileAmount < 0)).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value.MassPerSecond < 0m)).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => string.IsNullOrWhiteSpace(keyValuePair.Value?.GaijinId))).Should().BeFalse();
+            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.Owner == vehicle)).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.PurchaseCostInSilver >= 0)).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.MaximumStockpileAmount < 0)).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.MassPerSecond < 0m)).Should().BeFalse();
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             // assert
             vehicles.Count().Should().BeGreaterThan(1300);
 
-            vehicles.All(vehicle => !vehicle.BranchGaijinId.IsNullOrWhiteSpaceFluently()).Should().BeTrue();
+            vehicles.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.BranchGaijinId)).Should().BeTrue();
         }
 
         #endregion Tests: DeserializeList()

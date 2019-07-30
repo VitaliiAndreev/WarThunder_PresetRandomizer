@@ -52,12 +52,6 @@ namespace Core.Extensions
         public static string FormatFluently(this string source, params object[] arguments) =>
             string.Format(source, arguments);
 
-        /// <summary> Fluently checks whether the string is null, empty, or consists only of white-space characters. </summary>
-        /// <param name="sourceString"> A source string. </param>
-        /// <returns></returns>
-        public static bool IsNullOrWhiteSpaceFluently(this string sourceString) =>
-            string.IsNullOrWhiteSpace(sourceString);
-
         #region Regular Expressions
 
         /// <summary> Checks whether the string patches the specified regular expression pattern. </summary>

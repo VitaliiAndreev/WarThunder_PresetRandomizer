@@ -34,7 +34,7 @@ namespace Core.Json.Helpers
         /// <param name="jsonText"> JSON text to check. </param>
         protected void ThrowIfJsonTextIsInvalid(string jsonText)
         {
-            if (jsonText.IsNullOrWhiteSpaceFluently())
+            if (string.IsNullOrWhiteSpace(jsonText))
                 throw new JsonDeserializationException(EJsonLogMessage.ErrorJsonStringEmpty);
         }
 
