@@ -72,7 +72,7 @@ namespace Core.DataBase.Helpers
                 EDataBaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
                 (
                     DataBaseFileName,
-                    _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont} ",
+                    _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont_L} ",
                     _assemblyWithMapping
                 )
             );

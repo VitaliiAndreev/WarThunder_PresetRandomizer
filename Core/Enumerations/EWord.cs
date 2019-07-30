@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Constants storing usable English words.
+    /// <para> Suffix "_L" means "lower case". </para>
     /// </summary>
     public class EWord : EVocabulary
     {
@@ -13,7 +14,7 @@
         #endregion C
         #region D
 
-        public static string Dont => _NOSPC_dont;
+        public static string Dont_L => _NOSPC_dont;
 
         #endregion D
         #region E
