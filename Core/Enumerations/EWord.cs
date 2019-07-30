@@ -50,12 +50,12 @@
         #endregion R
         #region S
 
-        public const string Schema = _Schema;
+        public static string Schema => _Schema;
 
         #endregion S
         #region T
 
-        public const string TheSessionFactory = _The + _sessionFactory;
+        public static string TheSessionFactory => _The + _sessionFactory;
 
         #endregion T
         #region U
