@@ -30,8 +30,15 @@
         #region J
         #endregion J
         #region K
+
+        public static string Key_L => _key;
+
         #endregion K
         #region L
+
+        public static string Line => _Line;
+        public static string Localization => _Localization;
+
         #endregion L
         #region M
         #endregion M
@@ -59,6 +66,9 @@
         #region U
         #endregion U
         #region V
+
+        public static string Value_L => _value;
+
         #endregion V
         #region W
         #endregion W
