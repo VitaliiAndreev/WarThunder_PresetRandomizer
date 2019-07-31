@@ -81,7 +81,7 @@ namespace Core.Localization.Tests.Helpers
                 streamWriter.Write(expectedFileContents);
 
             // act
-            var localizationManager = new LocalizationManager(_fileReader, ELocalization.English.ToString(), Presets.Logger);
+            var localizationManager = new LocalizationManager(_fileReader, ELanguage.English.ToString(), Presets.Logger);
 
             // assert
             localizationManager.GetLocalizedString(key).Should().Be(value);

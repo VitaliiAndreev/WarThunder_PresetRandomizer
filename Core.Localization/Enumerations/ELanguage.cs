@@ -1,7 +1,7 @@
 ﻿namespace Core.Localization.Enumerations
 {
     /// <summary> Available localization languages. </summary>
-    public enum ELocalization
+    public enum ELanguage
     {
         English,
     }

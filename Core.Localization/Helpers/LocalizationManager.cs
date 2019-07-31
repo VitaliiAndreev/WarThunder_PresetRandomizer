@@ -33,7 +33,7 @@ namespace Core.Localization.Helpers
         {
             _fileReader = fileReader;
 
-            if (!Enum.TryParse<ELocalization>(languageName, out var language))
+            if (!Enum.TryParse<ELanguage>(languageName, out var language))
                 throw new LanguageNotRecognizedException(ELocalizationLogMessage.LocalizationLanguageNotRecognized.FormatFluently(languageName));
 
             _localization = LoadLocalization(language);
@@ -43,7 +43,7 @@ namespace Core.Localization.Helpers
 
         #endregion Constructors
 
-        private IDictionary<string, string> LoadLocalization(ELocalization language)
+        private IDictionary<string, string> LoadLocalization(ELanguage language)
         {
             var fileContents = _fileReader.Read(Path.Combine(EWord.Localization, $"{language}{ECharacter.Period}{EFileExtension.Xml}"));
 

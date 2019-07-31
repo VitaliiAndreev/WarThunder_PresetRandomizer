@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\ELocalization.cs" />
+    <Compile Include="Enumerations\ELanguage.cs" />
     <Compile Include="Enumerations\Logger\ELocalizationLogCategory.cs" />
     <Compile Include="Enumerations\Logger\ELocalizationLogMessage.cs" />
     <Compile Include="Exceptions\LanguageNotRecognizedException.cs" />
