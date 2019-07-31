@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataBase.WarThunder", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataBase.WarThunder.Tests", "Core.DataBase.WarThunder.Tests\Core.DataBase.WarThunder.Tests.csproj", "{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{1D3F044B-5461-41C2-9392-D6C8E03EF23B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UtilityProjects", "UtilityProjects", "{1D3F044B-5461-41C2-9392-D6C8E03EF23B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarThunderSimpleUpdateChecker", "WarThunderSimpleUpdateChecker\WarThunderSimpleUpdateChecker.csproj", "{79981D41-15FD-4F80-8909-5BC78F0E09EB}"
 EndProject
@@ -51,11 +51,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Organization.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Mapping Assemblies", "Test Mapping Assemblies", "{C1A2EAB9-D118-46C2-BD7B-07F5187347F5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreClasses", "CoreClasses", "{77D5C878-C9C7-4CBD-8DBC-55EC95AEF83B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreProjects", "CoreProjects", "{77D5C878-C9C7-4CBD-8DBC-55EC95AEF83B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2166B7DB-002F-4F9D-A388-E6392EC099F4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientClasses", "ClientClasses", "{0FCAFA2C-CCEC-4402-9A3D-B0336127AD32}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientProjects", "ClientProjects", "{0FCAFA2C-CCEC-4402-9A3D-B0336127AD32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Localization.Tests", "Core.Localization.Tests\Core.Localization.Tests.csproj", "{908B1D1F-7B02-433B-9454-82552B5547FD}"
 EndProject
