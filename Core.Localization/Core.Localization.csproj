@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\ELanguage.cs" />
     <Compile Include="Enumerations\Logger\ELocalizationLogCategory.cs" />
     <Compile Include="Exceptions\LanguageNotRecognizedException.cs" />
     <Compile Include="Helpers\Interfaces\ILocalizationManager.cs" />
@@ -53,11 +52,6 @@
       <Project>{2CB4DC66-57B7-4D80-9C43-F3278BF76248}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Localization\English.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
