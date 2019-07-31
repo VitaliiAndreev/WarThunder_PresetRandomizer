@@ -36,7 +36,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepositoryWarThunderWithoutSession(fileName, true, Assembly.Load(EAssemblies.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositoryWarThunderWithoutSession(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), Presets.Logger))
             {
                 // act
                 var zimbabwe = new Nation(dataRepository, "Zimbabwe");

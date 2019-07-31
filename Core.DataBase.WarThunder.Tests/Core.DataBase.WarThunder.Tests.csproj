@@ -112,7 +112,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\EAssemblies.cs" />
+    <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Helpers\CalculatorTests.cs" />
     <Compile Include="Objects\BranchTests.cs" />
     <Compile Include="Objects\NationTests.cs" />
