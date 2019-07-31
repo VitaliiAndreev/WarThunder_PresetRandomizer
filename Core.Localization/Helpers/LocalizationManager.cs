@@ -28,24 +28,33 @@ namespace Core.Localization.Helpers
         #endregion Fields
         #region Constructors
 
-        public LocalizationManager(IFileReader fileReader, string languageName, params IConfiguredLogger[] loggers)
+        /// <summary> Creates a new localization manager for a specified localization file and loads it into memory. </summary>
+        /// <param name="fileReader"> The file reader to use. </param>
+        /// <param name="localizationFileName"> The name of the localization file to load into memory. </param>
+        /// <param name="loggers"> Instancs of loggers. </param>
+        public LocalizationManager(IFileReader fileReader, string localizationFileName, params IConfiguredLogger[] loggers)
             : base(ELocalizationLogCategory.LocalizationManager, loggers)
         {
             _fileReader = fileReader;
 
-            if (!Enum.TryParse<ELanguage>(languageName, out var language))
-                throw new LanguageNotRecognizedException(ELocalizationLogMessage.LocalizationLanguageNotRecognized.FormatFluently(languageName));
+            var localizationFile = new FileInfo(Path.Combine(EWord.Localization, $"{localizationFileName}{ECharacter.Period}{EFileExtension.Xml}"));
 
-            _localization = LoadLocalization(language);
+            if (!localizationFile.Exists)
+                throw new FileNotFoundException(ECoreLogMessage.NotFound.FormatFluently(localizationFile.FullName));
+
+            _localization = LoadLocalization(localizationFile);
 
             LogDebug(ECoreLogMessage.Created.FormatFluently(ELocalizationLogCategory.LocalizationManager));
         }
 
         #endregion Constructors
 
-        private IDictionary<string, string> LoadLocalization(ELanguage language)
+        /// <summary> Loads the specified localization file into memory. </summary>
+        /// <param name="localizationFile"> The file to load. </param>
+        /// <returns></returns>
+        private IDictionary<string, string> LoadLocalization(FileInfo localizationFile)
         {
-            var fileContents = _fileReader.Read(Path.Combine(EWord.Localization, $"{language}{ECharacter.Period}{EFileExtension.Xml}"));
+            var fileContents = _fileReader.Read(localizationFile);
 
             return XElement
                 .Parse(fileContents)

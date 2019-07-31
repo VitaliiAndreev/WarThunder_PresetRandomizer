@@ -60,13 +60,14 @@ namespace Core.Localization.Tests.Helpers
             Action createLocalizationManager = () => new LocalizationManager(_fileReader, "", Presets.Logger);
 
             // assert
-            createLocalizationManager.Should().Throw<LanguageNotRecognizedException>();
+            createLocalizationManager.Should().Throw<FileNotFoundException>();
         }
 
         [TestMethod]
         public void Constructor_LanguageRecognized_ShouldLoad()
         {
             // arrange
+            var fileName = "Whatsitsface";
             var key = "SomethingSomething";
             var value = "Ooh, it actually has something! :D";
             var expectedFileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
@@ -74,14 +75,14 @@ namespace Core.Localization.Tests.Helpers
   <{EWord.Line} {EWord.Key_L}=""{key}"" {EWord.Value_L}=""{value}""/>
 </{EWord.Localization}>";
 
-            var filePath = $@"{_localizationDirectory}\English.xml";
+            var filePath = $@"{_localizationDirectory}\{fileName}{ECharacter.Period}{EFileExtension.Xml}";
             File.Create(filePath).Close();
 
             using (var streamWriter = new StreamWriter(filePath))
                 streamWriter.Write(expectedFileContents);
 
             // act
-            var localizationManager = new LocalizationManager(_fileReader, ELanguage.English.ToString(), Presets.Logger);
+            var localizationManager = new LocalizationManager(_fileReader, fileName, Presets.Logger);
 
             // assert
             localizationManager.GetLocalizedString(key).Should().Be(value);
