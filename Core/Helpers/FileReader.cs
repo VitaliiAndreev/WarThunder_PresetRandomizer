@@ -49,7 +49,7 @@ namespace Core.Helpers
 
             var streamReader = new StreamReader(file.FullName);
 
-            LogDebug(ECoreLogMessage.CreatedStreamReader.FormatFluently(file.FullName));
+            LogDebug(ECoreLogMessage.StreamReaderCreated);
 
             return streamReader;
         }

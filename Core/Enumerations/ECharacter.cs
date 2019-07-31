@@ -10,7 +10,11 @@
         public const char Colon = ':';
         public const char Comma = ',';
         public const char Grave = '`';
+        public const char Minus = '-';
         public const char NewLine = '\n';
+        public const char QuotationMark = '"';
+        public const char ParenthesisClose = ')';
+        public const char ParenthesisOpen = '(';
         public const char Period = '.';
         public const char Slash = '/';
         public const char Space = ' ';

@@ -35,7 +35,7 @@ namespace Core.Json.Helpers
         protected void ThrowIfJsonTextIsInvalid(string jsonText)
         {
             if (string.IsNullOrWhiteSpace(jsonText))
-                throw new JsonDeserializationException(EJsonLogMessage.ErrorJsonStringEmpty);
+                throw new JsonDeserializationException(EJsonLogMessage.JsonStringEmpty);
         }
 
         /// <summary> Throws the specified exception after logging it as an error. Note that the compiler does not see throwing in this method from where it is being called. </summary>
@@ -85,7 +85,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(EJsonLogMessage.DeserializedInstance);
+            LogDebug(EJsonLogMessage.InstanceDeserialized);
             return deserializedInstance;
         }
 
@@ -120,7 +120,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(EJsonLogMessage.DeserializedInstances.FormatFluently(deserializedInstances.Count()));
+            LogDebug(EJsonLogMessage.InstancesDeserialized.FormatFluently(deserializedInstances.Count()));
             return deserializedInstances;
         }
 

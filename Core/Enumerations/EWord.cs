@@ -14,7 +14,7 @@
         #endregion C
         #region D
 
-        public static string Dont_L => _NOSPC_dont;
+        public static string Dont_L => _dont;
 
         #endregion D
         #region E
@@ -54,8 +54,6 @@
 
         #endregion S
         #region T
-
-        public static string TheSessionFactory => _The + _sessionFactory;
 
         #endregion T
         #region U

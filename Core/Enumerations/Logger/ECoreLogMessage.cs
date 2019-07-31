@@ -5,27 +5,27 @@
     {
         #region Dispose()
 
-        public const string AlreadyClosed = _Already + _closed + _FS;
+        public static string AlreadyClosed => $"{_Already} {_closed}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: object. </para>
         /// </summary>
-        public const string IsNull_DisposalAborted = IsNull + _SPC_Disposal_aborted_FS;
-        public const string Closing = _Closing + _FS;
+        public static string IsNull_DisposalAborted => $"{{0}} {_is} {_NULL}. {_Disposal} {_aborted}.";
+        public static string Closing => $"{_Closing}.";
 
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: object. </para>
         /// </summary>
-        public const string PreparingToDisposeOf = _PreparingTo + _dispose + _of + _SPC_FMT + _FS;
-        public const string AlreadyDisposed = _Already + _disposed + _of + _FS;
-        public const string Disposing = _Disposing + _FS;
-        public const string SuccessfullyDisposed = _Successfully + _disposed + _of + _FS;
+        public static string PreparingToDisposeOf => $"{_Preparing} {_to} {_dispose} {_of} {{0}}.";
+        public static string AlreadyDisposed => $"{_Already} {_disposed} {_of}.";
+        public static string Disposing => $"{_Disposing}.";
+        public static string SuccessfullyDisposed => $"{_Successfully} {_disposed} {_of}.";
 
         #endregion Dispose()
         #region Exception Formatter
 
-        public const string WarnExceptionIsNull = _Exception + _isNULL + _FS;
+        public static string ExceptionIsNull => $"{_Exception} {_is} {_NULL}.";
 
         #endregion Exception Formatter
         #region File Manager
@@ -35,106 +35,104 @@
         /// <para> 1: directory path / file name / etc. </para>
         /// <para> 2: destination directory path. </para>
         /// </summary>
-        public const string Copying = _Copying + _SPC_FMT_Q + _into + _SPC_FMT_Q + _FS;
+        public static string Copying => $"{_Copying} \"{{0}}\" {_into} \"{{1}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// <para> 2: destination directory path. </para>
         /// </summary>
-        public const string Copied = _FMT_Q + _copied + _FS;
-        public const string Overwriting = _Overwriting + _FS;
+        public static string Copied => $"\"{{0}}\" {_copied}.";
+        public static string Overwriting => $"{_Overwriting}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
-        public const string Deleting = _Deleting + _SPC_FMT_Q + _FS;
+        public static string Deleting => $"{_Deleting} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string DeletingEmptyDirectory = _Deleting + _empty + _SPC_FMT_Q + _FS;
+        public static string DeletingEmptyDirectory => $"{_Deleting} {_empty} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string Deleted = _FMT_Q + _deleted + _FS;
+        public static string Deleted => $"\"{{0}}\" {_deleted}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string EmptyingDirectory = _Emptying + _SPC_FMT_Q + _FS;
+        public static string EmptyingDirectory => $"{_Emptying} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string DirectoryEmptied = _FMT_Q + _has_been + _emptied + _FS;
+        public static string DirectoryEmptied => $"{{0}}\" {_emptied}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string SelectingAllFilesFromDirectory = _Selecting + _all + _files + _from + _SPC_FMT_Q + _FS;
+        public static string SelectingAllFilesFromDirectory => $"{_Selecting} {_all} {_files} {_from} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file extensions. </para>
         /// </summary>
-        public const string FilteringFilesFromSelection = _Filtering + _SPC_FMT_Q + _files + _from + _selection + _FS;
+        public static string FilteringFilesFromSelection => $"{_Filtering} \"{{0}}\" {_files} {_from} {_selection}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file count. </para>
         /// </summary>
-        public const string SelectedFileCount = _Selected + _SPC_FMT + _file_s + _FS;
+        public static string SelectedFileCount => $"{_Selected} {{0}} {_file}({_s}).";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: file count. </para>
         /// </summary>
-        public const string DeletingFiles = _Deleting + _SPC_FMT + _file_s + _FS;
-        public const string FileDeleted = _File + _deleted + _FS;
-        public const string FilesDeleted = _All + _files + _deleted + _FS;
-        public const string CheckingSubdirectories = _Checking + _for + _subdirectories + _FS;
+        public static string DeletingFiles => $"{_Deleting} {{0}} {_file}({_s}).";
+        public static string FileDeleted => $"{_File} {_deleted}.";
+        public static string FilesDeleted => $"{_All} {_files} {_deleted}.";
+        public static string CheckingSubdirectories => $"{_Checking} {_for} {_subdirectories}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: subfolder count. </para>
         /// </summary>
-        public const string SubdirectoriesFound = _FMT + _subdirectories + _found + _FS;
+        public static string SubdirectoriesFound => $"{{0}} {_subdirectories} {_found}.";
 
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory / file path. </para>
         /// </summary>
-        public const string WarnAlreadyExists_CopyingAborted =
-            _FMT_Q + _already + _exists + _FS_SPC
-            + _Copying + _safely + _aborted + _FS;
+        public static string AlreadyExists_CopyingSkipped => $"\"{{0}}\" {_already} {_exists}. {_Copying} {_skipped}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory / file path. </para>
         /// </summary>
-        public const string DoesNotExist_NoNeedToDelete = DoesNotExist + _SPC + _No + _need + _to + _delete + _it + _FS;
+        public static string DoesNotExist_NoNeedToDelete => $"{DoesntExist} {_No} {_need} {_to} {_delete} {_it}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory / file path. </para>
         /// </summary>
-        public const string DoesNotExist_CopyingAborted = DoesNotExist + _SPC + _Copying + _safely_aborted + _FS;
+        public static string DoesNotExist_CopyingAborted => $"{DoesntExist} {_Copying} {_safely} {_aborted}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: destination directory. </para>
         /// <para> 2: directory / file path. </para>
         /// </summary>
-        public const string DoesNotExist_CopyingSomethingAborted = DoesNotExist + _SPC + _Copying + _SPC_FMT_Q + _safely_aborted + _FS;
+        public static string DoesNotExist_CopyingSomethingAborted => $"{DoesntExist} {_Copying} \"{{0}}\" {_safely} {_aborted}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory path. </para>
         /// </summary>
-        public const string DirectoryDoesNotExist_DeletingAborted = _TheDirectory_SPC_FMT_Q + _does_not_exist + _FS_SPC + _Deleting + _files + _safely_aborted + _FS;
+        public static string DirectoryDoesNotExist_DeletingAborted => $"{_The} {_directory} \"{{0}}\" {_doesnt} {_exist}. {_Deleting} {_files} {_safely} {_aborted}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory name. </para>
         /// </summary>
-        public const string WarnEmptyDirectory = _TheDirectory_SPC_FMT_Q + _is + _empty + _FS;
-        public const string WarnNoFilesOfSpecifiedFormatToDelete = _No + _files + _of + _specified + _format + _to + _delete + _FS;
-        public const string WarnNoSubdirectories = _No + _subdirectories + _FS;
+        public static string DirectoryIsEmpty => $"{_The} {_directory} \"{{0}}\" {_is} {_empty}.";
+        public static string NoFilesOfSpecifiedFormatToDelete => $"{_No} {_files} {_of} {_specified} {_format} {_to} {_delete}.";
+        public static string NoSubdirectories => $"{_No} {_subdirectories}.";
 
-        public const string ErrorDeletingFile = _AnErrorHasOccuredWhile + _deleting + _file + _FS;
-        public const string ErrorDeletingFiles = _AnErrorHasOccuredWhile + _deleting + _one + _of + _the + _files + _FS;
+        public static string ErrorDeletingFile => $"{_Error} {_deleting} {_file}.";
+        public static string ErrorDeletingFiles => $"{_Error} {_deleting} {_one} {_of} {_the} {_files}.";
 
         #endregion File Manager
         #region File Reader
@@ -143,89 +141,67 @@
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
-        public const string NotFound = _FMT_Q + _not_found_FS;
+        public static string NotFound => $"\"{{0}}\" {_not} {_found}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
-        public const string CreatingStreamReader = _Creating + _a + _stream + _reader + _from + _SPC_FMT_Q + _FS;
+        public static string CreatingStreamReader => $"{_Creating} {_a} {_stream} {_reader} {_from} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: directory path / file name / etc. </para>
         /// </summary>
-        public const string Reading = _Reading + _SPC_FMT_Q + _FS;
-        /// <summary> 
-        /// A message with formatting placeholders.
-        /// <para> 1: directory path / file name / etc. </para>
-        /// </summary>
-        public const string CreatedStreamReader = _A + _stream + _reader + _has_been + _created + _from + _SPC_FMT_Q + _FS;
+        public static string Reading => $"{_Reading} \"{{0}}\".";
+        public static string StreamReaderCreated => $"{_Stream} {_reader} {_created}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
         /// </summary>
-        public const string ReadCharacters = _Read + _SPC_FMT + _characters + _FS;
+        public static string ReadCharacters => $"{_Read} {{0}} {_characters}.";
 
-        public const string ErrorReadingFile = _Error + _reading + _a + _file + _FS;
+        public static string ErrorReadingFile => $"{_Error} {_reading} {_file}.";
 
         #endregion File Reader
         #region General
 
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
-        /// </summary>
-        public const string Creating = _Creating + _SPC_FMT + _FS;
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
-        /// </summary>
-        public const string Creating_InQuotes = _Creating + _SPC_FMT_Q + _FS;
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
-        /// </summary>
-        public const string Created = _FMT + _created + _FS;
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
-        /// </summary>
-        public const string Created_InQuotes = _FMT_Q + _created + _FS;
+        protected static readonly string _TryingTo = $"{_Trying} {_to}";
 
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
+        /// <para> 1: directory / file name. </para>
         /// </summary>
-        public const string IsNull = _FMT + _isNULL + _FS;
-        public const string Success = _Successfully + _completed + _FS;
+        public static string Creating_InQuotes => $"{_Creating} \"{{0}}\".";
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para> 1: method name. </para>
-        /// <para> 2: class name. </para>
+        /// <para> 1: object. </para>
         /// </summary>
-        public const string WarnNullGiven =
-            _A + _SPC_NULL + _value + _has + _been + _given + _to + _the + _SPC_FMT_Q + _method + _from + _SPC_FMT_Q + _class + _FS_SPC
-            + _Method + _execution + _safely + _cancelled + _FS;
-
-        public const string AnErrorHasOccurred = _AnErrorHasOccured + _FS;
+        public static string Created => $"{{0}} {_created}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: directory / file name. </para>
+        /// </summary>
+        public static string Created_InQuotes => $"\"{{0}}\" {_created}.";
+        
+        public static string AnErrorHasOccurred => $"{_An} {_error} {_has} {_occured}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory/file path/name. </para>
         /// </summary>
-        public const string DoesNotExist = _FMT_Q + _does_not_exist + _FS;
+        public static string DoesntExist => $"\"{{0}}\" {_doesnt} {_exist}.";
 
         #endregion General
         #region Parser
 
-        public const string ReadingClientVersion = _Reading + _the + _client + _version + _FS;
+        public static string ReadingClientVersion => $"{_Reading} {_the} {_client} {_version}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: client version. </para>
         /// </summary>
-        public const string ClientVersionIs = _Client + _version + _is + _SPC_FMT + _FS;
+        public static string ClientVersionIs => $"{_Client} {_version} {_is} {{0}}.";
 
-        public const string ErrorVersionNotFoundInSourceString = _Client + _version + _markers + _have + _not + _been + _found + _in + _the + _source + _string + _FS;
-        public const string ErrorReadingRawInstallData = _Error + _reading + _raw + _install + _data + _FS;
-        public const string ErrorParsingVersionString = _Error + _parsing + _version + _string + _FS;
+        public static string VersionNotFoundInSourceString => $"{_Client} {_version} {_markers} {_not} {_found} {_in} {_the} {_source} {_string}.";
+        public static string ErrorReadingRawInstallData => $"{_Error} {_reading} {_raw} {_install} {_data}.";
+        public static string ErrorParsingVersionString => $"{_Error} {_parsing} {_version} {_string}.";
 
         #endregion Parser
         #region Settings Manager
@@ -234,15 +210,15 @@
         /// A message with formatting placeholders.
         /// <para> 1: XML node name. </para>
         /// </summary>
-        public const string XmlNodeNotFound = _FMT_Q + _SPC + _XML + _node + _not_found_FS;
+        public static string XmlNodeNotFound => $"{{0}} {_XML} {_node} {_not} {_found}.";
 
         #endregion Settings Manager
         #region Unit Tests
 
-        private const string _LINE = "====================";
+        private const string _line = "====================";
 
-        public const string CleanUpAfterUnitTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _unit + _test + _starts + _here + _FS + _SPC + _LINE;
-        public const string CleanUpAfterIntegrationTestStartsHere = _LINE + _SPC + _A + _cleanup + _after + _the + _integration + _test + _starts + _here + _FS + _SPC + _LINE;
+        public static string CleanUpAfterUnitTestStartsHere => _line + $"{_A} {_cleanup} {_after} {_the} {_unit} {_test} {_starts} {_here}. " + _line;
+        public static string CleanUpAfterIntegrationTestStartsHere => _line + $"{_A} {_cleanup} {_after} {_the} {_integration} {_test} {_starts} {_here}. " + _line;
 
         #endregion Unit Tests
         #region Unpacker
@@ -251,35 +227,35 @@
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public const string PreparingToUnpack = _PreparingTo + _unpack + _SPC_FMT_Q + _FS;
+        public static string PreparingToUnpack => $"{_Preparing} {_to} {_unpack} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public const string Unpacking = _Unpacking + _SPC_FMT_Q + _FS;
+        public static string Unpacking => $"{_Unpacking} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public const string Unpacked = _Unpacked + _SPC_FMT_Q + _FS;
+        public static string Unpacked => $"{_Unpacked} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: unpacking tool file name. </para>
         /// </summary>
-        public const string UnpackingToolSelected = _FMT_Q + _selected + _FS;
+        public static string UnpackingToolSelected => $"{{0}} {_selected}.";
 
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file extension. </para>
         /// </summary>
-        public const string FileExtensionNotSupportedByUnpackingTools = _No + _unpacking + _tools + _found + _for + _SPC_FMT_Q + _files + _FS;
+        public static string FileExtensionNotSupportedByUnpackingTools => $"{_No} {_unpacking} {_tools} {_found} {_for} \"{{0}}\" {_files}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file extension. </para>
         /// </summary>
-        public const string FileExtensionNotYetSupported = _Output + _path + _generation + _for + _SPC_FMT_Q + _files + _is + _not + _yet + _implemented + _FS;
-        public const string ErrorMatchingUnpakingToolToFileExtension = _Error + _matching + _an + _unpacking + _tool + _to + _a + _file + _extension + _FS;
-        public const string ErrorRunningUnpackingTool = _Error + _running + _the + _unpacking + _tool + _FS;
+        public static string OutputPathGenerationForFileExtensionNotYetImplemented => $"{_Output} {_path} {_generation} {_for} \"{{0}}\" {_files} {_is} {_not} {_yet} {_implemented}.";
+        public static string ErrorMatchingUnpakingToolToFileExtension => $"{_Error} {_matching} {_an} {_unpacking} {_tool} {_to} {_a} {_file} {_extension}.";
+        public static string ErrorRunningUnpackingTool => $"{_Error} {_running} {_the} {_unpacking} {_tool}.";
 
         #endregion Unpacker
     }

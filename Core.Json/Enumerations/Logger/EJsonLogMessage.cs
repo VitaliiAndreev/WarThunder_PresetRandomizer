@@ -7,28 +7,31 @@ namespace Core.Json.Enumerations.Logger
     {
         #region JSON Helper
 
+        private static readonly string _jsonString = $"{_JSON} {_string}";
+        private static readonly string _TryingToDeserializeJsonStringInto = $"{_TryingTo} {_deserialize} {_a} {_jsonString} {_of} {{0}} {_characters} {_into}";
+
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
         /// <para> 2: object type. </para>
         /// </summary>
-        public const string TryingToDeserializeJsonStringIntoObject = _TryingTo + _deserialize + _a + _JSON + _string + _of + _SPC_FMT + _characters + _into + _an + _instance + _of + _SPC_FMT_Q + _FS;
+        public static string TryingToDeserializeJsonStringIntoObject => $"{_TryingToDeserializeJsonStringInto} {_an} {_instance} {_of} \"{{0}}\".";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
         /// <para> 2: object type. </para>
         /// </summary>
-        public const string TryingToDeserializeJsonStringIntoCollection = _TryingTo + _deserialize + _a + _JSON + _string + _of + _SPC_FMT + _characters + _into + _a + _collection + _of + _SPC_FMT_Q + _instances + _FS;
-        public const string DeserializedInstance = _An + _instance + _has_been + _successfully + _deserialized + _FS;
+        public static string TryingToDeserializeJsonStringIntoCollection => $"{_TryingToDeserializeJsonStringInto} {_a} {_collection} {_of} \"{{0}}\" {_instances}.";
+        public static string InstanceDeserialized => $"{_Instance} {_deserialized}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: instance count. </para>
         /// </summary>
-        public const string DeserializedInstances = _FMT + _instances + _have + _been + _deserialized + _FS;
+        public static string InstancesDeserialized => $"{{0}} {_instances} {_deserialized}.";
 
-        public const string ErrorJsonStringEmpty = _The + _JSON + _string + _is + _empty + _FS;
-        public const string ErrorDeserializingJsonText = _Error + _deserializing + _JSON + _text + _FS;
-        public const string ErrorMustBeJsonContainerToStandardize = _Must + _be + _a + _JSON + _container + _to + _be + _standardized + _FS;
+        public static string JsonStringEmpty => $"{_The} {_jsonString} {_is} {_empty}.";
+        public static string ErrorDeserializingJsonText => $"{_Error} {_deserializing} {_JSON} {_text}.";
+        public static string MustBeJsonContainerToStandardize => $"{_Must} {_be} {_a} {_JSON} {_container} {_to} {_be} {_standardized}.";
 
         #endregion JSON Helper
     }

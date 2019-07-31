@@ -49,7 +49,7 @@ namespace Core.DataBase.Helpers
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public ConfiguredSessionFactory(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
-            : base(EDataBaseLogCategory.SessionFactory, loggers)
+            : base(EDatabaseLogCategory.SessionFactory, loggers)
         {
             DataBaseFileName = dataBaseFileName;
             _overwriteExistingDataBase = overwriteExistingDataBase;
@@ -69,7 +69,7 @@ namespace Core.DataBase.Helpers
 
             LogDebug
             (
-                EDataBaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
+                EDatabaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
                 (
                     DataBaseFileName,
                     _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont_L} ",
@@ -89,11 +89,11 @@ namespace Core.DataBase.Helpers
             }
             catch (Exception exception)
             {
-                LogFatal(EDataBaseLogMessage.ErrorCreaingSessionFactory, exception);
+                LogFatal(EDatabaseLogMessage.ErrorCreaingSessionFactory, exception);
                 throw;
             }
 
-            LogDebug(EDataBaseLogMessage.SessionFactoryCreated);
+            LogDebug(EDatabaseLogMessage.SessionFactoryCreated);
             return factory;
         }
 
@@ -102,7 +102,7 @@ namespace Core.DataBase.Helpers
         private void WriteMappingFromAttributes(Configuration configuration)
         {
             HbmSerializer.Default.Validate = true;
-            LogDebug(EDataBaseLogMessage.WritingMappingAttributes);
+            LogDebug(EDatabaseLogMessage.WritingMappingAttributes);
 
             try
             {
@@ -114,7 +114,7 @@ namespace Core.DataBase.Helpers
                 throw;
             }
 
-            LogDebug(EDataBaseLogMessage.MappingAttributesWritten);
+            LogDebug(EDatabaseLogMessage.MappingAttributesWritten);
         }
 
         /// <summary>
@@ -124,22 +124,22 @@ namespace Core.DataBase.Helpers
         /// <param name="configuration"> A configuration to build a schema with. </param>
         private void CreateSchema(Configuration configuration)
         {
-            LogDebug(EDataBaseLogMessage.CreatingSchema);
+            LogDebug(EDatabaseLogMessage.CreatingSchema);
 
             if (File.Exists(DataBaseFileName))
             {
-                LogDebug(EDataBaseLogMessage.DataBaseFileFound);
+                LogDebug(EDatabaseLogMessage.DataBaseFileFound);
 
                 if (!_overwriteExistingDataBase)
                 {
-                    LogDebug(EDataBaseLogMessage.ShouldNotOverwrite);
+                    LogDebug(EDatabaseLogMessage.ShouldNotOverwrite);
                     return;
                 }
 
-                LogDebug(EDataBaseLogMessage.OverwritingSchema);
+                LogDebug(EDatabaseLogMessage.OverwritingSchema);
             }
             else
-                LogDebug(EDataBaseLogMessage.CreatingFileWithSchema);
+                LogDebug(EDatabaseLogMessage.CreatingFileWithSchema);
 
             new SchemaExport(configuration).Create(false, true);
             LogDebug(ECoreLogMessage.Created.FormatFluently(EWord.Schema));
@@ -167,7 +167,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDataBaseLogMessage.SessionFactoryFor_noFS.FormatFluently(DataBaseFileName)));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDatabaseLogMessage.TheSessionFactoryFor.FormatFluently(DataBaseFileName)));
 
             if (_disposed)
             {
@@ -179,7 +179,7 @@ namespace Core.DataBase.Helpers
             {
                 if (_sessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EWord.TheSessionFactory));
+                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EDatabaseLogMessage.TheSessionFactory));
                     return;
                 }
 

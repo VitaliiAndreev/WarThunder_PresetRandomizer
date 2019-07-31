@@ -209,11 +209,11 @@ namespace Core.DataBase.Objects
         /// <summary> Commit changes to the current persistent object (persist if the object is transient) using the <see cref="IDataRepository"/> provided with the object's constructor. </summary>
         public virtual void CommitChanges()
         {
-            LogDebug(EDataBaseLogMessage.PreparingToCommitChangesTo.FormatFluently(ToString()));
+            LogDebug(EDatabaseLogMessage.PreparingToCommitChangesTo.FormatFluently(ToString()));
 
             if (_dataRepository.IsClosed)
             {
-                LogWarn(EDataBaseLogMessage.DataRepositoryClosed_CommittingAborted);
+                LogWarn(EDatabaseLogMessage.DataRepositoryClosed_CommittingAborted);
                 return;
             }
 

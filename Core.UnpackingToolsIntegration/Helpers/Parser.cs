@@ -42,7 +42,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 var match = regularExpression.Match(rawFileContents);
 
                 if (match is null)
-                    throw new YupFileParsingException(ECoreLogMessage.ErrorVersionNotFoundInSourceString);
+                    throw new YupFileParsingException(ECoreLogMessage.VersionNotFoundInSourceString);
 
                 var matchStrings = match.Value.Split(ECharacter.Colon);
 

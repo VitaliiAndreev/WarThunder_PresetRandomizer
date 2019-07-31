@@ -129,7 +129,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                         var outputDirectory = new DirectoryInfo(outputPath);
 
                         if (!outputDirectory.Exists)
-                            throw new OutputDirectoryNotFoundException(ECoreLogMessage.DoesNotExist.FormatFluently(outputDirectory.FullName));
+                            throw new OutputDirectoryNotFoundException(ECoreLogMessage.NotFound.FormatFluently(outputDirectory.FullName));
 
                         break;
                     }
@@ -139,13 +139,13 @@ namespace Core.UnpackingToolsIntegration.Helpers
                         var outputFile = new FileInfo(outputPath);
 
                         if (!outputFile.Exists)
-                            throw new OutputFileNotFoundException(ECoreLogMessage.DoesNotExist.FormatFluently(outputFile.FullName));
+                            throw new OutputFileNotFoundException(ECoreLogMessage.NotFound.FormatFluently(outputFile.FullName));
 
                         break;
                     }
                 default:
                     {
-                        throw new NotImplementedException(ECoreLogMessage.FileExtensionNotYetSupported.FormatFluently(file.Extension));
+                        throw new NotImplementedException(ECoreLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
                     }
             }
             return outputPath;

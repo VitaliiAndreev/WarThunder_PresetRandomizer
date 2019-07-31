@@ -22,7 +22,7 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGameModeParameterSetBase>());
 
             if (sortedNewObjects.Count() != dataRepository.NewObjects.Count())
-                throw new ArgumentException(EDataBaseLogMessage.NotAllObjectTypesHaveBeenIncludedInSortingOfCollection.FormatFluently(nameof(dataRepository.NewObjects)));
+                throw new ArgumentException(EDatabaseLogMessage.NotAllObjectTypesHaveBeenIncludedInSorting.FormatFluently(nameof(dataRepository.NewObjects)));
 
             dataRepository.NewObjects.ReplaceBy(sortedNewObjects);
         }

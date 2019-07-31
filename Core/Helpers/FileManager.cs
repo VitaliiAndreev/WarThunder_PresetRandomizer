@@ -75,7 +75,7 @@ namespace Core.Helpers
             {
                 if (!overwrite)
                 {
-                    LogDebug(ECoreLogMessage.WarnAlreadyExists_CopyingAborted.FormatFluently(file.Name));
+                    LogDebug(ECoreLogMessage.AlreadyExists_CopyingSkipped.FormatFluently(file.Name));
                     return;
                 }
                 LogDebug(ECoreLogMessage.Overwriting);
@@ -175,7 +175,7 @@ namespace Core.Helpers
             var files = rootDirectory.GetFiles();
             if (files.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnEmptyDirectory.FormatFluently(rootDirectory.FullName));
+                LogDebug(ECoreLogMessage.DirectoryIsEmpty.FormatFluently(rootDirectory.FullName));
 
                 if (includeNested)
                     DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
@@ -200,7 +200,7 @@ namespace Core.Helpers
 
                 if (files.IsEmpty())
                 {
-                    LogDebug(ECoreLogMessage.WarnNoFilesOfSpecifiedFormatToDelete);
+                    LogDebug(ECoreLogMessage.NoFilesOfSpecifiedFormatToDelete);
                     return;
                 }
             }
@@ -228,7 +228,7 @@ namespace Core.Helpers
             var subdirectories = directory.GetDirectories();
             if (subdirectories.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.WarnNoSubdirectories);
+                LogDebug(ECoreLogMessage.NoSubdirectories);
                 return;
             }
 

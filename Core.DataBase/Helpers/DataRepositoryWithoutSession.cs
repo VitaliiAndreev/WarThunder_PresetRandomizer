@@ -43,11 +43,11 @@ namespace Core.DataBase.Helpers
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public DataRepositoryWithoutSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
-            : base(EDataBaseLogCategory.DataRepository, loggers)
+            : base(EDatabaseLogCategory.DataRepository, loggers)
         {
             LogDebug
             (
-                EDataBaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
+                EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
                 (
                     $"{dataBaseFileName}.{EFileExtension.SqLite3}",
                     overwriteExistingDataBase ? string.Empty : $"{EWord.Dont_L} ",
@@ -58,7 +58,7 @@ namespace Core.DataBase.Helpers
             SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
             NewObjects = new List<IPersistentObject>();
 
-            LogDebug(EDataBaseLogMessage.DataRepositoryCreated);
+            LogDebug(EDatabaseLogMessage.DataRepositoryCreated);
         }
 
         #endregion Constructors
@@ -71,14 +71,14 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         protected IEnumerable<T> Query<T>(ISession session, Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
-            LogDebug((filter is null ? EDataBaseLogMessage.QueryingAllObjects : EDataBaseLogMessage.QueryingObjects).FormatFluently(typeof(T).Name));
+            LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).FormatFluently(typeof(T).Name));
 
             var query = session.Query<T>();
 
             if (!(filter is null))
             {
                 query = filter(query);
-                LogDebug(EDataBaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
             }
 
             var cachedQuery = query.ToList();
@@ -86,10 +86,10 @@ namespace Core.DataBase.Helpers
             foreach (var instance in cachedQuery)
             {
                 InitializeNonPersistentFields(instance);
-                LogTrace(EDataBaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
+                LogTrace(EDatabaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
             }
 
-            LogDebug(EDataBaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            LogDebug(EDatabaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
             return cachedQuery;
         }
 
@@ -123,7 +123,7 @@ namespace Core.DataBase.Helpers
         /// <param name="instance"> The object instance to create/update. </param>
         protected void CommitChanges(ISession session, IPersistentObject instance)
         {
-            LogDebug(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
+            LogDebug(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
 
             using (var transaction = session.BeginTransaction())
             {
@@ -131,7 +131,7 @@ namespace Core.DataBase.Helpers
                 transaction.Commit();
             }
 
-            LogDebug(EDataBaseLogMessage.ChangesCommitted);
+            LogDebug(EDatabaseLogMessage.ChangesCommitted);
         }
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
@@ -144,20 +144,20 @@ namespace Core.DataBase.Helpers
 
         protected virtual void PersistNewObjects(ISession session)
         {
-            LogDebug(EDataBaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
+            LogDebug(EDatabaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
 
             using (var transaction = session.BeginTransaction())
             {
                 foreach (var instance in NewObjects)
                 {
-                    LogTrace(EDataBaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
+                    LogTrace(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
                     session.Save(instance);
                 }
 
                 transaction.Commit();
             }
 
-            LogDebug(EDataBaseLogMessage.AllNewObjectsPersisted);
+            LogDebug(EDatabaseLogMessage.AllNewObjectsPersisted);
         }
 
         /// <summary> Persists any transient objects cached in the repository. </summary>
@@ -181,7 +181,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDataBaseLogMessage.DataRepositoryFor_noFS.FormatFluently(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDatabaseLogMessage.TheDataRepositoryFor.FormatFluently(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
 
             if (IsClosed)
             {
@@ -193,7 +193,7 @@ namespace Core.DataBase.Helpers
             {
                 if (SessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EWord.TheSessionFactory));
+                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EDatabaseLogMessage.TheSessionFactory));
                     return;
                 }
                 else
