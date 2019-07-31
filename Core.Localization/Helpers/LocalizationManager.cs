@@ -58,7 +58,10 @@ namespace Core.Localization.Helpers
             ;
         }
 
-        public string GetValue(string key)
+        /// <summary> Returns a localized string by its key. </summary>
+        /// <param name="key"> The key of the localized string. </param>
+        /// <returns></returns>
+        public string GetLocalizedString(string key)
         {
             if (_localization.ContainsKey(key))
                 return _localization[key];

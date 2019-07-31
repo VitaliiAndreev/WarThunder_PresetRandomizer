@@ -84,7 +84,7 @@ namespace Core.Localization.Tests.Helpers
             var localizationManager = new LocalizationManager(_fileReader, ELocalization.English.ToString(), Presets.Logger);
 
             // assert
-            localizationManager.GetValue(key).Should().Be(value);
+            localizationManager.GetLocalizedString(key).Should().Be(value);
         }
 
         #endregion Tests: Constructor()
