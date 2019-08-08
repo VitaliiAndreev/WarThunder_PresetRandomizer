@@ -14,7 +14,7 @@
         #endregion C
         #region D
 
-        public static string Dont_L => _dont;
+        public static string Dont => _Dont;
 
         #endregion D
         #region E
@@ -31,7 +31,7 @@
         #endregion J
         #region K
 
-        public static string Key_L => _key;
+        public static string Key => _Key;
 
         #endregion K
         #region L
@@ -67,7 +67,7 @@
         #endregion U
         #region V
 
-        public static string Value_L => _value;
+        public static string Value => _Value;
 
         #endregion V
         #region W

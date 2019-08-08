@@ -58,8 +58,8 @@ namespace Core.Localization.Helpers
                 .Elements(EWord.Line)
                 .ToDictionary
                 (
-                    element => (string)element.Attribute(EWord.Key_L),
-                    element => (string)element.Attribute(EWord.Value_L)
+                    element => (string)element.Attribute(EWord.Key.ToLower()),
+                    element => (string)element.Attribute(EWord.Value.ToLower())
                 )
             ;
         }

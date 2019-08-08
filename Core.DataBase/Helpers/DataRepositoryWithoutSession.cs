@@ -50,7 +50,7 @@ namespace Core.DataBase.Helpers
                 EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
                 (
                     $"{dataBaseFileName}.{EFileExtension.SqLite3}",
-                    overwriteExistingDataBase ? string.Empty : $"{EWord.Dont_L} ",
+                    overwriteExistingDataBase ? string.Empty : $"{EWord.Dont.ToLower()} ",
                     assemblyWithMapping
                 )
             );

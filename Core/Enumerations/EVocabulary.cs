@@ -101,6 +101,7 @@
         protected const string _does = "does";
         protected const string _doesnt = _does + "n't";
         protected const string _dont = "don't";
+        protected const string _Dont = "D" + _on + ECharacterString.Apostrophe + _t;
 
         #endregion D
         #region E
@@ -179,6 +180,7 @@
         #endregion J
         #region K
 
+        protected const string _Key = "Key";
         protected const string _key = "key";
 
         #endregion K
@@ -223,6 +225,7 @@
         protected const string _occured = "occurred";
         protected const string _of = "of";
         protected const string _one = "one";
+        protected const string _on = "on";
         protected const string _ORM = "ORM";
         protected const string _Output = "Output";
         protected const string _overwrite = "overwrite";
@@ -300,6 +303,8 @@
 
         protected const string _test = "test";
         protected const string _text = "text";
+        private const string _t = "t";
+
         protected const string _The = "The";
         protected const string _the = "the";
         protected const string _There = _The + "re";
@@ -326,6 +331,7 @@
         #region V
 
         protected const string _valid = "valid";
+        protected const string _Value = "Value";
         protected const string _value = "value";
         protected const string _version = "version";
 

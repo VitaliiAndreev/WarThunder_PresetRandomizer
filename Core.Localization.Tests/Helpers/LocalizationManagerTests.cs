@@ -72,7 +72,7 @@ namespace Core.Localization.Tests.Helpers
             var value = "Ooh, it actually has something! :D";
             var expectedFileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
 <{EWord.Localization}>
-  <{EWord.Line} {EWord.Key_L}=""{key}"" {EWord.Value_L}=""{value}""/>
+  <{EWord.Line} {EWord.Key.ToLower()}=""{key}"" {EWord.Value.ToLower()}=""{value}""/>
 </{EWord.Localization}>";
 
             var filePath = $@"{_localizationDirectory}\{fileName}{ECharacter.Period}{EFileExtension.Xml}";
