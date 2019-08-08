@@ -67,6 +67,8 @@ namespace Core.Helpers.Logger
         /// <returns></returns>
         private string GetFormattedStackTrace(Exception exception)
         {
+            if (exception.StackTrace is null) return string.Empty;
+
             var lines = new List<string>();
             var stackFrames = exception.StackTrace.Split(ECharacter.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
