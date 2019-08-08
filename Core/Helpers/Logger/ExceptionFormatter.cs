@@ -4,9 +4,7 @@ using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace Core.Helpers.Logger
 {
@@ -32,7 +30,7 @@ namespace Core.Helpers.Logger
             var lines = new List<string>()
             {
                 $"{ECharacter.NewLine}{_formattedExceptionMessage.FormatFluently(exception.GetType(), exception.Message.Flatten())}",
-                GetFormattedStackTrace(new StackTrace(exception, true)),
+                GetFormattedStackTrace(exception),
                 GetFormattedInnerExceptions(exception),
             };
 
@@ -53,7 +51,7 @@ namespace Core.Helpers.Logger
             while (innerException != null)
             {
                 lines.Add(_formattedExceptionMessage.FormatFluently(innerException.GetType(), innerException.Message.Flatten()));
-                lines.Add(GetFormattedStackTrace(new StackTrace(innerException, true)));
+                lines.Add(GetFormattedStackTrace(innerException));
 
                 innerException = innerException.InnerException;
             }
@@ -64,36 +62,16 @@ namespace Core.Helpers.Logger
             ;
         }
 
-        /// <summary> Formats a stack trace into a more readable form. </summary>
-        /// <param name="stackTrace"> A stack trace to format. </param>
+        /// <summary> Formats the given exception's stack trace into a fitting form. </summary>
+        /// <param name="exception"> An exception whose stack trace to format. </param>
         /// <returns></returns>
-        private string GetFormattedStackTrace(StackTrace stackTrace)
+        private string GetFormattedStackTrace(Exception exception)
         {
             var lines = new List<string>();
-            var stackFrames = stackTrace?.GetFrames();
-
-            if (stackFrames == null)
-                return string.Empty;
+            var stackFrames = exception.StackTrace.Split(ECharacter.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var stackFrame in stackFrames)
-            {
-                var stringBuilder = new StringBuilder();
-                var fileName = stackFrame.GetFileName();
-                var method = stackFrame.GetMethod();
-                var lineNumber = stackFrame.GetFileLineNumber();
-
-                stringBuilder.Append($"\t\t\tat ");
-
-                if (fileName != null && fileName.Any())
-                    stringBuilder.Append($"{fileName} : ");
-
-                stringBuilder.Append(method);
-
-                if (lineNumber > 0)
-                    stringBuilder.Append($" : Line {lineNumber}");
-
-                lines.Add(stringBuilder.ToString());
-            }
+                lines.Add(stackFrame.Replace("   ", $"\t\t\t"));
 
             return lines.StringJoin(ECharacter.NewLine);
         }
