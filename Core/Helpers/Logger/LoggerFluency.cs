@@ -32,7 +32,6 @@ namespace Core.Helpers.Logger
         #region Methods: Logging
 
         /// <summary> Creates a log entry of the "Trace" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         protected void LogTrace(string message)
         {
@@ -41,7 +40,6 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates a log entry of the "Debug" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         protected void LogDebug(string message)
         {
@@ -50,7 +48,6 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates a log entry of the "Info" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         protected void LogInfo(string message)
         {
@@ -59,7 +56,6 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates a log entry of the "Warn" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         protected void LogWarn(string message)
         {
@@ -68,7 +64,6 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates a log entry of the "Error" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
         protected void LogError(string message, Exception exception)
@@ -78,7 +73,6 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates a log entry of the "Fatal" level for the current <see cref="_logCategory"/>. </summary>
-        /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
         protected void LogFatal(string message, Exception exception)

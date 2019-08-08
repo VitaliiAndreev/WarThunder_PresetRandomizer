@@ -5,8 +5,13 @@ namespace Core.Helpers.Logger.Interfaces
     /// <summary> A configured logger. </summary>
     public interface IConfiguredLogger
     {
+        #region Properties
+
         /// <summary> An exception formatter. </summary>
         IExceptionFormatter ExceptionFormatter { get; }
+
+        #endregion Properties
+        #region Methods: Logging
 
         /// <summary> Creates a log entry of the "Trace" level. </summary>
         /// <param name="category"> The category of the event being logged. </param>
@@ -34,5 +39,7 @@ namespace Core.Helpers.Logger.Interfaces
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
         void LogFatal(string category, string message, Exception exception);
+
+        #endregion Methods: Logging
     }
 }
