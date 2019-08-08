@@ -38,6 +38,9 @@ namespace Core.Organization.Helpers
         #endregion Constants
         #region Fields
 
+        /// <summary> The string representation of the game client version. </summary>
+        private string _gameClientVersion;
+
         /// <summary> An instance of a file manager. </summary>
         protected readonly IWarThunderFileManager _fileManager;
         /// <summary> An instance of a file reader. </summary>
@@ -52,9 +55,6 @@ namespace Core.Organization.Helpers
         protected readonly IRandomizer _randomizer;
         /// <summary> An instance of a vehicle selector. </summary>
         protected readonly IVehicleSelector _vehicleSelector;
-
-        /// <summary> The string representation of the game client version. </summary>
-        private readonly string _gameClientVersion;
 
         /// <summary> An instance of a data repository. </summary>
         protected IDataRepository _dataRepository;
@@ -93,8 +93,6 @@ namespace Core.Organization.Helpers
             _vehicleSelector = vehicleSelector;
             _cache = new List<IPersistentObject>();
 
-            _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
-
             _fileManager.CleanUpTempDirectory();
 
             SettingsManager = settingsManager;
@@ -103,6 +101,10 @@ namespace Core.Organization.Helpers
 
         #endregion Constructors
         #region Methods: Initialization
+
+        /// <summary> Reads and stores the version of the game client. </summary>
+        public void InitializeGameClientVersion() =>
+            _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public void CacheVehicles()

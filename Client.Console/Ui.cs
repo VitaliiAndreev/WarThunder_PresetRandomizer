@@ -45,6 +45,8 @@ namespace Client.Console
 
                 using (var manager = new ConsoleClientManager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, randomizer, vehicleSelector, loggers))
                 {
+                    manager.InitializeGameClientVersion();
+
                     while (!manager.SettingsManager.WarThunderLocationIsValid())
                     {
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.WarThunder));

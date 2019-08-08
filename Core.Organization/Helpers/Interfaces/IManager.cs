@@ -11,6 +11,9 @@ namespace Core.Organization.Helpers.Interfaces
 
         #region Methods: Initialization
 
+        /// <summary> Reads and stores the version of the game client. </summary>
+        void InitializeGameClientVersion();
+
         /// <summary> Caches vehicles from the database in runtime memory. </summary>
         void CacheVehicles();
 
