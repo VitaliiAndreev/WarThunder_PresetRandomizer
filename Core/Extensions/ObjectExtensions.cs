@@ -8,5 +8,19 @@
         /// <returns></returns>
         public static string GetTypeString(this object source) =>
             source.GetType().ToStringLikeCode();
+
+        #region Fluency
+
+        #region Type Casting
+
+        /// <summary> Fluently casts the object into <see cref="bool"/>. </summary>
+        /// <param name="source"> The source object. </param>
+        /// <returns></returns>
+        public static bool CastToBool(this object source) =>
+            (bool)source;
+
+        #endregion Type Casting
+
+        #endregion Fluency
     }
 }
