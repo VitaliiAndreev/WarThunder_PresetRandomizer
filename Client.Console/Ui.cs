@@ -1,6 +1,7 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Enumerations.Logger;
 using Client.Console.Helpers;
+using Client.Shared.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.Enumerations.Logger;
@@ -24,7 +25,7 @@ namespace Client.Console
         /// <summary> The entry point. </summary>
         static void Main()
         {
-            System.Console.Title = EApplication.WarThunderPresetRandomizer;
+            System.Console.Title = EClientApplicationName.WarThunderPresetRandomizer;
             var defaultColor = ConsoleColor.Gray;
 
             try
@@ -49,12 +50,12 @@ namespace Client.Console
 
                     while (!manager.SettingsManager.WarThunderLocationIsValid())
                     {
-                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.WarThunder));
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.WarThunder));
                         manager.SettingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
                     }
                     while (!manager.SettingsManager.UnpackingToolsLocationIsValid())
                     {
-                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplication.KlensysWarThunderTools));
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.KlensysWarThunderTools));
                         manager.SettingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
                     }
                     System.Console.WriteLine();

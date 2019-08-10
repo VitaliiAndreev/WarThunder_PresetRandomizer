@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</ProjectGuid>
+    <ProjectGuid>{9BB2F032-3858-45D6-8072-33826F04D207}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.UnpackingToolsIntegration</RootNamespace>
-    <AssemblyName>Core.UnpackingToolsIntegration</AssemblyName>
+    <RootNamespace>Client.Shared</RootNamespace>
+    <AssemblyName>Client.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,32 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\EApplicationName.cs" />
-    <Compile Include="Enumerations\EClientVersion.cs" />
-    <Compile Include="Enumerations\EFile.cs" />
-    <Compile Include="Enumerations\ETool.cs" />
-    <Compile Include="Exceptions\FileExtensionNotSupportedException.cs" />
-    <Compile Include="Exceptions\OutputDirectoryNotFoundException.cs" />
-    <Compile Include="Exceptions\OutputFileNotFoundException.cs" />
-    <Compile Include="Exceptions\YupFileParsingException.cs" />
-    <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
-    <Compile Include="Helpers\Interfaces\IWarThunderFileManager.cs" />
-    <Compile Include="Helpers\Interfaces\IWarThunderSettingsManager.cs" />
-    <Compile Include="Helpers\WarThunderFileManager.cs" />
-    <Compile Include="Helpers\WarThunderFileReader.cs" />
-    <Compile Include="Helpers\Interfaces\IWarThunderFileReader.cs" />
-    <Compile Include="Helpers\Interfaces\IParser.cs" />
-    <Compile Include="Helpers\Interfaces\IUnpacker.cs" />
-    <Compile Include="Helpers\Parser.cs" />
-    <Compile Include="Helpers\Unpacker.cs" />
-    <Compile Include="Helpers\WarThunderSettingsManager.cs" />
+    <Compile Include="Enumerations\EClientApplicationName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{2cb4dc66-57b7-4d80-9c43-f3278bf76248}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
+      <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
+      <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

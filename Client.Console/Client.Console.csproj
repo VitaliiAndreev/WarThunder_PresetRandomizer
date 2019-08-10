@@ -104,6 +104,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Client.Core\Client.Shared.csproj">
+      <Project>{9BB2F032-3858-45D6-8072-33826F04D207}</Project>
+      <Name>Client.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.DataBase.WarThunder\Core.DataBase.WarThunder.csproj">
       <Project>{275FF668-2CDD-46C0-9595-6051004181C7}</Project>
       <Name>Core.DataBase.WarThunder</Name>
