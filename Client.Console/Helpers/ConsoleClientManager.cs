@@ -1,4 +1,5 @@
-﻿using Client.Console.Helpers.Interfaces;
+﻿using Client.Console.Enumerations;
+using Client.Console.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
@@ -20,7 +21,7 @@ namespace Client.Console.Helpers
     {
         #region Constructors
 
-        /// <summary> Creates a new manager. </summary>
+        /// <summary> Creates a new manager and loads settings stored in the <see cref="EConsoleClientFile.Settings"/> file. </summary>
         public ConsoleClientManager
         (
             IWarThunderFileManager fileManager,

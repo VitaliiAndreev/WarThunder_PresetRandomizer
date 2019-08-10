@@ -2,6 +2,7 @@
 
 namespace Client.Console.Enumerations.Logger
 {
+    /// <summary> Log message strings related to the "<see cref="Console"/>" assembly. </summary>
     public class EConsoleUiLogMessage : ECoreLogMessage
     {
         private static readonly string _gameMode = $"{_game} {_mode}";

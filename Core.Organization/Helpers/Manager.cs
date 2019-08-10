@@ -70,7 +70,7 @@ namespace Core.Organization.Helpers
         #endregion Properties
         #region Constructors
 
-        /// <summary> Creates a new manager. </summary>
+        /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
         public Manager
         (
             IWarThunderFileManager fileManager,

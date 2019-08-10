@@ -2,6 +2,7 @@
 
 namespace Core.Organization.Enumerations.Logger
 {
+    /// <summary> Log message strings related to the "<see cref="Organization"/>" assembly. </summary>
     public class EOrganizationLogMessage : EDatabaseLogMessage
     {
         public static string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
