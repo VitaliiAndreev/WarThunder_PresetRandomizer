@@ -53,7 +53,7 @@ namespace Client.Console
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.WarThunder));
                         manager.SettingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
                     }
-                    while (!manager.SettingsManager.UnpackingToolsLocationIsValid())
+                    while (!manager.SettingsManager.KlensysWarThunderToolLocationIsValid())
                     {
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.KlensysWarThunderTools));
                         manager.SettingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());

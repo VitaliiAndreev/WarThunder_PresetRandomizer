@@ -8,7 +8,7 @@ namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
 
         /// <summary> Checks whether the currently loaded location of Klensy's War Thunder Tools is valid. </summary>
         /// <returns></returns>
-        bool UnpackingToolsLocationIsValid();
+        bool KlensysWarThunderToolLocationIsValid();
 
         /// <summary> Checks whether the currently loaded location of War Thunder is valid. </summary>
         /// <returns></returns>

@@ -30,11 +30,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Checks whether the currently loaded location of Klensy's War Thunder Tools is valid. </summary>
         /// <returns></returns>
-        public bool UnpackingToolsLocationIsValid() => _fileManager.LocationIsValid(Settings.UnpackingToolsLocation, typeof(ETool));
+        public bool KlensysWarThunderToolLocationIsValid() => _fileManager.KlensysWarThunderToolLocationIsValid(Settings.UnpackingToolsLocation);
 
         /// <summary> Checks whether the currently loaded location of War Thunder is valid. </summary>
         /// <returns></returns>
-        public bool WarThunderLocationIsValid() => _fileManager.LocationIsValid(Settings.WarThunderLocation, typeof(EFile.WarThunder));
+        public bool WarThunderLocationIsValid() => _fileManager.WarThunderLocationIsValid(Settings.WarThunderLocation);
 
         #endregion Methods: Validation
         #region Methods: Writing

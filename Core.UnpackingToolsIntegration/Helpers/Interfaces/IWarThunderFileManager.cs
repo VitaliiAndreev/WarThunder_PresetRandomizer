@@ -24,5 +24,15 @@ namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
         /// <param name="constantType"> The type that contains public constants whose values correspond with required files. </param>
         /// <returns></returns>
         bool LocationIsValid(string path, Type constantType);
+
+        /// <summary> Checks whether the directory with the specified path contains files required from War Thunder. </summary>
+        /// <param name="path"> The path of the directory to validate. </param>
+        /// <returns></returns>
+        bool WarThunderLocationIsValid(string path);
+        
+        /// <summary> Checks whether the directory with the specified path contains files required from Klensy's War Thunder Tools. </summary>
+        /// <param name="path"> The path of the directory to validate. </param>
+        /// <returns></returns>
+        bool KlensysWarThunderToolLocationIsValid(string path);
     }
 }
