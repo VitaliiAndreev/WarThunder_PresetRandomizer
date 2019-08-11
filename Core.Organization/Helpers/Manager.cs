@@ -45,6 +45,8 @@ namespace Core.Organization.Helpers
         protected readonly IWarThunderFileManager _fileManager;
         /// <summary> An instance of a file reader. </summary>
         protected readonly IWarThunderFileReader _fileReader;
+        /// <summary> An instance of a settings manager. </summary>
+        protected readonly IWarThunderSettingsManager _settingsManager;
         /// <summary> An instance of a parser. </summary>
         protected readonly IParser _parser;
         /// <summary> An instance of an unpacker. </summary>
@@ -62,12 +64,6 @@ namespace Core.Organization.Helpers
         protected readonly List<IPersistentObject> _cache;
 
         #endregion Fields
-        #region Properties
-
-        /// <summary> An instance of a settings manager. </summary>
-        public IWarThunderSettingsManager SettingsManager { get; }
-
-        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
@@ -95,7 +91,7 @@ namespace Core.Organization.Helpers
 
             _fileManager.CleanUpTempDirectory();
 
-            SettingsManager = settingsManager;
+            _settingsManager = settingsManager;
             LoadSettings();
 
             LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.Manager));
@@ -208,8 +204,8 @@ namespace Core.Organization.Helpers
         /// <summary> Loads settings from the file attached to <see cref="SettingsManager"/>. </summary>
         private void LoadSettings()
         {
-            Settings.UnpackingToolsLocation = SettingsManager.Load(nameof(Settings.UnpackingToolsLocation));
-            Settings.WarThunderLocation = SettingsManager.Load(nameof(Settings.WarThunderLocation));
+            Settings.UnpackingToolsLocation = _settingsManager.Load(nameof(Settings.UnpackingToolsLocation));
+            Settings.WarThunderLocation = _settingsManager.Load(nameof(Settings.WarThunderLocation));
         }
 
         #endregion Methods: Settings

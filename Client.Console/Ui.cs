@@ -48,15 +48,15 @@ namespace Client.Console
                 {
                     manager.InitializeGameClientVersion();
 
-                    while (!manager.SettingsManager.WarThunderLocationIsValid())
+                    while (!settingsManager.WarThunderLocationIsValid())
                     {
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.WarThunder));
-                        manager.SettingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
+                        settingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
                     }
-                    while (!manager.SettingsManager.KlensysWarThunderToolLocationIsValid())
+                    while (!settingsManager.KlensysWarThunderToolLocationIsValid())
                     {
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.KlensysWarThunderTools));
-                        manager.SettingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
+                        settingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
                     }
                     System.Console.WriteLine();
 

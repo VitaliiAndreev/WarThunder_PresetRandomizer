@@ -6,9 +6,6 @@ namespace Core.Organization.Helpers.Interfaces
     /// <summary> Controls the flow of the application. </summary>
     public interface IManager : IDisposable
     {
-        /// <summary> An instance of a settings manager. </summary>
-        IWarThunderSettingsManager SettingsManager { get; }
-
         #region Methods: Initialization
 
         /// <summary> Reads and stores the version of the game client. </summary>
