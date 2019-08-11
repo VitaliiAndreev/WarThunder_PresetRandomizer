@@ -97,6 +97,8 @@ namespace Core.Organization.Helpers
 
             SettingsManager = settingsManager;
             LoadSettings();
+
+            LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.Manager));
         }
 
         #endregion Constructors

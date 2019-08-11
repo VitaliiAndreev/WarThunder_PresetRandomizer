@@ -32,7 +32,7 @@ namespace Core.Tests
         #endregion Properties
         #region Constructors and Initialization
 
-        /// <summary> A static constructor is used for initialization. </summary>
+        /// <summary> The static constructor is used for initialization. </summary>
         static Presets()
         {
             UseLiveLogging = true;
