@@ -1,5 +1,4 @@
-﻿using Core.UnpackingToolsIntegration.Helpers.Interfaces;
-using System;
+﻿using System;
 
 namespace Core.Organization.Helpers.Interfaces
 {

@@ -1,6 +1,5 @@
 ﻿using Core.Helpers;
 using Core.Helpers.Logger.Interfaces;
-using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 
