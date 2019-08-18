@@ -100,7 +100,7 @@ namespace Core.IntegrationTests
 
             using (var dataRepository = new DataRepositoryWarThunderWithoutSession(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), Presets.Logger))
             {
-                void assert(IEnumerable<INation> nationCollection)
+                static void assert(IEnumerable<INation> nationCollection)
                 {
                     nationCollection.Count().Should().BeGreaterOrEqualTo(7);
                     nationCollection.Any(nation => string.IsNullOrWhiteSpace(nation.GaijinId)).Should().BeFalse();
@@ -134,7 +134,7 @@ namespace Core.IntegrationTests
 
             using (var dataRepository = new DataRepositoryWarThunderWithoutSession(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), Presets.Logger))
             {
-                void assert(IEnumerable<IVehicle> vehicleCollection)
+                static void assert(IEnumerable<IVehicle> vehicleCollection)
                 {
                     vehicleCollection.Count().Should().BeGreaterThan(1300);
 

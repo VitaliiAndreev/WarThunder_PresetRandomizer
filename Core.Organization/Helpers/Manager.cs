@@ -201,7 +201,7 @@ namespace Core.Organization.Helpers
         #endregion Methods: Initialization
         #region Methods: Settings
 
-        /// <summary> Loads settings from the file attached to <see cref="SettingsManager"/>. </summary>
+        /// <summary> Loads settings from the file attached to the <see cref="_settingsManager"/>. </summary>
         private void LoadSettings()
         {
             Settings.KlensysWarThunderToolsLocation = _settingsManager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation));

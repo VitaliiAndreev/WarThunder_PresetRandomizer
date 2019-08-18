@@ -13,6 +13,7 @@ using System.Xml;
 
 namespace Core.Helpers
 {
+    /// <summary> Handles work with settings files. </summary>
     public class SettingsManager : LoggerFluency, ISettingsManager
     {
         #region Constants
