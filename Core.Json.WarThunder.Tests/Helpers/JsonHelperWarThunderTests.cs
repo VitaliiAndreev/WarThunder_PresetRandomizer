@@ -218,10 +218,10 @@ namespace Core.Json.WarThunder.Tests.Helpers
             /// rewards
             vehicles.All(vehicle => vehicle.BattleTimeAwardInArcade > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeAwardInRealistic > 0).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.BattleTimeAwardInSimulation > 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.BattleTimeAwardInSimulation >= 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AverageAwardInArcade > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AverageAwardInRealistic > 0).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.AverageAwardInSimulation > 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.AverageAwardInSimulation >= 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.RewardMultiplierInArcade > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.RewardMultiplierInRealistic > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.RewardMultiplierInSimulation > 0m).Should().BeTrue();
@@ -235,7 +235,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.GroundKillRewardMultiplier > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeArcade > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeRealistic > 0m).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.BattleTimeSimulation > 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.BattleTimeSimulation >= 0m).Should().BeTrue();
             /// weapons
             vehicles.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value < 0m) ?? false).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();

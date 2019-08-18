@@ -183,14 +183,20 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.RepairCost.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0)).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.FreeRepairs < 0).Should().BeFalse();
                     // rewards
-                    vehicleCollection.All(vehicle => vehicle.BattleTimeAward.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0)).Should().BeTrue();
-                    vehicleCollection.All(vehicle => vehicle.AverageAward.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTimeAward.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTimeAward.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTimeAward.Simulator >= 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.AverageAward.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.AverageAward.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.AverageAward.Simulator >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.RewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.VisualRewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.VisualPremiumRewardMultiplier.Arcade <= 0m || vehicle.VisualPremiumRewardMultiplier.Realistic <= 0m || vehicle.VisualPremiumRewardMultiplier.Simulator <= 0m).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.ResearchRewardMultiplier > 0m).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.GroundKillRewardMultiplier > 0m).Should().BeTrue();
-                    vehicleCollection.All(vehicle => vehicle.BattleTime.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTime.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTime.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.BattleTime.Simulator >= 0).Should().BeTrue();
                     // weapons
                     vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value < 0m) ?? false).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();
