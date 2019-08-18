@@ -1,12 +1,15 @@
 ﻿using Core.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Exceptions;
 using Core.Extensions;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Xml;
-using System.Xml.XPath;
 
 namespace Core.Helpers
 {
@@ -20,32 +23,162 @@ namespace Core.Helpers
         #endregion Constants
         #region Fields
 
+        /// <summary> Names of required settings. </summary>
+        private readonly IEnumerable<string> _requiredSettingNames;
+        /// <summary> Properties that match requirements. </summary>
+        private readonly IDictionary<string, string> _settings;
+
+        /// <summary> An instance of a file manager. </summary>
+        protected readonly IFileManager _fileManager;
+
         /// <summary> The settings file. </summary>
-        protected readonly FileInfo _settingsFile;
+        protected FileInfo _settingsFile;
 
         #endregion Fields
+        #region Properties
+
+        /// <summary> The status of the settings file after initialization. </summary>
+        public ESettingsFileStatus SettingsFileStatus { get; private set; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new file manager. </summary>
         /// <param name="settingsFileName"> The name of the settings file to attach to this manager. </param>
+        /// <param name="fileManager"> The name of the settings file to attach to this manager. </param>
+        /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public SettingsManager(string settingsFileName, params IConfiguredLogger[] loggers)
+        public SettingsManager(IFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)
             : base(ECoreLogCategory.SettingsManager, loggers)
         {
+            _fileManager = fileManager;
+            _requiredSettingNames = requiredSettingNames;
             _settingsFile = new FileInfo(settingsFileName);
-            
-            if (!_settingsFile.Exists)
-                throw new FileNotFoundException(ECoreLogMessage.NotFound.FormatFluently(settingsFileName));
+            _settings = new Dictionary<string, string>();
+
+            SettingsFileStatus = ESettingsFileStatus.Pending;
+            Initialize();
 
             LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.SettingsManager));
         }
 
         #endregion Constructors
+        #region Methods: Initialization
+
+        /// <summary> Initializes the settings manager. </summary>
+        private void Initialize()
+        {
+            ValidateFileExistence();
+            ValidateFileSettings();
+        }
+
+        /// <summary> Checks that the settings file exists and generates an empty one if not. </summary>
+        private void ValidateFileExistence()
+        {
+            if (!_settingsFile.Exists)
+            {
+                LogInfo(ECoreLogMessage.SettingsFileNotFound_CreatingNewOne.FormatFluently(_settingsFile.Name));
+
+                GenerateSettingsFile();
+
+                LogInfo(ECoreLogMessage.Created.FormatFluently(EWord.File));
+                SettingsFileStatus = ESettingsFileStatus.NotFoundAndGenerated;
+            }
+            _settings.ReplaceBy(GetSettingsFromFile());
+        }
+
+        /// <summary>
+        /// Checks the settings file for required settings.
+        /// If not all required settings are present, a backup is made, valid settings are moved over, and an automated resolution is attempted.
+        /// In an event of only one required setting missing with one setting in the file unrecognized, the two settings are considered related and the situation is resolved.
+        /// Otherwise direct intervention is necessary to move unrecognized settings over to the newly generated file.
+        /// </summary>
+        private void ValidateFileSettings()
+        {
+            var missingSettingNames = _requiredSettingNames.Except(_settings.Keys);
+            var recognizedSettingNames = _requiredSettingNames.Intersect(_settings.Keys);
+            var unrecognizedSettingNames = _settings.Keys.Except(recognizedSettingNames);
+
+            if (missingSettingNames.Any())
+            {
+                _fileManager.BackUpFile(_settingsFile);
+                GenerateSettingsFile();
+                
+                _settings.ReplaceBy(GetSettingsFromFile());
+
+                foreach (var recognizedSettingName in recognizedSettingNames)
+                    Save(recognizedSettingName, _settings[recognizedSettingName]);
+
+                if (missingSettingNames.HasSingle() && unrecognizedSettingNames.HasSingle())
+                {
+                    var missingSettingName = missingSettingNames.First();
+                    var unrecognizedSettingName = unrecognizedSettingNames.First();
+                    var settingValue = _settings[unrecognizedSettingName];
+
+                    Save(missingSettingName, settingValue);
+
+                    _settings.Add(missingSettingName, settingValue);
+                    _settings.Remove(unrecognizedSettingName);
+
+                    SettingsFileStatus = ESettingsFileStatus.FoundAndAutomaticallyUpdated;
+                }
+                else
+                {
+                    SettingsFileStatus = ESettingsFileStatus.FoundAndNeedsManualUpdate;
+                }
+            }
+            else
+            {
+                SettingsFileStatus = ESettingsFileStatus.FoundAndUpToDate;
+            }
+        }
+
+        /// <summary> Generates an empty settings file. </summary>
+        private void GenerateSettingsFile()
+        {
+            _settingsFile = new FileInfo(_settingsFile.Name);
+            _settingsFile.Create().Close();
+
+            using var xmlTextWriter = new XmlTextWriter(_settingsFile.FullName, Encoding.UTF8);
+            {
+                xmlTextWriter.WriteStartElement(EWord.Settings);
+                {
+                    foreach (var requiredSetting in _requiredSettingNames)
+                    {
+                        xmlTextWriter.WriteStartElement(requiredSetting);
+                        xmlTextWriter.WriteEndElement();
+                    }
+                }
+                xmlTextWriter.WriteEndElement();
+            }
+        }
+
+        #endregion Methods: Initialization
         #region Methods: Reading
+
+        /// <summary> Reads the <see cref="_settingsFile"/> and extracts a dictionary of settings. </summary>
+        /// <returns></returns>
+        private IDictionary<string, string> GetSettingsFromFile()
+        {
+            var settings = new Dictionary<string, string>();
+            var xmlDocument = ReadFile();
+            var nodes = xmlDocument
+                .ChildNodes
+                .OfType<XmlNode>()
+                .FirstOrDefault(node => node.Name == EWord.Settings)
+                .ChildNodes
+                .OfType<XmlNode>()
+            ;
+
+            foreach (var node in nodes)
+                settings.Add(node.Name, node.InnerText);
+
+            return settings;
+        }
 
         /// <summary> Reads the <see cref="_settingsFile"/> as an XML document. </summary>
         /// <returns></returns>
-        private XmlDocument Read()
+        private XmlDocument ReadFile()
         {
             var xmlDocument = new XmlDocument();
 
@@ -55,20 +188,13 @@ namespace Core.Helpers
             return xmlDocument;
         }
 
-        /// <summary> Loads the setting with the specified name. </summary>
-        /// <param name="settingName"> The name of the setting to read. </param>
+        /// <summary> Returns the setting with the specified name. </summary>
+        /// <param name="settingName"> The name of the setting to get. </param>
         /// <returns></returns>
-        public string Load(string settingName)
+        public string GetSetting(string settingName)
         {
-            var navigator = new XPathDocument(_settingsFile.FullName).CreateNavigator();
-
-            var expression = navigator.Compile(_settingsExpressionTemplate.FormatFluently(settingName));
-            var iterator = navigator.Select(expression);
-
-            while (iterator.MoveNext())
-                return iterator.Current.Value;
-
-            throw new XmlException(ECoreLogMessage.XmlNodeNotFound.FormatFluently(settingName));
+            LogErrorAndThrowIfSettingsNotInitialized();
+            return _settings[settingName];
         }
 
         #endregion Methods: Reading
@@ -80,7 +206,9 @@ namespace Core.Helpers
         /// <returns></returns>
         public virtual void Save(string settingName, string newValue)
         {
-            var document = Read();
+            LogErrorAndThrowIfSettingsNotInitialized();
+
+            var document = ReadFile();
             var rootElement = document.DocumentElement;
 
             var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.FormatFluently(settingName));
@@ -91,8 +219,16 @@ namespace Core.Helpers
             oldNode.InnerText = newValue;
 
             document.Save(_settingsFile.FullName);
+            _settings[settingName] = newValue;
         }
 
         #endregion Methods: Writing
+
+        /// <summary> Throws a <see cref="NotInitializedException"/>. </summary>
+        private void LogErrorAndThrowIfSettingsNotInitialized()
+        {
+            if (_settings is null || _settings.IsEmpty())
+                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitializedProperly.FormatFluently(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
+        }
     }
 }

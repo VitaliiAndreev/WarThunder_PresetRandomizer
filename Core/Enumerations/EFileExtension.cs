@@ -3,6 +3,7 @@
     /// <summary> File extensions. </summary>
     public class EFileExtension
     {
+        public const string Bak = "bak";
         public const string Bin = "bin";
         public const string Blk = "blk";
         /// <summary> An <see cref="Blk"/> file converted into a text file. </summary>

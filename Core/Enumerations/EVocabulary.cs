@@ -22,22 +22,27 @@
         protected const string _a = "a";
         protected const string _aborted = _a + "borted";
         protected const string _after = _a + "fter";
-        protected const string _All = _A + "ll";
-        protected const string _all = _a + "ll";
-        protected const string _Already = _A + "lready";
-        protected const string _already = _a + "lready";
-        protected const string _An = _A + "n";
-        protected const string _an = _a + "n";
-        protected const string _and = _an + "n";
+        protected const string _All = _A + _ll;
+        protected const string _all = _a + _ll;
+        protected const string _Already = _A + _lready;
+        protected const string _already = _a + _lready;
+        protected const string _am = _a + "m";
+        protected const string _An = _A + _n;
+        protected const string _an = _a + _n;
+        protected const string _and = _an + "d";
         protected const string _any = _an + "y";
-        protected const string _arguments = _a + "rguments";
+        protected const string _Application = _A + _pplication;
+        protected const string _application = _a + _pplication;
+        protected const string _arguments = _a + "rgument" + _s;
+        protected const string _art = _a + "rt";
         protected const string _assembly = _a + "ssembly";
         protected const string _Assigned = _A + "ssigned";
-        protected const string _attributes = _a + "ttributes";
+        protected const string _attributes = _a + "ttribute" + _s;
 
         #endregion A
         #region B
 
+        protected const string _base = "base";
         protected const string _battle = "battle";
         protected const string _be = "be";
         protected const string _been = _be + "en";
@@ -48,76 +53,104 @@
         #endregion B
         #region C
 
-        protected const string _Caching = "Caching";
-        protected const string _cancelled = "cancelled";
-        protected const string _Changes = "Changes";
-        protected const string _changes = "changes";
-        protected const string _characters = "characters";
-        protected const string _Checking = "Checking";
-        protected const string _class = "class";
-        protected const string _cleanup = "clean-up";
+        private const string _chema = "chema";
+
+        protected const string _cache = "cache";
+        protected const string _Caching = "Cach" + _ing;
+        protected const string _cancelled = "cancell" + _ed;
+        protected const string _Change = "Change";
+        protected const string _change = "change";
+        protected const string _Changes = _Change + _s;
+        protected const string _changes = _change + _s;
+        protected const string _character = "character";
+        protected const string _characters = _character + _s;
+        protected const string _Check = "Check";
+        protected const string _Checking = _Check + _ing;
+        protected const string _class = "cla" + _s + _s;
+        protected const string _clean = "clean";
+        protected const string _cleanup = _clean + "-up";
         protected const string _Client = "Client";
         protected const string _client = "client";
-        protected const string _closed = "closed";
-        protected const string _Closing = "Closing";
-        protected const string _collection = "collection";
+        protected const string _Close = "Close";
+        protected const string _close = "close";
+        protected const string _Closed = _Close + _d;
+        protected const string _closed = _close + _d;
+        protected const string _Closing = "Clos" + _ing;
+        protected const string _collect = "collect";
+        protected const string _collection = _collect + _ion;
         protected const string _commit = "commit";
-        protected const string _committed = _commit + "ted";
-        protected const string _Committing = "Committing";
+        protected const string _committed = _commit + "t" + _ed;
+        protected const string _Committing = "Committ" + _ing;
         protected const string _complete = "complete";
-        protected const string _completed = _complete + "d";
-        protected const string _configuration = "configuration";
-        protected const string _Connection = "Connection";
-        protected const string _connection = "connection";
-        protected const string _container = "container";
-        protected const string _Copied = "Copied";
-        protected const string _copied = "copied";
-        protected const string _Copying = "Copying";
-        protected const string _created = "created";
-        protected const string _Creating = "Creating";
-        protected const string _creating = "creating";
+        protected const string _completed = _complete + _d;
+        protected const string _configuration = "configurat" + _ion;
+        protected const string _Connect = "Connect";
+        protected const string _connect = "connect";
+        protected const string _Connection = _Connect + _ion;
+        protected const string _connection = _connect + _ion;
+        protected const string _contain = "contain";
+        protected const string _container = _contain + _er;
+        protected const string _Copied = "Copi" + _ed;
+        protected const string _copied = "copi" + _ed;
+        protected const string _Copying = "Copy" + _ing;
+        protected const string _correct = "correct";
+        protected const string _create = "create";
+        protected const string _created = _create + _d;
+        protected const string _Creating = "Creat" + _ing;
+        protected const string _creating = "creat" + _ing;
 
         #endregion C
         #region D
 
+        private const string _d = "d";
 
         protected const string _Data = "Data";
-        protected const string _data = "data";
-        protected const string _Database = "Database";
-        protected const string _database = _data + "base";
-        protected const string _delete = "delete";
+        protected const string _data = _d + "ata";
+        protected const string _Database = _Data + _base;
+        protected const string _database = _data + _base;
+        protected const string _delete = _d + "elete";
         protected const string _deleted = _delete + "d";
-        protected const string _Deleting = "Deleting";
-        protected const string _deleting = "deleting";
-        protected const string _deserialize = "deserialize";
+        protected const string _Deleting = "Delet" + _ing;
+        protected const string _deleting = _d + "elet" + _ing;
+        protected const string _deserialize = _d + "eserialize";
         protected const string _deserialized = _deserialize + "d";
-        protected const string _deserializing = "deserializing";
-        protected const string _directory = "directory";
-        protected const string _disabled = "disabled";
+        protected const string _deserializing = _d + "eserializ" + _ing;
+        protected const string _details = _d + "etails";
+        protected const string _dialog = _d + "ia" + _log;
+        protected const string _directory = _d + "irectory";
+        protected const string _disabled = _d + "isable" + _d;
         protected const string _Disposal = "Disposal";
-        protected const string _dispose = "dispose";
+        protected const string _dispose = _d + "ispose";
         protected const string _disposed = _dispose + "d";
-        protected const string _Disposing = "Disposing";
-        protected const string _does = "does";
-        protected const string _doesnt = _does + "n't";
-        protected const string _dont = "don't";
+        protected const string _Disposing = "Dispos" + _ing;
+        protected const string _does = _d + "oes";
+        protected const string _doesnt = _does + _n + ECharacterString.Apostrophe + _t;
         protected const string _Dont = "D" + _on + ECharacterString.Apostrophe + _t;
+        protected const string _dont = _d + _on + ECharacterString.Apostrophe + _t;
+        protected const string _down = _d + _own;
 
         #endregion D
         #region E
 
-        protected const string _emptied = "emptied";
-        protected const string _empty = "empty";
-        protected const string _Emptying = "Emptying";
+        private const string _e = "e";
+        private const string _ed = _e + _d;
+        private const string _er = _e + "r";
+        private const string _ess = _e + _s + _s;
+        private const string _ett = _e + _t + _t;
+
+        protected const string _elect = _e + "lect";
+        protected const string _emptied = _e + "mpti" + _ed;
+        protected const string _empty = _e + "mpty";
+        protected const string _Emptying = "Empty" + _ing;
         protected const string _Error = "Error";
-        protected const string _error = "error";
-        protected const string _established = "established";
-        protected const string _Exception = "Exception";
-        protected const string _execution = "execution";
-        protected const string _exist = "exist";
+        protected const string _error = _e + "rror";
+        protected const string _established = _e + "stablish" + _ed;
+        protected const string _Exception = "Except" + _ion;
+        protected const string _execution = _e + "xecut" + _ion;
+        protected const string _exist = _e + "xist";
         protected const string _exists = _exist + _s;
-        protected const string _exit = "exit";
-        protected const string _extension = "extension";
+        protected const string _exit = _e + "xit";
+        protected const string _extension = _e + "xtens" + _ion;
 
         #endregion E
         #region F
@@ -130,12 +163,15 @@
         protected const string _Filtering = "Filtering";
         protected const string _filter = "filter";
         protected const string _filtered = _filter + "ed";
+        protected const string _finish = "finish";
+        protected const string _folder = "folder";
         protected const string _for = "for";
         protected const string _format = _for + "mat";
         protected const string _formats = _format + _s;
         protected const string _Found = "Found";
         protected const string _found = "found";
         protected const string _from = "from";
+        protected const string _fully = "fully";
 
         #endregion F
         #region G
@@ -150,27 +186,41 @@
 
         protected const string _has = "has";
         protected const string _have = "have";
+        protected const string _Helpers = "Helper" + _s;
+        protected const string _helpers = "helper" + _s;
         protected const string _here = "here";
+        protected const string _how = "how";
 
         #endregion H
         #region I
 
-        protected const string _implemented = "implemented";
-        protected const string _in = "in";
-        protected const string _included = _in + "cluded";
-        protected const string _Incorrect = "Incorrect";
-        protected const string _initialized = _in + "itialized";
-        protected const string _Initializing = "Initializing";
-        protected const string _input = _in + "put";
-        protected const string _install = _in + "stall";
-        protected const string _Instance = "Instance";
-        protected const string _instance = _in + "stance";
+        private const string _i = "i";
+        private const string _ing = _i + "ng";
+        private const string _ize = _i + "z" + _e;
+
+        protected const string _I = "I";
+        protected const string _implemented = _i + "mplement" + _ed;
+        protected const string _In = _I + _n;
+        protected const string _in = _i + _n;
+        protected const string _included = _in + "clude" + _d;
+        protected const string _Incorrect = _In + _correct;
+        protected const string _initialize = _in + _it + "itialize";
+        protected const string _Initialized = _In + _it + "ialize" + _d;
+        protected const string _initialized = _initialize + _d;
+        protected const string _Initializing = _In + _it + "ializ" + _ing;
+        protected const string _input = _in + _put;
+        protected const string _install = _in + _s + _t + _all;
+        protected const string _Instance = _In + _stance;
+        protected const string _instance = _in + _stance;
         protected const string _instances = _instance + _s;
-        protected const string _instantiated = _in + "stantiated";
-        protected const string _integration = _in + "tegration";
-        protected const string _into = _in + "to";
-        protected const string _is = "is";
-        protected const string _it = "it";
+        protected const string _instant = _in + "stant";
+        protected const string _instantiated = _instant + "iate" + _d;
+        protected const string _Integration = _In + _tegrat + _ion;
+        protected const string _integration = _in + _tegrat + _ion;
+        protected const string _into = _in + _to;
+        protected const string _ion = _i + _on;
+        protected const string _is = _i + _s;
+        protected const string _it = _i + _t;
 
         #endregion I
         #region J
@@ -186,36 +236,52 @@
         #endregion K
         #region L
 
+        private const string _ll = "ll";
+        private const string _lready = "lready";
+        private const string _ly = "ly";
+
         protected const string _language = "language";
+        protected const string _latest = "latest";
         protected const string _Line = "Line";
-        protected const string _Localization = "Localization";
-        protected const string _location = "location";
+        protected const string _Loading = "Load" + _ing;
+        protected const string _Localization = "Localizat" + _ion;
+        protected const string _localization = "localizat" + _ion;
+        protected const string _location = "locat" + _ion;
+        protected const string _Log = "Log";
+        protected const string _log = "log";
+        protected const string _Logger = _Log + "ger";
+        protected const string _Loggers = _Logger + _s;
+        protected const string _Logs = _Log + _s;
 
         #endregion L
         #region M
 
-        protected const string _mapping = "mapping";
-        protected const string _markers = "markers";
-        protected const string _matching = "matching";
-        protected const string _Method = "Method";
-        protected const string _method = "method";
-        protected const string _mode = "mode";
-        protected const string _Must = "Must";
-        protected const string _must = "must";
+        protected const string _Main = "M" + _a + _in;
+        protected const string _Manager = "M" + _an + _a + "ger";
+        protected const string _mapping = "mapp" + _ing;
+        protected const string _markers = "marker" + _s;
+        protected const string _matching = "match" + _ing;
+        protected const string _Method = "Metho" + _d;
+        protected const string _method = "metho" + _d;
+        protected const string _mode = "mo" + _d + _e;
+        protected const string _Must = "Mu" + _s + _t;
+        protected const string _must = "mu" + _s + _t;
 
         #endregion M
         #region N
-        
-        protected const string _nation = "nation";
-        protected const string _need = "need";
-        protected const string _new = "new";
+
+        private const string _n = "n";
+
+        protected const string _nation = _n + "ation";
+        protected const string _need = _n + "eed";
+        protected const string _new = _n + "ew";
         protected const string _No = "No";
-        protected const string _no = "no";
+        protected const string _no = _n + "o";
         protected const string _node = _no + "de";
-        protected const string _Not = _No + "t";
-        protected const string _not = _no + "t";
+        protected const string _Not = _No + _t;
+        protected const string _not = _no + _t;
         protected const string _NULL = "NULL";
-        protected const string _number = "number";
+        protected const string _number = _n + "umber";
 
         #endregion N
         #region O
@@ -224,24 +290,36 @@
         protected const string _objects = _object + _s;
         protected const string _occured = "occurred";
         protected const string _of = "of";
-        protected const string _one = "one";
         protected const string _on = "on";
+        protected const string _one = _on + _e;
         protected const string _ORM = "ORM";
         protected const string _Output = "Output";
         protected const string _overwrite = "overwrite";
         protected const string _Overwriting = "Overwriting";
         protected const string _overwriting = "overwriting";
+        protected const string _own = "own";
 
         #endregion O
         #region P
 
-        protected const string _parsing = "parsing";
+        private const string _pplication = "pplication";
+        private const string _Pre = "Pre";
+        private const string _pro = "pro";
+
+        protected const string _pack = "pack";
+        protected const string _par = "par";
+        protected const string _Parser = "Pars" + _er;
+        protected const string _parsing = _par + _s + _ing;
         protected const string _path = "path";
-        protected const string _persisted = "persisted";
-        protected const string _Persisting = "Persisting";
-        protected const string _prepared = "prepared";
-        protected const string _Preparing = "Preparing";
-        protected const string _Press = "Press";
+        protected const string _per = "per";
+        protected const string _persisted = _per + "sist" + _ed;
+        protected const string _Persisting = "Persist" + _ing;
+        protected const string _prepared = "prepare" + _d;
+        protected const string _Preparing = _Pre + _par + _ing;
+        protected const string _Press = _Pre + _s + _s;
+        protected const string _proper = _pro + _per;
+        protected const string _properly = _proper + _ly;
+        protected const string _put = "put";
 
         #endregion P
         #region Q
@@ -253,79 +331,108 @@
         #endregion Q
         #region R
 
-        protected const string _rating = "rating";
+        private const string _re = "re";
+
+        protected const string _rating = "rat" + _ing;
         protected const string _raw = "raw";
         protected const string _Read = "Read";
-        protected const string _read = "read";
-        protected const string _reader = _read + "er";
-        protected const string _Reading = _Read + "ing";
-        protected const string _reading = _read + "ing";
-        protected const string _recognized = "recognized";
-        protected const string _repository = "repository";
-        protected const string _returned = "returned";
-        protected const string _running = "running";
+        protected const string _read = _re + "ad";
+        protected const string _Reader = _Read + _er;
+        protected const string _reader = _read + _er;
+        protected const string _Reading = _Read + _ing;
+        protected const string _reading = _read + _ing;
+        protected const string _recognized = _re + "cognize" + _d;
+        protected const string _repository = _re + "pository";
+        protected const string _returned = _re + "turn" + _ed;
+        protected const string _running = "runn" + _ing;
 
         #endregion R
         #region S
 
+        private const string _S = "S";
+
         protected const string _s = "s";
-        protected const string _safely = _s + "afely";
-        protected const string _Schema = "Schema";
-        protected const string _schema = _s + "chema";
-        protected const string _Select = "Select";
-        protected const string _Selected = _Select + "ed";
-        protected const string _selected = _s + "elected";
-        protected const string _Selecting = _Select + "ing";
-        protected const string _selection = _s + "election";
-        protected const string _separated = _s + "eparated";
-        protected const string _serialized = _s + "erialized";
-        protected const string _Serializing = "Serializing";
-        protected const string _Session = "Session";
-        protected const string _session = _s + "ession";
-        protected const string _skipped = _s + "kipped";
-        protected const string _sorting = _s + "orting";
+
+        protected const string _safely = _s + "afe" + _ly;
+        protected const string _Schema = _S + _chema;
+        protected const string _schema = _s + _chema;
+        protected const string _See = _S + "ee";
+        protected const string _Select = _S + _elect;
+        protected const string _Selected = _Select + _ed;
+        protected const string _selected = _s + _elect + _ed;
+        protected const string _Selecting = _Select + _ing;
+        protected const string _selection = _s + _elect + _ion;
+        protected const string _separated = _s + "eparate" + _d;
+        protected const string _serialized = _s + "erial" + _ize + _d;
+        protected const string _Serializing = _S + "erializ" + _ing;
+        protected const string _Session = _S + _ess + _ion;
+        protected const string _session = _s + _ess + _ion;
+        protected const string _Settings = _S + _ett + _ing + _s;
+        protected const string _settings = _s + _ett + _ing + _s;
+        protected const string _Showing = _S + _how + _ing;
+        protected const string _Shown = _S + _how + _n;
+        protected const string _shown = _s + _how + _n;
+        protected const string _shut = _s + "hut";
+        protected const string _Shutting = _S + "hutt" + _ing;
+        protected const string _skipped = _s + "kipp" + _ed;
+        protected const string _sorting = _s + "ort" + _ing;
         protected const string _source = _s + "ource";
-        protected const string _spaces = _s + "paces";
-        protected const string _Specification = "Specification";
-        protected const string _specified = _s + "pecified";
-        protected const string _standardized = _s + "tandardized";
-        protected const string _starts = _s + "tarts";
-        protected const string _Stream = "Stream";
-        protected const string _stream = _s + "tream";
-        protected const string _string = _s + "tring";
-        protected const string _subdirectories = _s + "ubdirectories";
-        protected const string _subfolders = _s + "ubfolders";
-        protected const string _Successfully = "Successfully";
-        protected const string _successfully = _s + "uccessfully";
+        protected const string _spaces = _s + "pace" + _s;
+        protected const string _Specification = _S + "pecificat" + _ion;
+        protected const string _specified = _s + "pecifi" + _ed;
+        protected const string _stance = _s + "tance";
+        protected const string _standardized = _s + "tandardize" + _d;
+        protected const string _Started = _S + _tart + _ed;
+        protected const string _starts = _s + _tart + _s;
+        protected const string _Stream = _S + _tre + _am;
+        protected const string _stream = _s + _tre + _am;
+        protected const string _string = _s + "tr" + _ing;
+        protected const string _subdirectories = _s + "ubdirectorie" + _s;
+        protected const string _subfolders = _s + "ubfolder" + _s;
+        protected const string _Successfully = _S + _uccess + _fully;
+        protected const string _successfully = _s + _uccess + _fully;
 
         #endregion S
         #region T
 
-        protected const string _test = "test";
-        protected const string _text = "text";
         private const string _t = "t";
+        private const string _tegrat = _t + _e + "gr" + _a + _t;
+        private const string _tre = _t + _re;
 
+        protected const string _tart = _t + _art;
+        protected const string _test = _t + "est";
+        protected const string _Tests = "Test" + _s;
+        protected const string _text = _t + "ext";
         protected const string _The = "The";
-        protected const string _the = "the";
-        protected const string _There = _The + "re";
-        protected const string _there = _the + "re";
-        protected const string _to = "to";
+        protected const string _the = _t + "he";
+        protected const string _There = _The + _re;
+        protected const string _there = _the + _re;
+        protected const string _to = _t + "o";
         protected const string _tool = _to + "ol";
         protected const string _tools = _tool + _s;
-        protected const string _Trying = "Trying";
-        protected const string _trying = "trying";
-        protected const string _types = "types";
+        protected const string _Try = "Try";
+        protected const string _try = _t + "ry";
+        protected const string _Trying = _Try + _ing;
+        protected const string _trying = _try + _ing;
+        protected const string _types = _t + "ype" + _s;
 
         #endregion T
         #region U
 
-        protected const string _unfininshed = "unfininshed";
-        protected const string _unit = "unit";
-        protected const string _unpack = "unpack";
-        protected const string _Unpacked = "Unpacked";
-        protected const string _Unpacking = "Unpacking";
-        protected const string _unpacking = _unpack + "ing";
-        protected const string _using = "using";
+        private const string _uccess = "uccess";
+        private const string _Un = "Un";
+        private const string _un = "un";
+
+        protected const string _unfinished = _un + _finish + _ed;
+        protected const string _Unit = _Un + _it;
+        protected const string _unit = _un + _it;
+        protected const string _unpack = _un + _pack;
+        protected const string _Unpacked = _Un + _pack + _ed;
+        protected const string _Unpacker = _Un + _pack + _er;
+        protected const string _Unpacking = _Un + _pack + _ing;
+        protected const string _unpacking = _un + _pack + _ing;
+        protected const string _us = "us";
+        protected const string _using = _us + _ing;
 
         #endregion U
         #region V
@@ -339,7 +446,10 @@
         #region W
 
         protected const string _while = "while";
+        protected const string _will = "will";
+        protected const string _Window = "Window";
         protected const string _with = "with";
+        protected const string _WPF = "WPF";
         protected const string _write = "write";
         protected const string _written = "written";
 

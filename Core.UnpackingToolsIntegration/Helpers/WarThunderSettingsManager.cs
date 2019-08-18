@@ -2,6 +2,7 @@
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System.Collections.Generic;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -17,9 +18,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Creates a new file manager. </summary>
         /// <param name="settingsFileName"> The name of the settings file to attach to this manager. </param>
+        /// <param name="fileManager"> The name of the settings file to attach to this manager. </param>
+        /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public WarThunderSettingsManager(IWarThunderFileManager fileManager, string settingsFileName, params IConfiguredLogger[] loggers)
-            : base(settingsFileName, loggers)
+        public WarThunderSettingsManager(IWarThunderFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)
+            : base(fileManager, settingsFileName, requiredSettingNames, loggers)
         {
             _fileManager = fileManager;
         }

@@ -12,6 +12,7 @@
         /// </summary>
         public static string IsNull_DisposalAborted = $"{{0}} {_is} {_NULL}. {_Disposal} {_aborted}.";
         public static string Closing = $"{_Closing}.";
+        public static string Closed = $"{_Closed}.";
 
         /// <summary>
         /// A message with formatting placeholders.
@@ -166,6 +167,7 @@
 
         protected static readonly string _TryingTo = $"{_Trying} {_to}";
 
+        public static string Started = $"{_Started}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory / file name. </para>
@@ -181,13 +183,38 @@
         /// <para> 1: directory / file name. </para>
         /// </summary>
         public static string Created_InQuotes = $"\"{{0}}\" {_created}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object. </para>
+        /// </summary>
+        public static string TryingToInitialize = $"{_Trying} {_to} {_initialize} {{0}}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object. </para>
+        /// </summary>
+        public static string Initializing = $"{_Initializing} {{0}}.";
+        public static string Initialized = $"{_Initialized}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object(s). </para>
+        /// </summary>
+        public static string ObjectInitialized = $"{{0}} {_initialized}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: object(s). </para>
+        /// </summary>
+        public static string NotInitializedProperly = $"{{0}} {_not} {_initialized} {_properly}.";
+        public static string Shown = $"{_Shown}.";
         
         public static string AnErrorHasOccurred = $"{_An} {_error} {_has} {_occured}.";
+        public static string FatalErrorShutdown = $"{AnErrorHasOccurred} {_The} {_application} {_will} {_be} {_shut} {_down}.";
+        public static string SeeLogsForDetails = $"{_See} {_the} {_latest} {_file} {_in} {_the} \"{_Logs}\" {_folder} {_for} {_details}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: directory/file path/name. </para>
         /// </summary>
         public static string DoesntExist = $"\"{{0}}\" {_doesnt} {_exist}.";
+        public static string ShuttingDown = $"{_Shutting} {_down}.";
 
         #endregion General
         #region Parser
@@ -208,9 +235,16 @@
 
         /// <summary> 
         /// A message with formatting placeholders.
+        /// <para> 1: settings file name. </para>
+        /// </summary>
+        public static string SettingsFileNotFound_CreatingNewOne = $"{_The} {_settings} {_file} (\"{{0}}\") {_not} {_found}. {_Creating} {_a} {_new} {_one}.";
+
+        /// <summary> 
+        /// A message with formatting placeholders.
         /// <para> 1: XML node name. </para>
         /// </summary>
         public static string XmlNodeNotFound = $"{{0}} {_XML} {_node} {_not} {_found}.";
+        public static string SettingsCacheIsEmpty = $"{_The} {_settings} {_cache} {_is} {_empty}.";
 
         #endregion Settings Manager
         #region Unit Tests

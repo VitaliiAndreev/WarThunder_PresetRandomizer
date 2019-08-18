@@ -22,6 +22,10 @@ namespace Core.Helpers.Interfaces
         /// <param name="createDirectories"> Whether to create the destination directory. </param>
         void CopyFile(FileInfo file, string destination, bool overwrite = false, bool createDirectories = false);
 
+        /// <summary> Creates a backup copy of the given file, with its name appended with ".bak". </summary>
+        /// <param name="file"> The file to back up. </param>
+        void BackUpFile(FileInfo file);
+
         #endregion Methods: Copying
         #region Methods: Deletion
         

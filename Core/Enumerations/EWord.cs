@@ -7,10 +7,16 @@
     public class EWord : EVocabulary
     {
         #region A
+
+        public static string Application => _Application;
+
         #endregion A
         #region B
         #endregion B
         #region C
+
+        public static string Client => _Client;
+
         #endregion C
         #region D
 
@@ -18,14 +24,27 @@
 
         #endregion D
         #region E
+
+        public static string Error => _Error;
+
         #endregion E
         #region F
+
+        public static string Factory => _Factory;
+        public static string File => _File;
+
         #endregion F
         #region G
         #endregion G
         #region H
+
+        public static string Helpers => _Helpers;
+
         #endregion H
         #region I
+
+        public static string Integration => _Integration;
+
         #endregion I
         #region J
         #endregion J
@@ -37,10 +56,17 @@
         #region L
 
         public static string Line => _Line;
+        public static string Loading => _Loading;
         public static string Localization => _Localization;
+        public static string Logger => _Logger;
+        public static string Loggers => _Loggers;
 
         #endregion L
         #region M
+
+        public static string Main => _Main;
+        public static string Manager => _Manager;
+
         #endregion M
         #region N
 
@@ -50,20 +76,33 @@
         #region O
         #endregion O
         #region P
+
+        public static string Parser => _Parser;
+
         #endregion P
         #region Q
         #endregion Q
         #region R
+
+        public static string Reader => _Reader;
+
         #endregion R
         #region S
 
         public static string Schema => _Schema;
+        public static string Settings => _Settings;
 
         #endregion S
         #region T
 
+        public static string Tests => _Tests;
+
         #endregion T
         #region U
+
+        public static string Unit => _Unit;
+        public static string Unpacker => _Unpacker;
+
         #endregion U
         #region V
 
@@ -71,6 +110,10 @@
 
         #endregion V
         #region W
+
+        public static string Window => _Window;
+        public static string WPF => _WPF;
+
         #endregion W
         #region X
         #endregion X

@@ -8,6 +8,17 @@ namespace Core.Extensions
     {
         #region Methods: Adding
 
+        /// <summary> Adds contents of the specified dictionary into this one. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <typeparam name="U"> A generic type. </typeparam>
+        /// <param name="sourceDictionary"> A source dictionary. </param>
+        /// <param name="donorDictionary"> The dictionary whose contents to add into this one. </param>
+        public static void AddRange<T, U>(this IDictionary<T, U> sourceDictionary, IDictionary<T, U> donorDictionary)
+        {
+            foreach (var keyValuePair in donorDictionary)
+                sourceDictionary.Add(keyValuePair);
+        }
+
         /// <summary> Safely adds the specified value under its key into the dictionary. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <typeparam name="U"> A generic type. </typeparam>

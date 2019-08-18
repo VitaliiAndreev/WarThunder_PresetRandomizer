@@ -16,6 +16,7 @@ using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Client.Console
@@ -29,6 +30,12 @@ namespace Client.Console
             System.Console.Title = EClientApplicationName.WarThunderPresetRandomizer;
             var defaultColor = ConsoleColor.Gray;
 
+            var requiredSettings = new List<string>
+            {
+                nameof(Settings.WarThunderLocation),
+                nameof(Settings.KlensysWarThunderToolsLocation),
+            };
+
             try
             {
                 var loggers = new IConfiguredLogger[]
@@ -38,7 +45,7 @@ namespace Client.Console
                 };
                 var fileManager = new WarThunderFileManager(loggers);
                 var fileReader = new WarThunderFileReader(loggers);
-                var settingsManager = new WarThunderSettingsManager(fileManager, EConsoleClientFile.Settings, loggers);
+                var settingsManager = new WarThunderSettingsManager(fileManager, EConsoleClientFile.Settings, requiredSettings, loggers);
                 var parser = new Parser(loggers);
                 var unpacker = new Unpacker(fileManager, loggers);
                 var jsonHelper = new WarThunderJsonHelper(loggers);

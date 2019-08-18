@@ -1,4 +1,5 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
@@ -84,6 +85,11 @@ namespace Core.Helpers
 
             LogDebug(ECoreLogMessage.Copied.FormatFluently(file.FullName));
         }
+
+        /// <summary> Creates a backup copy of the given file, with its name appended with ".bak". </summary>
+        /// <param name="file"> The file to back up. </param>
+        public void BackUpFile(FileInfo file) =>
+            file.CopyTo(Path.Combine(file.DirectoryName, $"{file.Name}{ECharacter.Period}{EFileExtension.Bak}"), true);
 
         #endregion Methods: Copying
         #region Methods: Deletion

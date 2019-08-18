@@ -1,9 +1,11 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -25,7 +27,9 @@ namespace Core.Tests.Helpers
         public void Initialize()
         {
             _fileManager = new FileManager(Presets.Logger);
+
             _settingsFile = new FileInfo("Settings.xml");
+            _settingsFile.Create().Close();
         }
 
         [TestCleanup]
@@ -42,25 +46,43 @@ namespace Core.Tests.Helpers
         #region Tests: SettingsManager()
 
         [TestMethod]
-        public void SettingsFileNotFound_Throws()
+        public void SettingsFileNotFound_GeneratesFile()
         {
             // arrange
-            Action createNewSettingsManager = () => new SettingsManager("Carramba!", Presets.Logger);
+            var settingsFile = new FileInfo($"Carramba{ECharacter.Period}{EFileExtension.Xml}");
+
+            if (settingsFile.Exists)
+                settingsFile.Delete();
+
+            var settingName = "Bananza";
+            var settingsManager = new SettingsManager(_fileManager, settingsFile.Name, new List<string> { settingName }, Presets.Logger);
+            Action getSetting = () => settingsManager.GetSetting(settingName);
 
             // act, assert
-            createNewSettingsManager.Should().Throw<FileNotFoundException>();
+            getSetting.Should().NotThrow();
+
+            // clean-up
+            settingsFile.Delete();
         }
 
         [TestMethod]
-        public void SettingsFileFound()
+        public void SettingsFileFound_RequiredSettingMissing_GeneratesFile()
         {
             // arrange
-            _settingsFile.Create().Close();
+            using (var textWriter = new StreamWriter(_settingsFile.FullName))
+            {
+                var fileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
+  <Settings>
+  </Settings>";
+                textWriter.Write(fileContents);
+            }
 
-            Action createNewSettingsManager = () => new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingName = "Bananza";
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { settingName }, Presets.Logger);
+            Action getSetting = () => settingsManager.GetSetting(settingName);
 
             // act, assert
-            createNewSettingsManager.Should().NotThrow();
+            getSetting.Should().NotThrow();
         }
 
         #endregion Tests: SettingsManager()
@@ -70,8 +92,6 @@ namespace Core.Tests.Helpers
         public void Load_NodeNotFound_Throws()
         {
             // arrange
-            _settingsFile.Create().Close();
-
             var setting = "Setting";
             var settingValue = string.Empty;
 
@@ -84,19 +104,17 @@ namespace Core.Tests.Helpers
                 textWriter.Write(fileContents);
             }
 
-            var settingsManager = new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { setting }, Presets.Logger);
 
             // act, assert
-            Action loadSetting = () => settingsManager.Load("WhatIsThisIDontEven");
-            loadSetting.Should().Throw<XmlException>();
+            Action loadSetting = () => settingsManager.GetSetting("WhatIsThisIDontEven");
+            loadSetting.Should().Throw<KeyNotFoundException>();
         }
 
         [TestMethod]
         public void Load_SettingEmpty_ReturnsEmptyValue()
         {
             // arrange
-            _settingsFile.Create().Close();
-
             var setting = "Setting";
             var settingValue = string.Empty;
 
@@ -109,10 +127,10 @@ namespace Core.Tests.Helpers
                 textWriter.Write(fileContents);
             }
 
-            var settingsManager = new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { setting }, Presets.Logger);
 
             // act
-            var settingValueFromSettings = settingsManager.Load(setting);
+            var settingValueFromSettings = settingsManager.GetSetting(setting);
 
             // assert
             settingValueFromSettings.Should().Be(settingValue);
@@ -122,8 +140,6 @@ namespace Core.Tests.Helpers
         public void Load_ReturnsValue()
         {
             // arrange
-            _settingsFile.Create().Close();
-
             var setting1 = "Setting1";
             var setting2 = "Setting2";
             var settingValue1 = @"\\Carramba!\";
@@ -139,11 +155,11 @@ namespace Core.Tests.Helpers
                 textWriter.Write(fileContents);
             }
 
-            var settingsManager = new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { setting1, setting2 }, Presets.Logger);
 
             // act
-            var settingValueFromSettings1 = settingsManager.Load(setting1);
-            var settingValueFromSettings2 = settingsManager.Load(setting2);
+            var settingValueFromSettings1 = settingsManager.GetSetting(setting1);
+            var settingValueFromSettings2 = settingsManager.GetSetting(setting2);
 
             // assert
             settingValueFromSettings1.Should().Be(settingValue1);
@@ -157,8 +173,6 @@ namespace Core.Tests.Helpers
         public void Save_NodeNotFound_Throws()
         {
             // arrange
-            _settingsFile.Create().Close();
-
             var setting = "Setting";
             var settingValue = string.Empty;
 
@@ -171,7 +185,7 @@ namespace Core.Tests.Helpers
                 textWriter.Write(fileContents);
             }
 
-            var settingsManager = new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { setting }, Presets.Logger);
 
             // act, assert
             Action saveSetting = () => settingsManager.Save("WhatIsThisIDontEven", "Whatever");
@@ -182,8 +196,6 @@ namespace Core.Tests.Helpers
         public void Save()
         {
             // arrange
-            _settingsFile.Create().Close();
-
             var setting1 = "Setting1";
             var setting2 = "Setting2";
 
@@ -197,10 +209,10 @@ namespace Core.Tests.Helpers
                 textWriter.Write(fileContents);
             }
 
-            var settingsManager = new SettingsManager(_settingsFile.Name, Presets.Logger);
+            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { setting1, setting2 }, Presets.Logger);
 
-            settingsManager.Load(setting1).Should().BeEmpty();
-            settingsManager.Load(setting2).Should().BeEmpty();
+            settingsManager.GetSetting(setting1).Should().BeEmpty();
+            settingsManager.GetSetting(setting2).Should().BeEmpty();
 
             var settingValue1 = @"\\Carramba!\";
             var settingValue2 = @"\\Bananza!\";
@@ -210,8 +222,8 @@ namespace Core.Tests.Helpers
             settingsManager.Save(setting2, settingValue2);
 
             // assert
-            var settingValueFromSettings1 = settingsManager.Load(setting1);
-            var settingValueFromSettings2 = settingsManager.Load(setting2);
+            var settingValueFromSettings1 = settingsManager.GetSetting(setting1);
+            var settingValueFromSettings2 = settingsManager.GetSetting(setting2);
             settingValueFromSettings1.Should().Be(settingValue1);
             settingValueFromSettings2.Should().Be(settingValue2);
         }
