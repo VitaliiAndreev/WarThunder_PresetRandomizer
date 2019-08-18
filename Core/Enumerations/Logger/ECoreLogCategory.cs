@@ -3,14 +3,14 @@
     /// <summary> Categories of events provided to a logger. </summary>
     public class ECoreLogCategory
     {
-        public const string Empty = "";
-        public const string FileManager = "File Manager";
-        public const string FileReader = "File Reader";
-        public const string IntegrationTests = "Integration Tests";
-        public const string Logger = "Logger";
-        public const string Parser = "Parser";
-        public const string SettingsManager = "Settings Manager";
-        public const string UnitTests = "Unit Tests";
-        public const string Unpacker = "Unpacker";
+        public static string Empty = string.Empty;
+        public static string FileManager = $"{EWord.File} {EWord.Manager}";
+        public static string FileReader = $"{EWord.File} {EWord.Reader}";
+        public static string IntegrationTests = $"{EWord.Integration} {EWord.Tests}";
+        public static string Logger = EWord.Logger;
+        public static string Parser = EWord.Parser;
+        public static string SettingsManager = $"{EWord.Settings} {EWord.Manager}";
+        public static string UnitTests = $"{EWord.Unit} {EWord.Tests}";
+        public static string Unpacker = EWord.Unpacker;
     }
 }
