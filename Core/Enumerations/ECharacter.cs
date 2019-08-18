@@ -3,6 +3,7 @@
     /// <summary> Characters. </summary>
     public class ECharacter
     {
+        public const char Apostrophe = '\'';
         public const char Asterisk = '*';
         public const char BraceLeft = '{';
         public const char BraceRight = '}';

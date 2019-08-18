@@ -204,8 +204,8 @@ namespace Core.Organization.Helpers
         /// <summary> Loads settings from the file attached to <see cref="SettingsManager"/>. </summary>
         private void LoadSettings()
         {
-            Settings.UnpackingToolsLocation = _settingsManager.Load(nameof(Settings.UnpackingToolsLocation));
-            Settings.WarThunderLocation = _settingsManager.Load(nameof(Settings.WarThunderLocation));
+            Settings.KlensysWarThunderToolsLocation = _settingsManager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation));
+            Settings.WarThunderLocation = _settingsManager.GetSetting(nameof(Settings.WarThunderLocation));
         }
 
         #endregion Methods: Settings

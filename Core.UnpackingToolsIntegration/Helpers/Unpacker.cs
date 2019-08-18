@@ -59,11 +59,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #endregion Constructors
         #region Methods: Fluency
 
-        /// <summary> Creates a new instance of <see cref="FileInfo"/> with a file name targeting <see cref="Settings.UnpackingToolsLocation"/>. </summary>
+        /// <summary> Creates a new instance of <see cref="FileInfo"/> with a file name targeting <see cref="Settings.KlensysWarThunderToolsLocation"/>. </summary>
         /// <param name="fileName"> The file name. </param>
         /// <returns></returns>
         private FileInfo GetToolFileInfo(string fileName) =>
-            _fileManager.GetFileInfo(Settings.UnpackingToolsLocation, fileName);
+            _fileManager.GetFileInfo(Settings.KlensysWarThunderToolsLocation, fileName);
 
         /// <summary> Creates a new instance of <see cref="FileInfo"/> with a file name targeting <see cref="Settings.TempLocation"/>. </summary>
         /// <param name="fileName"> The file name. </param>

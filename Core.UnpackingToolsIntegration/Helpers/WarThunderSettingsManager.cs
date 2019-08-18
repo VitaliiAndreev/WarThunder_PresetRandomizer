@@ -32,7 +32,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Checks whether the currently loaded location of Klensy's War Thunder Tools is valid. </summary>
         /// <returns></returns>
-        public bool KlensysWarThunderToolLocationIsValid() => _fileManager.KlensysWarThunderToolLocationIsValid(Settings.UnpackingToolsLocation);
+        public bool KlensysWarThunderToolLocationIsValid() => _fileManager.KlensysWarThunderToolLocationIsValid(Settings.KlensysWarThunderToolsLocation);
 
         /// <summary> Checks whether the currently loaded location of War Thunder is valid. </summary>
         /// <returns></returns>
@@ -51,8 +51,8 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             switch (settingName)
             {
-                case nameof(Settings.UnpackingToolsLocation):
-                    Settings.UnpackingToolsLocation = newValue;
+                case nameof(Settings.KlensysWarThunderToolsLocation):
+                    Settings.KlensysWarThunderToolsLocation = newValue;
                     break;
                 case nameof(Settings.WarThunderLocation):
                     Settings.WarThunderLocation = newValue;

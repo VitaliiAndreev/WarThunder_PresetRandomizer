@@ -64,7 +64,7 @@ namespace Client.Console
                     while (!settingsManager.KlensysWarThunderToolLocationIsValid())
                     {
                         System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.KlensysWarThunderTools));
-                        settingsManager.Save(nameof(Settings.UnpackingToolsLocation), System.Console.ReadLine());
+                        settingsManager.Save(nameof(Settings.KlensysWarThunderToolsLocation), System.Console.ReadLine());
                     }
                     System.Console.WriteLine();
 

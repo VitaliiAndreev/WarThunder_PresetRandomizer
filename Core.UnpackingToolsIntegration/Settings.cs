@@ -7,7 +7,7 @@
     public class Settings
     {
         public static string WarThunderLocation { get; set; } = @"D:\Games\_Steam\steamapps\common\War Thunder";
-        public static string UnpackingToolsLocation { get; set; } = @"D:\Software\War Thunder Tools";
-        public static string TempLocation { get; set; } = UnpackingToolsLocation + @"\_temp";
+        public static string KlensysWarThunderToolsLocation { get; set; } = @"D:\Software\War Thunder Tools";
+        public static string TempLocation { get; set; } = KlensysWarThunderToolsLocation + @"\_temp";
     }
 }
