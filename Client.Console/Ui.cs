@@ -23,6 +23,7 @@ namespace Client.Console
     class Ui
     {
         /// <summary> The entry point. </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "Left explicit for readability")]
         static void Main()
         {
             System.Console.Title = EClientApplicationName.WarThunderPresetRandomizer;
