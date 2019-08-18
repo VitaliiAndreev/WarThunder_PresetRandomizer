@@ -11,7 +11,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Fields
 
         /// <summary> An instance of a file manager. </summary>
-        protected readonly IWarThunderFileManager _fileManager;
+        new protected readonly IWarThunderFileManager _fileManager;
 
         #endregion Fields
         #region Constructors
