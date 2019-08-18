@@ -75,10 +75,9 @@ namespace Core.Json.Helpers
             {
                 ThrowIfJsonTextIsInvalid(jsonText);
 
-                if (suppressStandardization || typeof(T).Name.Contains(EConstants.ObjectClassName.ToString())) // To skip standardization or to avoid cyclical calls of DeserializeObject<dynamic>().
-                    deserializedInstance = JsonConvert.DeserializeObject<T>(jsonText);
-                else
-                    deserializedInstance = StandardizeAndDeserializeObject(jsonText).ToObject<T>();
+                deserializedInstance = suppressStandardization || typeof(T).Name.Contains(EConstants.ObjectClassName.ToString()) // To skip standardization or to avoid cyclical calls of DeserializeObject<dynamic>().
+                    ? JsonConvert.DeserializeObject<T>(jsonText)
+                    : StandardizeAndDeserializeObject(jsonText).ToObject<T>();
             }
             catch (Exception exception)
             {

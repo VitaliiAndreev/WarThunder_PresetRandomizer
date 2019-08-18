@@ -76,10 +76,9 @@ namespace Client.Console
 
                         foreach (var vehicle in manager.GetRandomVehicles(specification))
                         {
-                            if (vehicle.NotResearchable)
-                                System.Console.ForegroundColor = ConsoleColor.Yellow;
-                            else
-                                System.Console.ForegroundColor = ConsoleColor.White;
+                            System.Console.ForegroundColor = vehicle.NotResearchable
+                                ? ConsoleColor.Yellow
+                                : ConsoleColor.White;
 
                             System.Console.WriteLine($"\t {vehicle.BattleRatingFormatted[specification.GameMode]} {vehicle.GaijinId}");
                         }

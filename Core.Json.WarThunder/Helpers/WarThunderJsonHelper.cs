@@ -164,10 +164,9 @@ namespace Core.Json.Helpers
                     jsonArray[i] = StandardizeContainer(jsonContainer, duplicatePropertyNames);
             }
 
-            if (jsonArray.HasPotentiallyDuplicateProperties())
-                return ReconstructObjectFromArray(jsonArray, duplicatePropertyNames);
-
-            return jsonArray;
+            return jsonArray.HasPotentiallyDuplicateProperties()
+                ? ReconstructObjectFromArray(jsonArray, duplicatePropertyNames)
+                : jsonArray as JContainer;
         }
 
         /// <summary>
