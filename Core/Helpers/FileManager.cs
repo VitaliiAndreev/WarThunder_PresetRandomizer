@@ -72,7 +72,9 @@ namespace Core.Helpers
 
             LogDebug(ECoreLogMessage.Copying.ResetFormattingPlaceholders().FormatFluently(file.FullName, destinationDirectory.FullName));
 
-            if (File.Exists($"{destinationDirectory.FullName}\\{file.Name}"))
+            var filePath = Path.Combine(destinationDirectory.FullName, file.Name);
+
+            if (File.Exists(filePath))
             {
                 if (!overwrite)
                 {
@@ -81,7 +83,7 @@ namespace Core.Helpers
                 }
                 LogDebug(ECoreLogMessage.Overwriting);
             }
-            file.CopyTo($"{destinationDirectory.FullName}\\{file.Name}", overwrite);
+            file.CopyTo(filePath, overwrite);
 
             LogDebug(ECoreLogMessage.Copied.FormatFluently(file.FullName));
         }
