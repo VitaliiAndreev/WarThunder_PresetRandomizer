@@ -7,6 +7,9 @@ namespace Core.Helpers.Logger.Interfaces
     {
         #region Properties
 
+        /// <summary> The name of the logger. </summary>
+        string Name { get; }
+
         /// <summary> An exception formatter. </summary>
         IExceptionFormatter ExceptionFormatter { get; }
 

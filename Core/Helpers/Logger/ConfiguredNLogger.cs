@@ -20,6 +20,9 @@ namespace Core.Helpers.Logger
         #endregion Fields
         #region Properties
 
+        /// <summary> The name of the logger. </summary>
+        public string Name => _logger?.Name;
+
         /// <summary> An exception formatter. </summary>
         public IExceptionFormatter ExceptionFormatter { get; }
 
@@ -37,6 +40,7 @@ namespace Core.Helpers.Logger
         }
 
         /// <summary> Creates and configures a new logger. </summary>
+        /// <param name="loggerName"> The name of the logger. </param>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
         /// <param name="logCreation"> Whether to immediately log its creation. </param>
         public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter, bool logCreation = false)
