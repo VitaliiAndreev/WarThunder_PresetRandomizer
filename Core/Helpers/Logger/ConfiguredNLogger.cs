@@ -26,15 +26,21 @@ namespace Core.Helpers.Logger
         #endregion Properties
         #region Constructors
 
+        /// <summary> The static constructor is used for layout initialization. </summary>
+        static ConfiguredNLogger()
+        {
+            var nlogConfigurationVariables = LogManager.Configuration.Variables;
+
+            nlogConfigurationVariables[EVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
+            nlogConfigurationVariables[EVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
+            nlogConfigurationVariables[EVariableName.FileName] = @"Logs\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
+        }
+
         /// <summary> Creates and configures a new logger. </summary>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
         public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter)
         {
             ExceptionFormatter = exceptionFormatter;
-
-            LogManager.Configuration.Variables[EVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
-            LogManager.Configuration.Variables[EVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
-            LogManager.Configuration.Variables[EVariableName.FileName] = @"Logs\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
 
             _logger = LogManager.GetLogger(loggerName.ToString());
             _messageFormat = "{0} : {1}{2}";
