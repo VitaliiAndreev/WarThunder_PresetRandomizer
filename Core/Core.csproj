@@ -56,6 +56,7 @@
     <Compile Include="Enumerations\ECharacterString.cs" />
     <Compile Include="Enumerations\ECharacter.cs" />
     <Compile Include="Enumerations\EFileExtension.cs" />
+    <Compile Include="Enumerations\EInteger.cs" />
     <Compile Include="Enumerations\EProcess.cs" />
     <Compile Include="Enumerations\ERegularExpression.cs" />
     <Compile Include="Enumerations\ESettingsFileStatus.cs" />
