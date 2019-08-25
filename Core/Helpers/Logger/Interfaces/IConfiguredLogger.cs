@@ -13,6 +13,10 @@ namespace Core.Helpers.Logger.Interfaces
         #endregion Properties
         #region Methods: Logging
 
+        /// <summary> Logs intantiation of this logger. </summary>
+        /// <param name="logger"> The logger to log with. </param>
+        public void LogInstantiation(IConfiguredLogger logger);
+
         /// <summary> Creates a log entry of the "Trace" level. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>

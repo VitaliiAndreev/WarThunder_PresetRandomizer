@@ -38,18 +38,25 @@ namespace Core.Helpers.Logger
 
         /// <summary> Creates and configures a new logger. </summary>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
-        public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter)
+        /// <param name="logCreation"> Whether to immediately log its creation. </param>
+        public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter, bool logCreation = false)
         {
             ExceptionFormatter = exceptionFormatter;
 
             _logger = LogManager.GetLogger(loggerName.ToString());
             _messageFormat = "{0} : {1}{2}";
 
-            LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.FormatFluently(_logger.Name));
+            if (logCreation)
+                LogInstantiation(this);
         }
 
         #endregion Constructors
         #region Methods: Logging
+
+        /// <summary> Logs intantiation of this logger. It is done here so that the event of intantiation could be logged by any logger. </summary>
+        /// <param name="logger"> The logger to log with. </param>
+        public void LogInstantiation(IConfiguredLogger logger) =>
+            logger.LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.FormatFluently(_logger.Name));
 
         /// <summary> A wrapper around <see cref="ILoggerBase.Log(LogLevel, string, Exception)"/> that forms a customized message string before logging it. </summary>
         /// <param name="level"> A log level. </param>
