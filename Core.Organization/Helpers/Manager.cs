@@ -202,7 +202,7 @@ namespace Core.Organization.Helpers
         #region Methods: Settings
 
         /// <summary> Loads settings from the file attached to the <see cref="_settingsManager"/>. </summary>
-        private void LoadSettings()
+        protected virtual void LoadSettings()
         {
             Settings.KlensysWarThunderToolsLocation = _settingsManager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation));
             Settings.WarThunderLocation = _settingsManager.GetSetting(nameof(Settings.WarThunderLocation));

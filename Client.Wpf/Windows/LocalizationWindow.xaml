@@ -1,0 +1,30 @@
+﻿<local:BaseWindow x:Class="Client.Wpf.Windows.LocalizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Wpf.Windows"
+        mc:Ignorable="d"
+        Title="LocalizationWindow"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize"
+        Loaded="OnLoaded"
+        Closing="OnClosing">
+    <Grid
+        Style="{StaticResource PaddedGrid}"
+        Height="20"
+        Width="200">
+        
+        <Grid>
+            
+            <Button Style="{StaticResource FlagButton}" Click="OnClick_SelectEnglishUsa">
+                <Image
+                    Style="{StaticResource FlagIcon}"
+                    Source="/Resources/Stripe Flag Set by Benjamin De Cock/US.png"/>
+            </Button>
+
+        </Grid>
+        
+    </Grid>
+</local:BaseWindow>

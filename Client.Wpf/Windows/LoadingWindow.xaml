@@ -1,0 +1,49 @@
+﻿<local:BaseWindow x:Class="Client.Wpf.Windows.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Wpf.Windows"
+        xmlns:controls="clr-namespace:Client.Wpf.Controls"
+        mc:Ignorable="d"
+        Title="LoadingWindow"
+        WindowStartupLocation="CenterScreen"
+        Height="450"
+        Width="1000"
+        Loaded="OnLoaded"
+        Closing="OnClosing">
+    <Grid
+        Style="{StaticResource PaddedGrid}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid
+            Grid.Row="0"
+            Style="{StaticResource NestedGrid}">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock
+                Grid.Column="0"
+                Name="_statusLabel"
+                Text="Status:"/>
+            <TextBlock
+                Grid.Column="1"
+                Name="_status"
+                Text="PENDING..."/>
+            
+        </Grid>
+
+        <controls:ListViewNLog
+            Grid.Row="1">
+            
+        </controls:ListViewNLog>
+        
+    </Grid>
+</local:BaseWindow>

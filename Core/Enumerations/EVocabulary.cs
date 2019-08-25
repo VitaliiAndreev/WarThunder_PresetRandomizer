@@ -20,8 +20,8 @@
 
         protected const string _A = "A";
         protected const string _a = "a";
-        protected const string _aborted = _a + "borted";
-        protected const string _after = _a + "fter";
+        protected const string _aborted = _a + "bort" + _ed;
+        protected const string _after = _a + "ft" + _er;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;
         protected const string _Already = _A + _lready;
@@ -29,15 +29,18 @@
         protected const string _am = _a + "m";
         protected const string _An = _A + _n;
         protected const string _an = _a + _n;
-        protected const string _and = _an + "d";
+        protected const string _and = _an + _d;
         protected const string _any = _an + "y";
         protected const string _Application = _A + _pplication;
         protected const string _application = _a + _pplication;
-        protected const string _arguments = _a + "rgument" + _s;
+        protected const string _arguments = _a + "rgu" + _ment + _s;
         protected const string _art = _a + "rt";
-        protected const string _assembly = _a + "ssembly";
-        protected const string _Assigned = _A + "ssigned";
-        protected const string _attributes = _a + "ttribute" + _s;
+        protected const string _As = _a + _s;
+        protected const string _as = _a + _s;
+        protected const string _assembly = _as + "semb" + _ly;
+        protected const string _Assigned = _As + _sign + _ed;
+        protected const string _at = _a + _t;
+        protected const string _attributes = _at + _tribute + _s;
 
         #endregion A
         #region B
@@ -195,7 +198,9 @@
         #region I
 
         private const string _i = "i";
+        private const string _ializ = _i + _a + "liz";
         private const string _ing = _i + "ng";
+        private const string _itializ = _it + _ializ;
         private const string _ize = _i + "z" + _e;
 
         protected const string _I = "I";
@@ -204,8 +209,10 @@
         protected const string _in = _i + _n;
         protected const string _included = _in + "clude" + _d;
         protected const string _Incorrect = _In + _correct;
-        protected const string _initialize = _in + _it + "itialize";
-        protected const string _Initialized = _In + _it + "ialize" + _d;
+        protected const string _Initialization = _In + _itializ + _at + _ion;
+        protected const string _Initialize = _In + _itializ + _e;
+        protected const string _initialize = _in + _itializ + _e;
+        protected const string _Initialized = _Initialize + _d;
         protected const string _initialized = _initialize + _d;
         protected const string _Initializing = _In + _it + "ializ" + _ing;
         protected const string _input = _in + _put;
@@ -261,6 +268,8 @@
         protected const string _mapping = "mapp" + _ing;
         protected const string _markers = "marker" + _s;
         protected const string _matching = "match" + _ing;
+        protected const string _men = "men";
+        protected const string _ment = _men + _t;
         protected const string _Method = "Metho" + _d;
         protected const string _method = "metho" + _d;
         protected const string _mode = "mo" + _d + _e;
@@ -374,6 +383,7 @@
         protected const string _shown = _s + _how + _n;
         protected const string _shut = _s + "hut";
         protected const string _Shutting = _S + "hutt" + _ing;
+        protected const string _sign = _s + "ign";
         protected const string _skipped = _s + "kipp" + _ed;
         protected const string _sorting = _s + "ort" + _ing;
         protected const string _source = _s + "ource";
@@ -410,6 +420,7 @@
         protected const string _to = _t + "o";
         protected const string _tool = _to + "ol";
         protected const string _tools = _tool + _s;
+        protected const string _tribute = _t + "ribute";
         protected const string _Try = "Try";
         protected const string _try = _t + "ry";
         protected const string _Trying = _Try + _ing;

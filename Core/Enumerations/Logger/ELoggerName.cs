@@ -1,9 +1,11 @@
 ﻿namespace Core.Enumerations.Logger
 {
-    /// <summary> Enumerates NLog logger names that correspond to rule names setup in NLog.config. </summary>
+    /// <summary> Enumerates NLog logger names that correspond to rule names set up. </summary>
     public enum ELoggerName
     {
         ConsoleLogger,
         FileLogger,
+        /// <summary> Requires a custom target and rule loaded programmatically. </summary>
+        WpfLogger,
     }
 }
