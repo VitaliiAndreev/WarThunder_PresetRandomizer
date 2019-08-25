@@ -126,21 +126,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 case EFileExtension.Bin:
                     {
                         outputPath = $"{outputPath}{_outputDirectorySuffix}";
-                        var outputDirectory = new DirectoryInfo(outputPath);
-
-                        if (!outputDirectory.Exists)
-                            throw new OutputDirectoryNotFoundException(ECoreLogMessage.NotFound.FormatFluently(outputDirectory.FullName));
-
                         break;
                     }
                 case EFileExtension.Blk:
                     {
                         outputPath = $"{outputPath}{_outputFileSuffix}";
-                        var outputFile = new FileInfo(outputPath);
-
-                        if (!outputFile.Exists)
-                            throw new OutputFileNotFoundException(ECoreLogMessage.NotFound.FormatFluently(outputFile.FullName));
-
                         break;
                     }
                 default:
