@@ -19,9 +19,11 @@ namespace WarThunderSimpleUpdateChecker
     class Application
     {
         private const string _commonPath = @"D:\";
-        private const string _warThunderPath = _commonPath + @"Games\_Steam\steamapps\common\War Thunder\";
-        private const string _trackerProject = _commonPath + @"Code\Source\_Repositories\\WarThunderJsonFileChanges\";
-        private const string _copiedFilesPath = _trackerProject + @"Files\";
+        private const bool _dev = true;
+
+        private static readonly string _warThunderPath = _commonPath + (_dev ? @"Games\War Thunder (Dev)\" : @"D:\Games\_Steam\steamapps\common\War Thunder");
+        private static readonly string _trackerProject = _commonPath + (_dev ? @"Code\Source\_Repositories\WarThunderJsonFileChangesDevClient\" : @"D:\Code\Source\_Repositories\WarThunderJsonFileChanges");
+        private static readonly string _copiedFilesPath = _trackerProject + @"Files\";
 
         private static readonly IConfiguredLogger _logger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly IFileManager _fileManager = new FileManager(_logger);
