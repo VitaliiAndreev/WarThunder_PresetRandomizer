@@ -52,6 +52,13 @@ namespace Core.Extensions
         public static string FormatFluently(this string source, params object[] arguments) =>
             string.Format(source, arguments);
 
+        /// <summary> Fluently converts the specified name of an item of the given enumeration type into the corresponding enumeration item. </summary>
+        /// <typeparam name="T"> The enumeration to parse a value of. </typeparam>
+        /// <param name="enumerationItemName"> The name of the enumeration item to parse. </param>
+        /// <returns></returns>
+        public static T ParseEnumeration<T>(this string enumerationItemName) =>
+            (T)Enum.Parse(typeof(T), enumerationItemName);
+
         #region Regular Expressions
 
         /// <summary> Checks whether the string patches the specified regular expression pattern. </summary>
