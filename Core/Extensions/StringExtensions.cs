@@ -46,11 +46,11 @@ namespace Core.Extensions
         #region Methods: Fluency
 
         /// <summary> Fluently replaces format placeholders in a string with members of an argument array. </summary>
-        /// <param name="source"> A source string. </param>
+        /// <param name="sourceString"> A source string. </param>
         /// <param name="arguments"> An array of objects whose string representations to insert into the source string. </param>
         /// <returns></returns>
-        public static string FormatFluently(this string source, params object[] arguments) =>
-            string.Format(source, arguments);
+        public static string FormatFluently(this string sourceString, params object[] arguments) =>
+            string.Format(sourceString, arguments);
 
         /// <summary> Fluently converts the specified name of an item of the given enumeration type into the corresponding enumeration item. </summary>
         /// <typeparam name="T"> The enumeration to parse a value of. </typeparam>
