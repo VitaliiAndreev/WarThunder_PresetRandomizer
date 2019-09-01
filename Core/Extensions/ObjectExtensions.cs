@@ -13,11 +13,11 @@
 
         #region Type Casting
 
-        /// <summary> Fluently casts the object into <see cref="bool"/>. </summary>
+        /// <summary> Fluently casts the object into a given type. </summary>
         /// <param name="source"> The source object. </param>
         /// <returns></returns>
-        public static bool CastToBool(this object source) =>
-            (bool)source;
+        public static T CastTo<T>(this object source) =>
+            (T)source;
 
         #endregion Type Casting
 
