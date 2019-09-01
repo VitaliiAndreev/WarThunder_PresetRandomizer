@@ -1,9 +1,9 @@
-﻿using Core.DataBase.Enumerations.Logger;
+﻿using Core.Organization.Enumerations.Logger;
 
 namespace Client.Wpf.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Wpf"/>" assembly. </summary>
-    public class EWpfClientLogMessage : EDatabaseLogMessage
+    public class EWpfClientLogMessage : EOrganizationLogMessage
     {
         #region WpfClient
 
