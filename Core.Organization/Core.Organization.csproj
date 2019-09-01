@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\EAssembly.cs" />
-    <Compile Include="Enumerations\EReference.cs" />
     <Compile Include="Enumerations\Logger\EOrganizationLogMessage.cs" />
     <Compile Include="Enumerations\Logger\EOrganizationLogCategory.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />

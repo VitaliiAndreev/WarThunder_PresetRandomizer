@@ -1,7 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using System.Collections.Generic;
 
-namespace Core.Organization.Enumerations
+namespace Core.DataBase.Enumerations
 {
     /// <summary> Contains static dictionaries with reference data. </summary>
     public class EReference
