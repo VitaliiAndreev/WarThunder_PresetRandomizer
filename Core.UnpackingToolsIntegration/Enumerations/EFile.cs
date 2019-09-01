@@ -14,10 +14,10 @@ namespace Core.UnpackingToolsIntegration.Enumerations
             private const string _yup = ECharacterString.Period + EFileExtension.Yup;
 
             public const string CoreParameters = "aces" + _vromfsBin;
-            public const string StatAndBalanceParameters = "char" + _vromfsBin;
             public const string GuiParameters = "gui" + _vromfsBin;
             public const string LocalizationParameters = "lang" + _vromfsBin;
             public const string MissionParameters = "mis" + _vromfsBin;
+            public const string StatAndBalanceParameters = "char" + _vromfsBin;
             public const string WebUiParameters = "webUi" + _vromfsBin;
             public const string WorldWarParameters = "wwdata" + _vromfsBin;
 
@@ -30,9 +30,9 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         {
             private const string _blkx = ECharacterString.Period + EFileExtension.Blkx;
 
-            public const string RankData = "rank" + _blkx;
-            public const string GeneralVehicleData = "wpcost" + _blkx;
             public const string AdditionalVehicleData = "unittags" + _blkx;
+            public const string GeneralVehicleData = "wpcost" + _blkx;
+            public const string RankData = "rank" + _blkx;
         }
     }
 }
