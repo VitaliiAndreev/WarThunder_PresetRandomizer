@@ -18,12 +18,16 @@ namespace WarThunderSimpleUpdateChecker
 {
     class Application
     {
-        private const string _commonPath = @"D:\";
-        private const bool _dev = true;
+        private const bool _dev = false;
 
-        private static readonly string _warThunderPath = _commonPath + (_dev ? @"Games\War Thunder (Dev)\" : @"D:\Games\_Steam\steamapps\common\War Thunder");
-        private static readonly string _trackerProject = _commonPath + (_dev ? @"Code\Source\_Repositories\WarThunderJsonFileChangesDevClient\" : @"D:\Code\Source\_Repositories\WarThunderJsonFileChanges");
-        private static readonly string _copiedFilesPath = _trackerProject + @"Files\";
+        private const string _commonPath = @"D:\";
+        private const string _gamesPath = _commonPath + @"Games\";
+        private const string _repositoriesPath = _commonPath + @"Code\Source\_Repositories\";
+        private const string _trackerProjectName = "WarThunderJsonFileChanges";
+
+        private static readonly string _warThunderPath = _gamesPath + (_dev ? @"War Thunder (Dev)\" : @"_Steam\steamapps\common\War Thunder\");
+        private static readonly string _trackerProjectPath = _repositoriesPath + (_dev ? $@"{_trackerProjectName}DevClient\" : $@"{_trackerProjectName}\");
+        private static readonly string _copiedFilesPath = _trackerProjectPath + @"Files\";
 
         private static readonly IConfiguredLogger _logger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly IFileManager _fileManager = new FileManager(_logger);
@@ -90,7 +94,7 @@ namespace WarThunderSimpleUpdateChecker
             _logger.LogInfo(ECoreLogCategory.Empty, $"Client is {currentVersion}.");
             _logger.LogInfo(ECoreLogCategory.Empty, $"Writing version to versions.txt...");
 
-            using (var streamWriter = File.AppendText($@"{_trackerProject}versions.txt"))
+            using (var streamWriter = File.AppendText($@"{_trackerProjectPath}versions.txt"))
                 streamWriter.WriteLine($"{yupFile.LastWriteTime.ToShortDateString()} - {currentVersion}");
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"Version history appended.");
