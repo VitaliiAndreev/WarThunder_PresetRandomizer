@@ -33,6 +33,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
             public const string AdditionalVehicleData = "unittags" + _blkx;
             public const string GeneralVehicleData = "wpcost" + _blkx;
             public const string RankData = "rank" + _blkx;
+            public const string ResearchTreeData = "shop" + _blkx;
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using Core.DataBase.WarThunder.Objects.Json;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
-using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Json.Helpers;
@@ -13,6 +13,7 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -266,5 +267,40 @@ namespace Core.Json.WarThunder.Tests.Helpers
         }
 
         #endregion Tests: DeserializeList()
+        #region Tests: DeserializeResearchTrees()
+
+        [TestMethod]
+        public void DeserializeResearchTrees()
+        {
+            // arrange
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var jsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
+
+            // act
+            var researchTrees = _jsonHelper.DeserializeResearchTrees(jsonText);
+
+            // assert
+            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - EInteger.Number.One);
+            foreach (var tree in researchTrees)
+            {
+                tree.Branches.Any().Should().BeTrue();
+                foreach (var branch in tree.Branches)
+                {
+                    branch.Columns.Any().Should().BeTrue();
+                    foreach (var column in branch.Columns)
+                    {
+                        column.Cells.Any().Should().BeTrue();
+                        column.Cells.All(cell => cell.Rank > EInteger.Number.Zero).Should().BeTrue();
+                        column.Cells.All(cell => cell.RowWithinRank > EInteger.Number.Zero).Should().BeTrue();
+                        column.Cells.All(cell => cell.Vehicles.Any()).Should().BeTrue();
+
+                        foreach (var cell in column.Cells)
+                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == EInteger.Number.Two);
+                    }
+                }
+            }
+        }
+
+        #endregion Tests: DeserializeResearchTrees()
     }
 }
