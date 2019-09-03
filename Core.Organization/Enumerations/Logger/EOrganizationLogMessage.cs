@@ -1,9 +1,9 @@
-﻿using Core.DataBase.Enumerations.Logger;
+﻿using Core.Json.WarThunder.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Organization"/>" assembly. </summary>
-    public class EOrganizationLogMessage : EDatabaseLogMessage
+    public class EOrganizationLogMessage : EJsonWarThunderLogMessage
     {
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";

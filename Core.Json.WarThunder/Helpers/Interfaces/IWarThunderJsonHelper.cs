@@ -2,6 +2,7 @@
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.Json.Helpers.Interfaces;
+using Core.Json.WarThunder.Objects;
 using System.Collections.Generic;
 
 namespace Core.Json.WarThunder.Helpers.Interfaces
@@ -23,6 +24,11 @@ namespace Core.Json.WarThunder.Helpers.Interfaces
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
         IEnumerable<T> DeserializeList<T>(IDataRepository dataRepository, string jsonText) where T : PersistentObjectWithIdAndGaijinId;
+
+        /// <summary> Deserializes given JSON text into instances of transient objects representing in-game research trees the way they are stored in JSON files. </summary>
+        /// <param name="jsonText"> JSON text to deserialize. </param>
+        /// <returns></returns>
+        IEnumerable<ResearchTree> DeserializeResearchTrees(string jsonText);
 
         #endregion Methods: Deserialization
     }

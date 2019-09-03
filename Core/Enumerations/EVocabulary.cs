@@ -33,6 +33,7 @@
         protected const string _any = _an + "y";
         protected const string _Application = _A + _pplication;
         protected const string _application = _a + _pplication;
+        protected const string _are = _a + _re;
         protected const string _arguments = _a + "rgu" + _ment + _s;
         protected const string _art = _a + "rt";
         protected const string _As = _a + _s;
@@ -45,13 +46,17 @@
         #endregion A
         #region B
 
-        protected const string _base = "base";
-        protected const string _battle = "battle";
-        protected const string _be = "be";
-        protected const string _been = _be + "en";
-        protected const string _BR = "BR";
-        protected const string _branch = "branch";
-        protected const string _by = "by";
+        private const string _B = "B";
+        private const string _b = "b";
+
+        protected const string _base = _b + _a + _s + _e;
+        protected const string _battle = _b + _at + _t + "l" + _e;
+        protected const string _be = _b + _e;
+        protected const string _been = _be + _e + _n;
+        protected const string _BR = _B + "R";
+        protected const string _Branch = _B + _ranch;
+        protected const string _branch = _b + _ranch;
+        protected const string _by = _b + "y";
 
         #endregion B
         #region C
@@ -61,6 +66,7 @@
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
         protected const string _cancelled = "cancell" + _ed;
+        protected const string _cell = "cell";
         protected const string _Change = "Change";
         protected const string _change = "change";
         protected const string _Changes = _Change + _s;
@@ -81,6 +87,7 @@
         protected const string _Closing = "Clos" + _ing;
         protected const string _collect = "collect";
         protected const string _collection = _collect + _ion;
+        protected const string _Column = "Column";
         protected const string _commit = "commit";
         protected const string _committed = _commit + "t" + _ed;
         protected const string _Committing = "Committ" + _ing;
@@ -295,17 +302,20 @@
         #endregion N
         #region O
 
+        protected const string _Object = "object";
         protected const string _object = "object";
         protected const string _objects = _object + _s;
-        protected const string _occured = "occurred";
+        protected const string _occured = "occurr" + _ed;
         protected const string _of = "of";
         protected const string _on = "on";
         protected const string _one = _on + _e;
+        protected const string _order = "order";
         protected const string _ORM = "ORM";
+        protected const string _out = "out";
         protected const string _Output = "Output";
         protected const string _overwrite = "overwrite";
-        protected const string _Overwriting = "Overwriting";
-        protected const string _overwriting = "overwriting";
+        protected const string _Overwriting = "Overwrit" + _ing;
+        protected const string _overwriting = "overwrit" + _ing;
         protected const string _own = "own";
 
         #endregion O
@@ -340,8 +350,11 @@
         #endregion Q
         #region R
 
-        private const string _re = "re";
+        private const string _Re = "R" + _e;
+        private const string _re = "r" + _e;
 
+        protected const string _ranch = "ranch";
+        protected const string _ranks = "ranks";
         protected const string _rating = "rat" + _ing;
         protected const string _raw = "raw";
         protected const string _Read = "Read";
@@ -352,6 +365,8 @@
         protected const string _reading = _read + _ing;
         protected const string _recognized = _re + "cognize" + _d;
         protected const string _repository = _re + "pository";
+        protected const string _Research = _Re + _search;
+        protected const string _research = _re + _search;
         protected const string _returned = _re + "turn" + _ed;
         protected const string _running = "runn" + _ing;
 
@@ -365,6 +380,7 @@
         protected const string _safely = _s + "afe" + _ly;
         protected const string _Schema = _S + _chema;
         protected const string _schema = _s + _chema;
+        protected const string _search = _s + _e + _a + "rch";
         protected const string _See = _S + "ee";
         protected const string _Select = _S + _elect;
         protected const string _Selected = _Select + _ed;
@@ -420,6 +436,7 @@
         protected const string _to = _t + "o";
         protected const string _tool = _to + "ol";
         protected const string _tools = _tool + _s;
+        protected const string _tree = _t + "ree";
         protected const string _tribute = _t + "ribute";
         protected const string _Try = "Try";
         protected const string _try = _t + "ry";
@@ -451,7 +468,8 @@
         protected const string _valid = "valid";
         protected const string _Value = "Value";
         protected const string _value = "value";
-        protected const string _version = "version";
+        protected const string _vehicle = "vehicle";
+        protected const string _version = "vers" + _ion;
 
         #endregion V
         #region W

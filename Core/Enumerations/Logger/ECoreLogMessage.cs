@@ -165,6 +165,7 @@
         #endregion File Reader
         #region General
 
+        protected static readonly string _isEmpty = $"{_is} {_empty}";
         protected static readonly string _TryingTo = $"{_Trying} {_to}";
 
         public static readonly string Started = $"{_Started}.";

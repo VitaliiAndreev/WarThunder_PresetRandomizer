@@ -1,13 +1,16 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;
 using Core.Json.Extensions;
+using Core.Json.WarThunder.Enumerations.Logger;
 using Core.Json.WarThunder.Extensions;
 using Core.Json.WarThunder.Helpers.Interfaces;
+using Core.Json.WarThunder.Objects;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -18,6 +21,18 @@ namespace Core.Json.Helpers
     /// <summary> Provide methods to work with JSON data specific to War Thunder. </summary>
     public class WarThunderJsonHelper : JsonHelper, IWarThunderJsonHelper
     {
+        #region Constants
+
+        /// <summary> The name of the JSON property containing a research tree column. </summary>
+        private const string _researchTreeColumnJsonPropertyName = "range";
+
+        /// <summary> The name of the JSON property containing a vehicle's rank in the research tree. </summary>
+        private const string _rankJsonPropertyName = "rank";
+
+        /// <summary> The name of the JSON property containing a vehicle folder's image Gaijin ID. </summary>
+        private const string _folderImageJsonPropertyName = "image";
+
+        #endregion Constants
         #region Constructors
 
         /// <summary> Creates a new War Thunder JSON helper. </summary>
@@ -237,6 +252,152 @@ namespace Core.Json.Helpers
         }
 
         #endregion [Protected] Methods: Deserialization with Standardization
+        #region Methods: [Private] Deserialization of Research Trees
+
+        /// <summary> Deserializes the given JSON object into instances of transient objects representing in-game research tree branches the way they are stored in JSON files. </summary>
+        /// <param name="researchTreeAsJsonObject"> The JSON object to deserialize. </param>
+        /// <returns></returns>
+        private IEnumerable<ResearchTreeBranch> DeserializeResearchTreeBranches(JObject researchTreeAsJsonObject)
+        {
+            var branches = new List<ResearchTreeBranch>();
+            
+            foreach (var jsonProperty in researchTreeAsJsonObject.Properties())
+            {
+                var branch = new ResearchTreeBranch(jsonProperty.Name);
+
+                if (jsonProperty.Value is JArray jsonArray)
+                    branch.Columns.AddRange(DeserializeResearchTreeColumns(jsonArray));
+                else if (jsonProperty.Value is JObject jsonObject)
+                    branch.Columns.Add(DeserializeResearchTreeColumn(jsonObject, EInteger.Number.One));
+                else
+                    throw new JsonDeserializationException(EJsonWarThunderLogMessage.BranchIsEmpty.FormatFluently(branch.GaijinId));
+
+                branches.Add(branch);
+            }
+            return branches;
+        }
+
+        /// <summary> Checks whether the given JSON token contains a research tree column. </summary>
+        /// <param name="jsonToken"> The JSON token to check. </param>
+        /// <param name="outputJsonObject"> The JSON object containing a research tree column. </param>
+        /// <returns></returns>
+        private bool JsonTokenContainsResearchTreeColumnAsJsonObject(JToken jsonToken, out JObject outputJsonObject)
+        {
+            if (jsonToken is JObject jsonObject && jsonObject.Children().FirstOrDefault() is JProperty jsonProperty && jsonProperty.Name == _researchTreeColumnJsonPropertyName && jsonProperty.Value is JObject researchTreeColumnAsJsonObject)
+            {
+                outputJsonObject = researchTreeColumnAsJsonObject;
+                return true;
+            }
+            outputJsonObject = null;
+            return false;
+        }
+
+        /// <summary> Deserializes the given JSON array into instances of transient objects representing in-game research tree branch columns the way they are stored in JSON files. </summary>
+        /// <param name="jsonArrayOfResearchTreeColumns"> The JSON array to deserialize. </param>
+        /// <returns></returns>
+        private IEnumerable<ResearchTreeColumn> DeserializeResearchTreeColumns(JArray jsonArrayOfResearchTreeColumns)
+        {
+            var columns = new List<ResearchTreeColumn>();
+
+            foreach (var jsonToken in jsonArrayOfResearchTreeColumns)
+            {
+                var columnIndex = columns.Count() + EInteger.Number.One;
+                var column = DeserializeResearchTreeColumn(jsonToken, columnIndex);
+                columns.Add(column);
+            }
+            return columns;
+        }
+
+        /// <summary> Deserializes the given JSON token into an instance of a transient object representing an in-game research tree branch column the way it is stored in JSON files. </summary>
+        /// <param name="jsonToken"> The JSON token to deserialize. </param>
+        /// <param name="columnIndex"> The index of the column (the 1-based X coordinate). </param>
+        /// <returns></returns>
+        private ResearchTreeColumn DeserializeResearchTreeColumn(JToken jsonToken, int columnIndex)
+        {
+            var column = new ResearchTreeColumn();
+
+            if (JsonTokenContainsResearchTreeColumnAsJsonObject(jsonToken, out var researchTreeColumnAsJsonObject))
+                column.Cells.AddRange(DeserializeResearchTreeCells(researchTreeColumnAsJsonObject, columnIndex));
+            else
+                throw new JsonDeserializationException(EJsonWarThunderLogMessage.ColumnIsEmpty);
+
+            return column;
+        }
+
+        /// <summary> Checks whether the given JSON token contains a research tree vehicle folder. </summary>
+        /// <param name="researchTreeCellAsJsonObject"> The JSON object to check. </param>
+        /// <returns></returns>
+        private bool ResearchTreeCellIsFolder(JObject researchTreeCellAsJsonObject) =>
+            researchTreeCellAsJsonObject
+                .Properties()
+                .Any(property => property.Name == _folderImageJsonPropertyName);
+
+        /// <summary> Deserializes the given JSON object into instances of transient objects representing in-game research tree cells the way they are stored in JSON files. </summary>
+        /// <param name="researchTreeColumnAsJsonObject"> The JSON object to deserialize. </param>
+        /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
+        /// <returns></returns>
+        private IEnumerable<ResearchTreeCell> DeserializeResearchTreeCells(JObject researchTreeColumnAsJsonObject, int columnIndex)
+        {
+            var cells = new List<ResearchTreeCell>();
+
+            foreach (var jsonProperty in researchTreeColumnAsJsonObject.Properties())
+            {
+                var cell = default(ResearchTreeCell);
+
+                if (jsonProperty.Value is JObject researchTreeCellAsJsonObject)
+                {
+                    if (ResearchTreeCellIsFolder(researchTreeCellAsJsonObject))
+                        cell = DeserializeResearchTreeCellFolder(researchTreeCellAsJsonObject, columnIndex);
+                    else
+                        cell = new ResearchTreeCellVehicle(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
+
+                    cell.SetRowWithinRank(cells);
+                    cells.Add(cell);
+                }
+            }
+            return cells;
+        }
+
+        /// <summary> Deserializes the given JSON object into an instance of a transient object representing an in-game research tree vehicle cell folder the way it is stored in JSON files. </summary>
+        /// <param name="researchTreeFolderAsJsonObject"> The JSON object to deserialize. </param>
+        /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
+        /// <returns></returns>
+        private ResearchTreeCellFolder DeserializeResearchTreeCellFolder(JObject researchTreeFolderAsJsonObject, int columnIndex)
+        {
+            var folder = new ResearchTreeCellFolder();
+
+            foreach (var jsonProperty in researchTreeFolderAsJsonObject.Properties())
+            {
+                if (jsonProperty.Value is JObject)
+                    folder.Vehicles.Add(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
+            }
+
+            if (folder.Vehicles.Any())
+                folder.Rank = folder.Vehicles.First().Rank;
+
+            return folder;
+        }
+
+        /// <summary> Deserializes the given JSON property into an instance of a transient object representing an in-game research tree vehicle the way it is stored in JSON files. </summary>
+        /// <param name="jsonProperty"> The JSON property to deserialize. </param>
+        /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
+        /// <returns></returns>
+        private ResearchTreeVehicleFromJson DeserializeResearchTreeVehicle(JProperty jsonProperty, int columnIndex)
+        {
+            if (jsonProperty.Value is JObject researchTreeVehicleAsJsonObject)
+            {
+                var vehicle = DeserializeObject<ResearchTreeVehicleFromJson>(researchTreeVehicleAsJsonObject.ToString());
+                vehicle.GaijinId = jsonProperty.Name;
+                vehicle.CellCoordinatesWithinRank = vehicle.PresetCellCoordinatesWithinRank is List<int> presetCoordinates
+                    ? presetCoordinates
+                    : new List<int> { columnIndex };
+
+                return vehicle;
+            }
+            throw new JsonDeserializationException(EJsonWarThunderLogMessage.ObjectNotRecognizedAsResearchTreeVehicle);
+        }
+
+        #endregion Methods: [Private] Deserialization of Research Trees
         #region Methods: [Public] Deserialization
 
         /// <summary> Deserializes given JSON text into instances of interim non-persistent objects. </summary>
@@ -266,6 +427,27 @@ namespace Core.Json.Helpers
                     deserializedInstances.Add(new Vehicle(dataRepository, deserializedData) as T);
             }
             return deserializedInstances;
+        }
+
+        /// <summary> Deserializes given JSON text into instances of transient objects representing in-game research trees the way they are stored in JSON files. </summary>
+        /// <param name="jsonText"> JSON text to deserialize. </param>
+        /// <returns></returns>
+        public IEnumerable<ResearchTree> DeserializeResearchTrees(string jsonText)
+        {
+            var rootJsonObject = DeserializeObject<dynamic>(jsonText) as JObject;
+            var researchTrees = new List<ResearchTree>();
+
+            foreach (var jsonProperty in rootJsonObject.Properties())
+            {
+                if (jsonProperty.Value is JObject jsonObject)
+                {
+                    var researchTree = new ResearchTree(jsonProperty.Name);
+                    researchTree.Branches.AddRange(DeserializeResearchTreeBranches(jsonObject));
+
+                    researchTrees.Add(researchTree);
+                }
+            }
+            return researchTrees;
         }
 
         #endregion Methods: [Public] Deserialization
