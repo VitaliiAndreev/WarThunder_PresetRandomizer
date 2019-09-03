@@ -53,6 +53,18 @@ namespace Core.Extensions
             }
         }
 
+        /// <summary> Increments the value assigned to the specified key. </summary>
+        /// <typeparam name="T"> The key type. </typeparam>
+        /// <param name="sourceDictionary"> A source dictionary. </param>
+        /// <param name="keyWhoseValueToIncrement"> The key whose value to increment. </param>
+        public static void Increment<T>(this IDictionary<T, int> sourceDictionary, T keyWhoseValueToIncrement)
+        {
+            if (sourceDictionary.ContainsKey(keyWhoseValueToIncrement))
+                sourceDictionary[keyWhoseValueToIncrement]++;
+            else
+                sourceDictionary.Add(keyWhoseValueToIncrement, 1);
+        }
+
         #endregion Methods: Adding
     }
 }
