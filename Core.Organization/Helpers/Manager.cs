@@ -187,11 +187,11 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.InitializingDatabase);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
-            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText);
+            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
 
             foreach (var vehicle in vehicles)
-                if (additionalVehicleData.FirstOrDefault(item => item.GaijinId == vehicle.GaijinId) is VehicleDeserializedFromJsonUnitTags matchedData)
-                    vehicle.DoPostInitalization(matchedData);
+                if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var data))
+                    vehicle.DoPostInitalization(data);
 
             _dataRepository.PersistNewObjects();
 
