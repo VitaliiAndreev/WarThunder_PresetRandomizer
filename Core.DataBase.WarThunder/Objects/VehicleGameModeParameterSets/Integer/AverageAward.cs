@@ -105,7 +105,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         #endregion Persistent Properties
         #region Constructors
 
-        /// <summary> This constructor is used by NHibernate to instantiate deserialized data read from a database. </summary>
+        /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
         protected AverageAward()
         {
         }

@@ -9,11 +9,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("rank", Required = Required.Always)]
         public int Rank { get; set; }
 
-        /// <summary> 1-based coordinates of the research tree grid this vehicle occupies with its <see cref="Rank"/>. </summary>
+        /// <summary> 1-based coordinates of the research tree grid cell this vehicle occupies with its <see cref="Rank"/>. </summary>
         [JsonProperty("rankPosXY")]
         public List<int> PresetCellCoordinatesWithinRank { get; set; }
 
-        /// <summary> 1-based coordinates of the research tree grid this vehicle occupies with its <see cref="Rank"/>. </summary>
+        /// <summary> 1-based coordinates of the research tree grid cell this vehicle occupies with its <see cref="Rank"/>. </summary>
         public List<int> CellCoordinatesWithinRank { get; set; }
 
         [JsonProperty("reqAir")]
