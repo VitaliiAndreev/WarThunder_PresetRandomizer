@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.DataBase.WarThunder\Core.DataBase.WarThunder.csproj">
-      <Project>{275ff668-2cdd-46c0-9595-6051004181c7}</Project>
+      <Project>{275FF668-2CDD-46C0-9595-6051004181C7}</Project>
       <Name>Core.DataBase.WarThunder</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.DataBase\Core.DataBase.csproj">

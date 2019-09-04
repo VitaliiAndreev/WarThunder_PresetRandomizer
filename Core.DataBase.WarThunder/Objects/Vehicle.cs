@@ -78,7 +78,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string Class { get; protected set; }
 
-        /// <summary> Whether this vehicle is hidden. </summary>
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         [Property()] public virtual bool? ShowOnlyWhenBought { get; protected set; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
@@ -205,9 +205,6 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
         public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
 
-        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
-
         #endregion Rank
         #region Repairs
 
@@ -322,6 +319,9 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Association Properties
         #region Non-Persistent Properties
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
         /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
         public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought.HasValue || !(CategoryOfHiddenVehicles is null) && CategoryOfHiddenVehicles.Any();
@@ -477,7 +477,7 @@ namespace Core.DataBase.WarThunder.Objects
 
             #region Battle ratings have to be initialized explicitly because they are absent in JSON data.
 
-            decimal? getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value) : default(decimal?);
+            static decimal? getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value) : default(decimal?);
 
             BattleRating = new VehicleGameModeParameterSet.Decimal.BattleRating(_dataRepository, this, getBattleRating(EconomicRank.Arcade), getBattleRating(EconomicRank.Realistic), getBattleRating(EconomicRank.Simulator), null);
 
@@ -520,7 +520,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
         private void InitializeVisualBattleRatings()
         {
-            string formatBattleRating(decimal? nullableValue) => nullableValue.HasValue ? nullableValue.Value.ToString(_battleRatingFormat) : _unknownBattleRating;
+            static string formatBattleRating(decimal? nullableValue) => nullableValue.HasValue ? nullableValue.Value.ToString(_battleRatingFormat) : _unknownBattleRating;
 
             if (BattleRating is null)
                 return;

@@ -43,7 +43,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string Class { get; }
 
-        /// <summary> Whether this vehicle is hidden. </summary>
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         bool? ShowOnlyWhenBought { get; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
@@ -167,9 +167,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
 
-        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
-
         #endregion Rank
         #region Repairs
 
@@ -273,6 +270,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #endregion Association Properties
         #region Non-Persistent Properties
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
 
         /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
         bool NotResearchable { get; }
