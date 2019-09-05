@@ -342,18 +342,18 @@ namespace Core.Json.Helpers
 
             foreach (var jsonProperty in researchTreeColumnAsJsonObject.Properties())
             {
+                var researchTreeCellAsJsonObject = StandardizeAndDeserializeObject(jsonProperty.Value.ToString());
                 var cell = default(ResearchTreeCell);
 
-                if (jsonProperty.Value is JObject researchTreeCellAsJsonObject)
-                {
-                    if (ResearchTreeCellIsFolder(researchTreeCellAsJsonObject))
-                        cell = DeserializeResearchTreeCellFolder(researchTreeCellAsJsonObject, columnIndex);
-                    else
-                        cell = new ResearchTreeCellVehicle(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
+                jsonProperty.Value = researchTreeCellAsJsonObject;
 
-                    cell.SetRowWithinRank(cells);
-                    cells.Add(cell);
-                }
+                if (ResearchTreeCellIsFolder(researchTreeCellAsJsonObject))
+                    cell = DeserializeResearchTreeCellFolder(researchTreeCellAsJsonObject, columnIndex);
+                else
+                    cell = new ResearchTreeCellVehicle(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
+
+                cell.SetRowWithinRank(cells);
+                cells.Add(cell);
             }
             return cells;
         }
