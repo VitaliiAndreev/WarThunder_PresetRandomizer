@@ -32,6 +32,9 @@ namespace Core.Json.Helpers
         /// <summary> The name of the JSON property containing a vehicle folder's image Gaijin ID. </summary>
         private const string _folderImageJsonPropertyName = "image";
 
+        /// <summary> The name of the JSON property containing the name of the vehicle required to unlock the current one. </summary>
+        private const string _requiredVehiclePropertyName = "reqAir";
+
         #endregion Constants
         #region Constructors
 
@@ -378,6 +381,24 @@ namespace Core.Json.Helpers
             return folder;
         }
 
+        /// <summary> Patches the required vehicle name property value to avoid multiple empty requirements in cases such as (H8K3). </summary>
+        /// <param name="researchTreeVehicleAsJsonObject"> The JSON object to patch. </param>
+        private void PatchRequiredVehicleTokens(JObject researchTreeVehicleAsJsonObject)
+        {
+            var requiredVehicleNameTokens = researchTreeVehicleAsJsonObject[_requiredVehiclePropertyName] is JArray requiredVehicles
+                ? requiredVehicles.Where(jsonToken => jsonToken is JValue jsonValue && jsonValue.Value is string requiredVehicleName && !string.IsNullOrWhiteSpace(requiredVehicleName))
+                : new List<JToken> { researchTreeVehicleAsJsonObject[_requiredVehiclePropertyName] };
+
+            if (requiredVehicleNameTokens.IsEmpty())
+                researchTreeVehicleAsJsonObject[_requiredVehiclePropertyName] = new JValue(string.Empty);
+
+            else if (requiredVehicleNameTokens.HasSingle())
+                researchTreeVehicleAsJsonObject[_requiredVehiclePropertyName] = requiredVehicleNameTokens.First() as JValue;
+
+            else if (requiredVehicleNameTokens.HasSeveral())
+                throw new NotSupportedException(EJsonWarThunderLogMessage.SeveralRequiredVehicleIsNotSupportedYet);
+        }
+
         /// <summary> Deserializes the given JSON property into an instance of a transient object representing an in-game research tree vehicle the way it is stored in JSON files. </summary>
         /// <param name="jsonProperty"> The JSON property to deserialize. </param>
         /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
@@ -386,6 +407,8 @@ namespace Core.Json.Helpers
         {
             if (jsonProperty.Value is JObject researchTreeVehicleAsJsonObject)
             {
+                PatchRequiredVehicleTokens(researchTreeVehicleAsJsonObject);
+
                 var vehicle = DeserializeObject<ResearchTreeVehicleFromJson>(researchTreeVehicleAsJsonObject.ToString());
                 vehicle.GaijinId = jsonProperty.Name;
                 vehicle.CellCoordinatesWithinRank = vehicle.PresetCellCoordinatesWithinRank is List<int> presetCoordinates

@@ -365,6 +365,7 @@
         protected const string _reading = _read + _ing;
         protected const string _recognized = _re + "cognize" + _d;
         protected const string _repository = _re + "pository";
+        protected const string _required = _re + "quire" + _d;
         protected const string _Research = _Re + _search;
         protected const string _research = _re + _search;
         protected const string _returned = _re + "turn" + _ed;
@@ -394,6 +395,7 @@
         protected const string _session = _s + _ess + _ion;
         protected const string _Settings = _S + _ett + _ing + _s;
         protected const string _settings = _s + _ett + _ing + _s;
+        protected const string _Several = _S + "everal";
         protected const string _Showing = _S + _how + _ing;
         protected const string _Shown = _S + _how + _n;
         protected const string _shown = _s + _how + _n;
@@ -417,6 +419,7 @@
         protected const string _subfolders = _s + "ubfolder" + _s;
         protected const string _Successfully = _S + _uccess + _fully;
         protected const string _successfully = _s + _uccess + _fully;
+        protected const string _supported = _s + _up + _port + _ed;
 
         #endregion S
         #region T
