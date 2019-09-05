@@ -182,16 +182,23 @@ namespace Core.Organization.Helpers
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+            var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
 
             LogInfo(EOrganizationLogMessage.GameFilesPrepared);
             LogInfo(EOrganizationLogMessage.InitializingDatabase);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
+            var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
 
             foreach (var vehicle in vehicles)
-                if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var data))
-                    vehicle.DoPostInitalization(data);
+            {
+                if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
+                    vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
+
+                if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
+                    vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
+            }
 
             _dataRepository.PersistNewObjects();
 

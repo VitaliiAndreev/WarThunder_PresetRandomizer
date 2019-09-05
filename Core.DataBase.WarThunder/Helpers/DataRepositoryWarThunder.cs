@@ -20,6 +20,7 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IBranch>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicle>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGameModeParameterSetBase>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleResearchTreeData>());
 
             if (sortedNewObjects.Count() != dataRepository.NewObjects.Count())
                 throw new ArgumentException(EDatabaseLogMessage.NotAllObjectTypesHaveBeenIncludedInSorting.FormatFluently(nameof(dataRepository.NewObjects)));

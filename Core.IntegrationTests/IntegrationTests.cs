@@ -126,8 +126,10 @@ namespace Core.IntegrationTests
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+            var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
 
-            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText);
+            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
+            var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
 
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
@@ -152,6 +154,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
 
                     // general
+                    vehicleCollection.All(vehicle => vehicle.Id != 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.MoveType)).Should().BeFalse();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.Class)).Should().BeFalse();
@@ -183,6 +186,24 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.EconomicRank.Arcade >= 0 && vehicle.EconomicRank.Realistic >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomicRank.Simulator < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.BattleRatingFormatted.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRatingFormatted.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
+
+                    // research tree data
+                    vehicleCollection.Any(vehicle => vehicle.ResearchTreeData != null).Should().BeTrue();
+
+                    var vehiclesWithResearchTreeData = vehicleCollection.Where(vehicle => vehicle.ResearchTreeData is VehicleResearchTreeData);
+                    vehiclesWithResearchTreeData.All(vehicle => string.IsNullOrEmpty(vehicle.ResearchTreeData.GaijinId)).Should().BeFalse();
+                    vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.Vehicle == vehicle).Should().BeTrue();
+                    vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.Rank == vehicle.Rank).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.PresetCellCoordinatesWithinRank is List<int> coordinates && coordinates.Count() == 2).Should().BeTrue();
+                    vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Count() == 2).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.RequiredVehicleGaijinId)).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.FolderIndex.HasValue).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.CategoryOfHiddenVehicles)).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.ShowOnlyWhenBought.HasValue).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsAvailableOn)).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsHiddenOn)).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.HideCondition)).Should().BeTrue();
+                    vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.MarketplaceId.HasValue).Should().BeTrue();
 
                     // repairs
                     vehicleCollection.All(vehicle => vehicle.RepairTimeWithCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
@@ -217,8 +238,13 @@ namespace Core.IntegrationTests
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText);
                 
                 foreach (var vehicle in vehiclesBeforePersistence)
-                    if (additionalVehicleData.FirstOrDefault(item => item.GaijinId == vehicle.GaijinId) is VehicleDeserializedFromJsonUnitTags matchedData)
-                        vehicle.DoPostInitalization(matchedData);
+                {
+                    if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
+                        vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
+
+                    if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
+                        vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
+                }
 
                 assert(vehiclesBeforePersistence);
 

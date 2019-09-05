@@ -17,6 +17,7 @@
         internal const string VehicleRepairCost = _vehicle + "RepairCost";
         internal const string VehicleRepairTimeWithCrew = _vehicle + "RepairTimeWithCrew";
         internal const string VehicleRepairTimeWithoutCrew = _vehicle + "RepairTimeWithoutCrew";
+        internal const string VehicleResearchTreeData = _vehicle + "ResearchTreeData";
         internal const string VehicleRewardMultiplier = _vehicle + "RewardMultiplier";
         internal const string VehicleVisualPremiumRewardMultiplier = _vehicle + "VisualPremiumRewardMultiplier";
         internal const string VehicleVisualRewardMultiplier = _vehicle + "VisualRewardMultiplier";

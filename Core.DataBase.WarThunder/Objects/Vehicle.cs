@@ -205,6 +205,10 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
         public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
 
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle))]
+        public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
+
         #endregion Rank
         #region Repairs
 
@@ -421,6 +425,14 @@ namespace Core.DataBase.WarThunder.Objects
             Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
                 ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
                 ?? new Branch(_dataRepository, branchIdAppended, Nation);
+        }
+
+        /// <summary> Fills properties of the object with values deserialized from JSON data read from "shop.blkx". </summary>
+        /// <param name="deserializedResearchTreeVehicle"> The temporary non-persistent object storing deserialized data. </param>
+        public virtual void InitializeWithDeserializedResearchTreeJson(ResearchTreeVehicleFromJson deserializedResearchTreeVehicle)
+        {
+            ResearchTreeData = new VehicleResearchTreeData(_dataRepository, this);
+            ResearchTreeData.InitializeWithDeserializedJson(deserializedResearchTreeVehicle);
         }
 
         /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>

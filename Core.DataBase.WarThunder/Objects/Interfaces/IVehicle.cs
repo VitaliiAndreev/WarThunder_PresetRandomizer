@@ -167,6 +167,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
 
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleResearchTreeData ResearchTreeData { get; }
+
         #endregion Rank
         #region Repairs
 
@@ -278,6 +281,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         bool NotResearchable { get; }
 
         #endregion Non-Persistent Properties
+
+        /// <summary> Fills properties of the object with values deserialized from JSON data read from "shop.blkx". </summary>
+        /// <param name="deserializedResearchTreeVehicle"> The temporary non-persistent object storing deserialized data. </param>
+        void InitializeWithDeserializedResearchTreeJson(ResearchTreeVehicleFromJson deserializedResearchTreeVehicle);
 
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>

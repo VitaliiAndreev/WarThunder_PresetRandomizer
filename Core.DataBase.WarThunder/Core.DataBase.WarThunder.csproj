@@ -86,6 +86,7 @@
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Objects\Interfaces\IVehicleGameModeParameterSetBase.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\NationDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\Integer\NumberOfSpawns.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\String\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\VehicleGameModeParameterSetBase.cs" />
+    <Compile Include="Objects\VehicleResearchTreeData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
