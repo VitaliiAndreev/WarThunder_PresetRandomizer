@@ -5,6 +5,16 @@ namespace Core.Json.Enumerations.Logger
     /// <summary> Log message strings related to the "<see cref="Json"/>" assembly. </summary>
     public class EJsonLogMessage : ECoreLogMessage
     {
+        #region Extension Methods
+
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: JSON token. </para>
+        /// </summary>
+        public static readonly string JsonTokenDoesntContainJasonValue = $"{_JSON} {_token} (\"{{0}}\") {_doesnt} {_contain} {_JSON} {_value}.";
+        public static readonly string JsonValueCouldNotBeConverted = $"{_JSON} {_value} (\"{{0}}\") {_couldnt} {_be} {_converted} {_to} \"{{1}}\".";
+
+        #endregion Extension Methods
         #region JSON Helper
 
         private static readonly string _jsonString = $"{_JSON} {_string}";

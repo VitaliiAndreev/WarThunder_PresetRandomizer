@@ -141,6 +141,7 @@ namespace Core.IntegrationTests
                     // association
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Branch?.GaijinId)).Should().BeTrue();
+
                     // crew
                     vehicleCollection.All(vehicle => vehicle.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
@@ -149,6 +150,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.CrewCount > 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.MinumumCrewCountToOperate <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
+
                     // general
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.MoveType)).Should().BeFalse();
@@ -159,29 +161,35 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.NumberOfSpawns.Event is null || vehicle.NumberOfSpawns.Event == 3).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.NumberOfSpawns.Arcade <= 0 || vehicle.NumberOfSpawns.Realistic <= 0 || vehicle.NumberOfSpawns.Simulator <= 0).Should().BeFalse();
+
                     // graphical
                     vehicleCollection.Any(vehicle => vehicle.BulletsIconParam < 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.WeaponMask < 0).Should().BeFalse();
+
                     // modifications
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 >= 1).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 >= 1).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BackupSortieCostInGold > 0).Should().BeTrue();
+
                     // performance
                     vehicleCollection.Any(vehicle => vehicle.Speed <= 0m).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.HullBreachRepairSpeed <= 0).Should().BeFalse();
+
                     // rank
                     vehicleCollection.All(vehicle => vehicle.Rank > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomicRank.Arcade >= 0 && vehicle.EconomicRank.Realistic >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomicRank.Simulator < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.BattleRatingFormatted.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRatingFormatted.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
+
                     // repairs
                     vehicleCollection.All(vehicle => vehicle.RepairTimeWithCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.RepairTimeWithoutCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.RepairCost.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0)).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.FreeRepairs < 0).Should().BeFalse();
+
                     // rewards
                     vehicleCollection.All(vehicle => vehicle.BattleTimeAward.Arcade > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BattleTimeAward.Realistic > 0).Should().BeTrue();
@@ -197,6 +205,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.BattleTime.Arcade > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BattleTime.Realistic > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.BattleTime.Simulator >= 0).Should().BeTrue();
+
                     // weapons
                     vehicleCollection.Any(vehicle => vehicle.TurretTraverseSpeeds?.Any(value => value < 0m) ?? false).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.MachineGunReloadTime <= 0m).Should().BeFalse();

@@ -100,10 +100,12 @@
         protected const string _connection = _connect + _ion;
         protected const string _contain = "contain";
         protected const string _container = _contain + _er;
+        protected const string _converted = "convert" + _ed;
         protected const string _Copied = "Copi" + _ed;
         protected const string _copied = "copi" + _ed;
         protected const string _Copying = "Copy" + _ing;
         protected const string _correct = "correct";
+        protected const string _couldnt = "couldn'" + _t;
         protected const string _create = "create";
         protected const string _created = _create + _d;
         protected const string _Creating = "Creat" + _ing;
@@ -333,6 +335,7 @@
         protected const string _per = "per";
         protected const string _persisted = _per + "sist" + _ed;
         protected const string _Persisting = "Persist" + _ing;
+        protected const string _port = "port";
         protected const string _prepared = "prepare" + _d;
         protected const string _Preparing = _Pre + _par + _ing;
         protected const string _Press = _Pre + _s + _s;
@@ -437,6 +440,7 @@
         protected const string _There = _The + _re;
         protected const string _there = _the + _re;
         protected const string _to = _t + "o";
+        protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";
         protected const string _tools = _tool + _s;
         protected const string _tree = _t + "ree";
@@ -462,6 +466,7 @@
         protected const string _Unpacker = _Un + _pack + _er;
         protected const string _Unpacking = _Un + _pack + _ing;
         protected const string _unpacking = _un + _pack + _ing;
+        protected const string _up = "up";
         protected const string _us = "us";
         protected const string _using = _us + _ing;
 
@@ -472,6 +477,7 @@
         protected const string _Value = "Value";
         protected const string _value = "value";
         protected const string _vehicle = "vehicle";
+        protected const string _vehicles = _vehicle + _s;
         protected const string _version = "vers" + _ion;
 
         #endregion V
