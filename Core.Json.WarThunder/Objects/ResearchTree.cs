@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Core.DataBase.WarThunder.Objects.Json;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Core.Json.WarThunder.Objects
@@ -13,6 +14,20 @@ namespace Core.Json.WarThunder.Objects
 
         /// <summary> Research tree branches comprising the tree. </summary>
         public IList<ResearchTreeBranch> Branches { get; }
+
+        /// <summary> All vehicles postioned in the tree. </summary>
+        public IEnumerable<ResearchTreeVehicleFromJson> Vehicles
+        {
+            get
+            {
+                var vehicles = new List<ResearchTreeVehicleFromJson>();
+
+                foreach (var branch in Branches)
+                    vehicles.AddRange(branch.Vehicles);
+
+                return vehicles;
+            }
+        }
 
         #endregion Properties
         #region Constructors
