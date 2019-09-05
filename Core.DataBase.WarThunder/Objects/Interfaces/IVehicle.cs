@@ -281,6 +281,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
-        void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
+        void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
     }
 }

@@ -348,7 +348,9 @@ namespace Core.DataBase.WarThunder.Objects
         public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJsonWpCost instanceDerializedFromJson)
             : this(dataRepository, -1L, instanceDerializedFromJson.GaijinId)
         {
-            InitializeWithDeserializedJson(instanceDerializedFromJson);
+            InitializeGameModeParameterSets();
+            InitializeWithDeserializedVehicleDataJson(instanceDerializedFromJson);
+            InitializeBattleRatings();
         }
 
         /// <summary> Creates a new vehicle. </summary>
@@ -367,6 +369,60 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Constructors
         #region Methods: Initialization
 
+        /// <summary> Initializes game mode parameter sets. </summary>
+        public virtual void InitializeGameModeParameterSets()
+        {
+            AverageAward = new VehicleGameModeParameterSet.Integer.AverageAward(_dataRepository, this);
+            BattleTime = new VehicleGameModeParameterSet.Decimal.BattleTime(_dataRepository, this);
+            BattleTimeAward = new VehicleGameModeParameterSet.Integer.BattleTimeAward(_dataRepository, this);
+            EconomicRank = new VehicleGameModeParameterSet.Integer.EconomicRank(_dataRepository, this);
+            NumberOfSpawns = new VehicleGameModeParameterSet.Integer.NumberOfSpawns(_dataRepository, this);
+            RepairCost = new VehicleGameModeParameterSet.Integer.RepairCost(_dataRepository, this);
+            RepairTimeWithCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew(_dataRepository, this);
+            RepairTimeWithoutCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew(_dataRepository, this);
+            RewardMultiplier = new VehicleGameModeParameterSet.Decimal.RewardMultiplier(_dataRepository, this);
+            VisualPremiumRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier(_dataRepository, this);
+            VisualRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier(_dataRepository, this);
+        }
+
+        /// <summary> Fills properties of the object with values deserialized from JSON data read from "wpcost.blkx". </summary>
+        /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
+        protected virtual void InitializeWithDeserializedVehicleDataJson(VehicleDeserializedFromJsonWpCost deserializedVehicle)
+        {
+            InitializeWithDeserializedJson(deserializedVehicle);
+
+            Nation = _dataRepository.NewObjects.OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
+                ?? _dataRepository.Query<INation>(query => query.Where(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)).FirstOrDefault()
+                ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
+
+            PatchSpawnType(deserializedVehicle);
+            BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
+
+            ConsolidateGameModeParameterPropertiesIntoSets(deserializedVehicle);
+        }
+
+        /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
+        public virtual void InitializeBattleRatings()
+        {
+            static decimal? getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value) : default(decimal?);
+
+            BattleRating = new VehicleGameModeParameterSet.Decimal.BattleRating(_dataRepository, this, getBattleRating(EconomicRank.Arcade), getBattleRating(EconomicRank.Realistic), getBattleRating(EconomicRank.Simulator), null);
+
+            InitializeVisualBattleRatings();
+        }
+
+        /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
+        /// <param name="deserializedVehicleData"></param>
+        public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
+        {
+            // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
+            var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
+
+            Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
+                ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
+                ?? new Branch(_dataRepository, branchIdAppended, Nation);
+        }
+
         /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>
         /// <param name="dataRepository"> A data repository to assign the object to. </param>
         public override void InitializeNonPersistentFields(IDataRepository dataRepository)
@@ -374,6 +430,39 @@ namespace Core.DataBase.WarThunder.Objects
             base.InitializeNonPersistentFields(dataRepository);
 
             InitializeVisualBattleRatings();
+        }
+
+        #region Methods: Initialization Helpers
+
+        /// <summary> Clarifies <see cref="SpawnType"/> values. </summary>
+        /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
+        private void PatchSpawnType(VehicleDeserializedFromJsonWpCost deserializedVehicle)
+        {
+            if (deserializedVehicle.SpawnType == "ah")
+                SpawnType = "walker (ah)";
+        }
+
+        /// <summary> Consolidates values of JSON properties for <see cref="EGameMode"/> parameters into sets defined in the persistent class. </summary>
+        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
+        private void ConsolidateGameModeParameterPropertiesIntoSets(VehicleDeserializedFromJsonWpCost instanceDeserializedFromJson)
+        {
+            var parameterSets = new Dictionary<string, VehicleGameModeParameterSetBase>
+            {
+                { nameof(AverageAward), AverageAward },
+                { nameof(BattleTime), BattleTime },
+                { nameof(BattleTimeAward), BattleTimeAward },
+                { nameof(EconomicRank), EconomicRank },
+                { nameof(NumberOfSpawns), NumberOfSpawns },
+                { nameof(RepairCost), RepairCost },
+                { nameof(RepairTimeWithCrew), RepairTimeWithCrew },
+                { nameof(RepairTimeWithoutCrew), RepairTimeWithoutCrew },
+                { nameof(RewardMultiplier), RewardMultiplier },
+                { nameof(VisualPremiumRewardMultiplier), VisualPremiumRewardMultiplier },
+                { nameof(VisualRewardMultiplier), VisualRewardMultiplier },
+            };
+
+            foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // With a dictionary of game mode parameter set properties now there's only need to look through the JSON mapping class once.
+                InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty, parameterSets);
         }
 
         /// <summary> Tries to insert the value of the specified jSON property into the relevant game mode parameter set. </summary>
@@ -418,105 +507,6 @@ namespace Core.DataBase.WarThunder.Objects
             };
         }
 
-        /// <summary> Consolidates values of JSON properties for <see cref="EGameMode"/> parameters into sets defined in the persistent class. </summary>
-        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        private void ConsolidateGameModeParameterPropertiesIntoSets(IDeserializedFromJson instanceDeserializedFromJson)
-        {
-            var parameterSets = new Dictionary<string, VehicleGameModeParameterSetBase>
-            {
-                { nameof(AverageAward), AverageAward },
-                { nameof(BattleTime), BattleTime },
-                { nameof(BattleTimeAward), BattleTimeAward },
-                { nameof(EconomicRank), EconomicRank },
-                { nameof(NumberOfSpawns), NumberOfSpawns },
-                { nameof(RepairCost), RepairCost },
-                { nameof(RepairTimeWithCrew), RepairTimeWithCrew },
-                { nameof(RepairTimeWithoutCrew), RepairTimeWithoutCrew },
-                { nameof(RewardMultiplier), RewardMultiplier },
-                { nameof(VisualPremiumRewardMultiplier), VisualPremiumRewardMultiplier },
-                { nameof(VisualRewardMultiplier), VisualRewardMultiplier },
-            };
-
-            foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // With a dictionary of game mode parameter set properties now there's only need to look through the JSON mapping class once.
-                InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty, parameterSets);
-        }
-
-        /// <summary> Fills properties of the object with values deserialized from JSON data. </summary>
-        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        protected override void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
-        {
-            base.InitializeWithDeserializedJson(instanceDeserializedFromJson);
-
-            if (instanceDeserializedFromJson is VehicleDeserializedFromJsonWpCost deserializedVehicle)
-            {
-                Nation = _dataRepository.NewObjects.OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
-                    ?? _dataRepository.Query<INation>(query => query.Where(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)).FirstOrDefault()
-                    ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
-
-                PatchSpawnType(deserializedVehicle);
-                BackupSortieCostInGold = deserializedVehicle.BackupSortie.PurchaseCostInGold;
-            }
-
-            #region Instantialize all game mode parameter set properties.
-
-            AverageAward = new VehicleGameModeParameterSet.Integer.AverageAward(_dataRepository, this);
-            BattleTime = new VehicleGameModeParameterSet.Decimal.BattleTime(_dataRepository, this);
-            BattleTimeAward = new VehicleGameModeParameterSet.Integer.BattleTimeAward(_dataRepository, this);
-            EconomicRank = new VehicleGameModeParameterSet.Integer.EconomicRank(_dataRepository, this);
-            NumberOfSpawns = new VehicleGameModeParameterSet.Integer.NumberOfSpawns(_dataRepository, this);
-            RepairCost = new VehicleGameModeParameterSet.Integer.RepairCost(_dataRepository, this);
-            RepairTimeWithCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew(_dataRepository, this);
-            RepairTimeWithoutCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew(_dataRepository, this);
-            RewardMultiplier = new VehicleGameModeParameterSet.Decimal.RewardMultiplier(_dataRepository, this);
-            VisualPremiumRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier(_dataRepository, this);
-            VisualRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier(_dataRepository, this);
-
-            #endregion All game mode parameter set properties have been instantialized.
-
-            ConsolidateGameModeParameterPropertiesIntoSets(instanceDeserializedFromJson);
-
-            #region Battle ratings have to be initialized explicitly because they are absent in JSON data.
-
-            static decimal? getBattleRating(int? economicRank) => economicRank.HasValue ? Calculator.GetBattleRating(economicRank.Value) : default(decimal?);
-
-            BattleRating = new VehicleGameModeParameterSet.Decimal.BattleRating(_dataRepository, this, getBattleRating(EconomicRank.Arcade), getBattleRating(EconomicRank.Realistic), getBattleRating(EconomicRank.Simulator), null);
-
-            InitializeVisualBattleRatings();
-
-            #endregion Battle ratings have been initialized.
-        }
-
-        /// <summary>
-        /// Gets an existing branch or creates a new one with the specified <see cref="IPersistentObjectWithIdAndGaijinId.GaijinId"/>.
-        /// <para>
-        /// First not-yet-persisted objects are checked for the given branch, after that the database is queried, and only then a new branch is created.
-        /// </para>
-        /// </summary>
-        /// <param name="branchGaijinId"> The <see cref="IPersistentObjectWithIdAndGaijinId.GaijinId"/> of the branch to look for or create. </param>
-        /// <returns></returns>
-        private IBranch GetOrCreateBranch(string branchGaijinId)
-        {
-            var newBranch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchGaijinId);
-
-            if (newBranch is null)
-                newBranch = _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchGaijinId)).FirstOrDefault();
-
-            if (newBranch is null)
-                newBranch = new Branch(_dataRepository, branchGaijinId, Nation);
-
-            return newBranch;
-        }
-
-        /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
-        /// <param name="deserializedVehicleData"></param>
-        public virtual void DoPostInitalization(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
-        {
-            // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
-            var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
-
-            Branch = GetOrCreateBranch(branchIdAppended);
-        }
-
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
         private void InitializeVisualBattleRatings()
         {
@@ -528,15 +518,7 @@ namespace Core.DataBase.WarThunder.Objects
             BattleRatingFormatted = new VehicleGameModeParameterSet.String.BattleRating(formatBattleRating(BattleRating.Arcade), formatBattleRating(BattleRating.Realistic), formatBattleRating(BattleRating.Simulator), _unknownBattleRating);
         }
 
-        /// <summary> Clarifies <see cref="SpawnType"/> values. </summary>
-        /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
-        private void PatchSpawnType(VehicleDeserializedFromJsonWpCost deserializedVehicle)
-        {
-            if (deserializedVehicle.SpawnType == "ah")
-                SpawnType = "walker (ah)";
-            else if (deserializedVehicle.SpawnType == null)
-                SpawnType = "default";
-        }
+        #endregion Methods: Initialization Helpers
 
         #endregion Methods: Initialization
 

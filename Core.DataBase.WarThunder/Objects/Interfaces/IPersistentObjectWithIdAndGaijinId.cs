@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -7,5 +8,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     {
         /// <summary> The object's Gaijin ID. </summary>
         string GaijinId { get; }
+
+        /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
+        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
+        void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson);
     }
 }

@@ -55,15 +55,15 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        protected virtual void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
+        public virtual void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
         {
             var properties = GetType().GetProperties().ToDictionary(property => property.Name);
             var jsonProperties = instanceDeserializedFromJson.GetType().GetProperties().ToDictionary(property => property.Name);
 
             foreach (var jsonProperty in jsonProperties)
             {
-                if (properties.ContainsKey(jsonProperty.Key))
-                    properties[jsonProperty.Key].SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
+                if (properties.TryGetValue(jsonProperty.Key, out var property))
+                    property.SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
             }
         }
     }
