@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Core.Extensions;
+using Core.Json.Enumerations.Logger;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace Core.Json.Extensions
@@ -24,6 +26,21 @@ namespace Core.Json.Extensions
             }
 
             return jsonArray;
+        }
+
+        /// <summary> Extracts a value of the specified type from the given JSON token. </summary>
+        /// <typeparam name="T"> The type of the value to extract. </typeparam>
+        /// <param name="jsonToken"> The token to extract a value from. </param>
+        /// <returns></returns>
+        public static T GetAsValueOf<T>(this JToken jsonToken)
+        {
+            if (!(jsonToken is JValue jsonValue))
+                throw new ArgumentException(EJsonLogMessage.JsonTokenDoesntContainJasonValue.FormatFluently(jsonToken.ToString()));
+
+            if (!(jsonValue is T value))
+                throw new ArgumentException(EJsonLogMessage.JsonValueCouldNotBeConverted.FormatFluently(jsonValue.ToString(), typeof(T).Name));
+
+            return value;
         }
     }
 }
