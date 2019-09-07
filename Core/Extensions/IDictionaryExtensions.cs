@@ -25,7 +25,7 @@ namespace Core.Extensions
         /// <param name="sourceDictionary"> A source dictionary. </param>
         /// <param name="key"> The key under which to add. </param>
         /// <param name="value"> The value to add. </param>
-        public static void AddSafely<T, U>(this IDictionary<T, U> sourceDictionary, T key, U value)
+        private static void AddSafely<T, U>(this IDictionary<T, U> sourceDictionary, T key, U value)
         {
             if (sourceDictionary.ContainsKey(key))
                 sourceDictionary[key] = value;
@@ -39,7 +39,7 @@ namespace Core.Extensions
         /// <param name="sourceDictionary"> A source dictionary. </param>
         /// <param name="key"> The key under which to add. </param>
         /// <param name="value"> The value to add. </param>
-        public static void TryAdding<T, U>(this IDictionary sourceDictionary, T key, U value)
+        public static void AddSafely<T, U>(this IDictionary sourceDictionary, T key, U value)
         {
             if (sourceDictionary is IDictionary<T, U> genericDictionary)
                 genericDictionary.AddSafely(key, value);
