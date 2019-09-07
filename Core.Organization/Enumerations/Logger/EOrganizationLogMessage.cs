@@ -1,4 +1,5 @@
-﻿using Core.Json.WarThunder.Enumerations.Logger;
+﻿using Core.Extensions;
+using Core.Json.WarThunder.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
 {
@@ -28,5 +29,8 @@ namespace Core.Organization.Enumerations.Logger
 
         public static readonly string CachingObjects = $"{_Caching} {_objects}.";
         public static readonly string CachingComplete = $"{_Caching} {_complete}.";
+
+        public static readonly string InitializingResearchTrees = Initializing.FormatFluently($"{_research} {_trees}");
+        public static readonly string ResearchTreesInitialized = ObjectInitialized.FormatFluently($"{_Research} {_trees}");
     }
 }

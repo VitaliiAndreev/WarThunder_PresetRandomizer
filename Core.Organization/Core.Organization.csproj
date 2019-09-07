@@ -52,6 +52,10 @@
     <Compile Include="Helpers\Interfaces\IVehicleSelector.cs" />
     <Compile Include="Helpers\Manager.cs" />
     <Compile Include="Helpers\VehicleSelector.cs" />
+    <Compile Include="Objects\ResearchTree.cs" />
+    <Compile Include="Objects\ResearchTreeBranch.cs" />
+    <Compile Include="Objects\ResearchTreeCoordinatesWithinRank.cs" />
+    <Compile Include="Objects\ResearchTreeRank.cs" />
     <Compile Include="Objects\SearchSpecifications\Specification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

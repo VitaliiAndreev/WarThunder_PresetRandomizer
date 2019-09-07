@@ -444,6 +444,7 @@
         protected const string _tool = _to + "ol";
         protected const string _tools = _tool + _s;
         protected const string _tree = _t + "ree";
+        protected const string _trees = _tree + _s;
         protected const string _tribute = _t + "ribute";
         protected const string _Try = "Try";
         protected const string _try = _t + "ry";

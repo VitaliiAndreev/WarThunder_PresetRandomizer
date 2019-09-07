@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -13,6 +14,7 @@ using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Enumerations;
 using Core.Organization.Enumerations.Logger;
 using Core.Organization.Helpers.Interfaces;
+using Core.Organization.Objects;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
@@ -64,6 +66,12 @@ namespace Core.Organization.Helpers
         protected readonly List<IPersistentObject> _cache;
 
         #endregion Fields
+        #region Properties
+
+        /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheVehicles"/>. </summary>
+        public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
@@ -94,6 +102,8 @@ namespace Core.Organization.Helpers
             _settingsManager = settingsManager;
             LoadSettings();
 
+            ResearchTrees = new Dictionary<ENation, ResearchTree>();
+
             LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.Manager));
         }
 
@@ -103,6 +113,30 @@ namespace Core.Organization.Helpers
         /// <summary> Reads and stores the version of the game client. </summary>
         public void InitializeGameClientVersion() =>
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
+
+        /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheVehicles"/>. </summary>
+        private void InitializeResearchTree()
+        {
+            LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
+
+            foreach (var vehicle in _cache.OfType<IVehicle>())
+            {
+                var nation = vehicle.Nation.GaijinId.ParseEnumeration<ENation>();
+                var branch = vehicle.Branch.GaijinId.ParseEnumeration<EBranch>();
+                var rank = vehicle.Rank.CastTo<ERank>();
+                var columnNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.First();
+                var rowNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last();
+
+                ResearchTrees
+                    .GetWithInstantiation(nation)
+                    .GetWithInstantiation(branch)
+                    .GetWithInstantiation(rank)
+                    .Add(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber), vehicle)
+                ;
+            }
+
+            LogInfo(EOrganizationLogMessage.ResearchTreesInitialized);
+        }
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public void CacheVehicles()
@@ -144,6 +178,8 @@ namespace Core.Organization.Helpers
             _cache.AddRange(_dataRepository.Query<IVehicle>());
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
+
+            InitializeResearchTree();
         }
 
         private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
