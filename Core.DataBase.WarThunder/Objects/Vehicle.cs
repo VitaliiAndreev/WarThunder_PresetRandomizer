@@ -545,6 +545,20 @@ namespace Core.DataBase.WarThunder.Objects
             var nestedObjects = new List<IPersistentObject>()
             {
                 Nation,
+                Branch,
+                EconomicRank,
+                BattleRating,
+                ResearchTreeData,
+                RepairTimeWithCrew,
+                RepairTimeWithoutCrew,
+                RepairCost,
+                NumberOfSpawns,
+                BattleTimeAward,
+                AverageAward,
+                RewardMultiplier,
+                VisualRewardMultiplier,
+                VisualPremiumRewardMultiplier,
+                BattleTime
             };
 
             return nestedObjects;
