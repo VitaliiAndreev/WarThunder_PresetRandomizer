@@ -125,13 +125,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string SpawnType { get; protected set; }
 
-        /// <summary>
-        /// The number of times this vehicle can sortie per match.
-        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
-        /// </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.NumberOfSpawns), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.NumberOfSpawns.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Integer.NumberOfSpawns NumberOfSpawns { get; protected set; }
-
         /// <summary> Whether this vehicle can spawn as a kill streak aircraft in Arcade Battles. </summary>
         [Property()] public virtual bool? CanSpawnAsKillStreak { get; protected set; }
 
@@ -198,41 +191,8 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle's research rank. </summary>
         [Property()] public virtual int Rank { get; protected set; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
-
-        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
-
-        /// <summary> A set of information pertaining to the research tree. </summary>
-        [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle))]
-        public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
-
         #endregion Rank
         #region Repairs
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew RepairTimeWithCrew { get; protected set; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew RepairTimeWithoutCrew { get; protected set; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.RepairCost), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.RepairCost.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Integer.RepairCost RepairCost { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
         [Property()] public virtual int? FreeRepairs { get; protected set; }
@@ -241,34 +201,10 @@ namespace Core.DataBase.WarThunder.Objects
         #region Rewards
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.BattleTimeAward), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.BattleTimeAward.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Integer.BattleTimeAward BattleTimeAward { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.AverageAward), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.AverageAward.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Integer.AverageAward AverageAward { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RewardMultiplier.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier VisualPremiumRewardMultiplier { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual decimal ResearchRewardMultiplier { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual decimal GroundKillRewardMultiplier { get; protected set; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleTime), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleTime.Vehicle))]
-        public virtual VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; protected set; }
 
         #endregion Rewards
         #region Weapons
@@ -322,6 +258,70 @@ namespace Core.DataBase.WarThunder.Objects
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), Lazy = Laziness.False, NotNull = true)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle))]
+        public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
+
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew RepairTimeWithCrew { get; protected set; }
+
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew RepairTimeWithoutCrew { get; protected set; }
+
+        /// <summary>
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.RepairCost), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.RepairCost.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Integer.RepairCost RepairCost { get; protected set; }
+
+        /// <summary>
+        /// The number of times this vehicle can sortie per match.
+        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
+        /// </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.NumberOfSpawns), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.NumberOfSpawns.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Integer.NumberOfSpawns NumberOfSpawns { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.BattleTimeAward), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.BattleTimeAward.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Integer.BattleTimeAward BattleTimeAward { get; protected set; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.AverageAward), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.AverageAward.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Integer.AverageAward AverageAward { get; protected set; }
+        
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RewardMultiplier.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; protected set; }
+        
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; protected set; }
+        
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier VisualPremiumRewardMultiplier { get; protected set; }
+        
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleTime), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleTime.Vehicle))]
+        public virtual VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; protected set; }
+        
         #endregion Association Properties
         #region Non-Persistent Properties
 

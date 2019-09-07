@@ -90,12 +90,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string SpawnType { get; }
 
-        /// <summary>
-        /// The number of times this vehicle can sortie per match.
-        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
-        /// </summary>
-        VehicleGameModeParameterSet.Integer.NumberOfSpawns NumberOfSpawns { get; }
-
         /// <summary> Whether this vehicle can spawn as a kill streak aircraft in Arcade Battles. </summary>
         bool? CanSpawnAsKillStreak { get; }
 
@@ -162,35 +156,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's research rank. </summary>
         int Rank { get; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
-        VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }
-
-        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
-
-        /// <summary> A set of information pertaining to the research tree. </summary>
-        VehicleResearchTreeData ResearchTreeData { get; }
-
         #endregion Rank
         #region Repairs
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew RepairTimeWithCrew { get; }
-
-        /// <summary>
-        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew RepairTimeWithoutCrew { get; }
-
-        /// <summary>
-        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
-        /// Reserve vehicles don't need repairs.
-        /// </summary>
-        VehicleGameModeParameterSet.Integer.RepairCost RepairCost { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY, ALL PREMIUM (NON-GIFT) VEHICLES HAVE IT] </summary>
         int? FreeRepairs { get; }
@@ -199,28 +166,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region Rewards
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Integer.BattleTimeAward BattleTimeAward { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Integer.AverageAward AverageAward { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier VisualPremiumRewardMultiplier { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal ResearchRewardMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal GroundKillRewardMultiplier { get; }
-
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; }
 
         #endregion Rewards
         #region Weapons
@@ -271,6 +220,57 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> The vehicle's branch. </summary>
         IBranch Branch { get; }
+
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
+        VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleResearchTreeData ResearchTreeData { get; }
+
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while being in the currently selected preset.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew RepairTimeWithCrew { get; }
+
+        /// <summary>
+        /// The full time needed for the vehicle to be repaired for free while not being in the currently selected preset.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew RepairTimeWithoutCrew { get; }
+
+        /// <summary>
+        /// The full Silver Lion cost for repairing or auto-repairing the vehicle.
+        /// Reserve vehicles don't need repairs.
+        /// </summary>
+        VehicleGameModeParameterSet.Integer.RepairCost RepairCost { get; }
+
+        /// <summary>
+        /// The number of times this vehicle can sortie per match.
+        /// This property is necessary for branches that don't have more than one reserve / starter vehicle, like helicopters and navy.
+        /// </summary>
+        VehicleGameModeParameterSet.Integer.NumberOfSpawns NumberOfSpawns { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Integer.BattleTimeAward BattleTimeAward { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Integer.AverageAward AverageAward { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier VisualPremiumRewardMultiplier { get; }
+
+        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; }
 
         #endregion Association Properties
         #region Non-Persistent Properties
