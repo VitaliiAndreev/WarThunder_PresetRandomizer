@@ -1,9 +1,11 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.Extensions;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
 
@@ -39,6 +41,12 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();
 
         #endregion Association Properties
+        #region Non-Persistent Properties
+
+        /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="ENation"/>. </summary>
+        public ENation AsEnumerationItem => GaijinId.ParseEnumeration<ENation>();
+
+        #endregion Non-Persistent Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
