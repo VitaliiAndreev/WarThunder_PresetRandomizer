@@ -194,6 +194,7 @@
         /// <para> 1: object. </para>
         /// </summary>
         public static readonly string Initializing = $"{_Initializing} {{0}}.";
+        /// <summary> For string interpolation see <see cref="ObjectInitialized"/>.</summary>
         public static readonly string Initialized = $"{_Initialized}.";
         /// <summary>
         /// A message with formatting placeholders.
