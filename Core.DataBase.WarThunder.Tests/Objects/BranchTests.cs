@@ -16,7 +16,18 @@ namespace Core.DataBase.WarThunder.Tests.Objects
     [TestClass]
     public class BranchTests
     {
+        private readonly IEnumerable<string> _ignoredPropertyNames;
+
         #region Internal Methods
+
+        public BranchTests()
+        {
+            _ignoredPropertyNames = new List<string>
+            {
+                nameof(INation.AsEnumerationItem),
+                nameof(IVehicle.RankAsEnumerationItem),
+            };
+        }
 
         public override string ToString() => nameof(NationTests);
 
@@ -51,7 +62,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var branch = query.First();
 
                 // assert
-                branch.IsEquivalentTo(bycicleCorps, 2);
+                branch.IsEquivalentTo(bycicleCorps, 2, _ignoredPropertyNames).Should().BeTrue();
             }
         }
 
@@ -67,7 +78,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { bycicleCorps };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorps, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorps, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -84,7 +95,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { bycicleCorps, bycicleCorpsClone };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsClone, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsClone, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -103,7 +114,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             estonia.Branches = new List<IBranch> { bycicleCorpsCloneFlawed };
 
             // act
-            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsCloneFlawed, 2);
+            var isEquivalent = bycicleCorps.IsEquivalentTo(bycicleCorpsCloneFlawed, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeFalse();

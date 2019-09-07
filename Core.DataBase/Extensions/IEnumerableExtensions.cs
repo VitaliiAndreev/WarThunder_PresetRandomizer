@@ -9,12 +9,12 @@ namespace Core.DataBase.Extensions
     {
         #region Methods: Equivalence
 
-        public static bool IsEquivalentTo(this IEnumerable<IPersistentObject> sourceCollection, IEnumerable<IPersistentObject> comparedCollection, int recursionLevel = 0)
+        public static bool IsEquivalentTo(this IEnumerable<IPersistentObject> sourceCollection, IEnumerable<IPersistentObject> comparedCollection, int recursionLevel = 0, IEnumerable<string> ignoredPropertyNames = null)
         {
             if (sourceCollection.Count() == comparedCollection.Count())
             {
                 return sourceCollection
-                    .Zip(comparedCollection, (source, target) => source.IsEquivalentTo(target, recursionLevel - 1))
+                    .Zip(comparedCollection, (source, target) => source.IsEquivalentTo(target, recursionLevel - 1, ignoredPropertyNames))
                     .All(isEquivalent => isEquivalent)
                 ;
             }

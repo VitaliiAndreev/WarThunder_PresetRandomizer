@@ -96,19 +96,19 @@ namespace Core.Organization.Tests.Helpers
             // arrange
             var m8a1 = new Mock<IVehicle>();
             m8a1.Setup(vehicle => vehicle.BattleRating.Arcade).Returns(new decimal?(2.7m));
-            m8a1.Setup(vehicle => vehicle.IsEquivalentTo(m8a1.Object, It.IsAny<int>())).Returns(true);
+            m8a1.Setup(vehicle => vehicle.IsEquivalentTo(m8a1.Object, It.IsAny<int>(), It.IsAny<IEnumerable<string>>())).Returns(true);
 
             var grant = new Mock<IVehicle>();
             grant.Setup(vehicle => vehicle.BattleRating.Arcade).Returns(new decimal?(2.7m));
-            grant.Setup(vehicle => vehicle.IsEquivalentTo(grant.Object, It.IsAny<int>())).Returns(true);
+            grant.Setup(vehicle => vehicle.IsEquivalentTo(grant.Object, It.IsAny<int>(), It.IsAny<IEnumerable<string>>())).Returns(true);
 
             var m5a1 = new Mock<IVehicle>();
             m5a1.Setup(vehicle => vehicle.BattleRating.Arcade).Returns(new decimal?(2.3m));
-            m5a1.Setup(vehicle => vehicle.IsEquivalentTo(m5a1.Object, It.IsAny<int>())).Returns(true);
+            m5a1.Setup(vehicle => vehicle.IsEquivalentTo(m5a1.Object, It.IsAny<int>(), It.IsAny<IEnumerable<string>>())).Returns(true);
 
             var m5a1premium = new Mock<IVehicle>();
             m5a1premium.Setup(vehicle => vehicle.BattleRating.Arcade).Returns(new decimal?(2.3m));
-            m5a1premium.Setup(vehicle => vehicle.IsEquivalentTo(m5a1premium.Object, It.IsAny<int>())).Returns(true);
+            m5a1premium.Setup(vehicle => vehicle.IsEquivalentTo(m5a1premium.Object, It.IsAny<int>(), It.IsAny<IEnumerable<string>>())).Returns(true);
 
             var vehicles = new Dictionary<decimal, IList<IVehicle>>
             {

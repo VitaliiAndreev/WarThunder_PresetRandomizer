@@ -29,6 +29,8 @@ namespace Core.IntegrationTests
     [TestClass]
     public class IntegrationTests
     {
+        private readonly IEnumerable<string> _ignoredPropertyNames;
+
         private IFileManager _fileManager;
         private IFileReader _fileReader;
         private IUnpacker _unpacker;
@@ -37,6 +39,15 @@ namespace Core.IntegrationTests
         private string _defaultTempDirectory;
 
         #region Internal Methods
+
+        public IntegrationTests()
+        {
+            _ignoredPropertyNames = new List<string>
+            {
+                nameof(INation.AsEnumerationItem),
+                nameof(IVehicle.RankAsEnumerationItem),
+            };
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -114,7 +125,7 @@ namespace Core.IntegrationTests
 
                 // assert
                 assert(nationsAfterPersistence);
-                nationsAfterPersistence.IsEquivalentTo(nationsBeforePersistence, 1).Should().BeTrue();
+                nationsAfterPersistence.IsEquivalentTo(nationsBeforePersistence, 1, _ignoredPropertyNames).Should().BeTrue();
             }
         }
 
@@ -253,7 +264,7 @@ namespace Core.IntegrationTests
 
                 // assert
                 assert(vehiclesAfterPersistence);
-                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence, 1).Should().BeTrue();
+                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence, 1, _ignoredPropertyNames).Should().BeTrue();
             }
         }
     }

@@ -134,8 +134,9 @@ namespace Core.DataBase.Objects
         /// <para>Set to zero to disable recursion. It also prevents the method from cheking <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence.</para>
         /// <para>Set to one to check <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence using the same recursion rules as here.</para>
         /// </param>
+        /// <param name="ignoredPropertyNames"> Property names ignored during comparison. </param>
         /// <returns></returns>
-        private bool IsEquivalentTo(object thisValue, object comparedValue, int recursionLevel)
+        private bool IsEquivalentTo(object thisValue, object comparedValue, int recursionLevel, IEnumerable<string> ignoredPropertyNames)
         {
             if (thisValue is null || comparedValue is null)
                 return thisValue == comparedValue;
@@ -147,12 +148,12 @@ namespace Core.DataBase.Objects
 
             if (thisValue is IPersistentObject persistentMemberValue && comparedValue is IPersistentObject comparedPersistentMemberValue && includeNestedObjects)
             {
-                if (!persistentMemberValue.IsEquivalentTo(comparedPersistentMemberValue, recursionLevel - 1))
+                if (!persistentMemberValue.IsEquivalentTo(comparedPersistentMemberValue, recursionLevel - 1, ignoredPropertyNames))
                     return false;
             }
             else if (thisValue is IEnumerable<IPersistentObject> persistentCollectionValue && comparedValue is IEnumerable<IPersistentObject> comparedPersistentCollectionValue && includeNestedObjects)
             {
-                if (!persistentCollectionValue.IsEquivalentTo(comparedPersistentCollectionValue, recursionLevel - 1))
+                if (!persistentCollectionValue.IsEquivalentTo(comparedPersistentCollectionValue, recursionLevel - 1, ignoredPropertyNames))
                     return false;
             }
             else if (thisValue is IEnumerable<object> collection && comparedValue is IEnumerable<object> comparedCollection)
@@ -180,8 +181,9 @@ namespace Core.DataBase.Objects
         /// <para>Set to zero to disable recursion. It also prevents the method from cheking <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence.</para>
         /// <para>Set to one to check <see cref="IPersistentObject"/> members and their <see cref="IEnumerable{T}"/> collections for equivalence using the same recursion rules as here.</para>
         /// </param>
+        /// <param name="ignoredPropertyNames"> Property names ignored during comparison. </param>
         /// <returns></returns>
-        public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, int recursionLevel = 0)
+        public virtual bool IsEquivalentTo(IPersistentObject comparedPersistentObject, int recursionLevel = 0, IEnumerable<string> ignoredPropertyNames = null)
         {
             var includeNestedObjects = recursionLevel.IsPositive();
 
@@ -195,10 +197,13 @@ namespace Core.DataBase.Objects
 
             foreach (var property in GetType().GetProperties())
             {
+                if (ignoredPropertyNames is IEnumerable<string> && property.Name.IsIn(ignoredPropertyNames))
+                    continue;
+
                 if (comparedPersistentObject.GetType().GetProperties().FirstOrDefault(comparedProperty => comparedProperty.Name == property.Name) is null)
                     continue;
 
-                if (!IsEquivalentTo(property.GetValue(this), property.GetValue(comparedPersistentObject), recursionLevel - 1))
+                if (!IsEquivalentTo(property.GetValue(this), property.GetValue(comparedPersistentObject), recursionLevel - 1, ignoredPropertyNames))
                     return false;
             }
             return true;

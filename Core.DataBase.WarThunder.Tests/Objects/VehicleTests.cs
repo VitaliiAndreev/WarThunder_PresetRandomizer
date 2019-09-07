@@ -6,6 +6,7 @@ using Core.Enumerations.Logger;
 using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -15,7 +16,18 @@ namespace Core.DataBase.WarThunder.Tests.Objects
     [TestClass]
     public class VehicleTests
     {
+        private readonly IEnumerable<string> _ignoredPropertyNames;
+
         #region Internal Methods
+
+        public VehicleTests()
+        {
+            _ignoredPropertyNames = new List<string>
+            {
+                nameof(INation.AsEnumerationItem),
+                nameof(IVehicle.RankAsEnumerationItem),
+            };
+        }
 
         public override string ToString() => nameof(NationTests);
 
@@ -55,7 +67,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var vehicle = query.First();
 
                 // assert
-                vehicle.IsEquivalentTo(wingedBicycle, 2);
+                vehicle.IsEquivalentTo(wingedBicycle, 2, _ignoredPropertyNames).Should().BeTrue();
             }
         }
 
@@ -69,7 +81,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var wingedBicycle = new Vehicle(Presets.MockDataRepository.Object, "Winged Bycicle");
 
             // act
-            var isEquivalent = wingedBicycle.IsEquivalentTo(wingedBicycle, 2);
+            var isEquivalent = wingedBicycle.IsEquivalentTo(wingedBicycle, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -83,7 +95,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var trackedWheelchair = new Vehicle(Presets.MockDataRepository.Object, "Tracked Wheelchair");
 
             // act
-            var isEquivalent = wingedBicycle.IsEquivalentTo(trackedWheelchair, 2);
+            var isEquivalent = wingedBicycle.IsEquivalentTo(trackedWheelchair, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeFalse();

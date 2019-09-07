@@ -16,7 +16,18 @@ namespace Core.DataBase.WarThunder.Tests.Objects
     [TestClass]
     public class NationTests
     {
+        private readonly IEnumerable<string> _ignoredPropertyNames;
+
         #region Internal Methods
+
+        public NationTests()
+        {
+            _ignoredPropertyNames = new List<string>
+            {
+                nameof(INation.AsEnumerationItem),
+                nameof(IVehicle.RankAsEnumerationItem),
+            };
+        }
 
         public override string ToString() => nameof(NationTests);
 
@@ -49,7 +60,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var nation = query.First();
 
                 // assert
-                nation.IsEquivalentTo(zimbabwe, 1).Should().BeTrue();
+                nation.IsEquivalentTo(zimbabwe, 1, _ignoredPropertyNames).Should().BeTrue();
             }
         }
 
@@ -64,7 +75,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabwe.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabwe, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabwe, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -81,7 +92,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             { Branches = new List<IBranch> { zimbabwe.Branches.First() } };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweClone, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweClone, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -98,7 +109,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             zimbabweCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "SledCorps", zimbabweCloneFlawed) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweCloneFlawed, 2);
+            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweCloneFlawed, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeFalse();
