@@ -2,10 +2,12 @@
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
+using Core.Objects;
 using Core.Tests;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
@@ -295,7 +297,10 @@ namespace Core.Json.WarThunder.Tests.Helpers
                         column.Cells.All(cell => cell.Vehicles.Any()).Should().BeTrue();
 
                         foreach (var cell in column.Cells)
+                        {
                             cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == EInteger.Number.Two).Should().BeTrue();
+                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.First().IsIn(new Interval<int>(true, 1, 7, true))).Should().BeTrue();
+                        }
                     }
                 }
             }
