@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Core.DataBase.WarThunder.Objects.Json;
+﻿using Core.DataBase.WarThunder.Objects.Json;
+using System.Collections.Generic;
 
 namespace Core.Json.WarThunder.Objects
 {

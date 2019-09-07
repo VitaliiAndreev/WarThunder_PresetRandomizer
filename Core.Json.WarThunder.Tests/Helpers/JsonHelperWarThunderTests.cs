@@ -295,7 +295,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
                         column.Cells.All(cell => cell.Vehicles.Any()).Should().BeTrue();
 
                         foreach (var cell in column.Cells)
-                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == EInteger.Number.Two);
+                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == EInteger.Number.Two).Should().BeTrue();
                     }
                 }
             }
