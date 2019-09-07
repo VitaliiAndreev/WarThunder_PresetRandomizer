@@ -9,6 +9,26 @@ namespace Core.Tests.Extensions
     [TestClass]
     public class IDictionaryExtensionsTests
     {
+        #region Tests: AddRange()
+
+        [TestMethod]
+        public void AddRange()
+        {
+            // arrange
+            var _0 = 0;
+            var _1 = 1;
+            var sourceDictionary = new Dictionary<int, int> { { _0, _0 } };
+            var donorDictionary = new Dictionary<int, int> { { _1, _1 } };
+
+            // act
+            sourceDictionary.AddRange(donorDictionary);
+
+            // assert
+            sourceDictionary[_0].Should().Be(_0);
+            sourceDictionary[_1].Should().Be(_1);
+        }
+
+        #endregion Tests: AddRange()
         #region Tests: AddSafely()
 
         [TestMethod]
@@ -40,5 +60,38 @@ namespace Core.Tests.Extensions
         }
 
         #endregion Tests: AddSafely()
+        #region Tests: GetWithInstantiation()
+
+        [TestMethod]
+        public void GetWithInstantiation()
+        {
+            // arrange
+            var dictionary = new Dictionary<int, object>();
+
+            // act
+            var newObject = dictionary.GetWithInstantiation(0);
+
+            // assert
+            newObject.Should().NotBeNull();
+        }
+
+        #endregion Tests: GetWithInstantiation()
+        #region Tests: Increment()
+
+        [TestMethod]
+        public void Increment()
+        {
+            // arrange
+            var key = 0;
+            var dictionary = new Dictionary<int, int> { { key, 0 } };
+
+            // act
+            dictionary.Increment(key);
+
+            // assert
+            dictionary[key].Should().Be(1);
+        }
+
+        #endregion Tests: Increment()
     }
 }
