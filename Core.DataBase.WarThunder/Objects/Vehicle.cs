@@ -10,6 +10,7 @@ using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
 using Core.Enumerations;
+using Core.Extensions;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
@@ -323,6 +324,9 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Association Properties
         #region Non-Persistent Properties
+
+        /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
+        public ERank RankAsEnumerationItem => Rank.CastTo<ERank>();
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }

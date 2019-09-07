@@ -1,4 +1,5 @@
-﻿using Core.DataBase.WarThunder.Objects.Json;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Json;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
@@ -273,6 +274,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #endregion Association Properties
         #region Non-Persistent Properties
+
+        /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
+        ERank RankAsEnumerationItem { get; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
