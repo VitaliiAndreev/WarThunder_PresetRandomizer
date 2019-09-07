@@ -59,7 +59,7 @@ namespace Core.Randomization.Tests.Extensions
             }
 
             // assert
-            amountOfNonRandomizedCollections.Should().BeLessOrEqualTo(1);
+            amountOfNonRandomizedCollections.Should().BeLessOrEqualTo(2);
             amountOfRandomizedCollections.Should().BeGreaterOrEqualTo(observationCount - 1);
         }
 
