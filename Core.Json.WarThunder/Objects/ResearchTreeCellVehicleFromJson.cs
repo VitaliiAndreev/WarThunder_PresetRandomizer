@@ -4,7 +4,7 @@ using Core.DataBase.WarThunder.Objects.Json;
 namespace Core.Json.WarThunder.Objects
 {
     /// <summary> A research tree cell containing a single vehicle. </summary>
-    public class ResearchTreeCellVehicle : ResearchTreeCell
+    public class ResearchTreeCellVehicleFromJson : ResearchTreeCellFromJson
     {
         #region Properties
 
@@ -19,7 +19,7 @@ namespace Core.Json.WarThunder.Objects
 
         /// <summary> Creates a new research tree cell. </summary>
         /// <param name="vehicle"> The vehicle to position in the cell. </param>
-        public ResearchTreeCellVehicle(ResearchTreeVehicleFromJson vehicle)
+        public ResearchTreeCellVehicleFromJson(ResearchTreeVehicleFromJson vehicle)
             : base(vehicle.Rank)
         {
             Vehicle = vehicle;

@@ -28,7 +28,7 @@ namespace Core.Json.WarThunder.Helpers.Interfaces
         /// <summary> Deserializes given JSON text into instances of transient objects representing in-game research trees the way they are stored in JSON files. </summary>
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        IEnumerable<ResearchTree> DeserializeResearchTrees(string jsonText);
+        IEnumerable<ResearchTreeFromJson> DeserializeResearchTrees(string jsonText);
 
         #endregion Methods: Deserialization
     }

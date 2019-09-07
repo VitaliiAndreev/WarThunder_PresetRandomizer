@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Core.Json.WarThunder.Objects
 {
     /// <summary> A research tree column. </summary>
-    public class ResearchTreeColumn : IEnumerable<ResearchTreeCell>
+    public class ResearchTreeColumnFromJson : IEnumerable<ResearchTreeCellFromJson>
     {
         #region Properties
 
         /// <summary> Research tree cells positioned in the column. </summary>
-        public IList<ResearchTreeCell> Cells { get; }
+        public IList<ResearchTreeCellFromJson> Cells { get; }
 
         /// <summary> All vehicles postioned in the column. </summary>
         public IEnumerable<ResearchTreeVehicleFromJson> Vehicles
@@ -30,14 +30,14 @@ namespace Core.Json.WarThunder.Objects
         #region Constructors
 
         /// <summary> Creates a new research tree column. </summary>
-        public ResearchTreeColumn()
+        public ResearchTreeColumnFromJson()
         {
-            Cells = new List<ResearchTreeCell>();
+            Cells = new List<ResearchTreeCellFromJson>();
         }
 
         #endregion Constructors
 
-        public IEnumerator<ResearchTreeCell> GetEnumerator() => Cells.GetEnumerator();
+        public IEnumerator<ResearchTreeCellFromJson> GetEnumerator() => Cells.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

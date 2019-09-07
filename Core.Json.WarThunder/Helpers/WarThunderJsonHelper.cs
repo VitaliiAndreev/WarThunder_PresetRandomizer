@@ -260,13 +260,13 @@ namespace Core.Json.Helpers
         /// <summary> Deserializes the given JSON object into instances of transient objects representing in-game research tree branches the way they are stored in JSON files. </summary>
         /// <param name="researchTreeAsJsonObject"> The JSON object to deserialize. </param>
         /// <returns></returns>
-        private IEnumerable<ResearchTreeBranch> DeserializeResearchTreeBranches(JObject researchTreeAsJsonObject)
+        private IEnumerable<ResearchTreeBranchFromJson> DeserializeResearchTreeBranches(JObject researchTreeAsJsonObject)
         {
-            var branches = new List<ResearchTreeBranch>();
+            var branches = new List<ResearchTreeBranchFromJson>();
             
             foreach (var jsonProperty in researchTreeAsJsonObject.Properties())
             {
-                var branch = new ResearchTreeBranch(jsonProperty.Name);
+                var branch = new ResearchTreeBranchFromJson(jsonProperty.Name);
 
                 if (jsonProperty.Value is JArray jsonArray)
                     branch.Columns.AddRange(DeserializeResearchTreeColumns(jsonArray));
@@ -298,9 +298,9 @@ namespace Core.Json.Helpers
         /// <summary> Deserializes the given JSON array into instances of transient objects representing in-game research tree branch columns the way they are stored in JSON files. </summary>
         /// <param name="jsonArrayOfResearchTreeColumns"> The JSON array to deserialize. </param>
         /// <returns></returns>
-        private IEnumerable<ResearchTreeColumn> DeserializeResearchTreeColumns(JArray jsonArrayOfResearchTreeColumns)
+        private IEnumerable<ResearchTreeColumnFromJson> DeserializeResearchTreeColumns(JArray jsonArrayOfResearchTreeColumns)
         {
-            var columns = new List<ResearchTreeColumn>();
+            var columns = new List<ResearchTreeColumnFromJson>();
 
             foreach (var jsonToken in jsonArrayOfResearchTreeColumns)
             {
@@ -315,9 +315,9 @@ namespace Core.Json.Helpers
         /// <param name="jsonToken"> The JSON token to deserialize. </param>
         /// <param name="columnIndex"> The index of the column (the 1-based X coordinate). </param>
         /// <returns></returns>
-        private ResearchTreeColumn DeserializeResearchTreeColumn(JToken jsonToken, int columnIndex)
+        private ResearchTreeColumnFromJson DeserializeResearchTreeColumn(JToken jsonToken, int columnIndex)
         {
-            var column = new ResearchTreeColumn();
+            var column = new ResearchTreeColumnFromJson();
 
             if (JsonTokenContainsResearchTreeColumnAsJsonObject(jsonToken, out var researchTreeColumnAsJsonObject))
                 column.Cells.AddRange(DeserializeResearchTreeCells(researchTreeColumnAsJsonObject, columnIndex));
@@ -339,21 +339,21 @@ namespace Core.Json.Helpers
         /// <param name="researchTreeColumnAsJsonObject"> The JSON object to deserialize. </param>
         /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
         /// <returns></returns>
-        private IEnumerable<ResearchTreeCell> DeserializeResearchTreeCells(JObject researchTreeColumnAsJsonObject, int columnIndex)
+        private IEnumerable<ResearchTreeCellFromJson> DeserializeResearchTreeCells(JObject researchTreeColumnAsJsonObject, int columnIndex)
         {
-            var cells = new List<ResearchTreeCell>();
+            var cells = new List<ResearchTreeCellFromJson>();
 
             foreach (var jsonProperty in researchTreeColumnAsJsonObject.Properties())
             {
                 var researchTreeCellAsJsonObject = StandardizeAndDeserializeObject(jsonProperty.Value.ToString());
-                var cell = default(ResearchTreeCell);
+                var cell = default(ResearchTreeCellFromJson);
 
                 jsonProperty.Value = researchTreeCellAsJsonObject;
 
                 if (ResearchTreeCellIsFolder(researchTreeCellAsJsonObject))
                     cell = DeserializeResearchTreeCellFolder(researchTreeCellAsJsonObject, columnIndex);
                 else
-                    cell = new ResearchTreeCellVehicle(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
+                    cell = new ResearchTreeCellVehicleFromJson(DeserializeResearchTreeVehicle(jsonProperty, columnIndex));
 
                 cell.SetRowWithinRank(cells);
                 cells.Add(cell);
@@ -365,9 +365,9 @@ namespace Core.Json.Helpers
         /// <param name="researchTreeFolderAsJsonObject"> The JSON object to deserialize. </param>
         /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
         /// <returns></returns>
-        private ResearchTreeCellFolder DeserializeResearchTreeCellFolder(JObject researchTreeFolderAsJsonObject, int columnIndex)
+        private ResearchTreeCellFolderFromJson DeserializeResearchTreeCellFolder(JObject researchTreeFolderAsJsonObject, int columnIndex)
         {
-            var folder = new ResearchTreeCellFolder();
+            var folder = new ResearchTreeCellFolderFromJson();
 
             foreach (var jsonProperty in researchTreeFolderAsJsonObject.Properties())
             {
@@ -455,16 +455,16 @@ namespace Core.Json.Helpers
         /// <summary> Deserializes given JSON text into instances of transient objects representing in-game research trees the way they are stored in JSON files. </summary>
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        public IEnumerable<ResearchTree> DeserializeResearchTrees(string jsonText)
+        public IEnumerable<ResearchTreeFromJson> DeserializeResearchTrees(string jsonText)
         {
             var rootJsonObject = DeserializeObject<dynamic>(jsonText) as JObject;
-            var researchTrees = new List<ResearchTree>();
+            var researchTrees = new List<ResearchTreeFromJson>();
 
             foreach (var jsonProperty in rootJsonObject.Properties())
             {
                 if (jsonProperty.Value is JObject jsonObject)
                 {
-                    var researchTree = new ResearchTree(jsonProperty.Name);
+                    var researchTree = new ResearchTreeFromJson(jsonProperty.Name);
                     researchTree.Branches.AddRange(DeserializeResearchTreeBranches(jsonObject));
 
                     researchTrees.Add(researchTree);

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Core.Json.WarThunder.Objects
 {
     /// <summary> A research tree cell. </summary>
-    public abstract class ResearchTreeCell
+    public abstract class ResearchTreeCellFromJson
     {
         #region Fields
 
@@ -45,14 +45,14 @@ namespace Core.Json.WarThunder.Objects
         #region Constructors
 
         /// <summary> Creates a new research tree cell. </summary>
-        public ResearchTreeCell()
+        public ResearchTreeCellFromJson()
         {
             Vehicles = new List<ResearchTreeVehicleFromJson>();
         }
 
         /// <summary> Creates a new research tree cell. </summary>
         /// <param name="rank"> The rank the cell occupies. </param>
-        public ResearchTreeCell(int rank)
+        public ResearchTreeCellFromJson(int rank)
             : this()
         {
             Rank = rank;
@@ -88,7 +88,7 @@ namespace Core.Json.WarThunder.Objects
 
         /// <summary> Sets the specified cell's row number within its rank. </summary>
         /// <param name="previousCells"> Previous cells in the research tree column. </param>
-        public void SetRowWithinRank(IEnumerable<ResearchTreeCell> previousCells)
+        public void SetRowWithinRank(IEnumerable<ResearchTreeCellFromJson> previousCells)
         {
             void setOne() => RowWithinRank = EInteger.Number.One;
 

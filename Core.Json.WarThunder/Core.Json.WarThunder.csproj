@@ -46,17 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\ERank.cs" />
     <Compile Include="Enumerations\Logger\EJsonWarThunderLogMessage.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderJsonHelper.cs" />
     <Compile Include="Helpers\WarThunderJsonHelper.cs" />
-    <Compile Include="Objects\ResearchTreeBranch.cs" />
-    <Compile Include="Objects\ResearchTreeCell.cs" />
-    <Compile Include="Objects\ResearchTreeCellFolder.cs" />
-    <Compile Include="Objects\ResearchTreeCellVehicle.cs" />
-    <Compile Include="Objects\ResearchTreeColumn.cs" />
-    <Compile Include="Objects\ResearchTree.cs" />
+    <Compile Include="Objects\ResearchTreeBranchFromJson.cs" />
+    <Compile Include="Objects\ResearchTreeCellFromJson.cs" />
+    <Compile Include="Objects\ResearchTreeCellFolderFromJson.cs" />
+    <Compile Include="Objects\ResearchTreeCellVehicleFromJson.cs" />
+    <Compile Include="Objects\ResearchTreeColumnFromJson.cs" />
+    <Compile Include="Objects\ResearchTreeFromJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

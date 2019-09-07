@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Core.Json.WarThunder.Objects
 {
     /// <summary> A research tree cell containing vehicle in a folder. </summary>
-    public class ResearchTreeCellFolder : ResearchTreeCell, IEnumerable<ResearchTreeVehicleFromJson>
+    public class ResearchTreeCellFolderFromJson : ResearchTreeCellFromJson, IEnumerable<ResearchTreeVehicleFromJson>
     {
         #region Constructors
 
         /// <summary> Creates a new research tree cell. </summary>
-        public ResearchTreeCellFolder()
+        public ResearchTreeCellFolderFromJson()
             : base()
         {
         }

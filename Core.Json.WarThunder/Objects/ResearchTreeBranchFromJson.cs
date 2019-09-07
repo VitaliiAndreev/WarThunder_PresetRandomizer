@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Core.Json.WarThunder.Objects
 {
     /// <summary> A research tree branch. </summary>
-    public class ResearchTreeBranch : IEnumerable<ResearchTreeColumn>
+    public class ResearchTreeBranchFromJson : IEnumerable<ResearchTreeColumnFromJson>
     {
         #region Properties
 
@@ -13,7 +13,7 @@ namespace Core.Json.WarThunder.Objects
         public string GaijinId { get; }
 
         /// <summary> Research tree columns comprising the branch. </summary>
-        public IList<ResearchTreeColumn> Columns { get; }
+        public IList<ResearchTreeColumnFromJson> Columns { get; }
 
         /// <summary> All vehicles postioned in the branch. </summary>
         public IEnumerable<ResearchTreeVehicleFromJson> Vehicles
@@ -34,15 +34,15 @@ namespace Core.Json.WarThunder.Objects
 
         /// <summary> Creates a new research tree branch. </summary>
         /// <param name="gaijinId"> The Gaijin ID of the branch. </param>
-        public ResearchTreeBranch(string gaijinId)
+        public ResearchTreeBranchFromJson(string gaijinId)
         {
             GaijinId = gaijinId;
-            Columns = new List<ResearchTreeColumn>();
+            Columns = new List<ResearchTreeColumnFromJson>();
         }
 
         #endregion Constructors
 
-        public IEnumerator<ResearchTreeColumn> GetEnumerator() => Columns.GetEnumerator();
+        public IEnumerator<ResearchTreeColumnFromJson> GetEnumerator() => Columns.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

@@ -1,4 +1,4 @@
-﻿namespace Core.Json.WarThunder.Enumerations
+﻿namespace Core.DataBase.WarThunder.Enumerations
 {
     /// <summary> Vehicle ranks available in War Thunder. </summary>
     public enum ERank
