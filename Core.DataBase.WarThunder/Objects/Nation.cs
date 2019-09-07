@@ -44,7 +44,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region Non-Persistent Properties
 
         /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="ENation"/>. </summary>
-        public ENation AsEnumerationItem => GaijinId.ParseEnumeration<ENation>();
+        public virtual ENation AsEnumerationItem => GaijinId.ParseEnumeration<ENation>();
 
         #endregion Non-Persistent Properties
         #region Constructors

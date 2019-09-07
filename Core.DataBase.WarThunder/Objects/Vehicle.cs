@@ -326,7 +326,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region Non-Persistent Properties
 
         /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
-        public ERank RankAsEnumerationItem => Rank.CastTo<ERank>();
+        public virtual ERank RankAsEnumerationItem => Rank.CastTo<ERank>();
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }

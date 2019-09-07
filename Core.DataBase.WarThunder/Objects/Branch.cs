@@ -44,7 +44,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region Non-Persistent Properties
 
         /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="EBranch"/>. </summary>
-        public EBranch AsEnumerationItem => GaijinId
+        public virtual EBranch AsEnumerationItem => GaijinId
             .Split(ECharacter.Underscore)
             .Last()
             .ParseEnumeration<EBranch>()
