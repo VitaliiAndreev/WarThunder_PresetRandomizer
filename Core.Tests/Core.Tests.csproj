@@ -90,7 +90,7 @@
     <Compile Include="Helpers\FileManagerTests.cs" />
     <Compile Include="Helpers\FileReaderTests.cs" />
     <Compile Include="Helpers\SettingsManagerTests.cs" />
-    <Compile Include="Objects\IntervalDecimalTests.cs" />
+    <Compile Include="Objects\IntervalTests.cs" />
     <Compile Include="Presets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

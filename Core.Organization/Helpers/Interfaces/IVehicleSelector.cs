@@ -15,7 +15,7 @@ namespace Core.Organization.Helpers.Interfaces
         /// <param name="battleRatingBracket"> The battle rating bracket. </param>
         /// <param name="vehicles"> The vehicles to choose from. </param>
         /// <returns></returns>
-        IDictionary<decimal, IList<IVehicle>> OrderByHighestBattleRating(EGameMode gameMode, IntervalDecimal battleRatingBracket, IEnumerable<IVehicle> vehicles);
+        IDictionary<decimal, IList<IVehicle>> OrderByHighestBattleRating(EGameMode gameMode, Interval<decimal> battleRatingBracket, IEnumerable<IVehicle> vehicles);
 
         #endregion Methods: Ordering
         #region Methods: Randomization

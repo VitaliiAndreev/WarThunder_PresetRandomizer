@@ -97,7 +97,7 @@
     <Compile Include="Helpers\Logger\LoggerFluency.cs" />
     <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Objects\Abstract\IntervalBase.cs" />
-    <Compile Include="Objects\IntervalDecimal.cs" />
+    <Compile Include="Objects\Interval.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

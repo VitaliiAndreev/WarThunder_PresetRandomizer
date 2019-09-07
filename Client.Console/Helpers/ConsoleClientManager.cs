@@ -44,7 +44,7 @@ namespace Client.Console.Helpers
         /// <returns></returns>
         public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
         {
-            var battleRatingBracket = new IntervalDecimal(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
+            var battleRatingBracket = new Interval<decimal>(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
 
             return _cache
                 .OfType<IVehicle>()

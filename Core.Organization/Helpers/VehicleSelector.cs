@@ -50,12 +50,12 @@ namespace Core.Organization.Helpers
         /// <param name="battleRatingBracket"> The battle rating bracket. </param>
         /// <param name="vehicles"> The vehicles to choose from. </param>
         /// <returns></returns>
-        public IDictionary<decimal, IList<IVehicle>> OrderByHighestBattleRating(EGameMode gameMode, IntervalDecimal battleRatingBracket, IEnumerable<IVehicle> vehicles)
+        public IDictionary<decimal, IList<IVehicle>> OrderByHighestBattleRating(EGameMode gameMode, Interval<decimal> battleRatingBracket, IEnumerable<IVehicle> vehicles)
         {
             var sortedVehicles = new Dictionary<decimal, IList<IVehicle>>();
-            var currentBattleRating = Calculator.GetRoundedBattleRating(battleRatingBracket.RightBounded ? battleRatingBracket.RightEndpoint : battleRatingBracket.RightEndpoint - Calculator.MinimumBattleRatingStep);
+            var currentBattleRating = Calculator.GetRoundedBattleRating(battleRatingBracket.RightBounded ? battleRatingBracket.RightItem : battleRatingBracket.RightItem - Calculator.MinimumBattleRatingStep);
 
-            while (battleRatingBracket.LeftBounded ? currentBattleRating > battleRatingBracket.LeftEndpoint : currentBattleRating >= battleRatingBracket.LeftEndpoint)
+            while (battleRatingBracket.LeftBounded ? currentBattleRating > battleRatingBracket.LeftItem : currentBattleRating >= battleRatingBracket.LeftItem)
             {
                 var vehiclesOnCurrentBattleRating = vehicles.Where(vehicle => vehicle.BattleRating[gameMode].HasValue && vehicle.BattleRating[gameMode].Value == currentBattleRating);
 

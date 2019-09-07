@@ -1,5 +1,4 @@
-﻿using Core.Objects;
-using System;
+﻿using System;
 
 namespace Core.Extensions
 {
@@ -15,13 +14,6 @@ namespace Core.Extensions
         /// <returns></returns>
         public static decimal Floor(this decimal number) =>
             Math.Floor(number);
-
-        /// <summary> Checks whether the given value is within the interval. </summary>
-        /// <param name="number"> The number to check. </param>
-        /// <param name="interval"> The interval to check. </param>
-        /// <returns></returns>
-        public static bool IsIn(this decimal number, IntervalDecimal interval) =>
-            interval.Contains(number);
 
         #endregion Math
 

@@ -4,9 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Tests.Objects
 {
-    /// <summary> See <see cref="IntervalDecimal"/>. </summary>
+    /// <summary> See <see cref="Interval{T}"/>. </summary>
     [TestClass]
-    public class IntervalDecimalTests
+    public class IntervalTests
     {
         private readonly decimal _infinitelySmallPositiveDecimalFraction = 0.0000000000000000000000000001m;
 
@@ -18,7 +18,7 @@ namespace Core.Tests.Objects
             // arrange
             var leftEndpoint = 0m;
             var rightEndpoint = 1m;
-            var interval = new IntervalDecimal(false, leftEndpoint, rightEndpoint, false);
+            var interval = new Interval<decimal>(false, leftEndpoint, rightEndpoint, false);
 
             // act
             var containsBeforeLeftEndpoint = interval.Contains(leftEndpoint - _infinitelySmallPositiveDecimalFraction);
@@ -41,7 +41,7 @@ namespace Core.Tests.Objects
             // arrange
             var leftEndpoint = 0m;
             var rightEndpoint = 1m;
-            var interval = new IntervalDecimal(true, leftEndpoint, rightEndpoint, false);
+            var interval = new Interval<decimal>(true, leftEndpoint, rightEndpoint, false);
 
             // act
             var containsBeforeLeftEndpoint = interval.Contains(leftEndpoint - _infinitelySmallPositiveDecimalFraction);
@@ -64,7 +64,7 @@ namespace Core.Tests.Objects
             // arrange
             var leftEndpoint = 0m;
             var rightEndpoint = 1m;
-            var interval = new IntervalDecimal(false, leftEndpoint, rightEndpoint, true);
+            var interval = new Interval<decimal>(false, leftEndpoint, rightEndpoint, true);
 
             // act
             var containsBeforeLeftEndpoint = interval.Contains(leftEndpoint - _infinitelySmallPositiveDecimalFraction);
@@ -87,7 +87,7 @@ namespace Core.Tests.Objects
             // arrange
             var leftEndpoint = 0m;
             var rightEndpoint = 1m;
-            var interval = new IntervalDecimal(true, leftEndpoint, rightEndpoint, true);
+            var interval = new Interval<decimal>(true, leftEndpoint, rightEndpoint, true);
 
             // act
             var containsBeforeLeftEndpoint = interval.Contains(leftEndpoint - _infinitelySmallPositiveDecimalFraction);

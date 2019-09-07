@@ -72,7 +72,7 @@ namespace Core.Organization.Tests.Helpers
 
             var maximumBattleRating = m8a1.Object.BattleRating[EGameMode.Arcade].Value;
             var minumumBattleRating = maximumBattleRating - 1.0m;
-            var battleRatingBracket = new IntervalDecimal(true, minumumBattleRating, maximumBattleRating, true);
+            var battleRatingBracket = new Interval<decimal>(true, minumumBattleRating, maximumBattleRating, true);
 
             var expectedDictionary = new Dictionary<decimal, IList<IVehicle>>
             {
