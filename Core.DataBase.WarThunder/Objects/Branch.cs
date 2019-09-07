@@ -1,10 +1,14 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
+using Core.Extensions;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -18,7 +22,7 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The branch's Gaijin ID. </summary>
+        /// <summary> The branch's Gaijin ID. Gaijin ID for <see cref="Branch"/> is appended by the Gaijin ID of the <see cref="Nation"/> to make it unique within <see cref="ETable.Branch"/>. </summary>
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
@@ -37,6 +41,16 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();
 
         #endregion Association Properties
+        #region Non-Persistent Properties
+
+        /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="EBranch"/>. </summary>
+        public EBranch AsEnumerationItem => GaijinId
+            .Split(ECharacter.Underscore)
+            .Last()
+            .ParseEnumeration<EBranch>()
+        ;
+
+        #endregion Non-Persistent Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
