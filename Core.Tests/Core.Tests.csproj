@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Extensions\FileInfoExtensionsTests.cs" />
     <Compile Include="Extensions\ICollectionExtensionsTests.cs" />
+    <Compile Include="Extensions\IConvertibleExtensionsTests.cs" />
     <Compile Include="Extensions\IDictionaryExtensionsTests.cs" />
     <Compile Include="Extensions\IEnumerableExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
