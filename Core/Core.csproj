@@ -64,7 +64,6 @@
     <Compile Include="Enumerations\EWord.cs" />
     <Compile Include="Exceptions\NotInitializedException.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
-    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="Extensions\IComparableExtensions.cs" />
     <Compile Include="Extensions\IConvertibleExtensions.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Extensions\IListExtensions.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\ISetExtensions.cs" />
-    <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Helpers\Logger\ActiveLogger.cs" />

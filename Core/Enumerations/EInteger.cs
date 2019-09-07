@@ -14,7 +14,7 @@
 
         public class Time
         {
-            public const int MillisecondsInSecond = 1000;
+            public const int MillisecondsInSecond = 1_000;
         }
     }
 }
