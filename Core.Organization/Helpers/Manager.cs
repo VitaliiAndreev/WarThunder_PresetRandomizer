@@ -135,6 +135,9 @@ namespace Core.Organization.Helpers
                 ;
             }
 
+            foreach (var branch in ResearchTrees.Values.SelectMany(reseatchTree => reseatchTree.Values))
+                branch.CalculateDimensions();
+
             LogInfo(EOrganizationLogMessage.ResearchTreesInitialized);
         }
 
