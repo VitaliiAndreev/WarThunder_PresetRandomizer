@@ -9,6 +9,9 @@ namespace Core.Organization.Objects
     {
         #region Properties
 
+        /// <summary> The number of the row this rank starts at in relation to the overall <see cref="ResearchTreeBranch"/> it's in. </summary>
+        public int? StartingRowNumber { get; internal set; }
+
         /// <summary> The maximum column number of vehicle cells within the rank. </summary>
         public int MaximumColumnNumber { get; private set; }
 
