@@ -42,6 +42,8 @@ namespace WarThunderSimpleUpdateChecker
             var binFiles = GetBinFiles(sourceFiles);
             var gameFileCopyDirectory = new DirectoryInfo(_copiedFilesPath);
 
+            _fileManager.EmptyDirectory(gameFileCopyDirectory.FullName);
+
             AppendCurrentClientVersion(yupFile);
             CopyAndUnpackBinFiles(binFiles, gameFileCopyDirectory);
             RemoveCopiedSourceFiles(gameFileCopyDirectory);
