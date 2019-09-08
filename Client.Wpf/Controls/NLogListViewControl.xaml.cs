@@ -3,7 +3,6 @@ using Core.NLogExtensions.Targets;
 using NLog;
 using NLog.Common;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
@@ -12,14 +11,14 @@ using System.Windows.Threading;
 namespace Client.Wpf.Controls
 {
     /// <summary>
-    /// Interaction logic for ListViewNLog.xaml.
+    /// Interaction logic for NLogListViewControl.xaml.
     /// This is a simplified version of the NLogViewer (https://github.com/erizet/NlogViewer).
     /// </summary>
-    public partial class ListViewNLog : UserControl
+    public partial class NLogListViewControl : UserControl
     {
         #region Constructors
 
-        public ListViewNLog()
+        public NLogListViewControl()
         {
             InitializeComponent();
 

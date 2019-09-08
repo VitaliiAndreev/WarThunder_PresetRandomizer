@@ -29,7 +29,7 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
 
-        <Style TargetType="controls:ListViewNLog">
+        <Style TargetType="controls:NLogListViewControl">
             <Setter Property="Background" Value="WhiteSmoke"/>
         </Style>
 

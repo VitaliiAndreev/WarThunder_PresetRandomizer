@@ -121,7 +121,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ListViewNLog.xaml">
+    <Page Include="Controls\NLogListViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,8 +179,8 @@
       <DependentUpon>WpfClient.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ListViewNLog.xaml.cs">
-      <DependentUpon>ListViewNLog.xaml</DependentUpon>
+    <Compile Include="Controls\NLogListViewControl.xaml.cs">
+      <DependentUpon>NLogListViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Enumerations\ECommandName.cs" />

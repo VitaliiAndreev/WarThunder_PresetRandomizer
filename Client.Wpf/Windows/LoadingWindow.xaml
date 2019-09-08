@@ -40,10 +40,10 @@
             
         </Grid>
 
-        <controls:ListViewNLog
+        <controls:NLogListViewControl
             Grid.Row="1">
             
-        </controls:ListViewNLog>
+        </controls:NLogListViewControl>
         
     </Grid>
 </local:BaseWindow>
