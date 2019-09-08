@@ -23,6 +23,12 @@ namespace Core.Organization.Objects
             MaximumRowNumber = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last());
         }
 
+        /// <summary> Returns all vehicles positioned in the column of the specified number. </summary>
+        /// <param name="columnNumber"> The number of the column from which to gather vehicles. </param>
+        /// <returns></returns>
+        public IEnumerable<IVehicle> GetVehiclesInColumn(int columnNumber) =>
+            Values.Where(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.First() == columnNumber);
+
         /// <summary> Returns the vehicle in the research tree cell with the given coordinates, or NULL if the cell is empty. </summary>
         /// <param name="columnNumber"></param>
         /// <param name="rowNumber"></param>
