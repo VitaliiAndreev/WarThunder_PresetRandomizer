@@ -332,7 +332,7 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
         /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
-        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought.HasValue || !(CategoryOfHiddenVehicles is null) && CategoryOfHiddenVehicles.Any();
+        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought.HasValue || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
 
         #endregion Non-Persistent Properties
         #region Constructors
