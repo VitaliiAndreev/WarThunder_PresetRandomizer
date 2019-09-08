@@ -18,6 +18,7 @@ namespace Client.Wpf.Controls
     {
         #region Constructors
 
+        /// <summary> Creates a new control. </summary>
         public NLogListViewControl()
         {
             InitializeComponent();
