@@ -41,16 +41,21 @@ namespace Core.Organization.Objects
         public IEnumerable<IVehicle> GetVehiclesInColumn(int columnNumber) =>
             Values.Where(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.First() == columnNumber);
 
-        /// <summary> Returns the vehicle in the research tree cell with the given coordinates, or NULL if the cell is empty. </summary>
-        /// <param name="columnNumber"></param>
-        /// <param name="rowNumber"></param>
-        /// <returns></returns>
-        public IVehicle GetVehicle(int columnNumber, int rowNumber)
+        /// <summary> Returns vehicles in the research tree cell with the given coordinates. </summary>
+        /// <param name="columnNumber"> The column number of the research tree cell containing the vehicles. </param>
+        /// <param name="rowNumber"> The row number of the research tree cell containing the vehicles. </param>
+        public IEnumerable<IVehicle> GetVehicles(int columnNumber, int rowNumber)
         {
-            if (TryGetValue(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber), out var vehicle))
-                return vehicle;
+            if (TryGetValue(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber, null), out var vehicle))
+                return new List<IVehicle> { vehicle };
 
-            return null;
+            var vehicles = new List<IVehicle>();
+            var folderIndex = EInteger.Number.Zero;
+
+            while (TryGetValue(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber, folderIndex++), out var folderVehicle))
+                vehicles.Add(folderVehicle);
+
+            return vehicles;
         }
     }
 }

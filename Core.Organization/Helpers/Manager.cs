@@ -131,7 +131,7 @@ namespace Core.Organization.Helpers
                     .GetWithInstantiation(nation)
                     .GetWithInstantiation(branch)
                     .GetWithInstantiation(rank)
-                    .Add(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber), vehicle)
+                    .Add(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber, vehicle.ResearchTreeData.FolderIndex), vehicle)
                 ;
             }
 
