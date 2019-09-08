@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         Title="LoadingWindow"
         WindowStartupLocation="CenterScreen"
+        MinHeight="450"
+        MinWidth="800"
         Height="450"
         Width="1000"
         Loaded="OnLoaded"
