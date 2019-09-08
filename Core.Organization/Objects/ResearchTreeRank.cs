@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,13 +15,21 @@ namespace Core.Organization.Objects
         /// <summary> The maximum row number of vehicle cells within the rank. </summary>
         public int MaximumRowNumber { get; private set; }
 
+        /// <summary> Numbers of columns reserved for premium / gift vehicles. </summary>
+        public IEnumerable<int> PremiumColumnNumbers { get; private set; }
+
         #endregion Properties
 
-        /// <summary> Calculates <see cref="MaximumColumnNumber"/> and <see cref="MaximumRowNumber"/>. </summary>
-        public void CalculateDimensions()
+        /// <summary> Calculates <see cref="MaximumColumnNumber"/>, <see cref="MaximumRowNumber"/>, and <see cref="PremiumColumnNumbers"/>. </summary>
+        public void InitializeProperties()
         {
             MaximumColumnNumber = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.First());
             MaximumRowNumber = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last());
+            
+            PremiumColumnNumbers = Enumerable
+                .Range(EInteger.Number.One, MaximumColumnNumber)
+                .Where(columnNumber => GetVehiclesInColumn(columnNumber).Any(vehicle => vehicle.NotResearchable))
+            ;
         }
 
         /// <summary> Returns all vehicles positioned in the column of the specified number. </summary>

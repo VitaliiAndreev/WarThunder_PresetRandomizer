@@ -14,16 +14,24 @@ namespace Core.Organization.Objects
         /// <summary> The amount of rows in the branch. </summary>
         public int RowCount { get; private set; }
 
+        /// <summary> Numbers of columns reserved for premium / gift vehicles. </summary>
+        public IEnumerable<int> PremiumColumnNumbers { get; private set; }
+
         #endregion Properties
 
-        /// <summary> Calculates <see cref="ColumnCount"/> and <see cref="RowCount"/>. </summary>
-        public void CalculateDimensions()
+        /// <summary> Calculates <see cref="ColumnCount"/>, <see cref="RowCount"/>, and <see cref="PremiumColumnNumbers"/>. </summary>
+        public void InitializeProperties()
         {
             foreach (var rank in Values)
-                rank.CalculateDimensions();
+                rank.InitializeProperties();
 
             ColumnCount = Values.Max(rank => rank.MaximumColumnNumber);
             RowCount = Values.Sum(rank => rank.MaximumRowNumber);
+
+            PremiumColumnNumbers = Values
+                .SelectMany(rank => rank.PremiumColumnNumbers)
+                .Distinct()
+            ;
         }
     }
 }
