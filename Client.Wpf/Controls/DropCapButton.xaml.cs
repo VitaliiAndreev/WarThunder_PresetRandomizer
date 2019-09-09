@@ -11,7 +11,7 @@ namespace Client.Wpf.Controls
     {
         #region Properties
         
-        /// <summary> The</summary>
+        /// <summary> The font size of the drop cap. The following text is written with a smaller font size.</summary>
         public double DropCapFontSize
         {
             get => _dropCap.FontSize;
