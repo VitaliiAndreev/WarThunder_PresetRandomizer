@@ -1,6 +1,6 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Helpers.Interfaces;
-using Core.DataBase.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
