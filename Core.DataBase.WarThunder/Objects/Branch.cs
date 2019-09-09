@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
-using Core.Extensions;
 using NHibernate.Mapping.Attributes;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +43,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region Non-Persistent Properties
 
         /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="EBranch"/>. </summary>
-        public virtual EBranch AsEnumerationItem => GaijinId
-            .Split(ECharacter.Underscore)
-            .Last()
-            .ParseEnumeration<EBranch>()
-        ;
+        public virtual EBranch AsEnumerationItem => EReference.BranchesFromString[GaijinId.Split(ECharacter.Underscore).Last()];
 
         #endregion Non-Persistent Properties
         #region Constructors

@@ -121,8 +121,8 @@ namespace Core.Organization.Helpers
 
             foreach (var vehicle in _cache.OfType<IVehicle>())
             {
-                var nation = vehicle.Nation.GaijinId.ParseEnumeration<ENation>();
-                var branch = vehicle.Branch.GaijinId.ParseEnumeration<EBranch>();
+                var nation = vehicle.Nation.AsEnumerationItem;
+                var branch = vehicle.Branch.AsEnumerationItem;
                 var rank = vehicle.Rank.CastTo<ERank>();
                 var columnNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.First();
                 var rowNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last();

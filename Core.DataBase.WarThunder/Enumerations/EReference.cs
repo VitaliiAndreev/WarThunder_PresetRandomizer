@@ -18,6 +18,19 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.France, "country_france" },
         };
 
+        /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
+        public static IDictionary<string, ENation> NationsFromString { get; } = new Dictionary<string, ENation>
+        {
+            { "country_0", ENation.None },
+            { "country_usa", ENation.Usa },
+            { "country_germany", ENation.Germany },
+            { "country_ussr", ENation.Ussr },
+            { "country_britain", ENation.Commonwealth },
+            { "country_japan", ENation.Japan },
+            { "country_italy", ENation.Italy },
+            { "country_france", ENation.France },
+        };
+
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
         public static IDictionary<EBranch, string> Branches { get; } = new Dictionary<EBranch, string>
         {
@@ -25,6 +38,15 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EBranch.Aviation, "aircraft" },
             { EBranch.Fleet, "ship" },
             { EBranch.Helicopters, "helicopter" },
+        };
+
+        /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
+        public static IDictionary<string, EBranch> BranchesFromString { get; } = new Dictionary<string, EBranch>
+        {
+            { "tank", EBranch.Army },
+            { "aircraft", EBranch.Aviation },
+            { "ship", EBranch.Fleet },
+            { "helicopter", EBranch.Helicopters },
         };
     }
 }
