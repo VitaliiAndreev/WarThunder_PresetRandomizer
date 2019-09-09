@@ -1,11 +1,13 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
+using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;
+using System.Linq;
 using System.Windows;
 
 namespace Client.Wpf
@@ -74,7 +76,7 @@ namespace Client.Wpf
                 message = $"{ECoreLogMessage.FatalErrorShutdown}\n{getInstruction(ECoreLogMessage.SeeLogsForDetails)}";
             }
 
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(Current.Windows.OfType<BaseWindow>().LastOrDefault(), message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
