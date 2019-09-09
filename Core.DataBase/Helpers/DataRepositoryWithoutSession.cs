@@ -115,7 +115,7 @@ namespace Core.DataBase.Helpers
             instance.InitializeNonPersistentFields(this);
 
             foreach (var nestedObject in instance.GetAllNestedObjects())
-                nestedObject.InitializeNonPersistentFields(this);
+                nestedObject?.InitializeNonPersistentFields(this);
         }
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
