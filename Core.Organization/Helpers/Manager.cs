@@ -121,6 +121,9 @@ namespace Core.Organization.Helpers
 
             foreach (var vehicle in _cache.OfType<IVehicle>())
             {
+                if (vehicle.ResearchTreeData is null)
+                    continue;
+
                 var nation = vehicle.Nation.AsEnumerationItem;
                 var branch = vehicle.Branch.AsEnumerationItem;
                 var rank = vehicle.Rank.CastTo<ERank>();
