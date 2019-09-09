@@ -18,6 +18,12 @@ namespace Client.Wpf.Windows
     /// <summary> Interaction logic for LoadingWindow.xaml. </summary>
     public partial class LoadingWindow : BaseWindow, ILoadingWindow
     {
+        #region Fields
+
+        /// <summary> An exception that has occurred in a separate thread during execution of an asynchronous task. </summary>
+        private Exception _asynchronousException;
+
+        #endregion Fields
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
@@ -65,7 +71,12 @@ namespace Client.Wpf.Windows
 
             // To work around the not functional await a delay is implemented.
             while (task.Status != TaskStatus.RanToCompletion)
+            {
                 await Task.Delay(EInteger.Time.MillisecondsInSecond / EInteger.Number.Hundred);
+
+                if (_asynchronousException is Exception)
+                    throw _asynchronousException;
+            }
 
             OnDataPrepared();
         }
@@ -124,7 +135,14 @@ namespace Client.Wpf.Windows
         /// <summary> Calls the <see cref="ECommandName.Initialize"/> command. </summary>
         private void PrepareData()
         {
-            Presenter.ExecuteCommand(ECommandName.Initialize);
+            try
+            {
+                Presenter.ExecuteCommand(ECommandName.Initialize);
+            }
+            catch (Exception exception) // The catch block set up to intercept exceptions in WpfClient doesn't catch exceptions in other threads.
+            {
+                _asynchronousException = exception; // This exception is passed on back to the main thread to be handled by WpfClient.
+            }
         }
 
         /// <summary> Show a dialog warning the user about ongoing initialization and asking for a confirmation to exit. </summary>
