@@ -6,7 +6,7 @@ namespace Core.DataBase.WarThunder.Enumerations
     public class EReference
     {
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
-        public static IDictionary<ENation, string> Nations { get; } = new Dictionary<ENation, string>
+        public static IDictionary<ENation, string> NationsFromEnumeration { get; } = new Dictionary<ENation, string>
         {
             { ENation.None, "country_0" },
             { ENation.Usa, "country_usa" },
@@ -32,7 +32,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         };
 
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
-        public static IDictionary<EBranch, string> Branches { get; } = new Dictionary<EBranch, string>
+        public static IDictionary<EBranch, string> BranchesFromEnumeration { get; } = new Dictionary<EBranch, string>
         {
             { EBranch.Army, "tank" },
             { EBranch.Aviation, "aircraft" },

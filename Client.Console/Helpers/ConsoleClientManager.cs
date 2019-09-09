@@ -48,8 +48,8 @@ namespace Client.Console.Helpers
 
             return _cache
                 .OfType<IVehicle>()
-                .Where(vehicle => vehicle.Nation.GaijinId == EReference.Nations[specification.Nation])
-                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.Branches[specification.Branch]))
+                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[specification.Nation])
+                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[specification.Branch]))
                 .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
                 .GetRandomizedVehicles(_vehicleSelector)
                 .Take(10)
