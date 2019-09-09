@@ -45,8 +45,6 @@ namespace Client.Wpf.Controls
             Dispatcher.BeginInvoke(AddNewEntry, log, eventInfo);
         }
 
-        private delegate void EmptyDelegate();
-
         public void ScrollToLast()
         {
             if (_listView.Items.IsEmpty)
