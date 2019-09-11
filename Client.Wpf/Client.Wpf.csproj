@@ -125,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\GameModeSelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\NLogListViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,8 +147,14 @@
     </Page>
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
+    <Compile Include="Controls\DropCapButton.xaml.cs">
+      <DependentUpon>DropCapButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FolderSelectorWithLabelControl.xaml.cs">
       <DependentUpon>FolderSelectorWithLabelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GameModeSelectionControl.xaml.cs">
+      <DependentUpon>GameModeSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
