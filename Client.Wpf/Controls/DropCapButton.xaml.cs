@@ -10,6 +10,9 @@ namespace Client.Wpf.Controls
     public partial class DropCapButton : UserControl
     {
         #region Properties
+
+        /// <summary> The button embedded in the control. </summary>
+        public Button EmbeddedButton => _button;
         
         /// <summary> The font size of the drop cap. The following text is written with a smaller font size.</summary>
         public double DropCapFontSize
