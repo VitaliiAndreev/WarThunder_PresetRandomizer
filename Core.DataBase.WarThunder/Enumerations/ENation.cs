@@ -9,6 +9,7 @@
         Ussr,
         Commonwealth,
         Japan,
+        China,
         Italy,
         France,
     }

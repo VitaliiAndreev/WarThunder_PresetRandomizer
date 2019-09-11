@@ -14,6 +14,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.Ussr, "country_ussr" },
             { ENation.Commonwealth, "country_britain" },
             { ENation.Japan, "country_japan" },
+            { ENation.China, "country_china" },
             { ENation.Italy, "country_italy" },
             { ENation.France, "country_france" },
         };
@@ -27,6 +28,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_ussr", ENation.Ussr },
             { "country_britain", ENation.Commonwealth },
             { "country_japan", ENation.Japan },
+            { "country_china", ENation.China},
             { "country_italy", ENation.Italy },
             { "country_france", ENation.France },
         };
