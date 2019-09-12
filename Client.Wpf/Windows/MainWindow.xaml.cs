@@ -5,6 +5,8 @@ using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Extensions;
+using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +43,9 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
+
+            if (!string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode))
+                SelectGameMode(WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
         }
 
         #endregion Constructor
