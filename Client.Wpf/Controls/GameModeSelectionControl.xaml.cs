@@ -49,7 +49,7 @@ namespace Client.Wpf.Controls
         /// <summary> Adjust font weights to indicate the button pressed last. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
-        private void OnClick(object sender, RoutedEventArgs eventArguments)
+        public void OnClick(object sender, RoutedEventArgs eventArguments)
         {
             if (!(sender is Button button)) return;
 
