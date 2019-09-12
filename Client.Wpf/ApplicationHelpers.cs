@@ -46,7 +46,7 @@ namespace Client.Wpf
         public static IConfiguredLogger[] Loggers { get; private set; }
         public static IWarThunderFileManager FileManager { get; private set; }
         public static IWarThunderFileReader FileReader { get; private set; }
-        public static IWarThunderSettingsManager SettingsManager { get; private set; }
+        public static IWpfClientSettingsManager SettingsManager { get; private set; }
         public static IWpfClientManager Manager { get; private set; }
         public static ILocalizationManager LocalizationManager { get; internal set; }
 
@@ -121,7 +121,7 @@ namespace Client.Wpf
 
             FileManager = new WarThunderFileManager(Loggers);
             FileReader = new WarThunderFileReader(Loggers);
-            SettingsManager = new WarThunderSettingsManager(FileManager, EWpfClientFile.Settings, requiredSettings, Loggers);
+            SettingsManager = new WpfClientSettingsManager(FileManager, EWpfClientFile.Settings, requiredSettings, Loggers);
             _parser = new Parser(Loggers);
             _unpacker = new Unpacker(FileManager, Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);
