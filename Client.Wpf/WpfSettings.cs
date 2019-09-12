@@ -1,3 +1,4 @@
+﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.Localization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
 
@@ -11,5 +12,7 @@ namespace Core.WarThunderExtractionToolsIntegration
     {
         [RequiredSetting]
         public static string Localization { get; set; } = ELanguage.EnglishUsa.ToString();
+        [RequiredSetting]
+        public static string CurrentGameMode { get; set; } = EGameMode.Realistic.ToString();
     }
 }
