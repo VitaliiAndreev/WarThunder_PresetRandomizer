@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Windows.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 
 namespace Client.Wpf.Presenters.Interfaces
 {
@@ -9,6 +10,9 @@ namespace Client.Wpf.Presenters.Interfaces
 
         /// <summary> The parent window. </summary>
         new IMainWindow Owner { get; }
+
+        /// <summary> The currently selected game mode. </summary>
+        public EGameMode CurrentGameMode { get; set; }
 
         #endregion Properties
     }
