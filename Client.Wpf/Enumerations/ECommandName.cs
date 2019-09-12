@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Commands.LoadingWindow;
 using Client.Wpf.Commands.LocalizationWindow;
+using Client.Wpf.Commands.MainWindow;
 using Client.Wpf.Commands.SettingsWindow;
 
 namespace Client.Wpf.Enumerations
@@ -13,5 +14,7 @@ namespace Client.Wpf.Enumerations
         Ok,
         /// <summary> See <see cref="SelectLocalizationCommand"/>. </summary>
         SelectLocalization,
+        /// <summary> See <see cref="SelectGameModeCommand"/>. </summary>
+        SelectGameMode,
     }
 }

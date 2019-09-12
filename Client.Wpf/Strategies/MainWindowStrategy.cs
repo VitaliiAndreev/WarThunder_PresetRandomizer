@@ -1,4 +1,6 @@
-﻿using Client.Wpf.Strategies.Interfaces;
+﻿using Client.Wpf.Commands.MainWindow;
+using Client.Wpf.Enumerations;
+using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 
 namespace Client.Wpf.Strategies
@@ -10,6 +12,8 @@ namespace Client.Wpf.Strategies
         protected override void InitializeCommands()
         {
             base.InitializeCommands();
+
+            _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
         }
     }
 }
