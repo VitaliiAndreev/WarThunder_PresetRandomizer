@@ -1,4 +1,5 @@
-﻿using Core.Localization.Enumerations;
+using Core.Localization.Enumerations;
+using Core.UnpackingToolsIntegration.Attributes;
 
 namespace Core.WarThunderExtractionToolsIntegration
 {
@@ -8,6 +9,7 @@ namespace Core.WarThunderExtractionToolsIntegration
     /// </summary>
     public class WpfSettings : Settings
     {
+        [RequiredSetting]
         public static string Localization { get; set; } = ELanguage.EnglishUsa.ToString();
     }
 }

@@ -16,11 +16,15 @@ using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers;
 using Core.Randomization.Helpers.Interfaces;
+using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Client.Wpf
 {
@@ -110,12 +114,16 @@ namespace Client.Wpf
         /// <summary> Initializes helpers. </summary>
         private static void InitializeHelpers()
         {
-            var requiredSettings = new List<string>
+            var settingsTypes = new List<Type>
             {
-                nameof(WpfSettings.Localization),
-                nameof(Settings.WarThunderLocation),
-                nameof(Settings.KlensysWarThunderToolsLocation),
+                typeof(Settings),
+                typeof(WpfSettings),
             };
+
+            var requiredSettings = settingsTypes
+                .SelectMany(settingsType => settingsType.GetProperties(BindingFlags.Public | BindingFlags.Static))
+                .Where(settingProperty => settingProperty.GetCustomAttribute<RequiredSettingAttribute>() is RequiredSettingAttribute)
+                .Select(settingProperty => settingProperty.Name);
 
             WindowFactory = new WindowFactory(Loggers);
 
