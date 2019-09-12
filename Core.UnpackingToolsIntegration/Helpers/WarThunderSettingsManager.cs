@@ -2,7 +2,10 @@
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -42,6 +45,20 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #region Methods: Writing
 
         /// <summary> Saves the <paramref name="newValue"/> of the setting with the specified name. </summary>
+        /// <param name="settingsClass">Node of XML to read</param>
+        /// <param name="settingName">Node of XML to read</param>
+        /// <param name="newValue">Value to write to that node</param>
+        /// <returns></returns>
+        protected void Save(Type settingsClass, string settingName, string newValue)
+        {
+            var settingProperties = settingsClass.GetProperties(BindingFlags.Static | BindingFlags.Public);
+            var settingProperty = settingProperties.FirstOrDefault(property => property.Name == settingName);
+
+            if (settingProperty is PropertyInfo)
+                settingProperty.SetValue(null, newValue);
+        }
+
+        /// <summary> Saves the <paramref name="newValue"/> of the setting with the specified name. </summary>
         /// <param name="settingName">Node of XML to read</param>
         /// <param name="newValue">Value to write to that node</param>
         /// <returns></returns>
@@ -49,15 +66,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             base.Save(settingName, newValue);
 
-            switch (settingName)
-            {
-                case nameof(Settings.KlensysWarThunderToolsLocation):
-                    Settings.KlensysWarThunderToolsLocation = newValue;
-                    break;
-                case nameof(Settings.WarThunderLocation):
-                    Settings.WarThunderLocation = newValue;
-                    break;
-            }
+            Save(typeof(Settings), settingName, newValue);
         }
 
         #endregion Methods: Writing

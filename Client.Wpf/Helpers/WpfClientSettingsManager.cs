@@ -4,6 +4,8 @@ using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Client.Wpf.Helpers
 {
@@ -31,12 +33,7 @@ namespace Client.Wpf.Helpers
         {
             base.Save(settingName, newValue);
 
-            switch (settingName)
-            {
-                case nameof(WpfSettings.Localization):
-                    WpfSettings.Localization = newValue;
-                    break;
-            }
+            Save(typeof(WpfSettings), settingName, newValue);
         }
     }
 }
