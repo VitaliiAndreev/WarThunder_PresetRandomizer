@@ -71,5 +71,16 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+
+        /// <summary> Gets the button related to the given enumeration item. </summary>
+        /// <param name="gameMode"> The game mode whose button to get. </param>
+        /// <returns></returns>
+        public Button GetButton(EGameMode gameMode) =>
+            _buttonGrid
+                .Children
+                .OfType<DropCapButton>()
+                .Select(dropCapButton => dropCapButton.EmbeddedButton)
+                .First(button => button.Tag is EGameMode buttonGameMode && buttonGameMode == gameMode)
+            ;
     }
 }
