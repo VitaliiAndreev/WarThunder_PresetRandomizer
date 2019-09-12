@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations.Logger;
+﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -56,6 +57,7 @@ namespace Client.Wpf.Windows
         /// <summary> Applies localization to visible text in the window. </summary>
         public override void Localize()
         {
+            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
         }
 
         /// <summary> Selects the specified game mode. </summary>
