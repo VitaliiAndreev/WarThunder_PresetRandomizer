@@ -57,5 +57,17 @@ namespace Client.Wpf.Windows
         public override void Localize()
         {
         }
+
+        /// <summary> Selects the specified game mode. </summary>
+        /// <param name="gameMode"> The game mode to select. </param>
+        /// <param name="simulateClick"> Whether to simulate a click on the appropriate button. </param>
+        private void SelectGameMode(EGameMode gameMode, bool simulateClick = false)
+        {
+            if (simulateClick)
+                _gameModeSelectionControl.OnClick(_gameModeSelectionControl.GetButton(gameMode), new RoutedEventArgs());
+
+            Presenter.CurrentGameMode = gameMode;
+            Presenter.ExecuteCommand(ECommandName.SelectGameMode);
+        }
     }
 }
