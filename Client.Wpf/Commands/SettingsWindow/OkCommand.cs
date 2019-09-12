@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Presenters;
 using Client.Wpf.Presenters.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 

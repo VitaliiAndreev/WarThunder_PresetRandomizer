@@ -120,7 +120,7 @@ namespace Client.Wpf
                 typeof(WpfSettings),
             };
 
-            var requiredSettings = settingsTypes
+            var requiredSettingNames = settingsTypes
                 .SelectMany(settingsType => settingsType.GetProperties(BindingFlags.Public | BindingFlags.Static))
                 .Where(settingProperty => settingProperty.GetCustomAttribute<RequiredSettingAttribute>() is RequiredSettingAttribute)
                 .Select(settingProperty => settingProperty.Name);
@@ -129,7 +129,7 @@ namespace Client.Wpf
 
             FileManager = new WarThunderFileManager(Loggers);
             FileReader = new WarThunderFileReader(Loggers);
-            SettingsManager = new WpfClientSettingsManager(FileManager, EWpfClientFile.Settings, requiredSettings, Loggers);
+            SettingsManager = new WpfClientSettingsManager(FileManager, EWpfClientFile.Settings, requiredSettingNames, Loggers);
             _parser = new Parser(Loggers);
             _unpacker = new Unpacker(FileManager, Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);

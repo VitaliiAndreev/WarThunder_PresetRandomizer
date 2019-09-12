@@ -56,7 +56,8 @@ namespace Client.Wpf.Controls
         /// <param name="eventArguments"> Not used. </param>
         public void OnClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (!(sender is Button button)) return;
+            if (!(sender is Button button))
+                return;
 
             var dropCapButtons = _buttonGrid.Children.OfType<DropCapButton>();
             var clickedDropCapButton = dropCapButtons.First(dropCapButton => dropCapButton.EmbeddedButton.Equals(button));
