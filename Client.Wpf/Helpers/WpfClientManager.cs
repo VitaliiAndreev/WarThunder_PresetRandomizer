@@ -7,6 +7,7 @@ using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System.Reflection;
 
 namespace Client.Wpf.Helpers
 {
@@ -35,12 +36,7 @@ namespace Client.Wpf.Helpers
         #region Methods: Settings
 
         /// <summary> Loads settings from the file attached to the settings manager. </summary>
-        protected override void LoadSettings()
-        {
-            WpfSettings.Localization = _settingsManager.GetSetting(nameof(WpfSettings.Localization));
-
-            base.LoadSettings();
-        }
+        protected override void LoadSettings() => LoadSettings(typeof(WpfSettings));
 
         #endregion Methods: Settings
     }

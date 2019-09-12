@@ -19,6 +19,7 @@ using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -250,12 +251,18 @@ namespace Core.Organization.Helpers
         #endregion Methods: Initialization
         #region Methods: Settings
 
-        /// <summary> Loads settings from the file attached to the <see cref="_settingsManager"/>. </summary>
-        protected virtual void LoadSettings()
+        /// <summary> Loads settings from the <see cref="_settingsManager"/> into the given settings class. </summary>
+        /// <param name="settingsClass"> The settings class. </param>
+        protected void LoadSettings(Type settingsClass)
         {
-            Settings.KlensysWarThunderToolsLocation = _settingsManager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation));
-            Settings.WarThunderLocation = _settingsManager.GetSetting(nameof(Settings.WarThunderLocation));
+            var settingProperties = settingsClass.GetProperties(BindingFlags.Public | BindingFlags.Static);
+
+            foreach (var settingProperty in settingProperties)
+                settingProperty.SetValue(null, _settingsManager.GetSetting(settingProperty.Name));
         }
+
+        /// <summary> Loads settings from the <see cref="_settingsManager"/>. </summary>
+        protected virtual void LoadSettings() => LoadSettings(typeof(Settings));
 
         #endregion Methods: Settings
 
