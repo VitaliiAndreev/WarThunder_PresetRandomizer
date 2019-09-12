@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,6 +38,10 @@ namespace Client.Wpf.Controls
         public GameModeSelectionControl()
         {
             InitializeComponent();
+
+            _arcadeButton.EmbeddedButton.Tag = EGameMode.Arcade;
+            _realisticButton.EmbeddedButton.Tag = EGameMode.Realistic;
+            _simulatorButton.EmbeddedButton.Tag = EGameMode.Simulator;
 
             ArcadeButtonClick += OnClick;
             RealisticButtonClick += OnClick;
