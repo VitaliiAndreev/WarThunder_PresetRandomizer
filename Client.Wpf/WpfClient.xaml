@@ -54,6 +54,15 @@
             <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
             <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
         </Style>
+
+        <Style TargetType="Border" x:Key="ResearchTreeCellBorder">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
         
     </Application.Resources>
 </Application>

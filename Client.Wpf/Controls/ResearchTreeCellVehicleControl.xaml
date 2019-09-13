@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Client.Wpf.Controls.ResearchTreeCellVehicleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Wpf.Controls"
+             mc:Ignorable="d">
+
+    <Border Style="{StaticResource ResearchTreeCellBorder}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="17"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                
+                <TextBlock
+                    x:Name="_name"/>
+
+            </Grid>
+            
+            <Grid Grid.Row="1">
+            </Grid>
+            
+            <Grid Grid.Row="2">
+
+                <TextBlock
+                    x:Name="_battleRating"
+                    FontSize="14"
+                    FontWeight="Bold"/>
+                
+            </Grid>
+        </Grid>
+    </Border>
+
+</UserControl>
