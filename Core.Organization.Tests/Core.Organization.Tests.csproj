@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\VehicleSelectorTests.cs" />
+    <Compile Include="Objects\ResearchTreeCoordinatesWithinRankTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
