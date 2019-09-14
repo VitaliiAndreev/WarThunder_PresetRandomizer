@@ -101,7 +101,7 @@ namespace Client.Wpf.Controls
         private void OnTextChanged(object sender, TextChangedEventArgs eventArguments)
         {
             ValidateAddress();
-            UpdateToAddressColor();
+            UpdateTextBoxColor();
         }
 
         /// <summary> Opens a dialog for directory look-up. </summary>
@@ -151,7 +151,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Applies color to the <see cref="_textBox"/> contents according to the value of the <see cref="AddressIsValid"/> property. </summary>
-        private void UpdateToAddressColor()
+        private void UpdateTextBoxColor()
         {
             void applyStyle(string styleKey) => _textBox.Style = FindResource(styleKey) as Style;
 
