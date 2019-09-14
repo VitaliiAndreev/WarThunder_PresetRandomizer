@@ -16,11 +16,16 @@ namespace Client.Wpf.Controls
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
-        /// <param name="vehicle"> The vehicle positioned in the cell. </param>
-        public ResearchTreeCellVehicleControl(IVehicle vehicle)
+        public ResearchTreeCellVehicleControl()
         {
             InitializeComponent();
+        }
 
+        /// <summary> Creates a new control. </summary>
+        /// <param name="vehicle"> The vehicle positioned in the cell. </param>
+        public ResearchTreeCellVehicleControl(IVehicle vehicle)
+            : base()
+        {
             Vehicle = vehicle;
             _name.Text = Vehicle.GaijinId;
         }
