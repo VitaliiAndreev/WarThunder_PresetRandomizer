@@ -5,8 +5,8 @@
     {
         None,
         Army,
+        Helicopters,
         Aviation,
         Fleet,
-        Helicopters,
     }
 }
