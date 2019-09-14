@@ -79,6 +79,7 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Handlers
 
+        /// <summary> Applies localization to visible text on the control. </summary>
         public void Localize()
         {
             _arcadeButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Arcade);

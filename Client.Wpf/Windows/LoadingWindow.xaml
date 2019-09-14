@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.Wpf.Windows"
         xmlns:controls="clr-namespace:Client.Wpf.Controls"
         mc:Ignorable="d"
-        Title="LoadingWindow"
+        Title="Loading Window"
         WindowStartupLocation="CenterScreen"
         MinHeight="450"
         MinWidth="800"
@@ -34,6 +34,7 @@
             <TextBlock Text="Status:"
                 Grid.Column="0"
                 Name="_statusLabel"/>
+            
             <TextBlock Text="PENDING..."
                 Grid.Column="1"
                 Name="_status"/>

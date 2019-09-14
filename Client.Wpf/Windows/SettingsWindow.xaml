@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.Wpf.Windows"
         xmlns:controls="clr-namespace:Client.Wpf.Controls"
         mc:Ignorable="d"
-        Title="SettingsWindow"
+        Title="Settings Window"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize"

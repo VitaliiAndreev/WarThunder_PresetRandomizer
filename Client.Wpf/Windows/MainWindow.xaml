@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.Wpf.Windows"
         xmlns:controls="clr-namespace:Client.Wpf.Controls"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Main Window"
         WindowStartupLocation="CenterScreen"
         Height="600"
         Width="1000"
