@@ -91,11 +91,11 @@ namespace Client.Wpf.Windows
         {
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
+            _warThunderLocationControl.Localize();
             _warThunderLocationControl.LabelText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Location).FormatFluently(EApplicationName.WarThunder);
-            _warThunderLocationControl.ButtonText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.LookUp);
 
+            _klensysWarThunderToolsLocationControl.Localize();
             _klensysWarThunderToolsLocationControl.LabelText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Location).FormatFluently(EApplicationName.KlensysWarThunderTools);
-            _klensysWarThunderToolsLocationControl.ButtonText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.LookUp);
 
             _cancelButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Cancel);
             _okButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ok);

@@ -61,13 +61,6 @@ namespace Client.Wpf.Controls
             set => _buttonColumn.Width = value;
         }
 
-        /// <summary> The text on the <see cref="_button"/>. </summary>
-        public string ButtonText
-        {
-            get => _button.Content.ToString();
-            set => _button.Content = value;
-        }
-
         #endregion Button
 
         /// <summary> The method used for validation of the address in the <see cref="_textBox"/>. </summary>
@@ -129,6 +122,12 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+
+        /// <summary> Applies localization to visible text on the control. </summary>
+        public void Localize()
+        {
+            _button.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.LookUp);
+        }
 
         /// <summary> Raises <see cref="AddressValidityChanged"/>. </summary>
         private void RaiseAddressValidityChanged() =>
