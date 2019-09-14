@@ -72,7 +72,7 @@ namespace Client.Wpf.Controls
             {
                 return;
             }
-            if (clickedButton.IsChecked.HasValue && !clickedButton.IsChecked.Value)
+            if (!clickedButton.IsChecked ?? false)
             {
                 clickedButton.IsChecked = true;
                 return;
