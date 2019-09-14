@@ -99,6 +99,8 @@ namespace Client.Wpf.Windows
             if (_restartAfterSelection)
             {
                 Process.Start(Application.ResourceAssembly.Location);
+
+                Log.Debug(ECoreLogMessage.Closed);
                 Environment.Exit(0);
             }
             else
