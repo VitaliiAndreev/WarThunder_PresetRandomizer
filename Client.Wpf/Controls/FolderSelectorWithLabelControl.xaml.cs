@@ -153,19 +153,12 @@ namespace Client.Wpf.Controls
         /// <summary> Applies color to the <see cref="_textBox"/> contents according to the value of the <see cref="AddressIsValid"/> property. </summary>
         private void UpdateToAddressColor()
         {
-            void applyForegroundColor(Color color) => _textBox.Foreground = new SolidColorBrush(color);
-            void applyBackgroundColor(Color color) => _textBox.Background = new SolidColorBrush(color);
+            void applyStyle(string styleKey) => _textBox.Style = FindResource(styleKey) as Style;
 
             if (AddressIsValid)
-            {
-                applyForegroundColor(EColor.ValidText);
-                applyBackgroundColor(EColor.ValidTextBackground);
-            }
+                applyStyle(EStyleKey.TextBox.ValidText);
             else
-            {
-                applyForegroundColor(EColor.InvalidText);
-                applyBackgroundColor(EColor.InvalidTextBackground);
-            }
+                applyStyle(EStyleKey.TextBox.InvalidText);
         }
     }
 }

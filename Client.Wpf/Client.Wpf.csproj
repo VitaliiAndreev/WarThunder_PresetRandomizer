@@ -166,6 +166,7 @@
       <DependentUpon>ResearchTreeCellVehicleControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EColor.cs" />
+    <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
