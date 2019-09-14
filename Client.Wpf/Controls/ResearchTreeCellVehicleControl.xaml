@@ -10,15 +10,15 @@
         <Grid>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="17"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="17"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" HorizontalAlignment="Right">
                 
                 <TextBlock Text="Vehicle Name"
-                    x:Name="_name"/>
+                    x:Name="_name"
+                    FontSize="14"/>
 
             </Grid>
             
@@ -29,8 +29,7 @@
 
                 <TextBlock Text="00.0"
                     x:Name="_battleRating"
-                    FontSize="14"
-                    FontWeight="Bold"/>
+                    FontSize="14"/>
                 
             </Grid>
         </Grid>
