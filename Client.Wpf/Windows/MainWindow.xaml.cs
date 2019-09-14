@@ -95,7 +95,7 @@ namespace Client.Wpf.Windows
         private void SelectGameMode(EGameMode gameMode, bool simulateClick = false)
         {
             if (simulateClick)
-                _gameModeSelectionControl.OnClick(_gameModeSelectionControl.GetButton(gameMode), new RoutedEventArgs());
+                _gameModeSelectionControl.OnClick(_gameModeSelectionControl.Buttons[gameMode], new RoutedEventArgs());
 
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);

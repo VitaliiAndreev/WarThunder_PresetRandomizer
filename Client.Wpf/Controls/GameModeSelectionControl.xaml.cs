@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,12 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for GameModeSelectionControl.xaml. </summary>
     public partial class GameModeSelectionControl : UserControl
     {
+        #region Properties
+
+        /// <summary> The map of the game mode enumeration onto corresponding buttons. </summary>
+        public IDictionary<EGameMode, ToggleButton> Buttons { get; }
+
+        #endregion Properties
         #region Events
 
         /// <summary> Occurs when the "Arcade" button is clicked. </summary>
@@ -41,9 +48,12 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _arcadeButton.EmbeddedButton.Tag = EGameMode.Arcade;
-            _realisticButton.EmbeddedButton.Tag = EGameMode.Realistic;
-            _simulatorButton.EmbeddedButton.Tag = EGameMode.Simulator;
+            Buttons = new Dictionary<EGameMode, ToggleButton>
+            {
+                { EGameMode.Arcade, _arcadeButton.EmbeddedButton },
+                { EGameMode.Realistic, _realisticButton.EmbeddedButton },
+                { EGameMode.Simulator, _simulatorButton.EmbeddedButton },
+            };
 
             ArcadeButtonClick += OnClick;
             RealisticButtonClick += OnClick;
@@ -86,16 +96,5 @@ namespace Client.Wpf.Controls
             _realisticButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Realistic);
             _simulatorButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Simulator);
         }
-
-        /// <summary> Gets the button related to the given enumeration item. </summary>
-        /// <param name="gameMode"> The game mode whose button to get. </param>
-        /// <returns></returns>
-        public ToggleButton GetButton(EGameMode gameMode) =>
-            _buttonGrid
-                .Children
-                .OfType<DropCapToggleButton>()
-                .Select(dropCapButton => dropCapButton.EmbeddedButton)
-                .First(button => button.Tag is EGameMode buttonGameMode && buttonGameMode == gameMode)
-            ;
     }
 }
