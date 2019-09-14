@@ -18,6 +18,7 @@
         public const string Ok = nameof(Ok);
         public const string Ready = nameof(Ready);
         public const string Realistic = nameof(Realistic);
+        public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string Simulator = nameof(Simulator);
         public const string Status = nameof(Status);

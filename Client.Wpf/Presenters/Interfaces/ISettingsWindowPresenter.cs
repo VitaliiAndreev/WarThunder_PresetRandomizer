@@ -22,6 +22,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Location of the Klensy's War Thunder Tools directory. </summary>
         string KlensysWarThunderToolsLocation { get; }
 
+        /// <summary> Indicates whether closing the <see cref="Owner"/> window has been marked for cancellation. </summary>
+        bool ClosureCancelled { get; set; }
+
         #endregion Properties
     }
 }

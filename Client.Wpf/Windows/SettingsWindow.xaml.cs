@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Commands.Interfaces;
+using Client.Wpf.Commands.SettingsWindow;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
@@ -9,6 +10,7 @@ using Core.Extensions;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace Client.Wpf.Windows
@@ -61,6 +63,9 @@ namespace Client.Wpf.Windows
 
             _okButton.CommandParameter = Presenter;
             _okButton.Command = Presenter.GetCommand(ECommandName.Ok);
+
+            _cancelButton.CommandParameter = Presenter;
+            _cancelButton.Command = Presenter.GetCommand(ECommandName.Cancel);
         }
 
         #endregion Constructors
@@ -78,6 +83,17 @@ namespace Client.Wpf.Windows
         private void AddressValidityChanged(object sender, EventArgs eventArguments) =>
             (_okButton.Command as ICustomCommand).RaiseCanExecuteChanged(Presenter);
 
+        /// <summary> Calls the <see cref="CancelCommand"/>. </summary>
+        /// <param name="sender"></param>
+        /// <param name="eventArguments"></param>
+        private void OnClosing(object sender, CancelEventArgs eventArguments)
+        {
+            _cancelButton.Command.Execute(Presenter);
+
+            eventArguments.Cancel = Presenter.ClosureCancelled;
+            Presenter.ClosureCancelled = false;
+        }
+        
         /// <summary> Logs closing of the window. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>

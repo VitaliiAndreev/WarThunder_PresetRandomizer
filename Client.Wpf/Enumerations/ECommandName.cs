@@ -8,6 +8,8 @@ namespace Client.Wpf.Enumerations
     /// <summary> Names of available commands. </summary>
     public enum ECommandName
     {
+        /// <summary> See <see cref="CancelCommand"/>. </summary>
+        Cancel,
         /// <summary> See <see cref="InitializeCommand"/>. </summary>
         Initialize,
         /// <summary> See <see cref="OkCommand"/>. </summary>

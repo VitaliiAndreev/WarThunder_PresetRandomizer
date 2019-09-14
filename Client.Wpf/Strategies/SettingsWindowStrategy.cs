@@ -14,6 +14,7 @@ namespace Client.Wpf.Strategies
             base.InitializeCommands();
 
             _commands.Add(ECommandName.Ok, new OkCommand());
+            _commands.Add(ECommandName.Cancel, new CancelCommand());
         }
     }
 }

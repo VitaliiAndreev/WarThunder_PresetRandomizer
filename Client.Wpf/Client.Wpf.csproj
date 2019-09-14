@@ -151,6 +151,7 @@
     </Page>
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
+    <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
     <Compile Include="Controls\DropCapToggleButton.xaml.cs">
       <DependentUpon>DropCapToggleButton.xaml</DependentUpon>

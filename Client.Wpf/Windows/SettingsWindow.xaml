@@ -11,6 +11,7 @@
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize"
         Loaded="OnLoaded"
+        Closing="OnClosing"
         Closed="OnClosed">
     <StackPanel
         Height="110"
