@@ -16,19 +16,17 @@
         Height="110"
         Width="800">
 
-        <controls:FolderSelectorWithLabelControl
+        <controls:FolderSelectorWithLabelControl LabelText="War Thunder location"
             x:Name="_warThunderLocationControl"
             Margin="0 0 0 10"
             LabelWidth="260"
-            LabelText="War Thunder location"
             ButtonWidth="100"
             Height="30"/>
 
-        <controls:FolderSelectorWithLabelControl
+        <controls:FolderSelectorWithLabelControl LabelText="Klensy's War Thunder Tools location"
             x:Name="_klensysWarThunderToolsLocationControl"
             Margin="0 0 0 10"
             LabelWidth="260"
-            LabelText="Klensy's War Thunder Tools location"
             ButtonWidth="100"
             Height="30"/>
 
@@ -41,16 +39,13 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Button
+            <Button Content="Cancel"
                 Grid.Column="1"
-                x:Name="_cancelButton"
-                Content="Cancel"/>
+                x:Name="_cancelButton"/>
 
-            <Button
+            <Button Content="OK"
                 Grid.Column="3"
-                x:Name="_okButton"
-                Content="OK"
-                />
+                x:Name="_okButton"/>
         </Grid>
         
     </StackPanel>

@@ -21,10 +21,9 @@
 
         <StackPanel Grid.Column="0">
 
-            <Button
+            <Button Content="Generate a preset"
                 x:Name="_randomizeButton"
-                FontWeight="Bold"
-                Content="Randomize"/>
+                FontWeight="Bold"/>
 
             <controls:GameModeSelectionControl
                 x:Name="_gameModeSelectionControl"

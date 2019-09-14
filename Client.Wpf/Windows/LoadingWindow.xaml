@@ -31,14 +31,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <TextBlock
+            <TextBlock Text="Status:"
                 Grid.Column="0"
-                Name="_statusLabel"
-                Text="Status:"/>
-            <TextBlock
+                Name="_statusLabel"/>
+            <TextBlock Text="PENDING..."
                 Grid.Column="1"
-                Name="_status"
-                Text="PENDING..."/>
+                Name="_status"/>
             
         </Grid>
 

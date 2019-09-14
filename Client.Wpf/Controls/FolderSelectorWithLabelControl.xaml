@@ -21,11 +21,10 @@
                 Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock
+        <TextBlock Text="Location"
             Grid.Column="0"
             x:Name="_label"
-            VerticalAlignment="Center"
-            Text="Location"/>
+            VerticalAlignment="Center"/>
         <TextBox
             Grid.Column="1"
             x:Name="_textBox"
@@ -34,12 +33,11 @@
             Padding="3"
             Text=""
             TextChanged="OnTextChanged"/>
-        <Button
+        <Button Content="Look up"
             Grid.Column="2"
             x:Name="_button"
             VerticalContentAlignment="Center"
             Padding="0"
-            Content="Look up"
             Click="OnClick"/>
 
     </Grid>
