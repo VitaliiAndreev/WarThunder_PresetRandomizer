@@ -83,6 +83,8 @@ namespace Client.Wpf.Windows
         public override void Localize()
         {
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+
+            _gameModeSelectionControl.Localize();
         }
 
         /// <summary> Selects the specified game mode. </summary>

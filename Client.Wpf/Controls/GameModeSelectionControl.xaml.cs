@@ -1,4 +1,5 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Wpf.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -77,6 +78,13 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+
+        public void Localize()
+        {
+            _arcadeButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Arcade);
+            _realisticButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Realistic);
+            _simulatorButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Simulator);
+        }
 
         /// <summary> Gets the button related to the given enumeration item. </summary>
         /// <param name="gameMode"> The game mode whose button to get. </param>
