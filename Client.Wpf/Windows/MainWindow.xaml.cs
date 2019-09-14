@@ -84,6 +84,8 @@ namespace Client.Wpf.Windows
         {
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
+            _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
+
             _gameModeSelectionControl.Localize();
         }
 

@@ -10,6 +10,7 @@
         public const string Cancel = nameof(Cancel);
         public const string Error = nameof(Error);
         public const string FatalErrorShutdown = nameof(FatalErrorShutdown);
+        public const string GeneratePreset = nameof(GeneratePreset);
         public const string InitializationUnderwayConfirmClosure = nameof(InitializationUnderwayConfirmClosure);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
