@@ -82,7 +82,7 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosed(object sender, EventArgs eventArguments) =>
-            Log.Debug(ECoreLogMessage.Closed);
+            LogClosure();
 
         #endregion Methods: Event Handlers
 
@@ -100,5 +100,9 @@ namespace Client.Wpf.Windows
             _cancelButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Cancel);
             _okButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ok);
         }
+
+        /// <summary> Logs closing of the window. </summary>
+        public void LogClosure() =>
+            Log.Debug(ECoreLogMessage.Closed);
     }
 }
