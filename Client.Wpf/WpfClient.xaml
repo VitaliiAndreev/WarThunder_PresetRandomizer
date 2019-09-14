@@ -49,6 +49,10 @@
             <Setter Property="Height" Value="17"/>
         </Style>
 
+        <Style TargetType="ToggleButton">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
         <Style TargetType="Image" x:Key="FlagIcon">
             <Setter Property="Stretch" Value="None"/>
             <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>

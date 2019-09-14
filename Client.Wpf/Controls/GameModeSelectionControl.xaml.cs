@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls
 {
@@ -56,18 +57,22 @@ namespace Client.Wpf.Controls
         /// <param name="eventArguments"> Not used. </param>
         public void OnClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (!(sender is Button button))
+            if (!(sender is ToggleButton clickedButton))
+            {
                 return;
+            }
+            if (clickedButton.IsChecked.HasValue && !clickedButton.IsChecked.Value)
+            {
+                clickedButton.IsChecked = true;
+                return;
+            }
 
-            var dropCapButtons = _buttonGrid.Children.OfType<DropCapButton>();
-            var clickedDropCapButton = dropCapButtons.First(dropCapButton => dropCapButton.EmbeddedButton.Equals(button));
+            var buttons = _buttonGrid.Children.OfType<DropCapToggleButton>().Select(dropCapButton => dropCapButton.EmbeddedButton);
 
-            clickedDropCapButton.FontWeight = FontWeights.Bold;
-
-            dropCapButtons
-                .Except(new DropCapButton[] { clickedDropCapButton })
+            buttons
+                .Except(new ToggleButton[] { clickedButton })
                 .ToList()
-                .ForEach(dropCapButton => dropCapButton.FontWeight = FontWeights.Normal)
+                .ForEach(button => button.IsChecked = false)
             ;
         }
 
@@ -76,10 +81,10 @@ namespace Client.Wpf.Controls
         /// <summary> Gets the button related to the given enumeration item. </summary>
         /// <param name="gameMode"> The game mode whose button to get. </param>
         /// <returns></returns>
-        public Button GetButton(EGameMode gameMode) =>
+        public ToggleButton GetButton(EGameMode gameMode) =>
             _buttonGrid
                 .Children
-                .OfType<DropCapButton>()
+                .OfType<DropCapToggleButton>()
                 .Select(dropCapButton => dropCapButton.EmbeddedButton)
                 .First(button => button.Tag is EGameMode buttonGameMode && buttonGameMode == gameMode)
             ;

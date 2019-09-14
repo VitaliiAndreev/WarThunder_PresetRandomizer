@@ -3,16 +3,17 @@ using Core.Extensions;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls
 {
-    /// <summary> Interaction logic for DropCapButton.xaml. </summary>
-    public partial class DropCapButton : UserControl
+    /// <summary> Interaction logic for DropCapToggleButton.xaml. </summary>
+    public partial class DropCapToggleButton : UserControl
     {
         #region Properties
 
         /// <summary> The button embedded in the control. </summary>
-        public Button EmbeddedButton => _button;
+        public ToggleButton EmbeddedButton => _button;
         
         /// <summary> The font size of the drop cap. The following text is written with a smaller font size.</summary>
         public double DropCapFontSize
@@ -52,7 +53,7 @@ namespace Client.Wpf.Controls
         #region Constuctors
 
         /// <summary> Creates a new control. </summary>
-        public DropCapButton()
+        public DropCapToggleButton()
         {
             InitializeComponent();
         }

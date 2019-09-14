@@ -14,17 +14,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <local:DropCapButton
+        <local:DropCapToggleButton
                     Grid.Column="0"
                     x:Name="_arcadeButton"
                     Caption ="Arcade"
                     DropCapFontSize="16"/>
-        <local:DropCapButton
+        <local:DropCapToggleButton
                     Grid.Column="1"
                     x:Name="_realisticButton"
                     Caption ="Realistic"
                     DropCapFontSize="16"/>
-        <local:DropCapButton
+        <local:DropCapToggleButton
                     Grid.Column="2"
                     x:Name="_simulatorButton"
                     Caption ="Simulator"

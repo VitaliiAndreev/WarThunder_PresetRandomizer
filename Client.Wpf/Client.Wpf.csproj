@@ -117,7 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\DropCapButton.xaml">
+    <Page Include="Controls\DropCapToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -152,8 +152,8 @@
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
-    <Compile Include="Controls\DropCapButton.xaml.cs">
-      <DependentUpon>DropCapButton.xaml</DependentUpon>
+    <Compile Include="Controls\DropCapToggleButton.xaml.cs">
+      <DependentUpon>DropCapToggleButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\FolderSelectorWithLabelControl.xaml.cs">
       <DependentUpon>FolderSelectorWithLabelControl.xaml</DependentUpon>
