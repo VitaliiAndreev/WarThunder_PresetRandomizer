@@ -12,7 +12,7 @@
         public int RowNumber { get; }
 
         /// <summary> A 0-based index of a vehicle in its research tree folder. </summary>
-        public int? FolderIndex { get; internal set; }
+        public int? FolderIndex { get; }
 
         #endregion Properties
         #region Constructors
