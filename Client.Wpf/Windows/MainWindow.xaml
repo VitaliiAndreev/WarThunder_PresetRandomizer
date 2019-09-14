@@ -8,8 +8,10 @@
         mc:Ignorable="d"
         Title="Main Window"
         WindowStartupLocation="CenterScreen"
+        MinHeight="400"
+        MinWidth="1000"
         Height="600"
-        Width="1000"
+        Width="1200"
         Loaded="OnLoaded"
         Closed="OnClosed">
     <Grid>
