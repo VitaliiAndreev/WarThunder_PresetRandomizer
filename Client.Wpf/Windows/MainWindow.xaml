@@ -31,9 +31,11 @@
 
         </StackPanel>
         
-        <StackPanel Grid.Column="1">
+        <Grid
+            Grid.Column="1"
+            Style="{StaticResource PaddedGrid}">
 
-        </StackPanel>
+        </Grid>
 
     </Grid>
 </local:BaseWindow>
