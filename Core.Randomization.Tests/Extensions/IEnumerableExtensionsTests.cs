@@ -39,6 +39,7 @@ namespace Core.Randomization.Tests.Extensions
         {
             // arrange
             var observationCount = 1_000_000;
+            var tolerance = 2;
             var minimumValue = 0;
             var count = 10;
             var numbers = Enumerable.Range(minimumValue, count);
@@ -59,8 +60,8 @@ namespace Core.Randomization.Tests.Extensions
             }
 
             // assert
-            amountOfNonRandomizedCollections.Should().BeLessOrEqualTo(2);
-            amountOfRandomizedCollections.Should().BeGreaterOrEqualTo(observationCount - 1);
+            amountOfNonRandomizedCollections.Should().BeLessOrEqualTo(tolerance);
+            amountOfRandomizedCollections.Should().BeGreaterOrEqualTo(observationCount - tolerance);
         }
 
         #endregion Tests: GetRandomVehicle()
