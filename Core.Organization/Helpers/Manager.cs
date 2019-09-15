@@ -17,6 +17,7 @@ using Core.Organization.Enumerations.Logger;
 using Core.Organization.Helpers.Interfaces;
 using Core.Organization.Objects;
 using Core.Randomization.Helpers.Interfaces;
+using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
@@ -302,7 +303,7 @@ namespace Core.Organization.Helpers
         /// <param name="settingsClass"> The settings class. </param>
         protected void LoadSettings(Type settingsClass)
         {
-            var settingProperties = settingsClass.GetProperties(BindingFlags.Public | BindingFlags.Static);
+            var settingProperties = settingsClass.GetProperties(BindingFlags.Public | BindingFlags.Static).Where(property => property.GetCustomAttribute<RequiredSettingAttribute>() is RequiredSettingAttribute);
 
             foreach (var settingProperty in settingProperties)
                 settingProperty.SetValue(null, _settingsManager.GetSetting(settingProperty.Name));
