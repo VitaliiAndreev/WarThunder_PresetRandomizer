@@ -7,7 +7,9 @@ namespace Core.Json.WarThunder.Extensions
 {
     public static class IDictionaryExtensions
     {
-        public static IDictionary<string, T> SetOwners<T, U>(this IDictionary<string, T> dictionary, U owner) where T : DeserializedFromJsonWithOwner<U>
+        public static IDictionary<string, T> SetOwners<T, U>(this IDictionary<string, T> dictionary, U owner)
+            where T : DeserializedFromJsonWithOwner<U>
+            where U : DeserializedFromJson
         {
             foreach (var keyValuePair in dictionary)
                 keyValuePair.Value.Owner = owner;
