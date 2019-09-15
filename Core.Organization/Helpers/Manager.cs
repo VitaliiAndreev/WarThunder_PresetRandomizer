@@ -194,20 +194,37 @@ namespace Core.Organization.Helpers
             InitializeResearchTree();
         }
 
-        private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
+        /// <summary> Unpacks a file with the speficied name and gets files of the given type from its contents, doing conversions if necessary. </summary>
+        /// <param name="fileType"> The type of files to search for after unpacking. </param>
+        /// <param name="packedFileName"> The name of the packed file. </param>
+        /// <returns></returns>
+        internal IEnumerable<FileInfo> GetFiles(string fileType, string packedFileName)
         {
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, sourceFileName);
+            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, packedFileName);
             var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
 
-            _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+            switch (fileType)
+            {
+                case EFileExtension.Blkx:
+                    _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+                    break;
+            }
 
-            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
         }
 
-        private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
-        {
-            return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
-        }
+        /// <summary> Unpacks a file with the speficied name as a BIN file and returns BLK files it contains converted into BLKX files. </summary>
+        /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <returns></returns>
+        internal IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName) =>
+            GetFiles(EFileExtension.Blkx, sourceFileName);
+
+        /// <summary> Reads a file with the specified name from the given collection of files. </summary>
+        /// <param name="files"> The collection of files. </param>
+        /// <param name="unpackedFileName"> The name of the file to read. </param>
+        /// <returns></returns>
+        internal string GetJsonText(IEnumerable<FileInfo> files, string unpackedFileName) =>
+            _fileReader.Read(files.First(file => file.Name.Contains(unpackedFileName)));
 
         /// <summary> Creates the database for the current War Thunder client version. </summary>
         private void CreateDataBase()
