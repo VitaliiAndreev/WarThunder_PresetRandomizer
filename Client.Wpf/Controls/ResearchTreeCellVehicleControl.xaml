@@ -7,7 +7,7 @@
              mc:Ignorable="d">
 
     <Border
-        Style="{StaticResource ResearchTreeCellBorder}">
+        Style="{StaticResource ResearchTreeCell}">
         
         <Grid>
 
