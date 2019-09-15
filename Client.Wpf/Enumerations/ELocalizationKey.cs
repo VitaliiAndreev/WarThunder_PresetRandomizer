@@ -8,13 +8,19 @@
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
         public const string Arcade = nameof(Arcade);
         public const string Army = nameof(Army);
+        public const string Britain = nameof(Britain);
         public const string Cancel = nameof(Cancel);
+        public const string China = nameof(China);
         public const string Error = nameof(Error);
         public const string FatalErrorShutdown = nameof(FatalErrorShutdown);
         public const string Fleet = nameof(Fleet);
+        public const string France = nameof(France);
         public const string GeneratePreset = nameof(GeneratePreset);
+        public const string Germany = nameof(Germany);
         public const string Helicopters = nameof(Helicopters);
         public const string InitializationUnderwayConfirmClosure = nameof(InitializationUnderwayConfirmClosure);
+        public const string Italy = nameof(Italy);
+        public const string Japan = nameof(Japan);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
         public const string LookUp = nameof(LookUp);
@@ -26,5 +32,7 @@
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string Simulator = nameof(Simulator);
         public const string Status = nameof(Status);
+        public const string Usa = nameof(Usa);
+        public const string Ussr = nameof(Ussr);
     }
 }

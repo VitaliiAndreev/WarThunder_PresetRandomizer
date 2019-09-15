@@ -43,6 +43,7 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
+            _researchTreeControl.Populate();
 
             if (!string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode))
                 SelectGameMode(WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
@@ -87,6 +88,7 @@ namespace Client.Wpf.Windows
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
 
             _gameModeSelectionControl.Localize();
+            _researchTreeControl.Localize();
         }
 
         /// <summary> Selects the specified game mode. </summary>

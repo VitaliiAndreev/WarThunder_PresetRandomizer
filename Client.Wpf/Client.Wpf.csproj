@@ -145,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ResearchTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ResearchTreeNationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +186,9 @@
     </Compile>
     <Compile Include="Controls\ResearchTreeBranchControl.xaml.cs">
       <DependentUpon>ResearchTreeBranchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResearchTreeControl.xaml.cs">
+      <DependentUpon>ResearchTreeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ResearchTreeNationControl.xaml.cs">
       <DependentUpon>ResearchTreeNationControl.xaml</DependentUpon>
