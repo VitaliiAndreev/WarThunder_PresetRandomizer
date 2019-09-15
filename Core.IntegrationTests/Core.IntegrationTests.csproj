@@ -142,6 +142,14 @@
       <Project>{2B7A7D01-A40F-4086-8B2C-151E94B0B0B1}</Project>
       <Name>Core.Json</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Organization\Core.Organization.csproj">
+      <Project>{5642C09F-DBEA-4AFF-AC47-9434E455899E}</Project>
+      <Name>Core.Organization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Randomization\Core.Randomization.csproj">
+      <Project>{EEDBA9AA-9B38-44AE-9287-8BC8A204A3D8}</Project>
+      <Name>Core.Randomization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Tests\Core.Tests.csproj">
       <Project>{760B95CD-A280-4B45-9C90-AE7301C94961}</Project>
       <Name>Core.Tests</Name>

@@ -8,10 +8,11 @@ using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
-using Core.Helpers;
-using Core.Helpers.Interfaces;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
+using Core.Organization.Helpers;
+using Core.Organization.Helpers.Interfaces;
+using Core.Randomization.Helpers.Interfaces;
 using Core.Tests;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
@@ -19,6 +20,7 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,10 +35,11 @@ namespace Core.IntegrationTests
 
         private readonly IEnumerable<string> _ignoredPropertyNames;
 
-        private IFileManager _fileManager;
-        private IFileReader _fileReader;
+        private IWarThunderFileManager _fileManager;
+        private IWarThunderFileReader _fileReader;
         private IUnpacker _unpacker;
         private IWarThunderJsonHelper _jsonHelper;
+        private Manager _manager;
         private string _rootDirectory;
         private string _defaultTempDirectory;
 
@@ -55,10 +58,23 @@ namespace Core.IntegrationTests
         [TestInitialize]
         public void Initialize()
         {
-            _fileManager = new FileManager(Presets.Logger);
-            _fileReader = new FileReader(Presets.Logger);
+            _fileManager = new WarThunderFileManager(Presets.Logger);
+            _fileReader = new WarThunderFileReader(Presets.Logger);
             _unpacker = new Unpacker(_fileManager, Presets.Logger);
             _jsonHelper = new WarThunderJsonHelper(Presets.Logger);
+
+            var settingsManager = new Mock<IWarThunderSettingsManager>();
+            settingsManager
+                .Setup(manager => manager.GetSetting(nameof(Settings.WarThunderLocation)))
+                .Returns(Settings.WarThunderLocation);
+            settingsManager
+                .Setup(manager => manager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation)))
+                .Returns(Settings.KlensysWarThunderToolsLocation);
+            settingsManager
+                .Setup(manager => manager.GetSetting(nameof(Settings.TempLocation)))
+                .Returns(Settings.TempLocation);
+
+            _manager = new Manager(_fileManager, _fileReader, settingsManager.Object, new Mock<IParser>().Object, _unpacker, _jsonHelper, new Mock<IRandomizer>().Object, new Mock<IVehicleSelector>().Object, Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;
 
@@ -83,31 +99,13 @@ namespace Core.IntegrationTests
         public override string ToString() => nameof(IntegrationTests);
 
         #endregion Internal Methods
-        #region Helper Methods
-
-        private IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName)
-        {
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, sourceFileName);
-            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-
-            _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
-
-            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
-        }
-
-        private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
-        {
-            return _fileReader.Read(blkxFiles.First(file => file.Name.Contains(unpackedFileName)));
-        }
-
-        #endregion Helper Methods
 
         [TestMethod]
         public void DeserializeAndPersistNationList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
-            var rankJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
+            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var rankJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
@@ -136,11 +134,11 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistVehicleList()
         {
             // arrange
-            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
 
-            var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
-            var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
-            var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
+            var wpCostJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
+            var unitTagsJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+            var researchTreeJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
 
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
             var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
