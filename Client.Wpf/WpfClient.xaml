@@ -19,7 +19,7 @@
             <Setter Property="Margin" Value="0 0 0 10"/>
         </Style>
 
-        <Style TargetType="Grid" x:Key="ResearchTreeGrid" BasedOn="{StaticResource PaddedGrid {x:Type Grid}}">
+        <Style TargetType="Grid" x:Key="ResearchTreeGrid" BasedOn="{StaticResource PaddedGrid}">
             <Setter Property="Width" Value="1150"/> <!-- Has to be fixed for uniform spacing given that there may be fewer columns than the maximum. -->
         </Style>
 
