@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:Client.Wpf.Controls"
              mc:Ignorable="d">
 
-    <Border Style="{StaticResource ResearchTreeCellBorder}">
+    <Border
+        Style="{StaticResource ResearchTreeCellBorder}">
+        
         <Grid>
 
             <Grid.RowDefinitions>
@@ -33,6 +35,7 @@
                 
             </Grid>
         </Grid>
+        
     </Border>
 
 </UserControl>

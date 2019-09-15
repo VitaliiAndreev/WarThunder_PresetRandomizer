@@ -3,7 +3,7 @@
     /// <summary> String keys of styles defined in <see cref="WpfClient"/>. </summary>
     public class EStyleKey
     {
-        /// <summary> String keys of styles for <see cref="TextBox"/>. </summary>
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBox"/>. </summary>
         public class TextBox
         {
             public const string ValidText = "ValidText";
