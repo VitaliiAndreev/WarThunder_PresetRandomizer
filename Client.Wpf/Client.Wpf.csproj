@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ResearchTreeCellControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ResearchTreeCellVehicleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +165,9 @@
     </Compile>
     <Compile Include="Controls\GameModeSelectionControl.xaml.cs">
       <DependentUpon>GameModeSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResearchTreeCellControl.xaml.cs">
+      <DependentUpon>ResearchTreeCellControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ResearchTreeCellVehicleControl.xaml.cs">
       <DependentUpon>ResearchTreeCellVehicleControl.xaml</DependentUpon>
