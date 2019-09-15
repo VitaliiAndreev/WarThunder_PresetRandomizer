@@ -173,6 +173,14 @@ namespace Core.Extensions
             stringCollection
                 .Any(stringInCollection => stringInCollection.Contains(sourceString));
 
+        /// <summary> Checks whether the string contains any occurrences of strings in the collection. </summary>
+        /// <param name="sourceString"> A source string. </param>
+        /// <param name="stringCollection"> The collection to search check. </param>
+        /// <returns></returns>
+        public static bool ContainsAny(this string sourceString, IEnumerable<string> stringCollection) =>
+            stringCollection
+                .Any(stringInCollection => sourceString.Contains(stringInCollection));
+
         #endregion Methods: Searching
 
         /// <summary> Creates a new text reader with the given string. </summary>
