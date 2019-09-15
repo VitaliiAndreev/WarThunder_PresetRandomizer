@@ -122,7 +122,7 @@ namespace Core.Organization.Helpers
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
         /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheVehicles"/>. </summary>
-        private void InitializeResearchTree()
+        private void InitializeResearchTrees()
         {
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
 
@@ -201,7 +201,7 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
-            InitializeResearchTree();
+            InitializeResearchTrees();
         }
 
         /// <summary> Unpacks a file with the speficied name and gets files of the given type from its contents, doing conversions if necessary. </summary>
