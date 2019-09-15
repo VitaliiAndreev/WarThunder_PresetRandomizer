@@ -77,6 +77,16 @@
             <Setter Property="Margin" Value="0 0 0 5"/>
         </Style>
 
+        <Style TargetType="TextBox" x:Key="ValidText">
+            <Setter Property="Foreground" Value="#00B414"/>
+            <Setter Property="Background" Value="#9BFFA5"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="InvalidText">
+            <Setter Property="Foreground" Value="#C80000"/>
+            <Setter Property="Background" Value="#FFCDFA"/>
+        </Style>
+
         <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank1">
             <Setter Property="Background" Value="#F0F0F0"/> <!--240-->
         </Style>
