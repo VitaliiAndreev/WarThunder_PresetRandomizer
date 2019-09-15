@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Core.Helpers.Interfaces
 {
@@ -29,6 +30,12 @@ namespace Core.Helpers.Interfaces
         /// <param name="file"> The file to read. </param>
         /// <returns></returns>
         string Read(FileInfo file);
+
+        /// <summary> Reads contents of the specified CSV file into a collection of records. </summary>
+        /// <param name="file"> The CSV file to read. </param>
+        /// <param name="delimiter"> The field delimeter. </param>
+        /// <returns></returns>
+        IEnumerable<IEnumerable<string>> ReadCsv(FileInfo file, char delimiter);
 
         #endregion Methods: Read()
     }

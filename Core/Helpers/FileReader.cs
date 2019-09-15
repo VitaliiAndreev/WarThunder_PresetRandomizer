@@ -3,6 +3,8 @@ using Core.Extensions;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
+using Microsoft.VisualBasic.FileIO;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -78,6 +80,30 @@ namespace Core.Helpers
             LogDebug(ECoreLogMessage.ReadCharacters.FormatFluently(fileContents.Count()));
 
             return fileContents;
+        }
+
+        /// <summary> Reads contents of the specified CSV file into a collection of records. </summary>
+        /// <param name="file"> The CSV file to read. </param>
+        /// <param name="delimiter"> The field delimeter. </param>
+        /// <returns></returns>
+        public IEnumerable<IEnumerable<string>> ReadCsv(FileInfo file, char delimiter)
+        {
+            var lines = new List<IEnumerable<string>>();
+
+            using (var parser = new TextFieldParser(file.FullName) { TextFieldType = FieldType.Delimited, Delimiters = new string[] { delimiter.ToString() }, })
+            {
+                while (!parser.EndOfData)
+                {
+                    var record = new List<string>();
+                    var readValues = parser.ReadFields();
+
+                    foreach (var fieldValue in readValues)
+                        record.Add(fieldValue);
+
+                    lines.Add(record);
+                }
+            }
+            return lines;
         }
 
         #endregion Methods: Read()

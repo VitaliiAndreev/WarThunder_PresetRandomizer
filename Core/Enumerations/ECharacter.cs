@@ -18,6 +18,7 @@
         public const char ParenthesisOpen = '(';
         public const char Period = '.';
         public const char Slash = '/';
+        public const char Semicolon = ';';
         public const char Space = ' ';
         public const char Underscore = '_';
     }
