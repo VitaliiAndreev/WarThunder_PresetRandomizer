@@ -1,6 +1,9 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Wpf.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
+using Core.Extensions;
 using Core.Localization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
+using System;
 
 namespace Core.WarThunderExtractionToolsIntegration
 {
@@ -10,9 +13,24 @@ namespace Core.WarThunderExtractionToolsIntegration
     /// </summary>
     public class WpfSettings : Settings
     {
+        #region Properties
+
         [RequiredSetting]
-        public static string Localization { get; set; } = ELanguage.EnglishUsa.ToString();
+        public static string Localization
+        {
+            get => LocalizationLanguage.ToString();
+            set => LocalizationLanguage = Enum.Parse(typeof(ELanguage), value).CastTo<ELanguage>();
+        }
+
         [RequiredSetting]
         public static string CurrentGameMode { get; set; } = EGameMode.Realistic.ToString();
+
+        /// <summary>
+        /// The currently selected localization language.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
+        /// </summary>
+        public static ELanguage LocalizationLanguage { get; private set; } = ELanguage.EnglishUsa;
+
+        #endregion Properties
     }
 }
