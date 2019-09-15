@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Client.Wpf.Controls.ResearchTreeNationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Wpf.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <TabControl>
+
+        <TabItem Header="Army"
+                x:Name="_armyTab">
+            <local:ResearchTreeBranchControl
+                x:Name="_armyBranch"/>
+        </TabItem>
+
+        <TabItem Header="Helicopters"
+                x:Name="_helicoptersTab">
+            <local:ResearchTreeBranchControl
+                x:Name="_helicoptersBranch"/>
+        </TabItem>
+
+        <TabItem Header="Aviation"
+                x:Name="_aviationTab">
+            <local:ResearchTreeBranchControl
+                x:Name="_aviationBranch"/>
+        </TabItem>
+
+        <TabItem Header="Fleet"
+                x:Name="_fleetTab">
+            <local:ResearchTreeBranchControl
+                x:Name="_fleetBranch"/>
+        </TabItem>
+
+    </TabControl>
+</UserControl>
