@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Helpers.Interfaces;
+using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Helpers;
@@ -25,10 +26,11 @@ namespace Client.Wpf.Helpers
             IParser parser,
             IUnpacker unpacker,
             IWarThunderJsonHelper jsonHelper,
+            ICsvDeserializer csvDeserializer,
             IRandomizer randomizer,
             IVehicleSelector vehicleSelector,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, randomizer, vehicleSelector, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, loggers)
         {
         }
 

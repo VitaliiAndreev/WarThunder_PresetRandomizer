@@ -1,4 +1,5 @@
-﻿using Core.DataBase.Helpers.Interfaces;
+﻿using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
@@ -56,6 +57,8 @@ namespace Core.Organization.Helpers
         protected readonly IUnpacker _unpacker;
         /// <summary> An instance of a JSON helper. </summary>
         protected readonly IWarThunderJsonHelper _jsonHelper;
+        /// <summary> An instance of a CSV deserializer. </summary>
+        protected readonly ICsvDeserializer _csvDeserializer;
         /// <summary> An instance of a randomizer. </summary>
         protected readonly IRandomizer _randomizer;
         /// <summary> An instance of a vehicle selector. </summary>
@@ -84,6 +87,7 @@ namespace Core.Organization.Helpers
             IParser parser,
             IUnpacker unpacker,
             IWarThunderJsonHelper jsonHelper,
+            ICsvDeserializer csvDeserializer,
             IRandomizer randomizer,
             IVehicleSelector vehicleSelector,
             params IConfiguredLogger[] loggers
@@ -94,6 +98,7 @@ namespace Core.Organization.Helpers
             _parser = parser;
             _unpacker = unpacker;
             _jsonHelper = jsonHelper;
+            _csvDeserializer = csvDeserializer;
             _randomizer = randomizer;
             _vehicleSelector = vehicleSelector;
             _cache = new List<IPersistentObject>();

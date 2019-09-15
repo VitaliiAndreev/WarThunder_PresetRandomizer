@@ -2,6 +2,8 @@
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Helpers;
 using Client.Wpf.Helpers.Interfaces;
+using Core.Csv.WarThunder.Helpers;
+using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
@@ -36,6 +38,7 @@ namespace Client.Wpf
         private static IParser _parser;
         private static IUnpacker _unpacker;
         private static IWarThunderJsonHelper _jsonHelper;
+        private static ICsvDeserializer _csvDeserializer;
         private static IRandomizer _randomizer;
         private static IVehicleSelector _vehicleSelector;
 
@@ -133,10 +136,11 @@ namespace Client.Wpf
             _parser = new Parser(Loggers);
             _unpacker = new Unpacker(FileManager, Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);
+            _csvDeserializer = new CsvDeserializer(Loggers);
             _randomizer = new CustomRandomizer(Loggers);
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
 
-            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _randomizer, _vehicleSelector, Loggers);
+            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, Loggers);
             InitializeLocalizationManager();
         }
 

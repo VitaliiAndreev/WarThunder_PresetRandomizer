@@ -122,6 +122,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Csv.WarThunder\Core.Csv.WarThunder.csproj">
+      <Project>{235EA7F8-7061-4401-B359-1DC545445D89}</Project>
+      <Name>Core.Csv.WarThunder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.DataBase.WarThunder.Tests\Core.DataBase.WarThunder.Tests.csproj">
       <Project>{3580E0B7-0FBE-4D8D-89C1-4C91F823C894}</Project>
       <Name>Core.DataBase.WarThunder.Tests</Name>

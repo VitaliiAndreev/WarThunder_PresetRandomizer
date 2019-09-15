@@ -1,5 +1,6 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Helpers.Interfaces;
+using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
@@ -30,10 +31,11 @@ namespace Client.Console.Helpers
             IParser parser,
             IUnpacker unpacker,
             IWarThunderJsonHelper jsonHelper,
+            ICsvDeserializer csvDeserializer,
             IRandomizer randomizer,
             IVehicleSelector vehicleSelector,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, randomizer, vehicleSelector, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, loggers)
         {
         }
 

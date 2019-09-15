@@ -1,4 +1,6 @@
-﻿using Core.DataBase.Extensions;
+﻿using Core.Csv.WarThunder.Helpers;
+using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Extensions;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
@@ -39,6 +41,7 @@ namespace Core.IntegrationTests
         private IWarThunderFileReader _fileReader;
         private IUnpacker _unpacker;
         private IWarThunderJsonHelper _jsonHelper;
+        private ICsvDeserializer _csvDeserializer;
         private Manager _manager;
         private string _rootDirectory;
         private string _defaultTempDirectory;
@@ -62,6 +65,7 @@ namespace Core.IntegrationTests
             _fileReader = new WarThunderFileReader(Presets.Logger);
             _unpacker = new Unpacker(_fileManager, Presets.Logger);
             _jsonHelper = new WarThunderJsonHelper(Presets.Logger);
+            _csvDeserializer = new CsvDeserializer(Presets.Logger);
 
             var settingsManager = new Mock<IWarThunderSettingsManager>();
             settingsManager
@@ -74,7 +78,7 @@ namespace Core.IntegrationTests
                 .Setup(manager => manager.GetSetting(nameof(Settings.TempLocation)))
                 .Returns(Settings.TempLocation);
 
-            _manager = new Manager(_fileManager, _fileReader, settingsManager.Object, new Mock<IParser>().Object, _unpacker, _jsonHelper, new Mock<IRandomizer>().Object, new Mock<IVehicleSelector>().Object, Presets.Logger);
+            _manager = new Manager(_fileManager, _fileReader, settingsManager.Object, new Mock<IParser>().Object, _unpacker, _jsonHelper, _csvDeserializer, new Mock<IRandomizer>().Object, new Mock<IVehicleSelector>().Object, Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;
 
