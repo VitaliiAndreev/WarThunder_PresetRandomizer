@@ -39,6 +39,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Crew
         #region General
 
+        /// <summary> Indicates whether the vehicle is premium or not. </summary>
+        bool IsPremium { get; }
+
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string MoveType { get; }
 

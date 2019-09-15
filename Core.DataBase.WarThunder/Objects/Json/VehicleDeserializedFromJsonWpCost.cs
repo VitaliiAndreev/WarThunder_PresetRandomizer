@@ -40,6 +40,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("country", Required = Required.Always)]
         public string NationGaijinId { get; set; }
 
+        public bool IsPremium { get; set; }
+
         [JsonProperty("unitMoveType", Required = Required.Always)]
         public string MoveType { get; set; }
 
@@ -197,6 +199,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("weapons", Required = Required.Always)]
         public Dictionary<string, WeaponDeserializedFromJson> Weapons { get; set; }
+
+        [JsonProperty("modifications", Required = Required.Always)]
+        public Dictionary<string, ModificationDeserializedFromJson> Modifications { get; set; }
 
         #endregion Weapons
 

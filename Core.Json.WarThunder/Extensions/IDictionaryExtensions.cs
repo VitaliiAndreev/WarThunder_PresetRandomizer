@@ -38,7 +38,12 @@ namespace Core.Json.WarThunder.Extensions
                 entity.GaijinId = keyValuePair.Key;
 
                 if (entity is VehicleDeserializedFromJsonWpCost vehicle)
+                {
                     vehicle.Weapons.SetOwners(vehicle).FinalizeDeserialization();
+                    vehicle.Modifications.SetOwners(vehicle).FinalizeDeserialization();
+
+                    vehicle.IsPremium = vehicle.Modifications.ContainsKey("allowPremDecals");
+                }
             }
 
             return dictionary;

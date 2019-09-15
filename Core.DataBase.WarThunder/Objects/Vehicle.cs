@@ -75,6 +75,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        /// <summary> Indicates whether the vehicle is premium or not. </summary>
+        [Property(NotNull = true)]
+        public virtual bool IsPremium { get; protected set; }
+
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string MoveType { get; protected set; }
 
