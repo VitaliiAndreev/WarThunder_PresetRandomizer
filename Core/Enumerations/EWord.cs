@@ -16,10 +16,12 @@
         #region C
 
         public static string Client => _Client;
+        public static string CSV => _CSV;
 
         #endregion C
         #region D
 
+        public static string Deserializer => _Deserializer;
         public static string Dont => _Dont;
 
         #endregion D

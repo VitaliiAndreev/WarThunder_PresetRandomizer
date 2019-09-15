@@ -110,6 +110,7 @@
         protected const string _created = _create + _d;
         protected const string _Creating = "Creat" + _ing;
         protected const string _creating = "creat" + _ing;
+        protected const string _CSV = "CSV";
 
         #endregion C
         #region D
@@ -126,6 +127,7 @@
         protected const string _deleting = _d + "elet" + _ing;
         protected const string _deserialize = _d + "eserialize";
         protected const string _deserialized = _deserialize + "d";
+        protected const string _Deserializer = "Deserializer";
         protected const string _deserializing = _d + "eserializ" + _ing;
         protected const string _details = _d + "etails";
         protected const string _dialog = _d + "ia" + _log;
