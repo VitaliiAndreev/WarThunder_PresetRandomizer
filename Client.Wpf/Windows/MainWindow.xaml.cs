@@ -10,6 +10,7 @@ using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Windows
 {
@@ -69,7 +70,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnGameModeButtonClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (!(sender is Button button))
+            if (!(sender is ToggleButton button))
                 return;
 
             if (!(button.Tag is EGameMode buttonGameMode))
