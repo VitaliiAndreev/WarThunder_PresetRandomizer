@@ -126,8 +126,12 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
 
             var columnCount = default(int);
+            var excludedGaijinIdParts = new List<string>()
+            {
+                "_football",
+            };
 
-            foreach (var vehicle in _cache.OfType<IVehicle>())
+            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.IsPartiallyIn(excludedGaijinIdParts)))
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
