@@ -37,7 +37,13 @@
             Grid.Column="1"
             Style="{StaticResource PaddedGrid}">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
             <controls:ResearchTreeControl
+                Grid.Row="1"
                 x:Name="_researchTreeControl"/>
             
         </Grid>
