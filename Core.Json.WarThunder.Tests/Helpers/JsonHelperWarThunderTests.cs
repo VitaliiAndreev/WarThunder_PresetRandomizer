@@ -165,7 +165,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonWpCost>(jsonText);
 
             // assert
-            vehicles.Count().Should().BeGreaterThan(1300);
+            vehicles.Count().Should().BeGreaterThan(1500);
             
             /// crew
             vehicles.All(vehicle => vehicle.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
@@ -192,6 +192,9 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.BulletsIconParam < 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.WeaponMask < 0).Should().BeFalse();
             /// modifications
+            vehicles.Any(vehicle => vehicle.Modifications.All(keyValuePair => string.IsNullOrWhiteSpace(keyValuePair.Value?.GaijinId))).Should().BeFalse();
+            vehicles.All(vehicle => vehicle.Modifications.All(keyValuePair => keyValuePair.Value?.Owner == vehicle)).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.Modifications.All(keyValuePair => keyValuePair.Value?.PurchaseCostInGold >= 0)).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 >= 1).Should().BeTrue();
@@ -263,7 +266,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var vehicles = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(jsonText);
 
             // assert
-            vehicles.Count().Should().BeGreaterThan(1300);
+            vehicles.Count().Should().BeGreaterThan(1500);
 
             vehicles.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.BranchGaijinId)).Should().BeTrue();
         }
