@@ -35,5 +35,11 @@ namespace Core.UnpackingToolsIntegration.Enumerations
             public const string RankData = "rank" + _blkx;
             public const string ResearchTreeData = "shop" + _blkx;
         }
+        public class LangVromfs
+        {
+            private const string _csv = ECharacterString.Period + EFileExtension.Csv;
+
+            public const string Units = "units" + _csv;
+        }
     }
 }

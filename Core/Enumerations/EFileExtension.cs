@@ -9,6 +9,7 @@
         /// <summary> An <see cref="Blk"/> file converted into a text file. </summary>
         public const string Blkx = "blkx";
         public const string Clog = "clog";
+        public const string Csv = "csv";
         public const string Ddsx = "ddsx";
         public const string Dxp = "dxp";
         public const string Exe = "exe";
