@@ -39,16 +39,27 @@ namespace Core.Csv.WarThunder.Helpers
 
                 if (recordGaijinId.EndsWith(shopNameSuffix))
                 {
-                    var shopNameRecord = record;
-                    var fullNameRecord = csvRecords[lineIndex + EInteger.Number.One];
-                    var shortNameRecord = csvRecords[lineIndex + EInteger.Number.Two];
-                    var lastRecordIndex = lineIndex + EInteger.Number.Three;
-                    var classNameRecord = csvRecords[lastRecordIndex];
+                    var vehicleGaijinId = recordGaijinId.SkipLast(shopNameSuffix.Count());
 
-                    if (vehicles.TryGetValue(shopNameRecord.First().SkipLast(shopNameSuffix.Count()), out var vehicle))
+                    var fullNameRecordIndex = lineIndex + EInteger.Number.One;
+                    var shortNameRecordIndex = fullNameRecordIndex + EInteger.Number.One;
+                    var classNameRecordIndex = shortNameRecordIndex + EInteger.Number.One;
+
+                    var shopNameRecord = record;
+                    var fullNameRecord = csvRecords[fullNameRecordIndex];
+                    var shortNameRecord = csvRecords[shortNameRecordIndex];
+                    var classNameRecord = csvRecords[classNameRecordIndex];
+
+                    if (!csvRecords[classNameRecordIndex].First().Contains(vehicleGaijinId))
+                    {
+                        classNameRecord = shortNameRecord;
+                        classNameRecordIndex -= EInteger.Number.One;
+                    }
+
+                    if (vehicles.TryGetValue(vehicleGaijinId, out var vehicle))
                         vehicle.InitializeLocalization(fullNameRecord, shopNameRecord, shortNameRecord, classNameRecord);
 
-                    lineIndex = lastRecordIndex;
+                    lineIndex = classNameRecordIndex;
                     continue;
                 }
             }
