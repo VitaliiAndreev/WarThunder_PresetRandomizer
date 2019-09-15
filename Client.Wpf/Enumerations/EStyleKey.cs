@@ -3,7 +3,7 @@
     /// <summary> String keys of styles defined in <see cref="WpfClient"/>. </summary>
     public class EStyleKey
     {
-        /// <summary> String keys of styles for <see cref="Client.Wpf.Controls.ResearchTreeCellControl"/>. </summary>
+        /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>
         public class ResearchTreeCellControl
         {
             public const string Rank1 = "Rank1";
