@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 
 namespace Core.Extensions
@@ -21,8 +20,6 @@ namespace Core.Extensions
         /// <param name="fileInfo"> A source file information instance. </param>
         /// <returns></returns>
         public static string GetNameWithoutExtension(this FileInfo fileInfo) =>
-            fileInfo.Name.Contains(ECharacter.Period)
-                ? fileInfo.Name.Split(ECharacter.Period).SkipLast(1).StringJoin(ECharacter.Period)
-                : fileInfo.Name;
+            Path.GetFileNameWithoutExtension(fileInfo.Name);
     }
 }
