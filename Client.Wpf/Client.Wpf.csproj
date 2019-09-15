@@ -141,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ResearchTreeBranchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +175,9 @@
     </Compile>
     <Compile Include="Controls\ResearchTreeCellVehicleControl.xaml.cs">
       <DependentUpon>ResearchTreeCellVehicleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResearchTreeBranchControl.xaml.cs">
+      <DependentUpon>ResearchTreeBranchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
