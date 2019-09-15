@@ -130,6 +130,15 @@ namespace Core.Organization.Helpers
             var excludedGaijinIdParts = new List<string>()
             {
                 "_football",
+                "germ_panzerkampflaufer_565_r",
+                "germ_panzerkampflaufer_565_r_2",
+                "_m4_sherman_tutorial",
+                "po-2_nw",
+                "_race",
+                "us_m35",
+                "us_m35_2",
+                "ussr_sht_1",
+                "ussr_sht_1_2",
             };
 
             foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(excludedGaijinIdParts)))
