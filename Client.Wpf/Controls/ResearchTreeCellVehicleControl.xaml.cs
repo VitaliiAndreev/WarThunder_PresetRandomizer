@@ -1,5 +1,7 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Wpf.Extensions;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.WarThunderExtractionToolsIntegration;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -27,7 +29,7 @@ namespace Client.Wpf.Controls
             : this()
         {
             Vehicle = vehicle;
-            _name.Text = Vehicle.GaijinId;
+            _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
         }
 
         #endregion Constructors
