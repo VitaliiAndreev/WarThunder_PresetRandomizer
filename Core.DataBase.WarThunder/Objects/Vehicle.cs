@@ -349,7 +349,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
-        /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought.HasValue || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
 
         #endregion Non-Persistent Properties
