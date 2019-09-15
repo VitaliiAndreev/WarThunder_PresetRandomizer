@@ -37,7 +37,7 @@ namespace Core.Organization.Objects
             }
 
             var previousRank = this[previousRankKey];
-            rank.StartingRowNumber = previousRank.StartingRowNumber + previousRank.MaximumRowNumber;
+            rank.StartingRowNumber = (previousRank.StartingRowNumber ?? EInteger.Number.One) + previousRank.RowCount;
             rank.MaximumRowNumber = previousRank.MaximumRowNumber + rank.RowCount;
         }
 
