@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Core.Organization.Objects
 {
-    public class ResearchTreeBranch : Dictionary<ERank, ResearchTreeRank>
+    public class ResearchTreeBranch : SortedDictionary<ERank, ResearchTreeRank>
     {
         #region Properties
 
