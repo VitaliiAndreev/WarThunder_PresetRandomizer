@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Core.Json.Helpers
 {
-    /// <summary> Provide methods to work with JSON data. </summary>
+    /// <summary> Provides methods to work with JSON data. </summary>
     public abstract class JsonHelper : LoggerFluency, IJsonHelper
     {
         #region Constructors

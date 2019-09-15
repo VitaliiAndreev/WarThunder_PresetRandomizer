@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace Core.Json.Helpers
 {
-    /// <summary> Provide methods to work with JSON data specific to War Thunder. </summary>
+    /// <summary> Provides methods to work with JSON data specific to War Thunder. </summary>
     public class WarThunderJsonHelper : JsonHelper, IWarThunderJsonHelper
     {
         #region Constants

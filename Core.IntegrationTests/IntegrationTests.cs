@@ -29,6 +29,8 @@ namespace Core.IntegrationTests
     [TestClass]
     public class IntegrationTests
     {
+        #region Fields
+
         private readonly IEnumerable<string> _ignoredPropertyNames;
 
         private IFileManager _fileManager;
@@ -38,6 +40,7 @@ namespace Core.IntegrationTests
         private string _rootDirectory;
         private string _defaultTempDirectory;
 
+        #endregion Fields
         #region Internal Methods
 
         public IntegrationTests()
