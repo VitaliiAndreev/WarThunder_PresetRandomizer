@@ -86,9 +86,9 @@ namespace Core.Helpers
         /// <param name="file"> The CSV file to read. </param>
         /// <param name="delimiter"> The field delimeter. </param>
         /// <returns></returns>
-        public IEnumerable<IEnumerable<string>> ReadCsv(FileInfo file, char delimiter)
+        public IList<IList<string>> ReadCsv(FileInfo file, char delimiter)
         {
-            var lines = new List<IEnumerable<string>>();
+            var lines = new List<IList<string>>();
 
             using (var parser = new TextFieldParser(file.FullName) { TextFieldType = FieldType.Delimited, Delimiters = new string[] { delimiter.ToString() }, })
             {

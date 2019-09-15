@@ -35,7 +35,7 @@ namespace Core.Helpers.Interfaces
         /// <param name="file"> The CSV file to read. </param>
         /// <param name="delimiter"> The field delimeter. </param>
         /// <returns></returns>
-        IEnumerable<IEnumerable<string>> ReadCsv(FileInfo file, char delimiter);
+        IList<IList<string>> ReadCsv(FileInfo file, char delimiter);
 
         #endregion Methods: Read()
     }
