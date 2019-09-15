@@ -88,6 +88,7 @@
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
+    <Compile Include="Objects\Json\ModificationDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\NationDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJsonWithOwner.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
