@@ -20,7 +20,7 @@
                 
                 <TextBlock Text="Vehicle Name"
                     x:Name="_name"
-                    FontSize="14"/>
+                    Style="{StaticResource VehicleCard}"/>
 
             </Grid>
             
@@ -31,7 +31,7 @@
 
                 <TextBlock Text="00.0"
                     x:Name="_battleRating"
-                    FontSize="14"/>
+                    Style="{StaticResource VehicleCard}"/>
                 
             </Grid>
         </Grid>

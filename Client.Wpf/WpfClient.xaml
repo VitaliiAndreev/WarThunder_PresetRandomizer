@@ -131,5 +131,9 @@
             <Setter Property="Background" Value="#969696"/> <!--150-->
         </Style>
         
+        <Style TargetType="TextBlock" x:Key="VehicleCard">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        
     </Application.Resources>
 </Application>
