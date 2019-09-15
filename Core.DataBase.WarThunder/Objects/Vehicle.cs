@@ -8,6 +8,8 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
+using Core.DataBase.WarThunder.Objects.Localization.Vehicle;
+using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
 using Core.Enumerations;
 using Core.Extensions;
@@ -322,6 +324,22 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleTime), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleTime.Vehicle))]
         public virtual VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; protected set; }
         
+        [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle))]
+        /// <summary> The full name of the vehicle. </summary>
+        public virtual IVehicleLocalization FullName { get; protected set; }
+
+        [OneToOne(ClassType = typeof(ResearchTreeName), PropertyRef = nameof(Localization.Vehicle.ResearchTreeName.Vehicle))]
+        /// <summary> The name of the vehicle shown in the research tree. </summary>
+        public virtual IVehicleLocalization ResearchTreeName { get; protected set; }
+
+        [OneToOne(ClassType = typeof(ShortName), PropertyRef = nameof(Localization.Vehicle.ShortName.Vehicle))]
+        /// <summary> The short name of the vehicle. </summary>
+        public virtual IVehicleLocalization ShortName { get; protected set; }
+
+        [OneToOne(ClassType = typeof(ClassName), PropertyRef = nameof(Localization.Vehicle.ClassName.Vehicle))]
+        /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
+        public virtual IVehicleLocalization ClassName { get; protected set; }
+
         #endregion Association Properties
         #region Non-Persistent Properties
 
@@ -437,6 +455,19 @@ namespace Core.DataBase.WarThunder.Objects
         {
             ResearchTreeData = new VehicleResearchTreeData(_dataRepository, this);
             ResearchTreeData.InitializeWithDeserializedJson(deserializedResearchTreeVehicle);
+        }
+
+        /// <summary> Initializes localization association properties. </summary>
+        /// <param name="fullName"> The full name of the vehicle. </param>
+        /// <param name="researchTreeName"> The name of the vehicle shown in the research tree. </param>
+        /// <param name="shortName"> The short name of the vehicle. </param>
+        /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
+        public virtual void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className)
+        {
+            FullName = new FullName(_dataRepository, this, fullName);
+            ResearchTreeName = new ResearchTreeName(_dataRepository, this, researchTreeName);
+            ShortName = new ShortName(_dataRepository, this, shortName);
+            ClassName = new ClassName(_dataRepository, this, className);
         }
 
         /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>

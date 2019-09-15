@@ -139,10 +139,12 @@ namespace Core.IntegrationTests
         {
             // arrange
             var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var csvFiles = _manager.GetCsvFiles(EFile.WarThunder.LocalizationParameters);
 
             var wpCostJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
             var researchTreeJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
+            var vehicleLocalizationRecords = _manager.GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
 
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
             var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
@@ -184,6 +186,12 @@ namespace Core.IntegrationTests
                     // graphical
                     vehicleCollection.Any(vehicle => vehicle.BulletsIconParam < 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.WeaponMask < 0).Should().BeFalse();
+
+                    // localization
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(EInteger.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(EInteger.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(EInteger.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ClassName?.German)).Should().BeGreaterThan(EInteger.Number.Thousand);
 
                     // modifications
                     vehicleCollection.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
@@ -251,9 +259,9 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
                 }
 
-                var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText);
+                var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
                 
-                foreach (var vehicle in vehiclesBeforePersistence)
+                foreach (var vehicle in vehiclesBeforePersistence.Values)
                 {
                     if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
                         vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
@@ -261,15 +269,16 @@ namespace Core.IntegrationTests
                     if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
                         vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
                 }
+                _csvDeserializer.DeserializeVehicleLocalization(vehiclesBeforePersistence, vehicleLocalizationRecords);
 
-                assert(vehiclesBeforePersistence);
+                assert(vehiclesBeforePersistence.Values);
 
                 dataRepository.PersistNewObjects();
                 var vehiclesAfterPersistence = dataRepository.Query<IVehicle>();
 
                 // assert
                 assert(vehiclesAfterPersistence);
-                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence, 1, _ignoredPropertyNames).Should().BeTrue();
+                vehiclesAfterPersistence.IsEquivalentTo(vehiclesBeforePersistence.Values, 1, _ignoredPropertyNames).Should().BeTrue();
             }
         }
     }

@@ -2,6 +2,7 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
 using Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicle>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGameModeParameterSetBase>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleResearchTreeData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<ILocalization>());
 
             if (sortedNewObjects.Count() != dataRepository.NewObjects.Count())
                 throw new ArgumentException(EDatabaseLogMessage.NotAllObjectTypesHaveBeenIncludedInSorting.FormatFluently(nameof(dataRepository.NewObjects)));

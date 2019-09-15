@@ -4,12 +4,23 @@
     internal class ETable
     {
         private const string _ = "_";
+        private const string _localizationPrefix = "loc";
         private const string _objectPrefix = "obj";
 
         private const string _vehicles = "Vehicles";
+
         private const string _vehicleTable = Vehicle + _;
+        private const string _vehicleLocalizationTable = _localizationPrefix + _vehicles + _;
+
         internal const string Branch = "objBranches";
+
+        internal const string LocalizationVehicleClassName = _vehicleLocalizationTable + "ClassName";
+        internal const string LocalizationVehicleFullName = _vehicleLocalizationTable + "FullName";
+        internal const string LocalizationVehicleResearchTreeName = _vehicleLocalizationTable + "ResearchTreeName";
+        internal const string LocalizationVehicleShortName = _vehicleLocalizationTable + "ShortName";
+
         internal const string Nation = _objectPrefix + "Nations";
+
         internal const string Vehicle = _objectPrefix + _vehicles;
         internal const string VehicleAverageAward = _vehicleTable + "AverageAward";
         internal const string VehicleBattleRating = _vehicleTable + "BattleRating";

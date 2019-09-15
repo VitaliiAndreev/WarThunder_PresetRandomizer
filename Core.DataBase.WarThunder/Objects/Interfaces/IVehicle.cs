@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
@@ -284,7 +285,20 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
         bool NotResearchable { get; }
 
+        /// <summary> The full name of the vehicle. </summary>
+        IVehicleLocalization FullName { get; }
+
+        /// <summary> The name of the vehicle shown in the research tree. </summary>
+        IVehicleLocalization ResearchTreeName { get; }
+
+        /// <summary> The short name of the vehicle. </summary>
+        IVehicleLocalization ShortName { get; }
+
+        /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
+        IVehicleLocalization ClassName { get; }
+
         #endregion Non-Persistent Properties
+        #region Methods: Initialization
 
         /// <summary> Fills properties of the object with values deserialized from JSON data read from "shop.blkx". </summary>
         /// <param name="deserializedResearchTreeVehicle"> The temporary non-persistent object storing deserialized data. </param>
@@ -293,5 +307,14 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
         void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData);
+
+        /// <summary> Initializes localization association properties. </summary>
+        /// <param name="fullName"> The full name of the vehicle. </param>
+        /// <param name="researchTreeName"> The name of the vehicle shown in the research tree. </param>
+        /// <param name="shortName"> The short name of the vehicle. </param>
+        /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
+        void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className);
+
+        #endregion Methods: Initialization
     }
 }

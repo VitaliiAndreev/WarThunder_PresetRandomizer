@@ -224,12 +224,25 @@ namespace Core.Organization.Helpers
         internal IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName) =>
             GetFiles(EFileExtension.Blkx, sourceFileName);
 
+        /// <summary> Unpacks a file with the speficied name as a BIN file and returns CSV files it contains. </summary>
+        /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <returns></returns>
+        internal IEnumerable<FileInfo> GetCsvFiles(string sourceFileName) =>
+            GetFiles(EFileExtension.Csv, sourceFileName);
+
         /// <summary> Reads a file with the specified name from the given collection of files. </summary>
         /// <param name="files"> The collection of files. </param>
         /// <param name="unpackedFileName"> The name of the file to read. </param>
         /// <returns></returns>
         internal string GetJsonText(IEnumerable<FileInfo> files, string unpackedFileName) =>
             _fileReader.Read(files.First(file => file.Name.Contains(unpackedFileName)));
+
+        /// <summary> Reads a CSV file with the specified name from the given collection of CSV files. </summary>
+        /// <param name="csvFiles"> The collection of CSV files. </param>
+        /// <param name="unpackedFileName"> The name of the CSV file to read. </param>
+        /// <returns></returns>
+        internal IList<IList<string>> GetCsvRecords(IEnumerable<FileInfo> csvFiles, string unpackedFileName) =>
+            _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), ECharacter.Semicolon);
 
         /// <summary> Creates the database for the current War Thunder client version. </summary>
         private void CreateDataBase()
@@ -249,19 +262,21 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.PreparingGameFiles);
 
             var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var csvFiles = GetCsvFiles(EFile.WarThunder.LocalizationParameters);
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
             var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
+            var vehicleLocalizationRecords = GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
 
             LogInfo(EOrganizationLogMessage.GameFilesPrepared);
             LogInfo(EOrganizationLogMessage.InitializingDatabase);
 
-            var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText);
+            var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
             var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
 
-            foreach (var vehicle in vehicles)
+            foreach (var vehicle in vehicles.Values)
             {
                 if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
                     vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
@@ -270,6 +285,7 @@ namespace Core.Organization.Helpers
                     vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
             }
 
+            _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
             _dataRepository.PersistNewObjects();
 
             LogInfo(EOrganizationLogMessage.DatabaseInitialized);
