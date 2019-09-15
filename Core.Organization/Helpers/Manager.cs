@@ -132,7 +132,7 @@ namespace Core.Organization.Helpers
                 "_football",
             };
 
-            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.IsPartiallyIn(excludedGaijinIdParts)))
+            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(excludedGaijinIdParts)))
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
