@@ -5,7 +5,11 @@
              xmlns:controls="clr-namespace:Client.Wpf.Controls"
              Startup="OnStartup">
     <Application.Resources>
+
+        <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
         
+        <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.9" />
+
         <Style TargetType="Grid">
             <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
             <Setter Property="TextBlock.FontSize" Value="16"/>
@@ -20,7 +24,7 @@
         </Style>
 
         <Style TargetType="Grid" x:Key="ResearchTreeGrid" BasedOn="{StaticResource PaddedGrid}">
-            <Setter Property="Width" Value="1150"/> <!-- Has to be fixed for uniform spacing given that there may be fewer columns than the maximum. -->
+            <Setter Property="Width" Value="1200"/> <!-- Has to be fixed for uniform spacing given that there may be fewer columns than the maximum. -->
         </Style>
 
         <Style TargetType="StackPanel">
@@ -78,8 +82,8 @@
         </Style>
 
         <Style TargetType="Border" x:Key="ResearchTreeCellBorder">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="45"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="CornerRadius" Value="10"/>
@@ -132,7 +136,9 @@
         </Style>
         
         <Style TargetType="TextBlock" x:Key="VehicleCard">
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
+            <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
+            <Setter Property="FontSize" Value="12"/>
         </Style>
         
     </Application.Resources>

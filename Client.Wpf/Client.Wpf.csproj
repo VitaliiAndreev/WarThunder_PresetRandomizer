@@ -302,6 +302,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\symbols_skyquake.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
