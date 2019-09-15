@@ -273,18 +273,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         VehicleGameModeParameterSet.Decimal.BattleTime BattleTime { get; }
 
-        #endregion Association Properties
-        #region Non-Persistent Properties
-
-        /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
-        ERank RankAsEnumerationItem { get; }
-
-        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
-
-        /// <summary> Checks whether the vehicle can be unlocked for free with research. </summary>
-        bool NotResearchable { get; }
-
         /// <summary> The full name of the vehicle. </summary>
         IVehicleLocalization FullName { get; }
 
@@ -296,6 +284,18 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
         IVehicleLocalization ClassName { get; }
+
+        #endregion Association Properties
+        #region Non-Persistent Properties
+
+        /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
+        ERank RankAsEnumerationItem { get; }
+
+        /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
+        VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
+
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
+        bool NotResearchable { get; }
 
         #endregion Non-Persistent Properties
         #region Methods: Initialization
