@@ -297,6 +297,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         bool NotResearchable { get; }
 
+        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
+        bool IsSquadronVehicle { get; }
+
         #endregion Non-Persistent Properties
         #region Methods: Initialization
 

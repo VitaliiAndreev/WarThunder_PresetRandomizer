@@ -352,6 +352,9 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         public virtual bool NotResearchable => PurchaseCostInGold.HasValue || (ShowOnlyWhenBought ?? false) || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
 
+        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
+        public virtual bool IsSquadronVehicle => ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;
+
         #endregion Non-Persistent Properties
         #region Constructors
 
