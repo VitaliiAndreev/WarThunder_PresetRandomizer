@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
+using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,15 +32,18 @@ namespace Core.Organization.Objects
             if (previousRankKey == ERank.None || !Keys.Contains(previousRankKey))
             {
                 rank.StartingRowNumber = EInteger.Number.One;
+                rank.MaximumRowNumber = rank.RowCount;
                 return;
             }
 
             var previousRank = this[previousRankKey];
             rank.StartingRowNumber = previousRank.StartingRowNumber + previousRank.MaximumRowNumber;
+            rank.MaximumRowNumber = previousRank.MaximumRowNumber + rank.RowCount;
         }
 
         /// <summary> Calculates <see cref="ColumnCount"/>, <see cref="RowCount"/>, and <see cref="PremiumColumnNumbers"/>. </summary>
-        public void InitializeProperties()
+        /// <param name="columnCount"> The amount of columns in the branch. </param>
+        public void InitializeProperties(int columnCount)
         {
             foreach (var rankKey in Keys)
             {
@@ -49,8 +53,8 @@ namespace Core.Organization.Objects
                 InitializeStartingRankNumber(rankKey, rank);
             }
 
-            ColumnCount = Values.Max(rank => rank.MaximumColumnNumber);
-            RowCount = Values.Sum(rank => rank.MaximumRowNumber);
+            ColumnCount = columnCount;
+            RowCount = Values.Sum(rank => rank.RowCount);
 
             PremiumColumnNumbers = Values
                 .SelectMany(rank => rank.PremiumColumnNumbers)

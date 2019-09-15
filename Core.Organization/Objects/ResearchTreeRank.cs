@@ -12,22 +12,25 @@ namespace Core.Organization.Objects
         /// <summary> The number of the row this rank starts at in relation to the overall <see cref="ResearchTreeBranch"/> it's in. </summary>
         public int? StartingRowNumber { get; internal set; }
 
-        /// <summary> The maximum column number of vehicle cells within the rank. </summary>
-        public int MaximumColumnNumber { get; private set; }
+        /// <summary> The amount of rows of vehicle cells within the rank. </summary>
+        public int RowCount { get; private set; }
 
         /// <summary> The maximum row number of vehicle cells within the rank. </summary>
-        public int MaximumRowNumber { get; private set; }
+        public int MaximumRowNumber { get; internal set; }
+
+        /// <summary> The maximum column number of vehicle cells within the rank. </summary>
+        public int MaximumColumnNumber { get; private set; }
 
         /// <summary> Numbers of columns reserved for premium / gift vehicles. </summary>
         public IEnumerable<int> PremiumColumnNumbers { get; private set; }
 
         #endregion Properties
 
-        /// <summary> Calculates <see cref="MaximumColumnNumber"/>, <see cref="MaximumRowNumber"/>, and <see cref="PremiumColumnNumbers"/>. </summary>
+        /// <summary> Calculates <see cref="MaximumColumnNumber"/>, <see cref="RowCount"/>, and <see cref="PremiumColumnNumbers"/>. </summary>
         public void InitializeProperties()
         {
             MaximumColumnNumber = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.First());
-            MaximumRowNumber = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last());
+            RowCount = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last());
             
             PremiumColumnNumbers = Enumerable
                 .Range(EInteger.Number.One, MaximumColumnNumber)

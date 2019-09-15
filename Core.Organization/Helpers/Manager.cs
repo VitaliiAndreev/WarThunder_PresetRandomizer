@@ -120,6 +120,8 @@ namespace Core.Organization.Helpers
         {
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
 
+            var columnCount = default(int);
+
             foreach (var vehicle in _cache.OfType<IVehicle>())
             {
                 if (vehicle.ResearchTreeData is null)
@@ -131,6 +133,9 @@ namespace Core.Organization.Helpers
                 var columnNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.First();
                 var rowNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last();
 
+                if (columnNumber > columnCount)
+                    columnCount = columnNumber;
+
                 ResearchTrees
                     .GetWithInstantiation(nation)
                     .GetWithInstantiation(branch)
@@ -140,7 +145,7 @@ namespace Core.Organization.Helpers
             }
 
             foreach (var branch in ResearchTrees.Values.SelectMany(reseatchTree => reseatchTree.Values))
-                branch.InitializeProperties();
+                branch.InitializeProperties(columnCount);
 
             LogInfo(EOrganizationLogMessage.ResearchTreesInitialized);
         }
