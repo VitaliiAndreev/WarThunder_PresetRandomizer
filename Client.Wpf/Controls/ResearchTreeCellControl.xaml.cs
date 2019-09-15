@@ -1,4 +1,6 @@
-﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -21,6 +23,14 @@ namespace Client.Wpf.Controls
         public void AddVehicle(IVehicle vehicle)
         {
             _stackPanel.Children.Add(new ResearchTreeCellVehicleControl(vehicle));
+        }
+
+        /// <summary> Displays <see cref="IVehicle.BattleRating"/> value for the given <paramref name="gameMode"/>. </summary>
+        /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
+        public void DisplayBattleRatingFor(EGameMode gameMode)
+        {
+            foreach (var vehicleCell in _stackPanel.Children.OfType<ResearchTreeCellVehicleControl>())
+                vehicleCell.DisplayBattleRatingFor(gameMode);
         }
     }
 }

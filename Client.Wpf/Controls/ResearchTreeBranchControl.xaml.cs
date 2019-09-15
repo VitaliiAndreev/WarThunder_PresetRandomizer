@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Organization.Objects;
 using System;
@@ -99,6 +100,14 @@ namespace Client.Wpf.Controls
                     }
                 }
             }
+        }
+
+        /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
+        /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
+        public void DisplayBattleRatingFor(EGameMode gameMode)
+        {
+            foreach (var vehicleCell in _cells.Values)
+                vehicleCell.DisplayBattleRatingFor(gameMode);
         }
     }
 }

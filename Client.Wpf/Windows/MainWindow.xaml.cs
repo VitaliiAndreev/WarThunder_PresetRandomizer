@@ -100,6 +100,8 @@ namespace Client.Wpf.Windows
             if (simulateClick)
                 _gameModeSelectionControl.OnClick(_gameModeSelectionControl.Buttons[gameMode], new RoutedEventArgs());
 
+            _researchTreeControl.DisplayBattleRatingFor(gameMode);
+
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);
         }
