@@ -89,6 +89,15 @@
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="0 0 0 5"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="SquadronResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
+            <Setter Property="Background" Value="#D1FF9B"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="PremiumResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
+            <Setter Property="Background" Value="#FFE785"/>
         </Style>
 
         <Style TargetType="ScrollViewer">

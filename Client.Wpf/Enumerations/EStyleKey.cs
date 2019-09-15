@@ -3,6 +3,12 @@
     /// <summary> String keys of styles defined in <see cref="WpfClient"/>. </summary>
     public class EStyleKey
     {
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.Border"/>. </summary>
+        public class Border
+        {
+            public const string SquadronResearchTreeCell = "SquadronResearchTreeCell";
+            public const string PremiumResearchTreeCell = "PremiumResearchTreeCell";
+        }
         /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>
         public class ResearchTreeCellControl
         {

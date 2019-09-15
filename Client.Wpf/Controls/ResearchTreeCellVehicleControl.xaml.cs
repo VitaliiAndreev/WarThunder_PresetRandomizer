@@ -1,7 +1,9 @@
-﻿using Client.Wpf.Extensions;
+﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -30,6 +32,13 @@ namespace Client.Wpf.Controls
         {
             Vehicle = vehicle;
             _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
+
+            Style getStyle(string styleKey) => FindResource(styleKey) as Style;
+
+            if (Vehicle.IsSquadronVehicle)
+                _border.Style = getStyle(EStyleKey.Border.SquadronResearchTreeCell);
+            else if (Vehicle.IsPremium)
+                _border.Style = getStyle(EStyleKey.Border.PremiumResearchTreeCell);
         }
 
         #endregion Constructors
