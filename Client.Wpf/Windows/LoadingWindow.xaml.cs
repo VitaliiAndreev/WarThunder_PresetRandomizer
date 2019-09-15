@@ -23,6 +23,9 @@ namespace Client.Wpf.Windows
         /// <summary> An exception that has occurred in a separate thread during execution of an asynchronous task. </summary>
         private Exception _asynchronousException;
 
+        /// <summary> Indicates whether a message box is currenly shown. </summary>
+        private bool _messageBoxIsUp;
+
         #endregion Fields
         #region Properties
 
@@ -81,15 +84,29 @@ namespace Client.Wpf.Windows
             OnDataPrepared();
         }
 
-        /// <summary> Sets the status as "ready" and closes after five seconds or by user input. </summary>
+        /// <summary> Sets the status as "ready" and either closes after five seconds or by user input by closing the window within five seconds or closing the opened message box. </summary>
         private async void OnDataPrepared()
         {
             var secondsBeforeAutoClosure = 5;
+            var closeImmediately = false;
 
-            _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ready).FormatFluently(secondsBeforeAutoClosure);
             _status.Foreground = new SolidColorBrush(EColor.ValidText);
+            _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ready);
 
-            await Task.Delay(secondsBeforeAutoClosure * EInteger.Time.MillisecondsInSecond);
+            if (_messageBoxIsUp)
+            {
+                closeImmediately = true;
+
+                while (_messageBoxIsUp)
+                    await Task.Delay(EInteger.Time.MillisecondsInSecond / EInteger.Number.Four);
+            }
+
+            if (!closeImmediately)
+            {
+                _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ReadyWithCountDown).FormatFluently(secondsBeforeAutoClosure);
+
+                await Task.Delay(secondsBeforeAutoClosure * EInteger.Time.MillisecondsInSecond);
+            }
 
             Close();
         }
@@ -152,7 +169,13 @@ namespace Client.Wpf.Windows
             var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
             var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.InitializationUnderwayConfirmClosure);
 
-            return MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
+            _messageBoxIsUp = true;
+
+            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
+
+            _messageBoxIsUp = false;
+
+            return messageBoxResult;
         }
     }
 }

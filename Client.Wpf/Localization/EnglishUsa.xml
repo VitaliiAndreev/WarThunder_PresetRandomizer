@@ -23,7 +23,8 @@
   <Line key="LookUp" value="Look up"/>
   <Line key="Ok" value="OK"/>
   <Line key="Planes" value="Planes"/>
-  <Line key="Ready" value="Ready! Close the window to proceed or wait for {0} seconds."/>
+  <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
+  <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>

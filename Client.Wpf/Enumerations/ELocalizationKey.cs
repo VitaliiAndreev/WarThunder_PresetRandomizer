@@ -27,6 +27,7 @@
         public const string Ok = nameof(Ok);
         public const string Planes = nameof(Planes);
         public const string Ready = nameof(Ready);
+        public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
