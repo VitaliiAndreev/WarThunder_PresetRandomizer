@@ -55,6 +55,10 @@ namespace Client.Wpf.Controls
                 { EGameMode.Simulator, _simulatorButton.EmbeddedButton },
             };
 
+            _arcadeButton.EmbeddedButton.Tag = EGameMode.Arcade;
+            _realisticButton.EmbeddedButton.Tag = EGameMode.Realistic;
+            _simulatorButton.EmbeddedButton.Tag = EGameMode.Simulator;
+
             ArcadeButtonClick += OnClick;
             RealisticButtonClick += OnClick;
             SimulatorButtonClick += OnClick;
