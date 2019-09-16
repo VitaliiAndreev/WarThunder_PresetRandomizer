@@ -105,6 +105,8 @@ namespace Client.Wpf.Windows
         /// <summary> Applies localization to visible text in the window. </summary>
         public override void Localize()
         {
+            base.Localize();
+
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
             _warThunderLocationControl.Localize();
