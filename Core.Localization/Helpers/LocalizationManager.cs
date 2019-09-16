@@ -72,6 +72,7 @@ namespace Core.Localization.Helpers
             if (_localization.ContainsKey(key))
                 return _localization[key];
 
+            LogWarn(ELocalizationLogMessage.LocalizationKeyNotFound.FormatFluently(key));
             return key;
         }
     }

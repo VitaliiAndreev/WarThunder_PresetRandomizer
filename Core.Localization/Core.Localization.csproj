@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\Logger\ELocalizationLogCategory.cs" />
+    <Compile Include="Enumerations\Logger\ELocalizationLogMessage.cs" />
     <Compile Include="Exceptions\LanguageNotRecognizedException.cs" />
     <Compile Include="Helpers\Interfaces\ILocalizationManager.cs" />
     <Compile Include="Helpers\LocalizationManager.cs" />
