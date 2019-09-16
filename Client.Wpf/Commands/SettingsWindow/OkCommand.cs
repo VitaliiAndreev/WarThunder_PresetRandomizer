@@ -4,6 +4,7 @@ using Core.WarThunderExtractionToolsIntegration;
 
 namespace Client.Wpf.Commands.SettingsWindow
 {
+    /// <summary> A command for saving changes. </summary>
     public class OkCommand : Command
     {
         #region Constructors

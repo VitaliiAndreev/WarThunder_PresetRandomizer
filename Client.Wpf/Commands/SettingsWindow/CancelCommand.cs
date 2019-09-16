@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace Client.Wpf.Commands.SettingsWindow
 {
+    /// <summary> A command for cancelling changes. </summary>
     public class CancelCommand : Command, ICommand
     {
         #region Constructors

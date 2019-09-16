@@ -4,6 +4,7 @@ using Core.WarThunderExtractionToolsIntegration;
 
 namespace Client.Wpf.Commands.MainWindow
 {
+    /// <summary> A command for changing the game mode. </summary>
     public class SelectGameModeCommand : Command
     {
         #region Constructors

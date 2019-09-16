@@ -3,6 +3,7 @@ using Client.Wpf.Presenters.Interfaces;
 
 namespace Client.Wpf.Commands.LoadingWindow
 {
+    /// <summary> A command for initalizing the database and reading from it into the cache. </summary>
     public class InitializeCommand : Command
     {
         #region Constructors
