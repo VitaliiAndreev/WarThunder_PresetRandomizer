@@ -24,7 +24,7 @@ namespace Client.Wpf.Commands.LoadingWindow
             if (parameter is ILoadingWindowPresenter presenter)
             {
                 ApplicationHelpers.Manager.InitializeGameClientVersion();
-                ApplicationHelpers.Manager.CacheVehicles();
+                ApplicationHelpers.Manager.CacheData();
 
                 presenter.Owner.InitializationComplete = true;
             }

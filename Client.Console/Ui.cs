@@ -69,7 +69,7 @@ namespace Client.Console
                     }
                     System.Console.WriteLine();
 
-                    manager.CacheVehicles();
+                    manager.CacheData();
 
                     while (true)
                     {

@@ -73,7 +73,7 @@ namespace Core.Organization.Helpers
         #endregion Fields
         #region Properties
 
-        /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheVehicles"/>. </summary>
+        /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
         #endregion Properties
@@ -121,7 +121,7 @@ namespace Core.Organization.Helpers
         public void InitializeGameClientVersion() =>
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
-        /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheVehicles"/>. </summary>
+        /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
         private void InitializeResearchTrees()
         {
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
@@ -170,7 +170,7 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
-        public void CacheVehicles()
+        public void CacheData()
         {
             var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
 

@@ -10,7 +10,7 @@ namespace Core.Organization.Helpers.Interfaces
     {
         #region Properties
 
-        /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheVehicles"/>. </summary>
+        /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
         #endregion Properties
@@ -20,7 +20,7 @@ namespace Core.Organization.Helpers.Interfaces
         void InitializeGameClientVersion();
 
         /// <summary> Caches vehicles from the database in runtime memory. </summary>
-        void CacheVehicles();
+        void CacheData();
 
         #endregion Methods: Initialization
     }
