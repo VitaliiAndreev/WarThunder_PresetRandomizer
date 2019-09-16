@@ -122,7 +122,7 @@ namespace WarThunderSimpleUpdateChecker
 
             foreach (var unpackedDirectory in unpackedDirectories)
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Converting BLK files in {unpackedDirectory.Name}...");
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Converting BLK files from {unpackedDirectory.Name}...");
 
                 _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
 
