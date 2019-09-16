@@ -134,7 +134,7 @@ namespace WarThunderSimpleUpdateChecker
         {
             _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up leftover source files...");
 
-            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => file.Extension != $"{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories).ToList();
+            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => file.Extension != $"{ECharacter.Period}{EFileExtension.Blkx}" && file.Extension != $"{ECharacter.Period}{EFileExtension.Csv}", SearchOption.AllDirectories).ToList();
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"{unwantedFiles.Count()} found.");
 
