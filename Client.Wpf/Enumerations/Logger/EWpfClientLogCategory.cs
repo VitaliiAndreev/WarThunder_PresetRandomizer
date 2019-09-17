@@ -6,6 +6,9 @@ namespace Client.Wpf.Enumerations.Logger
     /// <summary> Categories of events provided to a logger. </summary>
     public class EWpfClientLogCategory : ECoreLogCategory
     {
+        /// <summary> See <see cref="Windows.AboutWindow"/>. </summary>
+        public static string AboutWindow = $"{EWord.About} {EWord.Window}";
+
         /// <summary> See <see cref="Wpf.ApplicationHelpers"/>. </summary>
         public static string ApplicationHelpers = $"{EWord.Application} {EWord.Helpers}";
 

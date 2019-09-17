@@ -18,5 +18,9 @@ namespace Client.Wpf.Helpers.Interfaces
         /// <summary> Creates an instance of the main window. </summary>
         /// <returns></returns>
         IMainWindow CreateMainWindow();
+        /// <summary> Creates an instance of the "About" window. </summary>
+        /// <param name="parentWindow"> The window that owns the new instance. </param>
+        /// <returns></returns>
+        IAboutWindow CreateAboutWindow(IBaseWindow parentWindow);
     }
 }

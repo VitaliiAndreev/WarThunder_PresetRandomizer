@@ -8,6 +8,7 @@
     {
         #region A
 
+        public static string About => _About;
         public static string Application => _Application;
 
         #endregion A

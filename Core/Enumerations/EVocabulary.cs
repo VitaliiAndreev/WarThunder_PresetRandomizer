@@ -21,6 +21,7 @@
         protected const string _A = "A";
         protected const string _a = "a";
         protected const string _aborted = _a + "bort" + _ed;
+        protected const string _About = _A + "bout";
         protected const string _after = _a + "ft" + _er;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;

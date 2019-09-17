@@ -165,6 +165,32 @@
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
+        <Style TargetType="TextBlock" x:Key="Centered">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="CenteredBold" BasedOn="{StaticResource Centered}">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="PaddedBottom">
+            <Setter Property="Padding" Value="0 0 0 5"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="PaddedBottomCenteredHorizontally" BasedOn="{StaticResource PaddedBottom}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="CreditsLeftColumn">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0 0 10 5"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="CreditsRightColumn">
+            <Setter Property="Padding" Value="10 0 0 5"/>
+        </Style>
+
         <!-- t:TextBox -->
 
         <Style TargetType="TextBox" x:Key="ValidText">

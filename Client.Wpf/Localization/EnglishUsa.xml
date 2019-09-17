@@ -8,21 +8,26 @@
   <Line key="Britain" value="Britain"/>
   <Line key="Cancel" value="Cancel"/>
   <Line key="China" value="China"/>
+  <Line key="Commits" value="commits"/>
+  <Line key="Contributors" value="Contributors"/>
   <Line key="Error" value="Error"/>
   <Line key="FatalErrorShutdown" value="A fatal error has occured. The application will be shut down."/>
   <Line key="Fleet" value="Fleet"/>
   <Line key="France" value="France"/>
+  <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment for War Thunder."/>
   <Line key="GeneratePreset" value="Generate a preset"/>
   <Line key="Germany" value="Germany"/>
   <Line key="Helicopters" value="Helicopters"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Initialization is underway. Proceed?"/>
   <Line key="Italy" value="Italy"/>
   <Line key="Japan" value="Japan"/>
+  <Line key="KlensyForWtTools" value="Klensy for WT Tools."/>
   <Line key="Loading" value="Loading..."/>
   <Line key="Location" value="{0} location"/>
   <Line key="LookUp" value="Look up"/>
   <Line key="Ok" value="OK"/>
   <Line key="Planes" value="Planes"/>
+  <Line key="PreAlpha" value="Pre-Alpha"/>
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic"/>
@@ -30,6 +35,8 @@
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="Simulator" value="Simulator"/>
   <Line key="Status" value="Status:"/>
+  <Line key="Thanks" value="Thanks"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
+  <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
 </Localization>

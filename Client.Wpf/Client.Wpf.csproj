@@ -157,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +204,7 @@
     <Compile Include="Controls\ResearchTreeNationControl.xaml.cs">
       <DependentUpon>ResearchTreeNationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
@@ -212,16 +217,24 @@
     <Compile Include="Helpers\WpfClientSettingsManager.cs" />
     <Compile Include="Commands\LoadingWindow\InitializeCommand.cs" />
     <Compile Include="IWpfClient.cs" />
+    <Compile Include="Presenters\AboutWindowPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IAboutWindowPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IMainWindowPresenter.cs" />
     <Compile Include="Presenters\Interfaces\ISettingsWindowPresenter.cs" />
     <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Presenters\SettingsWindowPresenter.cs" />
+    <Compile Include="Strategies\AboutWindowStrategy.cs" />
+    <Compile Include="Strategies\Interfaces\IAboutWindowStrategy.cs" />
     <Compile Include="Strategies\Interfaces\IMainWindowStrategy.cs" />
     <Compile Include="Strategies\Interfaces\ISettingsWindowStrategy.cs" />
     <Compile Include="Strategies\MainWindowStrategy.cs" />
     <Compile Include="Strategies\SettingsWindowStrategy.cs" />
+    <Compile Include="Windows\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="Windows\Interfaces\Base\IWindow.cs" />
+    <Compile Include="Windows\Interfaces\IAboutWindow.cs" />
     <Compile Include="Windows\Interfaces\IBaseWindow.cs" />
     <Compile Include="Windows\Interfaces\ILoadingWindow.cs" />
     <Compile Include="Windows\Interfaces\ILocalizationWindow.cs" />

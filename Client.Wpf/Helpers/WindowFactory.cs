@@ -71,5 +71,17 @@ namespace Client.Wpf.Helpers
 
             return window;
         }
+
+        /// <summary> Creates an instance of the "About" window. </summary>
+        /// <param name="parentWindow"> The window that owns the new instance. </param>
+        /// <returns></returns>
+        public IAboutWindow CreateAboutWindow(IBaseWindow parentWindow)
+        {
+            var strategy = new AboutWindowStrategy();
+            var presenter = new AboutWindowPresenter(strategy);
+            var window = new AboutWindow(presenter, parentWindow);
+
+            return window;
+        }
     }
 }
