@@ -31,6 +31,8 @@ namespace Core.DataBase.WarThunder.Helpers
             DataRepositoryWarThunder.ReorderNewObjectsToAdhereToForeignKeys(this);
 
             base.PersistNewObjects(session);
+
+            NewObjects.Clear();
         }
     }
 }
