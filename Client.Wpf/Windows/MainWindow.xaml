@@ -44,8 +44,6 @@
                 Grid.Row="1"
                 Style="{StaticResource PaddedGrid}">
 
-                <controls:DropCapToggleButton/>
-
                 <controls:DropCapButton Caption="About W.T.P.R."
                     x:Name="_aboutButton"
                     DropCapFontSize="16"/>
