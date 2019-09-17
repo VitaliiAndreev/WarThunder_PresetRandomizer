@@ -1,10 +1,10 @@
-﻿using Accord.Statistics.Distributions.Univariate;
-using Core.Enumerations.Logger;
+﻿using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Randomization.Enumerations.Logger;
 using Core.Randomization.Helpers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +13,12 @@ namespace Core.Randomization.Helpers
     /// <summary> Provides methods to randomize selection. </summary>
     public class CustomRandomizer : LoggerFluency, IRandomizer
     {
+        #region Fields
+
+        /// <summary> The random number generator. </summary>
+        private readonly Random _generator;
+
+        #endregion Fields
         #region Constructors
 
         /// <summary> Creates a new randomizer. </summary>
@@ -20,6 +26,8 @@ namespace Core.Randomization.Helpers
         public CustomRandomizer(params IConfiguredLogger[] loggers)
             : base(ERandomizerLogCategory.Ranzomizer, loggers)
         {
+            _generator = new Random();
+
             LogDebug(ECoreLogMessage.Created.FormatFluently(ERandomizerLogCategory.Ranzomizer));
         }
 
@@ -32,9 +40,8 @@ namespace Core.Randomization.Helpers
         public T GetRandom<T>(IEnumerable<T> items)
         {
             var itemList = items.ToList();
-            var distribution = new UniformDiscreteDistribution(0, itemList.Count);
 
-            return itemList[distribution.Generate()];
+            return itemList[_generator.Next(itemList.Count)];
         }
     }
 }
