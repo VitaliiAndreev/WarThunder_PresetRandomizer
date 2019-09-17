@@ -206,7 +206,8 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingObjects);
 
-            _cache.AddRange(_dataRepository.Query<IVehicle>());
+            if (_cache.IsEmpty())
+                _cache.AddRange(_dataRepository.Query<IVehicle>());
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
@@ -300,6 +301,8 @@ namespace Core.Organization.Helpers
             }
 
             _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
+
+            _cache.AddRange(_dataRepository.NewObjects);
             _dataRepository.PersistNewObjects();
 
             LogInfo(EOrganizationLogMessage.DatabaseInitialized);
