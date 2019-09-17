@@ -10,76 +10,7 @@
         
         <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.9" />
 
-        <Style TargetType="Grid">
-            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
-            <Setter Property="TextBlock.FontSize" Value="16"/>
-        </Style>
-
-        <Style TargetType="Grid" x:Key="PaddedGrid" BasedOn="{StaticResource {x:Type Grid}}">
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        
-        <Style TargetType="Grid" x:Key="NestedGrid" BasedOn="{StaticResource {x:Type Grid}}">
-            <Setter Property="Margin" Value="0 0 0 10"/>
-        </Style>
-
-        <Style TargetType="Grid" x:Key="ResearchTreeGrid" BasedOn="{StaticResource PaddedGrid}">
-            <Setter Property="Width" Value="1200"/> <!-- Has to be fixed for uniform spacing given that there may be fewer columns than the maximum. -->
-        </Style>
-
-        <Style TargetType="StackPanel">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
-            <Setter Property="TextBlock.FontSize" Value="16"/>
-        </Style>
-
-        <Style TargetType="StackPanel" x:Key="StackPanelNoMargin" BasedOn="{StaticResource {x:Type StackPanel}}">
-            <Setter Property="Margin" Value="0"/>
-        </Style>
-
-        <Style TargetType="StackPanel" x:Key="StackPanelInsideScrollViewer">
-            <Setter Property="Margin" Value="0 5 0 300"/> <!-- Excessive margin is there to prevent unresolved cut-off within ScrollViewer. -->
-        </Style>
-
-        <Style TargetType="TabControl">
-            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
-            <Setter Property="TextBlock.FontSize" Value="16"/>
-        </Style>
-
-        <Style TargetType="controls:NLogListViewControl">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-        </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="30"/>
-        </Style>
-
-        <Style TargetType="Button" x:Key="Button100x30" BasedOn="{StaticResource {x:Type Button}}">
-            <Setter Property="Width" Value="100"/>
-        </Style>
-
-        <Style TargetType="Button" x:Key="FlagButton">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Width" Value="23"/>
-            <Setter Property="Height" Value="17"/>
-        </Style>
-
-        <Style TargetType="ToggleButton">
-            <Setter Property="Height" Value="30"/>
-        </Style>
-
-        <Style TargetType="Image" x:Key="FlagIcon">
-            <Setter Property="Stretch" Value="None"/>
-            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
-            <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
-        </Style>
-
-        <Style TargetType="TabItem">
-            <Setter Property="Padding" Value="10 4"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        </Style>
+        <!-- t:Border -->
 
         <Style TargetType="Border" x:Key="ResearchTreeCell">
             <Setter Property="Width" Value="160"/>
@@ -100,11 +31,141 @@
             <Setter Property="Background" Value="#FFE785"/>
         </Style>
 
+        <!-- t:Button -->
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button100x30" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="FlagButton">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Width" Value="23"/>
+            <Setter Property="Height" Value="17"/>
+        </Style>
+
+        <!-- t:Grid -->
+        
+        <Style TargetType="Grid">
+            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
+            <Setter Property="TextBlock.FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="PaddedGrid" BasedOn="{StaticResource {x:Type Grid}}">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        
+        <Style TargetType="Grid" x:Key="NestedGrid" BasedOn="{StaticResource {x:Type Grid}}">
+            <Setter Property="Margin" Value="0 0 0 10"/>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="ResearchTreeGrid" BasedOn="{StaticResource PaddedGrid}">
+            <Setter Property="Width" Value="1200"/> <!-- Has to be fixed for uniform spacing given that there may be fewer columns than the maximum. -->
+        </Style>
+
+        <!-- t:Image -->
+
+        <Style TargetType="Image" x:Key="FlagIcon">
+            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
+            <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        </Style>
+
+        <!-- t:NLogListViewControl -->
+
+        <Style TargetType="controls:NLogListViewControl">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+
+        <!-- t:ResearchTreeCellControl -->
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank1">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <!--240-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank2">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <!--225-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank3">
+            <Setter Property="Background" Value="#D2D2D2"/>
+            <!--210-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank4">
+            <Setter Property="Background" Value="#C3C3C3"/>
+            <!--195-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank5">
+            <Setter Property="Background" Value="#B4B4B4"/>
+            <!--180-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank6">
+            <Setter Property="Background" Value="#A5A5A5"/>
+            <!--165-->
+        </Style>
+
+        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank7">
+            <Setter Property="Background" Value="#969696"/>
+            <!--150-->
+        </Style>
+
+        <!-- t:ScrollViewer -->
+
         <Style TargetType="ScrollViewer">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
         </Style>
+
+        <!-- t:StackPanel -->
+        
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
+            <Setter Property="TextBlock.FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="StackPanelNoMargin" BasedOn="{StaticResource {x:Type StackPanel}}">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="StackPanelInsideScrollViewer">
+            <Setter Property="Margin" Value="0 5 0 300"/> <!-- Excessive margin is there to prevent unresolved cut-off within ScrollViewer. -->
+        </Style>
+
+        <!-- t:TabControl -->
+
+        <Style TargetType="TabControl">
+            <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
+            <Setter Property="TextBlock.FontSize" Value="16"/>
+        </Style>
+
+        <!-- t:TabItem -->
+
+        <Style TargetType="TabItem">
+            <Setter Property="Padding" Value="10 4"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+        <!-- t:TextBlock -->
+
+        <Style TargetType="TextBlock" x:Key="VehicleCard">
+            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
+            <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- t:TextBox -->
 
         <Style TargetType="TextBox" x:Key="ValidText">
             <Setter Property="Foreground" Value="#00B414"/>
@@ -116,38 +177,10 @@
             <Setter Property="Background" Value="#FFCDFA"/>
         </Style>
 
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank1">
-            <Setter Property="Background" Value="#F0F0F0"/> <!--240-->
-        </Style>
+        <!-- t:ToggleButton -->
 
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank2">
-            <Setter Property="Background" Value="#E0E0E0"/> <!--225-->
-        </Style>
-
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank3">
-            <Setter Property="Background" Value="#D2D2D2"/> <!--210-->
-        </Style>
-
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank4">
-            <Setter Property="Background" Value="#C3C3C3"/> <!--195-->
-        </Style>
-
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank5">
-            <Setter Property="Background" Value="#B4B4B4"/> <!--180-->
-        </Style>
-
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank6">
-            <Setter Property="Background" Value="#A5A5A5"/> <!--165-->
-        </Style>
-
-        <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank7">
-            <Setter Property="Background" Value="#969696"/> <!--150-->
-        </Style>
-        
-        <Style TargetType="TextBlock" x:Key="VehicleCard">
-            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
-            <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
-            <Setter Property="FontSize" Value="12"/>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Height" Value="30"/>
         </Style>
         
     </Application.Resources>
