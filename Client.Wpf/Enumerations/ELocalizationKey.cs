@@ -3,6 +3,7 @@
     /// <summary> Keys of localized strings loaded from localization files. </summary>
     public class ELocalizationKey
     {
+        public const string AboutWtpr = nameof(AboutWtpr);
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);

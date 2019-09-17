@@ -21,17 +21,38 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <Grid Grid.Column="0">
 
-            <Button Content="Generate a preset"
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0">
+
+                <Button Content="Generate a preset"
                 x:Name="_generatePresetButton"
                 FontWeight="Bold"/>
 
-            <controls:GameModeSelectionControl
+                <controls:GameModeSelectionControl
                 x:Name="_gameModeSelectionControl"
                 Margin="0 10 0 0"/>
 
-        </StackPanel>
+            </StackPanel>
+
+            <Grid
+                Grid.Row="1"
+                Style="{StaticResource PaddedGrid}">
+
+                <controls:DropCapToggleButton/>
+
+                <controls:DropCapButton Caption="About W.T.P.R."
+                    x:Name="_aboutButton"
+                    DropCapFontSize="16"/>
+
+            </Grid>
+
+        </Grid>
         
         <Grid
             Grid.Column="1"

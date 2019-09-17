@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
+  <Line key="AboutWtpr" value="About W.T.P.R."/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>

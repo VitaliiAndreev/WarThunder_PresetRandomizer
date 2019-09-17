@@ -44,6 +44,10 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
+
+            _aboutButton.EmbeddedButton.CommandParameter = Presenter;
+            _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);
+
             _researchTreeControl.Populate();
 
             if (!string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode))
@@ -89,6 +93,7 @@ namespace Client.Wpf.Windows
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
+            _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
             _gameModeSelectionControl.Localize();
             _researchTreeControl.Localize();
