@@ -22,7 +22,7 @@
             <Button Style="{StaticResource FlagButton}" Click="OnClick_SelectEnglishUsa">
                 <Image
                     Style="{StaticResource FlagIcon}"
-                    Source="/Resources/Stripe Flag Set by Benjamin De Cock/US.png"/>
+                    Source="{StaticResource FlagUsaForDesigner}"/>
             </Button>
 
         </Grid>
