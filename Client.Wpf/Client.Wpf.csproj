@@ -389,9 +389,7 @@
     <Resource Include="Resources\icon.ico" />
     <Resource Include="Resources\icon.png" />
     <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\US.png" />
-    <Content Include="Resources\Stripe Flag Set by Benjamin De Cock\readme.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\readme.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
