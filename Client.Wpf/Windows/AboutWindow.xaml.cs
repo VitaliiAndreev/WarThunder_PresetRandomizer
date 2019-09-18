@@ -77,6 +77,7 @@ namespace Client.Wpf.Windows
             _thanks.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Thanks);
             _gaijin.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GaijinEntertainmentForWarThunder);
             _klensy.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.KlensyForWtTools);
+            _benjaminDeCock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.BenjaminDeCockForStripeFlagSet);
         }
     }
 }

@@ -20,7 +20,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="85"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="X.X.X (X)."
@@ -79,6 +79,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Gaijin Entertainment for War Thunder."
@@ -89,6 +90,11 @@
                 <TextBlock Text="Klensy for WT Tools."
                     Grid.Row="1"
                     x:Name="_klensy"
+                    Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
+
+                <TextBlock Text="Benjamin De Cock for the Stripe Flag Set."
+                    Grid.Row="2"
+                    x:Name="_benjaminDeCock"
                     Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
 
             </Grid>
