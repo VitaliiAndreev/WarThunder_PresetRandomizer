@@ -18,8 +18,8 @@ namespace Core.WarThunderExtractionToolsIntegration
         [RequiredSetting]
         public static string Localization
         {
-            get => LocalizationLanguage.ToString();
-            set => LocalizationLanguage = Enum.Parse(typeof(ELanguage), value).CastTo<ELanguage>();
+            get => LocalizationLanguage == ELanguage.None ? null : LocalizationLanguage.ToString();
+            set => LocalizationLanguage = string.IsNullOrWhiteSpace(value) ? ELanguage.None : Enum.Parse(typeof(ELanguage), value).CastTo<ELanguage>();
         }
 
         [RequiredSetting]
