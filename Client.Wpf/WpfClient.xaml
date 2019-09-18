@@ -8,6 +8,7 @@
 
         <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
 
+        <BitmapImage x:Key="FlagUsa" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/US.png" /> <!-- Cannot be loaded in the designer. -->
         <BitmapImage x:Key="FlagUsaForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/US.png</BitmapImage> <!-- Cannot be set programmatically. -->
         
         <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.9" />

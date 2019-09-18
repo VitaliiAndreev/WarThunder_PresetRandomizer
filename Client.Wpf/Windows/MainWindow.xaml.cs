@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
+using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -11,6 +12,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Windows
 {
@@ -44,6 +46,14 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
+
+            _localizationButton.CommandParameter = Presenter;
+            _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
+            _localizationButton.Content = new Image()
+            {
+                Style = FindResource(EStyleKey.Image.FlagIcon) as Style,
+                Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
+            };
 
             _aboutButton.EmbeddedButton.CommandParameter = Presenter;
             _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);

@@ -45,7 +45,17 @@
                 Grid.Row="1"
                 Style="{StaticResource PaddedGrid}">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="_localizationButton"
+                    Margin="0 0 10 0"/>
+
                 <controls:DropCapButton Caption="About W.T.P.R."
+                    Grid.Column="1"
                     x:Name="_aboutButton"
                     DropCapFontSize="16"/>
 

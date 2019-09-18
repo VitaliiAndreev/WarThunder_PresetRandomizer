@@ -9,6 +9,11 @@
             public const string SquadronResearchTreeCell = "SquadronResearchTreeCell";
             public const string PremiumResearchTreeCell = "PremiumResearchTreeCell";
         }
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.Image"/>. </summary>
+        public class Image
+        {
+            public const string FlagIcon = "FlagIcon";
+        }
         /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>
         public class ResearchTreeCellControl
         {

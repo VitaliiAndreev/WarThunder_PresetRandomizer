@@ -44,6 +44,7 @@ namespace Client.Wpf.Windows
 
             Presenter = presenter;
             Presenter.SetParentWindow(this);
+            Presenter.Language = WpfSettings.Localization;
 
             InitializeComponent();
             Localize();
@@ -93,6 +94,12 @@ namespace Client.Wpf.Windows
         /// <param name="language"> The language to select for localization. </param>
         private void SelectLocalization(ELanguage language)
         {
+            if (Presenter.Language == language.ToString())
+            {
+                Close();
+                return;
+            }
+
             if (_restartAfterSelection && !RestartApproved())
                 return;
 

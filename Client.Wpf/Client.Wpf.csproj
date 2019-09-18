@@ -208,10 +208,12 @@
     </Compile>
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
+    <Compile Include="Enumerations\EBitmapImageKey.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\ILocalizationExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
     <Compile Include="Helpers\Interfaces\IWpfClientSettingsManager.cs" />
