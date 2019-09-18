@@ -19,7 +19,9 @@
         
         <Grid>
             
-            <Button Style="{StaticResource FlagButton}" Click="OnClick_SelectEnglishUsa">
+            <Button
+                Style="{StaticResource FlagButton}"
+                Click="OnClick_SelectEnglishUsa">
                 <Image
                     Style="{StaticResource FlagIcon}"
                     Source="{StaticResource FlagUsaForDesigner}"/>
