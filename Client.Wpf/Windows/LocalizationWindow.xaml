@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Client.Wpf.Windows"
         mc:Ignorable="d"
         Title="Localization Window"
+        UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize"

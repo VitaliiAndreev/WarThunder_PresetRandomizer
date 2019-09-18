@@ -72,8 +72,6 @@
 
         <Style TargetType="Image" x:Key="FlagIcon">
             <Setter Property="Stretch" Value="None"/>
-            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
-            <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
         </Style>
 
         <!-- t:NLogListViewControl -->

@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:Client.Wpf.Controls"
         mc:Ignorable="d"
         Title="Main Window"
+        UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
         MinHeight="400"
         MinWidth="1000"
