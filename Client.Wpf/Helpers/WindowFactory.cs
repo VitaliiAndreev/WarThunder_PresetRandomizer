@@ -27,13 +27,14 @@ namespace Client.Wpf.Helpers
         #endregion Constructors
 
         /// <summary> Creates an instance of the localization window. </summary>
+        /// <param name="parentWindow"> The window that owns the new instance. </param>
         /// <param name="restartAfterSelection"> Whether the application is to be restarted after selecting a language. </param>
         /// <returns></returns>
-        public ILocalizationWindow CreateLocalizationWindow(bool restartAfterSelection = false)
+        public ILocalizationWindow CreateLocalizationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false)
         {
             var strategy = new LocalizationWindowStrategy();
             var presenter = new LocalizationWindowPresenter(strategy);
-            var window = new LocalizationWindow(presenter, restartAfterSelection);
+            var window = new LocalizationWindow(presenter, parentWindow, restartAfterSelection);
 
             return window;
         }

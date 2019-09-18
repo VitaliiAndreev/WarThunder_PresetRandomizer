@@ -35,9 +35,10 @@ namespace Client.Wpf.Windows
 
         /// <summary> Creates a new localization window. </summary>
         /// <param name="presenter"> The presenter to attach. </param>
+        /// <param name="parentWindow"> The window that owns this one. </param>
         /// <param name="restartAfterSelection"> Whether the application is to be restarted after selecting a language. </param>
-        public LocalizationWindow(ILocalizationWindowPresenter presenter, bool restartAfterSelection = false)
-            : base(EWpfClientLogCategory.LocalizationWindow)
+        public LocalizationWindow(ILocalizationWindowPresenter presenter, IBaseWindow parentWindow, bool restartAfterSelection = false)
+            : base(EWpfClientLogCategory.LocalizationWindow, parentWindow)
         {
             _restartAfterSelection = restartAfterSelection;
 

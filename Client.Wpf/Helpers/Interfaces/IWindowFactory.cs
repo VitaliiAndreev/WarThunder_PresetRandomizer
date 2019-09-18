@@ -6,8 +6,9 @@ namespace Client.Wpf.Helpers.Interfaces
     public interface IWindowFactory
     {
         /// <summary> Creates an instance of the localization window. </summary>
+        /// <param name="parentWindow"> The window that owns the new instance. </param>
         /// <returns></returns>
-        ILocalizationWindow CreateLocalizationWindow(bool restartAfterSelection = false);
+        ILocalizationWindow CreateLocalizationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false);
         /// <summary> Creates an instance of the settings window. </summary>
         /// <param name="parentWindow"> The window that owns the new instance. </param>
         /// <returns></returns>
