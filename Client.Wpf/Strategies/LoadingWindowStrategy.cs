@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Commands.LoadingWindow;
+using Client.Wpf.Commands.MainWindow;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
@@ -13,6 +14,7 @@ namespace Client.Wpf.Strategies
         {
             base.InitializeCommands();
             
+            _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());
             _commands.Add(ECommandName.Initialize, new InitializeCommand());
         }
     }

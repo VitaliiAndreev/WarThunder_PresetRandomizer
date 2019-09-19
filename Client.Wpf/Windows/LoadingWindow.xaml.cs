@@ -67,7 +67,7 @@ namespace Client.Wpf.Windows
             Action prepareDataAsynchronously = () => task.Start();
 
             if (!ApplicationHelpers.SettingsManager.WarThunderLocationIsValid() || !ApplicationHelpers.SettingsManager.KlensysWarThunderToolLocationIsValid())
-                ApplicationHelpers.WindowFactory.CreateSettingsWindow(this).ShowDialog();
+                Presenter.GetCommand(ECommandName.OpenSettings).Execute(Presenter);
 
             // Await doesn't work properly here.
             await Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle, prepareDataAsynchronously);
