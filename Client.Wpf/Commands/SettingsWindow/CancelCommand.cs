@@ -31,6 +31,12 @@ namespace Client.Wpf.Commands.SettingsWindow
 
             if ((!ApplicationHelpers.SettingsManager.WarThunderLocationIsValid() || !ApplicationHelpers.SettingsManager.KlensysWarThunderToolLocationIsValid()))
             {
+                if (presenter.PreviousValidWarThunderLocation is string && presenter.PreviousValidKlensysWarThunderToolsLocation is string)
+                {
+                    presenter.ClosingState = ESettingsWindowClosureState.ClosingCancelled;
+                    return;
+                }
+
                 var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
                 var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.RequiredSettingsHaveNotBeenSet);
 
@@ -41,8 +47,15 @@ namespace Client.Wpf.Commands.SettingsWindow
                 }
                 else
                 {
-                    presenter.ClosureCancelled = true;
+                    presenter.ClosingState = ESettingsWindowClosureState.ClosingCancelled;
+                    return;
                 }
+            }
+
+            if (presenter.ClosingState != ESettingsWindowClosureState.ClosingExplicitly)
+            {
+                presenter.ClosingState = ESettingsWindowClosureState.ClosingFromCommand;
+                presenter.CloseParentWindow();
             }
         }
     }

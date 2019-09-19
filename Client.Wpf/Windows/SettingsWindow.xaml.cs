@@ -49,6 +49,7 @@ namespace Client.Wpf.Windows
         {
             Presenter = presenter;
             Presenter.SetParentWindow(this);
+            Presenter.ClosingState = ESettingsWindowClosureState.NotClosing;
 
             InitializeComponent();
             Localize();
@@ -57,9 +58,15 @@ namespace Client.Wpf.Windows
             _warThunderLocationControl.TextBoxText = Settings.WarThunderLocation;
             _warThunderLocationControl.AddressValidityChanged += AddressValidityChanged;
 
+            if (_warThunderLocationControl.AddressIsValid)
+                Presenter.PreviousValidWarThunderLocation = _warThunderLocationControl.TextBoxText;
+
             _klensysWarThunderToolsLocationControl.AddressValidator = ApplicationHelpers.FileManager.KlensysWarThunderToolLocationIsValid;
             _klensysWarThunderToolsLocationControl.TextBoxText = Settings.KlensysWarThunderToolsLocation;
             _klensysWarThunderToolsLocationControl.AddressValidityChanged += AddressValidityChanged;
+
+            if (_klensysWarThunderToolsLocationControl.AddressIsValid)
+                Presenter.PreviousValidKlensysWarThunderToolsLocation = _klensysWarThunderToolsLocationControl.TextBoxText;
 
             _okButton.CommandParameter = Presenter;
             _okButton.Command = Presenter.GetCommand(ECommandName.Ok);
@@ -88,10 +95,12 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"></param>
         private void OnClosing(object sender, CancelEventArgs eventArguments)
         {
-            _cancelButton.Command.Execute(Presenter);
-
-            eventArguments.Cancel = Presenter.ClosureCancelled;
-            Presenter.ClosureCancelled = false;
+            if (Presenter.ClosingState != ESettingsWindowClosureState.ClosingFromCommand)
+            {
+                Presenter.ClosingState = ESettingsWindowClosureState.ClosingExplicitly;
+                _cancelButton.Command.Execute(Presenter);
+            }
+            eventArguments.Cancel = Presenter.ClosingState == ESettingsWindowClosureState.ClosingCancelled;
         }
         
         /// <summary> Logs closing of the window. </summary>

@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System.Windows;
 
 namespace Client.Wpf.Commands.SettingsWindow
 {
@@ -43,6 +44,10 @@ namespace Client.Wpf.Commands.SettingsWindow
                 ApplicationHelpers.SettingsManager.Save(nameof(Settings.WarThunderLocation), presenter.WarThunderLocation);
                 ApplicationHelpers.SettingsManager.Save(nameof(Settings.KlensysWarThunderToolsLocation), presenter.KlensysWarThunderToolsLocation);
 
+                if (presenter.LocationSettingsChangedFromValidToValid)
+                    MessageBox.Show(ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.LocationChangesWillComeIntoEffectAfterRestart), ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName), MessageBoxButton.OK, MessageBoxImage.Information);
+
+                presenter.ClosingState = ESettingsWindowClosureState.ClosingFromCommand;
                 presenter.CloseParentWindow();
             }
         }

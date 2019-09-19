@@ -29,6 +29,7 @@
         public const string KlensyForWtTools = nameof(KlensyForWtTools);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
+        public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
         public const string LookUp = nameof(LookUp);
         public const string Ok = nameof(Ok);
         public const string Planes = nameof(Planes);
