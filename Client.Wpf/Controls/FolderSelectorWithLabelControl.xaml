@@ -31,7 +31,7 @@
             x:Name="_textBox"
             VerticalContentAlignment="Center"
             Margin="10 0"
-            Padding="3"
+            Padding="-5"
             Text=""
             TextChanged="OnTextChanged"/>
         
