@@ -16,10 +16,10 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Indicates whether the location of the Klensy's War Thunder Tools directory is valid. </summary>
         bool KlensysWarThunderToolsLocationIsValid { get; }
 
-        /// <summary> Location of the War Thunder directory. </summary>
+        /// <summary> The location of the War Thunder directory. </summary>
         string WarThunderLocation { get; }
 
-        /// <summary> Location of the Klensy's War Thunder Tools directory. </summary>
+        /// <summary> The location of the Klensy's War Thunder Tools directory. </summary>
         string KlensysWarThunderToolsLocation { get; }
 
         /// <summary> Indicates whether closing the <see cref="Owner"/> window has been marked for cancellation. </summary>

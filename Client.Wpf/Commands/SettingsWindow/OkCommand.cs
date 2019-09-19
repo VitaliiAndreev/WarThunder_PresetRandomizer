@@ -17,6 +17,9 @@ namespace Client.Wpf.Commands.SettingsWindow
 
         #endregion Constructors
 
+        /// <summary> Defines the method that determines whether the command can execute in its current state. </summary>
+        /// <param name="parameter"> Data used by the command. An <see cref="ISettingsWindowPresenter"/> is expected. </param>
+        /// <returns></returns>
         public override bool CanExecute(object parameter)
         {
             if (!base.CanExecute(parameter))
@@ -30,7 +33,7 @@ namespace Client.Wpf.Commands.SettingsWindow
         }
 
         /// <summary> Defines the method to be called when the command is invoked. </summary>
-        /// <param name="parameter"> Data used by the command. An <see cref="ILoadingWindowPresenter"/> is expected. </param>
+        /// <param name="parameter"> Data used by the command. An <see cref="ISettingsWindowPresenter"/> is expected. </param>
         public override void Execute(object parameter)
         {
             base.Execute(parameter);

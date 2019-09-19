@@ -83,7 +83,7 @@ namespace Client.Wpf.Windows
         private void AddressValidityChanged(object sender, EventArgs eventArguments) =>
             (_okButton.Command as ICustomCommand).RaiseCanExecuteChanged(Presenter);
 
-        /// <summary> Calls the <see cref="CancelCommand"/>. </summary>
+        /// <summary> Handles closing the window. </summary>
         /// <param name="sender"></param>
         /// <param name="eventArguments"></param>
         private void OnClosing(object sender, CancelEventArgs eventArguments)
