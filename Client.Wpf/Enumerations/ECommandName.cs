@@ -18,6 +18,8 @@ namespace Client.Wpf.Enumerations
         Initialize,
         /// <summary> See <see cref="OkCommand"/>. </summary>
         Ok,
+        /// <summary> See <see cref="OpenSettingsCommand"/>. </summary>
+        OpenSettings,
         /// <summary> See <see cref="SelectLocalizationCommand"/>. </summary>
         SelectLocalization,
         /// <summary> See <see cref="SelectGameModeCommand"/>. </summary>
