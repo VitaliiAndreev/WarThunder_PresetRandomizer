@@ -18,13 +18,13 @@ namespace Client.Wpf.Commands.MainWindow
         #endregion Constructors
 
         /// <summary> Defines the method to be called when the command is invoked. </summary>
-        /// <param name="parameter"> Data used by the command. An <see cref="IMainWindowPresenter"/> is expected. </param>
+        /// <param name="parameter"> Data used by the command. An <see cref="IPresenter"/> is expected. </param>
         public override void Execute(object parameter)
         {
             base.Execute(parameter);
 
-            if (parameter is IMainWindowPresenter mainWindowPresenter)
-                ApplicationHelpers.WindowFactory.CreateSettingsWindow(mainWindowPresenter.Owner).ShowDialog();
+            if (parameter is IPresenter presenter)
+                ApplicationHelpers.WindowFactory.CreateSettingsWindow(presenter.Owner).ShowDialog();
         }
     }
 }
