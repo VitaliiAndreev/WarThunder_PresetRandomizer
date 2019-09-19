@@ -38,7 +38,7 @@ namespace Client.Wpf.Commands.SettingsWindow
             if (parameter is ISettingsWindowPresenter presenter)
             {
                 ApplicationHelpers.SettingsManager.Save(nameof(Settings.WarThunderLocation), presenter.WarThunderLocation);
-                ApplicationHelpers.SettingsManager.Save(nameof(Settings.KlensysWarThunderToolsLocation), presenter.WarThunderLocation);
+                ApplicationHelpers.SettingsManager.Save(nameof(Settings.KlensysWarThunderToolsLocation), presenter.KlensysWarThunderToolsLocation);
 
                 presenter.CloseParentWindow();
             }
