@@ -46,12 +46,24 @@
                 Style="{StaticResource PaddedGrid}">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button
                     Grid.Column="0"
+                    x:Name="_settingsButton"
+                    Margin="0 0 10 0">
+                    <Image
+                        Source="{StaticResource Settings}"
+                        Width="19"
+                        Height="19"
+                        Stretch="Uniform"/>
+                </Button>
+
+                <Button
+                    Grid.Column="1"
                     x:Name="_localizationButton"
                     Margin="0 0 10 0">
                     <Image
@@ -60,7 +72,7 @@
                 </Button>
 
                 <controls:DropCapButton Caption="About W.T.P.R."
-                    Grid.Column="1"
+                    Grid.Column="2"
                     x:Name="_aboutButton"
                     DropCapFontSize="16"/>
 

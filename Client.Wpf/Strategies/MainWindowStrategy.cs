@@ -14,6 +14,7 @@ namespace Client.Wpf.Strategies
             base.InitializeCommands();
 
             _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
+            _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());
             _commands.Add(ECommandName.ChangeLocalization, new ChangeLocalizationCommand());
             _commands.Add(ECommandName.About, new AboutCommand());
         }

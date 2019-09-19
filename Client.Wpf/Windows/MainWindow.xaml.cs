@@ -47,6 +47,9 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
 
+            _settingsButton.CommandParameter = Presenter;
+            _settingsButton.Command = Presenter.GetCommand(ECommandName.OpenSettings);
+
             _localizationButton.CommandParameter = Presenter;
             _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
             _localizationButton.Content = new Image()
