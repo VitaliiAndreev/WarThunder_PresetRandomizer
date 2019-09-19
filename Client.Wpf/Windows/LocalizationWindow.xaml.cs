@@ -87,7 +87,7 @@ namespace Client.Wpf.Windows
 
             Title = ApplicationHelpers.LocalizationManager is null
                 ? EClientApplicationName.WarThunderPresetRandomizerAbbreviated
-                : ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+                : ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationNameAbbreviated);
         }
 
         /// <summary> Selects the given language for localization and restarts the application if it's not the first start. </summary>
