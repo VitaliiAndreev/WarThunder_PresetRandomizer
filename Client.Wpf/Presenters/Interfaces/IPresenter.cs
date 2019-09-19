@@ -1,7 +1,7 @@
 ﻿using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Strategies.Interfaces;
-using Client.Wpf.Windows.Interfaces.Base;
+using Client.Wpf.Windows.Interfaces;
 using System;
 
 namespace Client.Wpf.Presenters.Interfaces
@@ -12,7 +12,7 @@ namespace Client.Wpf.Presenters.Interfaces
         #region Properties
 
         /// <summary> The parent window. </summary>
-        IWindow Owner { get; }
+        IBaseWindow Owner { get; }
 
         /// <summary> An instance of a strategy. </summary>
         IStrategy Strategy { get; }
@@ -21,7 +21,7 @@ namespace Client.Wpf.Presenters.Interfaces
 
         /// <summary> Sets the value of the <see cref="Owner"/> property. </summary>
         /// <param name="owner"> The window to set a the owner. </param>
-        void SetParentWindow(IWindow owner);
+        void SetParentWindow(IBaseWindow owner);
 
         /// <summary> Closes the window set as the <see cref="Owner"/>. </summary>
         void CloseParentWindow();
