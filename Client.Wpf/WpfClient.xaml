@@ -28,12 +28,27 @@
             <Setter Property="Background" Value="#FFFFFF"/>
         </Style>
 
+        <Style TargetType="Border" x:Key="ResearchTreeCellHighlighted" BasedOn="{StaticResource ResearchTreeCell}">
+            <Setter Property="BorderThickness" Value="5 1 1 1"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+
         <Style TargetType="Border" x:Key="SquadronResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
             <Setter Property="Background" Value="#D1FF9B"/>
         </Style>
 
+        <Style TargetType="Border" x:Key="SquadronResearchTreeCellHighlighted" BasedOn="{StaticResource SquadronResearchTreeCell}">
+            <Setter Property="BorderThickness" Value="5 1 1 1"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+
         <Style TargetType="Border" x:Key="PremiumResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
             <Setter Property="Background" Value="#FFE785"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="PremiumResearchTreeCellHighlighted" BasedOn="{StaticResource PremiumResearchTreeCell}">
+            <Setter Property="BorderThickness" Value="5 1 1 1"/>
+            <Setter Property="BorderBrush" Value="Red"/>
         </Style>
 
         <!-- t:Button -->

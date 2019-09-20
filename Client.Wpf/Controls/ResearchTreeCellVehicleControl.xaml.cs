@@ -5,12 +5,19 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeCellVehicleControl.xaml. </summary>
     public partial class ResearchTreeCellVehicleControl : UserControl
     {
+        #region Fields
+
+        /// <summary> The research type of the <see cref="Vehicle"/> in the cell. </summary>
+        private readonly EVehicleResearchType _reseachType;
+
+        #endregion Fields
         #region Properties
 
         /// <summary> The vehicle in the cell. </summary>
@@ -33,21 +40,72 @@ namespace Client.Wpf.Controls
             Vehicle = vehicle;
             _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
 
-            Style getStyle(string styleKey) => FindResource(styleKey) as Style;
-
             if (Vehicle.IsSquadronVehicle)
-                _border.Style = getStyle(EStyleKey.Border.SquadronResearchTreeCell);
+                _reseachType = EVehicleResearchType.Squadron;
             else if (Vehicle.IsPremium)
-                _border.Style = getStyle(EStyleKey.Border.PremiumResearchTreeCell);
+                _reseachType = EVehicleResearchType.Premium;
+            else
+                _reseachType = EVehicleResearchType.Regular;
+
+            ApplyIdleStyle();
         }
 
         #endregion Constructors
+        #region Methods: Event Handlers
+
+        /// <summary> Applies the highlighting style to the <see cref="_border"/>. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="Border"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseEnter(object sender, MouseEventArgs eventArguments)
+        {
+            if (sender is Border)
+                ApplyHighlightStyle();
+        }
+
+        /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="Border"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseLeave(object sender, MouseEventArgs eventArguments)
+        {
+            if (sender is Border)
+                ApplyIdleStyle();
+        }
+
+        #endregion Methods: Event Handlers
 
         /// <summary> Displays the <see cref="IVehicle.BattleRating"/> for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         public void DisplayBattleRatingFor(EGameMode gameMode)
         {
             _battleRating.Text = Vehicle.BattleRatingFormatted[gameMode];
+        }
+
+        /// <summary> Gets a style defined in <see cref="WpfClient"/> by its key. </summary>
+        /// <param name="styleKey"> The key of the style to fetch. </param>
+        /// <returns></returns>
+        private Style GetStyle(string styleKey) =>
+            FindResource(styleKey) as Style;
+
+        /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
+        private void ApplyIdleStyle()
+        {
+            _border.Style = _reseachType switch
+            {
+                EVehicleResearchType.Squadron => GetStyle(EStyleKey.Border.SquadronResearchTreeCell),
+                EVehicleResearchType.Premium => GetStyle(EStyleKey.Border.PremiumResearchTreeCell),
+                _ => GetStyle(EStyleKey.Border.ResearchTreeCell),
+            };
+        }
+
+        /// <summary> Applies the highlighting style to the <see cref="_border"/>. </summary>
+        private void ApplyHighlightStyle()
+        {
+            _border.Style = _reseachType switch
+            {
+                EVehicleResearchType.Squadron => GetStyle(EStyleKey.Border.SquadronResearchTreeCellHighlighted),
+                EVehicleResearchType.Premium => GetStyle(EStyleKey.Border.PremiumResearchTreeCellHighlighted),
+                _ => GetStyle(EStyleKey.Border.ResearchTreeCellHighlighted),
+            };
         }
     }
 }

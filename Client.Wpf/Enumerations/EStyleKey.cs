@@ -6,8 +6,12 @@
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Border"/>. </summary>
         public class Border
         {
+            public const string ResearchTreeCell = "ResearchTreeCell";
+            public const string ResearchTreeCellHighlighted = "ResearchTreeCellHighlighted";
             public const string SquadronResearchTreeCell = "SquadronResearchTreeCell";
+            public const string SquadronResearchTreeCellHighlighted = "SquadronResearchTreeCellHighlighted";
             public const string PremiumResearchTreeCell = "PremiumResearchTreeCell";
+            public const string PremiumResearchTreeCellHighlighted = "PremiumResearchTreeCellHighlighted";
         }
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Image"/>. </summary>
         public class Image
