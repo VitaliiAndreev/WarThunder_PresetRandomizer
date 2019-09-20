@@ -88,7 +88,7 @@ namespace Client.Wpf.Windows
         /// <param name="sender"></param>
         /// <param name="eventArguments"></param>
         private void AddressValidityChanged(object sender, EventArgs eventArguments) =>
-            (_okButton.Command as ICustomCommand).RaiseCanExecuteChanged(Presenter);
+            (_okButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
 
         /// <summary> Handles closing the window. </summary>
         /// <param name="sender"></param>
