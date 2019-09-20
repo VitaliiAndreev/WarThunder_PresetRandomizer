@@ -63,8 +63,8 @@ namespace Client.Wpf.Windows
         {
             Log.Debug(ECoreLogMessage.Shown);
 
-            var task = new Task(PrepareData);
-            Action prepareDataAsynchronously = () => task.Start();
+            var prepareDataTask = new Task(PrepareData);
+            Action prepareDataAsynchronously = () => prepareDataTask.Start();
 
             if (!ApplicationHelpers.SettingsManager.WarThunderLocationIsValid() || !ApplicationHelpers.SettingsManager.KlensysWarThunderToolLocationIsValid())
                 Presenter.GetCommand(ECommandName.OpenSettings).Execute(Presenter);
@@ -73,7 +73,7 @@ namespace Client.Wpf.Windows
             await Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle, prepareDataAsynchronously);
 
             // To work around the not functional await a delay is implemented.
-            while (task.Status != TaskStatus.RanToCompletion)
+            while (prepareDataTask.Status != TaskStatus.RanToCompletion)
             {
                 await Task.Delay(EInteger.Time.MillisecondsInSecond / EInteger.Number.Hundred);
 
