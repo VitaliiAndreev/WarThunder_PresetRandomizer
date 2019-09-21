@@ -109,7 +109,6 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
