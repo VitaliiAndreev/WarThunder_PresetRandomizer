@@ -54,8 +54,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #endregion General
         #region Modifications
 
-        /*[JsonProperty("modifications", Required = Required.Always)]
-        public IEnumerable<string> Modifications { get; set; }*/
+        [JsonProperty("modifications", Required = Required.Always)]
+        public Dictionary<string, ModificationDeserializedFromJson> Modifications { get; set; }
 
         [JsonProperty("needBuyToOpenNextInTier1", Required = Required.Always)]
         public int AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 { get; set; }
@@ -199,9 +199,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("weapons", Required = Required.Always)]
         public Dictionary<string, WeaponDeserializedFromJson> Weapons { get; set; }
-
-        [JsonProperty("modifications", Required = Required.Always)]
-        public Dictionary<string, ModificationDeserializedFromJson> Modifications { get; set; }
 
         #endregion Weapons
 
