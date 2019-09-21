@@ -9,10 +9,10 @@
         Title="Main Window"
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
-        MinHeight="400"
-        MinWidth="1000"
+        MinHeight="600"
+        MinWidth="800"
         Height="600"
-        Width="1200"
+        Width="1505"
         Loaded="OnLoaded"
         Closed="OnClosed">
     <Grid>
