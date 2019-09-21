@@ -36,8 +36,7 @@
                 FontWeight="Bold"/>
 
                 <controls:GameModeSelectionControl
-                x:Name="_gameModeSelectionControl"
-                Margin="0 10 0 0"/>
+                    x:Name="_gameModeSelectionControl"/>
 
             </StackPanel>
 

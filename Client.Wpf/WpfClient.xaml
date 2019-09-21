@@ -74,6 +74,12 @@
             <Setter Property="Height" Value="17"/>
         </Style>
 
+        <!-- t:GameModeSelectionControl -->
+
+        <Style TargetType="controls:GameModeSelectionControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+        
         <!-- t:Grid -->
         
         <Style TargetType="Grid">
