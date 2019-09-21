@@ -24,9 +24,9 @@ namespace Client.Wpf.Helpers
 
         #endregion Constructors
 
-        /// <summary> Saves the <paramref name="newValue"/> of the setting with the specified name. </summary>
-        /// <param name="settingName">Node of XML to read</param>
-        /// <param name="newValue">Value to write to that node</param>
+        /// <summary> Sets and saves the <paramref name="newValue"/> of the setting with the specified name. </summary>
+        /// <param name="settingName"> The name of the setting. </param>
+        /// <param name="newValue"> The new value to set. </param>
         /// <returns></returns>
         public override void Save(string settingName, string newValue)
         {

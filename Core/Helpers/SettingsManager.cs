@@ -201,9 +201,9 @@ namespace Core.Helpers
         #endregion Methods: Reading
         #region Methods: Writing
 
-        /// <summary> Saves the <paramref name="newValue"/> of the setting with the specified name. </summary>
-        /// <param name="settingName">Node of XML to read</param>
-        /// <param name="newValue">Value to write to that node</param>
+        /// <summary> Saves the <paramref name="newValue"/> of the setting with the specified name to the settings file. </summary>
+        /// <param name="settingName"> The name of the XML node to write <paramref name="newValue"/> to. </param>
+        /// <param name="newValue"> The value to save. </param>
         /// <returns></returns>
         public virtual void Save(string settingName, string newValue)
         {
