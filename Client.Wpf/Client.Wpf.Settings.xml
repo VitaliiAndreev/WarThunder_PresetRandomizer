@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
-  <Localization>EnglishUsa</Localization>
-  <WarThunderLocation>D:\Games\_Steam\steamapps\common\War Thunder</WarThunderLocation>
-  <KlensysWarThunderToolsLocation>D:\Software\War Thunder Tools</KlensysWarThunderToolsLocation>
-  <CurrentGameMode>Realistic</CurrentGameMode>
+  <Localization></Localization>
+  <WarThunderLocation></WarThunderLocation>
+  <KlensysWarThunderToolsLocation></KlensysWarThunderToolsLocation>
+  <CurrentGameMode></CurrentGameMode>
 </Settings>

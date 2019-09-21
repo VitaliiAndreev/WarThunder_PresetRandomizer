@@ -23,13 +23,13 @@ namespace Core.WarThunderExtractionToolsIntegration
         }
 
         [RequiredSetting]
-        public static string CurrentGameMode { get; set; } = EGameMode.Realistic.ToString();
+        public static string CurrentGameMode { get; set; }
 
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
         /// </summary>
-        public static ELanguage LocalizationLanguage { get; private set; } = ELanguage.EnglishUsa;
+        public static ELanguage LocalizationLanguage { get; private set; }
 
         #endregion Properties
     }

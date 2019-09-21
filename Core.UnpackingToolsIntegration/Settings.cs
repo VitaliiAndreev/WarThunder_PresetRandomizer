@@ -9,9 +9,9 @@ namespace Core.WarThunderExtractionToolsIntegration
     public class Settings
     {
         [RequiredSetting]
-        public static string WarThunderLocation { get; set; } = @"D:\Games\_Steam\steamapps\common\War Thunder";
+        public static string WarThunderLocation { get; set; }
         [RequiredSetting]
-        public static string KlensysWarThunderToolsLocation { get; set; } = @"D:\Software\War Thunder Tools";
+        public static string KlensysWarThunderToolsLocation { get; set; }
 
         public static string TempLocation { get; set; } = KlensysWarThunderToolsLocation + @"\_temp";
     }
