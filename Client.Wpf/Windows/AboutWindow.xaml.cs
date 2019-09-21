@@ -3,7 +3,6 @@ using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using System;
@@ -36,7 +35,7 @@ namespace Client.Wpf.Windows
 
             InitializeComponent();
 
-            _version.Text = $"{EApplicationData.Version.ToString(EInteger.Number.Three)} ({{0}})";
+            _version.Text = $"{EApplicationData.Version} ({{0}})";
             _vitalyAndreyevStats.Text = EApplicationData.ContributionsByVitalyAndreyev;
 
             Localize();
