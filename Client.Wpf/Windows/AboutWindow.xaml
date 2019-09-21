@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.Wpf.Windows"
         mc:Ignorable="d"
         Title="About Window"
-        Height="260"
+        Height="270"
         Width="300"
         Loaded="OnLoaded"
         Closed="OnClosed"
