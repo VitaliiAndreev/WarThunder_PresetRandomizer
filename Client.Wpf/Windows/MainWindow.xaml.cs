@@ -54,7 +54,7 @@ namespace Client.Wpf.Windows
             _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
             _localizationButton.Content = new Image()
             {
-                Style = FindResource(EStyleKey.Image.FlagIcon) as Style,
+                Style = this.GetStyle(EStyleKey.Image.FlagIcon),
                 Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
             };
 

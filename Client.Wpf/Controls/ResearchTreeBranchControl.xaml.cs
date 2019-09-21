@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -81,7 +82,7 @@ namespace Client.Wpf.Controls
                         var columnIndex = columnNumber - EInteger.Number.One;
                         var cell = new ResearchTreeCellControl()
                         {
-                            Style = FindResource(_styleKeys[rankKey]) as Style,
+                            Style = this.GetStyle(_styleKeys[rankKey]),
                         };
 
                         Grid.SetRow(cell, rowIndex);

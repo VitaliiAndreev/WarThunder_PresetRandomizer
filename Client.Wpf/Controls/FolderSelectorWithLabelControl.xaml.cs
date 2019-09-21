@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -153,7 +154,7 @@ namespace Client.Wpf.Controls
         /// <summary> Applies color to the <see cref="_textBox"/> contents according to the value of the <see cref="AddressIsValid"/> property. </summary>
         private void UpdateTextBoxColor()
         {
-            void applyStyle(string styleKey) => _textBox.Style = FindResource(styleKey) as Style;
+            void applyStyle(string styleKey) => _textBox.Style = this.GetStyle(styleKey);
 
             if (AddressIsValid)
                 applyStyle(EStyleKey.TextBox.ValidText);
