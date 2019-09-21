@@ -45,6 +45,7 @@
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string VitalyAndreyev = nameof(VitalyAndreyev);
+        public const string WillBeAvailableInAlphaReleases = nameof(WillBeAvailableInAlphaReleases);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);
     }
 }

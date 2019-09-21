@@ -33,7 +33,11 @@
 
                 <Button Content="Generate a preset"
                     x:Name="_generatePresetButton"
-                    FontWeight="Bold"/>
+                    FontWeight="Bold"
+                    IsEnabled="False"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTipService.InitialShowDelay="0"
+                    ToolTip="Will be available in Alpha releases."/>
 
                 <controls:GameModeSelectionControl
                     x:Name="_gameModeSelectionControl"/>
