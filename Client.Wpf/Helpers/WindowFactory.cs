@@ -16,7 +16,7 @@ namespace Client.Wpf.Helpers
     {
         #region Constructors
 
-        /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
+        /// <summary> Creates a new windows factory. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public WindowFactory(params IConfiguredLogger[] loggers)
             : base(EWpfClientLogCategory.WindowFactory, loggers)

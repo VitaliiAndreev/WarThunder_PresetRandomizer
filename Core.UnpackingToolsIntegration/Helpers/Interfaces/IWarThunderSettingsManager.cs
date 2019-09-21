@@ -2,6 +2,7 @@
 
 namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
 {
+    /// <summary> Handles work with settings files. </summary>
     public interface IWarThunderSettingsManager : ISettingsManager
     {
         #region Methods: Validation

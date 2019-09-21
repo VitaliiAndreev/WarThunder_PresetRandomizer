@@ -9,6 +9,7 @@ using System.Reflection;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
+    /// <summary> Handles work with settings files. </summary>
     public class WarThunderSettingsManager : SettingsManager, IWarThunderSettingsManager
     {
         #region Fields
@@ -19,9 +20,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         #endregion Fields
         #region Constructors
 
-        /// <summary> Creates a new file manager. </summary>
+        /// <summary> Creates a new settings manager. </summary>
         /// <param name="settingsFileName"> The name of the settings file to attach to this manager. </param>
-        /// <param name="fileManager"> The name of the settings file to attach to this manager. </param>
+        /// <param name="fileManager"> An instance of a file manager. </param>
         /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public WarThunderSettingsManager(IWarThunderFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)

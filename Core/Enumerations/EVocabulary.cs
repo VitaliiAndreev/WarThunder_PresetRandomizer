@@ -201,7 +201,9 @@
 
         protected const string _has = "has";
         protected const string _have = "have";
-        protected const string _Helpers = "Helper" + _s;
+        protected const string _Help = "Help";
+        protected const string _Helper = _Help + _er;
+        protected const string _Helpers = _Helper + _s;
         protected const string _helpers = "helper" + _s;
         protected const string _here = "here";
         protected const string _how = "how";
@@ -421,6 +423,7 @@
         protected const string _Stream = _S + _tre + _am;
         protected const string _stream = _s + _tre + _am;
         protected const string _string = _s + "tr" + _ing;
+        protected const string _Style = _S + "tyle";
         protected const string _subdirectories = _s + "ubdirectorie" + _s;
         protected const string _subfolders = _s + "ubfolder" + _s;
         protected const string _Successfully = _S + _uccess + _fully;

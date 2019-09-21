@@ -41,6 +41,7 @@
         #endregion G
         #region H
 
+        public static string Helper => _Helper;
         public static string Helpers => _Helpers;
 
         #endregion H
@@ -94,6 +95,7 @@
 
         public static string Schema => _Schema;
         public static string Settings => _Settings;
+        public static string Style => _Style;
 
         #endregion S
         #region T

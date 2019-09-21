@@ -4,18 +4,17 @@ using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace Client.Wpf.Helpers
 {
+    /// <summary> Handles work with settings files. </summary>
     public class WpfClientSettingsManager : WarThunderSettingsManager, IWpfClientSettingsManager
     {
         #region Constructors
 
-        /// <summary> Creates a new file manager. </summary>
+        /// <summary> Creates a new settings manager. </summary>
         /// <param name="settingsFileName"> The name of the settings file to attach to this manager. </param>
-        /// <param name="fileManager"> The name of the settings file to attach to this manager. </param>
+        /// <param name="fileManager"> An instance of a file manager. </param>
         /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public WpfClientSettingsManager(IWarThunderFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)

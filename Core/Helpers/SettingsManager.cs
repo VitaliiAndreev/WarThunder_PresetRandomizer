@@ -44,9 +44,9 @@ namespace Core.Helpers
         #endregion Properties
         #region Constructors
 
-        /// <summary> Creates a new file manager. </summary>
+        /// <summary> Creates a new settings manager. </summary>
         /// <param name="settingsFileName"> The name of the settings file to attach to this manager. </param>
-        /// <param name="fileManager"> The name of the settings file to attach to this manager. </param>
+        /// <param name="fileManager"> An instance of a file manager. </param>
         /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public SettingsManager(IFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)
