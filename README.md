@@ -3,6 +3,10 @@
 ### Requirements
 In order to work it requires an up-to-date version of the **War Thunder** client available at [Gaijin's website](https://warthunder.com/en) or [Steam](https://store.steampowered.com/app/236390/War_Thunder/), and a release of [Klensy](https://github.com/klensy/wt-tools/commits?author=klensy)'s **[WT Tools](https://github.com/klensy/wt-tools)**. Paths to both are inquired at the start of **WTPR**. Additionally, one might need to install a runtime version of [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
 
+### Workflow
+
+At the start **WTPF** scans the **War Thunder** client for its current version. With every new patch **WT Tools** are used to unpack data stored with the client and convert it into JSON, **WTPF** deserializes JSON data into entities and stores them in an SQLite database (a new database for every patch). From that point **WTPF** uses only the database unless it detects a new **War Thunder** version.
+
 ### Road Map
 
 #### Pre-Alpha releases (reached)
