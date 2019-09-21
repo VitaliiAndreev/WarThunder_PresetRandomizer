@@ -80,20 +80,14 @@ namespace Client.Wpf.Controls
             _battleRating.Text = Vehicle.BattleRatingFormatted[gameMode];
         }
 
-        /// <summary> Gets a style defined in <see cref="WpfClient"/> by its key. </summary>
-        /// <param name="styleKey"> The key of the style to fetch. </param>
-        /// <returns></returns>
-        private Style GetStyle(string styleKey) =>
-            FindResource(styleKey) as Style;
-
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
         private void ApplyIdleStyle()
         {
             _border.Style = _reseachType switch
             {
-                EVehicleResearchType.Squadron => GetStyle(EStyleKey.Border.SquadronResearchTreeCell),
-                EVehicleResearchType.Premium => GetStyle(EStyleKey.Border.PremiumResearchTreeCell),
-                _ => GetStyle(EStyleKey.Border.ResearchTreeCell),
+                EVehicleResearchType.Squadron => this.GetStyle(EStyleKey.Border.SquadronResearchTreeCell),
+                EVehicleResearchType.Premium => this.GetStyle(EStyleKey.Border.PremiumResearchTreeCell),
+                _ => this.GetStyle(EStyleKey.Border.ResearchTreeCell),
             };
         }
 
@@ -102,9 +96,9 @@ namespace Client.Wpf.Controls
         {
             _border.Style = _reseachType switch
             {
-                EVehicleResearchType.Squadron => GetStyle(EStyleKey.Border.SquadronResearchTreeCellHighlighted),
-                EVehicleResearchType.Premium => GetStyle(EStyleKey.Border.PremiumResearchTreeCellHighlighted),
-                _ => GetStyle(EStyleKey.Border.ResearchTreeCellHighlighted),
+                EVehicleResearchType.Squadron => this.GetStyle(EStyleKey.Border.SquadronResearchTreeCellHighlighted),
+                EVehicleResearchType.Premium => this.GetStyle(EStyleKey.Border.PremiumResearchTreeCellHighlighted),
+                _ => this.GetStyle(EStyleKey.Border.ResearchTreeCellHighlighted),
             };
         }
     }
