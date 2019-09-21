@@ -217,6 +217,7 @@
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
+    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\ILocalizationExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
     <Compile Include="Helpers\Interfaces\IWpfClientSettingsManager.cs" />
