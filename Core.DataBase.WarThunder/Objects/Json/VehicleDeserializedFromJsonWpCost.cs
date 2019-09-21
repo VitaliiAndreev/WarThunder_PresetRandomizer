@@ -244,7 +244,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int? DiscountedPurchaseCostInGold { get; set; }
 
         [JsonProperty("reqAir")]
-        public string VehicleRequired { get; set; }
+        public string RequiredVehicleGaijinId { get; set; }
 
         [JsonProperty("spawnType")]
         public string SpawnType { get; set; }

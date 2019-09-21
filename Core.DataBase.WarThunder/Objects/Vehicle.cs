@@ -125,8 +125,8 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="ResearchUnlockType"/>) after some progress towards its unlocking is made. </summary>
         [Property()] public virtual int? DiscountedPurchaseCostInGold { get; protected set; }
 
-        /// <summary> The vehicle that has to be researched / unlocked before this one can be purchased. </summary>
-        [Property()] public virtual string VehicleRequired { get; protected set; }
+        /// <summary> The Gaijin ID of the vehicle that has to be researched / unlocked before this one can be purchased. </summary>
+        [Property()] public virtual string RequiredVehicleGaijinId { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string SpawnType { get; protected set; }
