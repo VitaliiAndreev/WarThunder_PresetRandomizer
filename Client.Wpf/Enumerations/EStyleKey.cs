@@ -12,6 +12,7 @@
             public const string SquadronResearchTreeCellHighlighted = "SquadronResearchTreeCellHighlighted";
             public const string PremiumResearchTreeCell = "PremiumResearchTreeCell";
             public const string PremiumResearchTreeCellHighlighted = "PremiumResearchTreeCellHighlighted";
+            public const string RankDivider = "RankDivider";
         }
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Image"/>. </summary>
         public class Image

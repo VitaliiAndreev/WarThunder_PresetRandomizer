@@ -11,6 +11,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -104,6 +105,37 @@ namespace Client.Wpf.Controls
             }
         }
 
+        /// <summary> Adds the given cell to the grid, adding a border at the bottom if the current row is the last one in the specified rank. </summary>
+        /// <param name="cell"> The research tree cell to add. </param>
+        /// <param name="rank"> The current vehicle rank. </param>
+        /// <param name="rowIndex"> The index of the current row. </param>
+        /// <param name="columnIndex"> The index of the current column. </param>
+        private void AddCell(ResearchTreeCellControl cell, ResearchTreeRank rank, int rowIndex, int columnIndex)
+        {
+            var rowNumber = rowIndex + EInteger.Number.One;
+
+            if (rowNumber == rank.MaximumRowNumber)
+            {
+                var cellWithBottomBorder = new Border()
+                {
+                    Style = this.GetStyle(EStyleKey.Border.RankDivider),
+                    Child = cell,
+                };
+
+                Grid.SetRow(cellWithBottomBorder, rowIndex);
+                Grid.SetColumn(cellWithBottomBorder, columnIndex);
+
+                _grid.Children.Add(cellWithBottomBorder);
+            }
+            else
+            {
+                Grid.SetRow(cell, rowIndex);
+                Grid.SetColumn(cell, columnIndex);
+
+                _grid.Children.Add(cell);
+            }
+        }
+
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"></param>
         public void Populate(ResearchTreeBranch branch)
@@ -134,9 +166,6 @@ namespace Client.Wpf.Controls
                             Style = this.GetStyle(_styleKeys[rankKey]),
                         };
 
-                        Grid.SetRow(cell, rowIndex);
-                        Grid.SetColumn(cell, columnIndex);
-
                         var cellVehicles = rank
                             .GetVehicles(columnNumber, rowNumberRelativeToRank)
                             .OrderBy(vehicle => vehicle.ResearchTreeData.FolderIndex)
@@ -145,10 +174,10 @@ namespace Client.Wpf.Controls
                         foreach (var vehicle in cellVehicles)
                             cell.AddVehicle(vehicle);
 
-                        _grid.Children.Add(cell);
-                        _cells.Add(new Tuple<int, int>(columnIndex, rowIndex), cell);
-
                         AttachEventHandlers(cell);
+                        AddCell(cell, rank, rowIndex, columnIndex);
+
+                        _cells.Add(new Tuple<int, int>(columnIndex, rowIndex), cell);
                     }
                 }
             }

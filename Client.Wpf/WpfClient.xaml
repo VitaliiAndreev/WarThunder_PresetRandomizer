@@ -51,6 +51,11 @@
             <Setter Property="BorderBrush" Value="Red"/>
         </Style>
 
+        <Style TargetType="Border" x:Key="RankDivider">
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+            <Setter Property="BorderBrush" Value="White"/>
+        </Style>
+
         <!-- t:Button -->
 
         <Style TargetType="Button">
