@@ -73,6 +73,8 @@ namespace Client.Wpf.Windows
 
             _cancelButton.CommandParameter = Presenter;
             _cancelButton.Command = Presenter.GetCommand(ECommandName.Cancel);
+
+            Log.Debug(ECoreLogMessage.Initialized);
         }
 
         #endregion Constructors

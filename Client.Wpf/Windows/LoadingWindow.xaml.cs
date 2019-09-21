@@ -51,6 +51,8 @@ namespace Client.Wpf.Windows
 
             InitializeComponent();
             Localize();
+
+            Log.Debug(ECoreLogMessage.Initialized);
         }
 
         #endregion Constructors

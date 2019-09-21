@@ -64,6 +64,8 @@ namespace Client.Wpf.Windows
             _researchTreeControl.Populate();
 
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
+
+            Log.Debug(ECoreLogMessage.Initialized);
         }
 
         #endregion Constructor
