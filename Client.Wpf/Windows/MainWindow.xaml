@@ -32,8 +32,8 @@
             <StackPanel Grid.Row="0">
 
                 <Button Content="Generate a preset"
-                x:Name="_generatePresetButton"
-                FontWeight="Bold"/>
+                    x:Name="_generatePresetButton"
+                    FontWeight="Bold"/>
 
                 <controls:GameModeSelectionControl
                     x:Name="_gameModeSelectionControl"/>
