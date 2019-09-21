@@ -38,7 +38,12 @@ namespace Client.Wpf.Helpers
         #region Methods: Settings
 
         /// <summary> Loads settings from the file attached to the settings manager. </summary>
-        protected override void LoadSettings() => LoadSettings(typeof(WpfSettings));
+        protected override void LoadSettings()
+        {
+            base.LoadSettings();
+
+            LoadSettings(typeof(WpfSettings));
+        }
 
         #endregion Methods: Settings
     }
