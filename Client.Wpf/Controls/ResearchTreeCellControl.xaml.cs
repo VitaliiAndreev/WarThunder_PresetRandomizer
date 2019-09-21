@@ -1,6 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using System.Linq;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -8,12 +8,20 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for ResearchTreeCellControl.xaml. </summary>
     public partial class ResearchTreeCellControl : UserControl
     {
+        #region Properties
+
+        /// <summary> Vehicle controls positioned in the cell. </summary>
+        public IDictionary<string, ResearchTreeCellVehicleControl> VehicleControls { get; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
         public ResearchTreeCellControl()
         {
             InitializeComponent();
+
+            VehicleControls = new Dictionary<string, ResearchTreeCellVehicleControl>();
         }
 
         #endregion Constructors
@@ -22,15 +30,18 @@ namespace Client.Wpf.Controls
         /// <param name="vehicle"> The vehicle to add. </param>
         public void AddVehicle(IVehicle vehicle)
         {
-            _stackPanel.Children.Add(new ResearchTreeCellVehicleControl(vehicle));
+            var vehicleControl = new ResearchTreeCellVehicleControl(vehicle);
+
+            _stackPanel.Children.Add(vehicleControl);
+            VehicleControls.Add(vehicle.GaijinId, vehicleControl);
         }
 
         /// <summary> Displays <see cref="IVehicle.BattleRating"/> value for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         public void DisplayBattleRatingFor(EGameMode gameMode)
         {
-            foreach (var vehicleCell in _stackPanel.Children.OfType<ResearchTreeCellVehicleControl>())
-                vehicleCell.DisplayBattleRatingFor(gameMode);
+            foreach (var vehicleControl in VehicleControls.Values)
+                vehicleControl.DisplayBattleRatingFor(gameMode);
         }
     }
 }

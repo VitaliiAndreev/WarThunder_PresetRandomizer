@@ -81,7 +81,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
-        private void ApplyIdleStyle()
+        public void ApplyIdleStyle()
         {
             _border.Style = _reseachType switch
             {
@@ -92,7 +92,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Applies the highlighting style to the <see cref="_border"/>. </summary>
-        private void ApplyHighlightStyle()
+        public void ApplyHighlightStyle()
         {
             _border.Style = _reseachType switch
             {

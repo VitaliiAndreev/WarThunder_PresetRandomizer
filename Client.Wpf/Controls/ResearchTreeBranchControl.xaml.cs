@@ -5,10 +5,12 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Organization.Objects;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Client.Wpf.Controls
 {
@@ -25,6 +27,9 @@ namespace Client.Wpf.Controls
 
         /// <summary> Cells in the grid. </summary>
         private readonly IDictionary<Tuple<int, int>, ResearchTreeCellControl> _cells;
+
+        /// <summary> Vehicle controls in the grid. </summary>
+        private readonly IDictionary<string, ResearchTreeCellVehicleControl> _cellVehicleControls;
 
         #endregion Fields
         #region Properties
@@ -51,9 +56,53 @@ namespace Client.Wpf.Controls
                 { ERank.VII, EStyleKey.ResearchTreeCellControl.Rank7 },
             };
             _cells = new Dictionary<Tuple<int, int>, ResearchTreeCellControl>();
+            _cellVehicleControls = new Dictionary<string, ResearchTreeCellVehicleControl>();
         }
 
         #endregion Constructors
+        #region Methods: Event Handlers
+
+        /// <summary> Applies the highlighting style to a <see cref="ResearchTreeCellVehicleControl"/> containing a vehicle required to unlock the one positioned in the <paramref name="sender"/>. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseEnter(object sender, MouseEventArgs eventArguments)
+        {
+            if (sender is ResearchTreeCellVehicleControl vehicleControl)
+            {
+                if (_cellVehicleControls.TryGetValue(vehicleControl.Vehicle.RequiredVehicleGaijinId, out var requiredVehicleControl))
+                    requiredVehicleControl.ApplyHighlightStyle();
+            }
+        }
+
+        /// <summary> Applies the idle style to a <see cref="ResearchTreeCellVehicleControl"/> containing a vehicle required to unlock the one positioned in the <paramref name="sender"/>. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseLeave(object sender, MouseEventArgs eventArguments)
+        {
+            if (sender is ResearchTreeCellVehicleControl vehicleControl)
+            {
+                if (_cellVehicleControls.TryGetValue(vehicleControl.Vehicle.RequiredVehicleGaijinId, out var requiredVehicleControl))
+                    requiredVehicleControl.ApplyIdleStyle();
+            }
+        }
+
+        #endregion Methods: Event Handlers
+
+        /// <summary> Attaches event handlers to enable highligting vehicles required for unlocking the currenly highlighted one. </summary>
+        /// <param name="cell"> The research tree cell to whose content attach event handlers to. </param>
+        private void AttachEventHandlers(ResearchTreeCellControl cell)
+        {
+            foreach (var vehicleControl in cell.VehicleControls.Values)
+            {
+                _cellVehicleControls.Add(vehicleControl.Vehicle.GaijinId, vehicleControl);
+
+                if (string.IsNullOrWhiteSpace(vehicleControl.Vehicle.RequiredVehicleGaijinId))
+                    continue;
+
+                vehicleControl.MouseEnter += OnMouseEnter;
+                vehicleControl.MouseLeave += OnMouseLeave;
+            }
+        }
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"></param>
@@ -98,6 +147,8 @@ namespace Client.Wpf.Controls
 
                         _grid.Children.Add(cell);
                         _cells.Add(new Tuple<int, int>(columnIndex, rowIndex), cell);
+
+                        AttachEventHandlers(cell);
                     }
                 }
             }
