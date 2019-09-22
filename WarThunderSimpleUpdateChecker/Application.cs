@@ -26,6 +26,7 @@ namespace WarThunderSimpleUpdateChecker
         private const string _trackerProjectName = "WarThunderJsonFileChanges";
 
         private static readonly string _warThunderPath = _gamesPath + (_dev ? @"War Thunder (Dev)\" : @"_Steam\steamapps\common\War Thunder\");
+        private static readonly string _klensysWarThunderToolsPath = _commonPath + @"Software\War Thunder Tools";
         private static readonly string _trackerProjectPath = _repositoriesPath + (_dev ? $@"{_trackerProjectName}DevClient\" : $@"{_trackerProjectName}\");
         private static readonly string _copiedFilesPath = _trackerProjectPath + @"Files\";
 
@@ -37,6 +38,9 @@ namespace WarThunderSimpleUpdateChecker
 
         static void Main()
         {
+            Settings.WarThunderLocation = _warThunderPath;
+            Settings.KlensysWarThunderToolsLocation = _klensysWarThunderToolsPath;
+
             var sourceFiles = GetFilesFromGameRootDirectory(_warThunderPath);
             var yupFile = GetVersionInfoFile(sourceFiles);
             var binFiles = GetBinFiles(sourceFiles);
