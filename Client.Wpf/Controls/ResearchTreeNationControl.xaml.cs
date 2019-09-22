@@ -12,13 +12,16 @@ namespace Client.Wpf.Controls
     {
         #region Fields
 
-        /// <summary> The map of the branch enumeration onto corresponding tabs. </summary>
-        private readonly IDictionary<EBranch, TabItem> _branchTabs;
-
         /// <summary> The map of the branch enumeration onto corresponding controls. </summary>
         private readonly IDictionary<EBranch, ResearchTreeBranchControl> _branchControls;
 
         #endregion Fields
+        #region Properties
+
+        /// <summary> The map of the branch enumeration onto corresponding tabs. </summary>
+        internal IDictionary<EBranch, TabItem> BranchTabs { get; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
@@ -31,7 +34,7 @@ namespace Client.Wpf.Controls
             _aviationTab.Tag = EBranch.Aviation;
             _fleetTab.Tag = EBranch.Fleet;
 
-            _branchTabs = new Dictionary<EBranch, TabItem>
+            BranchTabs = new Dictionary<EBranch, TabItem>
             {
                 { EBranch.Army, _armyTab },
                 { EBranch.Helicopters, _helicoptersTab },
@@ -65,7 +68,7 @@ namespace Client.Wpf.Controls
         /// <summary> Populates tabs with appropriate research trees. </summary>
         public void Populate(ResearchTree researchTree)
         {
-            foreach (var branchTabKeyValuePair in _branchTabs)
+            foreach (var branchTabKeyValuePair in BranchTabs)
             {
                 if (researchTree.TryGetValue(branchTabKeyValuePair.Key, out var branch))
                 {
