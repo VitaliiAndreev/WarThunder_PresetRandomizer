@@ -8,11 +8,15 @@ namespace Core.WarThunderExtractionToolsIntegration
     /// </summary>
     public class Settings
     {
+        #region Properties
+
         [RequiredSetting]
         public static string WarThunderLocation { get; set; }
         [RequiredSetting]
         public static string KlensysWarThunderToolsLocation { get; set; }
 
         public static string TempLocation { get; set; } = KlensysWarThunderToolsLocation + @"\_temp";
+
+        #endregion Properties
     }
 }

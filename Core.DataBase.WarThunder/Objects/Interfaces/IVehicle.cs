@@ -60,7 +60,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's branch. </summary>
         IBranch Branch { get; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>

@@ -99,7 +99,7 @@ namespace Core.DataBase.WarThunder.Objects
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), Lazy = Laziness.False, NotNull = true)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's ranks (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from these. </summary>
+        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Vehicle))]
         public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
 
