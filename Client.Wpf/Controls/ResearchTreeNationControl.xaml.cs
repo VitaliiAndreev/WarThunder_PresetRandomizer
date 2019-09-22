@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Objects;
@@ -9,7 +10,7 @@ using System.Windows.Controls;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeNationControl.xaml. </summary>
-    public partial class ResearchTreeNationControl : UserControl
+    public partial class ResearchTreeNationControl : LocalizedUserControl
     {
         #region Fields
 
@@ -61,8 +62,10 @@ namespace Client.Wpf.Controls
         public override string ToString() => $"[{base.ToString()}] {(Parent as FrameworkElement)?.Tag}";
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public void Localize()
+        public override void Localize()
         {
+            base.Localize();
+
             _armyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Army);
             _helicoptersTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Helicopters);
             _aviationTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Planes);

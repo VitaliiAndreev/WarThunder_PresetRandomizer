@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using NHibernate.Util;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeControl.xaml. </summary>
-    public partial class ResearchTreeControl : UserControl
+    public partial class ResearchTreeControl : LocalizedUserControl
     {
         #region Fields
 
@@ -102,8 +103,10 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public void Localize()
+        public override void Localize()
         {
+            base.Localize();
+
             _usaTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Usa);
             _germanyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Germany);
             _ussrTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ussr);

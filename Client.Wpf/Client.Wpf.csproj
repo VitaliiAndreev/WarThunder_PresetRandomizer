@@ -180,6 +180,7 @@
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
+    <Compile Include="Controls\Base\LocalizedUserControl.cs" />
     <Compile Include="Controls\DropCapButton.xaml.cs">
       <DependentUpon>DropCapButton.xaml</DependentUpon>
     </Compile>
