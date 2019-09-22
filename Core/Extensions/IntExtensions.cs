@@ -26,5 +26,20 @@ namespace Core.Extensions
             value == EInteger.Number.Zero;
 
         #endregion Fluency
+
+        /// <summary> Calculates the amount of bits required to hold the value. </summary>
+        /// <param name="value"> The value to work with. </param>
+        /// <returns></returns>
+        public static int GetBitCount(this int value)
+        {
+            var bitCount = default(int);
+
+            while (value != EInteger.Number.Zero)
+            {
+                value &= (value - EInteger.Number.One);
+                bitCount++;
+            }
+            return bitCount;
+        }
     }
 }
