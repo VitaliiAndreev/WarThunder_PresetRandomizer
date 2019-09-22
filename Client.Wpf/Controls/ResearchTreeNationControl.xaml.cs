@@ -3,6 +3,7 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Objects;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -17,6 +18,9 @@ namespace Client.Wpf.Controls
 
         #endregion Fields
         #region Properties
+
+        /// <summary> The embedded tab control. </summary>
+        internal TabControl TabControl => _tabControl;
 
         /// <summary> The map of the branch enumeration onto corresponding tabs. </summary>
         internal IDictionary<EBranch, TabItem> BranchTabs { get; }

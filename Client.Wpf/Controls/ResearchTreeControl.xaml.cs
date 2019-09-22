@@ -1,7 +1,10 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using NHibernate.Util;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -16,6 +19,11 @@ namespace Client.Wpf.Controls
 
         /// <summary> The map of the nation enumeration onto corresponding controls. </summary>
         private readonly IDictionary<ENation, ResearchTreeNationControl> _nationControls;
+
+        /// <summary> The currently selected nation. </summary>
+        private ENation _currentNation;
+        /// <summary> The currently selected branch. </summary>
+        private EBranch _currentBranch;
 
         #endregion Fields
         #region Constructors
@@ -33,6 +41,8 @@ namespace Client.Wpf.Controls
             _chinaTab.Tag = ENation.China;
             _italyTab.Tag = ENation.Italy;
             _franceTab.Tag = ENation.France;
+
+            _tabControl.SelectionChanged += OnTabChange;
 
             _nationTabs = new Dictionary<ENation, TabItem>
             {
@@ -59,6 +69,38 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Event Handlers
+
+        /// <summary> Maintains branch selection when switching between nations, unless the branch is not implemented in which case selection is reset to the first available branch. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="routedEventArguments"> Event arguments. <see cref="SelectionChangedEventArgs"/> are expected. </param>
+        void OnTabChange(object sender, RoutedEventArgs routedEventArguments)
+        {
+            if (routedEventArguments.OriginalSource is TabControl && routedEventArguments is SelectionChangedEventArgs selectionChangedEventArguments && selectionChangedEventArguments.AddedItems.OfType<TabItem>().First() is TabItem newTabItem)
+            {
+                if (newTabItem.Tag is ENation selectedNation)
+                {
+                    _currentNation = selectedNation;
+
+                    if (_currentBranch != EBranch.None)
+                    {
+                        var nationControl = _nationControls[_currentNation];
+                        var branchTab = nationControl.BranchTabs[_currentBranch];
+
+                        if (branchTab.IsEnabled)
+                            nationControl.TabControl.SelectedItem = nationControl.BranchTabs[_currentBranch];
+                        else
+                            nationControl.TabControl.SelectedItem = nationControl.BranchTabs.Values.First(branch => branch.IsEnabled);
+                    }
+                }
+                if (newTabItem.Tag is EBranch selectedBranch)
+                {
+                    _currentBranch = selectedBranch;
+                }
+            }
+        }
+
+        #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text on the control. </summary>
         public void Localize()

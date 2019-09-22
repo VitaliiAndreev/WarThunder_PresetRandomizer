@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Client.Wpf.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <TabControl>
+    <TabControl
+        x:Name="_tabControl">
 
         <TabItem Header="Army"
                 x:Name="_armyTab">
