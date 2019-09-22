@@ -20,7 +20,7 @@ namespace Client.Wpf.Controls
         #region Properties
 
         /// <summary> The vehicle in the cell. </summary>
-        public IVehicle Vehicle { get; }
+        internal IVehicle Vehicle { get; }
 
         #endregion Properties
         #region Constructors
@@ -74,13 +74,13 @@ namespace Client.Wpf.Controls
 
         /// <summary> Displays the <see cref="IVehicle.BattleRating"/> for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        public void DisplayBattleRatingFor(EGameMode gameMode)
+        internal void DisplayBattleRatingFor(EGameMode gameMode)
         {
             _battleRating.Text = Vehicle.BattleRatingFormatted[gameMode];
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
-        public void ApplyIdleStyle()
+        internal void ApplyIdleStyle()
         {
             _border.Style = _reseachType switch
             {
@@ -91,7 +91,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Applies the highlighting style to the <see cref="_border"/>. </summary>
-        public void ApplyHighlightStyle()
+        internal void ApplyHighlightStyle()
         {
             _border.Style = _reseachType switch
             {

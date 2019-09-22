@@ -73,7 +73,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
-        public void Populate(ResearchTree researchTree)
+        internal void Populate(ResearchTree researchTree)
         {
             foreach (var branchTabKeyValuePair in BranchTabs)
             {
@@ -88,7 +88,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        public void DisplayBattleRatingFor(EGameMode gameMode)
+        internal void DisplayBattleRatingFor(EGameMode gameMode)
         {
             foreach (var vehicleCell in _branchControls.Values)
                 vehicleCell.DisplayBattleRatingFor(gameMode);

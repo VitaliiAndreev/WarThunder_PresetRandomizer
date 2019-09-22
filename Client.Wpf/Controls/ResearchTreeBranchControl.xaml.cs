@@ -34,7 +34,7 @@ namespace Client.Wpf.Controls
         #region Properties
 
         /// <summary> Whether the control has been populated. </summary>
-        public bool IsPopulated => _researchTreeBranch is ResearchTreeBranch;
+        internal bool IsPopulated => _researchTreeBranch is ResearchTreeBranch;
 
         #endregion Properties
         #region Constructors
@@ -136,7 +136,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"></param>
-        public void Populate(ResearchTreeBranch branch)
+        internal void Populate(ResearchTreeBranch branch)
         {
             if (branch is null || IsPopulated)
                 return;
@@ -183,7 +183,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        public void DisplayBattleRatingFor(EGameMode gameMode)
+        internal void DisplayBattleRatingFor(EGameMode gameMode)
         {
             foreach (var vehicleCell in _cells.Values)
                 vehicleCell.DisplayBattleRatingFor(gameMode);
