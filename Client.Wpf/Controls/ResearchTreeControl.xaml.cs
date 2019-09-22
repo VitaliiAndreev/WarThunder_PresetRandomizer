@@ -74,7 +74,7 @@ namespace Client.Wpf.Controls
         /// <summary> Maintains branch selection when switching between nations, unless the branch is not implemented in which case selection is reset to the first available branch. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="routedEventArguments"> Event arguments. <see cref="SelectionChangedEventArgs"/> are expected. </param>
-        void OnTabChange(object sender, RoutedEventArgs routedEventArguments)
+        private void OnTabChange(object sender, RoutedEventArgs routedEventArguments)
         {
             if (routedEventArguments.OriginalSource is TabControl && routedEventArguments is SelectionChangedEventArgs selectionChangedEventArguments && selectionChangedEventArguments.AddedItems.OfType<TabItem>().First() is TabItem newTabItem)
             {
