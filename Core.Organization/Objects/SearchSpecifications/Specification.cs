@@ -1,4 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
+using System.Collections.Generic;
 
 namespace Core.Organization.Objects.SearchSpecifications
 {
@@ -7,24 +9,24 @@ namespace Core.Organization.Objects.SearchSpecifications
     {
         /// <summary> The game mode. </summary>
         public EGameMode GameMode { get; }
-        /// <summary> The nation. </summary>
-        public ENation Nation { get; }
-        /// <summary> The branch. </summary>
-        public EBranch Branch { get; }
-        /// <summary> The battle rating. </summary>
-        public decimal BattleRating { get; }
+        /// <summary> Allowed nations. </summary>
+        public IEnumerable<ENation> Nations { get; }
+        /// <summary> Allowed branches. </summary>
+        public IEnumerable<EBranch> Branches { get; }
+        /// <summary> Allowed values of <see cref="IVehicle.EconomicRank"/>. </summary>
+        public IEnumerable<int> EconomicRanks { get; }
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
-        /// <param name="nation"> The nation. </param>
-        /// <param name="branch"> The branch. </param>
-        /// <param name="battleRating"> The battle rating. </param>
-        public Specification(EGameMode gameMode, ENation nation, EBranch branch, decimal battleRating)
+        /// <param name="nations"> The nation. </param>
+        /// <param name="branches"> The branch. </param>
+        /// <param name="economicRanks"> The battle rating. </param>
+        public Specification(EGameMode gameMode, IEnumerable<ENation> nations, IEnumerable<EBranch> branches, IEnumerable<int> economicRanks)
         {
             GameMode = gameMode;
-            Nation = nation;
-            Branch = branch;
-            BattleRating = battleRating;
+            Nations = nations;
+            Branches = branches;
+            EconomicRanks = economicRanks;
         }
     }
 }

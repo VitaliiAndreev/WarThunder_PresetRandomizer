@@ -2,6 +2,7 @@
 using Client.Console.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
@@ -46,12 +47,16 @@ namespace Client.Console.Helpers
         /// <returns></returns>
         public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
         {
-            var battleRatingBracket = new Interval<decimal>(true, specification.BattleRating - _maximumBattleRatingDifference, specification.BattleRating, true);
+            var nation = _randomizer.GetRandom(specification.Nations);
+            var branch = _randomizer.GetRandom(specification.Branches);
+            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
 
+            var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
+            
             return _cache
                 .OfType<IVehicle>()
-                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[specification.Nation])
-                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[specification.Branch]))
+                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation])
+                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[branch]))
                 .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
                 .GetRandomizedVehicles(_vehicleSelector)
                 .Take(10)

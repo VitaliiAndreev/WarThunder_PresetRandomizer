@@ -142,7 +142,7 @@ namespace Client.Console
                 return ParseSpecification(TakeSpecificationInput());
             }
 
-            return new Specification(gamemode, nation, branch, Calculator.GetRoundedBattleRating(battleRating));
+            return new Specification(gamemode, new List<ENation> { nation }, new List<EBranch> { branch }, new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) });
         }
 
         /// <summary> Parses a given string into a corresponding military branch enumeration value. </summary>
