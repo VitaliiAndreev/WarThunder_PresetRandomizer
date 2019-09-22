@@ -26,6 +26,11 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
+            _armyTab.Tag = EBranch.Army;
+            _helicoptersTab.Tag = EBranch.Helicopters;
+            _aviationTab.Tag = EBranch.Aviation;
+            _fleetTab.Tag = EBranch.Fleet;
+
             _branchTabs = new Dictionary<EBranch, TabItem>
             {
                 { EBranch.Army, _armyTab },

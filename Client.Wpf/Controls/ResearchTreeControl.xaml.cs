@@ -25,6 +25,15 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
+            _usaTab.Tag = ENation.Usa;
+            _germanyTab.Tag = ENation.Germany;
+            _ussrTab.Tag = ENation.Ussr;
+            _britainTab.Tag = ENation.Commonwealth;
+            _japanTab.Tag = ENation.Japan;
+            _chinaTab.Tag = ENation.China;
+            _italyTab.Tag = ENation.Italy;
+            _franceTab.Tag = ENation.France;
+
             _nationTabs = new Dictionary<ENation, TabItem>
             {
                 { ENation.Usa, _usaTab },
