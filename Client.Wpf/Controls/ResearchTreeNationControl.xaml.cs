@@ -49,6 +49,10 @@ namespace Client.Wpf.Controls
 
         #endregion Constructors
 
+        /// <summary> Returns the string representation of the object. </summary>
+        /// <returns></returns>
+        public override string ToString() => $"[{base.ToString()}] {(Parent as FrameworkElement)?.Tag}";
+
         /// <summary> Applies localization to visible text on the control. </summary>
         public void Localize()
         {
