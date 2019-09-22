@@ -88,7 +88,7 @@ namespace Client.Wpf.Controls
                         var branchTab = nationControl.BranchTabs[_currentBranch];
 
                         if (branchTab.IsEnabled)
-                            nationControl.TabControl.SelectedItem = nationControl.BranchTabs[_currentBranch];
+                            nationControl.TabControl.SelectedItem = branchTab;
                         else
                             nationControl.TabControl.SelectedItem = nationControl.BranchTabs.Values.First(branch => branch.IsEnabled);
                     }
