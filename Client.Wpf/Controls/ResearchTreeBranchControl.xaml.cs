@@ -5,13 +5,11 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Organization.Objects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {

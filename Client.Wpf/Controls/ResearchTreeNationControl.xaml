@@ -10,25 +10,25 @@
         x:Name="_tabControl">
 
         <TabItem Header="Army"
-                x:Name="_armyTab">
+            x:Name="_armyTab">
             <local:ResearchTreeBranchControl
                 x:Name="_armyBranch"/>
         </TabItem>
 
         <TabItem Header="Helicopters"
-                x:Name="_helicoptersTab">
+            x:Name="_helicoptersTab">
             <local:ResearchTreeBranchControl
                 x:Name="_helicoptersBranch"/>
         </TabItem>
 
         <TabItem Header="Aviation"
-                x:Name="_aviationTab">
+            x:Name="_aviationTab">
             <local:ResearchTreeBranchControl
                 x:Name="_aviationBranch"/>
         </TabItem>
 
         <TabItem Header="Fleet"
-                x:Name="_fleetTab">
+            x:Name="_fleetTab">
             <local:ResearchTreeBranchControl
                 x:Name="_fleetBranch"/>
         </TabItem>

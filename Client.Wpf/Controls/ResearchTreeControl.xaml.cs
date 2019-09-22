@@ -16,7 +16,6 @@ namespace Client.Wpf.Controls
 
         /// <summary> The map of the nation enumeration onto corresponding tabs. </summary>
         private readonly IDictionary<ENation, TabItem> _nationTabs;
-
         /// <summary> The map of the nation enumeration onto corresponding controls. </summary>
         private readonly IDictionary<ENation, ResearchTreeNationControl> _nationControls;
 
