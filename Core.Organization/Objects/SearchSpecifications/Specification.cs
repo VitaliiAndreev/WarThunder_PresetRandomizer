@@ -18,9 +18,9 @@ namespace Core.Organization.Objects.SearchSpecifications
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
-        /// <param name="nations"> The nation. </param>
-        /// <param name="branches"> The branch. </param>
-        /// <param name="economicRanks"> The battle rating. </param>
+        /// <param name="nationCrewSlots"> Allowed nations. </param>
+        /// <param name="branches"> Allowed branches. </param>
+        /// <param name="economicRanks"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
         public Specification(EGameMode gameMode, IEnumerable<ENation> nations, IEnumerable<EBranch> branches, IEnumerable<int> economicRanks)
         {
             GameMode = gameMode;

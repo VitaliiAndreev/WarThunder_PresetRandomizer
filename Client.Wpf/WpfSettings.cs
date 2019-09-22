@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Enumerations;
-using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
 using Core.Localization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;

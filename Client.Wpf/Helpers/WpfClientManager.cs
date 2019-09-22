@@ -8,7 +8,6 @@ using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
-using System.Reflection;
 
 namespace Client.Wpf.Helpers
 {

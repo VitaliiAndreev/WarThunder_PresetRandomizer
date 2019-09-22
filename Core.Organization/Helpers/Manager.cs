@@ -41,7 +41,7 @@ namespace Core.Organization.Helpers
         /// The maximum difference in battle rating from the battle rating selected by user.
         /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
         /// </summary>
-        protected const decimal _maximumBattleRatingDifference = 2.0m;
+        private const decimal _maximumBattleRatingDifference = 2.0m;
 
         #endregion Constants
         #region Fields
@@ -341,7 +341,6 @@ namespace Core.Organization.Helpers
             var nation = _randomizer.GetRandom(specification.Nations);
             var branch = _randomizer.GetRandom(specification.Branches);
             var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
-
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
 
             return _cache
