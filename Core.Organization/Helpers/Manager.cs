@@ -12,10 +12,13 @@ using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
+using Core.Objects;
 using Core.Organization.Enumerations;
 using Core.Organization.Enumerations.Logger;
+using Core.Organization.Extensions;
 using Core.Organization.Helpers.Interfaces;
 using Core.Organization.Objects;
+using Core.Organization.Objects.SearchSpecifications;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Enumerations;
@@ -329,5 +332,26 @@ namespace Core.Organization.Helpers
         /// <summary> Releases unmanaged resources. </summary>
         public void Dispose() =>
             _dataRepository.Dispose();
+
+        /// <summary> Randomly selects vehicles based on the given specification. </summary>
+        /// <param name="specification"> The specification to base the selection on. </param>
+        /// <returns></returns>
+        public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
+        {
+            var nation = _randomizer.GetRandom(specification.Nations);
+            var branch = _randomizer.GetRandom(specification.Branches);
+            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
+
+            var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
+
+            return _cache
+                .OfType<IVehicle>()
+                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation])
+                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[branch]))
+                .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
+                .GetRandomizedVehicles(_vehicleSelector)
+                .Take(10)
+            ;
+        }
     }
 }

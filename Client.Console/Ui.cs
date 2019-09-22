@@ -1,6 +1,5 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Enumerations.Logger;
-using Client.Console.Helpers;
 using Client.Shared.Enumerations;
 using Core.Csv.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Enumerations;
@@ -53,7 +52,7 @@ namespace Client.Console
                 var randomizer = new CustomRandomizer(loggers);
                 var vehicleSelector = new VehicleSelector(randomizer, loggers);
 
-                using (var manager = new ConsoleClientManager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, loggers))
                 {
                     manager.InitializeGameClientVersion();
 

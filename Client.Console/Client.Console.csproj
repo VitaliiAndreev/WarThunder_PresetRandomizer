@@ -99,9 +99,7 @@
     <Compile Include="Enumerations\EConsoleClientFile.cs" />
     <Compile Include="Enumerations\Logger\EConsoleUiLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EConsoleUiLogMessage.cs" />
-    <Compile Include="Helpers\Interfaces\IConsoleClientManager.cs" />
     <Compile Include="Ui.cs" />
-    <Compile Include="Helpers\ConsoleClientManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

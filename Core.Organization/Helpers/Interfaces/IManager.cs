@@ -1,5 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Objects;
+using Core.Organization.Objects.SearchSpecifications;
 using System;
 using System.Collections.Generic;
 
@@ -23,5 +25,10 @@ namespace Core.Organization.Helpers.Interfaces
         void CacheData();
 
         #endregion Methods: Initialization
+
+        /// <summary> Randomly selects vehicles based on the given specification. </summary>
+        /// <param name="specification"> The specification to base the selection on. </param>
+        /// <returns></returns>
+        IEnumerable<IVehicle> GetRandomVehicles(Specification specification);
     }
 }
