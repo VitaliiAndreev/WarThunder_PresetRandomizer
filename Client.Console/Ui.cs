@@ -9,6 +9,7 @@ using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Helpers;
+using Core.Organization.Enumerations;
 using Core.Organization.Helpers;
 using Core.Organization.Objects.SearchSpecifications;
 using Core.Randomization.Helpers;
@@ -74,7 +75,7 @@ namespace Client.Console
                     {
                         var specification = ParseSpecification(TakeSpecificationInput());
 
-                        foreach (var vehicle in manager.GetRandomVehicles(specification))
+                        foreach (var vehicle in manager.GeneratePrimaryAndFallbackPresets(specification)[EPreset.Primary])
                         {
                             System.Console.ForegroundColor = vehicle.NotResearchable
                                 ? ConsoleColor.Yellow
@@ -141,7 +142,7 @@ namespace Client.Console
                 return ParseSpecification(TakeSpecificationInput());
             }
 
-            return new Specification(gamemode, new List<ENation> { nation }, new List<EBranch> { branch }, new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) });
+            return new Specification(gamemode, new Dictionary<ENation, int> { { nation, 10 } }, new List<EBranch> { branch }, new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) });
         }
 
         /// <summary> Parses a given string into a corresponding military branch enumeration value. </summary>

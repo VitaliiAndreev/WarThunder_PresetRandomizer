@@ -14,8 +14,9 @@ namespace Core.Organization.Extensions
         /// </summary>
         /// <param name="vehicles"> The dictionary of battle ratings with vehicles to select from. </param>
         /// <param name="vehicleSelector"> The instance of a vehicle selector to select with. </param>
+        /// <param name="amountToSelect"> The amount of vehicles to select. </param>
         /// <returns></returns>
-        public static IEnumerable<IVehicle> GetRandomizedVehicles(this IDictionary<decimal, IList<IVehicle>> vehicles, IVehicleSelector vehicleSelector) =>
-            vehicleSelector.GetRandom(vehicles);
+        public static IEnumerable<IVehicle> GetRandomVehicles(this IDictionary<decimal, IList<IVehicle>> vehicles, IVehicleSelector vehicleSelector, int amountToSelect) =>
+            vehicleSelector.GetRandom(vehicles, amountToSelect);
     }
 }

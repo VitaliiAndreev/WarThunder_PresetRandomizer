@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Organization.Collections;
+using Core.Organization.Enumerations;
 using Core.Organization.Objects;
 using Core.Organization.Objects.SearchSpecifications;
 using System;
@@ -26,9 +27,9 @@ namespace Core.Organization.Helpers.Interfaces
 
         #endregion Methods: Initialization
 
-        /// <summary> Randomly selects vehicles based on the given specification. </summary>
-        /// <param name="specification"> The specification to base the selection on. </param>
+        /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>
+        /// <param name="specification"> The specification to base vehicle selection on. </param>
         /// <returns></returns>
-        IEnumerable<IVehicle> GetRandomVehicles(Specification specification);
+        IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresets(Specification specification);
     }
 }

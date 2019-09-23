@@ -18,11 +18,6 @@ namespace Core.Organization.Helpers
     /// <summary> Provides methods to randomize selection. </summary>
     public class VehicleSelector : LoggerFluency, IVehicleSelector
     {
-        #region Constants
-
-        private const int _vehicleAmountToSelect = 10;
-
-        #endregion Constants
         #region Fields
 
         /// <summary> An instance of a randomizer. </summary>
@@ -72,23 +67,24 @@ namespace Core.Organization.Helpers
         #region Methods: Randomization
 
         /// <summary>
-        /// Randomly picks top <see cref="_vehicleAmountToSelect"/> of vehicles with the highest battle rating from the specified dictionary.
+        /// Randomly picks top <paramref name="amountToSelect"/> of vehicles with the highest battle rating from the specified dictionary.
         /// If there are fewer vehicles with the highest battle rating than required, vehicles with the next lower battle rating step are rendomly taken, and so on.
         /// </summary>
         /// <param name="vehiclesByBattleRatings"> The dictionary of battle ratings with vehicles to select from. </param>
+        /// <param name="amountToSelect"> The amount of vehicles to select. </param>
         /// <returns></returns>
-        public IEnumerable<IVehicle> GetRandom(IDictionary<decimal, IList<IVehicle>> vehiclesByBattleRatings)
+        public IEnumerable<IVehicle> GetRandom(IDictionary<decimal, IList<IVehicle>> vehiclesByBattleRatings, int amountToSelect)
         {
             var randomizedVehicles = new List<IVehicle>();
 
-            while (randomizedVehicles.Count < _vehicleAmountToSelect && vehiclesByBattleRatings.Any() && vehiclesByBattleRatings[vehiclesByBattleRatings.Keys.First()].Any())
+            while (randomizedVehicles.Count < amountToSelect && vehiclesByBattleRatings.Any() && vehiclesByBattleRatings[vehiclesByBattleRatings.Keys.First()].Any())
             {
                 var currentBattleRating = vehiclesByBattleRatings.Keys.First();
                 var vehiclesOnCurrentBattleRating = vehiclesByBattleRatings[currentBattleRating];
 
                 var vehiclesToAdd = vehiclesOnCurrentBattleRating
                     .Randomize(_randomizer)
-                    .Take(_vehicleAmountToSelect - randomizedVehicles.Count())
+                    .Take(amountToSelect - randomizedVehicles.Count())
                 ;
 
                 randomizedVehicles.AddRange(vehiclesToAdd);

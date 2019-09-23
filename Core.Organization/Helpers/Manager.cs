@@ -13,6 +13,7 @@ using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Objects;
+using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using Core.Organization.Enumerations.Logger;
 using Core.Organization.Extensions;
@@ -333,24 +334,130 @@ namespace Core.Organization.Helpers
         public void Dispose() =>
             _dataRepository.Dispose();
 
-        /// <summary> Randomly selects vehicles based on the given specification. </summary>
-        /// <param name="specification"> The specification to base the selection on. </param>
+        /// <summary> Generate a vehicle type composition for a preset. </summary>
+        /// <param name="gameMode"> The game mode to generate preset composition for. </param>
+        /// <param name="crewSlotAmount"> The amount of available crew slots. </param>
+        /// <param name="mainBranch"> The branch whose vehicles serve as the core of a preset. </param>
         /// <returns></returns>
-        public IEnumerable<IVehicle> GetRandomVehicles(Specification specification)
+        private IDictionary<EBranch, int> GetPresetComposition(EGameMode gameMode, int crewSlotAmount, EBranch mainBranch)
         {
-            var nation = _randomizer.GetRandom(specification.Nations);
-            var branch = _randomizer.GetRandom(specification.Branches);
+            var presetComposition = new Dictionary<EBranch, int>();
+
+            void setAll(EBranch branch) => presetComposition.Add(branch, crewSlotAmount);
+            void setQuarter(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.25)));
+            void setTwoThirds(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 2.0 / 3.0)));
+            void setHalf(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.5)));
+            void setRemaining(EBranch branch, params EBranch[] otherBranches) => presetComposition.Add(branch, crewSlotAmount - otherBranches.Sum(branch => presetComposition[branch]));
+
+            if (mainBranch == EBranch.Army)
+            {
+                if (gameMode == EGameMode.Arcade)
+                {
+                    setAll(mainBranch);
+                }
+                else
+                {
+                    setHalf(EBranch.Army);
+                    setQuarter(EBranch.Aviation);
+                    setRemaining(EBranch.Helicopters, EBranch.Army, EBranch.Aviation);
+                }
+            }
+            else if (mainBranch == EBranch.Helicopters)
+            {
+                if (gameMode == EGameMode.Arcade)
+                {
+                    setAll(mainBranch);
+                }
+                else
+                {
+                    setTwoThirds(EBranch.Helicopters);
+                    setRemaining(EBranch.Army, EBranch.Helicopters);
+                }
+            }
+            else if (mainBranch == EBranch.Aviation)
+            {
+                setAll(mainBranch);
+            }
+            else if (mainBranch == EBranch.Fleet)
+            {
+                if (crewSlotAmount <= EInteger.Number.Three)
+                {
+                    setAll(mainBranch);
+                }
+                else
+                {
+                    setTwoThirds(EBranch.Fleet);
+                    setRemaining(EBranch.Aviation, EBranch.Fleet);
+                }
+            }
+            return presetComposition;
+        }
+
+        /// <summary> Randomly selects vehicles from the provided collection based on given parameters. </summary>
+        /// <param name="vehiclesByBranchesAndBattleRatings"> The vehicle collecion to select from, grouped by branches and battle ratings. </param>
+        /// <param name="presetComposition"> The preset composition. </param>
+        /// <param name="crewSlotAmount"> The amount of available crew slots. </param>
+        /// <returns></returns>
+        private IList<IVehicle> GetRandomVehiclesForPreset(VehiclesByBranchesAndBattleRating vehiclesByBranchesAndBattleRatings, IDictionary<EBranch, int> presetComposition, int crewSlotAmount)
+        {
+            var randomVehicles = new List<IVehicle>();
+
+            while (randomVehicles.Count() < crewSlotAmount && vehiclesByBranchesAndBattleRatings.Any())
+                foreach (var branch in vehiclesByBranchesAndBattleRatings.Keys.ToList())
+                {
+                    var vehiclesToTake = Math.Min(crewSlotAmount - randomVehicles.Count, presetComposition[branch]);
+                    randomVehicles.AddRange(vehiclesByBranchesAndBattleRatings[branch].GetRandomVehicles(_vehicleSelector, vehiclesToTake));
+
+                    if (randomVehicles.Count() == crewSlotAmount)
+                        break;
+                    if (vehiclesByBranchesAndBattleRatings[branch].IsEmpty())
+                        vehiclesByBranchesAndBattleRatings.Remove(branch);
+                }
+
+            return presetComposition
+                .Keys
+                .SelectMany(branch => randomVehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch))
+                .ToList()
+            ;
+        }
+
+        /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>
+        /// <param name="specification"> The specification to base vehicle selection on. </param>
+        /// <returns></returns>
+        public IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresets(Specification specification)
+        {
+            var gameMode = specification.GameMode;
+
+            var nationCrewSlotCount = _randomizer.GetRandom(specification.NationCrewSlots);
+            var nation = nationCrewSlotCount.Key;
+            var crewSlotAmount = nationCrewSlotCount.Value;
+
+            var mainBranch = _randomizer.GetRandom(specification.Branches);
+            var presetComposition = GetPresetComposition(gameMode, crewSlotAmount, mainBranch);
+
             var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
 
-            return _cache
+            var presets = new Dictionary<EPreset, Preset>();
+
+            var vehiclesFromNation = _cache
                 .OfType<IVehicle>()
                 .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation])
-                .Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[branch]))
-                .OrderByHighestBattleRating(_vehicleSelector, specification.GameMode, battleRatingBracket)
-                .GetRandomizedVehicles(_vehicleSelector)
-                .Take(10)
             ;
+            var vehiclesFromBranches = new VehiclesByBranchesAndBattleRating
+            (
+                presetComposition
+                    .Keys
+                    .Select(branch => new { Branch = branch, Vehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[branch])).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
+            );
+
+            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(GetRandomVehiclesForPreset(vehiclesFromBranches, presetComposition, crewSlotAmount)));
+
+            addPreset(EPreset.Primary);
+            addPreset(EPreset.Fallback);
+
+            return presets;
         }
     }
 }

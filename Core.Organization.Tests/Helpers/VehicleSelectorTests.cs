@@ -122,7 +122,7 @@ namespace Core.Organization.Tests.Helpers
             var vehicleCombination4 = new List<IVehicle> { grant.Object, m8a1.Object, m5a1premium.Object, m5a1.Object };
 
             // act
-            var randomizedVehicles = vehicles.GetRandomizedVehicles(_vehicleSelector);
+            var randomizedVehicles = vehicles.GetRandomVehicles(_vehicleSelector, 10);
 
             // assert
             var isCombination1 = randomizedVehicles.IsEquivalentTo(vehicleCombination1);

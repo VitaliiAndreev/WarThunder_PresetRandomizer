@@ -25,8 +25,9 @@ namespace Core.Organization.Helpers.Interfaces
         /// If there are fewer vehicles with the highest battle rating than required, vehicles with the next lower battle rating step are rendomly taken, and so on.
         /// </summary>
         /// <param name="vehiclesByBattleRatings"> The dictionary of battle ratings with vehicles to select from. </param>
+        /// <param name="amountToSelect"> The amount of vehicles to select. </param>
         /// <returns></returns>
-        IEnumerable<IVehicle> GetRandom(IDictionary<decimal, IList<IVehicle>> vehiclesByBattleRatings);
+        IEnumerable<IVehicle> GetRandom(IDictionary<decimal, IList<IVehicle>> vehiclesByBattleRatings, int amountToSelect);
 
         #endregion Methods: Randomization
     }
