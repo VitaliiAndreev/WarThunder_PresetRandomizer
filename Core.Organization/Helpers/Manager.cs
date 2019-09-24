@@ -380,6 +380,9 @@ namespace Core.Organization.Helpers
             }
             else if (mainBranch == EBranch.Fleet)
             {
+                if (gameMode == EGameMode.Simulator)
+                    return presetComposition;
+
                 if (crewSlotAmount <= EInteger.Number.Three)
                 {
                     setAll(mainBranch);
