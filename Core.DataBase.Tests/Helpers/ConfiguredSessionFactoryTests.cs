@@ -60,7 +60,7 @@ namespace Core.Tests.Helpers.DataBase
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, false, Assembly.Load(assemblyName), Presets.Logger);
 
-            bool fileExists(string file) =>
+            static bool fileExists(string file) =>
                 File.Exists(file);
 
             if (fileExists(fileName))
@@ -137,7 +137,7 @@ namespace Core.Tests.Helpers.DataBase
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, true, Assembly.Load(assemblyName), Presets.Logger);
 
-            bool fileExists(string file) =>
+            static bool fileExists(string file) =>
                 File.Exists(file);
 
             if (fileExists(fileName))
