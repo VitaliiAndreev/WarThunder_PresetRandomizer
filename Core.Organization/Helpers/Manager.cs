@@ -336,24 +336,36 @@ namespace Core.Organization.Helpers
 
         /// <summary> Generate a vehicle type composition for a preset. </summary>
         /// <param name="gameMode"> The game mode to generate preset composition for. </param>
+        /// <param name="allowedBranches"> Branches allowed in the composition. </param>
         /// <param name="crewSlotAmount"> The amount of available crew slots. </param>
         /// <param name="mainBranch"> The branch whose vehicles serve as the core of a preset. </param>
         /// <returns></returns>
-        private IDictionary<EBranch, int> GetPresetComposition(EGameMode gameMode, int crewSlotAmount, EBranch mainBranch)
+        private IDictionary<EBranch, int> GetPresetComposition(EGameMode gameMode, IEnumerable<EBranch> allowedBranches, int crewSlotAmount, EBranch mainBranch)
         {
             var presetComposition = new Dictionary<EBranch, int>();
 
             void setAll(EBranch branch) => presetComposition.Add(branch, crewSlotAmount);
             void setQuarter(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.25)));
             void setTwoThirds(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 2.0 / 3.0)));
+            void setThreeQuarters(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.75)));
             void setHalf(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.5)));
             void setRemaining(EBranch branch, params EBranch[] otherBranches) => presetComposition.Add(branch, crewSlotAmount - otherBranches.Sum(branch => presetComposition[branch]));
 
             if (mainBranch == EBranch.Army)
             {
-                if (gameMode == EGameMode.Arcade)
+                if (gameMode == EGameMode.Arcade || !EBranch.Aviation.IsIn(allowedBranches) && !EBranch.Helicopters.IsIn(allowedBranches))
                 {
                     setAll(mainBranch);
+                }
+                else if (!EBranch.Aviation.IsIn(allowedBranches))
+                {
+                    setThreeQuarters(EBranch.Army);
+                    setRemaining(EBranch.Helicopters, EBranch.Army);
+                }
+                else if (!EBranch.Helicopters.IsIn(allowedBranches))
+                {
+                    setThreeQuarters(EBranch.Army);
+                    setRemaining(EBranch.Aviation, EBranch.Army);
                 }
                 else
                 {
@@ -383,7 +395,7 @@ namespace Core.Organization.Helpers
                 if (gameMode == EGameMode.Simulator)
                     return presetComposition;
 
-                if (crewSlotAmount <= EInteger.Number.Three)
+                if (crewSlotAmount <= EInteger.Number.Three || !EBranch.Aviation.IsIn(allowedBranches))
                 {
                     setAll(mainBranch);
                 }
@@ -436,7 +448,7 @@ namespace Core.Organization.Helpers
             var crewSlotAmount = nationCrewSlotCount.Value;
 
             var mainBranch = _randomizer.GetRandom(specification.Branches);
-            var presetComposition = GetPresetComposition(gameMode, crewSlotAmount, mainBranch);
+            var presetComposition = GetPresetComposition(gameMode, specification.Branches, crewSlotAmount, mainBranch);
 
             var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
