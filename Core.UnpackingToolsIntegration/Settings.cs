@@ -8,6 +8,12 @@ namespace Core.WarThunderExtractionToolsIntegration
     /// </summary>
     public class Settings
     {
+        #region Constants
+
+        /// <summary> A separator between items in a collection string. </summary>
+        public const string Separator = ", ";
+
+        #endregion Constants
         #region Properties
 
         [RequiredSetting]

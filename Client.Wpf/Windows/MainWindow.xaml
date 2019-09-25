@@ -42,6 +42,10 @@
                 <controls:GameModeSelectionControl
                     x:Name="_gameModeSelectionControl"/>
 
+                <controls:BranchToggleControl
+                    x:Name="_branchToggleControl"
+                    Click="OnBranchToggleControlClick"/>
+
             </StackPanel>
 
             <Grid

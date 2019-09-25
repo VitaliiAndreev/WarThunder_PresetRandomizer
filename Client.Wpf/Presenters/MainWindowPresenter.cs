@@ -2,6 +2,9 @@
 using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.Extensions;
+using Core.WarThunderExtractionToolsIntegration;
+using System.Collections.Generic;
 
 namespace Client.Wpf.Presenters
 {
@@ -16,6 +19,9 @@ namespace Client.Wpf.Presenters
         /// <summary> The currently selected game mode. </summary>
         public EGameMode CurrentGameMode { get; set; }
 
+        /// <summary> Branches enabled for preset generation. </summary>
+        public IList<EBranch> EnabledBranches { get; }
+
         #endregion Properties
         #region Constructors
 
@@ -24,6 +30,7 @@ namespace Client.Wpf.Presenters
         public MainWindowPresenter(IMainWindowStrategy strategy)
             : base(strategy)
         {
+            EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
         }
 
         #endregion Constructors

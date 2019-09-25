@@ -56,6 +56,12 @@
             <Setter Property="BorderBrush" Value="White"/>
         </Style>
 
+        <!-- t:BranchToggleControl -->
+
+        <Style TargetType="controls:BranchToggleControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+
         <!-- t:Button -->
 
         <Style TargetType="Button">
@@ -236,6 +242,14 @@
         <!-- t:ToggleButton -->
 
         <Style TargetType="ToggleButton">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Padding" Value="-5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
+            <Setter Property="FontSize" Value="26"/>
             <Setter Property="Height" Value="30"/>
         </Style>
         

@@ -65,6 +65,8 @@ namespace Client.Wpf.Windows
 
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
+            _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+
             Log.Debug(ECoreLogMessage.Initialized);
         }
 
@@ -83,6 +85,22 @@ namespace Client.Wpf.Windows
         private void OnClosed(object sender, EventArgs eventArguments) =>
             Log.Debug(ECoreLogMessage.Closed);
 
+        /// <summary> Enables or disables the fleet depending on the specified game mode. </summary>
+        /// <param name="gameMode"> The game mode to adjust for. </param>
+        private void AdjustFleetAvailability(EGameMode gameMode)
+        {
+            var enableFleet = gameMode != EGameMode.Simulator;
+
+            if (!enableFleet)
+            {
+                Presenter.EnabledBranches.Remove(EBranch.Fleet);
+
+                _branchToggleControl.Toggle(EBranch.Fleet, false);
+            }
+
+            _branchToggleControl.Enable(EBranch.Fleet, enableFleet);
+        }
+
         /// <summary> Selects the game mode whose button is pressed. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
@@ -94,7 +112,26 @@ namespace Client.Wpf.Windows
             if (!(button.Tag is EGameMode buttonGameMode))
                 return;
 
+            AdjustFleetAvailability(buttonGameMode);
             SelectGameMode(buttonGameMode);
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
+        /// <param name="sender"></param>
+        /// <param name="eventArguments"></param>
+        private void OnBranchToggleControlClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.Source is ToggleButton toggleButton)
+            {
+                var branch = toggleButton.Tag.CastTo<EBranch>();
+
+                if (toggleButton.IsEnabled)
+                    Presenter.EnabledBranches.Add(branch);
+                else
+                    Presenter.EnabledBranches.Remove(branch);
+
+                Presenter.ExecuteCommand(ECommandName.ToggleBranch);
+            }
         }
 
         #endregion Methods: Event Handlers

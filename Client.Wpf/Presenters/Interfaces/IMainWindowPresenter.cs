@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using System.Collections.Generic;
 
 namespace Client.Wpf.Presenters.Interfaces
 {
@@ -13,6 +14,9 @@ namespace Client.Wpf.Presenters.Interfaces
 
         /// <summary> The currently selected game mode. </summary>
         EGameMode CurrentGameMode { get; set; }
+
+        /// <summary> Branches enabled for preset generation. </summary>
+        IList<EBranch> EnabledBranches { get; }
 
         #endregion Properties
     }

@@ -3,7 +3,8 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
 using Core.Localization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.WarThunderExtractionToolsIntegration
 {
@@ -29,6 +30,17 @@ namespace Core.WarThunderExtractionToolsIntegration
             set => CurrentGameModeAsEnumerationItem = value.TryParseEnumeration<EGameMode>(out var enumerationItem) ? enumerationItem : EGameMode.Arcade;
         }
 
+        [RequiredSetting]
+        public static string EnabledBranches
+        {
+            get => EnabledBranchesCollection.StringJoin(Separator);
+            set => EnabledBranchesCollection = value
+                .Split(Separator)
+                .Select(branchString => branchString.TryParseEnumeration<EBranch>(out var branch) ? branch : EBranch.None)
+                .Where(branch => branch != EBranch.None).ToList()
+            ;
+        }
+
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
@@ -40,6 +52,12 @@ namespace Core.WarThunderExtractionToolsIntegration
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
         /// </summary>
         public static EGameMode CurrentGameModeAsEnumerationItem { get; private set; }
+
+        /// <summary>
+        /// The currently enabled vehicle branches.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<EBranch> EnabledBranchesCollection { get; private set; }
 
         #endregion Properties
     }

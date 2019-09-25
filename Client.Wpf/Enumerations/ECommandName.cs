@@ -24,5 +24,7 @@ namespace Client.Wpf.Enumerations
         SelectLocalization,
         /// <summary> See <see cref="SelectGameModeCommand"/>. </summary>
         SelectGameMode,
+        /// <summary> See <see cref="ToggleBranchCommand"/>. </summary>
+        ToggleBranch,
     }
 }
