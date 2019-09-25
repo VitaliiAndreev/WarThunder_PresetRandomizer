@@ -12,7 +12,7 @@ namespace Client.Wpf.Presenters.Interfaces
         new IMainWindow Owner { get; }
 
         /// <summary> The currently selected game mode. </summary>
-        public EGameMode CurrentGameMode { get; set; }
+        EGameMode CurrentGameMode { get; set; }
 
         #endregion Properties
     }
