@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
 using Core.Localization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
@@ -22,13 +23,23 @@ namespace Core.WarThunderExtractionToolsIntegration
         }
 
         [RequiredSetting]
-        public static string CurrentGameMode { get; set; }
+        public static string CurrentGameMode
+        {
+            get => CurrentGameModeAsEnumerationItem.ToString();
+            set => CurrentGameModeAsEnumerationItem = value.TryParseEnumeration<EGameMode>(out var enumerationItem) ? enumerationItem : EGameMode.Arcade;
+        }
 
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
         /// </summary>
         public static ELanguage LocalizationLanguage { get; private set; }
+
+        /// <summary>
+        /// The currently selected game mode.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
+        /// </summary>
+        public static EGameMode CurrentGameModeAsEnumerationItem { get; private set; }
 
         #endregion Properties
     }

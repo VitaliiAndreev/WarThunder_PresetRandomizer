@@ -24,7 +24,8 @@ namespace Client.Wpf.Commands.MainWindow
             base.Execute(parameter);
 
             if (parameter is IMainWindowPresenter presenter)
-                ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.CurrentGameMode), presenter.CurrentGameMode.ToString());
+                if (WpfSettings.CurrentGameModeAsEnumerationItem != presenter.CurrentGameMode)
+                    ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.CurrentGameMode), presenter.CurrentGameMode.ToString());
         }
     }
 }
