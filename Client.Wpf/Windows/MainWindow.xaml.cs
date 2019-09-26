@@ -166,6 +166,9 @@ namespace Client.Wpf.Windows
             if (simulateClick)
                 _gameModeSelectionControl.OnClick(_gameModeSelectionControl.Buttons[gameMode], new RoutedEventArgs());
 
+            if (Presenter.CurrentGameMode == gameMode)
+                return;
+
             _researchTreeControl.DisplayBattleRatingFor(gameMode);
 
             Presenter.CurrentGameMode = gameMode;
