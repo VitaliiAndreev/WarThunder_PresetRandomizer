@@ -2,6 +2,7 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Extensions;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
@@ -81,6 +82,7 @@ namespace Client.Wpf.Controls
         {
             _primaryPresetPanel.Children.Clear();
             _fallbackPresetPanel.Children.Clear();
+            _currentPresetInfo.Text = string.Empty;
 
             RaiseCanExecuteChanged();
         }
@@ -104,6 +106,10 @@ namespace Client.Wpf.Controls
                     presetPanel.Children.Add(vehicleControl);
                 }
             }
+
+            var firstVehicle = presets[EPreset.Primary].First();
+            _currentPresetInfo.Text = $"{EReference.NationIcons[firstVehicle.Nation.AsEnumerationItem]}{EReference.BranchIcons[firstVehicle.Branch.AsEnumerationItem]} {firstVehicle.BattleRatingFormatted.AsDictionary()[gameMode]}";
+
             RaiseCanExecuteChanged();
         }
 

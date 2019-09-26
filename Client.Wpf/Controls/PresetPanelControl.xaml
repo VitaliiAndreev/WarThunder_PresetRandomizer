@@ -9,30 +9,48 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="840"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Style="{StaticResource StackPanelNoMargin}">
 
-            <Button
-                Grid.Row="0"
-                x:Name="_swapPresetsButton">
-                <Image
-                    Source="{StaticResource PresetIcon}"
-                    Style="{StaticResource Icon}">
-                </Image>
-            </Button>
+            <Grid
+                Grid.Row="0">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <Button
-                Grid.Row="1"
-                x:Name="_deletePresetsButton"
-                Margin="0 10 0 0">
-                <Image
+                <Button
+                    Grid.Column="0"
+                    x:Name="_deletePresetsButton"
+                    Margin="0 0 5 0">
+                    <Image
                     Source="{StaticResource Delete}"
                     Style="{StaticResource Icon}"/>
-            </Button>
+                </Button>
 
+                <Button
+                    Grid.Column="1"
+                    x:Name="_swapPresetsButton"
+                    Margin="5 0 0 0">
+                    <Image
+                    Source="{StaticResource PresetIcon}"
+                    Style="{StaticResource Icon}">
+                    </Image>
+                </Button>
+
+            </Grid>
+
+            <TextBlock
+                x:Name="_currentPresetInfo"
+                FontFamily="{StaticResource SkyQuake}"
+                Margin="0 13 0 0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            
         </StackPanel>
 
         <WrapPanel
