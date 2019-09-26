@@ -174,7 +174,11 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Resets preset control to their default states. </summary>
-        public void ResetPresetControls() => _presetPanel.ResetControls();
+        public void ResetPresetControls()
+        {
+            Presenter.CurrentPreset = EPreset.Primary;
+            _presetPanel.ResetControls();
+        }
 
         /// <summary> Loads <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         public void LoadPresets() => _presetPanel.LoadPresets(Presenter.GeneratedPresets, Presenter.CurrentGameMode);
