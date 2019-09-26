@@ -15,6 +15,14 @@ namespace Core.Extensions
         public static void AddInto<T>(this IEnumerable<T> sourceCollection, List<T> targetCollection) =>
             targetCollection.AddRange(sourceCollection);
 
+        /// <summary> Returns a new enumberation excluding the given element. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <param name="sourceCollection"> A source collection. </param>
+        /// <param name="element"> The element to exclude. </param>
+        /// <returns></returns>
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> sourceCollection, T element) =>
+            sourceCollection.Except(new List<T> { element });
+
         #region IsEmpty(), HasSingle(), HasMany()
 
         /// <summary> Fluently checks whether a collection is empty. </summary>
