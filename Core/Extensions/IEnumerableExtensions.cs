@@ -39,7 +39,7 @@ namespace Core.Extensions
         /// <param name="collection"> A source collection. </param>
         /// <returns></returns>
         public static bool HasSingle<T>(this IEnumerable<T> collection) =>
-            collection.Count() == 1;
+            collection.Count() == EInteger.Number.One;
 
         /// <summary> Fluently checks whether a collection contains more than one item. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>

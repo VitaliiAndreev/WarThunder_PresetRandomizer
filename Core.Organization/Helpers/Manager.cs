@@ -466,7 +466,7 @@ namespace Core.Organization.Helpers
             (
                 presetComposition
                     .Keys
-                    .Select(branch => new { Branch = branch, Vehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.GaijinId.Contains(EReference.BranchesFromEnumeration[branch])).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .Select(branch => new { Branch = branch, Vehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 
