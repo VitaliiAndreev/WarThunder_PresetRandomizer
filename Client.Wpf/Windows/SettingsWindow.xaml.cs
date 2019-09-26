@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Commands.Interfaces;
-using Client.Wpf.Commands.SettingsWindow;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
