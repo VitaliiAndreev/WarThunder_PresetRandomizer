@@ -1,4 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
 
 namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
 {
@@ -6,7 +8,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
     /// A set of string parameters that vary depending on the game mode.
     /// This is a non-persistent foil for <see cref="Decimal.BattleRating"/>
     /// </summary>
-    public class BattleRating
+    public class BattleRating : VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<string>
     {
         #region Persistent Properties
 
