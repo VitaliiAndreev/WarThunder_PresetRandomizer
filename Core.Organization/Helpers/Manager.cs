@@ -448,29 +448,31 @@ namespace Core.Organization.Helpers
 
             var nationCrewSlotCount = _randomizer.GetRandom(specification.NationCrewSlots);
             var nation = nationCrewSlotCount.Key;
+            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation]);
             var crewSlotAmount = nationCrewSlotCount.Value;
 
-            var mainBranch = _randomizer.GetRandom(specification.Branches);
+            var mainBranch = _randomizer.GetRandom(specification.Branches.Where(branch => vehiclesFromNation.Any(vehicle => vehicle.Branch.AsEnumerationItem == branch)));
             var presetComposition = GetPresetComposition(gameMode, specification.Branches, crewSlotAmount, mainBranch);
-
-            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks));
-            var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
-
             var presets = new Dictionary<EPreset, Preset>();
 
-            var vehiclesFromNation = _cache
-                .OfType<IVehicle>()
-                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation] && !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts))
+            var filteredVehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem.IsIn(presetComposition.Keys));
+            var availableEconomicRanks = filteredVehicles
+                .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
+                .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
+                .Distinct()
             ;
-            var vehiclesFromBranches = new VehiclesByBranchesAndBattleRating
+
+            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks.Intersect(availableEconomicRanks)));
+            var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
+            var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
             (
                 presetComposition
                     .Keys
-                    .Select(branch => new { Branch = branch, Vehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .Select(branch => new { Branch = branch, Vehicles = filteredVehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 
-            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(GetRandomVehiclesForPreset(vehiclesFromBranches, presetComposition, crewSlotAmount)));
+            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount)));
 
             addPreset(EPreset.Primary);
             addPreset(EPreset.Fallback);
