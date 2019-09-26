@@ -14,6 +14,10 @@ namespace Client.Wpf.Enumerations
         Cancel,
         /// <summary> See <see cref="ChangeLocalizationCommand"/>. </summary>
         ChangeLocalization,
+        /// <summary> See <see cref="DeletePresetsCommand"/>. </summary>
+        DeletePresets,
+        /// <summary> See <see cref="GeneratePresetCommand"/>. </summary>
+        GeneratePreset,
         /// <summary> See <see cref="InitializeCommand"/>. </summary>
         Initialize,
         /// <summary> See <see cref="OkCommand"/>. </summary>
@@ -24,6 +28,8 @@ namespace Client.Wpf.Enumerations
         SelectLocalization,
         /// <summary> See <see cref="SelectGameModeCommand"/>. </summary>
         SelectGameMode,
+        /// <summary> See <see cref="SwapPresetsCommand"/>. </summary>
+        SwapPresets,
         /// <summary> See <see cref="ToggleBranchCommand"/>. </summary>
         ToggleBranch,
     }

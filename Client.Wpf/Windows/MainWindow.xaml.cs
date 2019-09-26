@@ -7,6 +7,7 @@ using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
+using Core.Organization.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Windows;
@@ -43,6 +44,9 @@ namespace Client.Wpf.Windows
 
             Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
+            _generatePresetButton.Command = Presenter.GetCommand(ECommandName.GeneratePreset);
+            _generatePresetButton.CommandParameter = Presenter;
+
             _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
             _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
@@ -66,6 +70,8 @@ namespace Client.Wpf.Windows
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+
+            _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
             Log.Debug(ECoreLogMessage.Initialized);
         }
@@ -131,6 +137,7 @@ namespace Client.Wpf.Windows
                     Presenter.EnabledBranches.Remove(branch);
 
                 Presenter.ExecuteCommand(ECommandName.ToggleBranch);
+                Presenter.ExecuteCommand(ECommandName.DeletePresets);
             }
         }
 
@@ -144,11 +151,10 @@ namespace Client.Wpf.Windows
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
-            _generatePresetButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.WillBeAvailableInAlphaReleases);
-
             _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
             _gameModeSelectionControl.Localize();
+            _presetPanel.Localize();
             _researchTreeControl.Localize();
         }
 
@@ -164,6 +170,17 @@ namespace Client.Wpf.Windows
 
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);
+            Presenter.ExecuteCommand(ECommandName.DeletePresets);
         }
+
+        /// <summary> Resets preset control to their default states. </summary>
+        public void ResetPresetControls() => _presetPanel.ResetControls();
+
+        /// <summary> Loads <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
+        public void LoadPresets() => _presetPanel.LoadPresets(Presenter.GeneratedPresets, Presenter.CurrentGameMode);
+
+        /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
+        /// <param name="preset"> The preset to display. </param>
+        public void DisplayPreset(EPreset preset) => _presetPanel.DisplayPreset(preset);
     }
 }

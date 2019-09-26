@@ -1,0 +1,52 @@
+﻿<base:LocalizedUserControl x:Class="Client.Wpf.Controls.PresetPanelControl"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+                           mc:Ignorable="d"
+    d:DesignHeight="95" d:DesignWidth="865">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="840"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Style="{StaticResource StackPanelNoMargin}">
+
+            <Button
+                Grid.Row="0"
+                x:Name="_swapPresetsButton">
+                <Image
+                    Source="{StaticResource PresetIcon}"
+                    Style="{StaticResource Icon}">
+                </Image>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                x:Name="_deletePresetsButton"
+                Margin="0 10 0 0">
+                <Image
+                    Source="{StaticResource Delete}"
+                    Style="{StaticResource Icon}"/>
+            </Button>
+
+        </StackPanel>
+
+        <WrapPanel
+            Grid.Column="1"
+            x:Name="_primaryPresetPanel"
+            Style="{StaticResource Preset}">
+        </WrapPanel>
+
+        <WrapPanel
+            Grid.Column="1"
+            x:Name="_fallbackPresetPanel"
+            Style="{StaticResource Preset}"
+            Visibility="Hidden">
+        </WrapPanel>
+
+    </Grid>
+</base:LocalizedUserControl>

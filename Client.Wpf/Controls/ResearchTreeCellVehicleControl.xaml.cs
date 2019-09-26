@@ -74,7 +74,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Displays the <see cref="IVehicle.BattleRating"/> for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        internal void DisplayBattleRatingFor(EGameMode gameMode)
+        public void DisplayBattleRatingFor(EGameMode gameMode)
         {
             _battleRating.Text = Vehicle.BattleRatingFormatted[gameMode];
         }

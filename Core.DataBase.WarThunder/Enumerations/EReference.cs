@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Enumerations
 {
     /// <summary> Contains static dictionaries with reference data. </summary>
     public class EReference
     {
+        /// <summary> The total amount of <see cref="IVehicle.EconomicRank"/> values, up to battle rating 10.0. </summary>
+        public const int TotalEconomicRanks = 28;
+
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
         public static IDictionary<ENation, string> NationsFromEnumeration { get; } = new Dictionary<ENation, string>
         {

@@ -8,6 +8,8 @@
 
         <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
 
+        <BitmapImage x:Key="PresetIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/inbox_4.png</BitmapImage>
+        <BitmapImage x:Key="Delete">pack://application:,,,/Resources/IconSweets 2 by Yummygum/recycle.png</BitmapImage>
         <BitmapImage x:Key="Settings">pack://application:,,,/Resources/IconSweets 2 by Yummygum/preferences_gear_5_single.png</BitmapImage>
 
         <BitmapImage x:Key="FlagUsa" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/US.png" /> <!-- Cannot be loaded in the designer. -->
@@ -66,6 +68,7 @@
 
         <Style TargetType="Button">
             <Setter Property="Height" Value="30"/>
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
         </Style>
 
         <Style TargetType="Button" x:Key="Button100x30" BasedOn="{StaticResource {x:Type Button}}">
@@ -110,6 +113,19 @@
 
         <Style TargetType="Image" x:Key="FlagIcon">
             <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Icon">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- t:NLogListViewControl -->
@@ -253,5 +269,11 @@
             <Setter Property="Height" Value="30"/>
         </Style>
         
+        <!-- t:WrapPanel -->
+
+        <Style TargetType="WrapPanel" x:Key="Preset">
+            <Setter Property="Width" Value="825"/>
+        </Style>
+
     </Application.Resources>
 </Application>

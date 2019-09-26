@@ -2,7 +2,8 @@
 using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
+using Core.Organization.Collections;
+using Core.Organization.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
 
@@ -22,6 +23,12 @@ namespace Client.Wpf.Presenters
         /// <summary> Branches enabled for preset generation. </summary>
         public IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Generated presets. </summary>
+        public IDictionary<EPreset, Preset> GeneratedPresets { get; }
+
+        /// <summary> The preset to display. </summary>
+        public EPreset CurrentPreset { get; set; }
+
         #endregion Properties
         #region Constructors
 
@@ -31,8 +38,20 @@ namespace Client.Wpf.Presenters
             : base(strategy)
         {
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
+            GeneratedPresets = new Dictionary<EPreset, Preset>();
+            CurrentPreset = EPreset.Primary;
         }
 
         #endregion Constructors
+
+        /// <summary> Resets preset control to their default states. </summary>
+        public void ResetPresetControls() => Owner.ResetPresetControls();
+
+        /// <summary> Loads <see cref="GeneratedPresets"/>. </summary>
+        public void LoadPresets() => Owner.LoadPresets();
+
+        /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
+        /// <param name="preset"> The preset to display. </param>
+        public void DisplayPreset(EPreset preset) => Owner.DisplayPreset(preset);
     }
 }

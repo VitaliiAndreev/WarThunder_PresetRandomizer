@@ -34,14 +34,15 @@
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic"/>
+  <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="Simulator" value="Simulator"/>
   <Line key="Status" value="Status:"/>
+  <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Thanks" value="Thanks"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
   <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
-  <Line key="WillBeAvailableInAlphaReleases" value="Will be available in Alpha releases."/>
   <Line key="YummigumForIconSweets2" value="Yummigum for IconSweets 2."/>
 </Localization>

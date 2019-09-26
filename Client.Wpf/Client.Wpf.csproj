@@ -141,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PresetPanelControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ResearchTreeCellControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,7 +184,10 @@
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\MainWindow\AboutCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeLocalizationCommand.cs" />
+    <Compile Include="Commands\MainWindow\DeletePresetsCommand.cs" />
+    <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
+    <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
@@ -200,6 +207,9 @@
     </Compile>
     <Compile Include="Controls\GameModeSelectionControl.xaml.cs">
       <DependentUpon>GameModeSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PresetPanelControl.xaml.cs">
+      <DependentUpon>PresetPanelControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ResearchTreeCellControl.xaml.cs">
       <DependentUpon>ResearchTreeCellControl.xaml</DependentUpon>
@@ -323,6 +333,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\IconSweets 2 by Yummygum\inbox_4.png" />
+    <Resource Include="Resources\IconSweets 2 by Yummygum\recycle.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\preferences_gear_5_single.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\readme.txt" />
     <EmbeddedResource Include="Properties\Resources.resx">

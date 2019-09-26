@@ -37,15 +37,16 @@
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
+        public const string RemovePresets = nameof(RemovePresets);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string Simulator = nameof(Simulator);
         public const string Status = nameof(Status);
+        public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
         public const string Thanks = nameof(Thanks);
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string VitalyAndreyev = nameof(VitalyAndreyev);
-        public const string WillBeAvailableInAlphaReleases = nameof(WillBeAvailableInAlphaReleases);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);
     }
 }

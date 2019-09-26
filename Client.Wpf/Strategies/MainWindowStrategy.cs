@@ -13,8 +13,11 @@ namespace Client.Wpf.Strategies
         {
             base.InitializeCommands();
 
+            _commands.Add(ECommandName.GeneratePreset, new GeneratePresetCommand());
             _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
             _commands.Add(ECommandName.ToggleBranch, new ToggleBranchCommand());
+            _commands.Add(ECommandName.SwapPresets, new SwapPresetsCommand());
+            _commands.Add(ECommandName.DeletePresets, new DeletePresetsCommand());
             _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());
             _commands.Add(ECommandName.ChangeLocalization, new ChangeLocalizationCommand());
             _commands.Add(ECommandName.About, new AboutCommand());

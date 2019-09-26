@@ -1,5 +1,7 @@
 ﻿using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.Organization.Collections;
+using Core.Organization.Enumerations;
 using System.Collections.Generic;
 
 namespace Client.Wpf.Presenters.Interfaces
@@ -18,6 +20,22 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Branches enabled for preset generation. </summary>
         IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Generated presets. </summary>
+        IDictionary<EPreset, Preset> GeneratedPresets { get; }
+
+        /// <summary> The preset to display. </summary>
+        EPreset CurrentPreset { get; set; }
+
         #endregion Properties
+
+        /// <summary> Resets preset control to their default states. </summary>
+        void ResetPresetControls();
+
+        /// <summary> Loads <see cref="GeneratedPresets"/>. </summary>
+        void LoadPresets();
+
+        /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
+        /// <param name="preset"> The preset to display. </param>
+        void DisplayPreset(EPreset preset);
     }
 }
