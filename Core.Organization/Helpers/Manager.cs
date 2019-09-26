@@ -448,7 +448,7 @@ namespace Core.Organization.Helpers
 
             var nationCrewSlotCount = _randomizer.GetRandom(specification.NationCrewSlots);
             var nation = nationCrewSlotCount.Key;
-            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation]);
+            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.AsEnumerationItem == nation);
             var crewSlotAmount = nationCrewSlotCount.Value;
 
             var mainBranch = _randomizer.GetRandom(specification.Branches.Where(branch => vehiclesFromNation.Any(vehicle => vehicle.Branch.AsEnumerationItem == branch)));
