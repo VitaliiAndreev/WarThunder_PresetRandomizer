@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Core.Enumerations;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.Extensions
@@ -42,9 +44,15 @@ namespace Core.Extensions
         /// <summary> Fluently checks whether a collection contains more than one item. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="collection"> A source collection. </param>
+        /// <param name="predicate"> The predicate to filter what items to count. </param>
         /// <returns></returns>
-        public static bool HasSeveral<T>(this IEnumerable<T> collection) =>
-            collection.Count() > 1;
+        public static bool HasSeveral<T>(this IEnumerable<T> collection, Func<T, bool> predicate = null)
+        {
+            if (predicate is null)
+                return collection.Count() > EInteger.Number.One;
+            else
+                return collection.Count(predicate) > EInteger.Number.One;
+        }
 
         #endregion IsEmpty(), HasSingle(), HasMany()
         #region SkipLast()
