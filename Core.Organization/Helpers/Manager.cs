@@ -47,6 +47,9 @@ namespace Core.Organization.Helpers
         #endregion Constants
         #region Fields
 
+        /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
+        private readonly IEnumerable<string> _excludedGaijinIdParts;
+
         /// <summary> The string representation of the game client version. </summary>
         private string _gameClientVersion;
 
@@ -98,6 +101,19 @@ namespace Core.Organization.Helpers
             params IConfiguredLogger[] loggers
         ) : base(EOrganizationLogCategory.Manager, loggers)
         {
+            _excludedGaijinIdParts = new List<string>()
+            {
+                "_football",
+                "germ_panzerkampflaufer_565_r",
+                "germ_panzerkampflaufer_565_r_2",
+                "_m4_sherman_tutorial",
+                "po-2_nw",
+                "_race",
+                "us_m35",
+                "us_m35_2",
+                "ussr_sht_1",
+                "ussr_sht_1_2",
+            };
             _fileManager = fileManager;
             _fileReader = fileReader;
             _parser = parser;
@@ -131,21 +147,8 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
 
             var columnCount = default(int);
-            var excludedGaijinIdParts = new List<string>()
-            {
-                "_football",
-                "germ_panzerkampflaufer_565_r",
-                "germ_panzerkampflaufer_565_r_2",
-                "_m4_sherman_tutorial",
-                "po-2_nw",
-                "_race",
-                "us_m35",
-                "us_m35_2",
-                "ussr_sht_1",
-                "ussr_sht_1_2",
-            };
 
-            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(excludedGaijinIdParts)))
+            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)))
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
@@ -457,7 +460,7 @@ namespace Core.Organization.Helpers
 
             var vehiclesFromNation = _cache
                 .OfType<IVehicle>()
-                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation])
+                .Where(vehicle => vehicle.Nation.GaijinId == EReference.NationsFromEnumeration[nation] && !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts))
             ;
             var vehiclesFromBranches = new VehiclesByBranchesAndBattleRating
             (
