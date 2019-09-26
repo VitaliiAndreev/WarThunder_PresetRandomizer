@@ -10,9 +10,9 @@
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
         MinHeight="600"
-        MinWidth="1050"
+        MinWidth="1160"
         Height="600"
-        Width="1505"
+        Width="1470"
         Loaded="OnLoaded"
         Closed="OnClosed">
     <Grid>
