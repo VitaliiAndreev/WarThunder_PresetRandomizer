@@ -165,19 +165,14 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         {
             get
             {
-                switch (gameMode)
+                return gameMode switch
                 {
-                    case EGameMode.Arcade:
-                        return Arcade;
-                    case EGameMode.Realistic:
-                        return Realistic;
-                    case EGameMode.Simulator:
-                        return Simulator;
-                    case EGameMode.Event:
-                        return Event;
-                    default:
-                        return null;
-                }
+                    EGameMode.Arcade => Arcade,
+                    EGameMode.Realistic => Realistic,
+                    EGameMode.Simulator => Simulator,
+                    EGameMode.Event => Event,
+                    _ => null,
+                };
             }
         }
     }
