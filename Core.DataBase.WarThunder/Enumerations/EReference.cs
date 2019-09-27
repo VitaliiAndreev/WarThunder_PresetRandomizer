@@ -38,6 +38,20 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_france", ENation.France },
         };
 
+        /// <summary> Nation special character icons. </summary>
+        public static IDictionary<ENation, char> NationIcons { get; } = new Dictionary<ENation, char>
+        {
+            { ENation.None, ECharacter.Space },
+            { ENation.Usa, '▃' },
+            { ENation.Germany, '▀' },
+            { ENation.Ussr, '▂' },
+            { ENation.Commonwealth, '▄' },
+            { ENation.Japan, '▅' },
+            { ENation.China, '␗' },
+            { ENation.Italy, '▄' },
+            { ENation.France, '▄' },
+        };
+
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
         public static IDictionary<EBranch, string> BranchesFromEnumeration { get; } = new Dictionary<EBranch, string>
         {
@@ -54,6 +68,15 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "aircraft", EBranch.Aviation },
             { "ship", EBranch.Fleet },
             { "helicopter", EBranch.Helicopters },
+        };
+
+        /// <summary> Vehicle branch special character icons. </summary>
+        public static IDictionary<EBranch, char> BranchIcons { get; } = new Dictionary<EBranch, char>
+        {
+            { EBranch.Army, '╤' },
+            { EBranch.Aviation, '┏' },
+            { EBranch.Fleet, '┚' },
+            { EBranch.Helicopters, '⋡' },
         };
     }
 }
