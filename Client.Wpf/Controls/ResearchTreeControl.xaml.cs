@@ -185,5 +185,14 @@ namespace Client.Wpf.Controls
             if (_nationControls.TryGetValue(nation, out var nationControl))
                 nationControl.FocusResearchTree(branch);
         }
+
+        /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
+        /// <param name="vehicle"> The vehicle to bring into view. </param>
+        public void BringIntoView(IVehicle vehicle)
+        {
+            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is ENation tabNation && vehicle.Nation.AsEnumerationItem == tabNation)
+                if (_nationControls.TryGetValue(tabNation, out var nationControl))
+                    nationControl.BringIntoView(vehicle);
+        }
     }
 }

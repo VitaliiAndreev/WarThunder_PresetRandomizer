@@ -123,5 +123,14 @@ namespace Client.Wpf.Controls
             if (BranchTabs.TryGetValue(branch, out var branchTab))
                 _tabControl.SelectedItem = branchTab;
         }
+
+        /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
+        /// <param name="vehicle"> The vehicle to bring into view. </param>
+        public void BringIntoView(IVehicle vehicle)
+        {
+            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is EBranch tabBranch && vehicle.Branch.AsEnumerationItem == tabBranch)
+                if (_branchControls.TryGetValue(tabBranch, out var branchControl))
+                    branchControl.BringIntoView(vehicle);
+        }
     }
 }

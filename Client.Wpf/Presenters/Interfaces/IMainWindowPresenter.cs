@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using System.Collections.Generic;
@@ -51,5 +52,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
         /// <param name="branch"> The branch to put into focus. </param>
         void FocusResearchTree(ENation nation, EBranch branch);
+
+        /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
+        /// <param name="vehicle"> The vehicle to bring into view. </param>
+        void BringIntoView(IVehicle vehicle);
     }
 }
