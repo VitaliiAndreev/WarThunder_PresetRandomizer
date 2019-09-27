@@ -42,8 +42,14 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(new Specification(gameMode, nations, branches, economicRanks)));
 
+                var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
+                var selectedNation = primaryPreset.First().Nation.AsEnumerationItem;
+                var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
+
                 presenter.LoadPresets();
                 presenter.DisplayPreset(EPreset.Primary);
+                presenter.EnableOnly(selectedNation, selectedBranches);
+                presenter.FocusResearchTree(selectedNation, selectedBranches.First());
             }
         }
     }

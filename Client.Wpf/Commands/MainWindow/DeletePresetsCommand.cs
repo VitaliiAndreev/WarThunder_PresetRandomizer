@@ -41,6 +41,7 @@ namespace Client.Wpf.Commands.MainWindow
             {
                 presenter.GeneratedPresets.Clear();
                 presenter.ResetPresetControls();
+                presenter.ResetResearchTreeTabRestrictions();
             }
         }
     }

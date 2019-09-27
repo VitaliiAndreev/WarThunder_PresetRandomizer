@@ -2,6 +2,8 @@
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Extensions;
+using NHibernate.Mapping;
 using NHibernate.Util;
 using System.Collections.Generic;
 using System.Linq;
@@ -137,6 +139,51 @@ namespace Client.Wpf.Controls
         {
             foreach (var vehicleCell in _nationControls.Values)
                 vehicleCell.DisplayBattleRatingFor(gameMode);
+        }
+
+        /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs. </summary>
+        public void ResetTabRestrictions()
+        {
+            foreach (var nationTab in _nationTabs.Values)
+            {
+                if (nationTab.Tag is ENation nation && _nationControls.TryGetValue(nation, out var nationControl))
+                {
+                    nationTab.IsEnabled = true;
+                    nationControl.ResetTabRestrictions();
+                }
+            }
+        }
+
+        /// <summary> Disables all nation and branch tabs not specified in the parameters. </summary>
+        /// <param name="nations"> Nation tabs to keep enabled. </param>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        public void EnableOnly(IEnumerable<ENation> nations, IEnumerable<EBranch> branches)
+        {
+            foreach (var nationTab in _nationTabs.Values)
+            {
+                if (nationTab.Tag is ENation tabNation && _nationControls.TryGetValue(tabNation, out var nationControl))
+                {
+                    nationControl.EnableOnly(branches);
+                    nationTab.IsEnabled = tabNation.IsIn(nations);
+                }
+            }
+        }
+
+        /// <summary> Disables all nation and branch tabs not specified in the parameters. </summary>
+        /// <param name="nation"> The nation tab to keep enabled. </param>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) => EnableOnly(new List<ENation> { nation }, branches);
+
+        /// <summary> Focuses on a research tree by given parameters. </summary>
+        /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
+        /// <param name="branch"> The branch to put into focus. </param>
+        public void FocusResearchTree(ENation nation, EBranch branch)
+        {
+            if (_nationTabs.TryGetValue(nation, out var nationTab))
+                _tabControl.SelectedItem = nationTab;
+
+            if (_nationControls.TryGetValue(nation, out var nationControl))
+                nationControl.FocusResearchTree(branch);
         }
     }
 }

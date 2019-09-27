@@ -53,5 +53,18 @@ namespace Client.Wpf.Presenters
         /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
         public void DisplayPreset(EPreset preset) => Owner.DisplayPreset(preset);
+
+        /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs of the research tree. </summary>
+        public void ResetResearchTreeTabRestrictions() => Owner.ResetResearchTreeTabRestrictions();
+
+        /// <summary> Disables all nation and branch tabs of the research tree not specified in the parameters. </summary>
+        /// <param name="nation"> The nation tab to keep enabled. </param>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) => Owner.EnableOnly(nation, branches);
+
+        /// <summary> Focuses on a research tree by given parameters. </summary>
+        /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
+        /// <param name="branch"> The branch to put into focus. </param>
+        public void FocusResearchTree(ENation nation, EBranch branch) => Owner.FocusResearchTree(nation, branch);
     }
 }

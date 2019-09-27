@@ -2,6 +2,7 @@
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Extensions;
 using Core.Organization.Objects;
 using System.Collections.Generic;
 using System.Windows;
@@ -92,6 +93,35 @@ namespace Client.Wpf.Controls
         {
             foreach (var vehicleCell in _branchControls.Values)
                 vehicleCell.DisplayBattleRatingFor(gameMode);
+        }
+
+        /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of branch tabs. </summary>
+        internal void ResetTabRestrictions()
+        {
+            foreach (var branchTab in BranchTabs.Values)
+            {
+                if (branchTab.Tag is EBranch branch && _branchControls.TryGetValue(branch, out var branchControl))
+                    branchTab.IsEnabled = branchControl.IsPopulated;
+            }
+        }
+
+        /// <summary> Disables all branch tabs not specified in the parameters. </summary>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        public void EnableOnly(IEnumerable<EBranch> branches)
+        {
+            foreach (var branchTab in BranchTabs.Values)
+            {
+                if (branchTab.Tag is EBranch tabBranch)
+                    branchTab.IsEnabled = tabBranch.IsIn(branches);
+            }
+        }
+
+        /// <summary> Focuses on a research tree by given parameters. </summary>
+        /// <param name="branch"> The branch to put into focus. </param>
+        public void FocusResearchTree(EBranch branch)
+        {
+            if (BranchTabs.TryGetValue(branch, out var branchTab))
+                _tabControl.SelectedItem = branchTab;
         }
     }
 }

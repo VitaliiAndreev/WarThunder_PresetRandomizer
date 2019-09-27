@@ -10,6 +10,7 @@ using Core.Extensions;
 using Core.Organization.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -189,5 +190,18 @@ namespace Client.Wpf.Windows
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
         public void DisplayPreset(EPreset preset) => _presetPanel.DisplayPreset(preset);
+
+        /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs of the research tree. </summary>
+        public void ResetResearchTreeTabRestrictions() => _researchTreeControl.ResetTabRestrictions();
+
+        /// <summary> Disables all nation and branch tabs of the research tree not specified in the parameters. </summary>
+        /// <param name="nation"> The nation tab to keep enabled. </param>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) => _researchTreeControl.EnableOnly(nation, branches);
+
+        /// <summary> Focuses on a research tree by given parameters. </summary>
+        /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
+        /// <param name="branch"> The branch to put into focus. </param>
+        public void FocusResearchTree(ENation nation, EBranch branch) => _researchTreeControl.FocusResearchTree(nation, branch);
     }
 }

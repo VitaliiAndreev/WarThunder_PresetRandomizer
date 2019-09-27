@@ -3,6 +3,7 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace Client.Wpf.Presenters.Interfaces
 {
@@ -37,5 +38,18 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
         void DisplayPreset(EPreset preset);
+
+        /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs of the research tree. </summary>
+        void ResetResearchTreeTabRestrictions();
+
+        /// <summary> Disables all nation and branch tabs of the research tree not specified in the parameters. </summary>
+        /// <param name="nation"> The nation tab to keep enabled. </param>
+        /// <param name="branches"> Branch tabs to keep enabled. </param>
+        void EnableOnly(ENation nation, IEnumerable<EBranch> branches);
+
+        /// <summary> Focuses on a research tree by given parameters. </summary>
+        /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
+        /// <param name="branch"> The branch to put into focus. </param>
+        void FocusResearchTree(ENation nation, EBranch branch);
     }
 }
