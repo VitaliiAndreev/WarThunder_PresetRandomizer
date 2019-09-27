@@ -457,6 +457,7 @@ namespace Core.Organization.Helpers
 
             var filteredVehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem.IsIn(presetComposition.Keys));
             var availableEconomicRanks = filteredVehicles
+                .Where(vehicle => vehicle.Branch.AsEnumerationItem == mainBranch)
                 .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
                 .Distinct()
