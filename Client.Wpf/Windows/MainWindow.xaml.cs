@@ -78,6 +78,8 @@ namespace Client.Wpf.Windows
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
+            RaiseGeneratePresetCommandCanExecuteChanged();
+
             Log.Debug(ECoreLogMessage.Initialized);
         }
 
