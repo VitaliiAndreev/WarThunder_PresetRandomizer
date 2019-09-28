@@ -30,6 +30,10 @@ namespace Client.Wpf.Presenters.Interfaces
 
         #endregion Properties
 
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches();
+
         /// <summary> Resets preset control to their default states. </summary>
         void ResetPresetControls();
 

@@ -13,6 +13,10 @@ namespace Client.Wpf.Windows.Interfaces
         /// <summary> An instance of a presenter. </summary>
         new IMainWindowPresenter Presenter { get; }
 
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches();
+
         /// <summary> Resets preset control to their default states. </summary>
         void ResetPresetControls();
 

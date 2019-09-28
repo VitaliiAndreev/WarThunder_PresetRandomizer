@@ -218,6 +218,10 @@ namespace Client.Wpf.Windows
             Presenter.ExecuteCommand(ECommandName.DeletePresets);
         }
 
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => _researchTreeControl.GetEmptyBranches();
+
         /// <summary> Resets preset control to their default states. </summary>
         public void ResetPresetControls()
         {

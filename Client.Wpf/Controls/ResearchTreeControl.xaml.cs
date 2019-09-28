@@ -133,6 +133,10 @@ namespace Client.Wpf.Controls
             }
         }
 
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => _nationControls.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.GetEmptyBranches());
+
         /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         public void DisplayBattleRatingFor(EGameMode gameMode)
