@@ -10,8 +10,12 @@ namespace Client.Wpf.Windows.Interfaces
     /// <summary> The main window. </summary>
     public interface IMainWindow : IBaseWindow
     {
+        #region Properties
+
         /// <summary> An instance of a presenter. </summary>
         new IMainWindowPresenter Presenter { get; }
+
+        #endregion Properties
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
