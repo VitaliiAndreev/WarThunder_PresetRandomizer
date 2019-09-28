@@ -38,6 +38,7 @@ namespace Client.Wpf.Presenters
         public MainWindowPresenter(IMainWindowStrategy strategy)
             : base(strategy)
         {
+            CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
             GeneratedPresets = new Dictionary<EPreset, Preset>();
             CurrentPreset = EPreset.Primary;
