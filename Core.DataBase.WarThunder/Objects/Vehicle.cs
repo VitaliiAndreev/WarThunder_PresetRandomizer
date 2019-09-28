@@ -27,8 +27,6 @@ namespace Core.DataBase.WarThunder.Objects
     {
         #region Constants
 
-        /// <summary> The formatting string for output of <see cref="BattleRating"/>. </summary>
-        private const string _battleRatingFormat = "#.0";
         /// <summary> The string representing an unknown battle rating. </summary>
         private const string _unknownBattleRating = "?.?";
 
@@ -316,7 +314,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
         private void InitializeVisualBattleRatings()
         {
-            static string formatBattleRating(decimal? nullableValue) => nullableValue.HasValue ? nullableValue.Value.ToString(_battleRatingFormat) : _unknownBattleRating;
+            static string formatBattleRating(decimal? nullableValue) => nullableValue.HasValue ? nullableValue.Value.ToString(VehicleGameModeParameterSet.String.BattleRating.Format) : _unknownBattleRating;
 
             if (BattleRating is null)
                 return;

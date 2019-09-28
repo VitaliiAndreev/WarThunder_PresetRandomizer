@@ -10,6 +10,12 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String
     /// </summary>
     public class BattleRating : VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<string>
     {
+        #region Constants
+
+        /// <summary> The formatting string for output. </summary>
+        public const string Format = "#.0";
+
+        #endregion Constants
         #region Persistent Properties
 
         /// <summary> The value in Arcade Battles. </summary>
