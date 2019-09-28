@@ -36,7 +36,7 @@ namespace Client.Wpf.Commands.MainWindow
 
                 var gameMode = presenter.CurrentGameMode;
                 var nations = Enum.GetValues(typeof(ENation)).OfType<ENation>().Where(nation => nation != ENation.None).ToDictionary(nation => nation, nation => 10);
-                var branches = Enum.GetValues(typeof(EBranch)).OfType<EBranch>().Where(branch => branch != EBranch.None);
+                var branches = presenter.EnabledBranches;
                 var economicRanks = Enumerable.Range(EInteger.Number.Zero, EReference.TotalEconomicRanks);
 
                 presenter.GeneratedPresets.Clear();
