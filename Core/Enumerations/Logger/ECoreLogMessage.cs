@@ -216,6 +216,7 @@
         /// <para> 1: directory/file path/name. </para>
         /// </summary>
         public static readonly string DoesntExist = $"\"{{0}}\" {_doesnt} {_exist}.";
+        public static readonly string NothingToSelectFrom = $"{_Nothing} {_to} {_select} {_from}.";
         public static readonly string ShuttingDown = $"{_Shutting} {_down}.";
 
         #endregion General

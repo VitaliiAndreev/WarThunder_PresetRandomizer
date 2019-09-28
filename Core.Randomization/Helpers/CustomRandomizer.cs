@@ -39,6 +39,15 @@ namespace Core.Randomization.Helpers
         /// <returns></returns>
         public T GetRandom<T>(IEnumerable<T> items)
         {
+            if (items.IsEmpty())
+            {
+                if (typeof(T).IsValueType)
+                    throw new Exception(ECoreLogMessage.NothingToSelectFrom);
+
+                if (typeof(T).IsClass)
+                    return default;
+            }
+
             var itemList = items.ToList();
 
             return itemList[_generator.Next(itemList.Count)];

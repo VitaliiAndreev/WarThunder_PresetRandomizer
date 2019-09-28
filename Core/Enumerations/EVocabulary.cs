@@ -303,6 +303,7 @@
         protected const string _node = _no + "de";
         protected const string _Not = _No + _t;
         protected const string _not = _no + _t;
+        protected const string _Nothing = _No + _thing;
         protected const string _NULL = "NULL";
         protected const string _number = _n + "umber";
 
@@ -392,10 +393,11 @@
         protected const string _search = _s + _e + _a + "rch";
         protected const string _See = _S + "ee";
         protected const string _Select = _S + _elect;
+        protected const string _select = _s + _elect;
         protected const string _Selected = _Select + _ed;
-        protected const string _selected = _s + _elect + _ed;
+        protected const string _selected = _select + _ed;
         protected const string _Selecting = _Select + _ing;
-        protected const string _selection = _s + _elect + _ion;
+        protected const string _selection = _select + _ion;
         protected const string _separated = _s + "eparate" + _d;
         protected const string _serialized = _s + "erial" + _ize + _d;
         protected const string _Serializing = _S + "erializ" + _ing;
@@ -445,6 +447,8 @@
         protected const string _the = _t + "he";
         protected const string _There = _The + _re;
         protected const string _there = _the + _re;
+        protected const string _thin = "thin";
+        protected const string _thing = _thin + "g";
         protected const string _to = _t + "o";
         protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";
