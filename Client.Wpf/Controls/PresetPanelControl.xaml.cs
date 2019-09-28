@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Controls.Base;
+using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
@@ -164,7 +165,7 @@ namespace Client.Wpf.Controls
 
                 foreach (var vehicle in presetKeyValuePair.Value)
                 {
-                    var vehicleControl = new ResearchTreeCellVehicleControl(vehicle) { Margin = new Thickness(0, 0, 5, 0) };
+                    var vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy()) { Margin = new Thickness(0, 0, 5, 0) };
 
                     vehicleControl.MouseEnter += OnMouseEnter;
                     vehicleControl.MouseLeave += OnMouseLeave;

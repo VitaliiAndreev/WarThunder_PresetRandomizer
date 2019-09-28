@@ -1,4 +1,5 @@
-﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+﻿using Client.Wpf.Controls.Strategies;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -29,7 +30,7 @@ namespace Client.Wpf.Controls
         /// <param name="vehicle"> The vehicle to add. </param>
         internal void AddVehicle(IVehicle vehicle)
         {
-            var vehicleControl = new ResearchTreeCellVehicleControl(vehicle);
+            var vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayBasicVehicleInformationStrategy());
 
             _stackPanel.Children.Add(vehicleControl);
             VehicleControls.Add(vehicle.GaijinId, vehicleControl);

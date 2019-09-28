@@ -1,8 +1,8 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls.Strategies.Interfaces;
+using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,6 +16,9 @@ namespace Client.Wpf.Controls
 
         /// <summary> The research type of the <see cref="Vehicle"/> in the cell. </summary>
         private readonly EVehicleResearchType _reseachType;
+
+        /// <summary> A strategy for generating a formatted string with <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </summary>
+        private readonly IDisplayVehicleInformationStrategy _displayVehicleInformationStrategy;
 
         #endregion Fields
         #region Properties
@@ -34,9 +37,11 @@ namespace Client.Wpf.Controls
 
         /// <summary> Creates a new control. </summary>
         /// <param name="vehicle"> The vehicle positioned in the cell. </param>
-        public ResearchTreeCellVehicleControl(IVehicle vehicle)
+        public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy)
             : this()
         {
+            _displayVehicleInformationStrategy = displayVehicleInformationStrategy;
+
             Vehicle = vehicle;
             _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
 
@@ -77,7 +82,7 @@ namespace Client.Wpf.Controls
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
-            _battleRating.Text = $"{EReference.BranchIcons[Vehicle.Branch.AsEnumerationItem]} {Vehicle.BattleRatingFormatted[gameMode]} / {Vehicle.Rank.CastTo<ERank>()}";
+            _battleRating.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
