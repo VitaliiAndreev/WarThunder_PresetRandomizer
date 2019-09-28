@@ -79,7 +79,7 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
-        /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
+        /// <param name="gameMode"> The game mode for which to display the information. </param>
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
             _battleRating.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
