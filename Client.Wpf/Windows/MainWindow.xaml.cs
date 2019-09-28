@@ -131,11 +131,11 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnBranchToggleControlClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (eventArguments.Source is ToggleButton toggleButton)
+            if (eventArguments.OriginalSource is ToggleButton toggleButton)
             {
                 var branch = toggleButton.Tag.CastTo<EBranch>();
 
-                if (toggleButton.IsEnabled)
+                if (toggleButton.IsChecked.Value)
                     Presenter.EnabledBranches.Add(branch);
                 else
                     Presenter.EnabledBranches.Remove(branch);
