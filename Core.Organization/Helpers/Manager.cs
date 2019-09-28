@@ -446,8 +446,11 @@ namespace Core.Organization.Helpers
         public IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresets(Specification specification)
         {
             var gameMode = specification.GameMode;
+            var mainBranch = _randomizer.GetRandom(specification.Branches);
 
-            var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Any()));
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+
+            var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch)));
             var crewSlotAmount = nationSpecification.CrewSlots;
             var nation = nationSpecification.Nation;
 
@@ -468,10 +471,6 @@ namespace Core.Organization.Helpers
                 LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBranches);
                 return new Dictionary<EPreset, Preset>();
             }
-
-            var mainBranch = _randomizer.GetRandom(availableBranches);
-
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
 
             var presetComposition = GetPresetComposition(gameMode, availableBranches, crewSlotAmount, mainBranch);
             var presets = new Dictionary<EPreset, Preset>();

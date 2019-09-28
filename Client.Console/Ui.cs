@@ -147,6 +147,7 @@ namespace Client.Console
             (
                 gamemode,
                 new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, new List<EBranch> { branch }, EInteger.Number.Ten) } },
+                new List<EBranch> { branch },
                 new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) }
             );
         }

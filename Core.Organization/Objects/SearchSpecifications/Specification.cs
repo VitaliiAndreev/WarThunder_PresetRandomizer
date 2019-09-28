@@ -9,8 +9,10 @@ namespace Core.Organization.Objects.SearchSpecifications
     {
         /// <summary> The game mode. </summary>
         public EGameMode GameMode { get; }
-        /// <summary> The nation specification. </summary>
+        /// <summary> Nation specifications. </summary>
         public IDictionary<ENation, NationSpecification> NationSpecifications { get; }
+        /// <summary> Allowed branches. </summary>
+        public IEnumerable<EBranch> Branches { get; }
         /// <summary> Allowed values of <see cref="IVehicle.EconomicRank"/>. </summary>
         public IEnumerable<int> EconomicRanks { get; }
 
@@ -18,10 +20,11 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <param name="gameMode"> The game mode. </param>
         /// <param name="nationSpecifications"> Nation specifications. </param>
         /// <param name="economicRanks"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
-        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<int> economicRanks)
+        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<EBranch> branches, IEnumerable<int> economicRanks)
         {
             GameMode = gameMode;
             NationSpecifications = nationSpecifications;
+            Branches = branches;
             EconomicRanks = economicRanks;
         }
     }

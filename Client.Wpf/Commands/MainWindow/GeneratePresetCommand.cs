@@ -54,7 +54,7 @@ namespace Client.Wpf.Commands.MainWindow
                 var nations = Enum.GetValues(typeof(ENation)).OfType<ENation>().Where(nation => nation != ENation.None);
                 var emptyBranches = presenter.GetEmptyBranches();
                 var nationSpecifications = nations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
-                var specification = new Specification(gameMode, nationSpecifications, economicRanks);
+                var specification = new Specification(gameMode, nationSpecifications, presenter.EnabledBranches, economicRanks);
 
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
