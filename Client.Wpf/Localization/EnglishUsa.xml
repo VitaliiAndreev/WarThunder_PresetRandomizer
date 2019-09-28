@@ -38,6 +38,7 @@
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="Simulator" value="Simulator"/>
+  <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="Status" value="Status:"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Thanks" value="Thanks"/>

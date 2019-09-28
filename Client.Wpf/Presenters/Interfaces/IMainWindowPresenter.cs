@@ -40,6 +40,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Loads <see cref="GeneratedPresets"/>. </summary>
         void LoadPresets();
 
+        /// <summary> Displays the message that no vehicles suit the criteria. </summary>
+        void ShowNoResults();
+
         /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
         void DisplayPreset(EPreset preset);

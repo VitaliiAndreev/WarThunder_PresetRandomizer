@@ -56,6 +56,12 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(new Specification(gameMode, nations, branches, economicRanks)));
 
+                if (presenter.GeneratedPresets.IsEmpty())
+                {
+                    presenter.ShowNoResults();
+                    return;
+                }
+
                 var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
                 var firstVehicle = primaryPreset.First();
                 var selectedNation = firstVehicle.Nation.AsEnumerationItem;

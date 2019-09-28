@@ -181,6 +181,20 @@ namespace Client.Wpf.Controls
             RaiseCanExecuteChanged();
         }
 
+        /// <summary> Displays the message that no vehicles suit the criteria. </summary>
+        public void ShowNoResults()
+        {
+            foreach (var presetPanel in _presetPanels.Values)
+            {
+                var textBlock = new TextBlock()
+                {
+                    Margin = new Thickness(0, 5, 0, 0),
+                    Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.SomethingWentWrongNoVehiclesFitTheCriteria),
+                };
+                presetPanel.Children.Add(textBlock);
+            }
+        }
+
         /// <summary> Displays the specified preset. </summary>
         /// <param name="preset"> The preset to display. </param>
         public void DisplayPreset(EPreset preset)

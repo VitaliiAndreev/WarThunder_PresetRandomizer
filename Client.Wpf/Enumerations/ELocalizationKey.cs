@@ -41,6 +41,7 @@
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string Simulator = nameof(Simulator);
+        public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string Status = nameof(Status);
         public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
         public const string Thanks = nameof(Thanks);
