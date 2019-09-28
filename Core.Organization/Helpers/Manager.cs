@@ -474,7 +474,6 @@ namespace Core.Organization.Helpers
 
             var presetComposition = GetPresetComposition(gameMode, availableBranches, crewSlotAmount, mainBranch);
             var presets = new Dictionary<EPreset, Preset>();
-
             var filteredVehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem.IsIn(presetComposition.Keys));
 
             if (filteredVehicles.IsEmpty())

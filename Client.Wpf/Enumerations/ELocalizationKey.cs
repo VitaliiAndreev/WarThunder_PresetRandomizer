@@ -33,7 +33,7 @@
         public const string LookUp = nameof(LookUp);
         public const string Ok = nameof(Ok);
         public const string Planes = nameof(Planes);
-        public const string PreAlpha = nameof(PreAlpha);
+        public const string Alpha = nameof(Alpha);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
