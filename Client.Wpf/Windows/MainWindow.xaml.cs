@@ -163,6 +163,18 @@ namespace Client.Wpf.Windows
                 _researchTreeControl.RemoveHighlight(vehicleControl.Vehicle);
         }
 
+        /// <summary> Bring the vehicle into view. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnPresetVehicleClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
+            {
+                _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
+                _researchTreeControl.Highlight(vehicleControl.Vehicle); // If tabs change, the vehicle needs to be highlighted since the mouse is over it.
+            }
+        }
+
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text in the window. </summary>

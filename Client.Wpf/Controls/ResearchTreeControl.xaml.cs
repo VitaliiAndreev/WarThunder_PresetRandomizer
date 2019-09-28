@@ -205,7 +205,14 @@ namespace Client.Wpf.Controls
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle) => GetNationControl(vehicle)?.BringIntoView(vehicle);
+        /// <param name="changeTabs"> Whether to switch tabs to . </param>
+        public void BringIntoView(IVehicle vehicle, bool changeTabs = false)
+        {
+            if (changeTabs)
+                FocusResearchTree(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem);
+
+            GetNationControl(vehicle)?.BringIntoView(vehicle);
+        }
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to highlight. </param>

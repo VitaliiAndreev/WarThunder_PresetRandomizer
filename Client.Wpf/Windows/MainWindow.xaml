@@ -100,7 +100,8 @@
                 Grid.Row="0"
                 x:Name="_presetPanel"
                 MouseEnter="OnPresetVehicleMouseEnter"
-                MouseLeave="OnPresetVehicleMouseLeave"/>
+                MouseLeave="OnPresetVehicleMouseLeave"
+                Click="OnPresetVehicleClick"/>
 
             <controls:ResearchTreeControl
                 Grid.Row="1"
