@@ -190,7 +190,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle)
+        internal void BringIntoView(IVehicle vehicle)
         {
             if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
                 vehicleCellControl.BringIntoView();

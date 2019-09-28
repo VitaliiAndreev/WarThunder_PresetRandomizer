@@ -54,8 +54,8 @@ namespace Client.Wpf.Controls
         #region Methods: Event Handlers
 
         /// <summary> Raises the <see cref="ClickEvent"/> for one of the toggle buttons. </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArguments"></param>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
         private void OnClick(object sender, RoutedEventArgs eventArguments)
         {
             if (sender is ToggleButton toggleButton)
@@ -64,7 +64,8 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Handlers
 
-        /// <summary> Raises the <see cref="ClickEvent"/> for a toggle button. </summary>
+        /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
+        /// <param name="toggleButton"> The toggle button to raise the event for. </param>
         private void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 

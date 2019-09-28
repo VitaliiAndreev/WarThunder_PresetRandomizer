@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Windows
@@ -125,8 +126,8 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArguments"></param>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
         private void OnBranchToggleControlClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.Source is ToggleButton toggleButton)
