@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls;
+using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
@@ -144,6 +145,24 @@ namespace Client.Wpf.Windows
             }
         }
 
+        /// <summary> Applies the highlighting style to the vehicle's conterpart in the research tree. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnPresetVehicleMouseEnter(object sender, MouseEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
+                _researchTreeControl.Highlight(vehicleControl.Vehicle);
+        }
+
+        /// <summary> Applies the idle style to the vehicle's conterpart in the research tree. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnPresetVehicleMouseLeave(object sender, MouseEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
+                _researchTreeControl.RemoveHighlight(vehicleControl.Vehicle);
+        }
+
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text in the window. </summary>
@@ -209,5 +228,13 @@ namespace Client.Wpf.Windows
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         public void BringIntoView(IVehicle vehicle) => _researchTreeControl.BringIntoView(vehicle);
+
+        /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to highlight. </param>
+        public void Highlight(IVehicle vehicle) => _researchTreeControl.Highlight(vehicle);
+
+        /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to remove highlight from. </param>
+        public void RemoveHighlight(IVehicle vehicle) => _researchTreeControl.RemoveHighlight(vehicle);
     }
 }

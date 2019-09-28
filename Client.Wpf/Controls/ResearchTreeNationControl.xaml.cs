@@ -148,5 +148,13 @@ namespace Client.Wpf.Controls
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         internal void BringIntoView(IVehicle vehicle) => GetBranchControl(vehicle)?.BringIntoView(vehicle);
+
+        /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to highlight. </param>
+        internal void Highlight(IVehicle vehicle) => GetBranchControl(vehicle)?.Highlight(vehicle);
+
+        /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to remove highlight from. </param>
+        internal void RemoveHighlight(IVehicle vehicle) => GetBranchControl(vehicle)?.RemoveHighlight(vehicle);
     }
 }

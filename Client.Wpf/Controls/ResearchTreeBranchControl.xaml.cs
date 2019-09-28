@@ -195,5 +195,21 @@ namespace Client.Wpf.Controls
             if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
                 vehicleCellControl.BringIntoView();
         }
+
+        /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to highlight. </param>
+        internal void Highlight(IVehicle vehicle)
+        {
+            if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
+                vehicleCellControl.ApplyHighlightStyle();
+        }
+
+        /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
+        /// <param name="vehicle"> The vehicle to remove highlight from. </param>
+        internal void RemoveHighlight(IVehicle vehicle)
+        {
+            if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
+                vehicleCellControl.ApplyIdleStyle();
+        }
     }
 }

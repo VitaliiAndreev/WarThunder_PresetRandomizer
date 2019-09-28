@@ -98,7 +98,9 @@
 
             <controls:PresetPanelControl
                 Grid.Row="0"
-                x:Name="_presetPanel"/>
+                x:Name="_presetPanel"
+                MouseEnter="OnPresetVehicleMouseEnter"
+                MouseLeave="OnPresetVehicleMouseLeave"/>
 
             <controls:ResearchTreeControl
                 Grid.Row="1"

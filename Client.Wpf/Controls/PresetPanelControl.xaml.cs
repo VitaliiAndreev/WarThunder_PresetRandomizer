@@ -3,6 +3,7 @@ using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
+using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
@@ -41,6 +42,43 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Event Handlers
+
+        /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for one of the vehicle cards. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseEnter(object sender, RoutedEventArgs eventArguments)
+        {
+            if (sender is ResearchTreeCellVehicleControl vehicleControl)
+                RaiseMouseEnterEvent(vehicleControl);
+        }
+
+        /// <summary> Raises the <see cref="UIElement.MouseLeaveEvent"/> for one of the vehicle cards. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnMouseLeave(object sender, RoutedEventArgs eventArguments)
+        {
+            if (sender is ResearchTreeCellVehicleControl vehicleControl)
+                RaiseMouseLeaveEvent(vehicleControl);
+        }
+
+        #endregion Methods: Event Handlers
+        #region Methods: Event Raisers
+
+        private MouseEventArgs GetMouseEventArgs(RoutedEvent routedEvent, ResearchTreeCellVehicleControl vehicleControl) =>
+            new MouseEventArgs(Mouse.PrimaryDevice, EInteger.Number.Zero) { RoutedEvent = routedEvent, Source = vehicleControl };
+
+        /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for the given vehicle control. </summary>
+        /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>
+        private void RaiseMouseEnterEvent(ResearchTreeCellVehicleControl vehicleControl) =>
+            RaiseEvent(GetMouseEventArgs(Mouse.MouseEnterEvent, vehicleControl));
+
+        /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for the given vehicle control. </summary>
+        /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>
+        private void RaiseMouseLeaveEvent(ResearchTreeCellVehicleControl vehicleControl) =>
+            RaiseEvent(GetMouseEventArgs(Mouse.MouseLeaveEvent, vehicleControl));
+
+        #endregion Methods: Event Raisers
 
         /// <summary> Applies localization to visible text on the control. </summary>
         public override void Localize()
@@ -101,6 +139,8 @@ namespace Client.Wpf.Controls
                 {
                     var vehicleControl = new ResearchTreeCellVehicleControl(vehicle) { Margin = new Thickness(0, 0, 5, 0) };
 
+                    vehicleControl.MouseEnter += OnMouseEnter;
+                    vehicleControl.MouseLeave += OnMouseLeave;
                     vehicleControl.DisplayBattleRatingFor(gameMode);
 
                     presetPanel.Children.Add(vehicleControl);
