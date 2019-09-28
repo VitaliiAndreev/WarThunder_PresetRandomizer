@@ -498,8 +498,9 @@ namespace Core.Organization.Helpers
             }
 
             var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(availableEconomicRanks));
+            var formattedBattleRating = battleRating.ToString(BattleRating.Format);
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(battleRating.ToString(BattleRating.Format)));
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(formattedBattleRating));
 
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
             var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
@@ -510,7 +511,7 @@ namespace Core.Organization.Helpers
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 
-            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount)));
+            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(nation, mainBranch, formattedBattleRating, GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount)));
 
             addPreset(EPreset.Primary);
             addPreset(EPreset.Fallback);

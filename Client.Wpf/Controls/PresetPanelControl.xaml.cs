@@ -175,8 +175,8 @@ namespace Client.Wpf.Controls
                 }
             }
 
-            var firstVehicle = presets[EPreset.Primary].First();
-            _currentPresetInfo.Text = $"{EReference.NationIcons[firstVehicle.Nation.AsEnumerationItem]}{EReference.BranchIcons[firstVehicle.Branch.AsEnumerationItem]} {firstVehicle.BattleRatingFormatted.AsDictionary()[gameMode]}";
+            var primaryPreset = presets[EPreset.Primary];
+            _currentPresetInfo.Text = $"{EReference.NationIcons[primaryPreset.Nation]}{EReference.BranchIcons[primaryPreset.MainBranch]} {primaryPreset.BattleRating}";
 
             RaiseCanExecuteChanged();
         }
