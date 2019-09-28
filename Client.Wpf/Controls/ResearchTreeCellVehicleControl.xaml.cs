@@ -2,6 +2,7 @@
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Extensions;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -76,7 +77,7 @@ namespace Client.Wpf.Controls
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         public void DisplayBattleRatingFor(EGameMode gameMode)
         {
-            _battleRating.Text = Vehicle.BattleRatingFormatted[gameMode];
+            _battleRating.Text = $"{Vehicle.BattleRatingFormatted[gameMode]} / {Vehicle.Rank.CastTo<ERank>()}";
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>

@@ -30,7 +30,7 @@
             
             <Grid Grid.Row="2" HorizontalAlignment="Right">
 
-                <TextBlock Text="00.0"
+                <TextBlock Text="--.- / -"
                     x:Name="_battleRating"
                     Style="{StaticResource VehicleCard}"/>
                 
