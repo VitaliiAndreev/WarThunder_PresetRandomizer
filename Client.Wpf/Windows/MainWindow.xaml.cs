@@ -158,10 +158,7 @@ namespace Client.Wpf.Windows
         private void OnPresetVehicleClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
-            {
                 _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
-                _researchTreeControl.Highlight(vehicleControl.Vehicle); // If tabs change, the vehicle needs to be highlighted since the mouse is over it.
-            }
         }
 
         #endregion Methods: Event Handlers

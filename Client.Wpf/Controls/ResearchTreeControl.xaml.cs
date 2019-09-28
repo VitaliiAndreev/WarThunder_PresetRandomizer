@@ -198,14 +198,8 @@ namespace Client.Wpf.Controls
         /// <summary> Get the research tree nation control appropriate to the given vehicle. </summary>
         /// <param name="vehicle"> The vehicle whose research tree nation control to look for. </param>
         /// <returns></returns>
-        private ResearchTreeNationControl GetNationControl(IVehicle vehicle)
-        {
-            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is ENation tabNation && vehicle.Nation.AsEnumerationItem == tabNation)
-                if (_nationControls.TryGetValue(tabNation, out var nationControl))
-                    return nationControl;
-
-            return null;
-        }
+        private ResearchTreeNationControl GetNationControl(IVehicle vehicle) =>
+            _nationControls.TryGetValue(vehicle.Nation.AsEnumerationItem, out var nationControl) ? nationControl : null;
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>

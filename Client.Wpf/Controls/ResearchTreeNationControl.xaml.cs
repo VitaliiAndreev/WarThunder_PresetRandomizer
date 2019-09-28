@@ -144,14 +144,8 @@ namespace Client.Wpf.Controls
         /// <summary> Get the research tree branch control appropriate to the given vehicle. </summary>
         /// <param name="vehicle"> The vehicle whose research tree branch control to look for. </param>
         /// <returns></returns>
-        private ResearchTreeBranchControl GetBranchControl(IVehicle vehicle)
-        {
-            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is EBranch tabBranch && vehicle.Branch.AsEnumerationItem == tabBranch)
-                if (_branchControls.TryGetValue(tabBranch, out var branchControl))
-                    return branchControl;
-
-            return null;
-        }
+        private ResearchTreeBranchControl GetBranchControl(IVehicle vehicle) =>
+            _branchControls.TryGetValue(vehicle.Branch.AsEnumerationItem, out var branchControl) ? branchControl : null;
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
