@@ -24,6 +24,20 @@ namespace Client.Wpf.Commands.MainWindow
 
         #endregion Constructors
 
+        /// <summary> Defines the method that determines whether the command can execute in its current state. </summary>
+        /// <param name="parameter"> Data used by the command. An <see cref="IMainWindowPresenter"/> is expected. </param>
+        /// <returns></returns>
+        public override bool CanExecute(object parameter)
+        {
+            if (!base.CanExecute(parameter))
+                return false;
+
+            if (!(parameter is IMainWindowPresenter presenter))
+                return false;
+
+            return presenter.EnabledBranches.Any();
+        }
+
         /// <summary> Defines the method to be called when the command is invoked. </summary>
         /// <param name="parameter"> Data used by the command. An <see cref="IMainWindowPresenter"/> is expected. </param>
         public override void Execute(object parameter)

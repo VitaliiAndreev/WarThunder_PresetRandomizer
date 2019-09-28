@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Controls;
+﻿using Client.Wpf.Commands.Interfaces;
+using Client.Wpf.Controls;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Extensions;
@@ -108,6 +109,7 @@ namespace Client.Wpf.Windows
 
             AdjustFleetAvailability(buttonGameMode);
             SelectGameMode(buttonGameMode);
+            RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
@@ -126,6 +128,7 @@ namespace Client.Wpf.Windows
 
                 Presenter.ExecuteCommand(ECommandName.ToggleBranch);
                 Presenter.ExecuteCommand(ECommandName.DeletePresets);
+                RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
 
@@ -175,6 +178,9 @@ namespace Client.Wpf.Windows
             _presetPanel.Localize();
             _researchTreeControl.Localize();
         }
+
+        /// <summary> Checks whether it is possible to generate presets. </summary>
+        private void RaiseGeneratePresetCommandCanExecuteChanged() => (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
 
         /// <summary> Enables or disables the fleet depending on the specified game mode. </summary>
         /// <param name="gameMode"> The game mode to adjust for. </param>
