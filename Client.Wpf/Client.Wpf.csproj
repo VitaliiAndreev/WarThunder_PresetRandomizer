@@ -227,6 +227,9 @@
     <Compile Include="Controls\ResearchTreeNationControl.xaml.cs">
       <DependentUpon>ResearchTreeNationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Strategies\DisplayBasicVehicleInformationStrategy.cs" />
+    <Compile Include="Controls\Strategies\DisplayExtendedVehicleInformationStrategy.cs" />
+    <Compile Include="Controls\Strategies\Interfaces\IDisplayVehicleInformationStrategy.cs" />
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />
