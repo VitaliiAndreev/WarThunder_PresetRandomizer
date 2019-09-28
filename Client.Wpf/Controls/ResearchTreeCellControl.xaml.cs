@@ -35,13 +35,5 @@ namespace Client.Wpf.Controls
             _stackPanel.Children.Add(vehicleControl);
             VehicleControls.Add(vehicle.GaijinId, vehicleControl);
         }
-
-        /// <summary> Displays <see cref="IVehicle.BattleRating"/> value for the given <paramref name="gameMode"/>. </summary>
-        /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        internal void DisplayBattleRatingFor(EGameMode gameMode)
-        {
-            foreach (var vehicleControl in VehicleControls.Values)
-                vehicleControl.DisplayBattleRatingFor(gameMode);
-        }
     }
 }

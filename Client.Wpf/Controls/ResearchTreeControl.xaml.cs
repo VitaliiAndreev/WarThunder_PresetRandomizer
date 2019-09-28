@@ -180,19 +180,31 @@ namespace Client.Wpf.Controls
         public void FocusResearchTree(ENation nation, EBranch branch)
         {
             if (_nationTabs.TryGetValue(nation, out var nationTab))
+            {
+                if (!nationTab.IsEnabled)
+                    return;
+
                 _tabControl.SelectedItem = nationTab;
+            }
 
             if (_nationControls.TryGetValue(nation, out var nationControl))
                 nationControl.FocusResearchTree(branch);
         }
 
-        /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
-        /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle)
+        /// <summary> Get the research tree nation control appropriate to the given vehicle. </summary>
+        /// <param name="vehicle"> The vehicle whose research tree nation control to look for. </param>
+        /// <returns></returns>
+        private ResearchTreeNationControl GetNationControl(IVehicle vehicle)
         {
             if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is ENation tabNation && vehicle.Nation.AsEnumerationItem == tabNation)
                 if (_nationControls.TryGetValue(tabNation, out var nationControl))
-                    nationControl.BringIntoView(vehicle);
+                    return nationControl;
+
+            return null;
         }
+
+        /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
+        /// <param name="vehicle"> The vehicle to bring into view. </param>
+        public void BringIntoView(IVehicle vehicle) => GetNationControl(vehicle)?.BringIntoView(vehicle);
     }
 }

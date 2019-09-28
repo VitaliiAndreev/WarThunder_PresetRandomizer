@@ -5,6 +5,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
 using Core.Organization.Objects;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -121,16 +122,31 @@ namespace Client.Wpf.Controls
         public void FocusResearchTree(EBranch branch)
         {
             if (BranchTabs.TryGetValue(branch, out var branchTab))
+            {
+                if (!branchTab.IsEnabled)
+                {
+                    _tabControl.SelectedItem = BranchTabs.Values.First(tab => tab.IsEnabled);
+                    return;
+                }
+
                 _tabControl.SelectedItem = branchTab;
+            }
+        }
+
+        /// <summary> Get the research tree branch control appropriate to the given vehicle. </summary>
+        /// <param name="vehicle"> The vehicle whose research tree branch control to look for. </param>
+        /// <returns></returns>
+        private ResearchTreeBranchControl GetBranchControl(IVehicle vehicle)
+        {
+            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is EBranch tabBranch && vehicle.Branch.AsEnumerationItem == tabBranch)
+                if (_branchControls.TryGetValue(tabBranch, out var branchControl))
+                    return branchControl;
+
+            return null;
         }
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle)
-        {
-            if (_tabControl.SelectedItem is TabItem tabItem && tabItem.Tag is EBranch tabBranch && vehicle.Branch.AsEnumerationItem == tabBranch)
-                if (_branchControls.TryGetValue(tabBranch, out var branchControl))
-                    branchControl.BringIntoView(vehicle);
-        }
+        internal void BringIntoView(IVehicle vehicle) => GetBranchControl(vehicle)?.BringIntoView(vehicle);
     }
 }

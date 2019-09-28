@@ -184,7 +184,7 @@ namespace Client.Wpf.Controls
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
         internal void DisplayBattleRatingFor(EGameMode gameMode)
         {
-            foreach (var vehicleCell in _cells.Values)
+            foreach (var vehicleCell in _cellVehicleControls.Values)
                 vehicleCell.DisplayBattleRatingFor(gameMode);
         }
 
