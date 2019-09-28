@@ -1,4 +1,4 @@
-**War Thunder Preset Randomizer** (or **WTPR**) is a work-in-progress application providing a player with means to randomly select vehicles to play, with extra features down the road. In its current iteration (Alpha) baseline randomization is implemented based on game mode and vehicle branch preferences.
+**War Thunder Preset Randomizer** (or **WTPR**) is a work-in-progress Windows application providing a player with means to randomly select vehicles to play, with extra features down the road. In its current iteration (Alpha) baseline randomization is implemented based on game mode and vehicle branch preferences.
 
 The source code contains a prototype console application that picks random vehicles within a selected game mode, nation, branch, and battle rating. There's also a utility that automates **WT Tools** (see *Requirements*) to perform a full cycle of unpacking and converting game files into JSON and CSV files - that's how [JSON File Changes](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges) and [JSON File Changes (Dev)](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient) repositories are maintained.
 
