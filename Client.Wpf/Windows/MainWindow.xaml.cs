@@ -78,6 +78,7 @@ namespace Client.Wpf.Windows
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
+            AdjustFleetAvailability(Presenter.CurrentGameMode);
             RaiseGeneratePresetCommandCanExecuteChanged();
 
             Log.Debug(ECoreLogMessage.Initialized);
