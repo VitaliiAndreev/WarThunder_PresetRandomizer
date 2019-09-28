@@ -111,6 +111,7 @@ namespace Client.Wpf.Windows
                 return;
 
             AdjustFleetAvailability(buttonGameMode);
+            Presenter.ExecuteCommand(ECommandName.ToggleBranch);
             SelectGameMode(buttonGameMode);
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
