@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Client.Wpf.Controls
 {
@@ -193,7 +194,7 @@ namespace Client.Wpf.Controls
         internal void BringIntoView(IVehicle vehicle)
         {
             if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
-                vehicleCellControl.BringIntoView();
+                Dispatcher.InvokeAsync(() => vehicleCellControl.BringIntoView(), DispatcherPriority.ApplicationIdle);
         }
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
