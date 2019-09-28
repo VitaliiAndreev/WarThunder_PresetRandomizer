@@ -131,7 +131,6 @@ namespace Client.Wpf.Windows
                     Presenter.EnabledBranches.Remove(branch);
 
                 Presenter.ExecuteCommand(ECommandName.ToggleBranch);
-                Presenter.ExecuteCommand(ECommandName.DeletePresets);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
