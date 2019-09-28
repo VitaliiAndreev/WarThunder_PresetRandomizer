@@ -28,7 +28,7 @@ namespace Client.Wpf.Commands.MainWindow
             if (!(parameter is IMainWindowPresenter presenter))
                 return false;
 
-            return presenter.GeneratedPresets.Any(preset => preset.Value.Any()); ;
+            return presenter.GeneratedPresets.Any(preset => preset.Value.Any());
         }
 
         /// <summary> Defines the method to be called when the command is invoked. </summary>

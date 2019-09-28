@@ -95,22 +95,6 @@ namespace Client.Wpf.Windows
         private void OnClosed(object sender, EventArgs eventArguments) =>
             Log.Debug(ECoreLogMessage.Closed);
 
-        /// <summary> Enables or disables the fleet depending on the specified game mode. </summary>
-        /// <param name="gameMode"> The game mode to adjust for. </param>
-        private void AdjustFleetAvailability(EGameMode gameMode)
-        {
-            var enableFleet = gameMode != EGameMode.Simulator;
-
-            if (!enableFleet)
-            {
-                Presenter.EnabledBranches.Remove(EBranch.Fleet);
-
-                _branchToggleControl.Toggle(EBranch.Fleet, false);
-            }
-
-            _branchToggleControl.Enable(EBranch.Fleet, enableFleet);
-        }
-
         /// <summary> Selects the game mode whose button is pressed. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
@@ -190,6 +174,22 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.Localize();
             _presetPanel.Localize();
             _researchTreeControl.Localize();
+        }
+
+        /// <summary> Enables or disables the fleet depending on the specified game mode. </summary>
+        /// <param name="gameMode"> The game mode to adjust for. </param>
+        private void AdjustFleetAvailability(EGameMode gameMode)
+        {
+            var enableFleet = gameMode != EGameMode.Simulator;
+
+            if (!enableFleet)
+            {
+                Presenter.EnabledBranches.Remove(EBranch.Fleet);
+
+                _branchToggleControl.Toggle(EBranch.Fleet, false);
+            }
+
+            _branchToggleControl.Enable(EBranch.Fleet, enableFleet);
         }
 
         /// <summary> Selects the specified game mode. </summary>
