@@ -96,12 +96,12 @@ namespace Client.Wpf.Controls
             .Select(keyValuePair => keyValuePair.Key)
         ;
 
-        /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
+        /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        internal void DisplayBattleRatingFor(EGameMode gameMode)
+        internal void DisplayVehicleInformation(EGameMode gameMode)
         {
             foreach (var vehicleCell in _branchControls.Values)
-                vehicleCell.DisplayBattleRatingFor(gameMode);
+                vehicleCell.DisplayVehicleInformation(gameMode);
         }
 
         /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of branch tabs. </summary>

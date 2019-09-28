@@ -209,7 +209,7 @@ namespace Client.Wpf.Windows
             if (Presenter.CurrentGameMode == gameMode && !simulateClick)
                 return;
 
-            _researchTreeControl.DisplayBattleRatingFor(gameMode);
+            _researchTreeControl.DisplayVehicleInformation(gameMode);
 
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);

@@ -169,7 +169,7 @@ namespace Client.Wpf.Controls
                     vehicleControl.MouseEnter += OnMouseEnter;
                     vehicleControl.MouseLeave += OnMouseLeave;
                     vehicleControl.MouseDown += OnClick;
-                    vehicleControl.DisplayBattleRatingFor(gameMode);
+                    vehicleControl.DisplayVehicleInformation(gameMode);
 
                     presetPanel.Children.Add(vehicleControl);
                 }

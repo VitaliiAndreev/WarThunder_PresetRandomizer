@@ -181,12 +181,12 @@ namespace Client.Wpf.Controls
             }
         }
 
-        /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
+        /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        internal void DisplayBattleRatingFor(EGameMode gameMode)
+        internal void DisplayVehicleInformation(EGameMode gameMode)
         {
             foreach (var vehicleCell in _cellVehicleControls.Values)
-                vehicleCell.DisplayBattleRatingFor(gameMode);
+                vehicleCell.DisplayVehicleInformation(gameMode);
         }
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>

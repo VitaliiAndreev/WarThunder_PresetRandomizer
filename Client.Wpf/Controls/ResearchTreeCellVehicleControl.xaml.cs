@@ -73,11 +73,11 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Handlers
 
-        /// <summary> Displays the <see cref="IVehicle.BattleRating"/> for the given <paramref name="gameMode"/>. </summary>
+        /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        public void DisplayBattleRatingFor(EGameMode gameMode)
+        public void DisplayVehicleInformation(EGameMode gameMode)
         {
-            _battleRating.Text = $"{Vehicle.BattleRatingFormatted[gameMode]} / {Vehicle.Rank.CastTo<ERank>()}";
+            _battleRating.Text = $"{EReference.BranchIcons[Vehicle.Branch.AsEnumerationItem]} {Vehicle.BattleRatingFormatted[gameMode]} / {Vehicle.Rank.CastTo<ERank>()}";
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>

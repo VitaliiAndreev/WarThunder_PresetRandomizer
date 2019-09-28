@@ -137,12 +137,12 @@ namespace Client.Wpf.Controls
         /// <returns></returns>
         public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => _nationControls.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.GetEmptyBranches());
 
-        /// <summary> Displays <see cref="IVehicle.BattleRating"/> values for the given <paramref name="gameMode"/>. </summary>
+        /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
-        public void DisplayBattleRatingFor(EGameMode gameMode)
+        public void DisplayVehicleInformation(EGameMode gameMode)
         {
             foreach (var vehicleCell in _nationControls.Values)
-                vehicleCell.DisplayBattleRatingFor(gameMode);
+                vehicleCell.DisplayVehicleInformation(gameMode);
         }
 
         /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs. </summary>
