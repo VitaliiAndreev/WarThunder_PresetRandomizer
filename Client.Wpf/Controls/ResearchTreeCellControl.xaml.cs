@@ -1,5 +1,4 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects.Interfaces;
+﻿using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
