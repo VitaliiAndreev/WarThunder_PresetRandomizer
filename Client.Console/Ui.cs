@@ -4,6 +4,7 @@ using Client.Shared.Enumerations;
 using Core.Csv.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
+using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
@@ -142,7 +143,12 @@ namespace Client.Console
                 return ParseSpecification(TakeSpecificationInput());
             }
 
-            return new Specification(gamemode, new Dictionary<ENation, int> { { nation, 10 } }, new List<EBranch> { branch }, new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) });
+            return new Specification
+            (
+                gamemode,
+                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, new List<EBranch> { branch }, EInteger.Number.Ten) } },
+                new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) }
+            );
         }
 
         /// <summary> Parses a given string into a corresponding military branch enumeration value. </summary>

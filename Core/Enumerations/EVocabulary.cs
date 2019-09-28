@@ -20,8 +20,10 @@
 
         protected const string _A = "A";
         protected const string _a = "a";
+        protected const string _able = _a + "ble";
         protected const string _aborted = _a + "bort" + _ed;
         protected const string _About = _A + "bout";
+        protected const string _ad = _a + _d;
         protected const string _after = _a + "ft" + _er;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;
@@ -43,6 +45,8 @@
         protected const string _Assigned = _As + _sign + _ed;
         protected const string _at = _a + _t;
         protected const string _attributes = _at + _tribute + _s;
+        protected const string _avail = _a + "vail";
+        protected const string _available = _avail + _able;
 
         #endregion A
         #region B
@@ -57,6 +61,7 @@
         protected const string _BR = _B + "R";
         protected const string _Branch = _B + _ranch;
         protected const string _branch = _b + _ranch;
+        protected const string _branches = _branch + _es;
         protected const string _by = _b + "y";
 
         #endregion B
@@ -143,6 +148,7 @@
         protected const string _Dont = "D" + _on + ECharacterString.Apostrophe + _t;
         protected const string _dont = _d + _on + ECharacterString.Apostrophe + _t;
         protected const string _down = _d + _own;
+        protected const string _Dummy = "Dum" + _my;
 
         #endregion D
         #region E
@@ -150,7 +156,8 @@
         private const string _e = "e";
         private const string _ed = _e + _d;
         private const string _er = _e + "r";
-        private const string _ess = _e + _s + _s;
+        private const string _es = _e + _s;
+        private const string _ess = _es + _s;
         private const string _ett = _e + _t + _t;
 
         protected const string _elect = _e + "lect";
@@ -158,7 +165,7 @@
         protected const string _empty = _e + "mpty";
         protected const string _Emptying = "Empty" + _ing;
         protected const string _Error = "Error";
-        protected const string _error = _e + "rror";
+        protected const string _error = _e + "rr" + _or;
         protected const string _established = _e + "stablish" + _ed;
         protected const string _Exception = "Except" + _ion;
         protected const string _execution = _e + "xecut" + _ion;
@@ -289,6 +296,7 @@
         protected const string _mode = "mo" + _d + _e;
         protected const string _Must = "Mu" + _s + _t;
         protected const string _must = "mu" + _s + _t;
+        protected const string _my = "my";
 
         #endregion M
         #region N
@@ -317,7 +325,8 @@
         protected const string _of = "of";
         protected const string _on = "on";
         protected const string _one = _on + _e;
-        protected const string _order = "order";
+        protected const string _or = "or";
+        protected const string _order = _or + _d + _er;
         protected const string _ORM = "ORM";
         protected const string _out = "out";
         protected const string _Output = "Output";
@@ -331,11 +340,13 @@
 
         private const string _pplication = "pplication";
         private const string _Pre = "Pre";
+        private const string _pre = "pre";
         private const string _pro = "pro";
 
         protected const string _pack = "pack";
+        protected const string _Par = "Par";
         protected const string _par = "par";
-        protected const string _Parser = "Pars" + _er;
+        protected const string _Parser = _Par + _s + _er;
         protected const string _parsing = _par + _s + _ing;
         protected const string _path = "path";
         protected const string _per = "per";
@@ -344,6 +355,7 @@
         protected const string _port = "port";
         protected const string _prepared = "prepare" + _d;
         protected const string _Preparing = _Pre + _par + _ing;
+        protected const string _preset = _pre + _set;
         protected const string _Press = _Pre + _s + _s;
         protected const string _proper = _pro + _per;
         protected const string _properly = _proper + _ly;
@@ -363,11 +375,14 @@
         private const string _re = "r" + _e;
 
         protected const string _ranch = "ranch";
-        protected const string _ranks = "ranks";
-        protected const string _rating = "rat" + _ing;
+        protected const string _rank = "rank";
+        protected const string _ranks = _rank + _s;
+        protected const string _rat = "rat";
+        protected const string _rating = _rat + _ing;
+        protected const string _ratings = _rating + _s;
         protected const string _raw = "raw";
-        protected const string _Read = "Read";
-        protected const string _read = _re + "ad";
+        protected const string _Read = _Re + _ad;
+        protected const string _read = _re + _ad;
         protected const string _Reader = _Read + _er;
         protected const string _reader = _read + _er;
         protected const string _Reading = _Read + _ing;
@@ -403,8 +418,9 @@
         protected const string _Serializing = _S + "erializ" + _ing;
         protected const string _Session = _S + _ess + _ion;
         protected const string _session = _s + _ess + _ion;
+        protected const string _set = _s + _e + _t;
         protected const string _Settings = _S + _ett + _ing + _s;
-        protected const string _settings = _s + _ett + _ing + _s;
+        protected const string _settings = _set + _t + _ing + _s;
         protected const string _Several = _S + "everal";
         protected const string _Showing = _S + _how + _ing;
         protected const string _Shown = _S + _how + _n;

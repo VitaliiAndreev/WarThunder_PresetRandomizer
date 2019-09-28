@@ -6,6 +6,7 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
@@ -446,24 +447,61 @@ namespace Core.Organization.Helpers
         {
             var gameMode = specification.GameMode;
 
-            var nationCrewSlotCount = _randomizer.GetRandom(specification.NationCrewSlots);
-            var nation = nationCrewSlotCount.Key;
-            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.AsEnumerationItem == nation);
-            var crewSlotAmount = nationCrewSlotCount.Value;
+            var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Any()));
+            var crewSlotAmount = nationSpecification.CrewSlots;
+            var nation = nationSpecification.Nation;
 
-            var mainBranch = _randomizer.GetRandom(specification.Branches.Where(branch => vehiclesFromNation.Any(vehicle => vehicle.Branch.AsEnumerationItem == branch)));
-            var presetComposition = GetPresetComposition(gameMode, specification.Branches, crewSlotAmount, mainBranch);
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
+
+            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.AsEnumerationItem == nation);
+
+            if (vehiclesFromNation.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.DummyNationSelected);
+                return new Dictionary<EPreset, Preset>();
+            }
+
+            var availableBranches = nationSpecification.Branches.Where(branch => vehiclesFromNation.Any(vehicle => vehicle.Branch.AsEnumerationItem == branch));
+
+            if (availableBranches.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBranches);
+                return new Dictionary<EPreset, Preset>();
+            }
+
+            var mainBranch = _randomizer.GetRandom(availableBranches);
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+
+            var presetComposition = GetPresetComposition(gameMode, availableBranches, crewSlotAmount, mainBranch);
             var presets = new Dictionary<EPreset, Preset>();
 
             var filteredVehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem.IsIn(presetComposition.Keys));
-            var availableEconomicRanks = filteredVehicles
+
+            if (filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForPreset);
+                return new Dictionary<EPreset, Preset>();
+            }
+
+            var economicRanksWithVehicles = filteredVehicles
                 .Where(vehicle => vehicle.Branch.AsEnumerationItem == mainBranch)
                 .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
                 .Distinct()
             ;
+            var availableEconomicRanks = specification.EconomicRanks.Intersect(economicRanksWithVehicles);
 
-            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(specification.EconomicRanks.Intersect(availableEconomicRanks)));
+            if (availableEconomicRanks.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings);
+                return new Dictionary<EPreset, Preset>();
+            }
+
+            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(availableEconomicRanks));
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(battleRating.ToString(BattleRating.Format)));
+
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
             var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
             (

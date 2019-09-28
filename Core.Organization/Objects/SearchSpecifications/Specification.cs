@@ -9,23 +9,19 @@ namespace Core.Organization.Objects.SearchSpecifications
     {
         /// <summary> The game mode. </summary>
         public EGameMode GameMode { get; }
-        /// <summary> Allowed nations with amounts of crew slots for each. </summary>
-        public IDictionary<ENation, int> NationCrewSlots { get; }
-        /// <summary> Allowed branches. </summary>
-        public IEnumerable<EBranch> Branches { get; }
+        /// <summary> The nation specification. </summary>
+        public IDictionary<ENation, NationSpecification> NationSpecifications { get; }
         /// <summary> Allowed values of <see cref="IVehicle.EconomicRank"/>. </summary>
         public IEnumerable<int> EconomicRanks { get; }
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
-        /// <param name="nationCrewSlots"> Allowed nations with amounts of crew slots for each. </param>
-        /// <param name="branches"> Allowed branches. </param>
+        /// <param name="nationSpecifications"> Nation specifications. </param>
         /// <param name="economicRanks"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
-        public Specification(EGameMode gameMode, IDictionary<ENation, int> nationCrewSlots, IEnumerable<EBranch> branches, IEnumerable<int> economicRanks)
+        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<int> economicRanks)
         {
             GameMode = gameMode;
-            NationCrewSlots = nationCrewSlots;
-            Branches = branches;
+            NationSpecifications = nationSpecifications;
             EconomicRanks = economicRanks;
         }
     }

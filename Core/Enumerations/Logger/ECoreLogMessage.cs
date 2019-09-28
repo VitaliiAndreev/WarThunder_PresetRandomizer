@@ -217,6 +217,11 @@
         /// </summary>
         public static readonly string DoesntExist = $"\"{{0}}\" {_doesnt} {_exist}.";
         public static readonly string NothingToSelectFrom = $"{_Nothing} {_to} {_select} {_from}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: objest(s). </para>
+        /// </summary>
+        public static readonly string Selected = $"\"{{0}}\" {_selected}.";
         public static readonly string ShuttingDown = $"{_Shutting} {_down}.";
 
         #endregion General
