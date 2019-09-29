@@ -188,6 +188,32 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Adjusting Branch Toggle Availability
+
+        /// <summary>
+        /// Enables or disables the branch toggle for the given <paramref name="branch"/>.
+        /// Disabling the toggle also disables the associated branch, but enabling the toggle doesn't enable the branch.
+        /// </summary>
+        /// <param name="branch"> The branch whose toggle to adjust. </param>
+        /// <param name="branch"> Whether to enable the toggle or not. </param>
+        private void AdjustBranchToggleAvailability(EBranch branch, bool enable)
+        {
+            if (!enable)
+            {
+                Presenter.EnabledBranches.Remove(branch);
+
+                _branchToggleControl.Toggle(branch, false);
+            }
+            _branchToggleControl.Enable(branch, enable);
+
+            Presenter.ExecuteCommand(ECommandName.ToggleBranch);
+        }
+
+        /// <summary> Enables or disables the fleet toggle depending on the specified game mode. </summary>
+        /// <param name="gameMode"> The game mode to adjust for. </param>
+        private void AdjustFleetAvailability(EGameMode gameMode) => AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator);
+
+        #endregion Methods: Adjusting Branch Toggle Availability
 
         /// <summary> Applies localization to visible text in the window. </summary>
         public override void Localize()
@@ -206,29 +232,6 @@ namespace Client.Wpf.Windows
 
         /// <summary> Checks whether it is possible to generate presets. </summary>
         private void RaiseGeneratePresetCommandCanExecuteChanged() => (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
-
-        /// <summary> Enables or disables the branch toggle for the given <paramref name="branch"/>. </summary>
-        /// <param name="branch"> The branch whose toggle to adjust. </param>
-        /// <param name="branch"> Whether to enable the toggle or not. </param>
-        private void AdjustBranchToggleAvailability(EBranch branch, bool enable)
-        {
-            if (!enable)
-            {
-                Presenter.EnabledBranches.Remove(branch);
-
-                _branchToggleControl.Toggle(branch, false);
-            }
-            _branchToggleControl.Enable(branch, enable);
-
-            Presenter.ExecuteCommand(ECommandName.ToggleBranch);
-        }
-
-        /// <summary>
-        /// Enables or disables the fleet toggle depending on the specified game mode.
-        /// Disabling the toggle also disables the fleet, but enabling the toggle doesn't enable the fleet.
-        /// </summary>
-        /// <param name="gameMode"> The game mode to adjust for. </param>
-        private void AdjustFleetAvailability(EGameMode gameMode) => AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator);
 
         /// <summary> Selects the specified game mode. </summary>
         /// <param name="gameMode"> The game mode to select. </param>

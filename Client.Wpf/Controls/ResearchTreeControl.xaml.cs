@@ -3,7 +3,6 @@ using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
-using NHibernate.Mapping;
 using NHibernate.Util;
 using System.Collections.Generic;
 using System.Linq;
