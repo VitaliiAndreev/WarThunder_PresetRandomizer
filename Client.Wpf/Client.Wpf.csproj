@@ -194,6 +194,7 @@
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
+    <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\BranchToggleControl.xaml.cs">
       <DependentUpon>BranchToggleControl.xaml</DependentUpon>
     </Compile>
