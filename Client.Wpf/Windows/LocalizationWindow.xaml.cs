@@ -6,7 +6,6 @@ using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.Enumerations.Logger;
 using Core.Localization.Enumerations;
-using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Diagnostics;
 using System.Windows;

@@ -11,7 +11,6 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Organization.Enumerations;
-using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -34,7 +33,7 @@ namespace Client.Wpf.Windows
         IPresenter IWindowWithPresenter.Presenter => Presenter;
 
         #endregion Properties
-        #region Constructor
+        #region Constructors
 
         /// <summary> Creates a new main window. </summary>
         /// <param name="presenter"> The presenter to attach. </param>
@@ -84,7 +83,7 @@ namespace Client.Wpf.Windows
             Log.Debug(ECoreLogMessage.Initialized);
         }
 
-        #endregion Constructor
+        #endregion Constructors
         #region Methods: Event Handlers
 
         /// <summary> Logs showing of the window. </summary>

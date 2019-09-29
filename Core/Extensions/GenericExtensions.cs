@@ -7,7 +7,7 @@ namespace Core.Extensions
     public static class GenericExtensions
     {
         /// <summary> Fluently determines whether a collection contains the specified object. </summary>
-        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <typeparam name="T"> The object type. </typeparam>
         /// <param name="source"> The source object. </param>
         /// <param name="collection"> A collection to check. </param>
         /// <returns></returns>

@@ -24,7 +24,7 @@ namespace Client.Wpf.Enumerations.Logger
         /// <summary> See <see cref="Windows.SettingsWindow"/>. </summary>
         public static string SettingsWindow = $"{EWord.Settings} {EWord.Window}";
 
-        /// <summary> See <see cref="WindowFactory"/>. </summary>
+        /// <summary> See <see cref="Helpers.WindowFactory"/>. </summary>
         public static string WindowFactory = $"{EWord.Window} {EWord.Factory}";
 
         /// <summary> See <see cref="Wpf.WpfClient"/>. </summary>

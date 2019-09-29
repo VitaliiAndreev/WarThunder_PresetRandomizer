@@ -2,7 +2,6 @@
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
-using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
 
 namespace Client.Wpf.Helpers

@@ -3,7 +3,6 @@ using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.WarThunderExtractionToolsIntegration;
 using System.Windows.Controls;
 using System.Windows.Input;
 

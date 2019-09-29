@@ -1,13 +1,15 @@
-﻿<base:ToggleButtonGroupControl x:TypeArguments="enumerations:EBranch"
-                               x:Class="Client.Wpf.Controls.BranchToggleControl"
-                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                               xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
-                               xmlns:enumerations="clr-namespace:Core.DataBase.WarThunder.Enumerations;assembly=Core.DataBase.WarThunder"
-                               mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800">
+﻿<base:ToggleButtonGroupControl
+    x:TypeArguments="enumerations:EBranch"
+    x:Class="Client.Wpf.Controls.BranchToggleControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+    xmlns:enumerations="clr-namespace:Core.DataBase.WarThunder.Enumerations;assembly=Core.DataBase.WarThunder"
+    mc:Ignorable="d" 
+    d:DesignHeight="450"
+    d:DesignWidth="800">
     <Grid x:Name="_buttonGrid">
 
         <Grid.ColumnDefinitions>

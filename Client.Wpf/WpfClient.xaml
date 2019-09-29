@@ -265,7 +265,6 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="FontSize" Value="26"/>
-            <Setter Property="Height" Value="30"/>
         </Style>
         
         <!-- t:WrapPanel -->

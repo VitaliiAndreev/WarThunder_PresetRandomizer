@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core.WarThunderExtractionToolsIntegration;
 
 namespace Client.Wpf.Commands.MainWindow
 {

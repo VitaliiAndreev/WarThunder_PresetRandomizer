@@ -1,7 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
 using Core.Localization.Helpers;
-using Core.WarThunderExtractionToolsIntegration;
 
 namespace Client.Wpf.Commands.LocalizationWindow
 {

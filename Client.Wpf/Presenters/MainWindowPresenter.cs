@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
-using Core.WarThunderExtractionToolsIntegration;
 using System.Collections.Generic;
 
 namespace Client.Wpf.Presenters
