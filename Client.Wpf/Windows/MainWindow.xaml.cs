@@ -24,6 +24,15 @@ namespace Client.Wpf.Windows
     /// <summary> Interaction logic for MainWindow.xaml. </summary>
     public partial class MainWindow : BaseWindow, IMainWindow
     {
+        #region Fields
+
+        /// <summary> A collection of boxed instances of <see cref="IList{T}"/> accessed by their generic types. </summary>
+        private readonly IDictionary<Type, object> _presenterToggleLists;
+
+        /// <summary> A collection of command names accesed by generic types appropriate to them. </summary>
+        private readonly IDictionary<Type, ECommandName> _toggleCommands;
+
+        #endregion Fields
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
@@ -42,6 +51,15 @@ namespace Client.Wpf.Windows
         {
             Presenter = presenter;
             Presenter.SetParentWindow(this);
+
+            _presenterToggleLists = new Dictionary<Type, object>
+            {
+                { typeof(EBranch), Presenter.EnabledBranches },
+            };
+            _toggleCommands = new Dictionary<Type, ECommandName>
+            {
+                { typeof(EBranch), ECommandName.ToggleBranch },
+            };
 
             InitializeComponent();
             Localize();
@@ -115,23 +133,32 @@ namespace Client.Wpf.Windows
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
+        /// <summary> Updates a collection and executes a command associated with with the <typeparamref name="T"/> <see cref="FrameworkElement.Tag"/> of the <paramref name="toggleButton"/> according to its <see cref="ToggleButton.IsChecked"/> status. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        private void OnToggleButtonGroupControlClick<T>(ToggleButton toggleButton)
+        {
+            var keyType = typeof(T);
+            var buttonTag = toggleButton.Tag.CastTo<T>();
+
+            if (!keyType.IsKeyIn(_presenterToggleLists) || !keyType.IsKeyIn(_toggleCommands))
+                return;
+
+            if (toggleButton.IsChecked.Value)
+                _presenterToggleLists[keyType].CastTo<IList<T>>().Add(buttonTag);
+            else
+                _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(buttonTag);
+
+            Presenter.ExecuteCommand(_toggleCommands[keyType]);
+            RaiseGeneratePresetCommandCanExecuteChanged();
+        }
+
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnBranchToggleControlClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
-            {
-                var branch = toggleButton.Tag.CastTo<EBranch>();
-
-                if (toggleButton.IsChecked.Value)
-                    Presenter.EnabledBranches.Add(branch);
-                else
-                    Presenter.EnabledBranches.Remove(branch);
-
-                Presenter.ExecuteCommand(ECommandName.ToggleBranch);
-                RaiseGeneratePresetCommandCanExecuteChanged();
-            }
+                OnToggleButtonGroupControlClick<EBranch>(toggleButton);
         }
 
         /// <summary> Applies the highlighting style to the vehicle's conterpart in the research tree. </summary>
