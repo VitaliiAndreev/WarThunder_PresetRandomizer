@@ -3,13 +3,15 @@ using System.Linq;
 
 namespace Core.Extensions
 {
-    /// <summary> Methods extending a generic class. </summary>
+    /// <summary> Methods extending a generics. </summary>
     public static class GenericExtensions
     {
-        /// <summary> Fluently determines whether a collection contains the specified object. </summary>
+        #region Fluency
+
+        /// <summary> Fluently determines whether the given collection contains the object. </summary>
         /// <typeparam name="T"> The object type. </typeparam>
         /// <param name="source"> The source object. </param>
-        /// <param name="collection"> A collection to check. </param>
+        /// <param name="collection"> The collection to check. </param>
         /// <returns></returns>
         public static bool IsIn<T>(this T source, IEnumerable<T> collection) =>
             collection.Contains(source);
@@ -22,5 +24,7 @@ namespace Core.Extensions
         /// <returns></returns>
         public static bool IsKeyIn<T, U>(this T source, IDictionary<T, U> collection) =>
             collection.ContainsKey(source);
+
+        #endregion Fluency
     }
 }

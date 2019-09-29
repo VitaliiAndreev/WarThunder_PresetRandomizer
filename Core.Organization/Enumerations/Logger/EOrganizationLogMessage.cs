@@ -34,6 +34,12 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string ResearchTreesInitialized = ObjectInitialized.FormatFluently($"{_Research} {_trees}");
 
         public static readonly string DummyNationSelected = $"{_Dummy} {_nation} {_selected}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: nation collection. </para>
+        /// <para> 2: branch collection. </para>
+        /// </summary>
+        public static readonly string NationsHaveNoBranch = $"\"{{0}}\" {_dont}/{_doesnt} {_have} \"{{0}}\".";
         public static readonly string NoVehiclesAvailableForSelectedBranches = $"{_No} {_vehicles} {_available} {_for} {_selected} {_branches}.";
         public static readonly string NoVehiclesAvailableForPreset = $"{_No} {_vehicles} {_available} {_for} {_preset}.";
         public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_No} {_vehicles} {_available} {_selected} {_battle} {_ratings}.";

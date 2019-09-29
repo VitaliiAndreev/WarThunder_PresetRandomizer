@@ -451,6 +451,13 @@ namespace Core.Organization.Helpers
             LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
 
             var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch)));
+
+            if (nationSpecification is null)
+            {
+                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.FormatFluently(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(Settings.Separator), mainBranch));
+                return new Dictionary<EPreset, Preset>();
+            }
+
             var crewSlotAmount = nationSpecification.CrewSlots;
             var nation = nationSpecification.Nation;
 
