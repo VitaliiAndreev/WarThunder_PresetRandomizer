@@ -22,6 +22,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Branches enabled for preset generation. </summary>
         IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Nations enabled for preset generation. </summary>
+        IList<ENation> EnabledNations { get; }
+
         /// <summary> Generated presets. </summary>
         IDictionary<EPreset, Preset> GeneratedPresets { get; }
 
@@ -33,6 +36,10 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
         IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches();
+
+        /// <summary> Gets all valid branches. </summary>
+        /// <returns></returns>
+        IEnumerable<EBranch> GetValidBraches();
 
         /// <summary> Resets preset control to their default states. </summary>
         void ResetPresetControls();

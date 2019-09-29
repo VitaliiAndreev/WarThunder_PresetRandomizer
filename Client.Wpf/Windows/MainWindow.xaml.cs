@@ -7,12 +7,15 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Organization.Enumerations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -55,10 +58,12 @@ namespace Client.Wpf.Windows
             _presenterToggleLists = new Dictionary<Type, object>
             {
                 { typeof(EBranch), Presenter.EnabledBranches },
+                { typeof(ENation), Presenter.EnabledNations },
             };
             _toggleCommands = new Dictionary<Type, ECommandName>
             {
                 { typeof(EBranch), ECommandName.ToggleBranch },
+                { typeof(ENation), ECommandName.ToggleNation },
             };
 
             InitializeComponent();
@@ -92,10 +97,11 @@ namespace Client.Wpf.Windows
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+            _nationToggleControl.Toggle(Presenter.EnabledNations, true);
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
-            AdjustFleetAvailability(Presenter.CurrentGameMode);
+            AdjustBranchTogglesAvailability();
             RaiseGeneratePresetCommandCanExecuteChanged();
 
             Log.Debug(ECoreLogMessage.Initialized);
@@ -148,6 +154,10 @@ namespace Client.Wpf.Windows
                 _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(buttonTag);
 
             Presenter.ExecuteCommand(_toggleCommands[keyType]);
+
+            if (buttonTag is ENation)
+                AdjustBranchTogglesAvailability();
+
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
@@ -158,6 +168,17 @@ namespace Client.Wpf.Windows
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
                 OnToggleButtonGroupControlClick<EBranch>(toggleButton);
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledNations"/> according to the action. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnNationToggleControlClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ToggleButton toggleButton)
+            {
+                OnToggleButtonGroupControlClick<ENation>(toggleButton);
+            }
         }
 
         /// <summary> Applies the highlighting style to the vehicle's conterpart in the research tree. </summary>
@@ -190,6 +211,23 @@ namespace Client.Wpf.Windows
         #endregion Methods: Event Handlers
         #region Methods: Adjusting Branch Toggle Availability
 
+        /// <summary> Enables or disables branch toggles depending on whether any of <see cref="IMainWindowPresenter.EnabledNations"/> have associated branches implemented.</summary>
+        private void AdjustBranchTogglesAvailability()
+        {
+            var allBranches = Enum.GetValues(typeof(EBranch)).OfType<EBranch>().Where(branch => branch != EBranch.None);
+            var validBranches = Presenter.GetValidBraches();
+
+            foreach (var branch in allBranches)
+            {
+                var enabled = branch.IsIn(validBranches);
+
+                if (branch == EBranch.Fleet)
+                    AdjustFleetAvailability(Presenter.CurrentGameMode, validBranches);
+                else
+                    AdjustBranchToggleAvailability(branch, enabled);
+            }
+        }
+
         /// <summary>
         /// Enables or disables the branch toggle for the given <paramref name="branch"/>.
         /// Disabling the toggle also disables the associated branch, but enabling the toggle doesn't enable the branch.
@@ -211,7 +249,9 @@ namespace Client.Wpf.Windows
 
         /// <summary> Enables or disables the fleet toggle depending on the specified game mode. </summary>
         /// <param name="gameMode"> The game mode to adjust for. </param>
-        private void AdjustFleetAvailability(EGameMode gameMode) => AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator);
+        /// <param name="validBranches"> A collection of valid branches. </param>
+        private void AdjustFleetAvailability(EGameMode gameMode, IEnumerable<EBranch> validBranches = null) =>
+            AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator && EBranch.Fleet.IsIn(validBranches is null ? Presenter.GetValidBraches() : validBranches));
 
         #endregion Methods: Adjusting Branch Toggle Availability
 
@@ -226,6 +266,7 @@ namespace Client.Wpf.Windows
             _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
             _gameModeSelectionControl.Localize();
+            _nationToggleControl.Localize();
             _presetPanel.Localize();
             _researchTreeControl.Localize();
         }

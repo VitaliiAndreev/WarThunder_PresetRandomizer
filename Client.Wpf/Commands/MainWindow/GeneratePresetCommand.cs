@@ -36,7 +36,7 @@ namespace Client.Wpf.Commands.MainWindow
             if (!(parameter is IMainWindowPresenter presenter))
                 return false;
 
-            return presenter.EnabledBranches.Any();
+            return presenter.EnabledBranches.Any() && presenter.EnabledNations.Any();
         }
 
         /// <summary> Defines the method to be called when the command is invoked. </summary>
@@ -51,7 +51,7 @@ namespace Client.Wpf.Commands.MainWindow
 
                 var gameMode = presenter.CurrentGameMode;
                 var economicRanks = Enumerable.Range(EInteger.Number.Zero, EReference.TotalEconomicRanks);
-                var nations = Enum.GetValues(typeof(ENation)).OfType<ENation>().Where(nation => nation != ENation.None);
+                var nations = presenter.EnabledNations;
                 var emptyBranches = presenter.GetEmptyBranches();
                 var nationSpecifications = nations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
                 var specification = new Specification(gameMode, nationSpecifications, presenter.EnabledBranches, economicRanks);

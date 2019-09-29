@@ -127,6 +127,12 @@
             </Style.Triggers>
         </Style>
 
+        <!-- t:NationToggleControl -->
+
+        <Style TargetType="controls:NationToggleControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+
         <!-- t:NLogListViewControl -->
 
         <Style TargetType="controls:NLogListViewControl">
@@ -265,6 +271,12 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="FontSize" Value="26"/>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="NationToggle" BasedOn="{StaticResource BranchToggle}">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="17"/>
         </Style>
         
         <!-- t:WrapPanel -->

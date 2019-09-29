@@ -47,6 +47,10 @@
                     x:Name="_branchToggleControl"
                     Click="OnBranchToggleControlClick"/>
 
+                <controls:NationToggleControl
+                    x:Name="_nationToggleControl"
+                    Click="OnNationToggleControlClick"/>
+
             </StackPanel>
 
             <Grid

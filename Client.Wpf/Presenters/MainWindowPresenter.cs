@@ -3,9 +3,12 @@ using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Extensions;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Client.Wpf.Presenters
 {
@@ -23,6 +26,9 @@ namespace Client.Wpf.Presenters
         /// <summary> Branches enabled for preset generation. </summary>
         public IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Nations enabled for preset generation. </summary>
+        public IList<ENation> EnabledNations { get; }
+
         /// <summary> Generated presets. </summary>
         public IDictionary<EPreset, Preset> GeneratedPresets { get; }
 
@@ -39,11 +45,27 @@ namespace Client.Wpf.Presenters
         {
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
+            EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
             GeneratedPresets = new Dictionary<EPreset, Preset>();
             CurrentPreset = EPreset.Primary;
         }
 
         #endregion Constructors
+
+        /// <summary> Gets all valid branches. </summary>
+        /// <returns></returns>
+        public IEnumerable<EBranch> GetValidBraches()
+        {
+            var allBranches = Enum.GetValues(typeof(EBranch)).OfType<EBranch>().Where(branch => branch != EBranch.None);
+            var allEmptyBranches = GetEmptyBranches();
+            var validBranches = new HashSet<EBranch>();
+
+            foreach (var nation in EnabledNations)
+                if (allEmptyBranches.TryGetValue(nation, out var emptyBranches))
+                    validBranches.AddRange(allBranches.Except(emptyBranches));
+
+            return validBranches;
+        }
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>

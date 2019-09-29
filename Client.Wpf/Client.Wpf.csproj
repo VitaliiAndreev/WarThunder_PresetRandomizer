@@ -138,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\NationToggleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\NLogListViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +195,7 @@
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleNationCommand.cs" />
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
@@ -209,6 +214,9 @@
     </Compile>
     <Compile Include="Controls\GameModeSelectionControl.xaml.cs">
       <DependentUpon>GameModeSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NationToggleControl.xaml.cs">
+      <DependentUpon>NationToggleControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PresetPanelControl.xaml.cs">
       <DependentUpon>PresetPanelControl.xaml</DependentUpon>

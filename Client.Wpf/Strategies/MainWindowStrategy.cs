@@ -16,6 +16,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.GeneratePreset, new GeneratePresetCommand());
             _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
             _commands.Add(ECommandName.ToggleBranch, new ToggleBranchCommand());
+            _commands.Add(ECommandName.ToggleNation, new ToggleNationCommand());
             _commands.Add(ECommandName.SwapPresets, new SwapPresetsCommand());
             _commands.Add(ECommandName.DeletePresets, new DeletePresetsCommand());
             _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());

@@ -1,0 +1,60 @@
+﻿<base:ToggleButtonGroupControl
+    x:TypeArguments="enumerations:ENation"
+    x:Class="Client.Wpf.Controls.NationToggleControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+    xmlns:enumerations="clr-namespace:Core.DataBase.WarThunder.Enumerations;assembly=Core.DataBase.WarThunder"
+    mc:Ignorable="d" 
+    d:DesignHeight="450"
+    d:DesignWidth="800">
+    <Grid x:Name="_buttonGrid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ToggleButton Content ="▃"
+                    Grid.Column="0"
+                    x:Name="_usaButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▀"
+                    Grid.Column="1"
+                    x:Name="_germanyButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▂"
+                    Grid.Column="2"
+                    x:Name="_ussrButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▄"
+                    Grid.Column="3"
+                    x:Name="_commonwealthButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▅"
+                    Grid.Column="4"
+                    x:Name="_japanButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="␗"
+                    Grid.Column="5"
+                    x:Name="_chinaButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▄"
+                    Grid.Column="6"
+                    x:Name="_italyButton"
+                    Style="{StaticResource NationToggle}"/>
+        <ToggleButton Content ="▄"
+                    Grid.Column="7"
+                    x:Name="_franceButton"
+                    Style="{StaticResource NationToggle}"/>
+
+    </Grid>
+</base:ToggleButtonGroupControl>

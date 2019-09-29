@@ -42,6 +42,17 @@ namespace Client.Wpf
             ;
         }
 
+        [RequiredSetting]
+        public static string EnabledNations
+        {
+            get => EnabledNationsCollection.StringJoin(Separator);
+            set => EnabledNationsCollection = value
+                .Split(Separator)
+                .Select(nationString => nationString.TryParseEnumeration<ENation>(out var nation) ? nation : ENation.None)
+                .Where(nation => nation != ENation.None).ToList()
+            ;
+        }
+
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
@@ -59,6 +70,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledBranches"/> instead. </para>
         /// </summary>
         public static IEnumerable<EBranch> EnabledBranchesCollection { get; private set; }
+
+        /// <summary>
+        /// The currently enabled nations.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledNations"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<ENation> EnabledNationsCollection { get; private set; }
 
         #endregion Properties
     }
