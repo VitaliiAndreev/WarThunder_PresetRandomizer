@@ -128,7 +128,6 @@ namespace Client.Wpf.Windows
                 return;
 
             AdjustFleetAvailability(buttonGameMode);
-            Presenter.ExecuteCommand(ECommandName.ToggleBranch);
             SelectGameMode(buttonGameMode);
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
@@ -208,21 +207,28 @@ namespace Client.Wpf.Windows
         /// <summary> Checks whether it is possible to generate presets. </summary>
         private void RaiseGeneratePresetCommandCanExecuteChanged() => (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
 
-        /// <summary> Enables or disables the fleet depending on the specified game mode. </summary>
-        /// <param name="gameMode"> The game mode to adjust for. </param>
-        private void AdjustFleetAvailability(EGameMode gameMode)
+        /// <summary> Enables or disables the branch toggle for the given <paramref name="branch"/>. </summary>
+        /// <param name="branch"> The branch whose toggle to adjust. </param>
+        /// <param name="branch"> Whether to enable the toggle or not. </param>
+        private void AdjustBranchToggleAvailability(EBranch branch, bool enable)
         {
-            var enableFleet = gameMode != EGameMode.Simulator;
-
-            if (!enableFleet)
+            if (!enable)
             {
-                Presenter.EnabledBranches.Remove(EBranch.Fleet);
+                Presenter.EnabledBranches.Remove(branch);
 
-                _branchToggleControl.Toggle(EBranch.Fleet, false);
+                _branchToggleControl.Toggle(branch, false);
             }
+            _branchToggleControl.Enable(branch, enable);
 
-            _branchToggleControl.Enable(EBranch.Fleet, enableFleet);
+            Presenter.ExecuteCommand(ECommandName.ToggleBranch);
         }
+
+        /// <summary>
+        /// Enables or disables the fleet toggle depending on the specified game mode.
+        /// Disabling the toggle also disables the fleet, but enabling the toggle doesn't enable the fleet.
+        /// </summary>
+        /// <param name="gameMode"> The game mode to adjust for. </param>
+        private void AdjustFleetAvailability(EGameMode gameMode) => AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator);
 
         /// <summary> Selects the specified game mode. </summary>
         /// <param name="gameMode"> The game mode to select. </param>
