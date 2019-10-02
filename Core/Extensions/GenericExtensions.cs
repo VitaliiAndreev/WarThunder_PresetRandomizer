@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Core.Enumerations.Logger;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.Extensions
@@ -26,5 +28,31 @@ namespace Core.Extensions
             collection.ContainsKey(source);
 
         #endregion Fluency
+
+        /// <summary> Increments the value. </summary>
+        /// <typeparam name="T"> The type of the value. </typeparam>
+        /// <param name="value"> The value to increment. </param>
+        /// <returns></returns>
+        public static T Increment<T>(this T value) where T : struct
+        {
+            return value switch
+            {
+                int integer => (integer + 1).CastTo<T>(),
+                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T).FullName)),
+            };
+        }
+
+        /// <summary> Decrements the value. </summary>
+        /// <typeparam name="T"> The type of the value. </typeparam>
+        /// <param name="value"> The value to decrement. </param>
+        /// <returns></returns>
+        public static T Decrement<T>(this T value) where T : struct
+        {
+            return value switch
+            {
+                int integer => (integer - 1).CastTo<T>(),
+                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T).FullName)),
+            };
+        }
     }
 }
