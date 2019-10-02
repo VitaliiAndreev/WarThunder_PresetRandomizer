@@ -17,25 +17,15 @@ namespace Client.Wpf.Controls
         /// <summary> The font size of the drop cap. The following text is written with a smaller font size.</summary>
         public double DropCapFontSize
         {
-            get => _dropCap.FontSize;
-            set
-            {
-                _dropCap.FontSize = value;
-                _otherText.FontSize = value > EInteger.Number.Five
-                    ? value - EInteger.Number.Five
-                    : EInteger.Number.One;
-            }
+            get => _dropCapTextBlock.DropCapFontSize;
+            set => _dropCapTextBlock.DropCapFontSize = value;
         }
 
         /// <summary> The text contents of the button. </summary>
         public string Caption
         {
-            get => $"{_dropCap.Text}{_otherText.Text}";
-            set
-            {
-                _dropCap.Text = value.Take(1).StringJoin();
-                _otherText.Text = value.Skip(1).StringJoin();
-            }
+            get => _dropCapTextBlock.Text;
+            set => _dropCapTextBlock.Text = value;
         }
 
         #endregion Properties
