@@ -1,6 +1,9 @@
 ﻿using Core.Objects;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Tests.Objects
 {
@@ -10,6 +13,34 @@ namespace Core.Tests.Objects
     {
         private readonly decimal _infinitelySmallPositiveDecimalFraction = 0.0000000000000000000000000001m;
 
+        #region Tests: GetHashCode()
+
+        [TestMethod]
+        public void GetHashCode_MustHaveNoCollisionsWithinReasonableLimits()
+        {
+            // arrange
+            var intervals = new List<Interval<int>>();
+
+            for (var leftBoundary = 0; leftBoundary < 100; leftBoundary++)
+            {
+                for (var rightBoundary = 0; rightBoundary < 100; rightBoundary++)
+                {
+                    for (var leftBounded = 0; leftBounded < 2; leftBounded++)
+                    {
+                        for (var rightBounded = 0; rightBounded < 2; rightBounded++)
+                            intervals.Add(new Interval<int>(Convert.ToBoolean(leftBounded), leftBoundary, rightBoundary, Convert.ToBoolean(rightBounded)));
+                    }
+                }
+            }
+
+            // act
+            var hashCodes = intervals.Select(set => set.GetHashCode());
+
+            // assert
+            hashCodes.Distinct().Count().Should().Be(hashCodes.Count());
+        }
+
+        #endregion Tests: GetHashCode()
         #region Contains()
 
         [TestMethod]
