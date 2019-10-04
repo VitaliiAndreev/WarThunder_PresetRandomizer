@@ -87,6 +87,7 @@
     <Compile Include="Extensions\IConvertibleExtensionsTests.cs" />
     <Compile Include="Extensions\IDictionaryExtensionsTests.cs" />
     <Compile Include="Extensions\IEnumerableExtensionsTests.cs" />
+    <Compile Include="Extensions\IntervalExtensionsTests.cs" />
     <Compile Include="Extensions\IntExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Extensions\TypeExtensionsTests.cs" />
