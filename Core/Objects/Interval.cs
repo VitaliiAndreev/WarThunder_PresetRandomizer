@@ -25,6 +25,37 @@ namespace Core.Objects
             RightItem = rightItem;
         }
 
+        /// <summary> Determines whether the specified object is equal to the current object. </summary>
+        /// <param name="obj"> The object to compare with the current object. </param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Interval<T> otherInterval))
+                return false;
+
+            return LeftBounded == otherInterval.LeftBounded
+                && LeftItem.CompareTo(otherInterval.LeftItem) == EInteger.Number.Zero
+                && RightItem.CompareTo(otherInterval.RightItem) == EInteger.Number.Zero
+                && RightBounded == otherInterval.RightBounded;
+        }
+
+        /// <summary> Serves as the default hash function. </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hash = 101;
+
+                hash = hash * 103 + LeftBounded.GetHashCode();
+                hash = hash * 107 + LeftItem.GetHashCode();
+                hash = hash * 109 + RightItem.GetHashCode();
+                hash = hash * 113 + RightBounded.GetHashCode();
+
+                return hash;
+            }
+        }
+
         /// <summary> Checks whether the given value is within the interval. </summary>
         /// <param name="item"> The value to check. </param>
         /// <returns></returns>
