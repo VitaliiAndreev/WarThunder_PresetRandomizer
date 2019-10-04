@@ -75,6 +75,7 @@
     <Compile Include="Extensions\FileInfoExtensions.cs" />
     <Compile Include="Extensions\GenericExtensions.cs" />
     <Compile Include="Extensions\IListExtensions.cs" />
+    <Compile Include="Extensions\IntervalExtensions.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\ISetExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
