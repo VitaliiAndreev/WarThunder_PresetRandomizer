@@ -10,6 +10,7 @@
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
         public const string Arcade = nameof(Arcade);
         public const string Army = nameof(Army);
+        public const string Aviation = nameof(Aviation);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
         public const string Britain = nameof(Britain);
         public const string Cancel = nameof(Cancel);
@@ -33,7 +34,6 @@
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
         public const string LookUp = nameof(LookUp);
         public const string Ok = nameof(Ok);
-        public const string Planes = nameof(Planes);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);

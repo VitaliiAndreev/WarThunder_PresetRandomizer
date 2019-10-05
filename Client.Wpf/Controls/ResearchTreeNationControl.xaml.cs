@@ -70,7 +70,7 @@ namespace Client.Wpf.Controls
 
             _armyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Army);
             _helicoptersTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Helicopters);
-            _aviationTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Planes);
+            _aviationTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Aviation);
             _fleetTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Fleet);
         }
 

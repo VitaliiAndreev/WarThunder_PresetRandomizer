@@ -278,6 +278,12 @@
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="17"/>
         </Style>
+
+        <!-- t:UpDownControl -->
+
+        <Style TargetType="controls:UpDownBattleRatingControl">
+            <Setter Property="Height" Value="42"/>
+        </Style>
         
         <!-- t:WrapPanel -->
 

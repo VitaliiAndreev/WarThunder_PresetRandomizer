@@ -1,4 +1,4 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Core.Enumerations;
 using Core.Extensions;
 using System;
 using System.Windows.Controls;
