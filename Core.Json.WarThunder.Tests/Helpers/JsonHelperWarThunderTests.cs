@@ -269,6 +269,8 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Count().Should().BeGreaterThan(1500);
 
             vehicles.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.BranchGaijinId)).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.Tags is null).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.Tags.IsAirVehicle && vehicle.Tags.IsTank).Should().BeFalse();
         }
 
         #endregion Tests: DeserializeList()

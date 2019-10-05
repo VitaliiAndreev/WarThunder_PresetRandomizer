@@ -12,5 +12,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         /// <summary> The Gaijin ID of the vehicle's country of origin (not the nation in whose research tree the vehicles is in). </summary>
         [JsonProperty("originCountry")]
         public string CountryGaijinId { get; set; }
+
+        [JsonProperty("tags")]
+        public VehicleTagsDeserializedFromJson Tags { get; set; }
     }
 }
