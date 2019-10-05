@@ -198,6 +198,16 @@ namespace Client.Wpf.Controls
         public void ShowNoResults() =>
             DisplayText(ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.SomethingWentWrongNoVehiclesFitTheCriteria));
 
+        /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
+        /// <param name="nation"> The nation. </param>
+        /// <param name="mainBranch"> The branch. </param>
+        public void ShowNoVehicles(ENation nation, EBranch mainBranch) =>
+            DisplayText
+            (
+                ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.NoVehiclesAvailableForSelectedBattleRatings)
+                    .FormatFluently(ApplicationHelpers.LocalizationManager.GetLocalizedString(mainBranch.ToString()), ApplicationHelpers.LocalizationManager.GetLocalizedString(nation.ToString()))
+            );
+
         /// <summary> Displays the specified preset. </summary>
         /// <param name="preset"> The preset to display. </param>
         public void DisplayPreset(EPreset preset)

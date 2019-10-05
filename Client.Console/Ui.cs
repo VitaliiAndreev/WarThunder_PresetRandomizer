@@ -10,6 +10,7 @@ using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Helpers;
+using Core.Objects;
 using Core.Organization.Enumerations;
 using Core.Organization.Helpers;
 using Core.Organization.Objects.SearchSpecifications;
@@ -143,12 +144,18 @@ namespace Client.Console
                 return ParseSpecification(TakeSpecificationInput());
             }
 
+            var economicRank = Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating));
+
             return new Specification
             (
                 gamemode,
                 new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, new List<EBranch> { branch }, EInteger.Number.Ten) } },
                 new List<EBranch> { branch },
-                new List<int> { Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating)) }
+                Enum
+                    .GetValues(typeof(ENation))
+                    .Cast<ENation>()
+                    .Where(enumerationItem => enumerationItem != ENation.None)
+                    .ToDictionary(enumerationItem => enumerationItem, enumerationItem => new Interval<int>(true, economicRank, economicRank, true))
             );
         }
 

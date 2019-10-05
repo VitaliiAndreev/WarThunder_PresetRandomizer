@@ -51,6 +51,10 @@
                     x:Name="_nationToggleControl"
                     Click="OnNationToggleControlClick"/>
 
+                <controls:UpDownBattleRatingGroupControl
+                    x:Name="_battleRatingControl"
+                    ValueChanged="OnBattleRatingValueChanged"/>
+
             </StackPanel>
 
             <Grid

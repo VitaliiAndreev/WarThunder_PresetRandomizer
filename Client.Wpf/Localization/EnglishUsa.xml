@@ -31,6 +31,7 @@
   <Line key="Location" value="{0} location"/>
   <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Location changes will come into after at the next application start."/>
   <Line key="LookUp" value="Look up"/>
+  <Line key="NoVehiclesAvailableForSelectedBattleRatings" value="No vehicles are available on selected battle ratings for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>

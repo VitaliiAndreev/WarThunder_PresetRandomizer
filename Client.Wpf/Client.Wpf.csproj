@@ -204,6 +204,7 @@
     </Page>
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\MainWindow\AboutCommand.cs" />
+    <Compile Include="Commands\MainWindow\ChangeBattleRatingCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeLocalizationCommand.cs" />
     <Compile Include="Commands\MainWindow\DeletePresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />

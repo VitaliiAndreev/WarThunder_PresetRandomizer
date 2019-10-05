@@ -30,6 +30,11 @@ namespace Client.Wpf.Windows.Interfaces
         /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         void ShowNoResults();
 
+        /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
+        /// <param name="nation"> The nation. </param>
+        /// <param name="mainBranch"> The branch. </param>
+        void ShowNoVehicles(ENation nation, EBranch mainBranch);
+
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
         void DisplayPreset(EPreset preset);

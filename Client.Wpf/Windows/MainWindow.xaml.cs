@@ -8,8 +8,10 @@ using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
+using Core.Objects;
 using Core.Organization.Enumerations;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,9 @@ namespace Client.Wpf.Windows
     public partial class MainWindow : BaseWindow, IMainWindow
     {
         #region Fields
+
+        /// <summary> Indicates whether the window is still being initialized. </summary>
+        private readonly EInitializationStatus _initializationStatus = EInitializationStatus.NotInitialized;
 
         /// <summary> A collection of boxed instances of <see cref="IList{T}"/> accessed by their generic types. </summary>
         private readonly IDictionary<Type, object> _presenterToggleLists;
@@ -50,6 +55,8 @@ namespace Client.Wpf.Windows
         public MainWindow(IMainWindowPresenter presenter)
             : base(EWpfClientLogCategory.MainWindow)
         {
+            _initializationStatus = EInitializationStatus.Initializing;
+
             Presenter = presenter;
             Presenter.SetParentWindow(this);
 
@@ -96,6 +103,7 @@ namespace Client.Wpf.Windows
 
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
+            _battleRatingControl.InitializeControls();
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
@@ -103,6 +111,8 @@ namespace Client.Wpf.Windows
             RaiseGeneratePresetCommandCanExecuteChanged();
 
             Log.Debug(ECoreLogMessage.Initialized);
+
+            _initializationStatus = EInitializationStatus.Initialized;
         }
 
         #endregion Constructors
@@ -177,6 +187,35 @@ namespace Client.Wpf.Windows
             {
                 OnToggleButtonGroupControlClick<ENation>(toggleButton);
             }
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledEconomicRankIntervals"/> and executes the <see cref="ECommandName.ChangeBattleRating"/> command. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnBattleRatingValueChanged(object sender, RoutedEventArgs eventArguments)
+        {
+            if (_initializationStatus != EInitializationStatus.Initialized)
+                return;
+
+            var savingNeeded = false;
+
+            foreach(var control in _battleRatingControl.BattleRatingControls.Values)
+            {
+                if (control.Tag is ENation nation)
+                {
+                    var previousInterval = Presenter.EnabledEconomicRankIntervals[nation];
+                    var newInterval = new Interval<int>(true, control.MinimumEconomicRank, control.MaximumEconomicRank, true);
+
+                    if (newInterval != previousInterval)
+                    {
+                        Presenter.EnabledEconomicRankIntervals[nation] = newInterval;
+                        savingNeeded = true;
+                    }
+                }
+            }
+
+            if (savingNeeded)
+                Presenter.ExecuteCommand(ECommandName.ChangeBattleRating);
         }
 
         /// <summary> Applies the highlighting style to the vehicle's conterpart in the research tree. </summary>
@@ -265,6 +304,8 @@ namespace Client.Wpf.Windows
 
             _gameModeSelectionControl.Localize();
             _nationToggleControl.Localize();
+            _battleRatingControl.Localize();
+
             _presetPanel.Localize();
             _researchTreeControl.Localize();
         }
@@ -306,6 +347,11 @@ namespace Client.Wpf.Windows
 
         /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         public void ShowNoResults() => _presetPanel.ShowNoResults();
+
+        /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
+        /// <param name="nation"> The nation. </param>
+        /// <param name="mainBranch"> The branch. </param>
+        public void ShowNoVehicles(ENation nation, EBranch mainBranch) => _presetPanel.ShowNoVehicles(nation, mainBranch);
 
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>

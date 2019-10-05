@@ -50,11 +50,10 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.ExecuteCommand(ECommandName.DeletePresets);
 
                 var gameMode = presenter.CurrentGameMode;
-                var economicRanks = Enumerable.Range(EInteger.Number.Zero, EReference.TotalEconomicRanks);
                 var nations = presenter.EnabledNations;
                 var emptyBranches = presenter.GetEmptyBranches();
                 var nationSpecifications = nations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
-                var specification = new Specification(gameMode, nationSpecifications, presenter.EnabledBranches, economicRanks);
+                var specification = new Specification(gameMode, nationSpecifications, presenter.EnabledBranches, presenter.EnabledEconomicRankIntervals);
 
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
@@ -66,9 +65,16 @@ namespace Client.Wpf.Commands.MainWindow
                 }
 
                 var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
-                var firstVehicle = primaryPreset.First();
-                var selectedNation = firstVehicle.Nation.AsEnumerationItem;
+                var selectedNation = primaryPreset.Nation;
+
+                if (primaryPreset.IsEmpty())
+                {
+                    presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
+                    return;
+                }
+
                 var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
+                var firstVehicle = primaryPreset.First();
 
                 presenter.LoadPresets();
                 presenter.DisplayPreset(EPreset.Primary);

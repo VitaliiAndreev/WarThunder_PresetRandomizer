@@ -12,6 +12,8 @@ namespace Client.Wpf.Enumerations
         About,
         /// <summary> See <see cref="CancelCommand"/>. </summary>
         Cancel,
+        /// <summary> See <see cref="ChangeBattleRatingCommand"/>. </summary>
+        ChangeBattleRating,
         /// <summary> See <see cref="ChangeLocalizationCommand"/>. </summary>
         ChangeLocalization,
         /// <summary> See <see cref="DeletePresetsCommand"/>. </summary>

@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Objects;
 using System.Collections.Generic;
 
 namespace Core.Organization.Objects.SearchSpecifications
@@ -18,8 +19,8 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Allowed branches. </summary>
         public IEnumerable<EBranch> Branches { get; }
 
-        /// <summary> Allowed values of <see cref="IVehicle.EconomicRank"/>. </summary>
-        public IEnumerable<int> EconomicRanks { get; }
+        /// <summary> Allowed intervals of <see cref="IVehicle.EconomicRank"/>s. </summary>
+        public IDictionary<ENation, Interval<int>> EconomicRankIntervals { get; }
 
         #endregion Properties
         #region Constructors
@@ -27,13 +28,13 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
         /// <param name="nationSpecifications"> Nation specifications. </param>
-        /// <param name="economicRanks"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
-        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<EBranch> branches, IEnumerable<int> economicRanks)
+        /// <param name="economicRankIntervals"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
+        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<EBranch> branches, IDictionary<ENation, Interval<int>> economicRankIntervals)
         {
             GameMode = gameMode;
             NationSpecifications = nationSpecifications;
             Branches = branches;
-            EconomicRanks = economicRanks;
+            EconomicRankIntervals = economicRankIntervals;
         }
 
         #endregion Constructors

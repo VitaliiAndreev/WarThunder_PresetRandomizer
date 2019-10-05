@@ -42,6 +42,11 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string NationsHaveNoBranch = $"\"{{0}}\" {_dont}/{_doesnt} {_have} \"{{1}}\".";
         public static readonly string NoVehiclesAvailableForSelectedBranches = $"{_No} {_vehicles} {_available} {_for} {_selected} {_branches}.";
         public static readonly string NoVehiclesAvailableForPreset = $"{_No} {_vehicles} {_available} {_for} {_preset}.";
-        public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_No} {_vehicles} {_available} {_selected} {_battle} {_ratings}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: branch. </para>
+        /// <para> 2: nation. </para>
+        /// </summary>
+        public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_No} {_vehicles} {_available} {_among} {{0}}-{{1}} {{2}} {_of} {{3}}.";
     }
 }

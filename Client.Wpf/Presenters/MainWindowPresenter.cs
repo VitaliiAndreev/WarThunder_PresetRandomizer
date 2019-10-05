@@ -4,6 +4,7 @@ using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
+using Core.Objects;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using System;
@@ -29,6 +30,9 @@ namespace Client.Wpf.Presenters
         /// <summary> Nations enabled for preset generation. </summary>
         public IList<ENation> EnabledNations { get; }
 
+        /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
+        public IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
+
         /// <summary> Generated presets. </summary>
         public IDictionary<EPreset, Preset> GeneratedPresets { get; }
 
@@ -46,6 +50,7 @@ namespace Client.Wpf.Presenters
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
             EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
+            EnabledEconomicRankIntervals = new Dictionary<ENation, Interval<int>>(WpfSettings.EnabledEconomicRankIntervals);
             GeneratedPresets = new Dictionary<EPreset, Preset>();
             CurrentPreset = EPreset.Primary;
         }
@@ -79,6 +84,11 @@ namespace Client.Wpf.Presenters
 
         /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         public void ShowNoResults() => Owner.ShowNoResults();
+
+        /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
+        /// <param name="nation"> The nation. </param>
+        /// <param name="mainBranch"> The branch. </param>
+        public void ShowNoVehicles(ENation nation, EBranch mainBranch) => Owner.ShowNoVehicles(nation, mainBranch);
 
         /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>

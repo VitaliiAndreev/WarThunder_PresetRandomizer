@@ -7,9 +7,6 @@ namespace Core.DataBase.WarThunder.Enumerations
     /// <summary> Contains static dictionaries with reference data. </summary>
     public class EReference
     {
-        /// <summary> The total amount of <see cref="IVehicle.EconomicRank"/> values, up to battle rating 10.0. </summary>
-        public const int TotalEconomicRanks = 28;
-
         /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based) equivalent to battle rating 10.0. </summary>
         public const int MaximumEconomicRank = 27;
 

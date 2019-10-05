@@ -34,6 +34,7 @@
         public const string Location = nameof(Location);
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
         public const string LookUp = nameof(LookUp);
+        public const string NoVehiclesAvailableForSelectedBattleRatings = nameof(NoVehiclesAvailableForSelectedBattleRatings);
         public const string Ok = nameof(Ok);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);

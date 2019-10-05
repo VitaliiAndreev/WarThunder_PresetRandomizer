@@ -451,6 +451,9 @@ namespace Core.Organization.Helpers
             LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
 
             var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch)));
+            var nation = nationSpecification.Nation;
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
 
             if (nationSpecification is null)
             {
@@ -459,10 +462,6 @@ namespace Core.Organization.Helpers
             }
 
             var crewSlotAmount = nationSpecification.CrewSlots;
-            var nation = nationSpecification.Nation;
-
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
-
             var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.AsEnumerationItem == nation);
 
             if (vehiclesFromNation.IsEmpty())
@@ -495,16 +494,24 @@ namespace Core.Organization.Helpers
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
                 .Distinct()
             ;
-            var availableEconomicRanks = specification.EconomicRanks.Intersect(economicRanksWithVehicles);
+
+            static string getFormattedBattleRating(int economicRank) => Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
+
+            var enabledEconomicRanks = specification.EconomicRankIntervals[nation].AsEnumerable();
+            var availableEconomicRanks = enabledEconomicRanks.Intersect(economicRanksWithVehicles);
 
             if (availableEconomicRanks.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings);
-                return new Dictionary<EPreset, Preset>();
+                var minimumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Min());
+                var maximumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Max());
+
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings.FormatFluently(minimumBattleRating, maximumBattleRating, mainBranch, nation));
+                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(nation, mainBranch, string.Empty, new List<IVehicle>()) } };
             }
 
-            var battleRating = Calculator.GetBattleRating(_randomizer.GetRandom(availableEconomicRanks));
-            var formattedBattleRating = battleRating.ToString(BattleRating.Format);
+            var economicRank = _randomizer.GetRandom(availableEconomicRanks);
+            var battleRating = Calculator.GetBattleRating(economicRank);
+            var formattedBattleRating = getFormattedBattleRating(economicRank);
 
             LogDebug(ECoreLogMessage.Selected.FormatFluently(formattedBattleRating));
 
