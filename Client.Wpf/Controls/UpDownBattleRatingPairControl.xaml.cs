@@ -2,6 +2,7 @@
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Objects;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -70,8 +71,8 @@ namespace Client.Wpf.Controls
         /// <param name="interval"> The interval to use for initialization. </param>
         public void Initialize(Interval<int> interval)
         {
-            _maximumUpDownControl.Value = interval.RightItem;
-            _minimumUpDownControl.Value = interval.LeftItem;
+            _maximumUpDownControl.Value = Math.Min(interval.RightItem, EReference.MaximumEconomicRank);
+            _minimumUpDownControl.Value = Math.Max(interval.LeftItem, EInteger.Number.Zero);
         }
     }
 }
