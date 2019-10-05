@@ -7,6 +7,8 @@
         public const char Asterisk = '*';
         public const char BraceLeft = '{';
         public const char BraceRight = '}';
+        public const char BracketLeft = '[';
+        public const char BracketRight = ']';
         public const char CarriageReturn = '\r';
         public const char Colon = ':';
         public const char Comma = ',';
@@ -14,8 +16,8 @@
         public const char Minus = '-';
         public const char NewLine = '\n';
         public const char QuotationMark = '"';
-        public const char ParenthesisClose = ')';
-        public const char ParenthesisOpen = '(';
+        public const char ParenthesisLeft = '(';
+        public const char ParenthesisRight = ')';
         public const char Period = '.';
         public const char Slash = '/';
         public const char Semicolon = ';';

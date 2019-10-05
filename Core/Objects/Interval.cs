@@ -33,6 +33,10 @@ namespace Core.Objects
 
         #endregion Constructors
 
+        /// <summary> Returns a string that represents the instance. </summary>
+        /// <returns></returns>
+        public override string ToString() => $"{(LeftBounded ? ECharacter.BracketLeft : ECharacter.ParenthesisLeft)} {LeftItem}; {RightItem} {(RightBounded ? ECharacter.BracketRight : ECharacter.ParenthesisRight)}";
+
         /// <summary> Determines whether the specified object is equal to the current object. </summary>
         /// <param name="obj"> The object to compare with the current object. </param>
         /// <returns></returns>
