@@ -1,0 +1,77 @@
+﻿<base:LocalizedUserControl
+    x:Class="Client.Wpf.Controls.UpDownBattleRatingGroupControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Client.Wpf.Controls"
+    xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+    mc:Ignorable="d"
+    d:DesignWidth="800">
+    <StackPanel
+        Style="{StaticResource StackPanelNoMargin}">
+
+        <controls:DropCapTextBlock Text="Battle Ratings"
+            x:Name="_header"
+            HorizontalAlignment="Center"
+            DropCapFontSize="16"/>
+
+        <Grid
+            Height="84"
+            Margin="0 5 0 0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="0"
+                x:Name="_usaBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="1"
+                x:Name="_germanyBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="2"
+                x:Name="_ussrBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="3"
+                x:Name="_commonwealthBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="4"
+                x:Name="_japanBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="5"
+                x:Name="_chinaBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="6"
+                x:Name="_italyBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+            <controls:UpDownBattleRatingPairControl
+                Grid.Column="7"
+                x:Name="_franceBattleRatingControl"
+                ValueChanged="OnValueChanged"/>
+
+        </Grid>
+        
+    </StackPanel>
+</base:LocalizedUserControl>

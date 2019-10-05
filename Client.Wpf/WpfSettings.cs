@@ -1,9 +1,13 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Extensions;
 using Core.Localization.Enumerations;
+using Core.Objects;
 using Core.UnpackingToolsIntegration.Attributes;
 using Core.WarThunderExtractionToolsIntegration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -53,6 +57,36 @@ namespace Client.Wpf
             ;
         }
 
+        [RequiredSetting]
+        public static string EnabledEconomicRanks
+        {
+            get => EnabledEconomicRankIntervals.Values.Select(interval => $"{interval.LeftItem}-{interval.RightBounded}").StringJoin(Separator);
+            set => EnabledEconomicRankIntervals = value
+                .Split(Separator)
+                .Select
+                (
+                    substring =>
+                    {
+                        var economicRanks = substring
+                            .Split(ECharacter.Minus)
+                            .Select(economicRankString => int.Parse(economicRankString))
+                        ;
+                        return new Interval<int>(true, economicRanks.First(), economicRanks.Last(), true);
+                    }
+                )
+                .Zip
+                (
+                    Enum
+                        .GetValues(typeof(ENation))
+                        .Cast<ENation>()
+                        .Where(enumerationItem => enumerationItem != ENation.None)
+                    ,
+                    (interval, enumerationItem) => new { EnumerationItem = enumerationItem, Interval = interval }
+                )
+                .ToDictionary(item => item.EnumerationItem, item => item.Interval)
+            ;
+        }
+
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
@@ -76,6 +110,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledNations"/> instead. </para>
         /// </summary>
         public static IEnumerable<ENation> EnabledNationsCollection { get; private set; }
+        
+        /// <summary>
+        /// Currently enabled <see cref="IVehicle.EconomicRank"/>s.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledEconomicRanks"/> instead. </para>
+        /// </summary>
+        public static IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; private set; }
 
         #endregion Properties
     }

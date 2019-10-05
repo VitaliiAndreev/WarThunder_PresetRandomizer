@@ -118,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\UpDownBattleRatingGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\BranchToggleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +218,9 @@
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
+    <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">
+      <DependentUpon>UpDownBattleRatingGroupControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BranchToggleControl.xaml.cs">
       <DependentUpon>BranchToggleControl.xaml</DependentUpon>
     </Compile>

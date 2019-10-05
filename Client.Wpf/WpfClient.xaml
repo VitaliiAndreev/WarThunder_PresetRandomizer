@@ -16,6 +16,12 @@
         
         <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.9" />
 
+        <!-- t:BattleRatingUpDownGroupControl -->
+
+        <Style TargetType="controls:UpDownBattleRatingGroupControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+
         <!-- t:Border -->
 
         <Style TargetType="Border" x:Key="ResearchTreeCell">

@@ -6,4 +6,5 @@
   <CurrentGameMode></CurrentGameMode>
   <EnabledBranches>Army, Aviation, Helicopters, Fleet</EnabledBranches>
   <EnabledNations>Usa, Germany, Ussr, Commonwealth, Japan, China, Italy, France</EnabledNations>
+  <EnabledEconomicRanks>0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27</EnabledEconomicRanks>
 </Settings>

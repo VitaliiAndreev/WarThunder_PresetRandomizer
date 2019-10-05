@@ -11,6 +11,7 @@
         public const string Arcade = nameof(Arcade);
         public const string Army = nameof(Army);
         public const string Aviation = nameof(Aviation);
+        public const string BattleRatings = nameof(BattleRatings);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
         public const string Britain = nameof(Britain);
         public const string Cancel = nameof(Cancel);
