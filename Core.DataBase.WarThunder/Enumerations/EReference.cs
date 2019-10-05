@@ -10,6 +10,9 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> The total amount of <see cref="IVehicle.EconomicRank"/> values, up to battle rating 10.0. </summary>
         public const int TotalEconomicRanks = 28;
 
+        /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based) equivalent to battle rating 10.0. </summary>
+        public const int MaximumEconomicRank = 27;
+
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
         public static IDictionary<ENation, string> NationsFromEnumeration { get; } = new Dictionary<ENation, string>
         {

@@ -178,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UpDownBattleRatingPairControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +258,9 @@
     <Compile Include="Controls\Strategies\Interfaces\IDisplayVehicleInformationStrategy.cs" />
     <Compile Include="Controls\UpDownBattleRatingControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UpDownBattleRatingPairControl.xaml.cs">
+      <DependentUpon>UpDownBattleRatingPairControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
