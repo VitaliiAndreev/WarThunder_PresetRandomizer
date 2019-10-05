@@ -12,6 +12,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         #region General
 
+        /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
+        public EVehicleClass Class { get; }
+
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         bool IsPremium { get; }
 

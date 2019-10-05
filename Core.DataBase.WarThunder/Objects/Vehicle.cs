@@ -46,6 +46,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
+        [Property(NotNull = true)]
+        public virtual EVehicleClass Class { get; protected internal set; }
+
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         [Property(NotNull = true)]
         public virtual bool IsPremium { get; protected set; }
@@ -212,10 +216,66 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
         }
 
+        /// <summary> Initializes <see cref="Class"/> based on <paramref name="deserializedTags"/>. </summary>
+        /// <param name="deserializedTags"></param>
+        private void InitializeClass(VehicleTagsDeserializedFromJson deserializedTags)
+        {
+            if (deserializedTags.IsLightTank)
+                Class = EVehicleClass.LightTank;
+
+            else if (deserializedTags.IsMediumTank)
+                Class = EVehicleClass.MediumTank;
+
+            else if (deserializedTags.IsHeavyTank)
+                Class = EVehicleClass.HeavyTank;
+
+            else if (deserializedTags.IsTankDestroyer)
+                Class = EVehicleClass.TankDestroyer;
+
+            else if (deserializedTags.IsSpaa)
+                Class = EVehicleClass.Spaa;
+
+            else if (deserializedTags.IsAttackHelicopter)
+                Class = EVehicleClass.AttackHelicopter;
+
+            else if (deserializedTags.IsUtilityHelicopter)
+                Class = EVehicleClass.UtilityHelicopter;
+
+            else if (deserializedTags.IsFighter)
+                Class = EVehicleClass.Fighter;
+
+            else if (deserializedTags.IsAttacker)
+                Class = EVehicleClass.Attacker;
+
+            else if (deserializedTags.IsBomber)
+                Class = EVehicleClass.Bomber;
+
+            else if (deserializedTags.IsBoat)
+                Class = EVehicleClass.Boat;
+
+            else if (deserializedTags.IsHeavyBoat)
+                Class = EVehicleClass.HeavyBoat;
+
+            else if (deserializedTags.IsHeavyBoat)
+                Class = EVehicleClass.Barge;
+
+            else if (deserializedTags.IsDestroyer)
+                Class = EVehicleClass.Destroyer;
+
+            else if (deserializedTags.IsLightCruiser)
+                Class = EVehicleClass.LightCruiser;
+
+            else if (deserializedTags.IsHeavyCruiser)
+                Class = EVehicleClass.HeavyCruiser;
+        }
+
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
         public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
         {
+            if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
+                InitializeClass(tags);
+
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
             var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
 
