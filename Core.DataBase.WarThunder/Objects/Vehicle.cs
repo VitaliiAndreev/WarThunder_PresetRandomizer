@@ -256,7 +256,7 @@ namespace Core.DataBase.WarThunder.Objects
             else if (deserializedTags.IsHeavyBoat)
                 Class = EVehicleClass.HeavyBoat;
 
-            else if (deserializedTags.IsHeavyBoat)
+            else if (deserializedTags.IsBarge)
                 Class = EVehicleClass.Barge;
 
             else if (deserializedTags.IsDestroyer)
