@@ -13,6 +13,6 @@ namespace Client.Wpf.Controls.Strategies
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
         public string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle) =>
-            $"{vehicle.BattleRatingFormatted[gameMode]} / {vehicle.Rank.CastTo<ERank>()}";
+            $"{EReference.ClassIcons[vehicle.Class]} {vehicle.BattleRatingFormatted[gameMode]} / {vehicle.Rank.CastTo<ERank>()}";
     }
 }

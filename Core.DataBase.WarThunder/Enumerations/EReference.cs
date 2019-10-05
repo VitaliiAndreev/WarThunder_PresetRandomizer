@@ -78,5 +78,26 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EBranch.Fleet, '┚' },
             { EBranch.Helicopters, '⋡' },
         };
+
+        /// <summary> Vehicle branch special character icons. </summary>
+        public static IDictionary<EVehicleClass, char> ClassIcons { get; } = new Dictionary<EVehicleClass, char>
+        {
+            { EVehicleClass.LightTank, '┪' },
+            { EVehicleClass.MediumTank, '┬' },
+            { EVehicleClass.HeavyTank, '┨' },
+            { EVehicleClass.TankDestroyer, '┴' },
+            { EVehicleClass.Spaa, '┱' },
+            { EVehicleClass.AttackHelicopter, '┞' },
+            { EVehicleClass.UtilityHelicopter, '┠' },
+            { EVehicleClass.Fighter, '┤' },
+            { EVehicleClass.Attacker, '┞' },
+            { EVehicleClass.Bomber, '┠' },
+            { EVehicleClass.Boat, '␉' },
+            { EVehicleClass.HeavyBoat, '␊' },
+            { EVehicleClass.Barge, '␋' },
+            { EVehicleClass.Destroyer, '␌' },
+            { EVehicleClass.LightCruiser, '␎' },
+            { EVehicleClass.HeavyCruiser, '␏' },
+        };
     }
 }
