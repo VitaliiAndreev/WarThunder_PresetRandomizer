@@ -100,13 +100,13 @@ namespace Client.Wpf
         public static EGameMode CurrentGameModeAsEnumerationItem { get; private set; }
 
         /// <summary>
-        /// The currently enabled vehicle branches.
+        /// Currently enabled vehicle branches.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledBranches"/> instead. </para>
         /// </summary>
         public static IEnumerable<EBranch> EnabledBranchesCollection { get; private set; }
 
         /// <summary>
-        /// The currently enabled nations.
+        /// Currently enabled nations.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledNations"/> instead. </para>
         /// </summary>
         public static IEnumerable<ENation> EnabledNationsCollection { get; private set; }

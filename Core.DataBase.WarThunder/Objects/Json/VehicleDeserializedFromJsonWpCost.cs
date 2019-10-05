@@ -45,8 +45,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("unitMoveType", Required = Required.Always)]
         public string MoveType { get; set; }
 
+        /// <summary> The vehicle's target class, reward multipliers for whom are defined in warpoints.blkx. </summary>
         [JsonProperty("unitClass", Required = Required.Always)]
-        public string Class { get; set; }
+        public string TargetClassGaijinId { get; set; }
 
         [JsonProperty("value", Required = Required.Always)]
         public int PurchaseCostInSilver { get; set; }
