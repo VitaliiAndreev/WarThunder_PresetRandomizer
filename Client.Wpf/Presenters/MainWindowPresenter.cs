@@ -77,7 +77,7 @@ namespace Client.Wpf.Presenters
         /// <summary> Loads <see cref="GeneratedPresets"/>. </summary>
         public void LoadPresets() => Owner.LoadPresets();
 
-        /// <summary> Displays the message that no vehicles suit the criteria. </summary>
+        /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         public void ShowNoResults() => Owner.ShowNoResults();
 
         /// <summary> Displays the specified preset from <see cref="GeneratedPresets"/>. </summary>

@@ -4,6 +4,7 @@
     public class ELocalizationKey
     {
         public const string AboutWtpr = nameof(AboutWtpr);
+        public const string Alpha = nameof(Alpha);
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
@@ -33,7 +34,6 @@
         public const string LookUp = nameof(LookUp);
         public const string Ok = nameof(Ok);
         public const string Planes = nameof(Planes);
-        public const string Alpha = nameof(Alpha);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);

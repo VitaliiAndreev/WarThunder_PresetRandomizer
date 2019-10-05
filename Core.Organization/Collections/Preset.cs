@@ -14,8 +14,10 @@ namespace Core.Organization.Collections
 
         /// <summary> The preset's nation. </summary>
         public ENation Nation { get; }
+
         /// <summary> The preset's main branch. </summary>
         public EBranch MainBranch { get; }
+
         /// <summary> The preset's battle rating. </summary>
         public string BattleRating { get; }
 
@@ -39,6 +41,6 @@ namespace Core.Organization.Collections
 
         /// <summary> Returns the string representation of the collection. </summary>
         /// <returns></returns>
-        public override string ToString() => $"Vehicle preset {(this.Any() ? $"for {this.First().Nation.AsEnumerationItem}" : string.Empty) + ECharacter.Space}with {this.Count()} vehicles.";
+        public override string ToString() => $"Vehicle preset {(this.Any() ? $"for {this.First().Nation.AsEnumerationItem}" + ECharacter.Space : string.Empty)}with {this.Count()} vehicles.";
     }
 }

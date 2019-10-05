@@ -86,14 +86,14 @@ namespace Client.Wpf.Windows
             Log.Debug(ECoreLogMessage.Shown);
 
         /// <summary> Checks whether the OK button can be enabled. </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArguments"></param>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Not used. </param>
         private void AddressValidityChanged(object sender, EventArgs eventArguments) =>
             (_okButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
 
         /// <summary> Handles closing the window. </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArguments"></param>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
         private void OnClosing(object sender, CancelEventArgs eventArguments)
         {
             if (Presenter.ClosingState != ESettingsWindowClosureState.ClosingFromCommand)

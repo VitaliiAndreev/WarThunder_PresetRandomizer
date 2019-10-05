@@ -1,4 +1,5 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using Core.Objects.Abstract;
 using System;
 
@@ -8,10 +9,15 @@ namespace Core.Objects
     public class Interval<T> : IntervalBase
         where T: IComparable
     {
+        #region Properties
+
         /// <summary> The left endpoint of the interval. </summary>
         public T LeftItem { get; }
         /// <summary> The right endpoint of the interval. </summary>
         public T RightItem { get; }
+
+        #endregion Properties
+        #region Constructors
 
         /// <summary> Creates a new interval of decimal values. </summary>
         /// <param name="leftBounded"> Whether the left endpoint is included in the interval. </param>
@@ -24,6 +30,8 @@ namespace Core.Objects
             LeftItem = leftItem;
             RightItem = rightItem;
         }
+
+        #endregion Constructors
 
         /// <summary> Determines whether the specified object is equal to the current object. </summary>
         /// <param name="obj"> The object to compare with the current object. </param>

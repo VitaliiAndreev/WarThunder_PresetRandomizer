@@ -27,7 +27,7 @@ namespace Client.Wpf.Windows.Interfaces
         /// <summary> Loads <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         void LoadPresets();
 
-        /// <summary> Displays the message that no vehicles suit the criteria. </summary>
+        /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         void ShowNoResults();
 
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>

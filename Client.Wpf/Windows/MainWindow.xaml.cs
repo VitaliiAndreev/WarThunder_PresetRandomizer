@@ -304,7 +304,7 @@ namespace Client.Wpf.Windows
         /// <summary> Loads <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         public void LoadPresets() => _presetPanel.LoadPresets(Presenter.GeneratedPresets, Presenter.CurrentGameMode);
 
-        /// <summary> Displays the message that no vehicles suit the criteria. </summary>
+        /// <summary> Displays a message that no vehicles suit the criteria. </summary>
         public void ShowNoResults() => _presetPanel.ShowNoResults();
 
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>

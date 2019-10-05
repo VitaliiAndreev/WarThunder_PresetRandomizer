@@ -7,14 +7,22 @@ namespace Core.Organization.Objects.SearchSpecifications
     /// <summary> A specification used for filtering preferred items from collections before randomizing the former. </summary>
     public class Specification
     {
+        #region Properties
+
         /// <summary> The game mode. </summary>
         public EGameMode GameMode { get; }
+
         /// <summary> Nation specifications. </summary>
         public IDictionary<ENation, NationSpecification> NationSpecifications { get; }
+
         /// <summary> Allowed branches. </summary>
         public IEnumerable<EBranch> Branches { get; }
+
         /// <summary> Allowed values of <see cref="IVehicle.EconomicRank"/>. </summary>
         public IEnumerable<int> EconomicRanks { get; }
+
+        #endregion Properties
+        #region Constructors
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
@@ -27,5 +35,7 @@ namespace Core.Organization.Objects.SearchSpecifications
             Branches = branches;
             EconomicRanks = economicRanks;
         }
+
+        #endregion Constructors
     }
 }
