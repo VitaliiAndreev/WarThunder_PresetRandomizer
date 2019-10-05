@@ -100,6 +100,7 @@
     <Compile Include="Objects\Json\ResearchTreeVehicleFromJson.cs" />
     <Compile Include="Objects\Json\VehicleDeserializedFromJsonUnitTags.cs" />
     <Compile Include="Objects\Json\VehicleDeserializedFromJsonWpCost.cs" />
+    <Compile Include="Objects\Json\VehicleTagsDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Localization\Interfaces\ILocalization.cs" />
     <Compile Include="Objects\Localization\Localization.cs" />
