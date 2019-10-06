@@ -45,6 +45,7 @@
         public class ToggleButton
         {
             public const string BranchToggle = "BranchToggle";
+            public const string NationToggle = "NationToggle";
         }
     }
 }
