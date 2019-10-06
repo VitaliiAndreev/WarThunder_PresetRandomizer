@@ -1,4 +1,4 @@
-﻿<base:ToggleButtonGroupControl
+﻿<base:ToggleButtonGroupControlWithToolTips
     x:TypeArguments="enumerations:EBranch"
     x:Class="Client.Wpf.Controls.BranchToggleControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,30 +11,6 @@
     d:DesignHeight="450"
     d:DesignWidth="800">
     <Grid x:Name="_buttonGrid">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <ToggleButton Content ="╤"
-                    Grid.Column="0"
-                    x:Name="_armyButton"
-                    Style="{StaticResource BranchToggle}"/>
-        <ToggleButton Content ="┏"
-                    Grid.Column="1"
-                    x:Name="_aviationButton"
-                    Style="{StaticResource BranchToggle}"/>
-        <ToggleButton Content ="⋡"
-                    Grid.Column="2"
-                    x:Name="_helicopterButton"
-                    Style="{StaticResource BranchToggle}"/>
-        <ToggleButton Content ="┚"
-                    Grid.Column="3"
-                    x:Name="_fleetButton"
-                    Style="{StaticResource BranchToggle}"/>
-
+        
     </Grid>
-</base:ToggleButtonGroupControl>
+</base:ToggleButtonGroupControlWithToolTips>

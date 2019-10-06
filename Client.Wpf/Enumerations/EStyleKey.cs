@@ -40,5 +40,11 @@
             public const string ValidText = "ValidText";
             public const string InvalidText = "InvalidText";
         }
+
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.Primitives.ToggleButton"/>. </summary>
+        public class ToggleButton
+        {
+            public const string BranchToggle = "BranchToggle";
+        }
     }
 }
