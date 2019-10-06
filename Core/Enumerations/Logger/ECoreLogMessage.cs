@@ -222,7 +222,7 @@
         /// <para> 1: objest(s). </para>
         /// </summary>
         public static readonly string Selected = $"\"{{0}}\" {_selected}.";
-        public static readonly string ExplicitImplementationRequiredForType = $"{_Explicit} {_implementation} {_required} {_for} \"{{0}}\" {_type}";
+        public static readonly string ExplicitImplementationRequiredForType = $"{_Explicit} {_implementation} {_required} {_for} \"{{0}}\" {_type}.";
         public static readonly string TypeIsNotEnumeration = $"\"{{0}}\" {_type} {_is} {_not} {_an} {_enumeration}.";
         public static readonly string GenericTypeParameterAndTypeParameterDontMatch = $"{_Generic} {_type} \"{{0}}\" {_doesnt} {_match} {_type} {_argument} \"{{0}}\".";
         public static readonly string ShuttingDown = $"{_Shutting} {_down}.";

@@ -7,7 +7,7 @@
         Usa,
         Germany,
         Ussr,
-        Commonwealth,
+        Britain,
         Japan,
         China,
         Italy,

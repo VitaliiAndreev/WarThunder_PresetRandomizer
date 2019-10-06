@@ -21,7 +21,7 @@ namespace Client.Wpf.Controls
             _usaButton.Tag = ENation.Usa;
             _germanyButton.Tag = ENation.Germany;
             _ussrButton.Tag = ENation.Ussr;
-            _commonwealthButton.Tag = ENation.Commonwealth;
+            _commonwealthButton.Tag = ENation.Britain;
             _japanButton.Tag = ENation.Japan;
             _chinaButton.Tag = ENation.China;
             _italyButton.Tag = ENation.Italy;

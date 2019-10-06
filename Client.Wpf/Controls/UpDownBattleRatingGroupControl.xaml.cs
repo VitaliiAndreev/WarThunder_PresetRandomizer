@@ -35,7 +35,7 @@ namespace Client.Wpf.Controls
             _usaBattleRatingControl.Tag = ENation.Usa;
             _germanyBattleRatingControl.Tag = ENation.Germany;
             _ussrBattleRatingControl.Tag = ENation.Ussr;
-            _commonwealthBattleRatingControl.Tag = ENation.Commonwealth;
+            _commonwealthBattleRatingControl.Tag = ENation.Britain;
             _japanBattleRatingControl.Tag = ENation.Japan;
             _chinaBattleRatingControl.Tag = ENation.China;
             _italyBattleRatingControl.Tag = ENation.Italy;
@@ -46,7 +46,7 @@ namespace Client.Wpf.Controls
                 { ENation.Usa, _usaBattleRatingControl},
                 { ENation.Germany, _germanyBattleRatingControl},
                 { ENation.Ussr, _ussrBattleRatingControl},
-                { ENation.Commonwealth, _commonwealthBattleRatingControl},
+                { ENation.Britain, _commonwealthBattleRatingControl},
                 { ENation.Japan, _japanBattleRatingControl},
                 { ENation.China, _chinaBattleRatingControl},
                 { ENation.Italy, _italyBattleRatingControl},

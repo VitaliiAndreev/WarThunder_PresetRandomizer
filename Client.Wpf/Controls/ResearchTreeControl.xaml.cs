@@ -37,7 +37,7 @@ namespace Client.Wpf.Controls
             _usaTab.Tag = ENation.Usa;
             _germanyTab.Tag = ENation.Germany;
             _ussrTab.Tag = ENation.Ussr;
-            _britainTab.Tag = ENation.Commonwealth;
+            _britainTab.Tag = ENation.Britain;
             _japanTab.Tag = ENation.Japan;
             _chinaTab.Tag = ENation.China;
             _italyTab.Tag = ENation.Italy;
@@ -50,7 +50,7 @@ namespace Client.Wpf.Controls
                 { ENation.Usa, _usaTab },
                 { ENation.Germany, _germanyTab },
                 { ENation.Ussr, _ussrTab },
-                { ENation.Commonwealth, _britainTab },
+                { ENation.Britain, _britainTab },
                 { ENation.Japan, _japanTab },
                 { ENation.China, _chinaTab },
                 { ENation.Italy, _italyTab },
@@ -61,7 +61,7 @@ namespace Client.Wpf.Controls
                 { ENation.Usa, _usaTree },
                 { ENation.Germany, _germanyTree },
                 { ENation.Ussr, _ussrTree },
-                { ENation.Commonwealth, _britainTree },
+                { ENation.Britain, _britainTree },
                 { ENation.Japan, _japanTree },
                 { ENation.China, _chinaTree },
                 { ENation.Italy, _italyTree },
