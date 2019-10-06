@@ -9,7 +9,7 @@ using System.Windows.Controls.Primitives;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for GameModeSelectionControl.xaml. </summary>
-    public partial class GameModeSelectionControl : UserControl
+    public partial class GameModeSelectionControl : LocalizedUserControl
     {
         #region Properties
 
@@ -94,8 +94,10 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public void Localize()
+        public override void Localize()
         {
+            base.Localize();
+
             _arcadeButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Arcade);
             _realisticButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Realistic);
             _simulatorButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Simulator);
