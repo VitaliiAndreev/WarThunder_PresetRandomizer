@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
+using Core.Enumerations;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
 {
-    /// <summary> A user control consisting of a row of toggle buttons, indexed by <typeparamref name="T"/> values. </summary>
+    /// <summary> A user control consisting of a row or a column of toggle buttons, indexed by <typeparamref name="T"/> values. </summary>
     /// <typeparam name="T"> The key type. </typeparam>
     public class ToggleButtonGroupControl<T> : LocalizedUserControl
     {
@@ -53,6 +58,44 @@ namespace Client.Wpf.Controls.Base
         /// <param name="toggleButton"> The toggle button to raise the event for. </param>
         private void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
+
+        /// <summary> Creates toggle buttons for given enumeration items. </summary>
+        /// <param name="grid"> The grid to add buttons into. </param>
+        /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
+        /// <param name="icons"> Icons for enumeration items. </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
+        public void CreateToggleButtons(Grid grid, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true)
+        {
+            foreach (var enumerationItem in enumerationItems)
+            {
+                var toggleButton = new ToggleButton()
+                {
+                    Style = this.GetStyle(styleKey),
+                    Tag = enumerationItem,
+                    Content = icons[enumerationItem],
+                };
+
+                if (horizontal)
+                {
+                    grid.ColumnDefinitions.Add(new ColumnDefinition());
+                    grid.Children.Add(toggleButton);
+
+                    Grid.SetColumn(toggleButton, grid.ColumnDefinitions.Count() - EInteger.Number.One);
+                }
+                else
+                {
+                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.Children.Add(toggleButton);
+
+                    Grid.SetRow(toggleButton, grid.RowDefinitions.Count() - EInteger.Number.One);
+                }
+
+                toggleButton.Click += OnClick;
+
+                _buttons.Add(enumerationItem, toggleButton);
+            }
+        }
 
         /// <summary> Changes the <see cref="UIElement.IsEnabled"/> status of a button corresponding to the specified key. </summary>
         /// <param name="key"> The key whose toggle button's state to change. </param>
