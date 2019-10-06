@@ -1,4 +1,5 @@
-﻿<base:LocalizedUserControl
+﻿<base:ToggleButtonGroupControlWithDropCap
+    x:TypeArguments="enumerations:EGameMode"
     x:Class="Client.Wpf.Controls.GameModeSelectionControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Client.Wpf.Controls"
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+    xmlns:enumerations="clr-namespace:Core.DataBase.WarThunder.Enumerations;assembly=Core.DataBase.WarThunder"
     mc:Ignorable="d" 
     d:DesignHeight="100"
     d:DesignWidth="200">
@@ -31,4 +33,4 @@
                     DropCapFontSize="16"/>
 
     </Grid>
-</base:LocalizedUserControl>
+</base:ToggleButtonGroupControlWithDropCap>

@@ -46,7 +46,7 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Raises the <see cref="ClickEvent"/> for one of the toggle buttons. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
-        protected void OnClick(object sender, RoutedEventArgs eventArguments)
+        public virtual void OnClick(object sender, RoutedEventArgs eventArguments)
         {
             if (sender is ToggleButton toggleButton)
                 RaiseClickEvent(toggleButton);
@@ -56,7 +56,7 @@ namespace Client.Wpf.Controls.Base
 
         /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
         /// <param name="toggleButton"> The toggle button to raise the event for. </param>
-        private void RaiseClickEvent(ToggleButton toggleButton) =>
+        public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
         /// <summary> Creates toggle buttons for given enumeration items, with character icons. </summary>
