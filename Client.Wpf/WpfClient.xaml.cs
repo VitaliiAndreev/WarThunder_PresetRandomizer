@@ -9,12 +9,19 @@ using Core.Localization.Helpers.Interfaces;
 using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Client.Wpf
 {
     /// <summary> Interaction logic for App.xaml. </summary>
     public partial class WpfClient : Application, IWpfClient
     {
+        #region Constants
+
+        /// <summary> The default <see cref="TextBlock.FontSize"/>.</summary>
+        public const int DefaultFontSize = EInteger.Number.Sixteen;
+
+        #endregion Constants
         #region Properties
 
         /// <summary> An instance of an active logger. </summary>

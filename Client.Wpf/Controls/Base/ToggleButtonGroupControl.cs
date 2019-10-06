@@ -59,7 +59,7 @@ namespace Client.Wpf.Controls.Base
         private void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
-        /// <summary> Creates toggle buttons for given enumeration items. </summary>
+        /// <summary> Creates toggle buttons for given enumeration items, with character icons. </summary>
         /// <param name="grid"> The grid to add buttons into. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="icons"> Icons for enumeration items. </param>
@@ -69,7 +69,7 @@ namespace Client.Wpf.Controls.Base
         {
             foreach (var enumerationItem in enumerationItems)
             {
-                var toggleButton = new ToggleButton()
+                var toggleButton = new ToggleButton
                 {
                     Style = this.GetStyle(styleKey),
                     Tag = enumerationItem,
