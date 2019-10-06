@@ -1,5 +1,7 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.Extensions
@@ -35,6 +37,32 @@ namespace Core.Extensions
                 return $"{typeName.Split(ECharacter.Grave).First()}<{type.GetGenericArguments().Select(subType => subType.ToStringLikeCode()).StringJoin(", ")}>";
 
             return typeName;
+        }
+
+        /// <summary> Fluently gets enumeration items of the given type (the generic type and the type parameters have to match), optionally skipping the "None" item. </summary>
+        /// <typeparam name="T"> The enumeration type. </typeparam>
+        /// <param name="type"> The enumeration type. </param>
+        /// <param name="excludeItemNone"> Whether to exclude the "None" item. </param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool excludeItemNone = false) where T : struct
+        {
+            var genericType = typeof(T);
+
+            if (!type.IsEnum)
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(genericType.ToStringLikeCode()));
+
+            if (!type.IsEnum)
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.ToStringLikeCode()));
+
+            if (genericType != type)
+                throw new ArgumentException(ECoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.FormatFluently(genericType, type));
+
+            var enumerationItems = type.GetEnumValues().Cast<T>();
+
+            if (excludeItemNone)
+                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None);
+
+            return enumerationItems;
         }
     }
 }

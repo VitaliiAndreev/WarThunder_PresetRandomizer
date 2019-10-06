@@ -40,7 +40,8 @@
         protected const string _Application = _A + _pplication;
         protected const string _application = _a + _pplication;
         protected const string _are = _a + _re;
-        protected const string _arguments = _a + "rgu" + _ment + _s;
+        protected const string _argument = _a + _r + _g + _u + _ment;
+        protected const string _arguments = _argument + _s;
         protected const string _art = _a + "rt";
         protected const string _As = _a + _s;
         protected const string _as = _a + _s;
@@ -71,7 +72,10 @@
         #endregion B
         #region C
 
-        private const string _chema = "chema";
+        private const string _c = "c";
+        private const string _cc = _c + _c;
+        private const string _ch = _c + _h;
+        private const string _chema = _ch + _e + _m + _a;
 
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
@@ -172,6 +176,7 @@
         protected const string _emptied = _e + "mpti" + _ed;
         protected const string _empty = _e + "mpty";
         protected const string _Emptying = _E + "mpty" + _ing;
+        protected const string _enumeration = _e + "numer" + _at + _ion;
         protected const string _Error = _E + "rr" + _or;
         protected const string _error = _e + "rr" + _or;
         protected const string _established = _e + _stab + "l" + _ish + _ed;
@@ -216,6 +221,7 @@
         protected const string _game = _g + "ame";
         protected const string _gene = _g + "ene";
         protected const string _generation = _gene + _rat + _ion;
+        protected const string _Generic = _gene + _r + _i + _c;
         protected const string _given = _g + "iven";
 
         #endregion G
@@ -306,12 +312,15 @@
         #endregion L
         #region M
 
+        private const string _m = "m";
+
         protected const string _Main = "M" + _a + _in;
         protected const string _Manager = "M" + _an + _a + "ger";
         protected const string _mapping = "mapp" + _ing;
         protected const string _markers = "marker" + _s;
         protected const string _mat = "mat";
-        protected const string _matching = _mat + "ch" + _ing;
+        protected const string _match = _mat + _ch;
+        protected const string _matching = _match + _ing;
         protected const string _men = "men";
         protected const string _ment = _men + _t;
         protected const string _Method = "Metho" + _d;
@@ -326,6 +335,7 @@
         #region N
 
         private const string _n = "n";
+        private const string _ne = _n + _e;
 
         protected const string _nation = _n + "ation";
         protected const string _need = _n + "eed";
@@ -333,6 +343,7 @@
         protected const string _No = "No";
         protected const string _no = _n + "o";
         protected const string _node = _no + "de";
+        protected const string _None = _No + _ne;
         protected const string _Not = _No + _t;
         protected const string _not = _no + _t;
         protected const string _Nothing = _No + _thing;
@@ -433,6 +444,7 @@
         private const string _S = "S";
 
         protected const string _s = "s";
+        protected const string _ss = _s + _s;
 
         protected const string _safely = _s + "afe" + _ly;
         protected const string _Schema = _S + _chema;
@@ -518,9 +530,10 @@
         #endregion T
         #region U
 
-        private const string _uccess = "uccess";
-        private const string _Un = "Un";
-        private const string _un = "un";
+        private const string _u = "u";
+        private const string _uccess = _u + _cc + _e + _ss;
+        private const string _Un = "U" + _n;
+        private const string _un = _u + _n;
 
         protected const string _unfinished = _un + _finish + _ed;
         protected const string _Unit = _Un + _it;

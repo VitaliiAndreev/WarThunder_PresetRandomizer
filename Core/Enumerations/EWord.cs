@@ -74,6 +74,7 @@
         #endregion M
         #region N
 
+        public static string None => _None;
         public static string NULL => _NULL;
 
         #endregion N
