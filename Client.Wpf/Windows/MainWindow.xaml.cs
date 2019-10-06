@@ -79,10 +79,6 @@ namespace Client.Wpf.Windows
             _generatePresetButton.Command = Presenter.GetCommand(ECommandName.GeneratePreset);
             _generatePresetButton.CommandParameter = Presenter;
 
-            _gameModeSelectionControl.ArcadeButtonClick += OnGameModeButtonClick;
-            _gameModeSelectionControl.RealisticButtonClick += OnGameModeButtonClick;
-            _gameModeSelectionControl.SimulatorButtonClick += OnGameModeButtonClick;
-
             _settingsButton.CommandParameter = Presenter;
             _settingsButton.Command = Presenter.GetCommand(ECommandName.OpenSettings);
 
@@ -135,7 +131,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnGameModeButtonClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (!(sender is ToggleButton button))
+            if (!(eventArguments.OriginalSource is ToggleButton button))
                 return;
 
             if (!(button.Tag is EGameMode buttonGameMode))

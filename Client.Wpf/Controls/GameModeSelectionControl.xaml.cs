@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,25 +20,14 @@ namespace Client.Wpf.Controls
         #endregion Properties
         #region Events
 
-        /// <summary> Occurs when the "Arcade" button is clicked. </summary>
-        public event RoutedEventHandler ArcadeButtonClick
-        {
-            add => _arcadeButton.Click += value;
-            remove => _arcadeButton.Click -= value;
-        }
+        /// <summary> A routed event for <see cref="Click"/>. </summary>
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(GameModeSelectionControl));
 
-        /// <summary> Occurs when the "Realistic" button is clicked. </summary>
-        public event RoutedEventHandler RealisticButtonClick
+        /// <summary> An event for clicking toggle buttons. </summary>
+        public event RoutedEventHandler Click
         {
-            add => _realisticButton.Click += value;
-            remove => _realisticButton.Click -= value;
-        }
-
-        /// <summary> Occurs when the "Realistic" button is clicked. </summary>
-        public event RoutedEventHandler SimulatorButtonClick
-        {
-            add => _simulatorButton.Click += value;
-            remove => _simulatorButton.Click -= value;
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
         }
 
         #endregion Events
@@ -55,13 +45,14 @@ namespace Client.Wpf.Controls
                 { EGameMode.Simulator, _simulatorButton.EmbeddedButton },
             };
 
-            _arcadeButton.EmbeddedButton.Tag = EGameMode.Arcade;
-            _realisticButton.EmbeddedButton.Tag = EGameMode.Realistic;
-            _simulatorButton.EmbeddedButton.Tag = EGameMode.Simulator;
+            foreach(var buttonKeyValuePair in Buttons)
+            {
+                var gameMode = buttonKeyValuePair.Key;
+                var button = buttonKeyValuePair.Value;
 
-            ArcadeButtonClick += OnClick;
-            RealisticButtonClick += OnClick;
-            SimulatorButtonClick += OnClick;
+                button.Tag = gameMode;
+                button.Click += OnClick;
+            }
         }
 
         #endregion Constuctors
@@ -89,9 +80,16 @@ namespace Client.Wpf.Controls
                 .ToList()
                 .ForEach(button => button.IsChecked = false)
             ;
+
+            RaiseClickEvent(clickedButton);
         }
 
         #endregion Methods: Event Handlers
+
+        /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
+        /// <param name="toggleButton"> The toggle button to raise the event for. </param>
+        private void RaiseClickEvent(ToggleButton toggleButton) =>
+            RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
         /// <summary> Applies localization to visible text on the control. </summary>
         public override void Localize()

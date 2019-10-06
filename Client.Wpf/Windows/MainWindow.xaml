@@ -41,7 +41,8 @@
                     FontWeight="Bold"/>
 
                 <controls:GameModeSelectionControl
-                    x:Name="_gameModeSelectionControl"/>
+                    x:Name="_gameModeSelectionControl"
+                    Click="OnGameModeButtonClick"/>
 
                 <controls:BranchToggleControl
                     x:Name="_branchToggleControl"
