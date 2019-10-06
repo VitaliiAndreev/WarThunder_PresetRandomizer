@@ -59,6 +59,28 @@ namespace Client.Wpf.Controls.Base
         public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
+        /// <summary> Adds the given <paramref name="UiElement"/> to the <paramref name="grid"/>, stacking it horizontally or vertically. </summary>
+        /// <param name="grid"> The grid to add <paramref name="UiElement"/> into. </param>
+        /// <param name="horizontal"> Whether to stack the <paramref name="UiElement"/> into a row or into a column. </param>
+        /// <param name="UiElement"> The UI element to add into the <paramref name="grid"/></param>
+        protected void AddToGrid(Grid grid, bool horizontal, UIElement UiElement)
+        {
+            if (horizontal)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                grid.Children.Add(UiElement);
+
+                Grid.SetColumn(UiElement, grid.ColumnDefinitions.Count() - EInteger.Number.One);
+            }
+            else
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
+                grid.Children.Add(UiElement);
+
+                Grid.SetRow(UiElement, grid.RowDefinitions.Count() - EInteger.Number.One);
+            }
+        }
+
         /// <summary> Creates toggle buttons for given enumeration items, with character icons. </summary>
         /// <param name="grid"> The grid to add buttons into. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
@@ -76,20 +98,7 @@ namespace Client.Wpf.Controls.Base
                     Content = icons[enumerationItem],
                 };
 
-                if (horizontal)
-                {
-                    grid.ColumnDefinitions.Add(new ColumnDefinition());
-                    grid.Children.Add(toggleButton);
-
-                    Grid.SetColumn(toggleButton, grid.ColumnDefinitions.Count() - EInteger.Number.One);
-                }
-                else
-                {
-                    grid.RowDefinitions.Add(new RowDefinition());
-                    grid.Children.Add(toggleButton);
-
-                    Grid.SetRow(toggleButton, grid.RowDefinitions.Count() - EInteger.Number.One);
-                }
+                AddToGrid(grid, horizontal, toggleButton);
 
                 toggleButton.Click += OnClick;
 
