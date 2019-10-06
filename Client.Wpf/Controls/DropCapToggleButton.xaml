@@ -9,11 +9,7 @@
     d:DesignHeight="100"
     d:DesignWidth="200">
     <ToggleButton x:Name="_button">
-        <WrapPanel>
-
-            <controls:DropCapTextBlock
-                x:Name="_dropCapTextBlock"/>
-
-        </WrapPanel>
+        <controls:DropCapTextBlock
+            x:Name="_dropCapTextBlock"/>
     </ToggleButton>
 </UserControl>
