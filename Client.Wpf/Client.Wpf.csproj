@@ -217,6 +217,7 @@
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
+    <Compile Include="Controls\Base\ToggleButtonGroupControlWithToolTips.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
     <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">
