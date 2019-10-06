@@ -1,4 +1,4 @@
-﻿<base:ToggleButtonGroupControlWithToolTips
+﻿<base:ToggleButtonGroupControl
     x:TypeArguments="enumerations:EBranch"
     x:Class="Client.Wpf.Controls.BranchToggleControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -13,4 +13,4 @@
     <Grid x:Name="_buttonGrid">
         
     </Grid>
-</base:ToggleButtonGroupControlWithToolTips>
+</base:ToggleButtonGroupControl>

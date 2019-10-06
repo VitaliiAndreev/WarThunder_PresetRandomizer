@@ -7,7 +7,7 @@ using System.Linq;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for BranchToggleControl.xaml. </summary>
-    public partial class BranchToggleControl : ToggleButtonGroupControlWithToolTips<EBranch>
+    public partial class BranchToggleControl : ToggleButtonGroupControl<EBranch>
     {
         #region Constructors
 
