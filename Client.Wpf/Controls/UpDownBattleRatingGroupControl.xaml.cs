@@ -83,5 +83,14 @@ namespace Client.Wpf.Controls
             foreach (var control in BattleRatingControls.Values)
                 control.Initialize(WpfSettings.EnabledEconomicRankIntervals[control.Tag.CastTo<ENation>()]);
         }
+
+        /// <summary> Changes the <see cref="UIElement.IsEnabled"/> status of the of the up-down control pair corresponding to the specified nation. </summary>
+        /// <param name="nation"> The nation whose control pair's state to change. </param>
+        /// <param name="enable"> Whether to enable or disable the nation's control control pair. </param>
+        public void Enable(ENation nation, bool enable)
+        {
+            if (BattleRatingControls.TryGetValue(nation, out var toggleButton) && toggleButton.IsEnabled != enable)
+                toggleButton.IsEnabled = enable;
+        }
     }
 }

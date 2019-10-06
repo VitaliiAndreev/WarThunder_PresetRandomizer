@@ -159,8 +159,11 @@ namespace Client.Wpf.Windows
 
             Presenter.ExecuteCommand(_toggleCommands[keyType]);
 
-            if (buttonTag is ENation)
+            if (buttonTag is ENation nation)
+            {
                 AdjustBranchTogglesAvailability();
+                _battleRatingControl.Enable(nation, toggleButton.IsChecked.Value);
+            }
 
             RaiseGeneratePresetCommandCanExecuteChanged();
         }

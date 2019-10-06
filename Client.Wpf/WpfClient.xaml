@@ -289,6 +289,11 @@
 
         <Style TargetType="controls:UpDownBattleRatingControl">
             <Setter Property="Height" Value="42"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="TextBlock.Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
         <!-- t:WrapPanel -->
