@@ -100,6 +100,7 @@ namespace Client.Wpf.Windows
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
             _battleRatingControl.InitializeControls();
+            AdjustBattleRatingControlsAvailability();
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
@@ -328,6 +329,23 @@ namespace Client.Wpf.Windows
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);
             Presenter.ExecuteCommand(ECommandName.DeletePresets);
+        }
+
+        /// <summary> Adjusts availability of <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> according to <see cref="IMainWindowPresenter.EnabledNations"/>. </summary>
+        private void AdjustBattleRatingControlsAvailability()
+        {
+            var allNations = typeof(ENation).GetEnumValues().Cast<ENation>().Except(ENation.None);
+            var disabledNations = allNations.Except(Presenter.EnabledNations);
+
+            DisableBattleRatingControls(disabledNations);
+        }
+
+        /// <summary> Disables <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> corresponding to <paramref name="disabledNations"/>. </summary>
+        /// <param name="disabledNations"> Nations whose <see cref="UpDownBattleRatingPairControl"/>s to disable. </param>
+        private void DisableBattleRatingControls(IEnumerable<ENation> disabledNations)
+        {
+            foreach (var disabledNation in disabledNations)
+                _battleRatingControl.Enable(disabledNation, false);
         }
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
