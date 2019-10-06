@@ -9,7 +9,7 @@ using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
 {
-    /// <summary> A user control consisting of a row or a column of toggle buttons, indexed by <typeparamref name="T"/> values. </summary>
+    /// <summary> A user control consisting of a row or a column of <see cref="ToggleButton"/>s, indexed by <typeparamref name="T"/> values. </summary>
     /// <typeparam name="T"> The key type. </typeparam>
     public class ToggleButtonGroupControl<T> : LocalizedUserControl
     {

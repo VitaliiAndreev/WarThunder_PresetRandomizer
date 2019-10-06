@@ -1,8 +1,10 @@
-﻿namespace Client.Wpf.Controls.Base
+﻿using System.Windows.Controls.Primitives;
+
+namespace Client.Wpf.Controls.Base
 {
-    /// <summary> A user control consisting of a row or a column of toggle buttons, indexed by <typeparamref name="T"/> values, and having a tooltip. </summary>
+    /// <summary> A user control consisting of a row or a column of <see cref="ToggleButton"/>s, indexed by <typeparamref name="T"/> values, and having a tooltip. </summary>
     /// <typeparam name="T"> The key type. </typeparam>
-    public class ToggleButtonGroupControlWithToolTips<T> : ToggleButtonGroupControl<T>
+    public class ToggleButtonGroupControlWithToolTip<T> : ToggleButtonGroupControl<T>
     {
         /// <summary> Applies localization to visible text on the control. </summary>
         public override void Localize()

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for NationToggleControl.xaml. </summary>
-    public partial class NationToggleControl : ToggleButtonGroupControlWithToolTips<ENation>
+    public partial class NationToggleControl : ToggleButtonGroupControlWithToolTip<ENation>
     {
         #region Constructors
 
