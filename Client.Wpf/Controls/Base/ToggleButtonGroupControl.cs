@@ -1,6 +1,8 @@
 ﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Extensions;
 using Core.Enumerations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -59,6 +61,25 @@ namespace Client.Wpf.Controls.Base
         public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
+        /// <summary> Adds the given <paramref name="UiElement"/> to the <paramref name="panel"/>, stacking it horizontally or vertically. </summary>
+        /// <param name="panel"> The panel to add <paramref name="UiElement"/> onto. </param>
+        /// <param name="horizontal"> Whether to stack the <paramref name="UiElement"/> into a row or into a column. </param>
+        /// <param name="UiElement"> The UI element to add onto the <paramref name="panel"/></param>
+        private void AddToPanel(Panel panel, bool horizontal, UIElement UiElement)
+        {
+            if (panel is Grid grid)
+                AddToGrid(grid, horizontal, UiElement);
+
+            else if (panel is StackPanel && horizontal)
+                throw new ArgumentException(EWpfClientLogMessage.StackPanelCantBeHorizontal);
+
+            else if (panel is WrapPanel && !horizontal)
+                throw new ArgumentException(EWpfClientLogMessage.WrapPanelCantBeVertical);
+
+            else
+                panel.Children.Add(UiElement);
+        }
+
         /// <summary> Adds the given <paramref name="UiElement"/> to the <paramref name="grid"/>, stacking it horizontally or vertically. </summary>
         /// <param name="grid"> The grid to add <paramref name="UiElement"/> into. </param>
         /// <param name="horizontal"> Whether to stack the <paramref name="UiElement"/> into a row or into a column. </param>
@@ -82,12 +103,12 @@ namespace Client.Wpf.Controls.Base
         }
 
         /// <summary> Creates toggle buttons for given enumeration items, with character icons. </summary>
-        /// <param name="grid"> The grid to add buttons into. </param>
+        /// <param name="panel"> The panel to add buttons into. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="icons"> Icons for enumeration items. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
-        public void CreateToggleButtons(Grid grid, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true)
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true)
         {
             foreach (var enumerationItem in enumerationItems)
             {
@@ -98,11 +119,10 @@ namespace Client.Wpf.Controls.Base
                     Content = icons[enumerationItem],
                 };
 
-                AddToGrid(grid, horizontal, toggleButton);
-
                 toggleButton.Click += OnClick;
 
                 _buttons.Add(enumerationItem, toggleButton);
+                AddToPanel(panel, horizontal, toggleButton);
             }
         }
 

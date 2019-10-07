@@ -13,6 +13,8 @@ namespace Client.Wpf.Enumerations.Logger
         /// </summary>
         public static readonly string LocalizationFileNotFound_ShowingLocalizationDialog = $"{_The} {_localization} {_file} {_for} \"{{0}}\" {_not} {_found}. {_Showing} {_the} {_localization} {_dialog}.";
         public static readonly string InitializationCancelled_ClosingApplication = $"{_Initialization} {_cancelled}. {_Closing} {_the} {_application}.";
+        public static readonly string StackPanelCantBeHorizontal = $"{_Stack} {_panel} {_cant} {_be} {_horizontal}.";
+        public static readonly string WrapPanelCantBeVertical = $"{_Wrap} {_panel} {_cant} {_be} {_vertical}.";
 
         #endregion WpfClient
     }

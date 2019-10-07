@@ -79,7 +79,10 @@
 
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
-        protected const string _cancelled = "cancell" + _ed;
+        protected const string _can = _c + _an;
+        protected const string _cant = _can + "'" + _t;
+        protected const string _cancelled = _can + _cell + _ed;
+        protected const string _cat = _c + _at;
         protected const string _cell = "cell";
         protected const string _Change = "Change";
         protected const string _change = "change";
@@ -164,6 +167,7 @@
 
         private const string _E = "E";
         private const string _e = "e";
+        private const string _ect = _e + _c + _t;
         private const string _ed = _e + _d;
         private const string _er = _e + _r;
         private const string _es = _e + _s;
@@ -171,8 +175,10 @@
         private const string _est = _es + _t;
         private const string _ett = _e + _t + _t;
         private const string _Ex = _E + _x;
+        private const string _ey = _E + _y;
 
-        protected const string _elect = _e + "lect";
+        protected const string _el = _e + _l;
+        protected const string _elect = _el + _ect;
         protected const string _emptied = _e + "mpti" + _ed;
         protected const string _empty = _e + "mpty";
         protected const string _Emptying = _E + "mpty" + _ing;
@@ -237,6 +243,7 @@
         protected const string _Helpers = _Helper + _s;
         protected const string _helpers = _h + "el" + _per + _s;
         protected const string _here = _h + "ere";
+        protected const string _horizontal = _h + "orizontal";
         protected const string _how = _h + _ow;
 
         #endregion H
@@ -286,15 +293,19 @@
         #endregion J
         #region K
 
-        protected const string _Key = "Key";
-        protected const string _key = "key";
+        private const string _K = "K";
+        private const string _k = "k";
+
+        protected const string _Key = _K + _ey;
+        protected const string _key = _k + _ey;
 
         #endregion K
         #region L
 
-        private const string _ll = "ll";
-        private const string _lready = "lready";
-        private const string _ly = "ly";
+        private const string _l = "l";
+        private const string _ll = _l + _l;
+        private const string _lready = _l + _ready;
+        private const string _ly = _l + _y;
 
         protected const string _language = "language";
         protected const string _latest = "latest";
@@ -379,12 +390,16 @@
         #endregion O
         #region P
 
-        private const string _pplication = "pplication";
+        private const string _p = "p";
+        private const string _pp = _p + _p;
+        private const string _pplication = _pp + "li" + _cat + _ion;
         private const string _Pre = "Pre";
         private const string _pre = "pre";
         private const string _pro = "pro";
 
         protected const string _pack = "pack";
+        protected const string _pan = _p + _an;
+        protected const string _panel = _pan + _el;
         protected const string _Par = "Par";
         protected const string _par = "par";
         protected const string _Parser = _Par + _s + _er;
@@ -419,12 +434,14 @@
         protected const string _ranch = _r + "anch";
         protected const string _rank = _r + "ank";
         protected const string _ranks = _rank + _s;
+        protected const string _rap = _r + _a + _p;
         protected const string _rat = _r + _at;
         protected const string _rating = _rat + _ing;
         protected const string _ratings = _rating + _s;
         protected const string _raw = _r + "aw";
         protected const string _Read = _Re + _ad;
         protected const string _read = _re + _ad;
+        protected const string _ready = _read + _y;
         protected const string _Reader = _Read + _er;
         protected const string _reader = _read + _er;
         protected const string _Reading = _Read + _ing;
@@ -479,6 +496,7 @@
         protected const string _Specification = _S + "pecificat" + _ion;
         protected const string _specified = _s + "pecifi" + _ed;
         protected const string _stab = _s + _tab;
+        protected const string _Stack = _S + _tack;
         protected const string _stance = _s + "tance";
         protected const string _standardized = _s + "tandardize" + _d;
         protected const string _Started = _S + _tart + _ed;
@@ -502,6 +520,7 @@
         private const string _tre = _t + _re;
 
         protected const string _tab = _t + _a + _b;
+        protected const string _tack = _t + _a + _c + _k;
         protected const string _tart = _t + _art;
         protected const string _ten = _t + _e + _n;
         protected const string _test = _t + _est;
@@ -550,16 +569,20 @@
         #endregion U
         #region V
 
+        private const string _v = "v";
+
         protected const string _valid = "valid";
         protected const string _Value = "Value";
         protected const string _value = "value";
         protected const string _vehicle = "vehicle";
         protected const string _vehicles = _vehicle + _s;
         protected const string _version = "vers" + _ion;
+        protected const string _vertical = _v + "ertical";
 
         #endregion V
         #region W
 
+        private const string _W = "W";
         private const string _w = "w";
 
         protected const string _while = _w + "hile";
@@ -567,6 +590,7 @@
         protected const string _Window = "Window";
         protected const string _with = _w + "ith";
         protected const string _WPF = "WPF";
+        protected const string _Wrap = _W + _rap;
         protected const string _write = _w + _rite;
         protected const string _written = _w + "rit" + _ten;
 
