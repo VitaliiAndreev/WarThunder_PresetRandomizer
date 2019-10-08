@@ -15,6 +15,7 @@ using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
+using NHibernate.Type;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -47,7 +48,7 @@ namespace Core.DataBase.WarThunder.Objects
         public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
-        [Property(NotNull = true)]
+        [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
         public virtual EVehicleClass Class { get; protected internal set; }
 
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
