@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using System;
 
 namespace Core.Extensions
 {
@@ -24,6 +25,13 @@ namespace Core.Extensions
         /// <returns></returns>
         public static bool IsZero(this int value) =>
             value == EInteger.Number.Zero;
+
+        /// <summary> Fluently executes an operation on the <paramref name="value"/> and returns the result. </summary>
+        /// <param name="value"> The value to do the operation on. </param>
+        /// <param name="function"> The function to execute over the <paramref name="value"/>. </param>
+        /// <returns></returns>
+        public static int Do(this int value, Func<int, int> function) =>
+            function(value);
 
         #endregion Fluency
 
