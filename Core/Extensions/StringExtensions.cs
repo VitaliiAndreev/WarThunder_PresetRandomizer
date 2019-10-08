@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -66,6 +67,24 @@ namespace Core.Extensions
         /// <returns></returns>
         public static bool TryParseEnumeration<T>(this string enumerationItemName, out T enumerationItem) where T : struct =>
             Enum.TryParse<T>(enumerationItemName, out enumerationItem);
+
+        /// <summary> Fluently tries to parse the given string into a value of the specified type. </summary>
+        /// <typeparam name="T"> The type to parse into. </typeparam>
+        /// <param name="sourceString"> The string to parse. </param>
+        /// <param name="value"> The resulting value. </param>
+        /// <returns></returns>
+        public static bool TryParse<T>(this string sourceString, out T value) where T : struct
+        {
+            if (typeof(T) == typeof(int) && int.TryParse(sourceString, out var parsedValue))
+            {
+                value = parsedValue.CastTo<T>();
+                return true;
+            }
+            else
+            {
+                throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T)));
+            }
+        }
 
         #region Regular Expressions
 
