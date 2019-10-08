@@ -78,7 +78,6 @@
     <Compile Include="Enumerations\ERank.cs" />
     <Compile Include="Enumerations\EReference.cs" />
     <Compile Include="Enumerations\EVehicleClass.cs" />
-    <Compile Include="Extensions\EBranchExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
