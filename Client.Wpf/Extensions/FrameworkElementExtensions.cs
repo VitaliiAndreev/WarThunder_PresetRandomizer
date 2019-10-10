@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Core.Extensions;
+using System.Windows;
 
 namespace Client.Wpf.Extensions
 {
@@ -11,5 +12,12 @@ namespace Client.Wpf.Extensions
         /// <returns></returns>
         public static Style GetStyle(this FrameworkElement frameworkElement, string styleKey) =>
             frameworkElement.FindResource(styleKey) as Style;
+
+        /// <summary> Gets the tag of the given <paramref name="frameworkElement"/> and casts it to <typeparamref name="T"/>. </summary>
+        /// <typeparam name="T"> The type to cast the tag to. </typeparam>
+        /// <param name="frameworkElement"> The framework element for which to search. </param>
+        /// <returns></returns>
+        public static T GetTag<T>(this FrameworkElement frameworkElement) =>
+            frameworkElement.Tag.CastTo<T>();
     }
 }
