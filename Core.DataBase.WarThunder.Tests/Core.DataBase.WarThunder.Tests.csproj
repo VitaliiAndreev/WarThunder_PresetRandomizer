@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\EAssembly.cs" />
+    <Compile Include="Extensions\EBranchExtensionsTests.cs" />
     <Compile Include="Extensions\EVehicleClassExtensionsTests.cs" />
     <Compile Include="Helpers\CalculatorTests.cs" />
     <Compile Include="Objects\BranchTests.cs" />
