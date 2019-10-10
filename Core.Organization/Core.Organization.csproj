@@ -62,6 +62,7 @@
     <Compile Include="Objects\ResearchTreeBranch.cs" />
     <Compile Include="Objects\ResearchTreeCoordinatesWithinRank.cs" />
     <Compile Include="Objects\ResearchTreeRank.cs" />
+    <Compile Include="Objects\SearchSpecifications\BranchSpecification.cs" />
     <Compile Include="Objects\SearchSpecifications\NationSpecification.cs" />
     <Compile Include="Objects\SearchSpecifications\Specification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
