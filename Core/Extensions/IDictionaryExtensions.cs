@@ -92,5 +92,13 @@ namespace Core.Extensions
         }
 
         #endregion Methods: Adding
+
+        /// <summary> Creates a shallow copy, i.e. a new dictionary with same contents. </summary>
+        /// <typeparam name="T"> The type of dictionary keys. </typeparam>
+        /// <typeparam name="U"> The type of dictionary values. </typeparam>
+        /// <param name="dictionary"> The dictionary to copy. </param>
+        /// <returns></returns>
+        public static IDictionary<T, U> Copy<T, U>(this IDictionary<T, U> dictionary) =>
+            new Dictionary<T, U>(dictionary);
     }
 }
