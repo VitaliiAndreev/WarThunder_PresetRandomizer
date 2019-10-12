@@ -9,15 +9,8 @@ namespace Core.Extensions
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="sourceCollection"> A source collection. </param>
         /// <returns></returns>
-        public static ICollection<T> Copy<T>(this ICollection<T> sourceCollection)
-        {
-            var newCollection = new List<T>();
-
-            foreach (var item in sourceCollection)
-                newCollection.Add(item);
-
-            return newCollection;
-        }
+        public static ICollection<T> Copy<T>(this ICollection<T> sourceCollection) =>
+            new List<T>(sourceCollection);
 
         /// <summary> Removes from this collection first occurrences of the objects present in the specified collection. </summary>
         /// <typeparam name="T"> The type of collection elements. </typeparam>
