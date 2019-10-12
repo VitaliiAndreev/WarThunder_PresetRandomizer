@@ -8,6 +8,14 @@ namespace Core.Extensions
     {
         #region Methods: Adding
 
+        /// <summary> Add the given key-value pair into the <paramref name="dictionary"/>. </summary>
+        /// <typeparam name="T"> The type of dictionary keys. </typeparam>
+        /// <typeparam name="U"> The type of dictionary values. </typeparam>
+        /// <param name="dictionary"> The dictionary to add the <paramref name="keyValuePair"/> into. </param>
+        /// <param name="keyValuePair"> The key-value pair to add into the <paramref name="dictionary"/>. </param>
+        public static void Add<T, U>(this IDictionary<T, U> dictionary, KeyValuePair<T, U> keyValuePair) =>
+            dictionary.Add(keyValuePair);
+
         /// <summary> Adds contents of the specified dictionary into this one. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <typeparam name="U"> The type of dictionary items. </typeparam>
