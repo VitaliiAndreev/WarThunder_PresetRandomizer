@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Core.Enumerations;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Core.Extensions
@@ -88,7 +89,7 @@ namespace Core.Extensions
             if (dictionary.ContainsKey(key))
                 dictionary[key]++;
             else
-                dictionary.Add(keyWhoseValueToIncrement, 1);
+                dictionary.Add(key, EInteger.Number.One);
         }
 
         #endregion Methods: Adding

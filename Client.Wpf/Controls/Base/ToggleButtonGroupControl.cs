@@ -13,7 +13,7 @@ namespace Client.Wpf.Controls.Base
     {
         #region Fields
 
-        /// <summary> The map of the game mode enumeration onto corresponding buttons. </summary>
+        /// <summary> Toggle buttons grouped by the generic "<see cref="T"/>" key. </summary>
         protected internal readonly IDictionary<T, ToggleButton> Buttons;
 
         #endregion Fields
