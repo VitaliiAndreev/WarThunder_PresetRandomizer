@@ -17,6 +17,13 @@ namespace Core.Extensions
         public static void AddInto<T>(this IEnumerable<T> collection, List<T> list) =>
             list.AddRange(collection);
 
+        /// <summary> Returns a dictionary produced from the given collection of key-value pairs. </summary>
+        /// <typeparam name="T"> The type of keys. </typeparam>
+        /// <typeparam name="U"> The type of values. </typeparam>
+        /// <param name="collection"> The collection to extract a dictionary from. </param>
+        public static IDictionary<T, U> ToDictionary<T, U>(this IEnumerable<KeyValuePair<T, U>> collection) =>
+            collection.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
+
         /// <summary> Returns a new enumeration excluding the given <paramref name="element"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
         /// <param name="collection"> The collection to exclude <paramref name="element"/> from. </param>
