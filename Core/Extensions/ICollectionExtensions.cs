@@ -5,9 +5,9 @@ namespace Core.Extensions
     /// <summary> Methods extending the <see cref="ICollection{T}"/> interface. </summary>
     public static class ICollectionExtensions
     {
-        /// <summary> Creates a copy of the collection, i.e. a new collection with same contents. </summary>
-        /// <typeparam name="T"> A generic type. </typeparam>
-        /// <param name="sourceCollection"> A source collection. </param>
+        /// <summary> Creates a shallow copy, i.e. a new collection with same contents. </summary>
+        /// <typeparam name="T"> A type of collection elements. </typeparam>
+        /// <param name="sourceCollection"> The collection to copy. </param>
         /// <returns></returns>
         public static ICollection<T> Copy<T>(this ICollection<T> sourceCollection) =>
             new List<T>(sourceCollection);

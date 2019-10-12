@@ -11,76 +11,76 @@ namespace Core.Extensions
         /// <summary> Adds contents of the specified dictionary into this one. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <typeparam name="U"> The type of dictionary items. </typeparam>
-        /// <param name="sourceDictionary"> The source dictionary. </param>
-        /// <param name="donorDictionary"> The dictionary whose contents to add into this one. </param>
-        public static void AddRange<T, U>(this IDictionary<T, U> sourceDictionary, IDictionary<T, U> donorDictionary)
+        /// <param name="recipientDictionary"> The dictionary to add <paramref name="donorDictionary"/> into. </param>
+        /// <param name="donorDictionary"> The dictionary whose contents to add into the <paramref name="recipientDictionary"/>. </param>
+        public static void AddRange<T, U>(this IDictionary<T, U> recipientDictionary, IDictionary<T, U> donorDictionary)
         {
             foreach (var keyValuePair in donorDictionary)
-                sourceDictionary.Add(keyValuePair);
+                recipientDictionary.Add(keyValuePair);
         }
 
         /// <summary> Safely adds the specified value under its key into the dictionary. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <typeparam name="U"> The type of dictionary items. </typeparam>
-        /// <param name="sourceDictionary"> The source dictionary. </param>
-        /// <param name="key"> The key under which to add. </param>
-        /// <param name="value"> The value to add. </param>
-        private static void AddSafely<T, U>(this IDictionary<T, U> sourceDictionary, T key, U value)
+        /// <param name="dictionary"> The dictionary to add the <paramref name="key"/> and the <paramref name="value"/> into. </param>
+        /// <param name="key"> The key under which to add into the <paramref name="dictionary"/>. </param>
+        /// <param name="value"> The value to add into the <paramref name="dictionary"/>. </param>
+        private static void AddSafely<T, U>(this IDictionary<T, U> dictionary, T key, U value)
         {
-            if (sourceDictionary.ContainsKey(key))
-                sourceDictionary[key] = value;
+            if (dictionary.ContainsKey(key))
+                dictionary[key] = value;
             else
-                sourceDictionary.Add(key, value);
+                dictionary.Add(key, value);
         }
 
         /// <summary> Tries to add the specified value under its key into the dictionary. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <typeparam name="U"> The type of dictionary items. </typeparam>
-        /// <param name="sourceDictionary"> The source dictionary. </param>
-        /// <param name="key"> The key under which to add. </param>
-        /// <param name="value"> The value to add. </param>
-        public static void AddSafely<T, U>(this IDictionary sourceDictionary, T key, U value)
+        /// <param name="dictionary"> The dictionary to add the <paramref name="key"/> and the <paramref name="value"/> into. </param>
+        /// <param name="key"> The key under which to add into the <paramref name="dictionary"/>. </param>
+        /// <param name="value"> The value to add into the <paramref name="dictionary"/>. </param>
+        public static void AddSafely<T, U>(this IDictionary dictionary, T key, U value)
         {
-            if (sourceDictionary is IDictionary<T, U> genericDictionary)
+            if (dictionary is IDictionary<T, U> genericDictionary)
                 genericDictionary.AddSafely(key, value);
 
             else
             {
-                if (sourceDictionary.Contains(key))
-                    sourceDictionary[key] = value;
+                if (dictionary.Contains(key))
+                    dictionary[key] = value;
                 else
-                    sourceDictionary.Add(key, value);
+                    dictionary.Add(key, value);
             }
         }
 
         /// <summary> Gets an item with the specified key. A new item is instantiated if none are bound to the key. As such, the item type (<typeparamref name="U"/>) has to be a reference type with a parameterless constructor. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <typeparam name="U"> The type of dictionary items. </typeparam>
-        /// <param name="sourceDictionary"> The source dictionary. </param>
-        /// <param name="key"> The key by which to look. </param>
+        /// <param name="dictionary"> The dictionary to read by <paramref name="key"/> from. </param>
+        /// <param name="key"> The key by which to look in the <paramref name="dictionary"/>. </param>
         /// <returns></returns>
-        public static U GetWithInstantiation<T, U>(this IDictionary<T, U> sourceDictionary, T key) where U : class
+        public static U GetWithInstantiation<T, U>(this IDictionary<T, U> dictionary, T key) where U : class
         {
-            if (sourceDictionary.ContainsKey(key))
-                return sourceDictionary[key];
+            if (dictionary.ContainsKey(key))
+                return dictionary[key];
 
             else
             {
-                sourceDictionary.Add(key, typeof(U).CreateInstance<U>());
-                return sourceDictionary[key];
+                dictionary.Add(key, typeof(U).CreateInstance<U>());
+                return dictionary[key];
             }
         }
 
-        /// <summary> Increments the value assigned to the specified key. </summary>
+        /// <summary> Increments the value assigned to the specified <paramref name="key"/>. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
-        /// <param name="sourceDictionary"> The source dictionary. </param>
-        /// <param name="keyWhoseValueToIncrement"> The key whose value to increment. </param>
-        public static void Increment<T>(this IDictionary<T, int> sourceDictionary, T keyWhoseValueToIncrement)
+        /// <param name="dictionary"> The dictionary to increment a value of. </param>
+        /// <param name="key"> The key whose value to increment in the <paramref name="dictionary"/>. </param>
+        public static void Increment<T>(this IDictionary<T, int> dictionary, T key)
         {
-            if (sourceDictionary.ContainsKey(keyWhoseValueToIncrement))
-                sourceDictionary[keyWhoseValueToIncrement]++;
+            if (dictionary.ContainsKey(key))
+                dictionary[key]++;
             else
-                sourceDictionary.Add(keyWhoseValueToIncrement, 1);
+                dictionary.Add(keyWhoseValueToIncrement, 1);
         }
 
         #endregion Methods: Adding

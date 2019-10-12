@@ -57,6 +57,10 @@ namespace Client.Wpf.Presenters
 
         #endregion Constructors
 
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => Owner.GetEmptyBranches();
+
         /// <summary> Gets all valid branches. </summary>
         /// <returns></returns>
         public IEnumerable<EBranch> GetValidBraches()
@@ -71,10 +75,6 @@ namespace Client.Wpf.Presenters
 
             return validBranches;
         }
-
-        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
-        /// <returns></returns>
-        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => Owner.GetEmptyBranches();
 
         /// <summary> Resets preset control to their default states. </summary>
         public void ResetPresetControls() => Owner.ResetPresetControls();

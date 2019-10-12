@@ -60,8 +60,8 @@ namespace Core.Extensions
         public static T ParseEnumeration<T>(this string enumerationItemName) where T : struct =>
             (T)Enum.Parse(typeof(T), enumerationItemName);
 
-        /// <summary> Fluently tries to parse the specified name of an item of the given enumeration type into the corresponding enumeration item. </summary>
-        /// <typeparam name="T"> The enumeration to parse a value of. </typeparam>
+        /// <summary> Fluently tries to parse the given name of an item of the given enumeration type into an item of the specified enumeration. </summary>
+        /// <typeparam name="T"> The enumeration to parse into. </typeparam>
         /// <param name="enumerationItemName"> The name of the enumeration item to parse. </param>
         /// <param name="enumerationItem"> The resulting enumeration item. </param>
         /// <returns></returns>

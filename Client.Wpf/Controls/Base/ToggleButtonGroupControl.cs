@@ -91,7 +91,7 @@ namespace Client.Wpf.Controls.Base
         }
 
         /// <summary> Toggles a button corresponding to the specified key. </summary>
-        /// <param name="branches"> The key whose button to toggle. </param>
+        /// <param name="key"> The key whose button to toggle. </param>
         /// <param name="newState"> Whether to toggle the button on or off. </param>
         public void Toggle(T key, bool newState)
         {

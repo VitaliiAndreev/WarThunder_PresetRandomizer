@@ -10,20 +10,20 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
-        /// <summary> Adds the elements of the collection to the end of the specified list. </summary>
-        /// <typeparam name="T"> A generic type. </typeparam>
-        /// <param name="sourceCollection"> A source collection. </param>
-        /// <param name="targetCollection"> The list to which to add into. </param>
-        public static void AddInto<T>(this IEnumerable<T> sourceCollection, List<T> targetCollection) =>
-            targetCollection.AddRange(sourceCollection);
+        /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="list"/>. </summary>
+        /// <typeparam name="T"> The type of collection items. </typeparam>
+        /// <param name="collection"> The collection to add into the <paramref name="list"/>. </param>
+        /// <param name="list"> The list to which to add items from <paramref name="collection"/> into. </param>
+        public static void AddInto<T>(this IEnumerable<T> collection, List<T> list) =>
+            list.AddRange(collection);
 
-        /// <summary> Returns a new enumberation excluding the given element. </summary>
-        /// <typeparam name="T"> A generic type. </typeparam>
-        /// <param name="sourceCollection"> A source collection. </param>
-        /// <param name="element"> The element to exclude. </param>
+        /// <summary> Returns a new enumeration excluding the given <paramref name="element"/>. </summary>
+        /// <typeparam name="T"> The type of collection items. </typeparam>
+        /// <param name="collection"> The collection to exclude <paramref name="element"/> from. </param>
+        /// <param name="element"> The element to exclude from the <paramref name="collection"/>. </param>
         /// <returns></returns>
-        public static IEnumerable<T> Except<T>(this IEnumerable<T> sourceCollection, T element) =>
-            sourceCollection.Except(new List<T> { element });
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> collection, T element) =>
+            collection.Except(new List<T> { element });
 
         #region IsEmpty(), HasSingle(), HasMany()
 
