@@ -446,9 +446,18 @@ namespace Core.Organization.Helpers
         public IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresets(Specification specification)
         {
             var gameMode = specification.GameMode;
-            var mainBranch = _randomizer.GetRandom(specification.Branches);
+            var mainBranch = _randomizer.GetRandom(specification.BranchSpecifications.Keys);
+            var vehicleClasses = specification.BranchSpecifications.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.VehicleClasses);
+
+            bool hasVehicleClasses(EBranch branch) => vehicleClasses.TryGetValue(branch, out var branchVehicleClasses) && branchVehicleClasses.Any();
 
             LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+
+            if (!hasVehicleClasses(mainBranch))
+            {
+                LogWarn(EOrganizationLogMessage.MainBranchHasNoVehicleClassesEnabled);
+                return new Dictionary<EPreset, Preset>();
+            }
 
             var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch)));
             var nation = nationSpecification.Nation;
@@ -470,7 +479,8 @@ namespace Core.Organization.Helpers
                 return new Dictionary<EPreset, Preset>();
             }
 
-            var availableBranches = nationSpecification.Branches.Where(branch => vehiclesFromNation.Any(vehicle => vehicle.Branch.AsEnumerationItem == branch));
+            var vehiclesByBranches = vehiclesFromNation.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
+            var availableBranches = nationSpecification.Branches.Where(branch => hasVehicleClasses(branch) && vehiclesByBranches.TryGetValue(branch, out var vehiclesInBranch) && vehiclesInBranch.Any());
 
             if (availableBranches.IsEmpty())
             {
@@ -480,7 +490,18 @@ namespace Core.Organization.Helpers
 
             var presetComposition = GetPresetComposition(gameMode, availableBranches, crewSlotAmount, mainBranch);
             var presets = new Dictionary<EPreset, Preset>();
-            var filteredVehicles = vehiclesFromNation.Where(vehicle => vehicle.Branch.AsEnumerationItem.IsIn(presetComposition.Keys));
+            var vehiclesForPreset = vehiclesByBranches.Where(keyValuePair => keyValuePair.Key.IsIn(presetComposition.Keys)).SelectMany(keyValuePair => keyValuePair.Value);
+
+            var vehiclesByClasses = vehiclesForPreset.GroupBy(vehicle => vehicle.Class).ToDictionary(group => group.Key, group => group.AsEnumerable());
+            var availableVehicleClasses = vehicleClasses.Where(keyValuePair => keyValuePair.Key.IsIn(availableBranches)).SelectMany(keyValuePair => keyValuePair.Value);
+
+            if (availableVehicleClasses.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehicleClassesAvailableForSelectedBranches);
+                return new Dictionary<EPreset, Preset>();
+            }
+
+            var filteredVehicles = vehiclesByClasses.Where(keyValuePair => keyValuePair.Key.IsIn(availableVehicleClasses)).SelectMany(keyValuePair => keyValuePair.Value);
 
             if (filteredVehicles.IsEmpty())
             {

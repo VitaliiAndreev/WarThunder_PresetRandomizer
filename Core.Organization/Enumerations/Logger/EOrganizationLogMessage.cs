@@ -36,11 +36,17 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string DummyNationSelected = $"{_Dummy} {_nation} {_selected}.";
         /// <summary> 
         /// A message with formatting placeholders.
+        /// <para> 1: main branch. </para>
+        /// </summary>
+        public static readonly string MainBranchHasNoVehicleClassesEnabled = $"{_Main} {_branch} \"{{0}}\" {_has} {_no} {_vehicle} {_classes} {_enabled}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
         /// <para> 1: nation collection. </para>
         /// <para> 2: branch collection. </para>
         /// </summary>
         public static readonly string NationsHaveNoBranch = $"\"{{0}}\" {_dont}/{_doesnt} {_have} \"{{1}}\".";
         public static readonly string NoVehiclesAvailableForSelectedBranches = $"{_No} {_vehicles} {_available} {_for} {_selected} {_branches}.";
+        public static readonly string NoVehicleClassesAvailableForSelectedBranches = $"{_No} {_vehicle} {_classes} {_available} {_for} {_selected} {_branches}.";
         public static readonly string NoVehiclesAvailableForPreset = $"{_No} {_vehicles} {_available} {_for} {_preset}.";
         /// <summary> 
         /// A message with formatting placeholders.

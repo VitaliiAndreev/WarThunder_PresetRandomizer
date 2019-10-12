@@ -36,5 +36,7 @@ namespace Client.Wpf.Enumerations
         ToggleBranch,
         /// <summary> See <see cref="ToggleNationCommand"/>. </summary>
         ToggleNation,
+        /// <summary> See <see cref="ToggleVehicleClassCommand"/>. </summary>
+        ToggleVehicleClass,
     }
 }

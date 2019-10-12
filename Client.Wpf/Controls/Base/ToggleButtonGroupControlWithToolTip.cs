@@ -11,7 +11,7 @@ namespace Client.Wpf.Controls.Base
         {
             base.Localize();
 
-            foreach (var button in _buttons.Values)
+            foreach (var button in Buttons.Values)
                 if (button.Tag is T key)
                     button.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(key.ToString());
         }

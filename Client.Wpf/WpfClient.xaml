@@ -285,6 +285,13 @@
             <Setter Property="FontSize" Value="17"/>
         </Style>
 
+        <Style TargetType="ToggleButton" x:Key="VehicleClassToggle" BasedOn="{StaticResource NationToggle}">
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Padding" Value="-5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
         <!-- t:UpDownControl -->
 
         <Style TargetType="controls:UpDownBattleRatingControl">
@@ -294,6 +301,12 @@
                     <Setter Property="TextBlock.Opacity" Value="0.5" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <!-- t:VehicleClassToggleControl -->
+
+        <Style TargetType="controls:VehicleClassToggleControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
         </Style>
         
         <!-- t:WrapPanel -->

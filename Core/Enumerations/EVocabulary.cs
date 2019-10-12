@@ -76,6 +76,7 @@
         private const string _cc = _c + _c;
         private const string _ch = _c + _h;
         private const string _chema = _ch + _e + _m + _a;
+        private const string _cla = _c + _l + _a;
 
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
@@ -92,7 +93,8 @@
         protected const string _characters = _character + _s;
         protected const string _Check = "Check";
         protected const string _Checking = _Check + _ing;
-        protected const string _class = "cla" + _s + _s;
+        protected const string _class = _cla + _ss;
+        protected const string _classes = _class + _es;
         protected const string _clean = "clean";
         protected const string _cleanup = _clean + "-up";
         protected const string _Client = "Client";
@@ -182,6 +184,7 @@
         protected const string _emptied = _e + "mpti" + _ed;
         protected const string _empty = _e + "mpty";
         protected const string _Emptying = _E + "mpty" + _ing;
+        protected const string _enabled = _e + _n + _able + _d;
         protected const string _enumeration = _e + "numer" + _at + _ion;
         protected const string _Error = _E + "rr" + _or;
         protected const string _error = _e + "rr" + _or;

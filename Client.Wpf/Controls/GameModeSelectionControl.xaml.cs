@@ -12,12 +12,6 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for GameModeSelectionControl.xaml. </summary>
     public partial class GameModeSelectionControl : ToggleButtonGroupControlWithDropCap<EGameMode>
     {
-        #region Properties
-
-        /// <summary> The map of the game mode enumeration onto corresponding buttons. </summary>
-        public IDictionary<EGameMode, ToggleButton> Buttons => _buttons;
-
-        #endregion Properties
         #region Constuctors
 
         /// <summary> Creates a new control. </summary>
@@ -34,7 +28,7 @@ namespace Client.Wpf.Controls
                     { EGameMode.Simulator, _simulatorButton },
                 }
             );
-            _buttons.AddRange
+            Buttons.AddRange
             (
                 _dropCapToggleButtons.ToDictionary
                 (
@@ -73,7 +67,7 @@ namespace Client.Wpf.Controls
                 return;
             }
 
-            var buttons = _buttons.Values;
+            var buttons = Buttons.Values;
             var allButtonsAreToggledOff = buttons.All(button => !button.IsChecked.HasValue || !button.IsChecked.Value);
 
             if (allButtonsAreToggledOff)

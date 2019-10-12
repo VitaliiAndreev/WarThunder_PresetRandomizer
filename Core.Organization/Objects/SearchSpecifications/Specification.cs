@@ -16,8 +16,8 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Nation specifications. </summary>
         public IDictionary<ENation, NationSpecification> NationSpecifications { get; }
 
-        /// <summary> Allowed branches. </summary>
-        public IEnumerable<EBranch> Branches { get; }
+        /// <summary> Branch specifications. </summary>
+        public IDictionary<EBranch, BranchSpecification> BranchSpecifications { get; }
 
         /// <summary> Allowed intervals of <see cref="IVehicle.EconomicRank"/>s. </summary>
         public IDictionary<ENation, Interval<int>> EconomicRankIntervals { get; }
@@ -28,12 +28,13 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="gameMode"> The game mode. </param>
         /// <param name="nationSpecifications"> Nation specifications. </param>
+        /// <param name="branchSpecifications"> Branch specifications. </param>
         /// <param name="economicRankIntervals"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
-        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IEnumerable<EBranch> branches, IDictionary<ENation, Interval<int>> economicRankIntervals)
+        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IDictionary<EBranch, BranchSpecification> branchSpecifications, IDictionary<ENation, Interval<int>> economicRankIntervals)
         {
             GameMode = gameMode;
             NationSpecifications = nationSpecifications;
-            Branches = branches;
+            BranchSpecifications = branchSpecifications;
             EconomicRankIntervals = economicRankIntervals;
         }
 

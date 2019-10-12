@@ -2,6 +2,7 @@
 using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
 using Core.Objects;
@@ -27,6 +28,16 @@ namespace Client.Wpf.Presenters
         /// <summary> Branches enabled for preset generation. </summary>
         public IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Vehicles classes enabled for preset generation. </summary>
+        public IList<EVehicleClass> EnabledVehicleClasses { get; }
+
+        /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
+        public IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches =>
+            EnabledVehicleClasses
+                .GroupBy(vehicleClass => vehicleClass.GetBranch())
+                .ToDictionary(group => group.Key, group => group.AsEnumerable())
+            ;
+
         /// <summary> Nations enabled for preset generation. </summary>
         public IList<ENation> EnabledNations { get; }
 
@@ -49,6 +60,7 @@ namespace Client.Wpf.Presenters
         {
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
+            EnabledVehicleClasses = new List<EVehicleClass>(WpfSettings.EnabledVehicleClassesCollection);
             EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
             EnabledEconomicRankIntervals = new Dictionary<ENation, Interval<int>>(WpfSettings.EnabledEconomicRankIntervals);
             GeneratedPresets = new Dictionary<EPreset, Preset>();
@@ -75,6 +87,12 @@ namespace Client.Wpf.Presenters
 
             return validBranches;
         }
+
+        /// <summary> Checks whether the given branch has any vehicle classes enabled or not. </summary>
+        /// <param name="branch"> The branch to check. </param>
+        /// <returns></returns>
+        public bool BranchHasVehicleClassesEnabled(EBranch branch) =>
+            EnabledVehicleClassesByBranches.TryGetValue(branch, out var vehicleClasses) && vehicleClasses.Any();
 
         /// <summary> Resets preset control to their default states. </summary>
         public void ResetPresetControls() => Owner.ResetPresetControls();

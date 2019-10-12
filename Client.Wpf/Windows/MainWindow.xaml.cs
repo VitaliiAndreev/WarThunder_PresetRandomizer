@@ -7,6 +7,7 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
@@ -63,11 +64,13 @@ namespace Client.Wpf.Windows
             _presenterToggleLists = new Dictionary<Type, object>
             {
                 { typeof(EBranch), Presenter.EnabledBranches },
+                { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
                 { typeof(ENation), Presenter.EnabledNations },
             };
             _toggleCommands = new Dictionary<Type, ECommandName>
             {
                 { typeof(EBranch), ECommandName.ToggleBranch },
+                { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
                 { typeof(ENation), ECommandName.ToggleNation },
             };
 
@@ -98,6 +101,7 @@ namespace Client.Wpf.Windows
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+            _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
             _battleRatingControl.InitializeControls();
             AdjustBattleRatingControlsAvailability();
@@ -148,7 +152,7 @@ namespace Client.Wpf.Windows
         private void OnToggleButtonGroupControlClick<T>(ToggleButton toggleButton)
         {
             var keyType = typeof(T);
-            var buttonTag = toggleButton.Tag.CastTo<T>();
+            var buttonTag = toggleButton.GetTag<T>();
 
             if (!keyType.IsKeyIn(_presenterToggleLists) || !keyType.IsKeyIn(_toggleCommands))
                 return;
@@ -159,33 +163,70 @@ namespace Client.Wpf.Windows
                 _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(buttonTag);
 
             Presenter.ExecuteCommand(_toggleCommands[keyType]);
-
-            if (buttonTag is ENation nation)
-            {
-                AdjustBranchTogglesAvailability();
-                _battleRatingControl.Enable(nation, toggleButton.IsChecked.Value);
-            }
-
-            RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnBranchToggleControlClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
+            {
                 OnToggleButtonGroupControlClick<EBranch>(toggleButton);
+
+                var branch = toggleButton.GetTag<EBranch>();
+
+                _vehicleClassControl.Enable(branch, toggleButton.IsChecked.Value);
+
+                if (toggleButton.IsChecked.Value && !Presenter.BranchHasVehicleClassesEnabled(branch))
+                {
+                    var vehicleClass = branch.GetVehicleClasses().First();
+
+                    _vehicleClassControl.Toggle(vehicleClass, true);
+                    OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.VehicleClassColumns[branch].Buttons[vehicleClass]));
+                }
+
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleClasses"/> according to the action. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnVehicleClassToggleControlClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ToggleButton toggleButton)
+            {
+                OnToggleButtonGroupControlClick<EVehicleClass>(toggleButton);
+
+                var vehicleClass = toggleButton.GetTag<EVehicleClass>();
+                var ownerBranch = vehicleClass.GetBranch();
+
+                if (!toggleButton.IsChecked.Value && !Presenter.BranchHasVehicleClassesEnabled(ownerBranch))
+                {
+                    _branchToggleControl.Toggle(ownerBranch, false);
+                    OnBranchToggleControlClick(_branchToggleControl, new RoutedEventArgs(BranchToggleControl.ClickEvent, _branchToggleControl.Buttons[ownerBranch]));
+                }
+
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledNations"/> according to the action. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnNationToggleControlClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
             {
                 OnToggleButtonGroupControlClick<ENation>(toggleButton);
+
+                var nation = toggleButton.GetTag<ENation>();
+
+                AdjustBranchTogglesAvailability();
+                _battleRatingControl.Enable(nation, toggleButton.IsChecked.Value);
+
+                RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
 
@@ -303,6 +344,7 @@ namespace Client.Wpf.Windows
             _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
             _gameModeSelectionControl.Localize();
+            _vehicleClassControl.Localize();
             _nationToggleControl.Localize();
             _battleRatingControl.Localize();
 

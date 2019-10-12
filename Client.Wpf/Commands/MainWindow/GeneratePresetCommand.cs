@@ -2,6 +2,7 @@
 using Client.Wpf.Presenters;
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Enumerations;
@@ -50,10 +51,11 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.ExecuteCommand(ECommandName.DeletePresets);
 
                 var gameMode = presenter.CurrentGameMode;
-                var nations = presenter.EnabledNations;
                 var emptyBranches = presenter.GetEmptyBranches();
-                var nationSpecifications = nations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
-                var specification = new Specification(gameMode, nationSpecifications, presenter.EnabledBranches, presenter.EnabledEconomicRankIntervals);
+                var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
+                var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
+                var nationSpecifications = presenter.EnabledNations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
+                var specification = new Specification(gameMode, nationSpecifications, branchSpecifications, presenter.EnabledEconomicRankIntervals);
 
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));

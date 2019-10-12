@@ -48,6 +48,10 @@
                     x:Name="_branchToggleControl"
                     Click="OnBranchToggleControlClick"/>
 
+                <controls:VehicleClassToggleControl
+                    x:Name="_vehicleClassControl"
+                    Click="OnVehicleClassToggleControlClick"/>
+
                 <controls:NationToggleControl
                     x:Name="_nationToggleControl"
                     Click="OnNationToggleControlClick"/>

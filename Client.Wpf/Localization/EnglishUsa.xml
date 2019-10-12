@@ -7,30 +7,43 @@
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>
   <Line key="Arcade" value="Arcade"/>
   <Line key="Army" value="Army"/>
+  <Line key="Attacker" value="Attacker"/>
+  <Line key="AttackHelicopter" value="Attack Helicopter"/>
   <Line key="Aviation" value="Aviation"/>
+  <Line key="Barge" value="Barge"/>
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the Stripe Flag Set."/>
+  <Line key="Boat" value="Boat"/>
+  <Line key="Bomber" value="Bomber"/>
   <Line key="Britain" value="Britain"/>
   <Line key="Cancel" value="Cancel"/>
   <Line key="China" value="China"/>
   <Line key="Commits" value="commits"/>
   <Line key="Contributors" value="Contributors"/>
+  <Line key="Destroyer" value="Destroyer"/>
   <Line key="Error" value="Error"/>
   <Line key="FatalErrorShutdown" value="A fatal error has occured. The application will be shut down."/>
+  <Line key="Fighter" value="Fighter"/>
   <Line key="Fleet" value="Fleet"/>
   <Line key="France" value="France"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment for War Thunder."/>
   <Line key="GeneratePreset" value="Generate a preset"/>
   <Line key="Germany" value="Germany"/>
+  <Line key="HeavyBoat" value="Heavy Boat"/>
+  <Line key="HeavyCruiser" value="Heavy Cruiser"/>
+  <Line key="HeavyTank" value="Heavy Tank"/>
   <Line key="Helicopters" value="Helicopters"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Initialization is underway. Proceed?"/>
   <Line key="Italy" value="Italy"/>
   <Line key="Japan" value="Japan"/>
   <Line key="KlensyForWtTools" value="Klensy for WT Tools."/>
+  <Line key="LightCruiser" value="Light Cruiser"/>
+  <Line key="LightTank" value="Light Tank"/>
   <Line key="Loading" value="Loading..."/>
   <Line key="Location" value="{0} location"/>
   <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Location changes will come into after at the next application start."/>
   <Line key="LookUp" value="Look up"/>
+  <Line key="MediumTank" value="Medium Tank"/>
   <Line key="NoVehiclesAvailableForSelectedBattleRatings" value="No vehicles are available on selected battle ratings for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
@@ -41,11 +54,14 @@
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="Simulator" value="Simulator"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
+  <Line key="Spaa" value="SPAA"/>
   <Line key="Status" value="Status:"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
+  <Line key="TankDestroyer" value="Tank Destroyer"/>
   <Line key="Thanks" value="Thanks"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
+  <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for IconSweets 2."/>
 </Localization>

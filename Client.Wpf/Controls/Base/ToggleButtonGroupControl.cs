@@ -14,7 +14,7 @@ namespace Client.Wpf.Controls.Base
         #region Fields
 
         /// <summary> The map of the game mode enumeration onto corresponding buttons. </summary>
-        protected readonly IDictionary<T, ToggleButton> _buttons;
+        protected internal readonly IDictionary<T, ToggleButton> Buttons;
 
         #endregion Fields
         #region Events
@@ -35,7 +35,7 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Creates a new control. </summary>
         public ToggleButtonGroupControl()
         {
-            _buttons = new Dictionary<T, ToggleButton>();
+            Buttons = new Dictionary<T, ToggleButton>();
         }
 
         #endregion Constructors
@@ -77,7 +77,7 @@ namespace Client.Wpf.Controls.Base
                 toggleButton.Click += OnClick;
                 toggleButton.AddToPanel(panel, horizontal);
 
-                _buttons.Add(enumerationItem, toggleButton);
+                Buttons.Add(enumerationItem, toggleButton);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="enable"> Whether to enable or disable the toggle button. </param>
         public void Enable(T key, bool enable)
         {
-            if (_buttons.TryGetValue(key, out var toggleButton) && toggleButton.IsEnabled != enable)
+            if (Buttons.TryGetValue(key, out var toggleButton) && toggleButton.IsEnabled != enable)
                 toggleButton.IsEnabled = enable;
         }
 
@@ -95,7 +95,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="newState"> Whether to toggle the button on or off. </param>
         public void Toggle(T key, bool newState)
         {
-            if (_buttons.TryGetValue(key, out var toggleButton) && toggleButton.IsChecked != newState)
+            if (Buttons.TryGetValue(key, out var toggleButton) && toggleButton.IsChecked != newState)
                 toggleButton.IsChecked = newState;
         }
 

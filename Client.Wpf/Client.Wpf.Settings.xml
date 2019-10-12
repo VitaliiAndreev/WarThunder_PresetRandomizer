@@ -5,6 +5,7 @@
   <KlensysWarThunderToolsLocation></KlensysWarThunderToolsLocation>
   <CurrentGameMode></CurrentGameMode>
   <EnabledBranches>Army, Aviation, Helicopters, Fleet</EnabledBranches>
+  <EnabledVehicleClasses> LightTank, MediumTank, HeavyTank, TankDestroyer, Spaa, AttackHelicopter, UtilityHelicopter, Fighter, Attacker, Bomber, Boat, HeavyBoat, Barge, Destroyer, LightCruiser, HeavyCruiser</EnabledVehicleClasses>
   <EnabledNations>Usa, Germany, Ussr, Britain, Japan, China, Italy, France</EnabledNations>
   <EnabledEconomicRanks>0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27</EnabledEconomicRanks>
 </Settings>

@@ -186,6 +186,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\VehicleClassColumnToggleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VehicleClassToggleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +218,7 @@
     <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleNationCommand.cs" />
@@ -271,6 +280,12 @@
     </Compile>
     <Compile Include="Controls\UpDownBattleRatingPairControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingPairControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleClassColumnToggleControl.xaml.cs">
+      <DependentUpon>VehicleClassColumnToggleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleClassToggleControl.xaml.cs">
+      <DependentUpon>VehicleClassToggleControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />

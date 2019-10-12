@@ -3,6 +3,7 @@ using Client.Console.Enumerations.Logger;
 using Client.Shared.Enumerations;
 using Core.Csv.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
@@ -150,7 +151,7 @@ namespace Client.Console
             (
                 gamemode,
                 new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, new List<EBranch> { branch }, EInteger.Number.Ten) } },
-                new List<EBranch> { branch },
+                new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, branch.GetVehicleClasses()) } },
                 Enum
                     .GetValues(typeof(ENation))
                     .Cast<ENation>()

@@ -46,6 +46,7 @@
         {
             public const string BranchToggle = "BranchToggle";
             public const string NationToggle = "NationToggle";
+            public const string VehicleClassToggle = "VehicleClassToggle";
         }
     }
 }

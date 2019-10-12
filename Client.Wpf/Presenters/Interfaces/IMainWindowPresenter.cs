@@ -23,6 +23,12 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Branches enabled for preset generation. </summary>
         IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Vehicles classes enabled for preset generation. </summary>
+        IList<EVehicleClass> EnabledVehicleClasses { get; }
+
+        /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
+        IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches { get; }
+
         /// <summary> Nations enabled for preset generation. </summary>
         IList<ENation> EnabledNations { get; }
 
@@ -44,6 +50,11 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Gets all valid branches. </summary>
         /// <returns></returns>
         IEnumerable<EBranch> GetValidBraches();
+
+        /// <summary> Checks whether the given branch has any vehicle classes enabled or not. </summary>
+        /// <param name="branch"> The branch to check. </param>
+        /// <returns></returns>
+        bool BranchHasVehicleClassesEnabled(EBranch branch);
 
         /// <summary> Resets preset control to their default states. </summary>
         void ResetPresetControls();
