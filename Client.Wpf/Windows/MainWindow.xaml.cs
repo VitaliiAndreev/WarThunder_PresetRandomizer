@@ -321,6 +321,7 @@ namespace Client.Wpf.Windows
                 _branchToggleControl.Toggle(branch, false);
             }
             _branchToggleControl.Enable(branch, enable);
+            _vehicleClassControl.Enable(branch, enable && Presenter.EnabledBranches.Contains(branch));
 
             Presenter.ExecuteCommand(ECommandName.ToggleBranch);
         }
