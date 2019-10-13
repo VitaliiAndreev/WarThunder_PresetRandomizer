@@ -4,6 +4,7 @@ using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
@@ -46,6 +47,10 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle's Gaijin ID. </summary>
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
+
+        /// <summary> The vehicle's country of origin (not the nation in whose research tree the vehicles is in). </summary>
+        [Property(NotNull = true, TypeType = typeof(EnumStringType<ECountry>))]
+        public virtual ECountry Country { get; protected set; }
 
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
         [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
@@ -274,6 +279,11 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="deserializedVehicleData"></param>
         public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
         {
+            if (!string.IsNullOrWhiteSpace(deserializedVehicleData.CountryGaijinId) && deserializedVehicleData.CountryGaijinId.TryParseEnumeration<ECountry>(out var country))
+                Country = country;
+            else
+                Country = Nation.AsEnumerationItem.GetBaseCountry();
+
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
                 InitializeClass(tags);
 
