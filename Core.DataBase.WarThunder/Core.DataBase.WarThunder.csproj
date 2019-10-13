@@ -73,6 +73,7 @@
     <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
+    <Compile Include="Enumerations\ECountry.cs" />
     <Compile Include="Enumerations\EGameMode.cs" />
     <Compile Include="Enumerations\ENation.cs" />
     <Compile Include="Enumerations\ERank.cs" />
