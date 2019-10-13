@@ -7,6 +7,8 @@ namespace Core.DataBase.WarThunder.Enumerations
     /// <summary> Contains static dictionaries with reference data. </summary>
     public class EReference
     {
+        #region Constants
+
         /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
         public const int MinimumnCrewSlots = EInteger.Number.Two;
 
@@ -18,6 +20,9 @@ namespace Core.DataBase.WarThunder.Enumerations
 
         /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based) equivalent to battle rating 10.0. </summary>
         public const int MaximumEconomicRank = 27;
+
+        #endregion Constants
+        #region Properties
 
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
         public static IDictionary<ENation, string> NationsFromEnumeration { get; } = new Dictionary<ENation, string>
@@ -108,5 +113,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleClass.LightCruiser, '␎' },
             { EVehicleClass.HeavyCruiser, '␏' },
         };
+
+        #endregion Properties
     }
 }
