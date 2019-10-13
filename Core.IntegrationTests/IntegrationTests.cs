@@ -2,6 +2,7 @@
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Extensions;
 using Core.DataBase.Tests.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
@@ -165,6 +166,7 @@ namespace Core.IntegrationTests
                     // general
                     vehicleCollection.All(vehicle => vehicle.Id != 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.Class != EVehicleClass.None).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
 
