@@ -50,7 +50,7 @@ namespace Core.Organization.Helpers
             var sortedVehicles = new Dictionary<decimal, IList<IVehicle>>();
             var currentBattleRating = Calculator.GetRoundedBattleRating(battleRatingBracket.RightBounded ? battleRatingBracket.RightItem : battleRatingBracket.RightItem - Calculator.MinimumBattleRatingStep);
 
-            while (battleRatingBracket.LeftBounded ? currentBattleRating > battleRatingBracket.LeftItem : currentBattleRating >= battleRatingBracket.LeftItem)
+            while (battleRatingBracket.LeftBounded ? currentBattleRating >= battleRatingBracket.LeftItem : currentBattleRating > battleRatingBracket.LeftItem)
             {
                 var vehiclesOnCurrentBattleRating = vehicles.Where(vehicle => vehicle.BattleRating[gameMode].HasValue && vehicle.BattleRating[gameMode].Value == currentBattleRating);
 
