@@ -279,7 +279,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="deserializedVehicleData"></param>
         public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
         {
-            if (!string.IsNullOrWhiteSpace(deserializedVehicleData.CountryGaijinId) && deserializedVehicleData.CountryGaijinId.TryParseEnumeration<ECountry>(out var country))
+            if (!string.IsNullOrWhiteSpace(deserializedVehicleData.CountryGaijinId) && EReference.CountriesFromString.TryGetValue(deserializedVehicleData.CountryGaijinId, out var country))
                 Country = country;
             else
                 Country = Nation.AsEnumerationItem.GetBaseCountry();

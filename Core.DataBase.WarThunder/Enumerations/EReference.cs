@@ -52,6 +52,50 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_france", ENation.France },
         };
 
+        /// <summary> The map of the country enumeration onto corresponding database values. </summary>
+        public static IDictionary<string, ECountry> CountriesFromString { get; } = new Dictionary<string, ECountry>
+        {
+            { "country_argentina", ECountry.Argentina },
+            { "country_australia", ECountry.Australia },
+            { "country_belgium", ECountry.Belgium },
+            { "country_britain", ECountry.Britain },
+            { "country_bulgaria", ECountry.Bulgaria },
+            { "country_canada", ECountry.DominionOfCanada },
+            { "country_canada_modern", ECountry.Canada },
+            { "country_china", ECountry.China },
+            { "country_cuba", ECountry.Cuba },
+            { "country_czech", ECountry.CzechRepublic },
+            { "country_finland", ECountry.Finland },
+            { "country_france", ECountry.France },
+            { "country_gdr", ECountry.Gdr },
+            { "country_germany", ECountry.NaziGermany },
+            { "country_germany_modern", ECountry.Germany },
+            { "country_greece", ECountry.Greece },
+            { "country_hungary", ECountry.Hungary },
+            { "country_iraq", ECountry.Iraq },
+            { "country_israel", ECountry.Israel },
+            { "country_italy", ECountry.KingdomOfItaly },
+            { "country_italy_modern", ECountry.Italy },
+            { "country_japan", ECountry.EmpireOfJapan },
+            { "country_japan_modern", ECountry.Japan },
+            { "country_netherlands", ECountry.Netherlands },
+            { "country_new_zealand", ECountry.NewZealand },
+            { "country_north_korea", ECountry.NorthKorea },
+            { "country_norway", ECountry.Norway },
+            { "country_philippines", ECountry.Philippines },
+            { "country_poland", ECountry.Poland },
+            { "country_portugal", ECountry.Portugal },
+            { "country_romania", ECountry.Romania },
+            { "country_russia", ECountry.Russia },
+            { "country_south_africa", ECountry.SouthAfrica },
+            { "country_sweden", ECountry.Sweden },
+            { "country_thailand", ECountry.Thailand },
+            { "country_ukraine", ECountry.Ukraine },
+            { "country_usa", ECountry.Usa },
+            { "country_ussr", ECountry.Ussr },
+            { "country_yugoslavia", ECountry.Yugoslavia },
+        };
+
         /// <summary> Nation special character icons. </summary>
         public static IDictionary<ENation, char> NationIcons { get; } = new Dictionary<ENation, char>
         {
