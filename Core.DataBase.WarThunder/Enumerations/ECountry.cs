@@ -12,6 +12,7 @@
         Canada,
         China,
         Cuba,
+        CzechRepublic,
         DominionOfCanada,
         EmpireOfJapan,
         Finland,
