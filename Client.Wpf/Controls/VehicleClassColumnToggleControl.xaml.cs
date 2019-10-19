@@ -3,18 +3,14 @@ using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Extensions;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleClassColumnToggleControl.xaml. </summary>
-    public partial class VehicleClassColumnToggleControl : ToggleButtonGroupControlWithToolTip<EVehicleClass>
+    public partial class VehicleClassColumnToggleControl : ColumnToggleControlWithTooltips<EVehicleClass, EBranch>
     {
         #region Fields
-
-        /// <summary> Vehicle classes grouped by their owner branches. </summary>
-        private readonly IDictionary<EBranch, IEnumerable<EVehicleClass>> _vehicleClasses;
 
         /// <summary> The branch to which vehicle classes belong to. </summary>
         private EBranch _branch;
@@ -23,7 +19,7 @@ namespace Client.Wpf.Controls
         #region Properties
 
         /// <summary> The branch to which vehicle classes belong to. </summary>
-        public EBranch Branch
+        public override EBranch Owner
         {
             get => _branch;
             set
@@ -31,12 +27,9 @@ namespace Client.Wpf.Controls
                 _branch = value;
                 _panel.Children.Clear();
 
-                CreateToggleButtons(_panel, _vehicleClasses[value], EReference.ClassIcons, EStyleKey.ToggleButton.VehicleClassToggle, false);
+                CreateToggleButtons(_panel, _groupedItems[value], EReference.ClassIcons, EStyleKey.ToggleButton.VehicleClassToggle);
             }
         }
-
-        /// <summary> Enabled vehicle classes. </summary>
-        public IEnumerable<EVehicleClass> EnabledClasses { get; }
 
         #endregion Properties
         #region Constructors
@@ -46,22 +39,22 @@ namespace Client.Wpf.Controls
         public VehicleClassColumnToggleControl(EBranch branch)
             : this()
         {
-            Branch = branch;
+            Owner = branch;
         }
 
         /// <summary> Creates a new control. </summary>
         public VehicleClassColumnToggleControl()
         {
-            _vehicleClasses = typeof(EBranch)
+            var vehicleClasses = typeof(EBranch)
                 .GetEnumValues()
                 .Cast<EBranch>()
                 .Except(EBranch.None)
                 .ToDictionary(branch => branch, branch => branch.GetVehicleClasses())
             ;
 
-            InitializeComponent();
+            _groupedItems.AddRange(vehicleClasses);
 
-            EnabledClasses = new List<EVehicleClass>();
+            InitializeComponent();
         }
 
         #endregion Constructors

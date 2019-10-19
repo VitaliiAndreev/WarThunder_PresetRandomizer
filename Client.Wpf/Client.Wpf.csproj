@@ -224,6 +224,7 @@
     <Compile Include="Commands\MainWindow\ToggleNationCommand.cs" />
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
+    <Compile Include="Controls\Base\ColumnToggleControl.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithDropCap.cs" />
