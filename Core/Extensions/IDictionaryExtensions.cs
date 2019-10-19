@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Extensions
 {
@@ -60,6 +61,21 @@ namespace Core.Extensions
                 else
                     dictionary.Add(key, value);
             }
+        }
+
+        /// <summary> Appends the collection indexed by a <paramref name="key"/> in the <paramref name="dictionary"/> with the given <paramref name="item"/>. </summary>
+        /// <typeparam name="T"> The type of dictionary keys. </typeparam>
+        /// <typeparam name="U"> The type of dictionary value collection items. </typeparam>
+        /// <param name="dictionary"> The dictionary a collection in which to append. </param>
+        /// <param name="key"> The key by which to look in the <paramref name="dictionary"/>. </param>
+        /// <param name="item"> The item to append a collection in the <paramref name="dictionary"/> with. </param>
+        /// <param name="unique"> Whether to append a collection in the <paramref name="dictionary"/> only with unique items. </param>
+        public static void Append<T, U>(this IDictionary<T, IEnumerable<U>> dictionary, T key, U item, bool unique = false)
+        {
+            var collection = dictionary.GetWithEnumerableInstantiation(key);
+
+            if (!unique || !collection.Contains(item))
+                dictionary[key] = collection.Including(item);
         }
 
         /// <summary> Gets an item with the specified key. A new item is instantiated if none are bound to the key. As such, the item type (<typeparamref name="U"/>) has to be a reference type with a parameterless constructor. </summary>
