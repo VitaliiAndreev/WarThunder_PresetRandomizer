@@ -80,6 +80,7 @@
     <Compile Include="Enumerations\EReference.cs" />
     <Compile Include="Enumerations\EVehicleClass.cs" />
     <Compile Include="Extensions\EBranchExtensions.cs" />
+    <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
