@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Tests.Extensions
 {
@@ -119,9 +120,27 @@ namespace Core.Tests.Extensions
 
             // assert
             newObject.Should().NotBeNull();
+            dictionary.Count().Should().Be(1);
         }
 
         #endregion Tests: GetWithInstantiation()
+        #region Tests: GetWithEnumerableInstantiation()
+
+        [TestMethod]
+        public void GetWithEnumerableInstantiation()
+        {
+            // arrange
+            var dictionary = new Dictionary<int, IEnumerable<object>>();
+
+            // act
+            var newCollection = dictionary.GetWithEnumerableInstantiation(0);
+
+            // assert
+            newCollection.Should().NotBeNull();
+            dictionary.Count().Should().Be(1);
+        }
+
+        #endregion Tests: GetWithEnumerableInstantiation()
         #region Tests: Increment()
 
         [TestMethod]
