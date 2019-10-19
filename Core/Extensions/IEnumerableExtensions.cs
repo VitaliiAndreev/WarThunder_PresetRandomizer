@@ -10,6 +10,13 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
+        /// <summary> Returns a new collection with the given <paramref name="item"/> added to the <paramref name="collection"/>. </summary>
+        /// <typeparam name="T"> The type of collection items. </typeparam>
+        /// <param name="collection"> The collection to add the <paramref name="item"/> to. </param>
+        /// <param name="item"> The item to add to the <paramref name="collection"/>. </param>
+        public static IEnumerable<T> Including<T>(this IEnumerable<T> collection, T item) =>
+            collection.Concat(new T[] { item });
+
         /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="list"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
         /// <param name="collection"> The collection to add into the <paramref name="list"/>. </param>
