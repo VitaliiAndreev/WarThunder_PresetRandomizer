@@ -1,4 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using NHibernate.Mapping;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Extensions
 {
@@ -23,5 +25,13 @@ namespace Core.DataBase.WarThunder.Extensions
                 _ => ECountry.None,
             };
         }
+
+        /// <summary> Returns all countries that have vehicles serving with the given nation. </summary>
+        /// <param name="nation"> The nation to seach by. </param>
+        /// <returns></returns>
+        public static IEnumerable<ECountry> GetCountries(this ENation nation) =>
+            EReference.CountriesByNation.TryGetValue(nation, out var countries)
+                ? countries
+                : new List<ECountry>();
     }
 }
