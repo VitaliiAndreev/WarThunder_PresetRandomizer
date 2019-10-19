@@ -110,6 +110,12 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.France, '▄' },
         };
 
+        /// <summary> Countries grouped by nations they are aligned with. </summary>
+        public static IDictionary<ENation, IEnumerable<ECountry>> CountriesByNation { get; }
+
+        /// <summary> Nations grouped by countries aligned with them. </summary>
+        public static IDictionary<ECountry, IEnumerable<ENation>> NationsByCountry { get; }
+
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
         public static IDictionary<EBranch, string> BranchesFromEnumeration { get; } = new Dictionary<EBranch, string>
         {
@@ -159,5 +165,14 @@ namespace Core.DataBase.WarThunder.Enumerations
         };
 
         #endregion Properties
+        #region Constructors
+
+        static EReference()
+        {
+            CountriesByNation = new Dictionary<ENation, IEnumerable<ECountry>>();
+            NationsByCountry = new Dictionary<ECountry, IEnumerable<ENation>>();
+        }
+
+        #endregion Constructors
     }
 }

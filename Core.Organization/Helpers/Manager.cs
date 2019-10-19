@@ -142,6 +142,17 @@ namespace Core.Organization.Helpers
         public void InitializeGameClientVersion() =>
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
+        private void InitializeReferences()
+        {
+            var nationCountryCombinations = _cache.OfType<IVehicle>().Select(vehicle => new { Nation = vehicle.Nation.AsEnumerationItem, vehicle.Country }).Distinct();
+
+            foreach(var combination in nationCountryCombinations)
+            {
+                EReference.CountriesByNation.Append(combination.Nation, combination.Country);
+                EReference.NationsByCountry.Append(combination.Country, combination.Nation);
+            }
+        }
+
         /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
         private void InitializeResearchTrees()
         {
@@ -219,6 +230,7 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
+            InitializeReferences();
             InitializeResearchTrees();
         }
 
