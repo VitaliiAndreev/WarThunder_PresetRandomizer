@@ -80,6 +80,24 @@ namespace Core.Extensions
             }
         }
 
+        /// <summary> Gets an item with the specified key. A new item is instantiated if none are bound to the key. As such, the item type (<typeparamref name="U"/>) has to be a reference type with a parameterless constructor. </summary>
+        /// <typeparam name="T"> The type of dictionary keys. </typeparam>
+        /// <typeparam name="U"> The type of dictionary items. </typeparam>
+        /// <param name="dictionary"> The dictionary to read by <paramref name="key"/> from. </param>
+        /// <param name="key"> The key by which to look in the <paramref name="dictionary"/>. </param>
+        /// <returns></returns>
+        public static IEnumerable<U> GetWithEnumerableInstantiation<T, U>(this IDictionary<T, IEnumerable<U>> dictionary, T key)
+        {
+            if (dictionary.ContainsKey(key))
+                return dictionary[key];
+
+            else
+            {
+                dictionary.Add(key, new List<U>());
+                return dictionary[key];
+            }
+        }
+
         /// <summary> Increments the value assigned to the specified <paramref name="key"/>. </summary>
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <param name="dictionary"> The dictionary to increment a value of. </param>
