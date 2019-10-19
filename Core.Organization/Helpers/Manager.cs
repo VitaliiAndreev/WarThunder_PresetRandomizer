@@ -144,7 +144,18 @@ namespace Core.Organization.Helpers
 
         private void InitializeReferences()
         {
-            var nationCountryCombinations = _cache.OfType<IVehicle>().Select(vehicle => new { Nation = vehicle.Nation.AsEnumerationItem, vehicle.Country }).Distinct();
+            var vehicles = _cache.OfType<IVehicle>();
+            var nationCountryCombinations = vehicles.Select(vehicle => new { Nation = vehicle.Nation.AsEnumerationItem, vehicle.Country }).Distinct();
+
+            EReference.MaximumEconomicRank = vehicles.Max
+            (
+                vehicle => vehicle
+                    .EconomicRank
+                    .AsDictionary()
+                    .Values
+                    .Where(nullableValue => nullableValue.HasValue)
+                    .Max(nullableValue => nullableValue.Value)
+            );
 
             foreach(var combination in nationCountryCombinations)
             {

@@ -18,11 +18,11 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> The maximum amount of crew slots available for Silver Lions and Golder Eagles. </summary>
         public const int MaximumCrewSlotsForGold = EInteger.Number.Ten;
 
-        /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based) equivalent to battle rating 10.0. </summary>
-        public const int MaximumEconomicRank = 27;
-
         #endregion Constants
         #region Properties
+
+        /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based). </summary>
+        public static int MaximumEconomicRank { get; internal set; }
 
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
         public static IDictionary<ENation, string> NationsFromEnumeration { get; } = new Dictionary<ENation, string>
