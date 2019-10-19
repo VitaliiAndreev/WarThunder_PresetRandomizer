@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace Client.Wpf.Extensions
 {
@@ -18,5 +19,22 @@ namespace Client.Wpf.Extensions
         /// <returns></returns>
         public static Window GetWindow(this DependencyObject dependencyObject) =>
             Window.GetWindow(dependencyObject);
+
+        /// <summary> Gets the parent item of the specified type. </summary>
+        /// <typeparam name="T"> The type of the parent item to look for. </typeparam>
+        /// <param name="dependencyObject"> The object whose parent to search.</param>
+        /// <returns></returns>
+        public static T GetParent<T>(this DependencyObject dependencyObject) where T : class
+        {
+            var parent = VisualTreeHelper.GetParent(dependencyObject) ?? LogicalTreeHelper.GetParent(dependencyObject);
+
+            if (parent is null)
+                return null;
+
+            if (parent is T validParent)
+                return validParent;
+            
+            return parent.GetParent<T>();
+        }
     }
 }
