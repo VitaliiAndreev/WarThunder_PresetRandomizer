@@ -60,6 +60,52 @@ namespace Core.Tests.Extensions
         }
 
         #endregion Tests: AddSafely()
+        #region Tests: Append()
+
+        [TestMethod]
+        public void Append_NotUnique()
+        {
+            // arrange
+            var actualDictionary = new Dictionary<int, IEnumerable<int>>();
+            var expectedDictionary = new Dictionary<int, IEnumerable<int>>
+            {
+                { 0, new List<int> { 0, 1 } },
+                { 1, new List<int> { 0 } },
+                { 2, new List<int> { 0, 1, 1 } },
+            };
+
+            // act
+            actualDictionary.Append(0, 0);
+            actualDictionary.Append(0, 1);
+            actualDictionary.Append(1, 0);
+            actualDictionary.Append(2, 0);
+            actualDictionary.Append(2, 1);
+            actualDictionary.Append(2, 1);
+
+            // assert
+            actualDictionary.Should().BeEquivalentTo(expectedDictionary);
+        }
+
+        [TestMethod]
+        public void Append_Unique()
+        {
+            // arrange
+            var actualDictionary = new Dictionary<int, IEnumerable<int>>();
+            var expectedDictionary = new Dictionary<int, IEnumerable<int>>
+            {
+                { 0, new List<int> { 0 } },
+            };
+
+            // act
+            actualDictionary.Append(0, 0, true);
+            actualDictionary.Append(0, 0, true);
+            actualDictionary.Append(0, 0, true);
+
+            // assert
+            actualDictionary.Should().BeEquivalentTo(expectedDictionary);
+        }
+
+        #endregion Tests: Append()
         #region Tests: GetWithInstantiation()
 
         [TestMethod]
