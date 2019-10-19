@@ -12,5 +12,11 @@ namespace Client.Wpf.Extensions
         /// <returns></returns>
         public static T GetValue<T>(this DependencyObject dependencyObject, DependencyProperty dependencyProperty) =>
             (T)dependencyObject.GetValue(dependencyProperty);
+
+        /// <summary> Gets the parent window of the object. </summary>
+        /// <param name="dependencyObject"> The object whose parent window to get. </param>
+        /// <returns></returns>
+        public static Window GetWindow(this DependencyObject dependencyObject) =>
+            Window.GetWindow(dependencyObject);
     }
 }
