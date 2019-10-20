@@ -7,5 +7,6 @@
   <EnabledBranches>Army, Aviation, Helicopters, Fleet</EnabledBranches>
   <EnabledVehicleClasses> LightTank, MediumTank, HeavyTank, TankDestroyer, Spaa, AttackHelicopter, UtilityHelicopter, Fighter, Attacker, Bomber, Boat, HeavyBoat, Barge, Destroyer, LightCruiser, HeavyCruiser</EnabledVehicleClasses>
   <EnabledNations>Usa, Germany, Ussr, Britain, Japan, China, Italy, France</EnabledNations>
+  <EnabledCountries>Usa_Usa, Usa_Philippines, Usa_Britain, Usa_DominionOfCanada, Usa_China, Usa_Israel, Ussr_Ussr, Ussr_Cuba, Ussr_CzechRepublic, Ussr_Russia, Ussr_China, Germany_Germany, Germany_NaziGermany, Germany_KingdomOfItaly, Germany_Finland, Germany_Romania, Germany_Hungary, Germany_Gdr, Germany_Argentina, Britain_Britain, Britain_France, Britain_Australia, Britain_Poland, Britain_Sweden, Britain_Israel, Britain_DominionOfCanada, Britain_NewZealand, France_France, France_Israel, Italy_KingdomOfItaly, Italy_Italy, Italy_Romania, Italy_Portugal, Italy_Hungary, China_China, China_NorthKorea, Japan_EmpireOfJapan, Japan_Japan</EnabledCountries>
   <EnabledEconomicRanks>0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27, 0-27</EnabledEconomicRanks>
 </Settings>

@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
@@ -72,6 +73,17 @@ namespace Client.Wpf
         }
 
         [RequiredSetting]
+        public static string EnabledCountries
+        {
+            get => EnabledCountriesCollection.StringJoin(Separator);
+            set => EnabledCountriesCollection = value
+                .Split(Separator)
+                .Select(@string => new NationCountryPair(@string))
+                .Where(nationCountryPair => nationCountryPair.Nation != ENation.None && nationCountryPair.Country != ECountry.None).ToList()
+            ;
+        }
+
+        [RequiredSetting]
         public static string EnabledEconomicRanks
         {
             get => EnabledEconomicRankIntervals.Values.Select(interval => $"{interval.LeftItem}-{interval.RightBounded}").StringJoin(Separator);
@@ -130,6 +142,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledNations"/> instead. </para>
         /// </summary>
         public static IEnumerable<ENation> EnabledNationsCollection { get; private set; }
+
+        /// <summary>
+        /// Currently enabled countries.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledCountries"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<NationCountryPair> EnabledCountriesCollection { get; private set; }
         
         /// <summary>
         /// Currently enabled <see cref="IVehicle.EconomicRank"/>s.
