@@ -228,10 +228,13 @@
     <Compile Include="Commands\MainWindow\ToggleNationCommand.cs" />
     <Compile Include="Commands\SettingsWindow\CancelCommand.cs" />
     <Compile Include="Commands\SettingsWindow\OkCommand.cs" />
+    <Compile Include="Controls\Base\ColumnToggleControlWithResources.cs" />
+    <Compile Include="Controls\Base\ColumnToggleControlWithTooltips.cs" />
     <Compile Include="Controls\Base\ColumnToggleControl.cs" />
     <Compile Include="Controls\Base\ColumnToggleGroupControl.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
+    <Compile Include="Controls\Base\ToggleButtonGroupControlWithResource.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithDropCap.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithToolTip.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
