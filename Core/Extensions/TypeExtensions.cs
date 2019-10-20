@@ -44,7 +44,7 @@ namespace Core.Extensions
         /// <param name="type"> The enumeration type. </param>
         /// <param name="excludeItemNone"> Whether to exclude the "None" item. </param>
         /// <returns></returns>
-        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool excludeItemNone = false) where T : struct
+        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool excludeItemNone = false)
         {
             var genericType = typeof(T);
 

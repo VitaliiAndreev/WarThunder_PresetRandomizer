@@ -116,7 +116,7 @@
 
         <!-- t:Image -->
 
-        <Style TargetType="Image" x:Key="FlagIcon">
+        <Style TargetType="Image" x:Key="LocalizationIcon">
             <Setter Property="Stretch" Value="None"/>
         </Style>
 

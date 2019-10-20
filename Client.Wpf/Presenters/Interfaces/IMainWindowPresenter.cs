@@ -51,7 +51,7 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <returns></returns>
         IEnumerable<EBranch> GetValidBraches();
 
-        /// <summary> Checks whether the given branch has any vehicle classes enabled or not. </summary>
+        /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleClass"/> items enabled or not. </summary>
         /// <param name="branch"> The branch to check. </param>
         /// <returns></returns>
         bool BranchHasVehicleClassesEnabled(EBranch branch);

@@ -42,7 +42,8 @@ namespace Client.Wpf
             set => EnabledBranchesCollection = value
                 .Split(Separator)
                 .Select(branchString => branchString.TryParseEnumeration<EBranch>(out var branch) ? branch : EBranch.None)
-                .Where(branch => branch != EBranch.None).ToList()
+                .Where(branch => branch != EBranch.None)
+                .ToList()
             ;
         }
 
@@ -53,7 +54,8 @@ namespace Client.Wpf
             set => EnabledVehicleClassesCollection = value
                 .Split(Separator)
                 .Select(vehicleClassString => vehicleClassString.TryParseEnumeration<EVehicleClass>(out var vehicleClass) ? vehicleClass : EVehicleClass.None)
-                .Where(vehicleClass => vehicleClass != EVehicleClass.None).ToList()
+                .Where(vehicleClass => vehicleClass != EVehicleClass.None)
+                .ToList()
             ;
         }
 
@@ -64,7 +66,8 @@ namespace Client.Wpf
             set => EnabledNationsCollection = value
                 .Split(Separator)
                 .Select(nationString => nationString.TryParseEnumeration<ENation>(out var nation) ? nation : ENation.None)
-                .Where(nation => nation != ENation.None).ToList()
+                .Where(nation => nation != ENation.None)
+                .ToList()
             ;
         }
 

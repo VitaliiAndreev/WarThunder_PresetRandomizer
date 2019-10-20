@@ -24,7 +24,7 @@ namespace Client.Wpf.Controls
 
         #endregion Constructors
 
-        /// <summary> Creates columns of toggle buttons for given vehicle branches, with character icons. </summary>
+        /// <summary> Creates columns of toggle buttons for given vehicle <paramref name="branches"/>, with character icons. </summary>
         /// <param name="branches"> Vehicle branches to create columns of toggle buttons for. </param>
         public override void CreateToggleColumns(IEnumerable<EBranch> branches)
         {
@@ -42,7 +42,7 @@ namespace Client.Wpf.Controls
             }
         }
 
-        /// <summary> Toggles a button corresponding to the specified vehicle class. </summary>
+        /// <summary> Toggles a button corresponding to the specified <paramref name="vehicleClass"/>. </summary>
         /// <param name="vehicleClass"> The vehicle class whose button to toggle. </param>
         /// <param name="newState"> Whether to toggle the button on or off. </param>
         public override void Toggle(EVehicleClass vehicleClass, bool newState)

@@ -123,6 +123,7 @@ namespace Core.Organization.Helpers
             _csvDeserializer = csvDeserializer;
             _randomizer = randomizer;
             _vehicleSelector = vehicleSelector;
+
             _cache = new List<IPersistentObject>();
 
             _fileManager.CleanUpTempDirectory();
@@ -157,7 +158,7 @@ namespace Core.Organization.Helpers
                     .Max(nullableValue => nullableValue.Value)
             );
 
-            foreach(var combination in nationCountryCombinations)
+            foreach (var combination in nationCountryCombinations)
             {
                 EReference.CountriesByNation.Append(combination.Nation, combination.Country);
                 EReference.NationsByCountry.Append(combination.Country, combination.Nation);

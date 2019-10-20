@@ -88,7 +88,7 @@
                     x:Name="_localizationButton"
                     Margin="0 0 10 0">
                     <Image
-                        Style="{StaticResource FlagIcon}"
+                        Style="{StaticResource LocalizationIcon}"
                         Source="{StaticResource FlagUsaForDesigner}"/>
                 </Button>
 

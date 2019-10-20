@@ -6,6 +6,8 @@ namespace Client.Wpf.Extensions
     /// <summary> Methods extending the <see cref="DependencyObject"/> class. </summary>
     public static class DependencyObjectExtensions
     {
+        #region Fluency
+
         /// <summary> Calls <see cref="DependencyObject.GetValue(DependencyProperty)"/> of the specified property and casts the result into the given type. </summary>
         /// <typeparam name="T"> The type to cast into. </typeparam>
         /// <param name="dependencyObject"> The source object. </param>
@@ -36,5 +38,7 @@ namespace Client.Wpf.Extensions
             
             return parent.GetParent<T>();
         }
+
+        #endregion Fluency
     }
 }
