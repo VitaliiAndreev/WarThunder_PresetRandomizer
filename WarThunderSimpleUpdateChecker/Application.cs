@@ -41,7 +41,7 @@ namespace WarThunderSimpleUpdateChecker
             Settings.WarThunderLocation = _warThunderPath;
             Settings.KlensysWarThunderToolsLocation = _klensysWarThunderToolsPath;
 
-            var sourceFiles = GetFilesFromGameRootDirectory(_warThunderPath);
+            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath);
             var yupFile = GetVersionInfoFile(sourceFiles);
             var binFiles = GetBinFiles(sourceFiles);
             var gameFileCopyDirectory = new DirectoryInfo(_copiedFilesPath);
@@ -55,12 +55,16 @@ namespace WarThunderSimpleUpdateChecker
             _logger.LogInfo(ECoreLogCategory.Empty, $"Procedure complete.");
         }
 
-        private static IEnumerable<FileInfo> GetFilesFromGameRootDirectory(string directoryPath)
+        private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up files in {directoryPath}...");
+            var uiDirectoryPath = Path.Combine(rootDirectoryPath, "ui");
 
-            var sourceFiles = Directory
-                .GetFiles(directoryPath)
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up files in \"{rootDirectoryPath}\" and \"{uiDirectoryPath}\"...");
+
+            var filesInRootDirectory = Directory.GetFiles(rootDirectoryPath);
+            var filesInUiDirectory = Directory.GetFiles(uiDirectoryPath);
+            var sourceFiles = filesInRootDirectory
+                .Concat(filesInUiDirectory)
                 .Select(filePath => new FileInfo(filePath))
             ;
 
@@ -84,7 +88,14 @@ namespace WarThunderSimpleUpdateChecker
         {
             _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting BIN files...");
 
-            var binFiles = files.Where(file => file.Extension.Contains(EFileExtension.Bin));
+            var excludedBinFileNames = new string[]
+            {
+                EFile.WarThunder.GuiParameters,
+                EFile.WarThunder.MissionParameters,
+                EFile.WarThunder.WebUiParameters,
+            };
+
+            var binFiles = files.Where(file => file.GetExtensionWithoutPeriod() == EFileExtension.Bin && !file.Name.IsIn(excludedBinFileNames));
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"{binFiles.Count()} found.");
 
@@ -138,7 +149,17 @@ namespace WarThunderSimpleUpdateChecker
         {
             _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up leftover source files...");
 
-            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => file.Extension != $"{ECharacter.Period}{EFileExtension.Blkx}" && file.Extension != $"{ECharacter.Period}{EFileExtension.Csv}", SearchOption.AllDirectories).ToList();
+            var unwantedFileExtensions = new string[]
+            {
+                EFileExtension.Bin,
+                EFileExtension.Blk,
+                EFileExtension.Css,
+                EFileExtension.Html,
+                EFileExtension.Js,
+                EFileExtension.Nut,
+                EFileExtension.Tpl,
+            };
+            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions), SearchOption.AllDirectories).ToList();
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"{unwantedFiles.Count()} found.");
 
