@@ -10,9 +10,9 @@
     Title="Main Window"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
-    MinHeight="600"
+    MinHeight="700"
     MinWidth="1160"
-    Height="600"
+    Height="700"
     Width="1470"
     Loaded="OnLoaded"
     Closed="OnClosed">
@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="212"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -62,6 +62,10 @@
                 <controls:NationToggleControl
                     x:Name="_nationToggleControl"
                     Click="OnNationToggleControlClick"/>
+
+                <controls:CountryToggleControl
+                    x:Name="_countryToggleControl"
+                    Click="OnCountryToggleControlClick"/>
 
                 <controls:UpDownBattleRatingGroupControl
                     x:Name="_battleRatingControl"

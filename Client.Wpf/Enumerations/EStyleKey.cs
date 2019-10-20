@@ -20,6 +20,7 @@
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Image"/>. </summary>
         public class Image
         {
+            public const string FlagIcon = "FlagIcon";
             public const string LocalizationIcon = "LocalizationIcon";
         }
         /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>
@@ -45,6 +46,7 @@
         public class ToggleButton
         {
             public const string BranchToggle = "BranchToggle";
+            public const string CountryToggle = "CountryToggle";
             public const string NationToggle = "NationToggle";
             public const string VehicleClassToggle = "VehicleClassToggle";
         }

@@ -34,6 +34,8 @@ namespace Client.Wpf.Enumerations
         SwapPresets,
         /// <summary> See <see cref="ToggleBranchCommand"/>. </summary>
         ToggleBranch,
+        /// <summary> See <see cref="ToggleCountryCommand"/>. </summary>
+        ToggleCountry,
         /// <summary> See <see cref="ToggleNationCommand"/>. </summary>
         ToggleNation,
         /// <summary> See <see cref="ToggleVehicleClassCommand"/>. </summary>

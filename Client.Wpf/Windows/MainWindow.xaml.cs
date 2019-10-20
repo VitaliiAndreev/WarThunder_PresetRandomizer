@@ -8,6 +8,7 @@ using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
+using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
@@ -66,12 +67,14 @@ namespace Client.Wpf.Windows
                 { typeof(EBranch), Presenter.EnabledBranches },
                 { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
                 { typeof(ENation), Presenter.EnabledNations },
+                { typeof(NationCountryPair), Presenter.EnabledCountries },
             };
             _toggleCommands = new Dictionary<Type, ECommandName>
             {
                 { typeof(EBranch), ECommandName.ToggleBranch },
                 { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
                 { typeof(ENation), ECommandName.ToggleNation },
+                { typeof(NationCountryPair), ECommandName.ToggleCountry },
             };
 
             InitializeComponent();
@@ -103,6 +106,8 @@ namespace Client.Wpf.Windows
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
+            _countryToggleControl.Toggle(Presenter.EnabledCountries, true);
+
             _battleRatingControl.InitializeControls();
             AdjustBattleRatingControlsAvailability();
 
@@ -224,7 +229,38 @@ namespace Client.Wpf.Windows
                 var nation = toggleButton.GetTag<ENation>();
 
                 AdjustBranchTogglesAvailability();
+                _countryToggleControl.Enable(nation, toggleButton.IsChecked.Value);
                 _battleRatingControl.Enable(nation, toggleButton.IsChecked.Value);
+
+                if (toggleButton.IsChecked.Value && !Presenter.NationHasCountriesEnabled(nation))
+                {
+                    var country = nation.GetCountries().First();
+                    var nationCountryPair = new NationCountryPair(nation, country);
+
+                    _countryToggleControl.Toggle(nationCountryPair, true);
+                    OnCountryToggleControlClick(_countryToggleControl, new RoutedEventArgs(CountryToggleControl.ClickEvent, _countryToggleControl.ToggleClassColumns[nation].Buttons[nationCountryPair]));
+                }
+
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledCountries"/> according to the action. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnCountryToggleControlClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ToggleButton toggleButton)
+            {
+                OnToggleButtonGroupControlClick<NationCountryPair>(toggleButton);
+
+                var nationCountryPair = toggleButton.GetTag<NationCountryPair>();
+
+                if (!toggleButton.IsChecked.Value && !Presenter.NationHasCountriesEnabled(nationCountryPair.Nation))
+                {
+                    _nationToggleControl.Toggle(nationCountryPair.Nation, false);
+                    OnNationToggleControlClick(_nationToggleControl, new RoutedEventArgs(NationToggleControl.ClickEvent, _nationToggleControl.Buttons[nationCountryPair.Nation]));
+                }
 
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
@@ -347,6 +383,7 @@ namespace Client.Wpf.Windows
             _gameModeSelectionControl.Localize();
             _vehicleClassControl.Localize();
             _nationToggleControl.Localize();
+            _countryToggleControl.Localize();
             _battleRatingControl.Localize();
 
             _presetPanel.Localize();

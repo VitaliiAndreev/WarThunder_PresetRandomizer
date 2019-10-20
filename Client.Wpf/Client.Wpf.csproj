@@ -230,6 +230,7 @@
     <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />

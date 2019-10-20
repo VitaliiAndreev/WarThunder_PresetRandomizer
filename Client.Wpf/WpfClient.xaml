@@ -133,6 +133,18 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Image" x:Key="FlagIcon">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="1" BlurRadius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <!-- t:NationToggleControl -->
 
         <Style TargetType="controls:NationToggleControl">
@@ -290,6 +302,19 @@
             <Setter Property="Padding" Value="-5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="CountryToggle" BasedOn="{StaticResource VehicleClassToggle}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Padding" Value="4 0"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Image.Opacity" Value="0.6"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Image.Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- t:UpDownControl -->

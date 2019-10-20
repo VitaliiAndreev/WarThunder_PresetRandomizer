@@ -36,6 +36,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Countries enabled for preset generation. </summary>
         IList<NationCountryPair> EnabledCountries { get; }
 
+        /// <summary> Countries enabled for preset generation, grouped by nations. </summary>
+        IDictionary<ENation, IEnumerable<ECountry>> EnabledCountriesByNations { get; }
+
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
 
@@ -59,6 +62,11 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <param name="branch"> The branch to check. </param>
         /// <returns></returns>
         bool BranchHasVehicleClassesEnabled(EBranch branch);
+
+        /// <summary> Checks whether the given <paramref name="nation"/> has any <see cref="ECountry"/> items enabled or not. </summary>
+        /// <param name="nation"> The nation to check. </param>
+        /// <returns></returns>
+        bool NationHasCountriesEnabled(ENation nation);
 
         /// <summary> Resets preset control to their default states. </summary>
         void ResetPresetControls();

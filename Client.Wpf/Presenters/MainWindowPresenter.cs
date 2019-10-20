@@ -45,6 +45,13 @@ namespace Client.Wpf.Presenters
         /// <summary> Countries enabled for preset generation. </summary>
         public IList<NationCountryPair> EnabledCountries { get; }
 
+        /// <summary> Countries enabled for preset generation, grouped by nations. </summary>
+        public IDictionary<ENation, IEnumerable<ECountry>> EnabledCountriesByNations =>
+            EnabledCountries
+                .GroupBy(nationCountryPair => nationCountryPair.Nation)
+                .ToDictionary(group => group.Key, group => group.Select(countryCollection => countryCollection.Country))
+            ;
+
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         public IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
 
@@ -98,6 +105,12 @@ namespace Client.Wpf.Presenters
         /// <returns></returns>
         public bool BranchHasVehicleClassesEnabled(EBranch branch) =>
             EnabledVehicleClassesByBranches.TryGetValue(branch, out var vehicleClasses) && vehicleClasses.Any();
+
+        /// <summary> Checks whether the given <paramref name="nation"/> has any <see cref="ECountry"/> items enabled or not. </summary>
+        /// <param name="nation"> The nation to check. </param>
+        /// <returns></returns>
+        public bool NationHasCountriesEnabled(ENation nation) =>
+            EnabledCountriesByNations.TryGetValue(nation, out var countries) && countries.Any();
 
         /// <summary> Resets preset control to their default states. </summary>
         public void ResetPresetControls() => Owner.ResetPresetControls();
