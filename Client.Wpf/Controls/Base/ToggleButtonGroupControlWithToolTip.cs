@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls.Primitives;
+﻿using Core.DataBase.WarThunder.Objects;
+using Core.Enumerations;
+using System.Linq;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
 {
@@ -12,8 +15,23 @@ namespace Client.Wpf.Controls.Base
             base.Localize();
 
             foreach (var button in Buttons.Values)
-                if (button.Tag is T key)
-                    button.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(key.ToString());
+            {
+                var localizationKey = default(string);
+
+                switch (button.Tag)
+                {
+                    case NationCountryPair nationCountryPair:
+                        localizationKey = nationCountryPair.ToString().Split(ECharacter.Underscore).Last();
+                        break;
+                    case T key:
+                        localizationKey = key.ToString();
+                        break;
+                    default:
+                        return;
+                }
+
+                button.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
+            }
         }
     }
 }
