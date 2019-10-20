@@ -77,6 +77,7 @@
         private const string _ch = _c + _h;
         private const string _chema = _ch + _e + _m + _a;
         private const string _cla = _c + _l + _a;
+        private const string _co = _c + _o;
 
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
@@ -123,8 +124,11 @@
         protected const string _Copied = "Copi" + _ed;
         protected const string _copied = "copi" + _ed;
         protected const string _Copying = "Copy" + _ing;
+        protected const string _core = _co + _re;
         protected const string _correct = "correct";
         protected const string _couldnt = "couldn'" + _t;
+        protected const string _count = _co + _un + _t;
+        protected const string _country = _count + _ry;
         protected const string _create = "create";
         protected const string _created = _create + _d;
         protected const string _Creating = "Creat" + _ing;
@@ -288,6 +292,7 @@
         protected const string _Integration = _In + _tegrat + _ion;
         protected const string _integration = _in + _tegrat + _ion;
         protected const string _into = _in + _to;
+        protected const string _invalid = _in + _valid;
         protected const string _ion = _i + _on;
         protected const string _is = _i + _s;
         protected const string _ish = _i + _s + _h;
@@ -440,6 +445,7 @@
         private const string _r = "r";
         private const string _Re = "R" + _e;
         private const string _re = _r + _e;
+        private const string _ry = _r + _y;
 
         protected const string _ranch = _r + "anch";
         protected const string _rank = _r + "ank";
@@ -476,6 +482,7 @@
         protected const string _safely = _s + "afe" + _ly;
         protected const string _Schema = _S + _chema;
         protected const string _schema = _s + _chema;
+        protected const string _score = _s + _core;
         protected const string _search = _s + _e + _a + "rch";
         protected const string _See = _S + "ee";
         protected const string _Select = _S + _elect;
@@ -517,6 +524,8 @@
         protected const string _Style = _S + "tyle";
         protected const string _subdirectories = _s + "ubdirectorie" + _s;
         protected const string _subfolders = _s + "ubfolder" + _s;
+        protected const string _sub = _s + _u + _b;
+        protected const string _substrings = _sub + _string + _s;
         protected const string _Successfully = _S + _uccess + _fully;
         protected const string _successfully = _s + _uccess + _fully;
         protected const string _supported = _s + _up + _port + _ed;
@@ -553,6 +562,7 @@
         protected const string _try = _t + "ry";
         protected const string _Trying = _Try + _ing;
         protected const string _trying = _try + _ing;
+        protected const string _two = _t + _w + _o;
         protected const string _type = _t + "ype";
         protected const string _types = _type + _s;
 
@@ -564,7 +574,10 @@
         private const string _ult = _u + _l + _t;
         private const string _Un = "U" + _n;
         private const string _un = _u + _n;
+        private const string _und = _un + _d;
 
+        protected const string _under = _und + _er;
+        protected const string _underscore = _under + _score;
         protected const string _unfinished = _un + _finish + _ed;
         protected const string _Unit = _Un + _it;
         protected const string _unit = _un + _it;

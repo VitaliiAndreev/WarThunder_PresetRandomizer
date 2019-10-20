@@ -79,6 +79,7 @@
     <Compile Include="Enumerations\ERank.cs" />
     <Compile Include="Enumerations\EReference.cs" />
     <Compile Include="Enumerations\EVehicleClass.cs" />
+    <Compile Include="Enumerations\Logger\EDatabaseWarThunderLogMessage.cs" />
     <Compile Include="Extensions\EBranchExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Objects\Localization\Vehicle\ResearchTreeName.cs" />
     <Compile Include="Objects\Localization\Vehicle\VehicleLocalization.cs" />
     <Compile Include="Objects\Nation.cs" />
+    <Compile Include="Objects\NationCountryPair.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleRating.cs" />
