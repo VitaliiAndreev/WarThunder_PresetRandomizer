@@ -77,6 +77,8 @@ namespace Core.Organization.Helpers
         protected IDataRepository _dataRepository;
         /// <summary> The cache of persistent objects. </summary>
         protected readonly List<IPersistentObject> _cache;
+        /// <summary> Playable vehicles loaded into memory. </summary>
+        private readonly List<IVehicle> _playableVehicles;
 
         #endregion Fields
         #region Properties
@@ -125,6 +127,7 @@ namespace Core.Organization.Helpers
             _vehicleSelector = vehicleSelector;
 
             _cache = new List<IPersistentObject>();
+            _playableVehicles = new List<IVehicle>();
 
             _fileManager.CleanUpTempDirectory();
 
@@ -172,7 +175,7 @@ namespace Core.Organization.Helpers
 
             var columnCount = default(int);
 
-            foreach (var vehicle in _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)))
+            foreach (var vehicle in _playableVehicles)
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
@@ -239,6 +242,8 @@ namespace Core.Organization.Helpers
 
             if (_cache.IsEmpty())
                 _cache.AddRange(_dataRepository.Query<IVehicle>());
+
+            _playableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).ToList());
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
