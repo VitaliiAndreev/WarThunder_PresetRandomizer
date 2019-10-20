@@ -8,7 +8,7 @@ using System.Linq;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleClassColumnToggleControl.xaml. </summary>
-    public partial class VehicleClassColumnToggleControl : ColumnToggleControlWithTooltips<EVehicleClass, EBranch>
+    public partial class VehicleClassColumnToggleControl : ColumnToggleControlWithTooltips<EBranch, EVehicleClass>
     {
         #region Fields
 
