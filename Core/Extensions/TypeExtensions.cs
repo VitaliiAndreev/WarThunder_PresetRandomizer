@@ -48,7 +48,7 @@ namespace Core.Extensions
         {
             var genericType = typeof(T);
 
-            if (!type.IsEnum)
+            if (!genericType.IsEnum)
                 throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(genericType.ToStringLikeCode()));
 
             if (!type.IsEnum)
