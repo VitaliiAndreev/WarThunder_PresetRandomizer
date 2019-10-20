@@ -63,12 +63,12 @@
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
         public const string LookUp = nameof(LookUp);
         public const string MediumTank = nameof(MediumTank);
-        public const string NoVehiclesAvailableForSelectedBattleRatings = nameof(NoVehiclesAvailableForSelectedBattleRatings);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);
         public const string NorthKorea = nameof(NorthKorea);
         public const string Norway = nameof(Norway);
+        public const string NoVehiclesAvailableWithinSpecifiedParameters = nameof(NoVehiclesAvailableWithinSpecifiedParameters);
         public const string Ok = nameof(Ok);
         public const string Philippines = nameof(Philippines);
         public const string Poland = nameof(Poland);

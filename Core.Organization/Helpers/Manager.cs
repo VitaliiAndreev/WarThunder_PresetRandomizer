@@ -147,6 +147,7 @@ namespace Core.Organization.Helpers
         public void InitializeGameClientVersion() =>
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
 
+        /// <summary> Initializes memebers of the <see cref="EReference"/> class. </summary>
         private void InitializeReferences()
         {
             var vehicles = _cache.OfType<IVehicle>();

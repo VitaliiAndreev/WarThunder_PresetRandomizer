@@ -204,7 +204,7 @@ namespace Client.Wpf.Controls
         public void ShowNoVehicles(ENation nation, EBranch mainBranch) =>
             DisplayText
             (
-                ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.NoVehiclesAvailableForSelectedBattleRatings)
+                ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.NoVehiclesAvailableWithinSpecifiedParameters)
                     .FormatFluently(ApplicationHelpers.LocalizationManager.GetLocalizedString(mainBranch.ToString()), ApplicationHelpers.LocalizationManager.GetLocalizedString(nation.ToString()))
             );
 

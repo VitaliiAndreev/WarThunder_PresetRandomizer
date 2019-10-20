@@ -60,12 +60,12 @@
   <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Location changes will come into after at the next application start."/>
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
-  <Line key="NoVehiclesAvailableForSelectedBattleRatings" value="No vehicles are available on selected battle ratings and vehicle classes for {0} of {1}."/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
   <Line key="NorthKorea" value="North Korea"/>
   <Line key="Norway" value="Norway"/>
+  <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
   <Line key="Philippines" value="Philippines"/>
   <Line key="Poland" value="Poland"/>
