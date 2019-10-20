@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
@@ -8,7 +9,7 @@ using System.Windows;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for UpDownBattleRatingGroupControl.xaml. </summary>
-    public partial class UpDownBattleRatingGroupControl : LocalizedUserControl
+    public partial class UpDownBattleRatingGroupControl : LocalizedUserControl, IControlWithSubcontrols<ENation>
     {
         #region Properties
 

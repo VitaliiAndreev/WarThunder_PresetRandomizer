@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Client.Wpf.Controls.Base.Interfaces;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -8,7 +9,7 @@ namespace Client.Wpf.Controls.Base
     /// <typeparam name="T"> The type of keys by which to group <typeparamref name="U"/> toggle button columns. </typeparam>
     /// <typeparam name="U"> The type of toggle button columns. </typeparam>
     /// <typeparam name="V"> The type of keys by which to group items in <typeparamref name="U"/> toggle button columns. </typeparam>
-    public abstract class ColumnToggleGroupControl<T, U, V> : LocalizedUserControl
+    public abstract class ColumnToggleGroupControl<T, U, V> : LocalizedUserControl, IControlWithSubcontrols<T>
         where U : LocalizedUserControl
     {
         #region Fields
