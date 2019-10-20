@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
 using Core.Organization.Collections;
@@ -31,6 +32,9 @@ namespace Client.Wpf.Presenters.Interfaces
 
         /// <summary> Nations enabled for preset generation. </summary>
         IList<ENation> EnabledNations { get; }
+
+        /// <summary> Countries enabled for preset generation. </summary>
+        IList<NationCountryPair> EnabledCountries { get; }
 
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
