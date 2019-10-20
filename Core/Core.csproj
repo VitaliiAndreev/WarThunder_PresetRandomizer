@@ -65,6 +65,7 @@
     <Compile Include="Enumerations\EProcess.cs" />
     <Compile Include="Enumerations\ERegularExpression.cs" />
     <Compile Include="Enumerations\ESettingsFileStatus.cs" />
+    <Compile Include="Enumerations\ESubdirectory.cs" />
     <Compile Include="Enumerations\EVocabulary.cs" />
     <Compile Include="Enumerations\EWord.cs" />
     <Compile Include="Exceptions\NotInitializedException.cs" />
