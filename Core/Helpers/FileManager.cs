@@ -291,6 +291,23 @@ namespace Core.Helpers
             DeleteEmptyDirectory(path);
         }
 
+        /// <summary> Deletes all files (non-recursively) older than the given timestamp. </summary>
+        /// <param name="path"> The path to files. </param>
+        /// <param name="deletionDeadline"> The timestamp before which all files should be deleted. </param>
+        public void DeleteOldFiles(string path, DateTime deletionDeadline)
+        {
+            var files = Directory
+                .GetFiles(path)
+                .Select(filePath => new FileInfo(filePath))
+            ;
+
+            foreach (var file in files)
+            {
+                if (file.LastWriteTimeUtc < deletionDeadline)
+                    DeleteFileSafely(file.FullName);
+            }
+        }
+
         #endregion Methods: Deletion
         #region Methods: Fluency
 

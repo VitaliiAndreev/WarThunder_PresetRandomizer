@@ -11,6 +11,7 @@
             public const int Three = 3;
             public const int Four = 4;
             public const int Five = 5;
+            public const int Seven = 7;
             public const int Ten = 10;
             public const int Sixteen = 16;
             public const int Hundred = 100;

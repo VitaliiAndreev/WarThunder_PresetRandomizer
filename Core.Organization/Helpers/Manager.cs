@@ -374,6 +374,14 @@ namespace Core.Organization.Helpers
         public void Dispose() =>
             _dataRepository.Dispose();
 
+        /// <summary> Removes log files older than a week. </summary>
+        public void RemoveOldLogFiles() =>
+            _fileManager.DeleteOldFiles
+            (
+                Path.Combine(Directory.GetCurrentDirectory(), ESubdirectory.Logs),
+                DateTime.Now.AddDays(-EInteger.Number.Seven)
+            );
+
         #region Methods: Helper Methods for GeneratePrimaryAndFallbackPresets()
 
         /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>

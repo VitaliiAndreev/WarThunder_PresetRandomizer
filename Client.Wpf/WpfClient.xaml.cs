@@ -9,6 +9,7 @@ using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -49,6 +50,7 @@ namespace Client.Wpf
                 Log.Info(ECoreLogMessage.Started);
 
                 ApplicationHelpers.Initialize();
+                ApplicationHelpers.Manager.RemoveOldLogFiles();
 
                 ApplicationHelpers.WindowFactory.CreateLoadingWindow().ShowDialog();
                 ApplicationHelpers.WindowFactory.CreateMainWindow().ShowDialog();

@@ -27,6 +27,9 @@ namespace Core.Organization.Helpers.Interfaces
 
         #endregion Methods: Initialization
 
+        /// <summary> Removes log files older than a week. </summary>
+        void RemoveOldLogFiles();
+
         /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>
         /// <param name="specification"> The specification to base vehicle selection on. </param>
         /// <returns></returns>

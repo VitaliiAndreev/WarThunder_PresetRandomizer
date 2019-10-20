@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core.Helpers.Interfaces
@@ -66,6 +67,11 @@ namespace Core.Helpers.Interfaces
         /// <summary> Deletes the specified directory. </summary>
         /// <param name="path"> The path to a directory. </param>
         void DeleteDirectory(string path);
+
+        /// <summary> Deletes all files (non-recursively) older than the given timestamp. </summary>
+        /// <param name="path"> The path to files. </param>
+        /// <param name="deletionDeadline"> The timestamp before which all files should be deleted. </param>
+        void DeleteOldFiles(string path, DateTime deletionDeadline);
 
         #endregion Methods: Deletion
         #region Methods: Fluency
