@@ -2,6 +2,7 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -150,6 +151,7 @@ namespace Core.Organization.Helpers
         {
             var vehicles = _cache.OfType<IVehicle>();
             var nationCountryCombinations = vehicles.Select(vehicle => new { Nation = vehicle.Nation.AsEnumerationItem, vehicle.Country }).Distinct();
+            var baseNationCountryCombinations = nationCountryCombinations.Where(combination => combination.Nation.GetBaseCountry() == combination.Country);
 
             EReference.MaximumEconomicRank = vehicles.Max
             (
@@ -161,7 +163,11 @@ namespace Core.Organization.Helpers
                     .Max(nullableValue => nullableValue.Value)
             );
 
-            foreach (var combination in nationCountryCombinations)
+            foreach (var combination in baseNationCountryCombinations) // The base countries need to be first in each nation.
+            {
+                EReference.CountriesByNation.Append(combination.Nation, combination.Country);
+            }
+            foreach (var combination in nationCountryCombinations.Except(baseNationCountryCombinations))
             {
                 EReference.CountriesByNation.Append(combination.Nation, combination.Country);
                 EReference.NationsByCountry.Append(combination.Country, combination.Nation);
