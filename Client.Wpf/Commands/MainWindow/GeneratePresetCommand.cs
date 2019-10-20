@@ -54,7 +54,19 @@ namespace Client.Wpf.Commands.MainWindow
                 var emptyBranches = presenter.GetEmptyBranches();
                 var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
                 var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
-                var nationSpecifications = presenter.EnabledNations.ToDictionary(nation => nation, nation => new NationSpecification(nation, presenter.EnabledBranches.Except(emptyBranches[nation]), EInteger.Number.Ten));
+                var nationSpecifications = presenter
+                    .EnabledNations
+                    .ToDictionary
+                    (
+                        nation => nation,
+                        nation => new NationSpecification
+                        (
+                            nation,
+                            presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
+                            presenter.EnabledBranches.Except(emptyBranches[nation]),
+                            EInteger.Number.Ten
+                        )
+                    );
                 var specification = new Specification(gameMode, nationSpecifications, branchSpecifications, presenter.EnabledEconomicRankIntervals);
 
                 presenter.GeneratedPresets.Clear();

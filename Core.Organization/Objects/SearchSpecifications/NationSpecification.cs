@@ -11,6 +11,9 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> The nation. </summary>
         public ENation Nation { get; }
 
+        /// <summary> Countries that have vehicles in service with the nation. </summary>
+        public IEnumerable<ECountry> Countries { get; }
+
         /// <summary> Branches of the nation. </summary>
         public IEnumerable<EBranch> Branches { get; }
 
@@ -22,11 +25,13 @@ namespace Core.Organization.Objects.SearchSpecifications
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
         /// <param name="nation"> The nation. </param>
+        /// <param name="nation"> Countries that have vehicles in service with the nation. </param>
         /// <param name="branches"> Branches of the nation. </param>
         /// <param name="crewSlots"> Available crew slots for the nation. </param>
-        public NationSpecification(ENation nation, IEnumerable<EBranch> branches, int crewSlots)
+        public NationSpecification(ENation nation, IEnumerable<ECountry> countries, IEnumerable<EBranch> branches, int crewSlots)
         {
             Nation = nation;
+            Countries = countries;
             Branches = branches;
             CrewSlots = crewSlots;
         }

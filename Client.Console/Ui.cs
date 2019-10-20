@@ -150,7 +150,7 @@ namespace Client.Console
             return new Specification
             (
                 gamemode,
-                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, new List<EBranch> { branch }, EInteger.Number.Ten) } },
+                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, EReference.CountriesByNation[nation], new List<EBranch> { branch }, EInteger.Number.Ten) } },
                 new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, branch.GetVehicleClasses()) } },
                 Enum
                     .GetValues(typeof(ENation))
