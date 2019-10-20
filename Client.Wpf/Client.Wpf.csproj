@@ -118,6 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CountryColumnToggleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CountryToggleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UpDownBattleRatingGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +247,12 @@
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithToolTip.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
+    <Compile Include="Controls\CountryColumnToggleControl.xaml.cs">
+      <DependentUpon>CountryColumnToggleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CountryToggleControl.xaml.cs">
+      <DependentUpon>CountryToggleControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingGroupControl.xaml</DependentUpon>
     </Compile>
