@@ -1,6 +1,7 @@
 ﻿using Client.Shared.Enumerations;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
+using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -9,6 +10,7 @@ using Core.Localization.Enumerations;
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Client.Wpf.Windows
 {
@@ -48,6 +50,8 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localize();
 
+            _buttonEnglishUsa.Tag = ELanguage.EnglishUsa;
+
             Log.Debug(ECoreLogMessage.Initialized);
         }
 
@@ -62,9 +66,12 @@ namespace Client.Wpf.Windows
 
         /// <summary> Select US English as the localization language. </summary>
         /// <param name="sender"> Not used. </param>
-        /// <param name="eventArguments"> Not used. </param>
-        private void OnClick_SelectEnglishUsa(object sender, RoutedEventArgs eventArguments) =>
-            SelectLocalization(ELanguage.EnglishUsa);
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is Button button)
+                SelectLocalization(button.GetTag<ELanguage>());
+        }
 
         /// <summary> Logs closing of the window and shuts the application down if no localization is selected (in case of the first launch). </summary>
         /// <param name="sender"> Not used. </param>

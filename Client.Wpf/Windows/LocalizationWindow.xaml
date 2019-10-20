@@ -21,8 +21,9 @@
         <Grid>
             
             <Button
+                Name="_buttonEnglishUsa"
                 Style="{StaticResource FlagButton}"
-                Click="OnClick_SelectEnglishUsa">
+                Click="OnClick">
                 <Image
                     Style="{StaticResource LocalizationIcon}"
                     Source="{StaticResource FlagUsaForDesigner}"/>
