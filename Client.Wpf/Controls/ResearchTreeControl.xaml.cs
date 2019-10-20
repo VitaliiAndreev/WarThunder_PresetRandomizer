@@ -116,6 +116,9 @@ namespace Client.Wpf.Controls
             _chinaTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.China);
             _italyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Italy);
             _franceTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.France);
+
+            foreach (var nationControl in _nationControls.Values)
+                nationControl.Localize();
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
