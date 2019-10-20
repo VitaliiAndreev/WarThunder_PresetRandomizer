@@ -6,6 +6,8 @@ namespace Core.Organization.Enumerations.Logger
     /// <summary> Log message strings related to the "<see cref="Organization"/>" assembly. </summary>
     public class EOrganizationLogMessage : EJsonWarThunderLogMessage
     {
+        private static readonly string _noVehiclesAvailable = $"{_No} {_vehicles} {_available}";
+
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
@@ -45,14 +47,16 @@ namespace Core.Organization.Enumerations.Logger
         /// <para> 2: branch collection. </para>
         /// </summary>
         public static readonly string NationsHaveNoBranch = $"\"{{0}}\" {_dont}/{_doesnt} {_have} \"{{1}}\".";
-        public static readonly string NoVehiclesAvailableForSelectedBranches = $"{_No} {_vehicles} {_available} {_for} {_selected} {_branches}.";
-        public static readonly string NoVehicleClassesAvailableForSelectedBranches = $"{_No} {_vehicle} {_classes} {_available} {_for} {_selected} {_branches}.";
-        public static readonly string NoVehiclesAvailableForPreset = $"{_No} {_vehicles} {_available} {_for} {_preset}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: filter criteria. </para>
+        /// </summary>
+        public static readonly string NoVehiclesAvailableFor = $"{_noVehiclesAvailable} {_for} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: branch. </para>
         /// <para> 2: nation. </para>
         /// </summary>
-        public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_No} {_vehicles} {_available} {_among} {{0}}-{{1}} {{2}} {_of} {{3}}.";
+        public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_noVehiclesAvailable} {_among} {{0}}-{{1}} {{2}} {_of} {{3}}.";
     }
 }

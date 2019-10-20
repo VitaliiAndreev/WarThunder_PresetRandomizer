@@ -373,7 +373,146 @@ namespace Core.Organization.Helpers
         public void Dispose() =>
             _dataRepository.Dispose();
 
-        /// <summary> Generate a vehicle type composition for a preset. </summary>
+        #region Methods: Helper Methods for GeneratePrimaryAndFallbackPresets()
+
+        /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
+        /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs)
+        {
+            var filteredVehicles = _playableVehicles.Where(vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country).IsIn(enabledNationCountryPairs));
+
+            if (filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(enabledNationCountryPairs.StringJoin(EVocabulary.ListSeparator)));
+                return null;
+            }
+            return filteredVehicles;
+        }
+
+        /// <summary> Filters <paramref name="vehiclesWithCountryFilter"/> with <paramref name="validVehicleClasses"/>. </summary>
+        /// <param name="validVehicleClasses"> Vehicle classes available after filtering with nation-country pairs. </param>
+        /// <param name="vehiclesWithCountryFilter"> Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter"/>. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> SelectVehiclesWithClassFilter(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehiclesWithCountryFilter)
+        {
+            var filteredVehicles = vehiclesWithCountryFilter.Where(vehicle => vehicle.Class.IsIn(validVehicleClasses));
+
+            if (filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validVehicleClasses.StringJoin(EVocabulary.ListSeparator)));
+                return null;
+            }
+            return filteredVehicles;
+        }
+
+        /// <summary> Selects the main branch from selected via GUI (passed with <paramref name="specification"/>) and <paramref name="availableBranches"/>. </summary>
+        /// <param name="specification"> The search specification. </param>
+        /// <param name="availableBranches"> Branches available after filtering with vehicle classes. </param>
+        /// <returns></returns>
+        private EBranch SelectMainBranch(Specification specification, IEnumerable<EBranch> availableBranches)
+        {
+            var mainBranch = _randomizer.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)));
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+
+            if (mainBranch == EBranch.None)
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(availableBranches.StringJoin(EVocabulary.ListSeparator)));
+                return EBranch.None;
+            }
+            return mainBranch;
+        }
+
+        /// <summary> Selects the nation specification from <paramref name="specification"/> based on previously selected <paramref name="mainBranch"/> and <paramref name="availableNations"/>. </summary>
+        /// <param name="specification"> The search specification. </param>
+        /// <param name="mainBranch"> The main vehicle branch. </param>
+        /// <param name="availableNations"> Nations available after filtering with vehicle classes. </param>
+        /// <returns></returns>
+        private NationSpecification SelectNationSpecification(Specification specification, EBranch mainBranch, IEnumerable<ENation> availableNations)
+        {
+            var nationSpecificationsWithValidBranches = specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch));
+
+            if (nationSpecificationsWithValidBranches.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.FormatFluently(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(EVocabulary.ListSeparator), mainBranch));
+                return null;
+            }
+
+            var nationSpecification = _randomizer.GetRandom(nationSpecificationsWithValidBranches.Where(nationSpecification => nationSpecification.Nation.IsIn(availableNations)));
+
+            if (nationSpecification is null)
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(availableNations.StringJoin(EVocabulary.ListSeparator)));
+
+            return nationSpecification;
+        }
+
+        /// <summary> Selects the nation from <paramref name="nationSpecification"/>. </summary>
+        /// <param name="nationSpecification"> The previously selected nation specification. </param>
+        /// <returns></returns>
+        private ENation SelectNation(NationSpecification nationSpecification)
+        {
+            var nation = nationSpecification.Nation;
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
+
+            return nation;
+        }
+
+        /// <summary> Selects valid branches from <paramref name="vehiclesByBranches"/>. </summary>
+        /// <param name="vehiclesByBranches">
+        /// Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter(IEnumerable{NationCountryPair})"/>,
+        /// <see cref="SelectVehiclesWithClassFilter(IEnumerable{EVehicleClass}, IEnumerable{IVehicle})"/>, and by the selected nation.
+        /// </param>
+        /// <returns></returns>
+        private IEnumerable<EBranch> SelectValidBranches(IDictionary<EBranch, IEnumerable<IVehicle>> vehiclesByBranches)
+        {
+            var validBranches = vehiclesByBranches.Keys;
+
+            if (validBranches.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validBranches.StringJoin(EVocabulary.ListSeparator)));
+                return null;
+            }
+            return validBranches;
+        }
+
+        /// <summary> Selects valid economic ranks from <paramref name="enabledEconomicRanks"/> based on <paramref name="economicRanksWithVehicles"/></summary>
+        /// <param name="enabledEconomicRanks"> Economic ranks enabled via GUI (as battle ratings). </param>
+        /// <param name="economicRanksWithVehicles"> Economic ranks that have vehicles after application of previous filters. </param>
+        /// <param name="getFormattedBattleRating"> A function to get a formatted battle rating from an economic rank. </param>
+        /// <param name="nation"> The nation. </param>
+        /// <param name="mainBranch"> The main branch. </param>
+        /// <returns></returns>
+        private IEnumerable<int> SelectValidEconomicRanks(IEnumerable<int> enabledEconomicRanks, IEnumerable<int> economicRanksWithVehicles, Func<int, string> getFormattedBattleRating, ENation nation, EBranch mainBranch)
+        {
+            var validEconomicRanks = enabledEconomicRanks.Intersect(economicRanksWithVehicles);
+
+            if (validEconomicRanks.IsEmpty())
+            {
+                var minimumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Min());
+                var maximumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Max());
+
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings.FormatFluently(minimumBattleRating, maximumBattleRating, mainBranch, nation));
+                return null;
+            }
+            return validEconomicRanks;
+        }
+
+        /// <summary> Gets a battle rating from <paramref name="economicRank"/>. </summary>
+        /// <param name="economicRank"> The economic rank to get a battle rating from. </param>
+        /// <param name="getFormattedBattleRating"> A function to get a formatted battle rating from an economic rank. </param>
+        /// <returns></returns>
+        private decimal GetBattleRating(int economicRank, Func<int, string> getFormattedBattleRating)
+        {
+            var battleRating = Calculator.GetBattleRating(economicRank);
+
+            LogDebug(ECoreLogMessage.Selected.FormatFluently(getFormattedBattleRating(economicRank)));
+
+            return battleRating;
+        }
+
+        /// <summary> Generates a vehicle type composition for a preset. </summary>
         /// <param name="gameMode"> The game mode to generate preset composition for. </param>
         /// <param name="allowedBranches"> Branches allowed in the composition. </param>
         /// <param name="crewSlotAmount"> The amount of available crew slots. </param>
@@ -475,76 +614,88 @@ namespace Core.Organization.Helpers
             ;
         }
 
+        #endregion Methods: Helper Methods for GeneratePrimaryAndFallbackPresets()
+
         /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>
         /// <param name="specification"> The specification to base vehicle selection on. </param>
         /// <returns></returns>
         public IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresets(Specification specification)
         {
+            #region Initial extraction of parameters from specification.
+
+            var emptyPreset = new Dictionary<EPreset, Preset>();
             var gameMode = specification.GameMode;
-            var mainBranch = _randomizer.GetRandom(specification.BranchSpecifications.Keys);
-            var vehicleClasses = specification.BranchSpecifications.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.VehicleClasses);
+            var enabledVehicleClassesByBranch = specification.BranchSpecifications.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.VehicleClasses);
+            var enabledNationCountryPairs = specification.NationSpecifications.Values.SelectMany(nationSpecification => nationSpecification.Countries.Select(country => new NationCountryPair(nationSpecification.Nation, country)));
 
-            bool hasVehicleClasses(EBranch branch) => vehicleClasses.TryGetValue(branch, out var branchVehicleClasses) && branchVehicleClasses.Any();
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by countiries.
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+            var vehiclesWithCountryFilter = SelectVehiclesWithCountryFilter(enabledNationCountryPairs);
 
-            if (!hasVehicleClasses(mainBranch))
-            {
-                LogWarn(EOrganizationLogMessage.MainBranchHasNoVehicleClassesEnabled);
-                return new Dictionary<EPreset, Preset>();
-            }
+            if (vehiclesWithCountryFilter is null)
+                return emptyPreset;
 
-            var nationSpecification = _randomizer.GetRandom(specification.NationSpecifications.Values.Where(nationSpecification => nationSpecification.Branches.Contains(mainBranch)));
-            var nation = nationSpecification.Nation;
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by classes.
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
+            var availableVehicleClasses = vehiclesWithCountryFilter.Select(vehicle => vehicle.Class).Distinct().ToList();
+            var validVehicleClasses = enabledVehicleClassesByBranch.Values.SelectMany(branchVehicleClasses => branchVehicleClasses.Where(vehicleClass => vehicleClass.IsIn(availableVehicleClasses)));
+            var vehiclesWithClassFilter = SelectVehiclesWithClassFilter(validVehicleClasses, vehiclesWithCountryFilter);
+
+            if (vehiclesWithClassFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Main branch selection.
+
+            var availableBranches = vehiclesWithClassFilter.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var mainBranch = SelectMainBranch(specification, availableBranches);
+
+            if (mainBranch == EBranch.None)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Nation selection.
+
+            var availableNations = vehiclesWithClassFilter.Select(vehicle => vehicle.Nation.AsEnumerationItem).Distinct().ToList();
+            var nationSpecification = SelectNationSpecification(specification, mainBranch, availableNations);
 
             if (nationSpecification is null)
-            {
-                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.FormatFluently(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(Settings.Separator), mainBranch));
-                return new Dictionary<EPreset, Preset>();
-            }
+                return emptyPreset;
+
+            var nation = SelectNation(nationSpecification);
+
+            if (nation == ENation.None)
+                return emptyPreset;
 
             var crewSlotAmount = nationSpecification.CrewSlots;
-            var vehiclesFromNation = _cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts) && vehicle.Nation.AsEnumerationItem == nation);
 
-            if (vehiclesFromNation.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.DummyNationSelected);
-                return new Dictionary<EPreset, Preset>();
-            }
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by nation.
+
+            var vehiclesFromNation = vehiclesWithClassFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == nation);
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Branch selection.
 
             var vehiclesByBranches = vehiclesFromNation.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
-            var availableBranches = nationSpecification.Branches.Where(branch => hasVehicleClasses(branch) && vehiclesByBranches.TryGetValue(branch, out var vehiclesInBranch) && vehiclesInBranch.Any());
+            var validBranches = SelectValidBranches(vehiclesByBranches);
 
-            if (availableBranches.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBranches);
-                return new Dictionary<EPreset, Preset>();
-            }
+            if (validBranches is null)
+                return emptyPreset;
 
-            var presetComposition = GetPresetComposition(gameMode, availableBranches, crewSlotAmount, mainBranch);
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by preset composition.
+
+            var presetComposition = GetPresetComposition(gameMode, validBranches, crewSlotAmount, mainBranch);
             var presets = new Dictionary<EPreset, Preset>();
             var vehiclesForPreset = vehiclesByBranches.Where(keyValuePair => keyValuePair.Key.IsIn(presetComposition.Keys)).SelectMany(keyValuePair => keyValuePair.Value);
 
-            var vehiclesByClasses = vehiclesForPreset.GroupBy(vehicle => vehicle.Class).ToDictionary(group => group.Key, group => group.AsEnumerable());
-            var availableVehicleClasses = vehicleClasses.Where(keyValuePair => keyValuePair.Key.IsIn(availableBranches)).SelectMany(keyValuePair => keyValuePair.Value);
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Battle rating selection.
 
-            if (availableVehicleClasses.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehicleClassesAvailableForSelectedBranches);
-                return new Dictionary<EPreset, Preset>();
-            }
-
-            var filteredVehicles = vehiclesByClasses.Where(keyValuePair => keyValuePair.Key.IsIn(availableVehicleClasses)).SelectMany(keyValuePair => keyValuePair.Value);
-
-            if (filteredVehicles.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForPreset);
-                return new Dictionary<EPreset, Preset>();
-            }
-
-            var economicRanksWithVehicles = filteredVehicles
+            var economicRanksWithVehicles = vehiclesForPreset
                 .Where(vehicle => vehicle.Branch.AsEnumerationItem == mainBranch)
                 .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
@@ -554,29 +705,23 @@ namespace Core.Organization.Helpers
             static string getFormattedBattleRating(int economicRank) => Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
 
             var enabledEconomicRanks = specification.EconomicRankIntervals[nation].AsEnumerable();
-            var availableEconomicRanks = enabledEconomicRanks.Intersect(economicRanksWithVehicles);
+            var validEconomicRanks = SelectValidEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
 
-            if (availableEconomicRanks.IsEmpty())
-            {
-                var minimumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Min());
-                var maximumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Max());
-
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings.FormatFluently(minimumBattleRating, maximumBattleRating, mainBranch, nation));
+            if (validEconomicRanks is null)
                 return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(nation, mainBranch, string.Empty, new List<IVehicle>()) } };
-            }
 
-            var economicRank = _randomizer.GetRandom(availableEconomicRanks);
-            var battleRating = Calculator.GetBattleRating(economicRank);
+            var economicRank = _randomizer.GetRandom(validEconomicRanks);
+            var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);
             var formattedBattleRating = getFormattedBattleRating(economicRank);
-
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(formattedBattleRating));
-
             var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
             var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
             (
                 presetComposition
                     .Keys
-                    .Select(branch => new { Branch = branch, Vehicles = filteredVehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .Select(branch => new { Branch = branch, Vehicles = vehiclesForPreset.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 

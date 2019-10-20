@@ -78,6 +78,7 @@
         private const string _chema = _ch + _e + _m + _a;
         private const string _cla = _c + _l + _a;
         private const string _co = _c + _o;
+        private const string _ct = _c + _t;
 
         protected const string _cache = "cache";
         protected const string _Caching = "Cach" + _ing;
@@ -129,6 +130,7 @@
         protected const string _couldnt = "couldn'" + _t;
         protected const string _count = _co + _un + _t;
         protected const string _country = _count + _ry;
+        protected const string _countries = _count + _ri + _es;
         protected const string _create = "create";
         protected const string _created = _create + _d;
         protected const string _Creating = "Creat" + _ing;
@@ -141,6 +143,7 @@
 
         private const string _d = "d";
         private const string _de = _d + _e;
+        private const string _di = _d + _i;
 
         protected const string _Data = "Data";
         protected const string _data = _d + "ata";
@@ -157,7 +160,8 @@
         protected const string _deserializing = _d + "eserializ" + _ing;
         protected const string _details = _d + "etails";
         protected const string _dialog = _d + "ia" + _log;
-        protected const string _directory = _d + "irectory";
+        protected const string _direct = _di + _rect;
+        protected const string _directory = _direct + _ory;
         protected const string _disabled = _d + "isable" + _d;
         protected const string _Disposal = "Disposal";
         protected const string _dispose = _d + "ispose";
@@ -184,7 +188,7 @@
         private const string _est = _es + _t;
         private const string _ett = _e + _t + _t;
         private const string _Ex = _E + _x;
-        private const string _ey = _E + _y;
+        private const string _ey = _e + _y;
 
         protected const string _el = _e + _l;
         protected const string _elect = _el + _ect;
@@ -380,7 +384,8 @@
         #region O
 
         private const string _o = "o";
-        private const string _ound = _o + "und";
+        private const string _ory = _o + _ry;
+        private const string _ound = _o + _und;
 
         protected const string _Object = _o + "bject";
         protected const string _object = _o + "bject";
@@ -445,6 +450,8 @@
         private const string _r = "r";
         private const string _Re = "R" + _e;
         private const string _re = _r + _e;
+        private const string _rect = _re + _ct;
+        private const string _ri = _r + _i;
         private const string _ry = _r + _y;
 
         protected const string _ranch = _r + "anch";
@@ -522,9 +529,9 @@
         protected const string _stream = _s + _tre + _am;
         protected const string _string = _s + "tr" + _ing;
         protected const string _Style = _S + "tyle";
-        protected const string _subdirectories = _s + "ubdirectorie" + _s;
-        protected const string _subfolders = _s + "ubfolder" + _s;
         protected const string _sub = _s + _u + _b;
+        protected const string _subdirectories = _sub + _direct + "orie" + _s;
+        protected const string _subfolders = _sub + _folder + _s;
         protected const string _substrings = _sub + _string + _s;
         protected const string _Successfully = _S + _uccess + _fully;
         protected const string _successfully = _s + _uccess + _fully;
@@ -559,7 +566,7 @@
         protected const string _trees = _tree + _s;
         protected const string _tribute = _t + "ribute";
         protected const string _Try = "Try";
-        protected const string _try = _t + "ry";
+        protected const string _try = _t + _ry;
         protected const string _Trying = _Try + _ing;
         protected const string _trying = _try + _ing;
         protected const string _two = _t + _w + _o;
@@ -638,5 +645,11 @@
         #endregion Z
 
         #endregion Words
+        #region Public Constatns
+
+        /// <summary> A separator between items in a collection. </summary>
+        public const string ListSeparator = ", ";
+
+        #endregion Public Constants
     }
 }
