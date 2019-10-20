@@ -1,0 +1,927 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="country_ussrGeometry1">F0 M100,100z M0,0z M26,40.964L27.611,42.664A0.92,0.92,0,0,1,27.395,43.816A1.2,1.2,0,0,1,26.171,44.248L24.382,42.36A7.831,7.831,0,0,1,20.41,43.813A9.729,9.729,0,0,1,13.026,40.9L11.195,43.53A1.212,1.212,0,0,1,9.539,43.53A1.282,1.282,0,0,1,9.467,41.658L11.88,39.671Q11.606,39.344,11.339,38.994L12.203,38.274A6.923,6.923,0,0,0,12.811,38.904L13.139,38.634 14,39.494 13.83,39.737A10.339,10.339,0,0,0,19.976,41.726A5.3,5.3,0,0,0,22.829,40.726L15.762,33.274 13.57,35.39 10.978,32.8 15.586,28.552 18.9,28.694 19.692,29.486 17.3,31.793 24.382,39.258C25.696,37.553 26.387,35 25.307,31.718 23.392,25.897 13.787,26.138 12.779,26.75 12.779,26.75 14.079,25.598 18.107,25.526 22.135,25.454 27.354,28.026 28.259,33.59A8.6,8.6,0,0,1,26,40.964z</Geometry>
+  <Geometry x:Key="country_ussrGeometry2">F0 M100,100z M0,0z M19.478,17.728L19.921,19.092 20.048,19.484 21.894,19.484 20.401,20.569 20.528,20.961 20.971,22.325 19.478,21.24 17.985,22.325 18.428,20.961 18.555,20.569 17.062,19.484 18.908,19.484 19.035,19.092 19.478,17.728 M19.478,15.893L18.5,18.917 15.317,18.917 17.889,20.785 16.907,23.808 19.479,21.94 22.051,23.808 21.069,20.785 23.641,18.917 20.46,18.917 19.478,15.894z</Geometry>
+  <DrawingGroup x:Key="country_ussrDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFBC0000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFC71E" Geometry="{StaticResource country_ussrGeometry1}" />
+    <GeometryDrawing Brush="#FFFFC71E" Geometry="{StaticResource country_ussrGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_ussrDrawingImage" Drawing="{StaticResource country_ussrDrawingGroup}" />
+  <Geometry x:Key="country_new_zealandGeometry1">F0 M100,100z M0,0z M55,52L46.356,52 27.667,37.487 9.046,52 0,52 0,46.909 19.864,31.428 0,16 0,12 10.491,12 27.673,25.342 44.793,12 55,12 55,16.186 35.476,31.4 55,46.563 55,52z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry2">F0 M100,100z M0,0z M49.672,52L29.03,35.913 32.213,33.432 55,51.192 55,52 49.672,52z M55,13.149L5.15,52 0,52 0,51.052 50.109,12 55,12 55,13.149z M25.74,28.388L22.557,30.868 0,13.288 0,12 4.713,12z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry3">F0 M100,100z M0,0z M55,37L33,37 33,52 22,52 22,37 0,37 0,27 22,27 22,12 33,12 33,27 55,27 55,37z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry4">F0 M100,100z M0,0z M55,35.03L31,35 31,52 24,52 24,35 0,35.03 0,28.97 24,29 24,12 31,12 31,29 55,28.97 55,35.03z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry5">F0 M100,100z M0,0z M75.149,29.746L76.519,25.512 72.933,22.9 77.365,22.9 78.735,18.666 80.1,22.9 84.532,22.9 80.946,25.516 82.316,29.75 78.735,27.13z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry6">F0 M100,100z M0,0z M89.473,41.177L90.597,37.737 87.654,35.611 91.292,35.611 92.416,32.171 93.54,35.611 97.18,35.611 94.237,37.737 95.361,41.177 92.418,39.051z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry7">F0 M100,100z M0,0z M59.051,45.853L60.318,41.953 57,39.538 61.1,39.538 62.367,35.638 63.634,39.538 67.734,39.538 64.42,41.95 65.687,45.85 62.369,43.438z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry8">F0 M100,100z M0,0z M75.149,72L76.519,67.766 72.933,65.149 77.365,65.149 78.735,60.915 80.105,65.149 84.537,65.149 80.951,67.766 82.321,72 78.735,69.383z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry9">F0 M100,100z M0,0z M78.735,20.172L79.767,23.363 83.108,23.363 80.408,25.335 81.44,28.526 78.74,26.554 76.04,28.526 77.072,25.335 74.372,23.363 77.7,23.363z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry10">F0 M100,100z M0,0z M92.417,33.4L93.264,35.993 96.006,35.993 93.787,37.593 94.634,40.186 92.415,38.586 90.197,40.186 91.044,37.593 88.825,35.993 91.57,35.993z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry11">F0 M100,100z M0,0z M62.369,37.026L63.324,39.968 66.415,39.968 63.915,41.786 64.87,44.728 62.37,42.91 59.87,44.728 60.825,41.786 58.325,39.968 61.416,39.968z</Geometry>
+  <Geometry x:Key="country_new_zealandGeometry12">F0 M100,100z M0,0z M78.735,62.429L79.767,65.62 83.108,65.62 80.408,67.592 81.44,70.783 78.74,68.811 76.04,70.783 77.072,67.592 74.372,65.62 77.7,65.62z</Geometry>
+  <DrawingGroup x:Key="country_new_zealandDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF00247D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF001E6C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,55,40" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry1}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_new_zealandGeometry2}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry3}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_new_zealandGeometry4}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry5}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry6}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry7}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_new_zealandGeometry8}" />
+    <GeometryDrawing Brush="#FFCC142B" Geometry="{StaticResource country_new_zealandGeometry9}" />
+    <GeometryDrawing Brush="#FFCC142B" Geometry="{StaticResource country_new_zealandGeometry10}" />
+    <GeometryDrawing Brush="#FFCC142B" Geometry="{StaticResource country_new_zealandGeometry11}" />
+    <GeometryDrawing Brush="#FFCC142B" Geometry="{StaticResource country_new_zealandGeometry12}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_new_zealandDrawingImage" Drawing="{StaticResource country_new_zealandDrawingGroup}" />
+  <DrawingGroup x:Key="country_bulgariaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFD62612">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF00966E">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_bulgariaDrawingImage" Drawing="{StaticResource country_bulgariaDrawingGroup}" />
+  <DrawingGroup x:Key="country_germany_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF000000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFDB242A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFF1A531">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_germany_modernDrawingImage" Drawing="{StaticResource country_germany_modernDrawingGroup}" />
+  <Geometry x:Key="country_finlandGeometry">F0 M100,100z M0,0z M100,57L45,57 45,87 30,87 30,57 0,57 0,42 30,42 30,12 45,12 45,42 100,42 100,57z</Geometry>
+  <DrawingGroup x:Key="country_finlandDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF003580" Geometry="{StaticResource country_finlandGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_finlandDrawingImage" Drawing="{StaticResource country_finlandDrawingGroup}" />
+  <DrawingGroup x:Key="country_italy_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="#FFFFFFFF">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30,10,40,75" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FF008B3A">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,10,33,75" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FFCB1D2A">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="67,10,33,75" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_italy_modernDrawingImage" Drawing="{StaticResource country_italy_modernDrawingGroup}" />
+  <Geometry x:Key="country_italyGeometry1">F0 M100,100z M0,0z M35,41L65,41 65,74A2,2,0,0,1,63,76L37,76A2,2,0,0,1,35,74L35,41z M48,76L50,78 52,76 48,76z</Geometry>
+  <Geometry x:Key="country_italyGeometry2">F0 M100,100z M0,0z M61,61L52,61 52,72 48,72 48,61 39,61 39,57 48,57 48,45 52,45 52,57 61,57 61,61z</Geometry>
+  <Geometry x:Key="country_italyGeometry3">F0 M100,100z M0,0z M43.132,25.077L56.868,25.077A2,2,0,0,1,58.868,27.077L58.868,36.485A2,2,0,0,1,56.868,38.485L43.132,38.485A2,2,0,0,1,41.132,36.485L41.132,27.077A2,2,0,0,1,43.132,25.077z</Geometry>
+  <Geometry x:Key="country_italyGeometry4">F0 M100,100z M0,0z M63.875,23.625L59.975,35 59.975,39 40.025,39 40.025,35 36.125,23.625 38.725,21 48.013,21 48.013,18 51.988,18 51.988,21 61.276,21z M40.025,24L38.725,25.313 43.925,35 48.013,35 48.013,24 40.025,24z M51.987,24L51.987,35 56.075,35 61.275,25.313 59.975,24 51.988,24z</Geometry>
+  <DrawingGroup x:Key="country_italyDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF008B3A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,30,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30,12,40,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF2D43AC" Geometry="{StaticResource country_italyGeometry1}" />
+    <GeometryDrawing Brush="#FFCB1D2A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="39,45,22,27" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_italyGeometry2}" />
+    <GeometryDrawing Brush="#FFCB1D2A" Geometry="{StaticResource country_italyGeometry3}" />
+    <GeometryDrawing Brush="#FFF7AE2E" Geometry="{StaticResource country_italyGeometry4}" />
+    <GeometryDrawing Brush="#FFCB1D2A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="70,12,30,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_italyDrawingImage" Drawing="{StaticResource country_italyDrawingGroup}" />
+  <Geometry x:Key="country_canadaGeometry1">F0 M100,100z M0,0z M75.5,71C70.144,71,62,61.55,62,57.974L62,38 89,38 89,57.974C89,61.694,81.456,71,75.5,71z</Geometry>
+  <Geometry x:Key="country_canadaGeometry2">F0 M100,100z M0,0z M64,39.994L87,39.994 87,57.554C87,60.825 80.573,69.006 75.5,69.006 70.938,69.006 64,60.7 64,57.554L64,39.994z</Geometry>
+  <Geometry x:Key="country_canadaGeometry3">F0 M100,100z M0,0z M84.094,53.725L84.094,51.4 85.657,51.4 85.657,53.725 84.094,53.725z M80.969,54.5L82.532,54.5 82.532,56.825 80.969,56.825 80.969,54.5z M77.844,51.4L79.407,51.4 79.407,53.725 77.844,53.725 77.844,51.4z</Geometry>
+  <Geometry x:Key="country_canadaGeometry4">F0 M100,100z M0,0z M65.344,47.525L65.344,46.125 73.938,46.125 73.938,47.525 65.344,47.525z M65.344,43.335L73.938,43.335 73.938,44.735 65.344,44.735 65.344,43.335z M65.344,40.55L73.938,40.55 73.938,41.95 65.344,41.95 65.344,40.55z</Geometry>
+  <Geometry x:Key="country_canadaGeometry5">F0 M100,100z M0,0z M83,45L83,46 83.313,46 83.313,47.525 79.406,47.525 79.406,46 81,46 81,44 79.406,44 79.406,41.325 80,41.325 80,43 81,43 81,41.325 83.313,41.325 83.313,45 83,45z</Geometry>
+  <Geometry x:Key="country_canadaGeometry6">F0 M100,100z M0,0z M73.938,50.625L69,57A19.9,19.9,0,0,1,66.906,52.95C66.895,52.912 66.906,52.879 66.897,52.841 66.507,52.232 65.136,50 66,50A4.51,4.51,0,0,1,68.224,51.052A13.5,13.5,0,0,1,73.938,50.625z M70,52C69.188,52.375,70,54,70,54L72,52A3.31,3.31,0,0,0,70,52z</Geometry>
+  <Geometry x:Key="country_canadaGeometry7">F0 M100,100z M0,0z M79.949,64.575A4.111,4.111,0,0,1,76.281,66.852L76.281,68.452 74.719,68.452 74.719,66.852A4.111,4.111,0,0,1,71.051,64.575L68.469,64.575 68.469,62.25 72.375,62.25 72.375,64.575 71.944,64.575A3.58,3.58,0,0,0,74.719,66.106L74.719,63.025 73.156,63.025 73.156,59.15 77.844,59.15 77.844,63.025 76.281,63.025 76.281,66.106A3.58,3.58,0,0,0,79.056,64.575L78.625,64.575 78.625,62.25 82.531,62.25 82.531,64.575 79.949,64.575z</Geometry>
+  <Geometry x:Key="country_canadaGeometry8">F0 M100,100z M0,0z M50,46L42.142,46 25.152,34.027 8.224,46 0,46 0,41.8 18.059,29.028 0,16.3 0,13 9.537,13 25.157,24.008 40.721,13 50,13 50,16.453 32.251,29.006 50,41.514 50,46z</Geometry>
+  <Geometry x:Key="country_canadaGeometry9">F0 M100,100z M0,0z M45.156,46L26.391,32.728 29.284,30.681 50,45.333 50,46 45.156,46z M50,13.948L4.681,46 0,46 0,45.218 45.553,13 50,13 50,13.948z M23.4,26.52L20.507,28.566 0,14.063 0,13 4.284,13z</Geometry>
+  <Geometry x:Key="country_canadaGeometry10">F0 M100,100z M0,0z M50,34L30,34 30,46 20,46 20,34 0,34 0,25 20,25 20,13 30,13 30,25 50,25 50,34z</Geometry>
+  <Geometry x:Key="country_canadaGeometry11">F0 M100,100z M0,0z M50,32L28,32 28,46 22,46 22,32 0,32 0,27 22,27 22,13 28,13 28,27 50,27 50,32z</Geometry>
+  <DrawingGroup x:Key="country_canadaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFC70606">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,13,100,73" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF3C3C3C" Geometry="{StaticResource country_canadaGeometry1}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_canadaGeometry2}" />
+    <GeometryDrawing Brush="#FF2F46D0">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="64,49,23,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFC438" Geometry="{StaticResource country_canadaGeometry3}" />
+    <GeometryDrawing Brush="#FFFFC438">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="76,40,11,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFD70505">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="64,40,12,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFC438" Geometry="{StaticResource country_canadaGeometry4}" />
+    <GeometryDrawing Brush="#FFE20909" Geometry="{StaticResource country_canadaGeometry5}" />
+    <GeometryDrawing Brush="#FFFFC438" Geometry="{StaticResource country_canadaGeometry6}" />
+    <GeometryDrawing Brush="#FF20AB2D" Geometry="{StaticResource country_canadaGeometry7}" />
+    <GeometryDrawing Brush="#FF3C3C3C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="75,39,1,19" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF001E6C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,13,50,33" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_canadaGeometry8}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_canadaGeometry9}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_canadaGeometry10}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_canadaGeometry11}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_canadaDrawingImage" Drawing="{StaticResource country_canadaDrawingGroup}" />
+  <Geometry x:Key="country_usaGeometry1">F0 M100,100z M0,0z M0,77L100,77 100,82 0,82 0,77z M0,67L100,67 100,72 0,72 0,67z M0,57L100,57 100,62 0,62 0,57z M55,47L100,47 100,52 55,52 55,47z M55,37L100,37 100,42 55,42 55,37z M55,27L100,27 100,32 55,32 55,27z M55,17L100,17 100,22 55,22 55,17z</Geometry>
+  <Geometry x:Key="country_usaGeometry2">F0 M100,100z M0,0z M10,23.91L8.456,25.09 9.047,27 7.5,25.819 5.953,27 6.544,25.09 5,23.91 6.909,23.91 7.5,22 8.091,23.91 10,23.91 M20,23.91L18.453,25.09 19.047,27 17.5,25.819 15.953,27 16.544,25.091 15,23.91 16.912,23.91 17.5,22 18.091,23.909 20,23.909 M30,23.909L28.453,25.089 29.047,27 27.5,25.819 25.953,27 26.544,25.091 25,23.91 26.912,23.91 27.5,22 28.091,23.909 30,23.909 M40,23.909L38.453,25.089 39.047,27 37.5,25.819 35.953,27 36.544,25.091 35,23.91 36.913,23.91 37.5,22 38.091,23.909 40,23.909 M50,23.909L48.453,25.089 49.047,27 47.5,25.819 45.953,27 46.544,25.091 45,23.91 46.913,23.91 47.5,22 48.091,23.909 50,23.909 M10,33.909L8.456,35.09 9.047,37 7.5,35.819 5.953,37 6.544,35.09 5,33.91 6.909,33.91 7.5,32 8.091,33.91 10,33.91 M20,33.91L18.453,35.09 19.047,37 17.5,35.819 15.953,37 16.544,35.091 15,33.91 16.912,33.91 17.5,32 18.091,33.909 20,33.909 M30,33.909L28.453,35.089 29.047,37 27.5,35.819 25.953,37 26.544,35.091 25,33.91 26.912,33.91 27.5,32 28.091,33.909 30,33.909 M40,33.909L38.453,35.089 39.047,37 37.5,35.819 35.953,37 36.544,35.091 35,33.91 36.913,33.91 37.5,32 38.091,33.909 40,33.909 M50,33.909L48.453,35.089 49.047,37 47.5,35.819 45.953,37 46.544,35.091 45,33.91 46.913,33.91 47.5,32 48.091,33.909 50,33.909 M10,43.909L8.456,45.09 9.047,47 7.5,45.819 5.953,47 6.544,45.09 5,43.91 6.909,43.91 7.5,42 8.091,43.91 10,43.91 M20,43.91L18.453,45.09 19.047,47 17.5,45.819 15.953,47 16.544,45.091 15,43.91 16.912,43.91 17.5,42 18.091,43.909 20,43.909 M30,43.909L28.453,45.089 29.047,47 27.5,45.819 25.953,47 26.544,45.091 25,43.91 26.912,43.91 27.5,42 28.091,43.909 30,43.909 M40,43.909L38.453,45.089 39.047,47 37.5,45.819 35.953,47 36.544,45.091 35,43.91 36.913,43.91 37.5,42 38.091,43.909 40,43.909 M50,43.909L48.453,45.089 49.047,47 47.5,45.819 45.953,47 46.544,45.091 45,43.91 46.913,43.91 47.5,42 48.091,43.909 50,43.909</Geometry>
+  <DrawingGroup x:Key="country_usaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,100,65" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFBF0A31" Geometry="{StaticResource country_usaGeometry1}" />
+    <GeometryDrawing Brush="#FF18396D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,55,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF9CB1D2" Geometry="{StaticResource country_usaGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_usaDrawingImage" Drawing="{StaticResource country_usaDrawingGroup}" />
+  <Geometry x:Key="country_chinaGeometry">F0 M100,100z M0,0z M17.992,25L21.059,34.942 30.983,34.942 22.954,40.69 26.02,49.99 17.991,44.242 9.963,49.99 13.029,40.69 5,34.942 14.924,34.942z M30,50L35,50 35,55 30,55 30,50z M40,40L45,40 45,45 40,45 40,40z M40,30L45,30 45,35 40,35 40,30z M30,20L35,20 35,25 30,25 30,20z</Geometry>
+  <DrawingGroup x:Key="country_chinaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFDE2910">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,70" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFF9BB03" Geometry="{StaticResource country_chinaGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_chinaDrawingImage" Drawing="{StaticResource country_chinaDrawingGroup}" />
+  <Geometry x:Key="country_iraqGeometry1">F0 M100,100z M0,0z M0,83L29,61 29,39 0,17 0,83z</Geometry>
+  <Geometry x:Key="country_iraqGeometry2">F0 M100,100z M0,0z M16.739,40.149L16.78,42.912 14.663,41.135 12.528,42.89 12.6,40.128 9.9,39.553 12.1,37.885 10.864,35.413 13.542,36.095 14.7,33.587 15.836,36.106 18.521,35.451 17.26,37.91 19.448,39.6z M12.1,59.784L10.864,57.312 13.542,57.994 14.7,55.487 15.836,58.006 18.521,57.351 17.26,59.81 19.448,61.5 16.739,62.047 16.78,64.81 14.663,63.033 12.528,64.788 12.6,62.028 9.9,61.453z</Geometry>
+  <DrawingGroup x:Key="country_iraqDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF007A3D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,61,100,22" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,39,100,22" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF000000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,100,22" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFCE1126" Geometry="{StaticResource country_iraqGeometry1}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_iraqGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_iraqDrawingImage" Drawing="{StaticResource country_iraqDrawingGroup}" />
+  <Geometry x:Key="country_norwayGeometry1">F0 M100,100z M0,0z M100,57L45,57 45,87 30,87 30,57 0,57 0,42 30,42 30,12 45,12 45,42 100,42 100,57z</Geometry>
+  <Geometry x:Key="country_norwayGeometry2">F0 M100,100z M0,0z M100,52L40,52 40,87 35,87 35,52 0,52 0,47 35,47 35,12 40,12 40,47 100,47 100,52z</Geometry>
+  <DrawingGroup x:Key="country_norwayDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFEF2B2D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_norwayGeometry1}" />
+    <GeometryDrawing Brush="#FF002868" Geometry="{StaticResource country_norwayGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_norwayDrawingImage" Drawing="{StaticResource country_norwayDrawingGroup}" />
+  <Geometry x:Key="lang_czechGeometry">F0 M100,100z M0,0z M0,15L0,85 50,50z</Geometry>
+  <DrawingGroup x:Key="lang_czechDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFD7141A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,50,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF11457E" Geometry="{StaticResource lang_czechGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="lang_czechDrawingImage" Drawing="{StaticResource lang_czechDrawingGroup}" />
+  <Geometry x:Key="country_south_africaGeometry1">F0 M100,100z M0,0z M55,55L55,57 46,57 46,55 32,55 32,44 46,44 46,42 55,42 55,44 68,44 68,55 55,55z</Geometry>
+  <Geometry x:Key="country_south_africaGeometry2">F0 M100,100z M0,0z M46,54L43.957,54 39.54,50.735 35.138,54 33,54 33,52.855 37.7,49.372 33,45.9 33,45 35.48,45 39.541,48 43.588,45 46,45 46,45.942 41.385,49.366 46,52.777 46,54z</Geometry>
+  <Geometry x:Key="country_south_africaGeometry3">F0 M100,100z M0,0z M44.741,54L39.862,50.38 40.614,49.822 46,53.822 46,54 44.741,54z M46,45.259L34.217,54 33,54 33,53.787 44.844,45 46,45 46,45.258z M39.084,48.688L38.332,49.246 33,45.29 33,45 34.114,45z</Geometry>
+  <Geometry x:Key="country_south_africaGeometry4">F0 M100,100z M0,0z M46,50.625L40.8,50.625 40.8,54 38.2,54 38.2,50.625 33,50.625 33,48.375 38.2,48.375 38.2,45 40.8,45 40.8,48.375 46,48.375 46,50.625z</Geometry>
+  <Geometry x:Key="country_south_africaGeometry5">F0 M100,100z M0,0z M46,50.182L40.327,50.175 40.327,54 38.673,54 38.673,50.175 33,50.182 33,48.818 38.673,48.825 38.673,45 40.328,45 40.328,48.825 46,48.818 46,50.182z</Geometry>
+  <Geometry x:Key="country_south_africaGeometry6">F0 M100,100z M0,0z M51.875,56L51.875,43 53.156,43 53.156,56 51.875,56z M49.857,43L51.143,43 51.143,56 49.857,56 49.857,43z M47.812,43L49.093,43 49.093,56 47.813,56 47.813,43z</Geometry>
+  <DrawingGroup x:Key="country_south_africaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF14148E">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE67000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF645D55" Geometry="{StaticResource country_south_africaGeometry1}" />
+    <GeometryDrawing Brush="#FF001E6C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="33,45,13,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_south_africaGeometry2}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_south_africaGeometry3}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_south_africaGeometry4}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_south_africaGeometry5}" />
+    <GeometryDrawing Brush="#FF003585">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="55,45,12,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF007B4C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="55,45,3,9" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="58,48,9,3" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFCF0821">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="58,45,9,3" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="47,43,7,13" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFF942A" Geometry="{StaticResource country_south_africaGeometry6}" />
+    <GeometryDrawing Brush="#FFCF0821">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="46.938,43,1.281,5.563" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="47.75,43,1.281,5.563" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF003585">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="48.813,43,1.281,5.563" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_south_africaDrawingImage" Drawing="{StaticResource country_south_africaDrawingGroup}" />
+  <DrawingGroup x:Key="country_belgiumDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF000000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFED2939">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="65,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFECB00">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="33,12,34,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_belgiumDrawingImage" Drawing="{StaticResource country_belgiumDrawingGroup}" />
+  <Geometry x:Key="country_yugoslaviaGeometry">F0 M100,100z M0,0z M51.005,39L53.605,47.021 62,47.021 55.2,51.978 57.8,60 51,55.043 44.21,60 46.81,51.979 40.01,47.022 48.41,47.022z</Geometry>
+  <DrawingGroup x:Key="country_yugoslaviaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF00338D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,38,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFD40F0F">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,61,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFD40F0F" Geometry="{StaticResource country_yugoslaviaGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_yugoslaviaDrawingImage" Drawing="{StaticResource country_yugoslaviaDrawingGroup}" />
+  <Geometry x:Key="country_cubaGeometry1">F0 M100,100z M0,0z M0,75L100,75 100,25 0,25 0,75z</Geometry>
+  <Geometry x:Key="country_cubaGeometry2">F0 M100,100z M0,0z M32,55L100,55 100,65 0,65 0,35 100,35 100,45 32,45 32,55z</Geometry>
+  <Geometry x:Key="country_cubaGeometry3">F0 M100,100z M0,0z M0,75L0,25 43.3,50z M14.395,41.74L12.704,47.04 7.14,47.048 11.659,50.3 9.947,55.59 14.431,52.3 18.937,55.564 17.19,50.277 21.687,47 16.123,47.03z</Geometry>
+  <DrawingGroup x:Key="country_cubaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF002A8F" Geometry="{StaticResource country_cubaGeometry1}" />
+    <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource country_cubaGeometry2}" />
+    <GeometryDrawing Brush="#FFCF142B" Geometry="{StaticResource country_cubaGeometry3}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_cubaDrawingImage" Drawing="{StaticResource country_cubaDrawingGroup}" />
+  <Geometry x:Key="country_portugalGeometry1">F0 M100,100z M0,0z M57,50.719L56.939,50.749A19.474,19.474,0,0,1,38.719,68.939L38.719,69 36.281,69 36.281,68.939A19.474,19.474,0,0,1,18.061,50.75L18,50.719 18.057,50.678C18.034,50.286,18,49.9,18,49.5A19.485,19.485,0,0,1,36.281,30.062L36.281,30 38.719,30 38.719,30.061A19.485,19.485,0,0,1,57,49.5C57,49.9,56.966,50.286,56.943,50.678z M52.892,56.6A16.846,16.846,0,0,0,54.273,51.846L48.643,56.069z M22.108,56.6L26.357,56.069 20.727,51.846A16.846,16.846,0,0,0,22.108,56.6z M21.422,44.145A16.872,16.872,0,0,0,20.728,47.063L23.118,47.063 24.242,46.263z M38.719,32.6L38.719,36.1 36.281,36.1 36.281,32.6A16.912,16.912,0,0,0,23.923,39.37L28.969,43.407 26.938,45.438 27.751,47.063 25.314,48.688 25.314,50.719 23.364,50.719 30.189,55.594 32.627,61.688 26.827,62.655A16.87,16.87,0,0,0,36.281,66.4L36.281,62.9 38.719,62.9 38.719,66.4A16.87,16.87,0,0,0,48.174,62.651L42.374,61.684 44.812,55.59 51.637,50.715 49.687,50.715 49.687,48.688 47.25,47.063 48.063,45.438 46.032,43.407 51.078,39.37A16.912,16.912,0,0,0,38.719,32.6z M54.271,47.063A16.872,16.872,0,0,0,53.577,44.145L50.757,46.26 51.881,47.06 54.271,47.06z</Geometry>
+  <Geometry x:Key="country_portugalGeometry2">F1 M100,100z M0,0z M25,36L50,36A0,0,0,0,1,50,36L50,53A10,10,0,0,1,40,63L35,63A10,10,0,0,1,25,53L25,36A0,0,0,0,1,25,36z</Geometry>
+  <Geometry x:Key="country_portugalGeometry3">F1 M100,100z M0,0z M31,42L44,42A0,0,0,0,1,44,42L44,53A5,5,0,0,1,39,58L36,58A5,5,0,0,1,31,53L31,42A0,0,0,0,1,31,42z</Geometry>
+  <Geometry x:Key="country_portugalGeometry4">F0 M100,100z M0,0z M36.281,43.406L38.719,43.406 38.719,47.062 36.281,47.062 36.281,43.406z M36.281,48.281L38.719,48.281 38.719,51.937 36.281,51.937 36.281,48.281z M32.625,48.281L35.063,48.281 35.063,51.937 32.625,51.937 32.625,48.281z M39.938,48.281L42.376,48.281 42.376,51.937 39.938,51.937 39.938,48.281z M36.282,53.156L38.72,53.156 38.72,56.812 36.281,56.812 36.281,53.156z</Geometry>
+  <Geometry x:Key="country_portugalGeometry5">F0 M100,100z M0,0z M36.281,37.313L39.937,37.313 39.937,40.969 36.281,40.969 36.281,37.313z M26.531,37.313L30.187,37.313 30.187,40.969 26.531,40.969 26.531,37.313z M44.812,37.313L48.468,37.313 48.468,40.969 44.813,40.969 44.813,37.313z M44.812,48.282L48.468,48.282 48.468,51.938 44.813,51.938 44.813,48.281z M26.531,48.282L30.187,48.282 30.187,51.938 26.531,51.938 26.531,48.281z M31.406,58.032L35.062,58.032 35.062,61.688 31.406,61.688 31.406,58.031z M41.156,58.032L44.812,58.032 44.812,61.688 41.156,61.688 41.156,58.031z</Geometry>
+  <DrawingGroup x:Key="country_portugalDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF148130">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,18,38,67" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFDB2429">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="38,18,62,67" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE9E90A" Geometry="{StaticResource country_portugalGeometry1}" />
+    <GeometryDrawing Brush="#FFC62126" Geometry="{StaticResource country_portugalGeometry2}" />
+    <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource country_portugalGeometry3}" />
+    <GeometryDrawing Brush="#FF1670AC" Geometry="{StaticResource country_portugalGeometry4}" />
+    <GeometryDrawing Brush="#FFE9E907" Geometry="{StaticResource country_portugalGeometry5}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_portugalDrawingImage" Drawing="{StaticResource country_portugalDrawingGroup}" />
+  <Geometry x:Key="country_japanGeometry">F0 M100,100z M0,0z M44.9,45.163L79.275,11.993 66.406,11.993 42.987,43.134 57.062,11.993 49.019,11.993 40.505,42.063 42.521,11.993 35.883,11.993 37.841,42.109 28.966,11.993 21.5,11.993 35.4,43.268 11.958,11.993 0,11.993 0,13.293 33.54,45.365 0,25.44 0,36.047 32.555,48.075 0,44.915 0,53.494 32.6,50.989 0,62.481 0,73.055 33.663,53.665 0,85.138 0,87.011 11.716,87.011 35.575,55.694 21.075,87.011 29.075,87.011 38.057,56.765 36.03,87.011 42.31,87.011 40.722,56.719 48.965,87.011 57.014,87.011 43.17,55.558 67.051,87.011 79.819,87.011 45.025,53.464 100.005,86.141 100.005,70.128 46.005,50.754 99.851,56.2 100.005,70.124 100.005,42.453 45.963,47.838 100.005,28.528 100.005,11.993 99.778,11.993z</Geometry>
+  <DrawingGroup x:Key="country_japanDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFBE0026" Geometry="{StaticResource country_japanGeometry}" />
+    <GeometryDrawing Brush="#FFBE0026">
+      <GeometryDrawing.Geometry>
+        <EllipseGeometry RadiusX="16.5" RadiusY="16.5" Center="38.5,49.5" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_japanDrawingImage" Drawing="{StaticResource country_japanDrawingGroup}" />
+  <Geometry x:Key="country_north_koreaGeometry">F0 M100,100z M0,0z M0,65L0,35 100,35 100,65 0,65z M33.333,38.889A11.111,11.111,0,1,0,44.444,50A11.111,11.111,0,0,0,33.333,38.889z M33.542,54.112L27.215,58.712 29.632,51.274 23.305,46.674 31.125,46.674 33.542,39.236 35.959,46.674 43.779,46.674 37.452,51.274 39.869,58.712z</Geometry>
+  <DrawingGroup x:Key="country_north_koreaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF024FA2">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,25,100,50" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFFFFF">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,33,100,34" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFED1C27" Geometry="{StaticResource country_north_koreaGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_north_koreaDrawingImage" Drawing="{StaticResource country_north_koreaDrawingGroup}" />
+  <DrawingGroup x:Key="country_japan_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,100,65" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFBC002D">
+      <GeometryDrawing.Geometry>
+        <EllipseGeometry RadiusX="22" RadiusY="22" Center="50,50" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_japan_modernDrawingImage" Drawing="{StaticResource country_japan_modernDrawingGroup}" />
+  <Geometry x:Key="country_hungaryGeometry1">F0 M100,100z M0,0z M38.12,36.87L63.88,36.87 63.88,57.31A12.88,12.88,0,0,1,38.12,57.31L38.12,36.87z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry2">F0 M100,100z M0,0z M51,68.928L51,38.27 62.76,38.27 62.76,57.1A11.829,11.829,0,0,1,51,68.928z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry3">F0 M100,100z M0,0z M51,68.928L50.93,68.928A11.83,11.83,0,0,1,39.1,57.1L39.1,38.27 51,38.27 51,68.928z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry4">F0 M100,100z M0,0z M39.895,62A12.937,12.937,0,0,1,39.111,58.033L51,58.033 51,62 39.895,62z M51,42L51,46 39,46 39,42 51,42z M39,54L39,50 51,50 51,54 39,54z M51,65.025L51,68.925 50.93,68.925A11.909,11.909,0,0,1,42.262,65.02L51,65.02z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry5">F0 M100,100z M0,0z M61.015,49.018L61.015,50.993 58,50.993 58,55.77 56.025,55.77 56.025,50.993 52.948,50.993 52.948,49.018 56.026,49.018 56.026,45.985 53.926,45.985 53.926,44.01 56.026,44.01 56.026,39.965 58,39.965 58,44.01 60.02,44.01 60.02,45.985 58,45.985 58,49.017 61.015,49.017z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry6">F0 M100,100z M0,0z M41.456,34.49A7.162,7.162,0,0,1,41.2,32.6C41.2,28 45.588,24.27 51,24.27 56.412,24.27 60.8,28 60.8,32.6A7.158,7.158,0,0,1,60.544,34.49L41.456,34.49z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry7">F0 M100,100z M0,0z M58.815,28.583L56.359,24.5 45.641,24.5 43.185,28.583 42.167,28.583 45.167,24 56.833,24 59.833,28.583 58.815,28.583z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry8">F0 M100,100z M0,0z M59.443,33.09L57.16,33.09 57.16,31.2A1.19,1.19,0,0,1,59.54,31.2L59.54,32.77 60.38,30.01 61.36,33.23 59.4,33.23z M60.38,29.73A0.42,0.42,0,1,1,60.8,29.31A0.42,0.42,0,0,1,60.38,29.73z M55.48,29.87L57.02,33.23 53.8,33.23z M54.92,28.89A0.607,0.607,0,1,1,55.48,29.73A0.744,0.744,0,0,1,54.92,28.89z M46.66,29.87L48.2,33.23 44.98,33.23z M46.1,28.89A0.607,0.607,0,1,1,46.66,29.73A0.744,0.744,0,0,1,46.1,28.89z M42.6,33.23L40.64,33.23 41.62,30.01 42.32,32.31 42.32,31.2A1.19,1.19,0,0,1,44.7,31.2L44.7,33.09 42.557,33.09z M41.62,29.73A0.42,0.42,0,1,1,42.04,29.31A0.42,0.42,0,0,1,41.62,29.73z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry9">F0 M100,100z M0,0z M58.42,30.01A0.56,0.56,0,1,1,58.98,29.45A0.56,0.56,0,0,1,58.42,30.01z M51,27.63A0.865,0.865,0,0,1,50.02,27.07A1.137,1.137,0,0,1,51.98,27.07A0.865,0.865,0,0,1,51,27.63z M43.44,30.01A0.56,0.56,0,1,1,44,29.45A0.56,0.56,0,0,1,43.44,30.01z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry10">F0 M100,100z M0,0z M51.21,20.77A0.622,0.622,0,0,1,50.952,20.712L50.092,21.319 51,22.591 51,22.591A0.84,0.84,0,1,1,50.16,23.431A0.825,0.825,0,0,1,50.36,22.904L49.52,21.724 48.755,22.264A0.632,0.632,0,1,1,48.386,21.664L49.114,21.15 48.331,20.05A0.623,0.623,0,0,1,47.779,19.436A0.63,0.63,0,0,1,49.039,19.436A0.614,0.614,0,0,1,48.959,19.726L49.685,20.745 50.585,20.11A0.627,0.627,0,0,1,51.21,19.51A0.613,0.613,0,0,1,51.389,19.546L51.433,19.515 51.474,19.572A0.623,0.623,0,0,1,51.826,20.072L51.837,20.088 51.83,20.093C51.83,20.11,51.84,20.124,51.84,20.141A0.63,0.63,0,0,1,51.21,20.77z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry11">F0 M100,100z M0,0z M54.458,55.031L59.49,55.031 59.49,58 54.458,58 54.458,55.031z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry12">F0 M100,100z M0,0z M40.22,33.51L61.64,33.51 61.64,37.01 40.22,37.01 40.22,33.51z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry13">F0 M100,100z M0,0z M61.36,36.73L61.36,34.49 62.34,34.49 62.34,36.73 61.36,36.73z M51.7,36.73L50.44,36.73A1.12,1.12,0,0,1,50.44,34.49L51.7,34.49A1.12,1.12,0,0,1,51.7,36.73z M39.8,34.49L40.78,34.49 40.78,36.73 39.8,36.73 39.8,34.49z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry14">F0 M100,100z M0,0z M56.88,36.73L56.88,34.07 59.12,34.07 59.12,36.73 56.88,36.73z M42.74,34.07L44.98,34.07 44.98,36.73 42.74,36.73 42.74,34.07z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry15">F0 M100,100z M0,0z M51,68.928L51,59.31A1.954,1.954,0,0,1,53.569,59.354A3.552,3.552,0,0,1,60.331,59.354A1.953,1.953,0,0,1,62.591,59.097A11.832,11.832,0,0,1,51,68.928z</Geometry>
+  <Geometry x:Key="country_hungaryGeometry16">F0 M100,100z M0,0z M51,37.29L51.56,37.29 51.56,69.21 51,69.21 51,37.29z</Geometry>
+  <DrawingGroup x:Key="country_hungaryDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF008751">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFCE1126">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF544231" Geometry="{StaticResource country_hungaryGeometry1}" />
+    <GeometryDrawing Brush="#FFCE1126" Geometry="{StaticResource country_hungaryGeometry2}" />
+    <GeometryDrawing Brush="#FFCE1126" Geometry="{StaticResource country_hungaryGeometry3}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_hungaryGeometry4}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_hungaryGeometry5}" />
+    <GeometryDrawing Brush="#FFFFAE22" Geometry="{StaticResource country_hungaryGeometry6}" />
+    <GeometryDrawing Brush="#FFFFAE22" Geometry="{StaticResource country_hungaryGeometry7}" />
+    <GeometryDrawing Brush="#FF2D598A" Geometry="{StaticResource country_hungaryGeometry8}" />
+    <GeometryDrawing Brush="#FFD48827">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="48,25,6,8" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFCE1126" Geometry="{StaticResource country_hungaryGeometry9}" />
+    <GeometryDrawing Brush="#FFFFAE22" Geometry="{StaticResource country_hungaryGeometry10}" />
+    <GeometryDrawing Brush="#FFFFAE22" Geometry="{StaticResource country_hungaryGeometry11}" />
+    <GeometryDrawing Brush="#FFFFAE22" Geometry="{StaticResource country_hungaryGeometry12}" />
+    <GeometryDrawing Brush="#FF2D598A" Geometry="{StaticResource country_hungaryGeometry13}" />
+    <GeometryDrawing Brush="#FFCE1126" Geometry="{StaticResource country_hungaryGeometry14}" />
+    <GeometryDrawing Brush="#FF008751" Geometry="{StaticResource country_hungaryGeometry15}" />
+    <GeometryDrawing Brush="#FF544231" Geometry="{StaticResource country_hungaryGeometry16}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_hungaryDrawingImage" Drawing="{StaticResource country_hungaryDrawingGroup}" />
+  <Geometry x:Key="country_australiaGeometry1">F0 M100,100z M0,0z M55,52L46.356,52 27.667,37.487 9.046,52 0,52 0,46.909 19.864,31.428 0,16 0,12 10.491,12 27.673,25.342 44.793,12 55,12 55,16.186 35.476,31.4 55,46.563 55,52z</Geometry>
+  <Geometry x:Key="country_australiaGeometry2">F0 M100,100z M0,0z M49.672,52L29.03,35.913 32.213,33.432 55,51.192 55,52 49.672,52z M55,13.149L5.15,52 0,52 0,51.052 50.109,12 55,12 55,13.149z M25.74,28.388L22.557,30.868 0,13.288 0,12 4.713,12z</Geometry>
+  <Geometry x:Key="country_australiaGeometry3">F0 M100,100z M0,0z M55,37L33,37 33,52 22,52 22,37 0,37 0,27 22,27 22,12 33,12 33,27 55,27 55,37z</Geometry>
+  <Geometry x:Key="country_australiaGeometry4">F0 M100,100z M0,0z M55,35.03L31,35 31,52 24,52 24,35 0,35.03 0,28.97 24,29 24,12 31,12 31,29 55,28.97 55,35.03z</Geometry>
+  <Geometry x:Key="country_australiaGeometry5">F0 M100,100z M0,0z M78.875,24A3.2,3.2,0,0,0,79.113,24.676A10.4,10.4,0,0,0,79.713,26.505C80.254,26.295,80.834,26.153,81.382,25.905A2.7,2.7,0,0,1,82.217,25.587A1.388,1.388,0,0,1,81.859,26.143C81.636,26.477,81.477,26.8,81.259,27.137A2.084,2.084,0,0,0,80.782,27.892A1.025,1.025,0,0,1,81.182,28.131C81.593,28.36,81.962,28.537,82.374,28.767A2.1,2.1,0,0,0,83.05,29.167L83.05,29.286C82.144,29.302,81.356,29.477,80.427,29.486A1.149,1.149,0,0,0,80.387,29.844A2.6,2.6,0,0,1,80.506,30.599A15.029,15.029,0,0,1,80.745,32.189L80.624,32.189A9.579,9.579,0,0,0,79.233,30.718A1.035,1.035,0,0,0,78.756,30.281A11.186,11.186,0,0,1,77.4,31.716A1.038,1.038,0,0,1,76.883,32.193C76.983,31.322,77.167,30.439,77.241,29.53A2.29,2.29,0,0,0,76.605,29.49A3.68,3.68,0,0,0,75.7,29.41A5.89,5.89,0,0,0,74.587,29.291L74.587,29.172A7.927,7.927,0,0,0,76.336,28.139A0.939,0.939,0,0,0,76.853,27.781L76.813,27.781A7.014,7.014,0,0,0,75.859,26.35A2.262,2.262,0,0,0,75.459,25.75L75.459,25.594C76.369,25.713,77.043,26.418,78.003,26.469A1.406,1.406,0,0,1,78.162,25.992C78.23,25.821,78.18,25.72,78.242,25.555A13.313,13.313,0,0,0,78.756,24L78.875,24z M94.3,42.289L94.658,44.989 94.573,44.989A10.15,10.15,0,0,0,93.182,43.558A1.034,1.034,0,0,0,92.665,43.081A25.911,25.911,0,0,1,90.877,44.989L90.8,44.989C90.893,44.122,91.123,43.234,91.158,42.326L91.118,42.326 91.118,42.286A6.651,6.651,0,0,1,89.648,42.127A7.893,7.893,0,0,1,88.535,42.047A0.144,0.144,0,0,1,88.495,41.968A7.091,7.091,0,0,0,90.085,41.014A1.376,1.376,0,0,0,90.761,40.577A4.832,4.832,0,0,1,90.244,39.742A7.082,7.082,0,0,1,89.29,38.311L89.37,38.311A3.028,3.028,0,0,0,90.205,38.629A6.109,6.109,0,0,0,91.874,39.265L91.874,39.225 91.914,39.225A3.39,3.39,0,0,1,92.232,38.271C92.426,37.746,92.502,37.215,92.709,36.721L92.788,36.721A2.457,2.457,0,0,0,93.027,37.476A13.592,13.592,0,0,1,93.544,39.225A0.728,0.728,0,0,0,93.782,39.265A1.506,1.506,0,0,1,94.382,39.026C94.958,38.803,95.568,38.497,96.17,38.311L96.17,38.391A8.5,8.5,0,0,0,95.296,39.742A2.955,2.955,0,0,0,94.696,40.656A13.948,13.948,0,0,1,96.206,41.57A2.064,2.064,0,0,1,97.001,42.047L96.961,42.047 96.961,42.087A1.157,1.157,0,0,0,96.484,42.127L95.805,42.127A7.591,7.591,0,0,1,94.3,42.289z M67.35,46.264A14.42,14.42,0,0,0,64.727,46.503L64.727,46.781A14.444,14.444,0,0,1,65.045,48.689A2.929,2.929,0,0,1,65.085,49.166L65.085,49.206 64.966,49.166A1.634,1.634,0,0,0,64.489,48.649A11.206,11.206,0,0,1,63.217,47.258A0.136,0.136,0,0,0,63.138,47.298A0.8,0.8,0,0,0,62.82,47.616C62.465,47.999,62.076,48.36,61.707,48.729A0.887,0.887,0,0,1,61.23,49.129C61.33,48.28,61.539,47.402,61.588,46.506L61.507,46.506A3.7,3.7,0,0,0,60.553,46.426A7.7,7.7,0,0,0,59,46.264L59,46.105A5.76,5.76,0,0,0,60.47,45.231A1.4,1.4,0,0,0,61.185,44.754A7.994,7.994,0,0,1,60.35,43.482A4.63,4.63,0,0,1,59.714,42.528L59.833,42.528A3.21,3.21,0,0,0,60.668,42.846C61.168,43.058,61.727,43.316,62.258,43.482L62.298,43.402A2.766,2.766,0,0,0,62.498,42.766C62.711,42.189,62.875,41.5,63.134,40.938L63.213,40.938A3.633,3.633,0,0,0,63.531,41.892C63.719,42.44,63.862,42.947,64.008,43.482L64.087,43.482A3.366,3.366,0,0,1,64.961,43.164A15.765,15.765,0,0,1,66.551,42.528L66.551,42.647A7.025,7.025,0,0,0,65.836,43.76A5.052,5.052,0,0,0,65.121,44.833L65.161,44.833A1.887,1.887,0,0,0,65.717,45.151C66.263,45.451,66.765,45.864,67.347,46.145L67.347,46.264z M85,49.285L85.159,49.285A5.7,5.7,0,0,0,85.559,50.478A0.917,0.917,0,0,0,85.718,50.955L87.5,50.955A0.566,0.566,0,0,1,87.54,51.114A3.829,3.829,0,0,0,86.546,51.83A1.268,1.268,0,0,0,86.109,52.108L86.109,52.347A8.915,8.915,0,0,1,86.665,53.977L86.585,53.977A6.67,6.67,0,0,0,85,52.9A4.812,4.812,0,0,1,83.569,53.894C83.59,53.436 84.175,52.455 84.046,52.145 83.829,51.721 82.737,51.44 82.615,50.992A7.122,7.122,0,0,1,84.483,50.952A0.113,0.113,0,0,1,84.523,50.912C84.56,50.329,84.924,49.864,85,49.285z M28.31,57.4L28.41,57.4A6.472,6.472,0,0,0,29.02,59.282C29.441,60.471 29.72,61.657 30.139,62.791 30.286,63.186 30.433,64.321 30.8,64.418A12.143,12.143,0,0,1,33.139,63.554C33.752,63.319 34.461,62.974 35.071,62.74 35.442,62.598 35.725,62.594 36.088,62.435A6.848,6.848,0,0,1,37.665,61.825L37.665,61.925A5.905,5.905,0,0,0,36.75,63.298C36.025,64.4,35.3,65.5,34.565,66.609A4.735,4.735,0,0,0,33.599,68.084C35.808,69.126,37.714,70.714,39.905,71.796L39.905,71.896 39.345,71.896C38.859,72.196 37.672,71.951 37.006,72.096 36.606,72.184 35.984,72.211 35.582,72.296L34.769,72.296A10.942,10.942,0,0,1,32.582,72.496A0.8,0.8,0,0,0,32.531,72.75A9.94,9.94,0,0,1,32.785,74.733C32.844,74.957,32.933,75.403,32.985,75.648L32.985,76.207A24.653,24.653,0,0,1,33.544,79.869L33.444,79.869A10.641,10.641,0,0,0,31.969,78.343C31.207,77.58,30.494,76.767,29.731,76.004A8.835,8.835,0,0,0,28.307,74.529A7.463,7.463,0,0,1,27.29,75.546C26.718,76.127 26.213,76.775 25.663,77.377 25.356,77.712 24.919,77.977 24.646,78.343A8.383,8.383,0,0,1,23.12,79.92A22.29,22.29,0,0,1,23.527,77.428L23.527,76.932C23.635,76.468,23.598,75.939,23.727,75.406A14.463,14.463,0,0,0,24.134,72.558A2.511,2.511,0,0,0,23.422,72.507C22.949,72.207 21.738,72.449 21.083,72.307 20.691,72.22 20.051,72.19 19.659,72.107L18.851,72.107A10.206,10.206,0,0,0,16.817,71.907L16.817,71.8 16.868,71.8A9.961,9.961,0,0,1,18.444,70.885C19.391,70.296,20.37,69.596,21.344,69.054A11.744,11.744,0,0,0,23.073,68.037A7.238,7.238,0,0,0,22.056,66.511C21.356,65.46,20.713,64.451,20.073,63.358A8.983,8.983,0,0,1,19.056,61.832L19.208,61.832A11.379,11.379,0,0,0,21.649,62.747C22.571,63.16,23.585,63.447,24.549,63.866A5.755,5.755,0,0,0,26.024,64.425L26.024,64.371 26.075,64.371A3.1,3.1,0,0,1,26.38,63.506C26.468,63.289 26.393,63.152 26.48,62.947 26.697,62.447 26.898,61.784 27.09,61.269 27.568,59.987 27.755,58.622 28.31,57.4z M82.21,67.328L82.21,67.487A3.188,3.188,0,0,0,81.654,68.322A6.7,6.7,0,0,0,80.78,69.634L80.82,69.634A1.749,1.749,0,0,0,81.376,69.952A10.882,10.882,0,0,0,83.085,70.986L83.085,71.065 82.485,71.065A13.685,13.685,0,0,1,80.379,71.304L80.379,71.582A1.612,1.612,0,0,1,80.459,72.099A10.809,10.809,0,0,1,80.737,74.007L80.663,74.007 80.663,73.97C80.189,73.512,79.726,73.016,79.272,72.539A0.815,0.815,0,0,0,78.8,72.1A2.994,2.994,0,0,0,77.926,73.014L77.25,73.65A1.238,1.238,0,0,1,76.892,74.008C76.992,73.125,77.175,72.225,77.25,71.308L77.166,71.308A3.616,3.616,0,0,0,76.212,71.229A7.782,7.782,0,0,0,74.583,71.07L74.583,70.989C75.115,70.698,75.628,70.35,76.133,70.035A1.487,1.487,0,0,0,76.848,69.558A9.037,9.037,0,0,1,75.894,68.087A4.068,4.068,0,0,1,75.377,67.332L75.536,67.332A12.02,12.02,0,0,0,77.245,68.048A2.406,2.406,0,0,0,77.921,68.248A2.206,2.206,0,0,0,78.239,67.334C78.409,66.841,78.575,66.225,78.795,65.744L78.874,65.744A4.7,4.7,0,0,0,79.192,66.698A14.177,14.177,0,0,0,79.709,68.288C80.278,68.046,80.867,67.91,81.458,67.652A3.727,3.727,0,0,1,82.213,67.332z</Geometry>
+  <DrawingGroup x:Key="country_australiaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF002B7C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF001E6C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,55,40" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_australiaGeometry1}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_australiaGeometry2}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_australiaGeometry3}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_australiaGeometry4}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_australiaGeometry5}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_australiaDrawingImage" Drawing="{StaticResource country_australiaDrawingGroup}" />
+  <Geometry x:Key="country_greeceGeometry1">F0 M100,100z M0,0z M100,57L58,57 58,87 43,87 43,57 0,57 0,42 43,42 43,12 58,12 58,42 100,42 100,57z</Geometry>
+  <Geometry x:Key="country_greeceGeometry2">F0 M100,100z M0,0z M58.065,52.063L58.065,55.84A37.616,37.616,0,0,0,50.66,54.99A41.6,41.6,0,0,0,42.936,55.84L42.936,52.062C42.053,51.062 39.745,48.262 39.706,46.473 39.663,44.499 41.646,43.384 44.19,43.609A3.408,3.408,0,0,1,45.146,43.063C46.376,42.593 48.569,43.42 49.392,43.763 49.457,43.593 49.524,43.429 49.592,43.275A1.488,1.488,0,0,1,50.292,40.575C50.269,40.333 50.253,40.065 50.253,39.762 50.253,39.73 50.253,39.704 50.253,39.673A1.906,1.906,0,0,1,49.063,39.434A1.936,1.936,0,0,1,50.268,39.195A1.63,1.63,0,0,1,50.5,38.153A1.616,1.616,0,0,1,50.732,39.189A2.3,2.3,0,0,1,52.125,39.434A2.274,2.274,0,0,1,50.747,39.679C50.747,39.708 50.747,39.733 50.747,39.762 50.747,40.069 50.73,40.339 50.707,40.583A1.487,1.487,0,0,1,51.418,43.244C51.494,43.409 51.572,43.586 51.646,43.771 52.501,43.416 54.646,42.626 55.852,43.086A3.408,3.408,0,0,1,56.808,43.63C59.352,43.405 61.335,44.517 61.292,46.486 61.256,48.277 58.948,51.061 58.065,52.063z M43.35,44.845A2.786,2.786,0,0,0,41.405,46.132C40.676,47.471,42.595,50.053,42.595,50.053L43.105,49.03 44.125,51.246 43.615,51.416 43.838,51.751C44.305,51.665,44.931,51.56,45.665,51.457L45.825,50.734 44.805,51.245 44.125,50.563 44.125,49.031 45.315,49.542A15.713,15.713,0,0,1,43.275,45.962A2.348,2.348,0,0,1,43.35,44.845z M48.607,48.36L50.094,49.38C50.094,49.38 49.454,46.619 49.28,45.06 48.126,44.946 45.151,44.725 44.98,45.45 44.761,46.35 46.17,49.201 46.17,49.201L47.36,48.349 47.36,50.736 46.51,50.736 46.867,51.309C47.746,51.209,48.719,51.146,49.709,51.109L50.099,50.227 48.942,50.907C48.337,50.227,48.607,48.36,48.607,48.36z M56.025,45.47C55.851,44.754 52.941,44.963 51.761,45.077 51.579,46.638 50.925,49.377 50.925,49.377L52.455,48.357C52.455,48.357,52.733,50.224,52.115,50.907L50.925,50.227 51.325,51.1C52.302,51.126,53.27,51.192,54.151,51.292L54.5,50.74 53.65,50.74 53.65,48.36 54.84,49.21C54.84,49.21,56.244,46.369,56.025,45.47z M59.595,46.15A2.787,2.787,0,0,0,57.65,44.867A2.335,2.335,0,0,1,57.725,45.98A15.658,15.658,0,0,1,55.685,49.55L56.875,49.04 56.875,50.57 56.195,51.25 55.175,50.74 55.332,51.446C56.066,51.546,56.696,51.66,57.166,51.746L57.385,51.418 56.875,51.248 57.895,49.038 58.405,50.058C58.405,50.058,60.324,47.486,59.6,46.15z</Geometry>
+  <DrawingGroup x:Key="country_greeceDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF0A50A1">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_greeceGeometry1}" />
+    <GeometryDrawing Brush="#FFEFA811" Geometry="{StaticResource country_greeceGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_greeceDrawingImage" Drawing="{StaticResource country_greeceDrawingGroup}" />
+  <DrawingGroup x:Key="country_ukraineDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF0057B8">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFD700">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,50,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_ukraineDrawingImage" Drawing="{StaticResource country_ukraineDrawingGroup}" />
+  <DrawingGroup x:Key="country_thailandDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFDE1018">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,10" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,27,100,10" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF00247D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_thailandDrawingImage" Drawing="{StaticResource country_thailandDrawingGroup}" />
+  <DrawingGroup x:Key="country_polandDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFDC143C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,50,100,35" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_polandDrawingImage" Drawing="{StaticResource country_polandDrawingGroup}" />
+  <Geometry x:Key="country_germanyGeometry1">F0 M100,100z M0,0z M45,57L45,87 30,87 30,57 0,57 0,42 30,42 30,12 45,12 45,42 100,42 100,57 45,57z M16,33L9,33 9,28 4,28 4,21 9,21 9,16 16,16 16,21 21,21 21,28 16,28 16,33z</Geometry>
+  <Geometry x:Key="country_germanyGeometry2">F0 M100,100z M0,0z M100,52L40,52 40,87 35,87 35,52 0,52 0,47 35,47 35,12 40,12 40,47 100,47 100,52z M15,32L10,32 10,27 5,27 5,22 10,22 10,17 15,17 15,22 20,22 20,27 15,27 15,32z</Geometry>
+  <Geometry x:Key="country_germanyGeometry3">F0 M100,100z M0,0z M37.5,66A16.5,16.5,0,1,1,54,49.5A16.5,16.5,0,0,1,37.5,66z M37.5,35A14.5,14.5,0,1,0,52,49.5A14.5,14.5,0,0,0,37.5,35z M43,55L43,60 42,60 42,54 48,54 48,55 43,55z M40,60L35,60 35,52 27,52 27,47 35,47 35,39 40,39 40,47 48,47 48,52 40,52 40,60z M42,45L42,39 43,39 43,44 48,44 48,45 42,45z M27,45L27,44 32,44 32,39 33,39 33,45 27,45z M33,54L33,60 32,60 32,55 27,55 27,54 33,54z</Geometry>
+  <Geometry x:Key="country_germanyGeometry4">F0 M100,100z M0,0z M57,54L100,54 100,55 57,55 57,54z M57,44L100,44 100,45 57,45 57,44z M0,54L18,54 18,55 0,55 0,54z M0,44L18,44 18,45 0,45 0,44z M32,69L33,69 33,87 32,87 32,69z M42,69L43,69 43,87 42,87 42,69z M32,12L33,12 33,30 32,30 32,12z M42,12L43,12 43,30 42,30 42,12z</Geometry>
+  <DrawingGroup x:Key="country_germanyDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFDB242A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_germanyGeometry1}" />
+    <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_germanyGeometry2}" />
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <EllipseGeometry RadiusX="19.5" RadiusY="19.5" Center="37.5,49.5" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_germanyGeometry3}" />
+    <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_germanyGeometry4}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_germanyDrawingImage" Drawing="{StaticResource country_germanyDrawingGroup}" />
+  <Geometry x:Key="country_argentinaGeometry1">F0 M100,100z M0,0z M100,83L0,83 0,17 100,17 100,83z M44.582,50.164L48.259,58.1C48.259,58.1 48.322,58.252 48.424,58.21 48.526,58.168 48.463,58.017 48.463,58.017L45.4,49.829 M45.31,52.916C45.265,54.123,46.01,54.786,45.917,55.864A3.811,3.811,0,0,0,46.555,57.97A5.687,5.687,0,0,1,46.529,58.699C46.654,58.759,46.929,58.428,46.837,57.832A4.3,4.3,0,0,1,46.399,55.743C46.506,54.427,45.856,54.12,46.014,52.92 M44.548,50L44.879,58.724C44.879,58.724 44.879,58.888 44.99,58.888 45.101,58.888 45.1,58.724 45.1,58.724L45.432,50 M44.158,52.819C43.65,53.919,44.086,54.814,43.58,55.772A3.8,3.8,0,0,0,43.356,57.96A5.782,5.782,0,0,1,43.051,58.624C43.143,58.724,43.522,58.524,43.671,57.939A4.294,4.294,0,0,1,44.071,55.839C44.679,54.664,44.196,54.134,44.806,53.085 M44.581,49.828L41.517,58.013C41.517,58.013 41.453,58.165 41.555,58.207 41.657,58.249 41.72,58.097 41.72,58.097L45.4,50.164 M43.134,52.285C42.241,53.107,42.297,54.101,41.459,54.794A3.823,3.823,0,0,0,40.4,56.731A5.787,5.787,0,0,1,39.861,57.231C39.906,57.36,40.335,57.317,40.698,56.831A4.326,4.326,0,0,1,41.879,55.047C42.895,54.191,42.653,53.519,43.622,52.781 M44.672,49.687L38.678,56.087C38.678,56.087 38.561,56.203 38.639,56.28 38.717,56.357 38.839,56.241 38.839,56.241L45.3,50.306 M42.387,51.406C41.244,51.827,40.912,52.766,39.869,53.089A3.864,3.864,0,0,0,38.149,54.479A5.838,5.838,0,0,1,37.459,54.735C37.451,54.872,37.864,54.994,38.386,54.685A4.373,4.373,0,0,1,40.167,53.485C41.436,53.08,41.473,52.367,42.653,52.052 M45.545,53.12C45.604,54.279 46.267,54.792 46.137,55.848 46.423,55.013 45.737,54.365 45.773,53.132 M44.785,50.091L47.3,55.541 45.19,49.924 M44.29,53.093C43.896,54.186 44.311,54.911 43.782,55.838 44.369,55.175 43.982,54.315 44.495,53.191 M44.757,50.007L44.985,56 45.206,50.011 M43.154,52.6C42.368,53.46 42.471,54.288 41.625,54.943 42.425,54.553 42.398,53.612 43.306,52.767 M44.778,49.925L42.668,55.542 45.186,50.092 M42.286,51.705C41.228,52.205 41.003,53.005 39.968,53.29 40.856,53.232 41.196,52.353 42.362,51.917 M44.82,49.849L40.7,54.236 45.132,50.156 M44.817,49.593L36.81,53.234C36.81,53.234 36.657,53.3 36.7,53.4 36.743,53.5 36.9,53.438 36.9,53.438L45.159,50.4 M42.042,50.313C40.824,50.269,40.154,51.013,39.066,50.913A3.9,3.9,0,0,0,36.94,51.545A5.882,5.882,0,0,1,36.204,51.52C36.144,51.643,36.478,51.913,37.079,51.82A4.406,4.406,0,0,1,39.188,51.386C40.517,51.492,40.826,50.848,42.038,51.005 M44.99,49.552L36.182,49.88C36.182,49.88 36.016,49.88 36.016,49.989 36.016,50.098 36.182,50.098 36.182,50.098L44.99,50.426 M42.144,49.164C41.036,48.664,40.13,49.093,39.162,48.591A3.908,3.908,0,0,0,36.953,48.369A5.839,5.839,0,0,1,36.283,48.069C36.183,48.16,36.383,48.536,36.974,48.683A4.409,4.409,0,0,1,39.09,49.083C40.277,49.683,40.811,49.207,41.871,49.811 M45.159,49.588L36.895,46.553C36.895,46.553 36.742,46.49 36.695,46.591 36.648,46.692 36.806,46.755 36.806,46.755L44.821,50.4 M42.679,48.156C41.849,47.271,40.846,47.327,40.146,46.496A3.886,3.886,0,0,0,38.191,45.454A5.749,5.749,0,0,1,37.691,44.92C37.56,44.965,37.604,45.39,38.091,45.749A4.378,4.378,0,0,1,39.891,46.919C40.755,47.925,41.434,47.686,42.179,48.646 M45.303,49.686L38.84,43.75C38.84,43.75 38.723,43.634 38.64,43.711 38.557,43.788 38.679,43.904 38.679,43.904L44.673,50.304 M43.566,47.42C43.141,46.288,42.192,45.959,41.866,44.926A3.845,3.845,0,0,0,40.466,43.226A5.718,5.718,0,0,1,40.208,42.542C40.07,42.534,39.946,42.942,40.258,43.46A4.329,4.329,0,0,1,41.47,45.224C41.88,46.481,42.599,46.517,42.917,47.686 M41.839,50.551C40.669,50.609 40.151,51.266 39.085,51.137 39.928,51.42 40.585,50.737 41.827,50.776 M44.897,49.797L39.397,52.291 45.068,50.201 M41.868,49.313C40.768,48.923 40.032,49.334 39.097,48.813 39.766,49.394 40.634,49.013 41.77,49.519 M44.984,49.778L38.937,49.997 44.984,50.216 M42.37,48.183C41.5,47.4 40.662,47.5 40,46.663 40.394,47.454 41.344,47.429 42.2,48.328 M45.07,49.786L39.4,47.7 44.9,50.194 M43.271,47.325C42.771,46.277 41.958,46.054 41.671,45.025 41.729,45.905 42.617,46.242 43.057,47.396 M45.145,49.831L40.71,45.75 44.83,50.14 M45.399,49.828L41.722,41.894C41.722,41.894 41.659,41.742 41.556,41.784 41.453,41.826 41.517,41.978 41.517,41.978L44.581,50.164 M44.669,47.077C44.714,45.87,43.969,45.207,44.062,44.129A3.809,3.809,0,0,0,43.424,42.023A5.7,5.7,0,0,1,43.45,41.294C43.326,41.234,43.05,41.565,43.142,42.161A4.3,4.3,0,0,1,43.58,44.25C43.473,45.566,44.124,45.873,43.965,47.073 M45.432,50L45.1,41.272C45.1,41.272 45.1,41.108 44.99,41.108 44.88,41.108 44.88,41.272 44.88,41.272L44.548,50 M45.822,47.181C46.33,46.081,45.894,45.186,46.401,44.228A3.8,3.8,0,0,0,46.625,42.04A5.72,5.72,0,0,1,46.931,41.376C46.839,41.276,46.46,41.476,46.311,42.06A4.293,4.293,0,0,1,45.911,44.16C45.304,45.335,45.786,45.865,45.176,46.914 M45.4,50.164L48.464,41.978C48.464,41.978 48.528,41.826 48.426,41.784 48.324,41.742 48.261,41.894 48.261,41.894L44.584,49.828 M46.85,47.707C47.743,46.885,47.687,45.891,48.525,45.198A3.824,3.824,0,0,0,49.577,43.262A5.785,5.785,0,0,1,50.116,42.762C50.071,42.633,49.642,42.676,49.279,43.162A4.327,4.327,0,0,1,48.1,44.945C47.085,45.8,47.326,46.473,46.357,47.211 M45.3,50.306L51.3,43.9C51.3,43.9 51.417,43.784 51.339,43.707 51.261,43.63 51.139,43.746 51.139,43.746L44.677,49.683 M47.59,48.583C48.733,48.162,49.065,47.223,50.107,46.9A3.863,3.863,0,0,0,51.827,45.51A5.811,5.811,0,0,1,52.517,45.254C52.525,45.117,52.117,44.995,51.59,45.304A4.37,4.37,0,0,1,49.809,46.504C48.54,46.91,48.503,47.622,47.323,47.937 M44.431,46.869C44.372,45.71 43.709,45.197 43.839,44.141 43.553,44.976 44.239,45.624 44.203,46.857 M45.194,49.9L42.676,44.451 44.786,50.068 M45.686,46.899C46.08,45.806 45.665,45.081 46.193,44.155 45.606,44.818 45.993,45.678 45.48,46.802 M45.218,49.986L44.995,44 44.774,49.989 M46.827,47.4C47.613,46.54 47.51,45.712 48.356,45.057 47.556,45.447 47.583,46.388 46.675,47.233 M45.2,50.072L47.31,44.455 44.795,49.9 M47.695,48.287C48.753,47.787 48.978,46.987 50.013,46.702 49.124,46.76 48.785,47.639 47.619,48.075 M45.161,50.143L49.28,45.753 44.848,49.833 M45.159,50.4L53.17,46.758C53.17,46.758 53.323,46.695 53.281,46.594 53.239,46.493 53.081,46.556 53.081,46.556L44.817,49.591 M47.934,49.678C49.152,49.722,49.822,48.978,50.91,49.078A3.9,3.9,0,0,0,53.036,48.446A5.838,5.838,0,0,1,53.772,48.471C53.832,48.348,53.498,48.078,52.896,48.166A4.405,4.405,0,0,1,50.787,48.6C49.458,48.494,49.149,49.138,47.937,48.981 M44.99,50.434L53.798,50.106C53.798,50.106 53.964,50.106 53.964,49.997 53.964,49.888 53.8,49.887 53.8,49.887L44.992,49.559 M47.838,50.821C48.946,51.321,49.852,50.892,50.82,51.394A3.907,3.907,0,0,0,53.029,51.616A5.824,5.824,0,0,1,53.699,51.916C53.799,51.825,53.599,51.449,53.008,51.302A4.41,4.41,0,0,1,50.892,50.902C49.705,50.302,49.171,50.779,48.111,50.174 M44.823,50.397L53.087,53.432C53.087,53.432 53.24,53.495 53.287,53.394 53.334,53.293 53.176,53.23 53.176,53.23L45.165,49.588 M47.3,51.837C48.13,52.722,49.133,52.666,49.833,53.497A3.886,3.886,0,0,0,51.788,54.539A5.731,5.731,0,0,1,52.288,55.073C52.419,55.028,52.375,54.603,51.888,54.244A4.377,4.377,0,0,1,50.088,53.074C49.224,52.068,48.545,52.307,47.8,51.347 M44.676,50.307L51.138,56.244C51.138,56.244 51.255,56.36 51.338,56.283 51.421,56.206 51.3,56.088 51.3,56.088L45.306,49.688 M46.418,52.574C46.843,53.706,47.791,54.035,48.118,55.068A3.845,3.845,0,0,0,49.518,56.768A5.675,5.675,0,0,1,49.776,57.452C49.914,57.46,50.038,57.052,49.726,56.534A4.33,4.33,0,0,1,48.514,54.77C48.104,53.513,47.385,53.477,47.067,52.308 M48.145,49.444C49.315,49.386 49.833,48.729 50.899,48.858 50.056,48.575 49.399,49.258 48.157,49.219 M45.087,50.198L50.587,47.704 44.916,49.794 M48.116,50.682C49.216,51.072 49.952,50.661 50.887,51.182 50.217,50.601 49.35,50.982 48.214,50.476 M45,50.22L51.048,50 45,49.782 M47.614,51.815C48.483,52.593 49.314,52.492 49.98,53.33 49.586,52.539 48.636,52.564 47.78,51.665 M44.911,50.207L50.582,52.297 45.082,49.803 M46.711,52.672C47.211,53.721 48.024,53.943 48.311,54.972 48.253,54.092 47.366,53.755 46.925,52.601 M44.837,50.166L49.269,54.246 45.149,49.856 M44.989,46.445A3.555,3.555,0,1,1,41.4,50A3.572,3.572,0,0,1,44.99,46.441z M46.213,49.245A0.712,0.712,0,0,0,45.595,49.569A1.132,1.132,0,0,0,46.895,49.541A0.952,0.952,0,0,0,46.213,49.241L46.213,49.241z M46.213,49.301A0.534,0.534,0,0,1,46.706,49.513A0.733,0.733,0,0,1,45.713,49.569A0.583,0.583,0,0,1,46.213,49.301L46.213,49.301z M46.263,49.076A0.736,0.736,0,0,0,45.656,49.295A0.722,0.722,0,0,1,45.38,49.432C45.353,49.459,45.38,49.541,45.435,49.514A1.589,1.589,0,0,0,45.766,49.295A0.694,0.694,0,0,1,46.266,49.158A1.568,1.568,0,0,1,47.094,49.541A0.863,0.863,0,0,0,46.266,49.076L46.266,49.076z M47.257,49.24A1.443,1.443,0,0,0,45.379,49.021A1.065,1.065,0,0,0,45.173,49.478A1.314,1.314,0,0,0,45.462,50.471A0.209,0.209,0,0,0,45.351,50.526A1.931,1.931,0,0,1,45.126,49.279A1.75,1.75,0,0,1,45.213,48.967A1.33,1.33,0,0,1,47.256,49.241L47.256,49.241z M46.208,49.266A0.246,0.246,0,1,1,45.96,49.512A0.247,0.247,0,0,1,46.205,49.257z M46.926,49.677A1.094,1.094,0,0,1,45.711,49.841C45.435,49.677,45.435,49.622,45.49,49.622A1.569,1.569,0,0,1,45.821,49.786A1.373,1.373,0,0,0,46.921,49.677L46.921,49.677z M44.444,50.496A0.246,0.246,0,1,0,44.694,50.88A0.527,0.527,0,0,0,44.994,50.96L45.026,50.96A0.528,0.528,0,0,0,45.326,50.88A0.245,0.245,0,0,0,45.526,50.98A0.246,0.246,0,0,0,45.574,50.492A0.165,0.165,0,1,1,45.352,50.656A0.378,0.378,0,0,1,44.665,50.656A0.166,0.166,0,1,1,44.443,50.492L44.443,50.492z M44.714,51.224A1.272,1.272,0,0,0,44.08,51.636A5.018,5.018,0,0,0,44.52,51.364A0.659,0.659,0,0,1,44.988,51.388L44.988,51.388A0.659,0.659,0,0,1,45.456,51.364A4.969,4.969,0,0,0,45.9,51.636A1.283,1.283,0,0,0,45.262,51.224A0.748,0.748,0,0,0,44.987,51.308L44.987,51.308A0.747,0.747,0,0,0,44.711,51.216z M44.621,51.548A1.9,1.9,0,0,0,44.161,51.636A1.715,1.715,0,0,1,44.989,51.692L44.989,51.692A1.717,1.717,0,0,1,45.817,51.636A1.485,1.485,0,0,0,44.989,51.58L44.989,51.58A3,3,0,0,0,44.621,51.548L44.621,51.548z M44.185,51.632C44.153,51.632 44.118,51.632 44.085,51.632 44.665,51.687 44.385,52.016 44.994,52.016L44.994,52.016C45.601,52.016 45.327,51.687 45.907,51.632 45.3,51.577 45.492,51.932 44.994,51.932L44.994,51.932C44.528,51.932,44.672,51.622,44.194,51.632L44.194,51.632z M45.49,52.52A0.5,0.5,0,0,0,44.496,52.52A0.512,0.512,0,0,1,45.49,52.52L45.49,52.52z M42.761,49.238A1.443,1.443,0,0,1,44.639,49.019A1.068,1.068,0,0,1,44.845,49.476A1.314,1.314,0,0,1,44.556,50.469A0.209,0.209,0,0,1,44.667,50.524A1.931,1.931,0,0,0,44.892,49.277A1.757,1.757,0,0,0,44.806,48.965A1.33,1.33,0,0,0,42.763,49.239L42.763,49.239z M43.755,49.074A0.736,0.736,0,0,1,44.362,49.293A0.722,0.722,0,0,0,44.638,49.43C44.666,49.457,44.638,49.539,44.583,49.512A1.59,1.59,0,0,1,44.252,49.293A0.694,0.694,0,0,0,43.752,49.156A1.565,1.565,0,0,0,42.924,49.539A0.863,0.863,0,0,1,43.752,49.074L43.752,49.074z M43.738,49.243A0.712,0.712,0,0,0,43.12,49.567A1.132,1.132,0,0,0,44.42,49.539A0.952,0.952,0,0,0,43.738,49.239L43.738,49.239z M43.738,49.299A0.534,0.534,0,0,1,44.231,49.511A0.733,0.733,0,0,1,43.238,49.567A0.583,0.583,0,0,1,43.738,49.299L43.738,49.299z M43.774,49.264A0.246,0.246,0,1,1,43.526,49.51A0.247,0.247,0,0,1,43.768,49.257z M43.096,49.675A1.094,1.094,0,0,0,44.311,49.839C44.587,49.675,44.587,49.62,44.532,49.62A1.569,1.569,0,0,0,44.201,49.784A1.373,1.373,0,0,1,43.101,49.675L43.101,49.675z</Geometry>
+  <Geometry x:Key="country_argentinaGeometry2">F0 M100,100z M0,0z M49.6,50.66L53.291,58.237A0.155,0.155,0,0,0,53.457,58.342C53.557,58.302,53.496,58.157,53.496,58.157L50.415,50.34 M50.327,53.288C50.282,54.44,51.034,55.074,50.936,56.103A3.519,3.519,0,0,0,51.577,58.114A5.182,5.182,0,0,1,51.551,58.814C51.676,58.871,51.951,58.555,51.86,57.986A3.94,3.94,0,0,1,51.42,55.991C51.528,54.734,50.874,54.441,51.033,53.291 M49.562,50.5L49.895,58.832C49.895,58.832 49.895,58.989 50.006,58.989 50.117,58.989 50.117,58.832 50.117,58.832L50.449,50.5 M49.17,53.192C48.66,54.24,49.098,55.097,48.589,56.012A3.465,3.465,0,0,0,48.364,58.101A5.378,5.378,0,0,1,48.057,58.735C48.149,58.835,48.53,58.635,48.679,58.081A3.923,3.923,0,0,1,49.079,56.081C49.689,54.958,49.204,54.453,49.817,53.451 M49.6,50.34L46.523,58.157C46.523,58.157,46.459,58.302,46.562,58.342A0.155,0.155,0,0,0,46.728,58.242L50.42,50.664 M48.14,52.686C47.24,53.471,47.3,54.42,46.458,55.086A3.6,3.6,0,0,0,45.4,56.932A5.708,5.708,0,0,1,44.859,57.407C44.905,57.531,45.335,57.489,45.699,57.027A4.111,4.111,0,0,1,46.885,55.327C47.905,54.51,47.662,53.868,48.635,53.163 M49.692,50.2L43.675,56.313C43.675,56.313,43.557,56.424,43.636,56.498A0.162,0.162,0,0,0,43.836,56.461L50.324,50.791 M47.399,51.842C46.252,52.242,45.918,53.142,44.872,53.449A3.837,3.837,0,0,0,43.145,54.777A6.056,6.056,0,0,1,42.452,55.021C42.444,55.152,42.859,55.268,43.383,54.973A4.4,4.4,0,0,1,45.171,53.827C46.445,53.44,46.482,52.759,47.671,52.459 M50.571,53.479C50.63,54.586 51.296,55.079 51.165,56.084 51.452,55.284 50.76,54.668 50.799,53.49 M49.807,50.59L52.335,55.79 50.217,50.426 M49.317,53.453C48.917,54.497 49.338,55.189 48.808,56.074 49.397,55.441 49.008,54.62 49.524,53.546 M49.787,50.505L50,56.23 50.222,50.51 M48.161,52.982C47.372,53.804 47.475,54.594 46.626,55.22 47.426,54.847 47.402,53.949 48.314,53.142 M49.792,50.428L47.674,55.792 50.202,50.592 M47.294,52.133C46.231,52.608 46.006,53.375 44.967,53.647 45.859,53.592 46.2,52.752 47.367,52.336 M49.835,50.361L45.7,54.549 50.15,50.649 M49.834,50.111L41.792,53.589C41.792,53.589 41.638,53.649 41.681,53.745 41.724,53.841 41.881,53.782 41.881,53.782L50.181,50.882 M47.046,50.8C45.823,50.757,45.146,51.466,44.058,51.374A4.053,4.053,0,0,0,41.923,51.974A6.193,6.193,0,0,1,41.184,51.95C41.124,52.068,41.459,52.325,42.063,52.241A4.611,4.611,0,0,1,44.18,51.827C45.514,51.927,45.825,51.313,47.042,51.463 M50.006,50.076L41.163,50.389C41.163,50.389 41,50.4 41,50.5 41,50.6 41.166,50.6 41.166,50.6L50.009,50.914 M47.152,49.709C46.039,49.229,45.13,49.641,44.158,49.162A4.112,4.112,0,0,0,41.941,48.95A6.03,6.03,0,0,1,41.268,48.661C41.168,48.748,41.368,49.107,41.962,49.247A4.63,4.63,0,0,1,44.086,49.628C45.277,50.203,45.814,49.746,46.878,50.328 M50.178,50.115L41.878,47.215C41.878,47.215 41.724,47.155 41.678,47.251 41.632,47.347 41.789,47.407 41.789,47.407L49.832,50.885 M47.682,48.742C46.849,47.897,45.841,47.95,45.138,47.157A3.975,3.975,0,0,0,43.176,46.157A5.6,5.6,0,0,1,42.676,45.647C42.545,45.69,42.589,46.096,43.076,46.439A4.432,4.432,0,0,1,44.884,47.557C45.751,48.518,46.433,48.289,47.184,49.206 M50.319,50.2L43.831,44.53A0.162,0.162,0,0,0,43.631,44.493C43.553,44.567,43.67,44.678,43.67,44.678L49.692,50.8 M48.576,48.04C48.15,46.959,47.197,46.64,46.87,45.659A3.729,3.729,0,0,0,45.461,44.032A5.264,5.264,0,0,1,45.202,43.379C45.063,43.371,44.939,43.762,45.253,44.256A4.148,4.148,0,0,1,46.469,45.941C46.88,47.141,47.603,47.176,47.921,48.293 M46.839,51.029C45.664,51.084 45.144,51.712 44.074,51.589 44.92,51.859 45.574,51.207 46.827,51.244 M49.909,50.309L44.385,52.691 50.079,50.691 M46.866,49.843C45.758,49.471 45.023,49.863 44.084,49.363 44.756,49.918 45.627,49.552 46.767,50.037 M49.994,50.285L43.923,50.494 49.995,50.7 M47.371,48.758C46.5,48.02 45.66,48.117 45,47.316 45.4,48.071 46.349,48.047 47.205,48.906 M50.082,50.3L44.389,48.3 49.913,50.682 M48.278,47.942C47.778,46.942 46.96,46.728 46.671,45.749 46.73,46.589 47.62,46.911 48.063,48.013 M50.163,50.338L45.714,46.438 49.85,50.63 M50.421,50.33L46.73,42.753A0.155,0.155,0,0,0,46.564,42.653C46.464,42.693,46.525,42.838,46.525,42.838L49.6,50.66 M49.688,47.712C49.733,46.56,48.981,45.926,49.079,44.897A3.518,3.518,0,0,0,48.438,42.886A5.188,5.188,0,0,1,48.464,42.186C48.339,42.129,48.064,42.445,48.155,43.014A3.941,3.941,0,0,1,48.595,45.009C48.487,46.266,49.141,46.559,48.982,47.709 M50.45,50.5L50.117,42.168C50.117,42.168 50.117,42.011 50.006,42.011 49.895,42.011 49.895,42.168 49.895,42.168L49.562,50.5 M50.841,47.808C51.351,46.76,50.913,45.903,51.422,44.987A3.465,3.465,0,0,0,51.647,42.898A5.329,5.329,0,0,1,51.954,42.264C51.862,42.164,51.481,42.364,51.332,42.918A3.925,3.925,0,0,1,50.932,44.918C50.322,46.04,50.807,46.547,50.194,47.548 M50.42,50.658L53.497,42.84C53.497,42.84,53.561,42.695,53.458,42.655A0.155,0.155,0,0,0,53.292,42.755L49.6,50.34 M51.875,48.314C52.775,47.529,52.715,46.58,53.557,45.914A3.6,3.6,0,0,0,54.613,44.065A5.7,5.7,0,0,1,55.154,43.59C55.108,43.466,54.678,43.508,54.314,43.97A4.112,4.112,0,0,1,53.128,45.67C52.109,46.487,52.351,47.129,51.378,47.834 M50.32,50.8L56.337,44.687C56.337,44.687 56.455,44.576 56.376,44.502 56.297,44.428 56.176,44.539 56.176,44.539L49.692,50.2 M52.617,49.148C53.764,48.748,54.098,47.848,55.145,47.54A3.838,3.838,0,0,0,56.872,46.213A6.065,6.065,0,0,1,57.565,45.969C57.573,45.838,57.158,45.721,56.634,46.017A4.394,4.394,0,0,1,54.846,47.163C53.572,47.55,53.535,48.231,52.346,48.531 M49.446,47.511C49.387,46.404 48.721,45.911 48.852,44.906 48.565,45.706 49.257,46.322 49.218,47.5 M50.21,50.4L47.682,45.2 49.8,50.569 M50.7,47.542C51.1,46.498 50.679,45.806 51.209,44.921 50.62,45.554 51.009,46.375 50.494,47.449 M50.232,50.49L50.01,44.77 49.788,50.49 M51.849,48.018C52.638,47.196 52.535,46.406 53.384,45.78 52.584,46.153 52.608,47.051 51.696,47.858 M50.218,50.573L52.336,45.209 49.808,50.409 M52.716,48.868C53.779,48.393 54.004,47.626 55.043,47.354 54.151,47.409 53.81,48.249 52.643,48.665 M50.175,50.64L54.311,46.448 49.862,50.348 M50.178,50.886L58.22,47.408C58.22,47.408 58.374,47.348 58.331,47.251 58.288,47.154 58.131,47.215 58.131,47.215L49.831,50.115 M52.965,50.2C54.188,50.242,54.865,49.534,55.953,49.626A4.054,4.054,0,0,0,58.088,49.026A6.182,6.182,0,0,1,58.827,49.05C58.887,48.932,58.552,48.675,57.948,48.759A4.611,4.611,0,0,1,55.831,49.173C54.497,49.073,54.186,49.687,52.969,49.537 M50.006,50.924L58.849,50.61C58.849,50.61 59.015,50.61 59.015,50.51 59.015,50.41 58.849,50.41 58.849,50.41L50.006,50.097 M52.863,51.302C53.976,51.782,54.885,51.37,55.857,51.849A4.109,4.109,0,0,0,58.074,52.061A6.011,6.011,0,0,1,58.747,52.35C58.847,52.263,58.647,51.904,58.053,51.764A4.629,4.629,0,0,1,55.929,51.383C54.738,50.808,54.201,51.265,53.137,50.683 M49.837,50.896L58.137,53.796C58.137,53.796 58.291,53.856 58.337,53.76 58.383,53.664 58.226,53.603 58.226,53.603L50.184,50.125 M52.334,52.269C53.167,53.114,54.175,53.061,54.878,53.854A3.976,3.976,0,0,0,56.84,54.854A5.611,5.611,0,0,1,57.34,55.364C57.471,55.321,57.427,54.915,56.94,54.572A4.431,4.431,0,0,1,55.132,53.454C54.265,52.494,53.583,52.722,52.832,51.805 M49.692,50.8L56.18,56.47A0.162,0.162,0,0,0,56.38,56.507C56.458,56.433,56.341,56.322,56.341,56.322L50.319,50.2 M51.435,52.956C51.862,54.037,52.814,54.356,53.141,55.337A3.728,3.728,0,0,0,54.55,56.964A5.281,5.281,0,0,1,54.809,57.617C54.948,57.625,55.072,57.234,54.758,56.74A4.146,4.146,0,0,1,53.542,55.056C53.131,53.856,52.409,53.821,52.09,52.704 M53.173,49.968C54.347,49.913 54.868,49.285 55.938,49.408 55.091,49.137 54.438,49.79 53.185,49.753 M50.103,50.688L55.626,48.306 49.933,50.306 M53.146,51.154C54.254,51.526 54.989,51.134 55.928,51.634 55.256,51.079 54.385,51.445 53.245,50.96 M50.018,50.713L56.088,50.504 50.017,50.3 M52.641,52.242C53.513,52.985 54.352,52.888 55.016,53.688 54.616,52.933 53.667,52.957 52.811,52.098 M49.929,50.7L55.622,52.7 50.1,50.315 M51.735,53.055C52.235,54.055 53.053,54.269 53.342,55.248 53.283,54.408 52.393,54.086 51.951,52.984 M49.851,50.659L54.3,54.559 50.164,50.367 M50.006,47.1A3.4,3.4,0,1,1,46.406,50.5A3.5,3.5,0,0,1,50.006,47.1z M51.234,49.769A0.726,0.726,0,0,0,50.614,50.078A1.185,1.185,0,0,0,51.919,50.051A0.98,0.98,0,0,0,51.234,49.768L51.234,49.768z M51.234,49.822A0.547,0.547,0,0,1,51.729,50.022A0.764,0.764,0,0,1,50.729,50.075A0.594,0.594,0,0,1,51.229,49.819L51.229,49.819z M51.285,49.607A0.76,0.76,0,0,0,50.675,49.816A0.742,0.742,0,0,1,50.398,49.947C50.37,49.973,50.398,50.047,50.453,50.025A1.609,1.609,0,0,0,50.786,49.816A0.723,0.723,0,0,1,51.286,49.685A1.606,1.606,0,0,1,52.118,50.051A0.869,0.869,0,0,0,51.286,49.607L51.286,49.607z M52.285,49.763A1.5,1.5,0,0,0,50.4,49.554A0.994,0.994,0,0,0,50.193,49.99A1.212,1.212,0,0,0,50.483,50.938A0.214,0.214,0,0,0,50.372,50.99A1.767,1.767,0,0,1,50.146,49.799A1.619,1.619,0,0,1,50.233,49.499A1.377,1.377,0,0,1,52.284,49.76L52.284,49.76z M51.232,49.788A0.235,0.235,0,1,1,50.983,50.023A0.243,0.243,0,0,1,51.225,49.795z M51.953,50.181A1.144,1.144,0,0,1,50.733,50.338C50.456,50.181,50.456,50.129,50.511,50.129A1.611,1.611,0,0,1,50.844,50.286A1.443,1.443,0,0,0,51.953,50.186L51.953,50.186z M49.461,50.963A0.239,0.239,0,0,0,49.261,51.196A0.243,0.243,0,0,0,49.512,51.429A0.25,0.25,0,0,0,49.712,51.329A0.55,0.55,0,0,0,50.012,51.405L50.044,51.405A0.55,0.55,0,0,0,50.344,51.329A0.25,0.25,0,0,0,50.544,51.429A0.243,0.243,0,0,0,50.795,51.196A0.239,0.239,0,0,0,50.595,50.963A0.158,0.158,0,0,1,50.704,51.112A0.161,0.161,0,0,1,50.538,51.269A0.163,0.163,0,0,1,50.372,51.12A0.388,0.388,0,0,1,49.683,51.12A0.163,0.163,0,0,1,49.517,51.269A0.161,0.161,0,0,1,49.351,51.112A0.158,0.158,0,0,1,49.46,50.963L49.46,50.963z M49.732,51.663A1.285,1.285,0,0,0,49.096,52.057A5.092,5.092,0,0,0,49.538,51.797A0.692,0.692,0,0,1,50.008,51.82L50.008,51.82A0.692,0.692,0,0,1,50.478,51.797A5.045,5.045,0,0,0,50.924,52.057A1.3,1.3,0,0,0,50.283,51.663A0.779,0.779,0,0,0,50.007,51.743L50.007,51.743A0.778,0.778,0,0,0,49.726,51.665z M49.639,51.972A2,2,0,0,0,49.177,52.056A1.806,1.806,0,0,1,50.008,52.109L50.008,52.109A1.807,1.807,0,0,1,50.839,52.056A1.563,1.563,0,0,0,50,52L50,52A3.17,3.17,0,0,0,49.631,51.969L49.631,51.969z M49.202,52.053C49.17,52.053 49.135,52.053 49.097,52.053 49.679,52.105 49.397,52.42 50.009,52.42L50.009,52.42C50.619,52.42 50.343,52.106 50.925,52.053 50.315,52.001 50.508,52.34 50.009,52.34L50.009,52.34C49.541,52.34,49.685,52.04,49.202,52.05L49.202,52.05z M50.512,52.901A0.5,0.5,0,0,0,49.512,52.901A0.521,0.521,0,0,1,50.512,52.901L50.512,52.901z M47.772,49.767A1.5,1.5,0,0,1,49.657,49.558A1,1,0,0,1,49.864,49.994A1.213,1.213,0,0,1,49.574,50.942A0.214,0.214,0,0,1,49.685,50.994A1.766,1.766,0,0,0,49.911,49.803A1.611,1.611,0,0,0,49.824,49.503A1.377,1.377,0,0,0,47.773,49.764L47.773,49.764z M48.772,49.611A0.76,0.76,0,0,1,49.382,49.82A0.743,0.743,0,0,0,49.659,49.951C49.687,49.977,49.659,50.051,49.604,50.029A1.6,1.6,0,0,1,49.272,49.82A0.724,0.724,0,0,0,48.772,49.689A1.6,1.6,0,0,0,47.941,50.055A0.869,0.869,0,0,1,48.772,49.611L48.772,49.611z M48.755,49.772A0.725,0.725,0,0,0,48.135,50.081A1.185,1.185,0,0,0,49.44,50.054A0.98,0.98,0,0,0,48.755,49.771L48.755,49.771z M48.755,49.825A0.547,0.547,0,0,1,49.25,50.025A0.764,0.764,0,0,1,48.25,50.078A0.594,0.594,0,0,1,48.75,49.822L48.75,49.822z M48.791,49.792A0.235,0.235,0,1,1,48.542,50.027A0.243,0.243,0,0,1,48.778,49.795z M48.11,50.185A1.143,1.143,0,0,0,49.33,50.342C49.607,50.185,49.607,50.133,49.552,50.133A1.611,1.611,0,0,0,49.219,50.29A1.443,1.443,0,0,1,48.11,50.19L48.11,50.19z</Geometry>
+  <Geometry x:Key="country_argentinaGeometry3">F0 M100,100z M0,0z M51.592,49A0.922,0.922,0,0,0,50.768,49.493A1.36,1.36,0,0,0,52.503,49.45A1.2,1.2,0,0,0,51.592,49L51.592,49z M51.587,49.085A0.684,0.684,0,0,1,52.244,49.408A0.892,0.892,0,0,1,50.919,49.493A0.756,0.756,0,0,1,51.587,49.085L51.587,49.085z M51.655,48.743A0.921,0.921,0,0,0,50.845,49.076A0.912,0.912,0,0,1,50.477,49.284C50.441,49.326,50.477,49.45,50.551,49.409A2.1,2.1,0,0,0,50.993,49.076A0.843,0.843,0,0,1,51.656,48.868A2.009,2.009,0,0,1,52.761,49.451A1.158,1.158,0,0,0,51.656,48.743L51.656,48.743z M52.98,48.992C52.133,48.159,51.065,48.034,50.48,48.659A1.743,1.743,0,0,0,50.205,49.359A2.207,2.207,0,0,0,50.591,50.87A0.265,0.265,0,0,0,50.443,50.953A3.3,3.3,0,0,1,50.143,49.053A2.973,2.973,0,0,1,50.259,48.578A1.648,1.648,0,0,1,52.984,48.994L52.984,48.994z M51.58,49.032A0.377,0.377,0,1,1,51.249,49.407A0.355,0.355,0,0,1,51.58,49.031z M52.538,49.658A1.318,1.318,0,0,1,50.917,49.908C50.549,49.658,50.549,49.575,50.622,49.575A2,2,0,0,1,51.064,49.825A1.629,1.629,0,0,0,52.537,49.659L52.537,49.659z M49.227,50.9A0.367,0.367,0,0,0,48.958,51.271A0.354,0.354,0,0,0,49.292,51.643A0.317,0.317,0,0,0,49.561,51.485A0.637,0.637,0,0,0,49.961,51.607L50,51.607A0.637,0.637,0,0,0,50.4,51.485A0.316,0.316,0,0,0,50.669,51.643A0.354,0.354,0,0,0,51,51.275A0.367,0.367,0,0,0,50.731,50.904A0.251,0.251,0,0,1,50.876,51.142A0.222,0.222,0,1,1,50.434,51.154A0.48,0.48,0,0,1,49.518,51.154A0.222,0.222,0,1,1,49.076,51.142A0.251,0.251,0,0,1,49.221,50.904L49.221,50.904z M49.587,52.009A1.69,1.69,0,0,0,48.741,52.636A6.575,6.575,0,0,0,49.328,52.222A0.779,0.779,0,0,1,49.953,52.259L49.958,52.259A0.779,0.779,0,0,1,50.583,52.222A6.525,6.525,0,0,0,51.175,52.636A1.7,1.7,0,0,0,50.324,52.009A0.908,0.908,0,0,0,49.958,52.137L49.954,52.137A0.906,0.906,0,0,0,49.588,52.012z M49.463,52.502A2.264,2.264,0,0,0,48.849,52.636A2.022,2.022,0,0,1,49.949,52.721L49.954,52.721A2.021,2.021,0,0,1,51.054,52.636A1.746,1.746,0,0,0,49.954,52.551L49.954,52.551A3.532,3.532,0,0,0,49.464,52.502L49.464,52.502z M48.882,52.631C48.839,52.631 48.793,52.631 48.742,52.637 49.515,52.72 49.142,53.222 49.954,53.222L49.96,53.222C50.77,53.222 50.404,52.722 51.177,52.637 50.367,52.554 50.623,53.094 49.96,53.094L49.955,53.094C49.333,53.094,49.525,52.622,48.883,52.631L48.883,52.631z M50.623,53.983A0.668,0.668,0,1,0,49.297,53.983A0.667,0.667,0,0,1,50.623,53.983L50.623,53.983z M46.983,48.983C47.83,48.15,48.898,48.025,49.483,48.65A1.743,1.743,0,0,1,49.758,49.35A2.207,2.207,0,0,1,49.372,50.861A0.266,0.266,0,0,1,49.52,50.944A3.3,3.3,0,0,0,49.82,49.044A2.973,2.973,0,0,0,49.705,48.569A1.648,1.648,0,0,0,46.98,48.985L46.98,48.985z M48.309,48.734A0.921,0.921,0,0,1,49.119,49.067A0.913,0.913,0,0,0,49.487,49.275C49.524,49.317,49.487,49.441,49.413,49.4A2.113,2.113,0,0,1,48.971,49.067A0.843,0.843,0,0,0,48.308,48.859A2.008,2.008,0,0,0,47.208,49.442A1.158,1.158,0,0,1,48.308,48.734L48.308,48.734z M48.286,49A0.922,0.922,0,0,0,47.462,49.493A1.36,1.36,0,0,0,49.196,49.45A1.2,1.2,0,0,0,48.286,49L48.286,49z M48.281,49.085A0.684,0.684,0,0,1,48.938,49.408A0.892,0.892,0,0,1,47.613,49.493A0.756,0.756,0,0,1,48.281,49.085L48.281,49.085z M48.33,49.032A0.377,0.377,0,1,1,47.998,49.407A0.355,0.355,0,0,1,48.329,49.031z M47.43,49.658A1.318,1.318,0,0,0,49.05,49.908C49.418,49.658,49.418,49.575,49.345,49.575A1.991,1.991,0,0,0,48.903,49.825A1.63,1.63,0,0,1,47.43,49.659L47.43,49.659z</Geometry>
+  <DrawingGroup x:Key="country_argentinaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF7CA3C7" Geometry="{StaticResource country_argentinaGeometry1}" />
+    <GeometryDrawing Brush="#FFE5E5E5">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,39,100,22" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFF5BE32" Geometry="{StaticResource country_argentinaGeometry2}">
+      <GeometryDrawing.Pen>
+        <Pen Brush="#FFE08C43" Thickness="0.5" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+      </GeometryDrawing.Pen>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFA15512" Geometry="{StaticResource country_argentinaGeometry3}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_argentinaDrawingImage" Drawing="{StaticResource country_argentinaDrawingGroup}" />
+  <DrawingGroup x:Key="country_netherlandsDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF21468B">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,37,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFC41625">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,100,25" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_netherlandsDrawingImage" Drawing="{StaticResource country_netherlandsDrawingGroup}" />
+  <Geometry x:Key="country_gdrGeometry1">F0 M100,100z M0,0z M49.744,71.076A22.743,22.743,0,0,1,47.509,25.7L47.509,27.478 49.056,27.478 49.056,30.809 47.509,30.809 47.509,32.84A15.664,15.664,0,1,0,51.863,32.823L51.863,30.809 50.316,30.809 50.316,27.478 51.863,27.478 51.863,25.695A22.74,22.74,0,0,1,49.744,71.076z</Geometry>
+  <Geometry x:Key="country_gdrGeometry2">F0 M100,100z M0,0z M53.18,69.456L55.235,69.746 52.375,72.826 49.82,71.581 47.151,72.881 44.291,69.801 46.239,69.526 47.039,68.591 49.959,69 52.486,68.644z</Geometry>
+  <Geometry x:Key="country_gdrGeometry3">F0 M100,100z M0,0z M65.232,51.115L69.353,49.24 72.079,51.734 71.873,52.586 69.173,50.544 65.191,52.144z</Geometry>
+  <Geometry x:Key="country_gdrGeometry4">F0 M100,100z M0,0z M62,37.97L63.609,34.2 67.5,34.34 67.94,35.014 64.331,35.239 62.523,38.713z</Geometry>
+  <Geometry x:Key="country_gdrGeometry5">F0 M100,100z M0,0z M57.422,34.217L55.322,30.023 60.244,28.249 59.1,27.686 53.779,29.638 56.079,33.873z</Geometry>
+  <Geometry x:Key="country_gdrGeometry6">F0 M100,100z M0,0z M64.6,42.411L66.7,38.685 70.646,40.074 70.921,40.926 67.2,39.95 64.945,43.456z</Geometry>
+  <Geometry x:Key="country_gdrGeometry7">F0 M100,100z M0,0z M34.116,51.115L29.995,49.24 27.269,51.734 27.475,52.586 30.175,50.544 34.157,52.144z</Geometry>
+  <Geometry x:Key="country_gdrGeometry8">F0 M100,100z M0,0z M37.348,37.97L35.739,34.2 31.848,34.338 31.408,35.012 35.017,35.237 36.825,38.711z</Geometry>
+  <Geometry x:Key="country_gdrGeometry9">F0 M100,100z M0,0z M41.926,34.217L44.026,30.023 39.104,28.249 40.245,27.685 45.566,29.637 43.266,33.872z</Geometry>
+  <Geometry x:Key="country_gdrGeometry10">F0 M100,100z M0,0z M34.749,42.411L32.649,38.685 28.7,40.074 28.425,40.926 32.151,39.95 34.406,43.456z</Geometry>
+  <Geometry x:Key="country_gdrGeometry11">F0 M100,100z M0,0z M49.736,69.484A21.146,21.146,0,0,1,47.509,27.31L47.509,27.979A20.464,20.464,0,1,0,51.863,27.964L51.863,27.3A21.147,21.147,0,0,1,49.736,69.484z M68.363,48.332A18.634,18.634,0,1,1,47.509,29.857L47.509,30.67A17.8,17.8,0,1,0,51.863,30.653L51.863,29.844A18.62,18.62,0,0,1,68.363,48.332z</Geometry>
+  <Geometry x:Key="country_gdrGeometry12">F0 M100,100z M0,0z M71.711,51.375L69.353,49.231 66.025,50.771A15.809,15.809,0,0,0,65.274,42.919L67.191,39.94 70.591,40.829A21.3,21.3,0,0,1,71.711,51.375z M66.9,34.3L63.555,34.218 62.206,37.618A16.506,16.506,0,0,0,57.133,33.666L55.333,30.029 59.549,28.489A22.255,22.255,0,0,1,66.9,34.3z M32.153,39.94L34.17,43.073A15.843,15.843,0,0,0,33.487,50.849L29.987,49.231 27.77,51.25A21.338,21.338,0,0,1,28.924,40.783z M37.186,37.74L35.786,34.216 32.601,34.294A22.258,22.258,0,0,1,39.879,28.523L44.006,30.031 42.159,33.767A16.519,16.519,0,0,0,37.186,37.741z</Geometry>
+  <Geometry x:Key="country_gdrGeometry13">F0 M100,100z M0,0z M42.943,35.761L42.943,39.886 50.2,40.3 56.635,39.338 56.635,36.229 50.805,35.267z</Geometry>
+  <Geometry x:Key="country_gdrGeometry14">F0 M100,100z M0,0z M58.313,61.165A23.9,23.9,0,0,1,62.839,56.448C62.839,56.448 70.384,57.231 72.09,54 72.09,54 72.075,58.315 67.59,62.377A37.31,37.31,0,0,0,58.313,61.165z</Geometry>
+  <Geometry x:Key="country_gdrGeometry15">F0 M100,100z M0,0z M69.45,60.387A15.862,15.862,0,0,1,67.595,62.376A37.31,37.31,0,0,0,58.313,61.165C58.313,61.165 58.76,60.549 59.443,59.733 61.507,59.922 67,60.4 69.45,60.387z</Geometry>
+  <Geometry x:Key="country_gdrGeometry16">F0 M100,100z M0,0z M60.812,58.1A13.694,13.694,0,0,1,62.788,56.4C62.788,56.4,70.438,57.1,72.169,53.821A10.26,10.26,0,0,1,71.144,57.715C67.708,58.753,62.616,58.308,60.812,58.1z</Geometry>
+  <Geometry x:Key="country_gdrGeometry17">F0 M100,100z M0,0z M41.016,61.165A23.9,23.9,0,0,0,36.49,56.448C36.49,56.448 28.945,57.232 27.239,53.999 27.239,53.999 27.254,58.314 31.739,62.376A37.31,37.31,0,0,1,41.016,61.165z</Geometry>
+  <Geometry x:Key="country_gdrGeometry18">F0 M100,100z M0,0z M29.879,60.387A15.87,15.87,0,0,0,31.734,62.376A37.31,37.31,0,0,1,41.016,61.165C41.016,61.165 40.569,60.549 39.885,59.733 37.822,59.922 32.333,60.4 29.879,60.387z</Geometry>
+  <Geometry x:Key="country_gdrGeometry19">F0 M100,100z M0,0z M38.518,58.1A13.7,13.7,0,0,0,36.541,56.4C36.541,56.4,28.89,57.1,27.16,53.821A10.258,10.258,0,0,0,28.185,57.715C31.622,58.753,36.713,58.308,38.518,58.1z</Geometry>
+  <Geometry x:Key="country_gdrGeometry20">F0 M100,100z M0,0z M42.314,52.874A13.225,13.225,0,0,0,48.714,55.093C52.314,55.34,57.184,53.883,59.906,50.858L58.036,49.126A11.332,11.332,0,0,1,49.566,52.536C45.022,52.304,43.466,50.419,43.466,50.419z</Geometry>
+  <Geometry x:Key="country_gdrGeometry21">F0 M100,100z M0,0z M49.815,42.775A1.762,1.762,0,0,1,51.577,44.537L51.577,61.322A1.762,1.762,0,0,1,48.054,61.322L48.054,44.536A1.762,1.762,0,0,1,49.815,42.775z</Geometry>
+  <Geometry x:Key="country_gdrGeometry22">F0 M100,100z M0,0z M60.7,57.631L49.8,43.64 38.772,57.783 48.216,40.119 50.63,41.211 51.314,40.211z</Geometry>
+  <Geometry x:Key="country_gdrGeometry23">F0 M100,100z M0,0z M56.5,68.821L55.954,70.5A0.979,0.979,0,0,1,55.267,70.912C54.802,70.967,51.938,69.882,49.796,69.789L49.796,69.794C47.651,69.876,44.762,70.966,44.296,70.911A0.979,0.979,0,0,1,43.609,70.499L43.059,68.822C40.089,70.142 38.604,69.29 38.604,69.29 36.954,68.575 33.542,64.521 33.542,64.521 35.752,65.286 41.122,63.321 42.857,62.685 44.592,62.049 44.93,62.541 44.93,62.541L45.965,64.37C45.965,64.37,46.539,64.196,47.45,63.889A8.338,8.338,0,0,1,49.798,63.626L49.798,63.626A8.106,8.106,0,0,1,52.115,63.886C53.026,64.194,53.6,64.367,53.6,64.367L54.635,62.538C54.635,62.538 54.972,62.052 56.708,62.682 58.444,63.312 63.813,65.282 66.023,64.518 66.023,64.518 62.947,68.292 60.903,69.291 59.646,69.9 57.553,69.287 56.5,68.821z</Geometry>
+  <Geometry x:Key="country_gdrGeometry24">F0 M100,100z M0,0z M60.959,69.289C60.959,69.289,59.484,70.135,56.534,68.835L56.52,68.8 57.235,66.977A9.983,9.983,0,0,0,62.875,67.853A8.138,8.138,0,0,1,60.959,69.289z M55.267,70.911C54.801,70.966 51.924,69.882 49.781,69.795 47.638,69.882 44.761,70.966 44.295,70.911A0.979,0.979,0,0,1,43.608,70.499L43.191,69.23A14.455,14.455,0,0,0,46.691,68.296A7.318,7.318,0,0,1,49.779,67.796A7.317,7.317,0,0,1,52.867,68.296A14.455,14.455,0,0,0,56.367,69.23L55.954,70.5A0.979,0.979,0,0,1,55.267,70.911z M38.6,69.289A8.136,8.136,0,0,1,36.684,67.856A9.983,9.983,0,0,0,42.324,66.98L43.042,68.8 43.028,68.831C40.077,70.135,38.6,69.289,38.6,69.289z</Geometry>
+  <Geometry x:Key="country_gdrGeometry25">F0 M100,100z M0,0z M64.521,66.288A18.88,18.88,0,0,1,58.101,65.714A0.531,0.531,0,0,0,58.158,65.543A0.261,0.261,0,0,1,58.089,65.679A10.637,10.637,0,0,0,57.028,67.462A14.644,14.644,0,0,1,55.237,66.978A20.667,20.667,0,0,0,49.781,65.768A20.666,20.666,0,0,0,44.325,66.978A14.649,14.649,0,0,1,42.534,67.462A10.655,10.655,0,0,0,41.471,65.676A0.26,0.26,0,0,1,41.403,65.538A0.534,0.534,0,0,0,41.461,65.715A18.6,18.6,0,0,1,35.08,66.28C34.18,65.325 33.5,64.493 33.5,64.493 35.71,65.258 41.121,63.293 42.857,62.657A2.6,2.6,0,0,1,44.879,62.444L44.893,62.463 44.893,62.463 44.9,62.47A0.194,0.194,0,0,1,44.92,62.497L44.92,62.497C45.131,62.797,45.801,64.011,45.981,64.34A9.554,9.554,0,0,1,53.581,64.34C53.765,64.004,54.453,62.754,54.651,62.485A0.064,0.064,0,0,1,54.659,62.45C54.842,62.343 55.37,62.171 56.653,62.638 58.389,63.269 63.868,65.248 66.078,64.483 66.076,64.482 65.417,65.333 64.521,66.288z M54.63,62.553C54.635,62.54,54.63,62.528,54.64,62.515A0.05,0.05,0,0,0,54.64,62.505A0.322,0.322,0,0,0,54.63,62.553z</Geometry>
+  <DrawingGroup x:Key="country_gdrDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <DrawingGroup Opacity="1">
+        <GeometryDrawing Brush="#FF000000">
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,10,100,25" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#FFDB242A">
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,35,100,25" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#FFF1A531">
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,60,100,25" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1">
+        <DrawingGroup Opacity="1">
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry1}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry2}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FF0C0C0C" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry3}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry4}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry5}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry6}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry7}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry8}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry9}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry10}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry11}" />
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry12}" />
+        </DrawingGroup>
+        <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry13}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1">
+          <GeometryDrawing Brush="#FFDB242A" Geometry="{StaticResource country_gdrGeometry14}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry15}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry16}" />
+        </DrawingGroup>
+        <DrawingGroup Opacity="1">
+          <GeometryDrawing Brush="#FFDB242A" Geometry="{StaticResource country_gdrGeometry17}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry18}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry19}" />
+        </DrawingGroup>
+        <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry20}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry21}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry22}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#FFF1A531">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="1.781" RadiusY="1.781" Center="49.781,40.875" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1">
+          <GeometryDrawing Brush="#FFDB242A" Geometry="{StaticResource country_gdrGeometry23}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FF000000" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FFF1A531" Geometry="{StaticResource country_gdrGeometry24}" />
+          <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource country_gdrGeometry25}" />
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_gdrDrawingImage" Drawing="{StaticResource country_gdrDrawingGroup}" />
+  <Geometry x:Key="country_swedenGeometry">F0 M100,100z M0,0z M100,55L45,55 45,85 30,85 30,55 0,55 0,40 30,40 30,10 45,10 45,40 100,40 100,55z</Geometry>
+  <DrawingGroup x:Key="country_swedenDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="#FF175D89">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,10,100,75" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FFFFC452" Geometry="{StaticResource country_swedenGeometry}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_swedenDrawingImage" Drawing="{StaticResource country_swedenDrawingGroup}" />
+  <Geometry x:Key="country_canada_modernGeometry">F0 M100,100z M0,0z M50,29L46.856,34.731A1.092,1.092,0,0,1,45.221,34.948L42.944,33.8 44.644,42.6C45.001,44.208,43.856,44.208,43.291,43.513L39.319,39.167 38.674,41.374A0.77,0.77,0,0,1,37.782,41.896L32.759,40.864 34.078,45.552C34.36,46.595,34.578,47.027,33.793,47.302L32,48.123 40.647,54.987A1.092,1.092,0,0,1,41.04,56.137L40.283,58.564C43.26,58.229,45.928,57.724,48.906,57.413A0.855,0.855,0,0,1,49.606,58.107L49.213,67 50.66,67 50.432,58.127A0.835,0.835,0,0,1,51.092,57.413C54.071,57.724,56.738,58.228,59.715,58.564L58.96,56.137A1.092,1.092,0,0,1,59.353,54.987L68,48.123 66.21,47.3C65.422,47.025,65.642,46.593,65.925,45.55L67.244,40.862 62.221,41.894A0.77,0.77,0,0,1,61.329,41.372L60.684,39.165 56.712,43.511C56.147,44.211,55.003,44.211,55.359,42.598L57.059,33.798 54.78,34.948A1.092,1.092,0,0,1,53.145,34.731</Geometry>
+  <DrawingGroup x:Key="country_canada_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="#FFFFFFFF">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,65" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FFDF1717">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,26,65" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FFDF1717">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="74,15,26,65" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FFDF1717" Geometry="{StaticResource country_canada_modernGeometry}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_canada_modernDrawingImage" Drawing="{StaticResource country_canada_modernDrawingGroup}" />
+  <Geometry x:Key="country_israelGeometry1">F0 M100,100z M0,0z M58.008,50L62.008,43 54,43 50,36.01 46,43.005 37.989,43.005 41.989,50.005 37.989,57 46,57 50,63.995 54,57 62.008,57z M58.494,45.054L56.836,47.954 55.178,45.054 58.495,45.054z M55.662,50L52.831,54.946 47.169,54.946 44.338,50 47.169,45.054 52.831,45.054z M50,40.108L51.658,43.008 48.342,43.008z M41.507,45.054L44.824,45.054 43.166,47.954z M41.507,54.946L43.165,52.046 44.823,54.946 41.507,54.946z M50,59.892L48.342,57 51.659,57z M56.835,52.049L58.493,54.949 55.177,54.949z</Geometry>
+  <Geometry x:Key="country_israelGeometry2">F0 M100,100z M0,0z M-2,68L104,68 104,80 -2,80 -2,68z M-2,20L104,20 104,32 -2,32 -2,20z</Geometry>
+  <DrawingGroup x:Key="country_israelDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="2" Y="0" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="#FFFFFFFF">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,15,100,70" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+      <GeometryDrawing Brush="#FF0C58B5" Geometry="{StaticResource country_israelGeometry1}" />
+      <GeometryDrawing Brush="#FF0C58B5" Geometry="{StaticResource country_israelGeometry2}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_israelDrawingImage" Drawing="{StaticResource country_israelDrawingGroup}" />
+  <DrawingGroup x:Key="country_romaniaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF001D88">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFCE1126">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="65,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFD314">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="33,12,34,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_romaniaDrawingImage" Drawing="{StaticResource country_romaniaDrawingGroup}" />
+  <DrawingGroup x:Key="country_russiaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFD52B1E">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,62,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF0039A6">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,39,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,16,100,23" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_russiaDrawingImage" Drawing="{StaticResource country_russiaDrawingGroup}" />
+  <Geometry x:Key="country_britainGeometry1">F0 M100,100z M0,0z M100,82L84.284,82 50.3,58.417 16.447,82 0,82 0,73.728 36.117,48.571 0,23.5 0,17 19.075,17 50.315,38.681 81.441,17 100,17 100,23.8 64.5,48.528 100,73.165 100,82z</Geometry>
+  <Geometry x:Key="country_britainGeometry2">F0 M100,100z M0,0z M90.312,82L52.781,55.858 58.568,51.827 100,80.686 100,82 90.312,82z M100,18.867L9.363,82 0,82 0,80.46 91.106,17 100,17 100,18.867z M46.8,43.63L41.013,47.661 0,19.093 0,17 8.569,17z</Geometry>
+  <Geometry x:Key="country_britainGeometry3">F0 M100,100z M0,0z M100,59L58,59 58,82 42,82 42,59 0,59 0,40 42,40 42,17 58,17 58,40 100,40 100,59z</Geometry>
+  <Geometry x:Key="country_britainGeometry4">F0 M100,100z M0,0z M100,55L55,55 55,82 45,82 45,55 0,55 0,44 45,44 45,17 55,17 55,44 100,44 100,55z</Geometry>
+  <DrawingGroup x:Key="country_britainDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF001E6C">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,100,65" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_britainGeometry1}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_britainGeometry2}" />
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_britainGeometry3}" />
+    <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_britainGeometry4}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_britainDrawingImage" Drawing="{StaticResource country_britainDrawingGroup}" />
+  <DrawingGroup x:Key="country_franceDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF002395">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFED2939">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="65,12,35,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="33,12,34,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_franceDrawingImage" Drawing="{StaticResource country_franceDrawingGroup}" />
+  <Geometry x:Key="country_philippinesGeometry1">F0 M100,100z M0,0z M51.96,50L0,80 0,20</Geometry>
+  <Geometry x:Key="country_philippinesGeometry2">F0 M100,100z M0,0z M18.665,44.094A5.905,5.905,0,1,1,12.665,49.994A5.953,5.953,0,0,1,18.665,44.094z M6,50L6.779,50.767 18.665,50 6.778,49.232z M7.333,51.468L7.969,52.094 18.665,50z M7.333,48.531L7.968,47.9 18.665,50z M9.71,41.185L9.71,42.269 18.665,50 10.81,41.184 9.71,41.184z M9.6,43.15L9.6,44.035 18.665,50z M11.71,41.073L12.61,41.073 18.665,50z M18.669,37.532L17.89,38.299 18.665,50 19.444,38.3z M17.177,38.844L16.541,39.47 18.665,50z M20.161,38.844L20.797,39.47 18.665,50z M27.626,41.183L26.526,41.183 18.665,50 27.622,42.27 27.622,41.184z M25.626,41.072L24.726,41.072 18.665,50z M27.736,43.149L27.736,44.034 18.665,50z M31.332,50L30.553,49.233 18.665,50 30.552,50.767z M30,48.53L29.363,47.9 18.665,50z M30,51.467L29.364,52.093 18.665,50z M27.623,58.813L27.623,57.729 18.665,50 26.52,58.815 27.62,58.815z M27.735,56.847L27.735,55.962 18.665,50z M25.625,58.924L24.725,58.924 18.665,50z M18.666,62.465L19.445,61.698 18.665,50 17.886,61.7z M20.158,61.153L20.794,60.527 18.665,50z M17.174,61.153L16.538,60.527 18.665,50z M9.708,58.813L10.808,58.813 18.665,50 9.708,57.73 9.708,58.814z M11.708,58.924L12.608,58.924 18.665,50z M9.6,56.847L9.6,55.962 18.665,50z M45.96,50L43.705,50.771 43.657,53.119 42.215,51.247 39.93,51.927 41.293,50 45.96,50z M45.96,50L43.705,49.229 43.657,46.88 42.215,48.752 39.93,48.072 41.293,50 45.96,50z M3,74.409L3.447,72.1 1.4,70.886 3.768,70.593 4.312,68.306 5.327,70.432z M3,74.409L4.8,72.872 6.9,74.005 5.969,71.84 7.71,70.233 5.331,70.433z M3,25.589L4.8,27.124 6.9,25.992 5.969,28.156 7.71,29.763 5.331,29.563z M3,25.589L3.447,27.9 1.4,29.111 3.773,29.4 4.317,31.687 5.332,29.561z</Geometry>
+  <DrawingGroup x:Key="country_philippinesDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF11457D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,20,120,60" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFD83220">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,50,120,30" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFF0F0F0" Geometry="{StaticResource country_philippinesGeometry1}" />
+    <GeometryDrawing Brush="#FFE7B900" Geometry="{StaticResource country_philippinesGeometry2}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_philippinesDrawingImage" Drawing="{StaticResource country_philippinesDrawingGroup}" />
+</ResourceDictionary>
