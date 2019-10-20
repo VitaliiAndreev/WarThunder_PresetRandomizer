@@ -420,6 +420,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\RU.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\inbox_4.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\recycle.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\preferences_gear_5_single.png" />
@@ -428,6 +429,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Localization\Russian.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NLog.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -5,5 +5,6 @@
     {
         None,
         EnglishUsa,
+        Russian,
     }
 }

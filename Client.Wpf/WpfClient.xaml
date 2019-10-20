@@ -11,6 +11,9 @@
         <BitmapImage x:Key="Delete">pack://application:,,,/Resources/IconSweets 2 by Yummygum/recycle.png</BitmapImage>
         <BitmapImage x:Key="Settings">pack://application:,,,/Resources/IconSweets 2 by Yummygum/preferences_gear_5_single.png</BitmapImage>
 
+        <BitmapImage x:Key="FlagRussia" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/RU.png" />
+        <BitmapImage x:Key="FlagRussiaForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/RU.png</BitmapImage>
+        
         <BitmapImage x:Key="FlagUsa" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/US.png" /> <!-- Cannot be loaded in the designer. -->
         <BitmapImage x:Key="FlagUsaForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/US.png</BitmapImage> <!-- Cannot be set programmatically. -->
         

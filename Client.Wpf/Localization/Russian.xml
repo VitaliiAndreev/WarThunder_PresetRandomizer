@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Localization>
+  <Line key="AboutWtpr" value="О проекте"/>
+  <Line key="Alpha" value="Альфа"/>
+  <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
+  <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
+  <Line key="ApplicationWillBeRestarted" value="Приложение будет перезапущено. Продолжить?"/>
+  <Line key="Arcade" value="Аркада"/>
+  <Line key="Argentina" value="Аргентина"/>
+  <Line key="Army" value="Армия"/>
+  <Line key="Attacker" value="Штурмовик"/>
+  <Line key="AttackHelicopter" value="Ударный вертолёт"/>
+  <Line key="Australia" value="Австралия"/>
+  <Line key="Aviation" value="Авиация"/>
+  <Line key="Barge" value="Баржа / Плавбатарея"/>
+  <Line key="BattleRatings" value="Боевые рейтинги"/>
+  <Line key="Belgium" value="Бельгия"/>
+  <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>
+  <Line key="Boat" value="Катер"/>
+  <Line key="Bomber" value="Бомбардировщик"/>
+  <Line key="Britain" value="Британия"/>
+  <Line key="Bulgaria" value="Болгария"/>
+  <Line key="Canada" value="Канада"/>
+  <Line key="Cancel" value="Отмена"/>
+  <Line key="China" value="Китай"/>
+  <Line key="Commits" value="коммитов"/>
+  <Line key="Contributors" value="Участники"/>
+  <Line key="Cuba" value="Куба"/>
+  <Line key="CzechRepublic" value="Чешская республика"/>
+  <Line key="Destroyer" value="Эсминец"/>
+  <Line key="DominionOfCanada" value="Доминион Британской империи Канада"/>
+  <Line key="EmpireOfJapan" value="Японская империя"/>
+  <Line key="Error" value="Ошибка"/>
+  <Line key="FatalErrorShutdown" value="Критическая ошибка. Приложение будет закрыто."/>
+  <Line key="Fighter" value="Истребитель"/>
+  <Line key="Finland" value="Финляндия"/>
+  <Line key="Fleet" value="Флот"/>
+  <Line key="France" value="Франция"/>
+  <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment за War Thunder."/>
+  <Line key="Gdr" value="ГДР"/>
+  <Line key="GeneratePreset" value="Случайный набор"/>
+  <Line key="Germany" value="Германия"/>
+  <Line key="Greece" value="Греция"/>
+  <Line key="HeavyBoat" value="Лёгкое судно"/>
+  <Line key="HeavyCruiser" value="Тяжёлый крейсер"/>
+  <Line key="HeavyTank" value="Тяжёлый танк"/>
+  <Line key="Helicopters" value="Вертолёты"/>
+  <Line key="Hungary" value="Венгрия"/>
+  <Line key="InitializationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
+  <Line key="Iraq" value="Ирак"/>
+  <Line key="Israel" value="Израиль"/>
+  <Line key="Italy" value="Италия"/>
+  <Line key="Japan" value="Япония"/>
+  <Line key="KingdomOfItaly" value="Итальянское королевство"/>
+  <Line key="KlensyForWtTools" value="Klensy за WT Tools."/>
+  <Line key="LightCruiser" value="Лёгкий крейсер"/>
+  <Line key="LightTank" value="Лёгкий танк"/>
+  <Line key="Loading" value="Загрузка..."/>
+  <Line key="Location" value="Путь к {0}"/>
+  <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Изменения в путях вступят в силу после перезагрузки приложения."/>
+  <Line key="LookUp" value="Обзор"/>
+  <Line key="MediumTank" value="Средний танк"/>
+  <Line key="NaziGermany" value="Нацистская Германия"/>
+  <Line key="Netherlands" value="Нидерланды"/>
+  <Line key="NewZealand" value="Новая Зеландия"/>
+  <Line key="NorthKorea" value="Северная Корея"/>
+  <Line key="Norway" value="Норвегия"/>
+  <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>
+  <Line key="Ok" value="ОК"/>
+  <Line key="Philippines" value="Филиппины"/>
+  <Line key="Poland" value="Польша"/>
+  <Line key="Portugal" value="Португалия"/>
+  <Line key="Ready" value="Готово! Нажмите &quot;Нет&quot; в диалоговом окне."/>
+  <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
+  <Line key="Realistic" value="Реализм"/>
+  <Line key="RemovePresets" value="Удалить собранные наборы."/>
+  <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
+  <Line key="Romania" value="Румыния"/>
+  <Line key="Russia" value="Россия"/>
+  <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
+  <Line key="Simulator" value="Симулятор"/>
+  <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
+  <Line key="SouthAfrica" value="Южная Африка"/>
+  <Line key="Spaa" value="СЗУ"/>
+  <Line key="Status" value="Статус:"/>
+  <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
+  <Line key="Sweden" value="Швеция"/>
+  <Line key="TankDestroyer" value="САУ"/>
+  <Line key="Thailand" value="Тайланд"/>
+  <Line key="Thanks" value="Благодарности"/>
+  <Line key="Ukraine" value="Украина"/>
+  <Line key="Usa" value="США"/>
+  <Line key="Ussr" value="СССР"/>
+  <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
+  <Line key="VitalyAndreyev" value="Виталий Андреев"/>
+  <Line key="Yugoslavia" value="Югославия"/>
+  <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>
+</Localization>

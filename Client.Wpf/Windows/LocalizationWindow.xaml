@@ -18,15 +18,31 @@
         Height="20"
         Width="200">
         
-        <Grid>
+        <Grid Width="80">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             
             <Button
+                Grid.Column="0"
                 Name="_buttonEnglishUsa"
                 Style="{StaticResource FlagButton}"
                 Click="OnClick">
                 <Image
                     Style="{StaticResource LocalizationIcon}"
                     Source="{StaticResource FlagUsaForDesigner}"/>
+            </Button>
+
+            <Button
+                Grid.Column="1"
+                Name="_buttonRussian"
+                Style="{StaticResource FlagButton}"
+                Click="OnClick">
+                <Image
+                    Style="{StaticResource LocalizationIcon}"
+                    Source="{StaticResource FlagRussiaForDesigner}"/>
             </Button>
 
         </Grid>

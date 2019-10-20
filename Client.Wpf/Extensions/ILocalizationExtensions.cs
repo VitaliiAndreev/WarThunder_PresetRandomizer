@@ -15,6 +15,7 @@ namespace Client.Wpf.Extensions
             return language switch
             {
                 ELanguage.EnglishUsa => localizationSet.English,
+                ELanguage.Russian => localizationSet.Russian,
                 _ => null,
             };
         }
