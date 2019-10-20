@@ -15,7 +15,7 @@
   <Line key="Barge" value="Barge"/>
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="Belgium" value="Belgium"/>
-  <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the Stripe Flag Set."/>
+  <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
   <Line key="Boat" value="Boat"/>
   <Line key="Bomber" value="Bomber"/>
   <Line key="Britain" value="Britain"/>
@@ -94,5 +94,5 @@
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
-  <Line key="YummigumForIconSweets2" value="Yummigum for IconSweets 2."/>
+  <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>
 </Localization>
