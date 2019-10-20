@@ -23,7 +23,7 @@ Preset compositions are based on whether the main selected branch involves combi
 
 ### GUI tips
 
-- Hovering over nation, country, and vehicle class icons shows relevant information.
+- Hovering over nation, country, and vehicle class icons shows clarification.
 - Battle ratings can be adjusted either by clicking arrows or scrolling with the mouse wheel.
 - Hovering over a vehicle in the research tree highlights the one required to unlock said vehicle.
 - Hovering over a vehicle in a preset highlights the former in the research tree.
