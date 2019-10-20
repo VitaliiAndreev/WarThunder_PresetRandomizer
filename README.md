@@ -13,10 +13,11 @@ At the start **WTPR** scans the **War Thunder** client for its current version. 
 ### Randomization criteria
 
 The following criteria order is used (combinations producing empty presets are meant to be minimized, except for the case of setting too narrow battle rating preferences):
-- Enabled branches.
+- Enabled countries.
 - Enabled vehicle classes.
-- Enabled nations with any vehicles in the selected branch.
-- Enabled battle ratings with any vehicles filling the first three criteria.
+- Enabled branches.
+- Enabled nations.
+- Enabled battle ratings.
 
 Preset compositions are based on whether the main selected branch involves combined battles and which branches are enabled (except helicopters in Realistic or Simulator Battles where they require spawn points primarily earned by ground vehicles).
 
