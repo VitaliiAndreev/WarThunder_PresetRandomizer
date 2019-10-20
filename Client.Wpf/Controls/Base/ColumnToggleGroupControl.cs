@@ -20,7 +20,7 @@ namespace Client.Wpf.Controls.Base
         #region Events
 
         /// <summary> A routed event for <see cref="Click"/>. </summary>
-        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(VehicleClassToggleControl));
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ColumnToggleGroupControl<T, U, V>));
 
         /// <summary> An event for clicking toggle buttons. </summary>
         public event RoutedEventHandler Click
