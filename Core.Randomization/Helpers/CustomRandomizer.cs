@@ -39,12 +39,14 @@ namespace Core.Randomization.Helpers
         /// <returns></returns>
         public T GetRandom<T>(IEnumerable<T> items)
         {
+            var itemType = typeof(T);
+
             if (items.IsEmpty())
             {
-                if (typeof(T).IsValueType)
+                if (itemType.IsValueType)
                     throw new Exception(ECoreLogMessage.NothingToSelectFrom);
 
-                if (typeof(T).IsClass)
+                if (itemType.IsClass)
                     return default;
             }
 
