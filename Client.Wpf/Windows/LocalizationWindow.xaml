@@ -24,7 +24,7 @@
                 Style="{StaticResource FlagButton}"
                 Click="OnClick_SelectEnglishUsa">
                 <Image
-                    Style="{StaticResource FlagIcon}"
+                    Style="{StaticResource LocalizationIcon}"
                     Source="{StaticResource FlagUsaForDesigner}"/>
             </Button>
 
