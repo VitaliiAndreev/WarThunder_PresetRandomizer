@@ -1,4 +1,5 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
@@ -43,6 +44,16 @@ namespace Core.Randomization.Helpers
 
             if (items.IsEmpty())
             {
+                if (itemType.IsEnum)
+                {
+                    var defaultEnumerationItem = itemType.GetEnumerationItems<T>().FirstOrDefault(item => item.ToString() == EWord.None);
+
+                    if (defaultEnumerationItem is null)
+                        throw new Exception(ECoreLogMessage.EnumerationHasNoDefaultItem.FormatFluently(itemType.ToStringLikeCode()));
+
+                    return defaultEnumerationItem;
+                }
+
                 if (itemType.IsValueType)
                     throw new Exception(ECoreLogMessage.NothingToSelectFrom);
 

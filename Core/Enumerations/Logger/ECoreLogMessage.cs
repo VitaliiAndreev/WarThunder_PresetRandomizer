@@ -231,6 +231,11 @@
         /// A message with formatting placeholders.
         /// <para> 1: type. </para>
         /// </summary>
+        public static readonly string EnumerationHasNoDefaultItem = $"\"{{0}}\" {_enumeration} {_has} {_no} {_default} {_items}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: type. </para>
+        /// </summary>
         public static readonly string TypeIsNotEnumeration = $"\"{{0}}\" {_type} {_is} {_not} {_an} {_enumeration}.";
         /// <summary>
         /// A message with formatting placeholders.

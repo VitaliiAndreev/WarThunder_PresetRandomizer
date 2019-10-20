@@ -136,11 +136,13 @@
         #region D
 
         private const string _d = "d";
+        private const string _de = _d + _e;
 
         protected const string _Data = "Data";
         protected const string _data = _d + "ata";
         protected const string _Database = _Data + _base;
         protected const string _database = _data + _base;
+        protected const string _default = _de + _fault;
         protected const string _delete = _d + "elete";
         protected const string _deleted = _delete + "d";
         protected const string _Deleting = "Delet" + _ing;
@@ -171,6 +173,7 @@
         private const string _e = "e";
         private const string _ect = _e + _c + _t;
         private const string _ed = _e + _d;
+        private const string _em = _e + _m;
         private const string _er = _e + _r;
         private const string _es = _e + _s;
         private const string _ess = _es + _s;
@@ -202,9 +205,11 @@
 
         private const string _F = "F";
         private const string _f = "f";
+        private const string _fa = _f + _a;
 
         protected const string _Factory = _F + _act + _or + _y;
         protected const string _factory = _f + _act + _or + _y;
+        protected const string _fault = _fa + _ult;
         protected const string _File = _F + "ile";
         protected const string _file = _f + "ile";
         protected const string _files = _file + _s;
@@ -287,6 +292,8 @@
         protected const string _is = _i + _s;
         protected const string _ish = _i + _s + _h;
         protected const string _it = _i + _t;
+        protected const string _item = _it + _em;
+        protected const string _items = _item + _s;
 
         #endregion I
         #region J
@@ -554,6 +561,7 @@
 
         private const string _u = "u";
         private const string _uccess = _u + _cc + _e + _ss;
+        private const string _ult = _u + _l + _t;
         private const string _Un = "U" + _n;
         private const string _un = _u + _n;
 
