@@ -2,12 +2,15 @@
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces.Base;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -59,6 +62,24 @@ namespace Client.Wpf
         }
 
         #endregion Methods: Event Handlers
+        #region Constuctors
+
+        /// <summary> Creates a new application. </summary>
+        public WpfClient()
+        {
+            var vectorImageKeys = typeof(EVectorImageKey.Flag)
+                .GetFields(BindingFlags.Static | BindingFlags.Public)
+                .ToDictionary(property => property.Name, property => property.GetValue(null).ToString())
+            ;
+
+            foreach(var item in typeof(ECountry).GetEnumerationItems<ECountry>())
+            {
+                if (vectorImageKeys.TryGetValue(item.ToString(), out var resourceKey))
+                    EReference.CountryIconsKeys.Add(item, resourceKey);
+            }
+        }
+
+        #endregion Constuctors
 
         /// <summary>
         /// Shows the error message.
