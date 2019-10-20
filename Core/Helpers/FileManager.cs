@@ -199,7 +199,7 @@ namespace Core.Helpers
                 files = files
                     .Where
                     (
-                        file => file.Extension.Substring(1).ToLower().IsIn(fileExtensions.Select(extension => extension.ToLower()))
+                        file => file.GetExtensionWithoutPeriod().ToLower().IsIn(fileExtensions.Select(extension => extension.ToLower()))
                             && !file.Attributes.HasFlag(FileAttributes.Directory | FileAttributes.Hidden | FileAttributes.ReadOnly | FileAttributes.System)
                             && !file.IsReadOnly
                     )

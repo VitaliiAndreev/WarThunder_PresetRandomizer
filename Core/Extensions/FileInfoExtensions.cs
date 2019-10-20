@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Linq;
+﻿using Core.Enumerations;
+using System.IO;
 
 namespace Core.Extensions
 {
@@ -12,7 +12,7 @@ namespace Core.Extensions
         public static string GetExtensionWithoutPeriod(this FileInfo fileInfo) =>
             fileInfo
                 .Extension
-                .Substring(1)
+                .Substring(EInteger.Number.One)
             ;
 
         /// <summary> Get the file name without an extension (if any). </summary>
