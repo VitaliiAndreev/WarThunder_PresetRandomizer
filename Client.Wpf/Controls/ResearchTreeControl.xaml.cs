@@ -20,6 +20,8 @@ namespace Client.Wpf.Controls
         private readonly IDictionary<ENation, TabItem> _nationTabs;
         /// <summary> The map of the nation enumeration onto corresponding controls. </summary>
         private readonly IDictionary<ENation, ResearchTreeNationControl> _nationControls;
+        /// <summary> Whether the control is disabled by default, e.g. when the underlying nation is empty. </summary>
+        private readonly IDictionary<ENation, bool> _isEnabledByDefault;
 
         /// <summary> The currently selected nation. </summary>
         private ENation _currentNation;
@@ -34,39 +36,13 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _usaTab.Tag = ENation.Usa;
-            _germanyTab.Tag = ENation.Germany;
-            _ussrTab.Tag = ENation.Ussr;
-            _britainTab.Tag = ENation.Britain;
-            _japanTab.Tag = ENation.Japan;
-            _chinaTab.Tag = ENation.China;
-            _italyTab.Tag = ENation.Italy;
-            _franceTab.Tag = ENation.France;
-
             _tabControl.SelectionChanged += OnTabChange;
 
-            _nationTabs = new Dictionary<ENation, TabItem>
-            {
-                { ENation.Usa, _usaTab },
-                { ENation.Germany, _germanyTab },
-                { ENation.Ussr, _ussrTab },
-                { ENation.Britain, _britainTab },
-                { ENation.Japan, _japanTab },
-                { ENation.China, _chinaTab },
-                { ENation.Italy, _italyTab },
-                { ENation.France, _franceTab },
-            };
-            _nationControls = new Dictionary<ENation, ResearchTreeNationControl>
-            {
-                { ENation.Usa, _usaTree },
-                { ENation.Germany, _germanyTree },
-                { ENation.Ussr, _ussrTree },
-                { ENation.Britain, _britainTree },
-                { ENation.Japan, _japanTree },
-                { ENation.China, _chinaTree },
-                { ENation.Italy, _italyTree },
-                { ENation.France, _franceTree },
-            };
+            _nationTabs = new Dictionary<ENation, TabItem>();
+            _nationControls = new Dictionary<ENation, ResearchTreeNationControl>();
+            _isEnabledByDefault = new Dictionary<ENation, bool>();
+
+            CreateControls();
         }
 
         #endregion Constructors
@@ -108,17 +84,32 @@ namespace Client.Wpf.Controls
         {
             base.Localize();
 
-            _usaTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Usa);
-            _germanyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Germany);
-            _ussrTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ussr);
-            _britainTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Britain);
-            _japanTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Japan);
-            _chinaTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.China);
-            _italyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Italy);
-            _franceTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.France);
+            foreach (var tab in _tabControl.Items.OfType<TabItem>())
+                tab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
 
             foreach (var nationControl in _nationControls.Values)
                 nationControl.Localize();
+        }
+
+        private void CreateControls()
+        {
+            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Except(ENation.None))
+            {
+                var nationControl = new ResearchTreeNationControl()
+                {
+                    Tag = nation,
+                };
+                var tabItem = new TabItem()
+                {
+                    Tag = nation,
+                    Header = nation.ToString(), // For the designer.
+                    Content = nationControl,
+                };
+                _tabControl.Items.Add(tabItem);
+
+                _nationControls.Add(nation, nationControl);
+                _nationTabs.Add(nation, tabItem);
+            }
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
@@ -128,9 +119,13 @@ namespace Client.Wpf.Controls
             {
                 if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nationTabKeyValuePair.Key, out var researchTree))
                 {
+                    _isEnabledByDefault[nationTabKeyValuePair.Key] = true;
                     _nationControls[nationTabKeyValuePair.Key].Populate(researchTree);
+
                     continue;
                 }
+
+                _isEnabledByDefault[nationTabKeyValuePair.Key] = false;
                 nationTabKeyValuePair.Value.IsEnabled = false;
             }
         }
@@ -154,7 +149,7 @@ namespace Client.Wpf.Controls
             {
                 if (nationTab.Tag is ENation nation && _nationControls.TryGetValue(nation, out var nationControl))
                 {
-                    nationTab.IsEnabled = true;
+                    nationTab.IsEnabled = _isEnabledByDefault[nation];
                     nationControl.ResetTabRestrictions();
                 }
             }
