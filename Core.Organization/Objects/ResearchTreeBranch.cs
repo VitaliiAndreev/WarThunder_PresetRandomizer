@@ -27,9 +27,9 @@ namespace Core.Organization.Objects
         /// <param name="rank"> The research tree rank to initialize the <see cref="ResearchTreeRank.StartingRowNumber"/> of. </param>
         private void InitializeStartingRankNumber(ERank rankKey, ResearchTreeRank rank)
         {
-            var previousRankKey = rankKey.GetPreviousRank();
+            var previousRankKey = rankKey.GetPreviousRank(Keys);
 
-            if (previousRankKey == ERank.None || !Keys.Contains(previousRankKey))
+            if (previousRankKey == ERank.None)
             {
                 rank.StartingRowNumber = EInteger.Number.One;
                 rank.MaximumRowNumber = rank.RowCount;
