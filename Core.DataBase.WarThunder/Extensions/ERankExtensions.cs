@@ -20,5 +20,23 @@ namespace Core.DataBase.WarThunder.Extensions
 
             return currentRank - EInteger.Number.One;
         }
+
+        /// <summary> Returns the first available rank enumeration item prior to the <paramref name="currentRank"/>. </summary>
+        /// <param name="currentRank"> The current rank enumeration item. </param>
+        /// <returns></returns>
+        public static ERank GetPreviousRank(this ERank currentRank, IEnumerable<ERank> availableRanks)
+        {
+            var previousRank = currentRank.GetPreviousRank();
+
+            while(previousRank != ERank.None)
+            {
+                if (previousRank.IsIn(availableRanks))
+                    break;
+
+                previousRank = previousRank.GetPreviousRank();
+            }
+
+            return previousRank;
+        }
     }
 }
