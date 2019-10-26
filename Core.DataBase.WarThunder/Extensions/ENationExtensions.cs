@@ -23,6 +23,7 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.China => ECountry.China,
                 ENation.Italy => ECountry.KingdomOfItaly,
                 ENation.France => ECountry.France,
+                ENation.Sweden => ECountry.Sweden,
                 _ => ECountry.None,
             };
 

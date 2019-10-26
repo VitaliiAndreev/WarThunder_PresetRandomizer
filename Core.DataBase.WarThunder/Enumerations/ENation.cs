@@ -12,5 +12,6 @@
         China,
         Italy,
         France,
+        Sweden,
     }
 }

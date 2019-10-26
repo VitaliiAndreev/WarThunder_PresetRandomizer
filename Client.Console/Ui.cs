@@ -235,6 +235,8 @@ namespace Client.Console
                     return ENation.Italy;
                 case "france":
                     return ENation.France;
+                case "sweden":
+                    return ENation.Sweden;
                 default:
                     return ENation.None;
             }

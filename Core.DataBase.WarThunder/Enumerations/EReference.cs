@@ -36,6 +36,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.China, "country_china" },
             { ENation.Italy, "country_italy" },
             { ENation.France, "country_france" },
+            { ENation.Sweden, "country_sweden" },
         };
 
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
@@ -50,6 +51,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_china", ENation.China},
             { "country_italy", ENation.Italy },
             { "country_france", ENation.France },
+            { "country_sweden", ENation.Sweden },
         };
 
         /// <summary> The map of the country enumeration onto corresponding database values. </summary>
@@ -108,6 +110,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.China, '␗' },
             { ENation.Italy, '▄' },
             { ENation.France, '▄' },
+            { ENation.Sweden, '⌉' },
         };
 
         /// <summary> The map of the country enumeration onto corresponding resource keys. </summary>
