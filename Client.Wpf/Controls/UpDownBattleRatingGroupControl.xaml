@@ -17,59 +17,9 @@
             DropCapFontSize="16"/>
 
         <Grid
+            x:Name="_grid"
             Height="84"
             Margin="0 5 0 0">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="0"
-                x:Name="_usaBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="1"
-                x:Name="_germanyBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="2"
-                x:Name="_ussrBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="3"
-                x:Name="_commonwealthBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="4"
-                x:Name="_japanBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="5"
-                x:Name="_chinaBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="6"
-                x:Name="_italyBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
-
-            <controls:UpDownBattleRatingPairControl
-                Grid.Column="7"
-                x:Name="_franceBattleRatingControl"
-                ValueChanged="OnValueChanged"/>
 
         </Grid>
         

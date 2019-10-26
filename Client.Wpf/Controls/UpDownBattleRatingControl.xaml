@@ -38,7 +38,7 @@
                 x:Name="_textBlock"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                FontSize="10"/>
+                FontSize="9"/>
         </Border>
 
         <Border

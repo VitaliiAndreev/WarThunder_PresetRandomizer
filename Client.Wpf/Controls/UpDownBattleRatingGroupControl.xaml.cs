@@ -1,10 +1,14 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
+using Core.Organization.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
@@ -33,26 +37,9 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _usaBattleRatingControl.Tag = ENation.Usa;
-            _germanyBattleRatingControl.Tag = ENation.Germany;
-            _ussrBattleRatingControl.Tag = ENation.Ussr;
-            _commonwealthBattleRatingControl.Tag = ENation.Britain;
-            _japanBattleRatingControl.Tag = ENation.Japan;
-            _chinaBattleRatingControl.Tag = ENation.China;
-            _italyBattleRatingControl.Tag = ENation.Italy;
-            _franceBattleRatingControl.Tag = ENation.France;
+            BattleRatingControls = new Dictionary<ENation, UpDownBattleRatingPairControl>();
 
-            BattleRatingControls = new Dictionary<ENation, UpDownBattleRatingPairControl>
-            {
-                { ENation.Usa, _usaBattleRatingControl},
-                { ENation.Germany, _germanyBattleRatingControl},
-                { ENation.Ussr, _ussrBattleRatingControl},
-                { ENation.Britain, _commonwealthBattleRatingControl},
-                { ENation.Japan, _japanBattleRatingControl},
-                { ENation.China, _chinaBattleRatingControl},
-                { ENation.Italy, _italyBattleRatingControl},
-                { ENation.France, _franceBattleRatingControl},
-            };
+            CreateBattleRatingPairControls();
         }
 
         #endregion Constructors
@@ -76,6 +63,24 @@ namespace Client.Wpf.Controls
             base.Localize();
 
             _header.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.BattleRatings);
+        }
+
+        private void CreateBattleRatingPairControls()
+        {
+            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Except(ENation.None))
+            {
+                var battleRatingControl = new UpDownBattleRatingPairControl()
+                {
+                    Tag = nation,
+                };
+
+                // For whatever reason assigning OnValueChanged() directly to battleRatingControl.ValueChanged doesn't make it detect when UpDownBattleRatingPairControl.ValueChangedEvent is raised.
+                // Assigning the handler through XAML works fine, so does direct assigning on other controls.
+                battleRatingControl.AddHandler(UpDownBattleRatingPairControl.ValueChangedEvent, new RoutedEventHandler(OnValueChanged));
+                battleRatingControl.AddToGrid(_grid, true);
+
+                BattleRatingControls.Add(nation, battleRatingControl);
+            }
         }
 
         /// <summary> Initializes <see cref="BattleRatingControls"/>. </summary>
