@@ -1,5 +1,6 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using NHibernate.Mapping;
+using Core.Extensions;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Extensions
@@ -12,7 +13,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <returns></returns>
         public static ECountry GetBaseCountry(this ENation nation)
         {
-            return nation switch
+            var presetCountry = nation switch
             {
                 ENation.Usa => ECountry.Usa,
                 ENation.Germany => ECountry.NaziGermany,
@@ -24,6 +25,11 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.France => ECountry.France,
                 _ => ECountry.None,
             };
+
+            if (presetCountry == ECountry.None && nation.ToString().TryParseEnumeration<ECountry>(out var parsedCountry))
+                return parsedCountry;
+
+            return presetCountry;
         }
 
         /// <summary> Returns all countries that have vehicles serving with the given nation. </summary>
