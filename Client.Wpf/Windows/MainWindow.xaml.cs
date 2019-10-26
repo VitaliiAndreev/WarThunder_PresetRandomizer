@@ -104,6 +104,10 @@ namespace Client.Wpf.Windows
 
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
+            _nationToggleControl.RemoveUnavailableNations();
+            _countryToggleControl.RemoveCountriesForUnavailableNations();
+            _battleRatingControl.RemoveControlsForUnavailableNations();
+
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);

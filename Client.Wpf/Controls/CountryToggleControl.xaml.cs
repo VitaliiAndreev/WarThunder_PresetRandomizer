@@ -3,8 +3,10 @@ using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects;
 using Core.Extensions;
+using Core.Organization.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
@@ -39,6 +41,22 @@ namespace Client.Wpf.Controls
                 columnControl.AddToPanel(_grid, true);
 
                 ToggleClassColumns.Add(nation, columnControl);
+            }
+        }
+
+        /// <summary> Removes countries of nations that have no vehicles. </summary>
+        public void RemoveCountriesForUnavailableNations()
+        {
+            foreach (var columnKeyValuePair in ToggleClassColumns)
+            {
+                var nation = columnKeyValuePair.Key;
+                var column = columnKeyValuePair.Value;
+
+                if (!ApplicationHelpers.Manager.ResearchTrees.Has(nation))
+                {
+                    if (column.Parent is Grid grid)
+                        grid.Remove(column);
+                }
             }
         }
 

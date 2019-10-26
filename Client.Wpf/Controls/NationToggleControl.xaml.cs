@@ -1,8 +1,11 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
+using Core.Organization.Extensions;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
@@ -19,5 +22,21 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+
+        /// <summary> Removes nations that have no vehicles. </summary>
+        public void RemoveUnavailableNations()
+        {
+            foreach (var buttonKeyValuePair in Buttons)
+            {
+                var nation = buttonKeyValuePair.Key;
+                var button = buttonKeyValuePair.Value;
+
+                if (!ApplicationHelpers.Manager.ResearchTrees.Has(nation))
+                {
+                    if (button.Parent is Grid grid)
+                        grid.Remove(button);
+                }
+            }
+        }
     }
 }

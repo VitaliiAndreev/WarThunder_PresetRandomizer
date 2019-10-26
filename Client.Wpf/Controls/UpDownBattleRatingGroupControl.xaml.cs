@@ -90,6 +90,22 @@ namespace Client.Wpf.Controls
                 control.Initialize(WpfSettings.EnabledEconomicRankIntervals[control.Tag.CastTo<ENation>()]);
         }
 
+        /// <summary> Removes controls of nations that have no vehicles. </summary>
+        public void RemoveControlsForUnavailableNations()
+        {
+            foreach (var controlKeyValuePair in BattleRatingControls)
+            {
+                var nation = controlKeyValuePair.Key;
+                var control = controlKeyValuePair.Value;
+
+                if (!ApplicationHelpers.Manager.ResearchTrees.Has(nation))
+                {
+                    if (control.Parent is Grid grid)
+                        grid.Remove(control);
+                }
+            }
+        }
+
         /// <summary> Changes the <see cref="UIElement.IsEnabled"/> status of the of the up-down control pair corresponding to the specified nation. </summary>
         /// <param name="nation"> The nation whose control pair's state to change. </param>
         /// <param name="enable"> Whether to enable or disable the nation's control control pair. </param>
