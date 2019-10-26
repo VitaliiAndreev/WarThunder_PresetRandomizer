@@ -324,6 +324,7 @@
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\ILocalizationExtensions.cs" />
     <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
