@@ -9,7 +9,6 @@ using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;

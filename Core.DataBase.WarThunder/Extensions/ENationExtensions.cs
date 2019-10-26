@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using NHibernate.Mapping;
 using Core.Extensions;
 using System.Collections.Generic;
 
