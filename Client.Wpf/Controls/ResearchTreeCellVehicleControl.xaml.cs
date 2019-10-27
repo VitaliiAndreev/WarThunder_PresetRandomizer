@@ -56,6 +56,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Creates a new control. </summary>
         /// <param name="vehicle"> The vehicle positioned in the cell. </param>
+        /// <param name="displayVehicleInformationStrategy"> The strategy for generating a formatted string with <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </param>
         /// <param name="type"> The type of the vehicle card. </param>
         /// <param name="isToggled"> Whether the vehicles is toggled on, i.e. participating in randomisation. </param>
         public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy, EVehicleCard type, bool isToggled)

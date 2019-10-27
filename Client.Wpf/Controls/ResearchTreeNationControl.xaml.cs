@@ -75,6 +75,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
+        /// <param name="researchTree"> The research tree to create cells with. </param>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
         internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds)
         {

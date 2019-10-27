@@ -303,7 +303,7 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Applies the highlighting style to the vehicle's conterpart in the research tree. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnPresetVehicleMouseEnter(object sender, MouseEventArgs eventArguments)
         {
@@ -312,7 +312,7 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Applies the idle style to the vehicle's conterpart in the research tree. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnPresetVehicleMouseLeave(object sender, MouseEventArgs eventArguments)
         {
@@ -321,7 +321,7 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Bring the vehicle into view. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
+        /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
         private void OnPresetVehicleClick(object sender, RoutedEventArgs eventArguments)
         {

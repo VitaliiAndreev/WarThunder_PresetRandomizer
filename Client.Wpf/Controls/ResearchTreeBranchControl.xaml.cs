@@ -136,7 +136,7 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
-        /// <param name="branch"></param>
+        /// <param name="branch"> The research tree branch to create cells with. </param>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
         internal void Populate(ResearchTreeBranch branch, IEnumerable<string> enabledVehicleGaijinIds)
         {
