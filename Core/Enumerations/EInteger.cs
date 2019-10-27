@@ -3,6 +3,7 @@
     /// <summary> Integer constants. </summary>
     public class EInteger
     {
+        /// <summary> Pure number constants. </summary>
         public class Number
         {
             public const int Zero = 0;
@@ -18,6 +19,7 @@
             public const int Thousand = 1_000;
         }
 
+        /// <summary> Time-related constants. </summary>
         public class Time
         {
             public const int MillisecondsInSecond = Number.Thousand;

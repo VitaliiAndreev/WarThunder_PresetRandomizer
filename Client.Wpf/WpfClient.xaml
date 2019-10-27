@@ -330,12 +330,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-        <!-- t:VehicleClassToggleControl -->
-
-        <Style TargetType="controls:VehicleClassToggleControl">
-            <Setter Property="Margin" Value="0 10 0 0"/>
-        </Style>
         
         <!-- t:WrapPanel -->
 
