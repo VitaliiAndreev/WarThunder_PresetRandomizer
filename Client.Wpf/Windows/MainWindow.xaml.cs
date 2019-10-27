@@ -330,6 +330,29 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Overrides
+
+        /// <summary> Applies localization to visible text in the window. </summary>
+        public override void Localize()
+        {
+            base.Localize();
+
+            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+
+            _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
+            _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
+
+            _gameModeSelectionControl.Localize();
+            _vehicleClassControl.Localize();
+            _nationToggleControl.Localize();
+            _countryToggleControl.Localize();
+            _battleRatingControl.Localize();
+
+            _presetPanel.Localize();
+            _researchTreeControl.Localize();
+        }
+
+        #endregion Methods: Overrides
         #region Methods: Adjusting Branch Toggle Availability
 
         /// <summary> Enables or disables branch toggles depending on whether any of <see cref="IMainWindowPresenter.EnabledNations"/> have associated branches implemented.</summary>
@@ -377,28 +400,9 @@ namespace Client.Wpf.Windows
 
         #endregion Methods: Adjusting Branch Toggle Availability
 
-        /// <summary> Applies localization to visible text in the window. </summary>
-        public override void Localize()
-        {
-            base.Localize();
-
-            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
-
-            _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
-            _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
-
-            _gameModeSelectionControl.Localize();
-            _vehicleClassControl.Localize();
-            _nationToggleControl.Localize();
-            _countryToggleControl.Localize();
-            _battleRatingControl.Localize();
-
-            _presetPanel.Localize();
-            _researchTreeControl.Localize();
-        }
-
         /// <summary> Checks whether it is possible to generate presets. </summary>
-        private void RaiseGeneratePresetCommandCanExecuteChanged() => (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
+        private void RaiseGeneratePresetCommandCanExecuteChanged() =>
+            (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
 
         /// <summary> Selects the specified game mode. </summary>
         /// <param name="gameMode"> The game mode to select. </param>
@@ -444,9 +448,7 @@ namespace Client.Wpf.Windows
         private void AdjustBattleRatingControlsAvailability() =>
             DisableControls(GetDisabledNations(), _battleRatingControl);
 
-        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
-        /// <returns></returns>
-        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => _researchTreeControl.GetEmptyBranches();
+        #region Methods: Calls to _presetPanel
 
         /// <summary> Resets preset control to their default states. </summary>
         public void ResetPresetControls()
@@ -456,43 +458,63 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Loads <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
-        public void LoadPresets() => _presetPanel.LoadPresets(Presenter.GeneratedPresets, Presenter.CurrentGameMode);
+        public void LoadPresets() =>
+            _presetPanel.LoadPresets(Presenter.GeneratedPresets, Presenter.CurrentGameMode);
 
         /// <summary> Displays a message that no vehicles suit the criteria. </summary>
-        public void ShowNoResults() => _presetPanel.ShowNoResults();
+        public void ShowNoResults() =>
+            _presetPanel.ShowNoResults();
 
         /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
         /// <param name="nation"> The nation. </param>
         /// <param name="mainBranch"> The branch. </param>
-        public void ShowNoVehicles(ENation nation, EBranch mainBranch) => _presetPanel.ShowNoVehicles(nation, mainBranch);
+        public void ShowNoVehicles(ENation nation, EBranch mainBranch) =>
+            _presetPanel.ShowNoVehicles(nation, mainBranch);
 
         /// <summary> Displays the specified preset from <see cref="IMainWindowPresenter.GeneratedPresets"/>. </summary>
         /// <param name="preset"> The preset to display. </param>
-        public void DisplayPreset(EPreset preset) => _presetPanel.DisplayPreset(preset);
+        public void DisplayPreset(EPreset preset) =>
+            _presetPanel.DisplayPreset(preset);
+
+        #endregion Methods: Calls to _presetPanel
+        #region Methods: Calls to _researchTreeControl
+
+        /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
+        /// <returns></returns>
+        public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() =>
+            _researchTreeControl.GetEmptyBranches();
 
         /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs of the research tree. </summary>
-        public void ResetResearchTreeTabRestrictions() => _researchTreeControl.ResetTabRestrictions();
+        public void ResetResearchTreeTabRestrictions() =>
+            _researchTreeControl.ResetTabRestrictions();
 
         /// <summary> Disables all nation and branch tabs of the research tree not specified in the parameters. </summary>
         /// <param name="nation"> The nation tab to keep enabled. </param>
         /// <param name="branches"> Branch tabs to keep enabled. </param>
-        public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) => _researchTreeControl.EnableOnly(nation, branches);
+        public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) =>
+            _researchTreeControl.EnableOnly(nation, branches);
 
         /// <summary> Focuses on a research tree by given parameters. </summary>
         /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
         /// <param name="branch"> The branch to put into focus. </param>
-        public void FocusResearchTree(ENation nation, EBranch branch) => _researchTreeControl.FocusResearchTree(nation, branch);
+        public void FocusResearchTree(ENation nation, EBranch branch) =>
+            _researchTreeControl.FocusResearchTree(nation, branch);
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle) => _researchTreeControl.BringIntoView(vehicle);
+        public void BringIntoView(IVehicle vehicle) =>
+            _researchTreeControl.BringIntoView(vehicle);
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to highlight. </param>
-        public void Highlight(IVehicle vehicle) => _researchTreeControl.Highlight(vehicle);
+        public void Highlight(IVehicle vehicle) =>
+            _researchTreeControl.Highlight(vehicle);
 
         /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to remove highlight from. </param>
-        public void RemoveHighlight(IVehicle vehicle) => _researchTreeControl.RemoveHighlight(vehicle);
+        public void RemoveHighlight(IVehicle vehicle) =>
+            _researchTreeControl.RemoveHighlight(vehicle);
+
+        #endregion Methods: Calls to _researchTreeControl
     }
 }
