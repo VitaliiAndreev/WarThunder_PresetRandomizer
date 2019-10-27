@@ -22,6 +22,9 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Allowed intervals of <see cref="IVehicle.EconomicRank"/>s. </summary>
         public IDictionary<ENation, Interval<int>> EconomicRankIntervals { get; }
 
+        /// <summary> Allowed vehicle Gaijin IDs. </summary>
+        public IEnumerable<string> VehicleGaijinIds { get; }
+
         #endregion Properties
         #region Constructors
 
@@ -30,12 +33,21 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <param name="nationSpecifications"> Nation specifications. </param>
         /// <param name="branchSpecifications"> Branch specifications. </param>
         /// <param name="economicRankIntervals"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
-        public Specification(EGameMode gameMode, IDictionary<ENation, NationSpecification> nationSpecifications, IDictionary<EBranch, BranchSpecification> branchSpecifications, IDictionary<ENation, Interval<int>> economicRankIntervals)
+        /// <param name="vehicleGaijinIds"> Allowed vehicle Gaijin IDs. </param>
+        public Specification
+        (
+            EGameMode gameMode,
+            IDictionary<ENation, NationSpecification> nationSpecifications,
+            IDictionary<EBranch, BranchSpecification> branchSpecifications,
+            IDictionary<ENation, Interval<int>> economicRankIntervals,
+            IEnumerable<string> vehicleGaijinIds
+        )
         {
             GameMode = gameMode;
             NationSpecifications = nationSpecifications;
             BranchSpecifications = branchSpecifications;
             EconomicRankIntervals = economicRankIntervals;
+            VehicleGaijinIds = vehicleGaijinIds;
         }
 
         #endregion Constructors

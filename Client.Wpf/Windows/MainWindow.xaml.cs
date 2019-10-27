@@ -100,7 +100,7 @@ namespace Client.Wpf.Windows
             _aboutButton.EmbeddedButton.CommandParameter = Presenter;
             _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);
 
-            _researchTreeControl.Populate();
+            _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
 
             SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
 
@@ -327,6 +327,24 @@ namespace Client.Wpf.Windows
         {
             if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
                 _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleGaijinIds"/> and executes the <see cref="ECommandName.ToggleVehicle"/> command. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnResearchTreeVehicleClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
+            {
+                var vehicleGaijinId = vehicleControl.Vehicle.GaijinId;
+
+                if (vehicleControl.IsToggled)
+                    Presenter.EnabledVehicleGaijinIds.Add(vehicleGaijinId);
+                else
+                    Presenter.EnabledVehicleGaijinIds.Remove(vehicleGaijinId);
+
+                Presenter.ExecuteCommand(ECommandName.ToggleVehicle);
+            }
         }
 
         #endregion Methods: Event Handlers

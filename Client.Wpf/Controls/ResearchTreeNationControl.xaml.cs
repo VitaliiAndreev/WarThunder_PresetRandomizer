@@ -75,13 +75,14 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
-        internal void Populate(ResearchTree researchTree)
+        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
+        internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds)
         {
             foreach (var branchTabKeyValuePair in BranchTabs)
             {
                 if (researchTree.TryGetValue(branchTabKeyValuePair.Key, out var branch))
                 {
-                    _branchControls[branchTabKeyValuePair.Key].Populate(branch);
+                    _branchControls[branchTabKeyValuePair.Key].Populate(branch, enabledVehicleGaijinIds);
                     continue;
                 }
                 branchTabKeyValuePair.Value.IsEnabled = false;

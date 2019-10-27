@@ -42,6 +42,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
 
+        /// <summary> Gaijin ID's of vehicle enabled for preset generation. </summary>
+        IList<string> EnabledVehicleGaijinIds { get; }
+
         /// <summary> Generated presets. </summary>
         IDictionary<EPreset, Preset> GeneratedPresets { get; }
 

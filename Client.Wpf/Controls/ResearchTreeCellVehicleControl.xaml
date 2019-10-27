@@ -9,7 +9,8 @@
         x:Name="_border"
         Style="{StaticResource ResearchTreeCell}"
         MouseEnter="OnMouseEnter"
-        MouseLeave="OnMouseLeave">
+        MouseLeave="OnMouseLeave"
+        MouseDown="OnClick">
         
         <Grid>
 

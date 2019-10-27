@@ -384,12 +384,27 @@ namespace Core.Organization.Helpers
 
         #region Methods: Helper Methods for GeneratePrimaryAndFallbackPresets()
 
-        /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
+        /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="vehicleGaijinIds"/>. </summary>
+        /// <param name="vehicleGaijinIds"> Gaijin IDs of vehicles enabled via GUI. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> SelectVehiclesWithGaijinIdFilter(IEnumerable<string> vehicleGaijinIds)
+        {
+            var filteredVehicles = _playableVehicles.Where(vehicle => vehicle.GaijinId.IsIn(vehicleGaijinIds));
+
+            if (filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesSelected);
+                return null;
+            }
+            return filteredVehicles;
+        }
+
+        /// <summary> Filters <paramref name="vehiclesWithGaijinIdFilter"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs)
+        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehiclesWithGaijinIdFilter)
         {
-            var filteredVehicles = _playableVehicles.Where(vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country).IsIn(enabledNationCountryPairs));
+            var filteredVehicles = vehiclesWithGaijinIdFilter.Where(vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country).IsIn(enabledNationCountryPairs));
 
             if (filteredVehicles.IsEmpty())
             {
@@ -638,9 +653,17 @@ namespace Core.Organization.Helpers
             var enabledNationCountryPairs = specification.NationSpecifications.Values.SelectMany(nationSpecification => nationSpecification.Countries.Select(country => new NationCountryPair(nationSpecification.Nation, country)));
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by vehicle Gaijin IDs.
+
+            var vehiclesWithGaijinIdFilter = SelectVehiclesWithGaijinIdFilter(specification.VehicleGaijinIds);
+
+            if (vehiclesWithGaijinIdFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by countiries.
 
-            var vehiclesWithCountryFilter = SelectVehiclesWithCountryFilter(enabledNationCountryPairs);
+            var vehiclesWithCountryFilter = SelectVehiclesWithCountryFilter(enabledNationCountryPairs, vehiclesWithGaijinIdFilter);
 
             if (vehiclesWithCountryFilter is null)
                 return emptyPreset;

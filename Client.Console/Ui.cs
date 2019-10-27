@@ -77,7 +77,16 @@ namespace Client.Console
 
                     while (true)
                     {
-                        var specification = ParseSpecification(TakeSpecificationInput());
+                        var specification = ParseSpecification
+                        (
+                            TakeSpecificationInput(),
+                            manager
+                                .ResearchTrees
+                                .SelectMany(nationResearchTreeKeyValuePair => nationResearchTreeKeyValuePair.Value)
+                                .SelectMany(branchKeyValuePair => branchKeyValuePair.Value)
+                                .SelectMany(rankKeyValuePair => rankKeyValuePair.Value)
+                                .Select(rankVehicleKeyValuePair => rankVehicleKeyValuePair.Value.GaijinId)
+                        );
 
                         foreach (var vehicle in manager.GeneratePrimaryAndFallbackPresets(specification)[EPreset.Primary])
                         {
@@ -110,15 +119,17 @@ namespace Client.Console
         }
 
         /// <summary> Parses a given string into a specification instance. </summary>
+        /// <param name="specificationInput"> The string to parse into a specification. </param>
+        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles available. </param>
         /// <returns></returns>
-        private static Specification ParseSpecification(string specificationInput)
+        private static Specification ParseSpecification(string specificationInput, IEnumerable<string> enabledVehicleGaijinIds)
         {
             var parameters = specificationInput.Split(" ");
 
             if (parameters.Count() != 4)
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectInput);
-                return ParseSpecification(TakeSpecificationInput());
+                return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
 
             var gamemode = ParseGameMode(parameters[0]);
@@ -128,22 +139,22 @@ namespace Client.Console
             if (gamemode == EGameMode.None)
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectGameMode);
-                return ParseSpecification(TakeSpecificationInput());
+                return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
             if (nation == ENation.None)
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectNation);
-                return ParseSpecification(TakeSpecificationInput());
+                return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
             if (branch == EBranch.None)
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectBranch);
-                return ParseSpecification(TakeSpecificationInput());
+                return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
             if (!decimal.TryParse(parameters[3], out var battleRating))
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectBattleRating);
-                return ParseSpecification(TakeSpecificationInput());
+                return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
 
             var economicRank = Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating));
@@ -157,7 +168,8 @@ namespace Client.Console
                     .GetValues(typeof(ENation))
                     .Cast<ENation>()
                     .Where(enumerationItem => enumerationItem != ENation.None)
-                    .ToDictionary(enumerationItem => enumerationItem, enumerationItem => new Interval<int>(true, economicRank, economicRank, true))
+                    .ToDictionary(enumerationItem => enumerationItem, enumerationItem => new Interval<int>(true, economicRank, economicRank, true)),
+                enabledVehicleGaijinIds
             );
         }
 

@@ -113,6 +113,13 @@ namespace Client.Wpf
             ;
         }
 
+        [RequiredSetting]
+        public static string EnabledVehicles
+        {
+            get => EnabledVehiclesCollection.StringJoin(Separator);
+            set => EnabledVehiclesCollection = value.Split(Separator);
+        }
+
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
@@ -154,6 +161,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledEconomicRanks"/> instead. </para>
         /// </summary>
         public static IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; private set; }
+
+        /// <summary>
+        /// Currently enabled vehicle Gaijin IDs.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledVehicles"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<string> EnabledVehiclesCollection { get; private set; }
 
         #endregion Properties
     }

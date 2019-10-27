@@ -3,6 +3,8 @@ using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,6 +14,9 @@ namespace Client.Wpf.Controls
     public partial class ResearchTreeCellVehicleControl : UserControl
     {
         #region Fields
+
+        /// <summary> The type of the vehicle card. </summary>
+        private readonly EVehicleCard _type;
 
         /// <summary> The research type of the <see cref="Vehicle"/> in the cell. </summary>
         private readonly EVehicleResearchType _reseachType;
@@ -25,7 +30,22 @@ namespace Client.Wpf.Controls
         /// <summary> The vehicle in the cell. </summary>
         internal IVehicle Vehicle { get; }
 
+        internal bool IsToggled { get; private set; }
+
         #endregion Properties
+        #region Events
+
+        /// <summary> A routed event for <see cref="Click"/>. </summary>
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ResearchTreeCellVehicleControl));
+
+        /// <summary> An event for clicking toggle buttons. </summary>
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
+        }
+
+        #endregion Events
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
@@ -36,9 +56,12 @@ namespace Client.Wpf.Controls
 
         /// <summary> Creates a new control. </summary>
         /// <param name="vehicle"> The vehicle positioned in the cell. </param>
-        public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy)
+        /// <param name="type"> The type of the vehicle card. </param>
+        /// <param name="isToggled"> Whether the vehicles is toggled on, i.e. participating in randomisation. </param>
+        public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy, EVehicleCard type, bool isToggled)
             : this()
         {
+            _type = type;
             _displayVehicleInformationStrategy = displayVehicleInformationStrategy;
 
             Vehicle = vehicle;
@@ -50,6 +73,8 @@ namespace Client.Wpf.Controls
                 _reseachType = EVehicleResearchType.Premium;
             else
                 _reseachType = EVehicleResearchType.Regular;
+
+            IsToggled = isToggled;
 
             ApplyIdleStyle();
         }
@@ -75,7 +100,26 @@ namespace Client.Wpf.Controls
                 ApplyIdleStyle();
         }
 
+        /// <summary> Toggles the control on/off and updates its opacity. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnClick(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (_type != EVehicleCard.ResearchTree)
+                return;
+
+            IsToggled = !IsToggled;
+
+            UpdateOpacity();
+            RaiseClickEvent();
+        }
+
         #endregion Methods: Event Handlers
+
+        /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
+        /// <param name="toggleButton"> The toggle button to raise the event for. </param>
+        public void RaiseClickEvent() =>
+            RaiseEvent(new RoutedEventArgs(ClickEvent, this));
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the information. </param>
@@ -93,6 +137,7 @@ namespace Client.Wpf.Controls
                 EVehicleResearchType.Premium => this.GetStyle(EStyleKey.Border.PremiumResearchTreeCell),
                 _ => this.GetStyle(EStyleKey.Border.ResearchTreeCell),
             };
+            UpdateOpacity();
         }
 
         /// <summary> Applies the highlighting style to the <see cref="_border"/>. </summary>
@@ -104,6 +149,11 @@ namespace Client.Wpf.Controls
                 EVehicleResearchType.Premium => this.GetStyle(EStyleKey.Border.PremiumResearchTreeCellHighlighted),
                 _ => this.GetStyle(EStyleKey.Border.ResearchTreeCellHighlighted),
             };
+            UpdateOpacity();
         }
+
+        /// <summary> Updates the control's opacity according to its <see cref="IsToggled"/> state. </summary>
+        private void UpdateOpacity() =>
+            _border.Opacity = IsToggled ? EDouble.Number.One : EDouble.Number.Quarter;
     }
 }

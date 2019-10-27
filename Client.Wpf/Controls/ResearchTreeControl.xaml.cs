@@ -113,14 +113,15 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
-        public void Populate()
+        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
+        public void Populate(IEnumerable<string> enabledVehicleGaijinIds)
         {
             foreach (var nationTabKeyValuePair in _nationTabs)
             {
                 if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nationTabKeyValuePair.Key, out var researchTree))
                 {
                     _isEnabledByDefault[nationTabKeyValuePair.Key] = true;
-                    _nationControls[nationTabKeyValuePair.Key].Populate(researchTree);
+                    _nationControls[nationTabKeyValuePair.Key].Populate(researchTree, enabledVehicleGaijinIds);
 
                     continue;
                 }

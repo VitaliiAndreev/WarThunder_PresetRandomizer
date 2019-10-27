@@ -231,6 +231,7 @@
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleVehicleCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectGameModeCommand.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="Enumerations\ESettingsWindowClosureState.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\EVectorImageKey.cs" />
+    <Compile Include="Enumerations\EVehicleCard.cs" />
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />

@@ -164,7 +164,7 @@ namespace Client.Wpf.Controls
 
                 foreach (var vehicle in presetKeyValuePair.Value)
                 {
-                    var vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy()) { Margin = new Thickness(0, 0, 5, 0) };
+                    var vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
 
                     vehicleControl.MouseEnter += OnMouseEnter;
                     vehicleControl.MouseLeave += OnMouseLeave;

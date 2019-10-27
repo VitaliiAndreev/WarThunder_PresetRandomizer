@@ -6,7 +6,8 @@ namespace Core.Organization.Enumerations.Logger
     /// <summary> Log message strings related to the "<see cref="Organization"/>" assembly. </summary>
     public class EOrganizationLogMessage : EJsonWarThunderLogMessage
     {
-        private static readonly string _noVehiclesAvailable = $"{_No} {_vehicles} {_available}";
+        private static readonly string _noVehicles = $"{_No} {_vehicles}";
+        private static readonly string _noVehiclesAvailable = $"{_noVehicles} {_available}";
 
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
@@ -52,6 +53,11 @@ namespace Core.Organization.Enumerations.Logger
         /// <para> 1: filter criteria. </para>
         /// </summary>
         public static readonly string NoVehiclesAvailableFor = $"{_noVehiclesAvailable} {_for} \"{{0}}\".";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: filter criteria. </para>
+        /// </summary>
+        public static readonly string NoVehiclesSelected = $"{_noVehicles} {_selected}.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: branch. </para>

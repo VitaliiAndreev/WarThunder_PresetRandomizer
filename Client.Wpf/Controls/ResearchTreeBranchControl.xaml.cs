@@ -3,6 +3,7 @@ using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
+using Core.Extensions;
 using Core.Organization.Objects;
 using System;
 using System.Collections.Generic;
@@ -136,7 +137,8 @@ namespace Client.Wpf.Controls
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"></param>
-        internal void Populate(ResearchTreeBranch branch)
+        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
+        internal void Populate(ResearchTreeBranch branch, IEnumerable<string> enabledVehicleGaijinIds)
         {
             if (branch is null || IsPopulated)
                 return;
@@ -170,7 +172,7 @@ namespace Client.Wpf.Controls
                         ;
 
                         foreach (var vehicle in cellVehicles)
-                            cell.AddVehicle(vehicle);
+                            cell.AddVehicle(vehicle, vehicle.GaijinId.IsIn(enabledVehicleGaijinIds));
 
                         AttachEventHandlers(cell);
                         AddCell(cell, rank, rowIndex, columnIndex);

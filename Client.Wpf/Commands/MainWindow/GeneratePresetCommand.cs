@@ -67,7 +67,7 @@ namespace Client.Wpf.Commands.MainWindow
                             EInteger.Number.Ten
                         )
                     );
-                var specification = new Specification(gameMode, nationSpecifications, branchSpecifications, presenter.EnabledEconomicRankIntervals);
+                var specification = new Specification(gameMode, nationSpecifications, branchSpecifications, presenter.EnabledEconomicRankIntervals, presenter.EnabledVehicleGaijinIds);
 
                 presenter.GeneratedPresets.Clear();
                 presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
