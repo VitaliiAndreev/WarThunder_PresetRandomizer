@@ -320,30 +320,28 @@ namespace Client.Wpf.Windows
                 _researchTreeControl.RemoveHighlight(vehicleControl.Vehicle);
         }
 
-        /// <summary> Bring the vehicle into view. </summary>
+        /// <summary> Handles clicking on vehicle cards in the research tree or in presets. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
-        private void OnPresetVehicleClick(object sender, RoutedEventArgs eventArguments)
-        {
-            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
-                _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
-        }
-
-        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleGaijinIds"/> and executes the <see cref="ECommandName.ToggleVehicle"/> command. </summary>
-        /// <param name="sender"> Not used. </param>
-        /// <param name="eventArguments"> Event arguments. </param>
-        private void OnResearchTreeVehicleClick(object sender, RoutedEventArgs eventArguments)
+        private void OnVehicleCardClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
             {
-                var vehicleGaijinId = vehicleControl.Vehicle.GaijinId;
+                if (vehicleControl.Type == EVehicleCard.Preset)
+                {
+                    _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
+                }
+                else if (vehicleControl.Type == EVehicleCard.ResearchTree)
+                {
+                    var vehicleGaijinId = vehicleControl.Vehicle.GaijinId;
 
-                if (vehicleControl.IsToggled)
-                    Presenter.EnabledVehicleGaijinIds.Add(vehicleGaijinId);
-                else
-                    Presenter.EnabledVehicleGaijinIds.Remove(vehicleGaijinId);
+                    if (vehicleControl.IsToggled)
+                        Presenter.EnabledVehicleGaijinIds.Add(vehicleGaijinId);
+                    else
+                        Presenter.EnabledVehicleGaijinIds.Remove(vehicleGaijinId);
 
-                Presenter.ExecuteCommand(ECommandName.ToggleVehicle);
+                    Presenter.ExecuteCommand(ECommandName.ToggleVehicle);
+                }
             }
         }
 

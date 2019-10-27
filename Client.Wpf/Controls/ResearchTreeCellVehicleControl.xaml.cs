@@ -15,9 +15,6 @@ namespace Client.Wpf.Controls
     {
         #region Fields
 
-        /// <summary> The type of the vehicle card. </summary>
-        private readonly EVehicleCard _type;
-
         /// <summary> The research type of the <see cref="Vehicle"/> in the cell. </summary>
         private readonly EVehicleResearchType _reseachType;
 
@@ -26,6 +23,9 @@ namespace Client.Wpf.Controls
 
         #endregion Fields
         #region Properties
+
+        /// <summary> The type of the vehicle card. </summary>
+        internal EVehicleCard Type { get; }
 
         /// <summary> The vehicle in the cell. </summary>
         internal IVehicle Vehicle { get; }
@@ -62,7 +62,7 @@ namespace Client.Wpf.Controls
         public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy, EVehicleCard type, bool isToggled)
             : this()
         {
-            _type = type;
+            Type = type;
             _displayVehicleInformationStrategy = displayVehicleInformationStrategy;
 
             Vehicle = vehicle;
@@ -106,12 +106,12 @@ namespace Client.Wpf.Controls
         /// <param name="eventArguments"> Not used. </param>
         private void OnClick(object sender, MouseButtonEventArgs eventArguments)
         {
-            if (_type != EVehicleCard.ResearchTree)
-                return;
+            if (Type == EVehicleCard.ResearchTree)
+            {
+                IsToggled = !IsToggled;
 
-            IsToggled = !IsToggled;
-
-            UpdateOpacity();
+                UpdateOpacity();
+            }
             RaiseClickEvent();
         }
 

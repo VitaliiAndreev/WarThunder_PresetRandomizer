@@ -24,19 +24,6 @@ namespace Client.Wpf.Controls
         private readonly IDictionary<EPreset, WrapPanel> _presetPanels;
 
         #endregion Fields
-        #region Events
-
-        /// <summary> A routed event for <see cref="Click"/>. </summary>
-        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PresetPanelControl));
-        
-        /// <summary> An event for clicking vehicle cards. </summary>
-        public event RoutedEventHandler Click
-        {
-            add { AddHandler(ClickEvent, value); }
-            remove { RemoveHandler(ClickEvent, value); }
-        }
-
-        #endregion Events
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
@@ -75,15 +62,6 @@ namespace Client.Wpf.Controls
                 RaiseMouseLeaveEvent(vehicleControl);
         }
 
-        /// <summary> Raises the <see cref="ClickEvent"/> for one of the vehicle cards. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ResearchTreeCellVehicleControl"/> is expected. </param>
-        /// <param name="eventArguments"> Not used. </param>
-        private void OnClick(object sender, RoutedEventArgs eventArguments)
-        {
-            if (sender is ResearchTreeCellVehicleControl vehicleControl)
-                RaiseClickEvent(vehicleControl);
-        }
-
         #endregion Methods: Event Handlers
         #region Methods: Event Raisers
 
@@ -99,11 +77,6 @@ namespace Client.Wpf.Controls
         /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>
         private void RaiseMouseLeaveEvent(ResearchTreeCellVehicleControl vehicleControl) =>
             RaiseEvent(GetMouseEventArgs(Mouse.MouseLeaveEvent, vehicleControl));
-
-        /// <summary> Raises the <see cref="ClickEvent"/> for the given vehicle control. </summary>
-        /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>
-        private void RaiseClickEvent(ResearchTreeCellVehicleControl vehicleControl) =>
-            RaiseEvent(new RoutedEventArgs(ClickEvent, vehicleControl));
 
         #endregion Methods: Event Raisers
 
@@ -168,7 +141,6 @@ namespace Client.Wpf.Controls
 
                     vehicleControl.MouseEnter += OnMouseEnter;
                     vehicleControl.MouseLeave += OnMouseLeave;
-                    vehicleControl.MouseDown += OnClick;
                     vehicleControl.DisplayVehicleInformation(gameMode);
 
                     presetPanel.Children.Add(vehicleControl);

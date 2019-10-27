@@ -110,7 +110,8 @@
         
         <Grid
             Grid.Column="1"
-            Margin="0 10 10 10">
+            Margin="0 10 10 10"
+            controls:ResearchTreeCellVehicleControl.Click="OnVehicleCardClick">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="95"/>
@@ -121,14 +122,12 @@
                 Grid.Row="0"
                 x:Name="_presetPanel"
                 MouseEnter="OnPresetVehicleMouseEnter"
-                MouseLeave="OnPresetVehicleMouseLeave"
-                Click="OnPresetVehicleClick"/>
+                MouseLeave="OnPresetVehicleMouseLeave"/>
 
             <controls:ResearchTreeControl
                 Grid.Row="1"
                 x:Name="_researchTreeControl"
-                Margin="0 10 0 0"
-                controls:ResearchTreeCellVehicleControl.Click="OnResearchTreeVehicleClick"/>
+                Margin="0 10 0 0"/>
             
         </Grid>
 
