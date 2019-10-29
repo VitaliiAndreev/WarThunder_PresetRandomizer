@@ -889,6 +889,21 @@
     <GeometryDrawing Brush="#FFC81329" Geometry="{StaticResource country_britainGeometry4}" />
   </DrawingGroup>
   <DrawingImage x:Key="country_britainDrawingImage" Drawing="{StaticResource country_britainDrawingGroup}" />
+  <Geometry x:Key="flag_republic_chinaGeometry">F0 M100,100z M0,0z M55.43,45.074L61.253,43.506 56.978,47.771A7.319,7.319,0,0,0,55.43,45.074z M52.23,43.022L56.495,38.747 54.927,44.57A7.32,7.32,0,0,0,52.228,43.022z M48.446,42.808L49.992,37 51.54,42.8A7.163,7.163,0,0,0,48.445,42.809z M43.492,38.746L47.757,43.021A7.32,7.32,0,0,0,45.057,44.568z M43.008,47.77L38.733,43.505 44.555,45.073A7.321,7.321,0,0,0,43.007,47.771z M42.625,50.006A7.376,7.376,0,0,0,42.794,51.554L36.994,50.006 42.794,48.458A7.376,7.376,0,0,0,42.624,50.008z M44.555,54.94L38.733,56.508 43.008,52.243A7.322,7.322,0,0,0,44.554,54.941z M47.755,56.991L43.49,61.266 45.058,55.444A7.32,7.32,0,0,0,47.756,56.993z M51.539,57.205L49.991,63.005 48.443,57.205A7.167,7.167,0,0,0,51.54,57.207z M56.493,61.267L52.228,56.992A7.32,7.32,0,0,0,54.928,55.445z M49.993,56.508A6.5,6.5,0,1,1,56.493,50.008A6.5,6.5,0,0,1,49.992,56.509z M56.978,52.243L61.253,56.508 55.43,54.941A7.32,7.32,0,0,0,56.978,52.244z M62.995,50.007L57.195,51.555A7.163,7.163,0,0,0,57.195,48.455z</Geometry>
+  <DrawingGroup x:Key="flag_republic_chinaDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFFF0000">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,16,100,68" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF000095">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="24,32,52,36" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource flag_republic_chinaGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="flag_republic_chinaDrawingImage" Drawing="{StaticResource flag_republic_chinaDrawingGroup}" />
   <DrawingGroup x:Key="country_franceDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
     <GeometryDrawing Brush="#FF002395">
       <GeometryDrawing.Geometry>

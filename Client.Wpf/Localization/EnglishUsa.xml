@@ -74,6 +74,7 @@
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
+  <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>

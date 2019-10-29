@@ -77,6 +77,7 @@
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
         public const string RemovePresets = nameof(RemovePresets);
+        public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);

@@ -37,6 +37,7 @@
             public const string Philippines = _prefix + "philippines" + _suffix;
             public const string Poland = _prefix + "poland" + _suffix;
             public const string Portugal = _prefix + "portugal" + _suffix;
+            public const string RepublicOfChina = "flag_republic_china" + _suffix;
             public const string Romania = _prefix + "romania" + _suffix;
             public const string Russia = _prefix + "russia" + _suffix;
             public const string SouthAfrica = _prefix + "south_africa" + _suffix;

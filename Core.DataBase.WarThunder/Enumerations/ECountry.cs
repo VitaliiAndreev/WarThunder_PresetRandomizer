@@ -34,6 +34,7 @@
         Philippines,
         Poland,
         Portugal,
+        RepublicOfChina,
         Romania,
         Russia,
         SouthAfrica,

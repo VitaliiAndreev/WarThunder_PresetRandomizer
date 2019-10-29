@@ -86,6 +86,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_norway", ECountry.Norway },
             { "country_philippines", ECountry.Philippines },
             { "country_poland", ECountry.Poland },
+            { "country_republic_china", ECountry.RepublicOfChina },
             { "country_portugal", ECountry.Portugal },
             { "country_romania", ECountry.Romania },
             { "country_russia", ECountry.Russia },
