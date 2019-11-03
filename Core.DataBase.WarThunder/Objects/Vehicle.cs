@@ -99,6 +99,10 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Persistent Properties
         #region Association Properties
 
+        /// <summary> A set of vehicle tags. </summary>
+        [OneToOne(ClassType = typeof(VehicleTagSet), PropertyRef = nameof(VehicleTagSet.Vehicle))]
+        public virtual VehicleTagSet Tags { get; protected set; }
+
         /// <summary> The vehicle's nation. </summary>
         [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true)]
         [Key(1)] public virtual INation Nation { get; protected internal set; }
@@ -275,6 +279,14 @@ namespace Core.DataBase.WarThunder.Objects
                 Class = EVehicleClass.HeavyCruiser;
         }
 
+        /// <summary> Initializes <see cref="Tags"/> based on <paramref name="deserializedTags"/>. </summary>
+        /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
+        private void InitializeTags(VehicleTagsDeserializedFromJson deserializedTags)
+        {
+            Tags = new VehicleTagSet(_dataRepository, this);
+            Tags.InitializeWithDeserializedJson(deserializedTags);
+        }
+
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
         public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
@@ -285,7 +297,10 @@ namespace Core.DataBase.WarThunder.Objects
                 Country = Nation.AsEnumerationItem.GetBaseCountry();
 
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
+            {
                 InitializeClass(tags);
+                InitializeTags(tags);
+            }
 
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
             var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";

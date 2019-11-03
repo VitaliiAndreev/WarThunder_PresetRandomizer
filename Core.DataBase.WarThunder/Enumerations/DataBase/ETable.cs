@@ -33,6 +33,7 @@
         internal const string VehicleRepairTimeWithoutCrew = _vehicleTable + "RepairTimeWithoutCrew";
         internal const string VehicleResearchTreeData = _vehicleTable + "ResearchTreeData";
         internal const string VehicleRewardMultiplier = _vehicleTable + "RewardMultiplier";
+        internal const string VehicleTagSet = _vehicleTable + "TagSet";
         internal const string VehicleVisualPremiumRewardMultiplier = _vehicleTable + "VisualPremiumRewardMultiplier";
         internal const string VehicleVisualRewardMultiplier = _vehicleTable + "VisualRewardMultiplier";
     }

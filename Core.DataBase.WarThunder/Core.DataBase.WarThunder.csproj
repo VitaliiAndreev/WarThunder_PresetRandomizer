@@ -97,6 +97,7 @@
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Interfaces\IPersistentWarThunderObjectWithId.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleTagSet.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\String\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\VehicleGameModeParameterSetBase.cs" />
     <Compile Include="Objects\VehicleResearchTreeData.cs" />
+    <Compile Include="Objects\VehicleTagSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
