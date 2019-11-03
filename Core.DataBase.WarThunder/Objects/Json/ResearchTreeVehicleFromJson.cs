@@ -30,7 +30,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         [JsonProperty("showOnlyWhenBought")]
-        public bool? ShowOnlyWhenBought { get; set; }
+        public bool ShowOnlyWhenBought { get; set; }
 
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.

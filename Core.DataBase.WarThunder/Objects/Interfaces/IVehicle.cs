@@ -22,7 +22,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         bool IsPremium { get; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        bool? ShowOnlyWhenBought { get; }
+        bool ShowOnlyWhenBought { get; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         string CategoryOfHiddenVehicles { get; }

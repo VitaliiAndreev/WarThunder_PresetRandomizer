@@ -45,7 +45,7 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool? ShowOnlyWhenBought { get; protected set; }
+        [Property()] public virtual bool ShowOnlyWhenBought { get; protected set; }
 
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.

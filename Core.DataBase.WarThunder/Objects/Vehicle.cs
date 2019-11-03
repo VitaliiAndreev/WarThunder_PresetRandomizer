@@ -61,7 +61,7 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual bool IsPremium { get; protected set; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool? ShowOnlyWhenBought { get; protected set; }
+        [Property()] public virtual bool ShowOnlyWhenBought { get; protected set; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
@@ -145,7 +145,7 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
-        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || (ShowOnlyWhenBought ?? false) || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
+        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
 
         /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
         public virtual bool IsSquadronVehicle => ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;

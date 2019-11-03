@@ -11,7 +11,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int PurchaseCostInSilver { get; set; }
     
         [JsonProperty("validIfBought")]
-        public bool? RequiresModificationPurchase { get; set; }
+        public bool RequiresModificationPurchase { get; set; }
     
         [JsonProperty("reqModification")]
         public List<string> ModificationsRequired { get; set; }
@@ -23,19 +23,19 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public decimal? MassPerSecond { get; set; }
 
         [JsonProperty("isAntiTankWeap")]
-        public bool? IsAntiTank { get; set; }
+        public bool IsAntiTank { get; set; }
 
         [JsonProperty("isATGM")]
-        public bool? IsAntiTankGuidedMissile { get; set; }
+        public bool IsAntiTankGuidedMissile { get; set; }
 
         [JsonProperty("hasDepthCharge")]
-        public bool? IsDepthCharge { get; set; }
+        public bool IsDepthCharge { get; set; }
 
         [JsonProperty("spentOnDeath")]
-        public bool? IsDisabledWhenDestroyed { get; set; }
+        public bool IsDisabledWhenDestroyed { get; set; }
 
         [JsonProperty("rocketDistanceFuse")]
-        public bool? HasDistanceFuse { get; set; }
+        public bool HasDistanceFuse { get; set; }
 
         [JsonProperty("image", Required = Required.Always)]
         public string Image { get; set; }

@@ -191,7 +191,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region General
 
         [JsonProperty("showOnlyWhenBought")]
-        public bool? ShowOnlyWhenBought { get; set; }
+        public bool ShowOnlyWhenBought { get; set; }
 
         [JsonProperty("gift")]
         public string CategoryOfHiddenVehicles { get; set; }
@@ -200,7 +200,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string OwnershipGiftPrerequisite { get; set; }
 
         [JsonProperty("isFirstBattleAward")]
-        public bool? GiftedToNewPlayersForSelectingTheirFirstBranch { get; set; }
+        public bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; set; }
 
         [JsonProperty("purchaseTrophyGiftOnce")]
         public string OwnershipPurchasePrerequisite { get; set; }
@@ -238,7 +238,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int? NumberOfSpawnsInSimulation { get; set; }
 
         [JsonProperty("killStreak")]
-        public bool? CanSpawnAsKillStreak { get; set; }
+        public bool CanSpawnAsKillStreak { get; set; }
 
         #endregion General
         #region Graphics
@@ -322,7 +322,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int? MaximumAmmunition { get; set; }
 
         [JsonProperty("primaryWeaponAutoLoader")]
-        public bool? PrimaryWeaponHasAutoLoader { get; set; }
+        public bool PrimaryWeaponHasAutoLoader { get; set; }
 
         [JsonProperty("maxDeltaAngle_rockets")]
         public decimal? MaximumRocketDeltaAngle { get; set; }
