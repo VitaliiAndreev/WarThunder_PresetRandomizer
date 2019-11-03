@@ -42,19 +42,26 @@ void Main()
 	}
 	
 	var jsonMappingCode = new List<List<string>>();
+	var classCode = new List<string>();
+	var interfaceCode = new List<string>();
 	foreach (var tag in tags)
 	{
+		var propertyName = GetPropertyName(tag);
 		jsonMappingCode.Add
 		(
 			new List<string>
 			{
 				$"[JsonProperty(\"{tag}\")]",
-				$"public bool? {tag.Split("_").Select(s => $"{s.First().ToString().ToUpper()}{string.Join("", s.Skip(1))}").Aggregate((s1, s2) => $"{s1}{s2}")}" + " { get; set; }"
+				$"public bool {propertyName}" + " { get; set; }"
 			}
 		);
+		interfaceCode.Add($"bool {propertyName}" + " { get; }");
+		classCode.Add($"[Property()] public virtual bool {propertyName}" + " { get; protected set; }");
 	}
 	
-	string.Join("\n\n", jsonMappingCode.Select(item => string.Join("\n", item))).Dump();
+	//string.Join("\n\n", jsonMappingCode.Select(item => string.Join("\n", item))).Dump();
+	//string.Join("\n\n", interfaceCode.Select(item => string.Join("\n", item))).Dump();
+	string.Join("\n\n", classCode.Select(item => string.Join("\n", item))).Dump();
 }
 
 HashSet<string> GetVehicleProperties(IEnumerable<string> lines)
@@ -102,4 +109,97 @@ public static class Extensions
 
         return propertyNames;
     }
+}
+
+public string GetPropertyName(string tag)
+{
+	return tag
+		.Split("_")
+		.Select(s => $"{s.First().ToString().ToUpper()}{string.Join("", s.Skip(1))}")
+		.Aggregate((s1, s2) => $"{s1}{s2}")
+		.Replace("NotInDynamicCampaign", "NotAvailableInDynamicCampaign")
+		.Replace("Type", "Is")
+		.Replace("Air", "IsAirVehicle")
+		.Replace("Hydroplane", "IsHydroplane_")
+		.Replace("IsIsHydroplane_", "IsHydroplane")
+		.Replace("Fw190Series", "IsFw190")
+		.Replace("IsAaFighter", "IsNightFighter")
+		.Replace("IsAssault", "IsAttacker")
+		.Replace("IsTorpedo", "CanCarryTorpedoes")
+		.Replace("IsLongrangeBomber", "IsLongRangeBomber")
+		.Replace("Bomberview", "HasBomberView")
+		.Replace("Tank", "IsTank")
+		.Replace("IsLightIsTank", "IsLightTank")
+		.Replace("IsMediumIsTank", "IsMediumTank")
+		.Replace("IsHeavyIsTank", "IsHeavyTank")
+		.Replace("IsMissileIsTank", "IsMissileTank")
+		.Replace("Scout", "CanScout")
+		.Replace("Ship", "IsShip")
+		.Replace("Boat", "IsBoat_")
+		.Replace("IsFlyingIsBoat_", "IsFlyingBoat")
+		.Replace("IsIsBoat_", "IsBoat")
+		.Replace("IsGunIsBoat_", "IsGunBoat")
+		.Replace("CanCarryTorpedoesIsBoat_", "IsTorpedoBoat")
+		.Replace("IsHydrofoilTorpedoIsBoat_", "IsHydrofoilTorpedoBoat")
+		.Replace("CanCarryTorpedoesGunIsBoat_", "IsTorpedoGunBoat")
+		.Replace("IsMissileIsBoat_", "IsMissileBoat")
+		.Replace("IsArmoredIsBoat_", "IsArmoredBoat")
+		.Replace("IsHeavyIsBoat_", "IsHeavyBoat")
+		.Replace("IsHeavyGunIsBoat_", "IsHeavyGunBoat")
+		.Replace("IsNavalFerryBarge", "IsFerry")
+		.Replace("IsNavalAaFerry", "IsAaFerry")
+		.Replace("Destroyer", "IsDestroyer_")
+		.Replace("IsIsDestroyer_", "IsDestroyer")
+		.Replace("Cruiser", "IsCruiser_")
+		.Replace("IsIsCruiser_", "IsCruiser")
+		.Replace("IsLightIsCruiser_", "IsLightCruiser")
+		.Replace("LightIsCruiser_", "IsLightCruiser_")
+		.Replace("IsHeavyIsCruiser_", "IsHeavyCruiser")
+		.Replace("Carrier", "IsCarrier")
+		.Replace("IsCarrierTakeOff", "CanTakeOffFromCarrier")
+		.Replace("IsIsTankIsDestroyer_", "IsTankDestroyer")
+		.Replace("MaxRatio", "HasMaximumRatio")
+		.Replace("Ally", "IsAllied")
+		.Replace("Axis", "IsAxis")
+		.Replace("CountryUsa", "IsAmerican")
+		.Replace("CountryGermany", "IsGerman")
+		.Replace("CountryUssr", "IsSoviet")
+		.Replace("CountryBritain", "IsBritish")
+		.Replace("CountryAustralia", "IsAustralian")
+		.Replace("CountryJapan", "IsJapanese")
+		.Replace("CountryChina", "IsChinese")
+		.Replace("CountryItaly", "IsItalian")
+		.Replace("CountryFrance", "IsFrench")
+		.Replace("CountrySweden", "IsSwedish")
+		.Replace("WesternFront", "UsedOnWesternFront")
+		.Replace("Westernfront", "UsedOnWesternFront_")
+		.Replace("Britain", "UsedInBritain")
+		.Replace("Bulge", "UsedInBattleOfBulge")
+		.Replace("Ruhr", "UsedInRuhr")
+		.Replace("EasternFront", "UsedOnEasternFront")
+		.Replace("Easternfront", "UsedOnEasternFront_")
+		.Replace("Stalingrad", "UsedAtStalingrad")
+		.Replace("UsedAtStalingradW", "UsedAtStalingrad_")
+		.Replace("Krymsk", "UsedAtKrymsk")
+		.Replace("Korsun", "UsedAtKorsun")
+		.Replace("Berlin", "UsedAtBerlin")
+		.Replace("FarUsedOnEasternFront", "UsedOnFarEasternFront")
+		.Replace("KhalkinGol", "UsedAtKhalkinGol")
+		.Replace("China", "UsedInChina")
+		.Replace("Mediterran", "UsedInMediterranean_")
+		.Replace("UsedInMediterranean_ean", "UsedInMediterranean")
+		.Replace("Malta", "UsedAtMalta")
+		.Replace("Sicily", "UsedAtSicily")
+		.Replace("Pacific", "UsedInPacific")
+		.Replace("Honolulu", "UsedAtHonolulu")
+		.Replace("Midway", "UsedInBattleOfMidway")
+		.Replace("WakeIsland", "UsedAtWakeIsland")
+		.Replace("Guadalcanal", "UsedAtGuadalcanal")
+		.Replace("PortMoresby", "UsedAtPortMoresby")
+		.Replace("Guam", "UsedInGuam")
+		.Replace("IwoJima", "UsedAtIwoJima")
+		.Replace("Korea", "UsedInKorea")
+		.Replace("UsedInKoreanFront", "UsedOnKoreanFront")
+		.Replace("CanRepairAnyIsAllied", "CanRepairTeammates")
+	;
 }
