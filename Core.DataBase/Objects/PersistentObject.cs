@@ -2,6 +2,7 @@
 using Core.DataBase.Extensions;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using System;
@@ -141,7 +142,10 @@ namespace Core.DataBase.Objects
             if (thisValue is null || comparedValue is null)
                 return thisValue == comparedValue;
 
-            if (thisValue.GetType() != comparedValue.GetType())
+            var thisType = thisValue.GetType();
+            var comparedType = comparedValue.GetType();
+
+            if (!thisType.ToString().Contains(EWord.Proxy) && !comparedType.ToString().Contains(EWord.Proxy) && thisType != comparedType)
                 return false;
 
             var includeNestedObjects = recursionLevel.IsPositive();

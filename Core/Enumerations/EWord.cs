@@ -83,6 +83,7 @@
         #region P
 
         public static string Parser => _Parser;
+        public static string Proxy => _Proxy;
 
         #endregion P
         #region Q

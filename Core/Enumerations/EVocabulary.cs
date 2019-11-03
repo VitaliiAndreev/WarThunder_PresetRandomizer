@@ -410,12 +410,16 @@
         #endregion O
         #region P
 
+        private const string _P = "P";
         private const string _p = "p";
         private const string _pp = _p + _p;
         private const string _pplication = _pp + "li" + _cat + _ion;
-        private const string _Pre = "Pre";
-        private const string _pre = "pre";
-        private const string _pro = "pro";
+        private const string _Pr = _P + _r;
+        private const string _pr = _p + _r;
+        private const string _Pre = _Pr + _e;
+        private const string _pre = _pr + _e;
+        private const string _Pro = _Pr + _o;
+        private const string _pro = _pr + _o;
 
         protected const string _pack = "pack";
         protected const string _pan = _p + _an;
@@ -435,6 +439,7 @@
         protected const string _Press = _Pre + _s + _s;
         protected const string _proper = _pro + _per;
         protected const string _properly = _proper + _ly;
+        protected const string _Proxy = _Pro + _xy;
         protected const string _put = "put";
 
         #endregion P
@@ -629,6 +634,7 @@
         #region X
 
         private const string _x = "x";
+        private const string _xy = _x + _y;
 
         protected const string _XML = "XML";
 
