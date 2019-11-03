@@ -418,6 +418,7 @@ namespace Core.DataBase.WarThunder.Objects
         {
             var nestedObjects = new List<IPersistentObject>()
             {
+                Tags,
                 Nation,
                 Branch,
                 EconomicRank,
