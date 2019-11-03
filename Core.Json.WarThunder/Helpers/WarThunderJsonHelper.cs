@@ -427,7 +427,7 @@ namespace Core.Json.Helpers
         /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        public IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJson =>
+        public IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJsonWithGaijinId =>
             DeserializeDictionary<T>(jsonText).FinalizeDeserialization().Values;
 
         /// <summary> Deserializes given JSON text into instances of persistent objects. </summary>

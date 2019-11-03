@@ -16,7 +16,7 @@ namespace Core.Json.WarThunder.Helpers.Interfaces
         /// <typeparam name="T"> A generic type of JSON mapping classes. </typeparam>
         /// <param name="jsonText"> JSON text to deserialize. </param>
         /// <returns></returns>
-        IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJson;
+        IEnumerable<T> DeserializeList<T>(string jsonText) where T : DeserializedFromJsonWithGaijinId;
 
         /// <summary> Deserializes given JSON text into instances persistent objects. </summary>
         /// <typeparam name="T"> A generic type of persistent objects. </typeparam>

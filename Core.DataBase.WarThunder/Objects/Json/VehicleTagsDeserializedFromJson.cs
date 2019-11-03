@@ -3,7 +3,7 @@
 namespace Core.DataBase.WarThunder.Objects.Json
 {
     /// <summary> A mapping entity used for automated deserialization of JSON data before passing it on into persistent objects. </summary>
-    public class VehicleTagsDeserializedFromJson
+    public class VehicleTagsDeserializedFromJson : DeserializedFromJsonWithGaijinId
     {
         [JsonProperty("not_in_dynamic_campaign")]
         public bool NotAvailableInDynamicCampaign { get; set; }

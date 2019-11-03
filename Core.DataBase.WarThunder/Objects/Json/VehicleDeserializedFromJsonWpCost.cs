@@ -10,7 +10,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
     /// A mapping entity used for automated deserialization of JSON data before passing it on into persistent objects.
     /// <para> Partially generated with QuickType (https://app.quicktype.io). </para>
     /// </summary>
-    public class VehicleDeserializedFromJsonWpCost : DeserializedFromJson
+    public class VehicleDeserializedFromJsonWpCost : DeserializedFromJsonWithGaijinId
     {
         #region Required
 

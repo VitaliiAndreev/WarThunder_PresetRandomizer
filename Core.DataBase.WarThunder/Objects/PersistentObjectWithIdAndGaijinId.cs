@@ -1,14 +1,12 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.Enumerations;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a Gaijin ID. </summary>
-    public abstract class PersistentObjectWithIdAndGaijinId : PersistentObjectWithId, IPersistentObjectWithIdAndGaijinId
+    public abstract class PersistentObjectWithIdAndGaijinId : PersistentWarThunderObjectWithId, IPersistentObjectWithIdAndGaijinId
     {
         #region Properties
 
@@ -51,20 +49,6 @@ namespace Core.DataBase.WarThunder.Objects
             var type = baseRepresentation.First();
             var id = baseRepresentation.Last();
             return $"{type} [{GaijinId}] {id}";
-        }
-
-        /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
-        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        public virtual void InitializeWithDeserializedJson(IDeserializedFromJson instanceDeserializedFromJson)
-        {
-            var properties = GetType().GetProperties().ToDictionary(property => property.Name);
-            var jsonProperties = instanceDeserializedFromJson.GetType().GetProperties().ToDictionary(property => property.Name);
-
-            foreach (var jsonProperty in jsonProperties)
-            {
-                if (properties.TryGetValue(jsonProperty.Key, out var property))
-                    property.SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
-            }
         }
     }
 }

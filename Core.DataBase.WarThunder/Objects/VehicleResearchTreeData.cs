@@ -9,17 +9,13 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle information pertaining to the research tree. </summary>
     [Class(Table = ETable.VehicleResearchTreeData)]
-    public class VehicleResearchTreeData : PersistentObjectWithIdAndGaijinId, IVehicleResearchTreeData
+    public class VehicleResearchTreeData : PersistentWarThunderObjectWithId, IVehicleResearchTreeData
     {
         #region Persistent Properties
 
         /// <summary> The vehicle's ID. </summary>
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
-
-        /// <summary> The vehicle's Gaijin ID. </summary>
-        [Property(NotNull = true, Unique = true)]
-        public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle that is required to unlock this one. This property is unreliable as it is only used explicitly when the classic JSON structure (the one used with planes and tanks) is not followed. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
@@ -89,7 +85,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="id"> The set's ID. </param>
         /// <param name="vehicle"> The set's vehicle. </param>
         public VehicleResearchTreeData(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id, vehicle.GaijinId)
+            : base(dataRepository, id)
         {
             Vehicle = vehicle;
 

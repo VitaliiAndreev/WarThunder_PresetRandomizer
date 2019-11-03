@@ -344,7 +344,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
         /// <param name="jsonProperty"> The JSON property whose value is being inserted. </param>
         /// <param name="parameterSets"> The dictionary of available game mode parameter sets. </param>
-        private void InsertJsonPropertyValueIntoGameModeParameterSet(IDeserializedFromJson instanceDeserializedFromJson, PropertyInfo jsonProperty, Dictionary<string, VehicleGameModeParameterSetBase> parameterSets)
+        private void InsertJsonPropertyValueIntoGameModeParameterSet(IDeserializedFromJsonWithGaijinId instanceDeserializedFromJson, PropertyInfo jsonProperty, Dictionary<string, VehicleGameModeParameterSetBase> parameterSets)
         {
             var persistAsDictionaryItemAttribute = jsonProperty.GetCustomAttribute<PersistAsDictionaryItemAttribute>();
 

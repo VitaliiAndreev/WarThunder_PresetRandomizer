@@ -3,7 +3,7 @@
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle information pertaining to the research tree. </summary>
-    public interface IVehicleResearchTreeData : IPersistentObjectWithIdAndGaijinId
+    public interface IVehicleResearchTreeData : IPersistentWarThunderObjectWithId
     {
         #region Persistent Properties
 

@@ -187,7 +187,6 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.ResearchTreeData != null).Should().BeTrue();
 
                     var vehiclesWithResearchTreeData = vehicleCollection.Where(vehicle => vehicle.ResearchTreeData is VehicleResearchTreeData);
-                    vehiclesWithResearchTreeData.All(vehicle => string.IsNullOrEmpty(vehicle.ResearchTreeData.GaijinId)).Should().BeFalse();
                     vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.Vehicle == vehicle).Should().BeTrue();
                     vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.Rank == vehicle.Rank).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.PresetCellCoordinatesWithinRank is List<int> coordinates && coordinates.Count() == 2).Should().BeTrue();

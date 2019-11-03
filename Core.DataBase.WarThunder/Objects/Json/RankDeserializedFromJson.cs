@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Core.DataBase.WarThunder.Objects.Json
 {
     /// <summary> A mapping entity used for automated deserialization of JSON data before passing it on into persistent objects. </summary>
-    public class RankDeserializedFromJson : DeserializedFromJson
+    public class RankDeserializedFromJson : DeserializedFromJsonWithGaijinId
     {
         /// <summary> Playable nations in the game. </summary>
         [JsonProperty("country", Required = Required.Always)]

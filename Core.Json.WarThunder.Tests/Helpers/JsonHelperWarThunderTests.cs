@@ -192,7 +192,6 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.BulletsIconParam < 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.WeaponMask < 0).Should().BeFalse();
             /// modifications
-            vehicles.Any(vehicle => vehicle.Modifications.All(keyValuePair => string.IsNullOrWhiteSpace(keyValuePair.Value?.GaijinId))).Should().BeFalse();
             vehicles.All(vehicle => vehicle.Modifications.All(keyValuePair => keyValuePair.Value?.Owner == vehicle)).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Modifications.All(keyValuePair => keyValuePair.Value?.PurchaseCostInGold >= 0)).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
@@ -248,7 +247,6 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.CannonReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.GunnerReloadTime <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.MaximumAmmunition <= 0).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => string.IsNullOrWhiteSpace(keyValuePair.Value?.GaijinId))).Should().BeFalse();
             vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.Owner == vehicle)).Should().BeTrue();
             vehicles.All(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.PurchaseCostInSilver >= 0)).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.Weapons.All(keyValuePair => keyValuePair.Value?.MaximumStockpileAmount < 0)).Should().BeFalse();
