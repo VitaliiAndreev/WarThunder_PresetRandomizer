@@ -82,7 +82,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         public override long Id { get; protected set; }
 
         /// <summary> The vehicle this set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), Lazy = Laziness.False, NotNull = true)]
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
         public override IVehicle Vehicle { get; protected set; }
 

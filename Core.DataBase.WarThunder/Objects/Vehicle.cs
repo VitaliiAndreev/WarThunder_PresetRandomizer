@@ -100,11 +100,11 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> The vehicle's nation. </summary>
-        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), Lazy = Laziness.False, NotNull = true)]
+        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true)]
         [Key(1)] public virtual INation Nation { get; protected internal set; }
 
         /// <summary> The vehicle's branch. </summary>
-        [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), Lazy = Laziness.False, NotNull = true)]
+        [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
         /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>

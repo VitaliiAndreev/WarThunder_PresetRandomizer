@@ -28,13 +28,13 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> The nation's military branches. </summary>
-        [Bag(0, Name = nameof(Branches), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [Bag(0, Name = nameof(Branches), Inverse = true, Generic = true)]
         [Key(1, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
         [OneToMany(1, ClassType = typeof(Branch))]
         public virtual IEnumerable<IBranch> Branches { get; protected internal set; } = new List<IBranch>();
 
         /// <summary> The nation's vehicles. </summary>
-        [Bag(0, Name = nameof(Vehicles), Lazy = CollectionLazy.False, Inverse = true, Generic = true)]
+        [Bag(0, Name = nameof(Vehicles), Inverse = true, Generic = true)]
         [Key(1, Column = ETable.Nation + "_" + EColumn.Id, NotNull = true)]
         [OneToMany(1, ClassType = typeof(Vehicle))]
         public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();

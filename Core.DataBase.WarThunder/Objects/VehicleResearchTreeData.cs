@@ -22,7 +22,7 @@ namespace Core.DataBase.WarThunder.Objects
         public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle that is required to unlock this one. This property is unreliable as it is only used explicitly when the classic JSON structure (the one used with planes and tanks) is not followed. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), Lazy = Laziness.False, NotNull = true)]
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
         public virtual IVehicle Vehicle { get; protected set; }
 
