@@ -17,11 +17,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The vehicle that is required to unlock this one. This property is unreliable as it is only used explicitly when the classic JSON structure (the one used with planes and tanks) is not followed. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
-        public virtual IVehicle Vehicle { get; protected set; }
-
         /// <summary> The vehicle's research rank. </summary>
         [Property(NotNull = true)] public virtual int Rank { get; protected set; }
 
@@ -65,6 +60,14 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual long? MarketplaceId { get; protected set; }
 
         #endregion Persistent Properties
+        #region Association Properties
+
+        /// <summary> The vehicle the data set belongs to. </summary>
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
+        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
+        public virtual IVehicle Vehicle { get; protected set; }
+
+        #endregion Association Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>

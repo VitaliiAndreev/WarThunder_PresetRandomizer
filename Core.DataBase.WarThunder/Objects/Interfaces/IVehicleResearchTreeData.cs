@@ -47,5 +47,11 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         long? MarketplaceId { get; }
 
         #endregion Persistent Properties
+        #region Association Properties
+
+        /// <summary> The vehicle the data set belongs to. </summary>
+        IVehicle Vehicle { get; }
+
+        #endregion Association Properties
     }
 }

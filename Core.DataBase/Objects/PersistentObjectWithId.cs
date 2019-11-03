@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
-using System;
 
 namespace Core.DataBase.Objects
 {

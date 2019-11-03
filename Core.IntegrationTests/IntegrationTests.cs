@@ -184,7 +184,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.BattleRatingFormatted.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRatingFormatted.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
 
                     // research tree data
-                    vehicleCollection.Any(vehicle => vehicle.ResearchTreeData != null).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => !(vehicle.ResearchTreeData is null)).Should().BeTrue();
 
                     var vehiclesWithResearchTreeData = vehicleCollection.Where(vehicle => vehicle.ResearchTreeData is VehicleResearchTreeData);
                     vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.Vehicle == vehicle).Should().BeTrue();
