@@ -24,7 +24,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsAmerican { get; set; }
 
         [JsonProperty("pacific")]
-        public bool UsedOnPacific { get; set; }
+        public bool UsedInPacific { get; set; }
 
         [JsonProperty("country_ussr")]
         public bool IsSoviet { get; set; }
@@ -37,6 +37,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("eastern_front")]
         public bool UsedOnEasternFront { get; set; }
+
+        [JsonProperty("country_france")]
+        public bool IsFrench { get; set; }
+
+        [JsonProperty("country_britain")]
+        public bool IsBritish { get; set; }
 
         [JsonProperty("country_germany")]
         public bool IsGerman { get; set; }
@@ -51,22 +57,19 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsHeavyFighter { get; set; }
 
         [JsonProperty("mediterranean")]
-        public bool UsedAtMediterranean { get; set; }
+        public bool UsedInMediterranean { get; set; }
 
         [JsonProperty("berlin")]
-        public bool UsedInBerlin { get; set; }
+        public bool UsedAtBerlin { get; set; }
 
         [JsonProperty("far_eastern_front")]
         public bool UsedOnFarEasternFront { get; set; }
 
         [JsonProperty("type_naval_fighter")]
-        public bool NavalFighter { get; set; }
+        public bool IsNavalFighter { get; set; }
 
         [JsonProperty("korean_front")]
         public bool UsedOnKoreanFront { get; set; }
-
-        [JsonProperty("country_britain")]
-        public bool IsBritish { get; set; }
 
         [JsonProperty("type_utility_helicopter")]
         public bool IsUtilityHelicopter { get; set; }
@@ -74,8 +77,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_attack_helicopter")]
         public bool IsAttackHelicopter { get; set; }
 
-        [JsonProperty("country_france")]
-        public bool IsFrench { get; set; }
+        [JsonProperty("country_italy")]
+        public bool IsItalian { get; set; }
 
         [JsonProperty("country_japan")]
         public bool IsJapanese { get; set; }
@@ -102,10 +105,10 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool UsedInBritain { get; set; }
 
         [JsonProperty("malta")]
-        public bool UsedOnMalta { get; set; }
+        public bool UsedAtMalta { get; set; }
 
         [JsonProperty("sicily")]
-        public bool UsedInSicily { get; set; }
+        public bool UsedAtSicily { get; set; }
 
         [JsonProperty("bulge")]
         public bool UsedInBattleOfBulge { get; set; }
@@ -134,9 +137,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("midway")]
         public bool UsedInBattleOfMidway { get; set; }
 
-        [JsonProperty("country_italy")]
-        public bool IsItalian { get; set; }
-
         [JsonProperty("type_medium_fighter")]
         public bool IsMediumFighter { get; set; }
 
@@ -150,10 +150,10 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsFw190 { get; set; }
 
         [JsonProperty("stalingrad")]
-        public bool UsedInStalingrad { get; set; }
+        public bool UsedAtStalingrad { get; set; }
 
         [JsonProperty("stalingrad_w")]
-        public bool UsedInStalingrad_ { get; set; }
+        public bool UsedAtStalingrad_ { get; set; }
 
         [JsonProperty("type_light_fighter")]
         public bool IsLightFighter { get; set; }
@@ -177,7 +177,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsNavalBomber { get; set; }
 
         [JsonProperty("guadalcanal")]
-        public bool UsedAtGuadalCanal { get; set; }
+        public bool UsedAtGuadalcanal { get; set; }
 
         [JsonProperty("type_hydroplane")]
         public bool IsHydroplane { get; set; }
@@ -204,16 +204,16 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsFlyingBoat { get; set; }
 
         [JsonProperty("hydroplane")]
-        public bool IsHydroplane_Alternative { get; set; }
+        public bool IsHydroplane_ { get; set; }
 
         [JsonProperty("china")]
-        public bool IsChineseOriginally { get; set; }
+        public bool UsedInChina { get; set; }
 
         [JsonProperty("port_moresby")]
         public bool UsedAtPortMoresby { get; set; }
 
         [JsonProperty("guam")]
-        public bool UsedAtGuam { get; set; }
+        public bool UsedInGuam { get; set; }
 
         [JsonProperty("tank")]
         public bool IsTank { get; set; }
@@ -228,7 +228,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool CanScout { get; set; }
 
         [JsonProperty("canRepairAnyAlly")]
-        public bool CanRepairAnyAlly { get; set; }
+        public bool CanRepairTeammates { get; set; }
 
         [JsonProperty("type_heavy_tank")]
         public bool IsHeavyTank { get; set; }
@@ -246,13 +246,13 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool HasProximityFuseRocket { get; set; }
 
         [JsonProperty("mediterran")]
-        public bool UsedAtMediterranean_Alternative { get; set; }
+        public bool UsedInMediterranean_ { get; set; }
 
         [JsonProperty("westernfront")]
-        public bool UsedAnWesternFront_Alternative { get; set; }
+        public bool UsedOnWesternFront_ { get; set; }
 
         [JsonProperty("easternfront")]
-        public bool UsedAnEasternFront_Alternative { get; set; }
+        public bool UsedOnEasternFront_ { get; set; }
 
         [JsonProperty("ship")]
         public bool IsShip { get; set; }
@@ -270,7 +270,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsHeavyBoat { get; set; }
 
         [JsonProperty("boat")]
-        public bool IsBoat_Alternative { get; set; }
+        public bool IsBoat_ { get; set; }
 
         [JsonProperty("type_armored_submarine_chaser")]
         public bool IsArmoredSubmarineChaser { get; set; }
@@ -285,7 +285,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsGunBoat { get; set; }
 
         [JsonProperty("type_naval_ferry_barge")]
-        public bool IsNavalFerryBarge { get; set; }
+        public bool IsFerry { get; set; }
 
         [JsonProperty("type_barge")]
         public bool IsBarge { get; set; }
@@ -297,7 +297,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsDestroyer { get; set; }
 
         [JsonProperty("destroyer")]
-        public bool IsDestroyer_Alternative { get; set; }
+        public bool IsDestroyer_ { get; set; }
 
         [JsonProperty("type_minelayer")]
         public bool IsMinelayer { get; set; }
@@ -306,28 +306,16 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsHydrofoilTorpedoBoat { get; set; }
 
         [JsonProperty("type_minesweeper")]
-        public bool IsMineSweeper { get; set; }
+        public bool IsMinesweeper { get; set; }
 
         [JsonProperty("type_missile_boat")]
         public bool IsMissileBoat { get; set; }
 
         [JsonProperty("type_naval_aa_ferry")]
-        public bool IsNavalAaFerry { get; set; }
+        public bool IsAaFerry { get; set; }
 
         [JsonProperty("type_submarine_chaser")]
         public bool IsSubmarineChaser { get; set; }
-
-        [JsonProperty("type_light_cruiser")]
-        public bool IsLightCruiser { get; set; }
-
-        [JsonProperty("light_cruiser")]
-        public bool IsLightCruiser_Alternative { get; set; }
-
-        [JsonProperty("type_heavy_gun_boat")]
-        public bool IsHeavyGunBoat { get; set; }
-
-        [JsonProperty("type_small_submarine_chaser")]
-        public bool IsSmallSubmarineChaser { get; set; }
 
         [JsonProperty("type_cruiser")]
         public bool IsCruiser { get; set; }
@@ -335,7 +323,19 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_heavy_cruiser")]
         public bool IsHeavyCruiser { get; set; }
 
+        [JsonProperty("type_light_cruiser")]
+        public bool IsLightCruiser { get; set; }
+
+        [JsonProperty("light_cruiser")]
+        public bool IsLightCruiser_ { get; set; }
+
+        [JsonProperty("type_heavy_gun_boat")]
+        public bool IsHeavyGunBoat { get; set; }
+
+        [JsonProperty("type_small_submarine_chaser")]
+        public bool IsSmallSubmarineChaser { get; set; }
+
         [JsonProperty("cruiser")]
-        public bool IsCruiser_Alternative { get; set; }
+        public bool IsCruiser_ { get; set; }
     }
 }

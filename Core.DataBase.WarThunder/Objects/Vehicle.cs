@@ -222,7 +222,7 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
         }
 
-        /// <summary> Initializes <see cref="Class"/> based on <paramref name="deserializedTags"/>. </summary>
+        /// <summary> Initializes <see cref="Class"/> based on <paramref name="deserializedTags"/>. Order of conditions is important because vehicles may have overlapping tags. </summary>
         /// <param name="deserializedTags"></param>
         private void InitializeClass(VehicleTagsDeserializedFromJson deserializedTags)
         {
