@@ -29,5 +29,10 @@ void Main()
 		}
 	}
 	
-	tags.Dump();
+	tags
+		.Where(t => !t.Contains("country"))
+		.Where(t => !t.Contains("dynamic_campaign"))
+		.Where(t => !t.Contains("max_ratio")) // Marks ships for unknown purpose.
+		.Dump()
+	;
 }
