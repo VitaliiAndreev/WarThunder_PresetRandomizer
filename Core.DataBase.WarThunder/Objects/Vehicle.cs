@@ -349,49 +349,7 @@ namespace Core.DataBase.WarThunder.Objects
             };
 
             foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // With a dictionary of game mode parameter set properties now there's only need to look through the JSON mapping class once.
-                InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty, parameterSets);
-        }
-
-        /// <summary> Tries to insert the value of the specified jSON property into the relevant game mode parameter set. </summary>
-        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
-        /// <param name="jsonProperty"> The JSON property whose value is being inserted. </param>
-        /// <param name="parameterSets"> The dictionary of available game mode parameter sets. </param>
-        private void InsertJsonPropertyValueIntoGameModeParameterSet(IDeserializedFromJsonWithGaijinId instanceDeserializedFromJson, PropertyInfo jsonProperty, Dictionary<string, VehicleGameModeParameterSetBase> parameterSets)
-        {
-            var persistAsDictionaryItemAttribute = jsonProperty.GetCustomAttribute<PersistAsDictionaryItemAttribute>();
-
-            if (persistAsDictionaryItemAttribute is null) // We are not interested in any properties not marked for consolidation via PersistAsDictionaryItemAttribute.
-                return;
-
-            var jsonPropertyValue = jsonProperty.GetValue(instanceDeserializedFromJson);
-
-            #region Adjust value inputs for nullability of dictionary values (in case of non-required JSON properties)
-
-            if (jsonProperty.PropertyType == typeof(int))
-                jsonPropertyValue = new int?((int)jsonPropertyValue);
-
-            else if (jsonProperty.PropertyType == typeof(decimal))
-                jsonPropertyValue = new decimal?((decimal)jsonPropertyValue);
-
-            #endregion Adjust value inputs for nullability of dictionary values (in case of non-required JSON properties
-
-            var parameterSet = parameterSets[persistAsDictionaryItemAttribute.Key];
-
-            switch (persistAsDictionaryItemAttribute.GameMode)
-            {
-                case EGameMode.Arcade:
-                    parameterSet.InternalArcade = jsonPropertyValue;
-                    break;
-                case EGameMode.Realistic:
-                    parameterSet.InternalRealistic = jsonPropertyValue;
-                    break;
-                case EGameMode.Simulator:
-                    parameterSet.InternalSimulator = jsonPropertyValue;
-                    break;
-                case EGameMode.Event:
-                    parameterSet.InternalEvent = jsonPropertyValue;
-                    break;
-            };
+                parameterSets.InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty);
         }
 
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>

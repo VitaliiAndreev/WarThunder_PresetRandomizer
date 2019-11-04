@@ -85,6 +85,7 @@
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
+    <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Helpers\DataRepositoryWarThunder.cs" />
