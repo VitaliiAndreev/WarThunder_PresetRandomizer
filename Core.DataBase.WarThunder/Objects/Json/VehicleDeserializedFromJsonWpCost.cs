@@ -395,23 +395,23 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipAntiAirMaxAngle_12_7mm_DShK_naval_user_machinegun")]
         public decimal? ShipAntiAirMaxAngle_12_7mm_DShK_naval_user_machinegun { get; set; }
 
-        [JsonProperty("shipAuxCaliberReloadTime_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipAuxCaliberReloadTime_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxCaliberReloadTime_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_37mm_67_70k_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxMaxAngle_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipAuxMaxAngle_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxMaxAngle_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_37mm_67_70k_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxCaliberReloadTime_45mm_21K_naval_user_cannon")]
-        public decimal? ShipAuxCaliberReloadTime_45mm_21K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxCaliberReloadTime_45mm_21km_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_45mm_21km_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxMaxAngle_45mm_21K_naval_user_cannon")]
-        public decimal? ShipAuxMaxAngle_45mm_21K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxMaxAngle_45mm_21km_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_45mm_21km_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberReloadTime_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipMainCaliberReloadTime_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberReloadTime_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_37mm_67_70k_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberMaxAngle_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipMainCaliberMaxAngle_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberMaxAngle_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_37mm_67_70k_single_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAntiAirCaliberReloadTime_12_7mm_M2_HB_naval_user_machinegun")]
         public decimal? ShipAntiAirCaliberReloadTime_12_7mm_M2_HB_naval_user_machinegun { get; set; }
@@ -641,11 +641,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipAuxMaxAngle_76mm_34K_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_76mm_34K_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAntiAirCaliberReloadTime_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAntiAirCaliberReloadTime_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_37mm_67_70k_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAntiAirMaxAngle_37mm_70_K_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_37mm_70_K_naval_user_cannon { get; set; }
+        [JsonProperty("shipAntiAirMaxAngle_37mm_67_70k_single_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_37mm_67_70k_single_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_20mm_Oerlikon_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_20mm_Oerlikon_naval_user_cannon { get; set; }
@@ -659,11 +659,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipAuxMaxAngle_40mm_l60_bofors_mk3_single_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_40mm_l60_bofors_mk3_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberReloadTime_127mm_5_38_Mark_12_naval_user_cannon")]
-        public decimal? ShipMainCaliberReloadTime_127mm_5_38_Mark_12_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberReloadTime_127mm_38_mk12_turret_mk30_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_127mm_38_mk12_turret_mk30_single_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberMaxAngle_127mm_5_38_Mark_12_naval_user_cannon")]
-        public decimal? ShipMainCaliberMaxAngle_127mm_5_38_Mark_12_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberMaxAngle_127mm_38_mk12_turret_mk30_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_127mm_38_mk12_turret_mk30_single_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAuxCaliberReloadTime_40mm_l60_bofors_mk1_twin_naval_user_cannon")]
         public decimal? ShipAuxCaliberReloadTime_40mm_l60_bofors_mk1_twin_naval_user_cannon { get; set; }
@@ -785,17 +785,29 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_76mm_3_50_mk10_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_76mm_3_50_mk10_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberReloadTime_152mm_6inch_45_bl_mk_xii_naval_user_cannon")]
-        public decimal? ShipMainCaliberReloadTime_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberReloadTime_190mm_7_5inch_45_bl_mk6_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_190mm_7_5inch_45_bl_mk6_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberMaxAngle_152mm_6inch_45_bl_mk_xii_naval_user_cannon")]
-        public decimal? ShipMainCaliberMaxAngle_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberMaxAngle_190mm_7_5inch_45_bl_mk6_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_190mm_7_5inch_45_bl_mk6_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAuxCaliberReloadTime_102mm_Mark_V_naval_user_cannon")]
         public decimal? ShipAuxCaliberReloadTime_102mm_Mark_V_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAuxMaxAngle_102mm_Mark_V_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_102mm_Mark_V_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_QF_2pdr_mk_VIII_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_40mm_QF_2pdr_mk_VIII_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_152mm_6inch_45_bl_mk_xii_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_152mm_6inch_45_bl_mk_xii_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_152mm_6inch_45_bl_mk_xii_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_150mm_l_48_c_36_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_150mm_l_48_c_36_naval_user_cannon { get; set; }
@@ -839,6 +851,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipAuxMaxAngle_100mm_50_manizini_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_100mm_50_manizini_naval_user_cannon { get; set; }
 
+        [JsonProperty("shipAuxCaliberReloadTime_45mm_21K_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_45mm_21K_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_45mm_21K_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_45mm_21K_naval_user_cannon { get; set; }
+
         [JsonProperty("shipMainCaliberReloadTime_30mm_ak_230_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_30mm_ak_230_naval_user_cannon { get; set; }
 
@@ -881,11 +899,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_76mm_ak_726_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_76mm_ak_726_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberReloadTime_45mm_21K_naval_user_cannon")]
-        public decimal? ShipMainCaliberReloadTime_45mm_21K_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberReloadTime_45mm_21km_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_45mm_21km_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberMaxAngle_45mm_21K_naval_user_cannon")]
-        public decimal? ShipMainCaliberMaxAngle_45mm_21K_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberMaxAngle_45mm_21km_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_45mm_21km_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_14_5mm_KPVT_naval_user_machinegun")]
         public decimal? ShipMainCaliberReloadTime_14_5mm_KPVT_naval_user_machinegun { get; set; }
@@ -935,6 +953,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipAuxMaxAngle_76mm_1914_lender_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_76mm_1914_lender_naval_user_cannon { get; set; }
 
+        [JsonProperty("shipMainCaliberReloadTime_127mm_38_mk12_turret_mk21_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_127mm_38_mk12_turret_mk21_single_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_127mm_38_mk12_turret_mk21_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_127mm_38_mk12_turret_mk21_single_naval_user_cannon { get; set; }
+
         [JsonProperty("shipMainCaliberReloadTime_7_7mm_lewis_amg_1916_naval_user_machinegun")]
         public decimal? ShipMainCaliberReloadTime_7_7mm_lewis_amg_1916_naval_user_machinegun { get; set; }
 
@@ -964,6 +988,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("shipAntiAirMaxAngle_7_7mm_mg_lewis_naval_user_machinegun")]
         public decimal? ShipAntiAirMaxAngle_7_7mm_mg_lewis_naval_user_machinegun { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_20mm_oerlikon_mk24_twin_mount_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_20mm_oerlikon_mk24_twin_mount_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_20mm_oerlikon_mk24_twin_mount_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_20mm_oerlikon_mk24_twin_mount_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_47mm_qf3pdr_hotchkiss_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_47mm_qf3pdr_hotchkiss_naval_user_cannon { get; set; }
@@ -995,35 +1025,29 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_12_7mm_05_Vickers_mk_V_naval_user_machinegun")]
         public decimal? ShipMainCaliberMaxAngle_12_7mm_05_Vickers_mk_V_naval_user_machinegun { get; set; }
 
+        [JsonProperty("shipMainCaliberReloadTime_120mm_45_qf_mk12_mount_cp17_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_120mm_45_qf_mk12_mount_cp17_single_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_120mm_45_qf_mk12_mount_cp17_single_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_120mm_45_qf_mk12_mount_cp17_single_naval_user_cannon { get; set; }
+
         [JsonProperty("shipMainCaliberReloadTime_114mm_45_QF_MkIV_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_114mm_45_QF_MkIV_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberMaxAngle_114mm_45_QF_MkIV_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_114mm_45_QF_MkIV_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxCaliberReloadTime_102mm_33_4inch_qf_mkXXIII_naval_user_cannon")]
-        public decimal? ShipAuxCaliberReloadTime_102mm_33_4inch_qf_mkXXIII_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxMaxAngle_102mm_33_4inch_qf_mkXXIII_naval_user_cannon")]
-        public decimal? ShipAuxMaxAngle_102mm_33_4inch_qf_mkXXIII_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxCaliberReloadTime_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAntiAirMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirMaxAngle_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_qf_bofors_mk7_single_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_40mm_qf_bofors_mk7_single_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirMaxAngle_40mm_qf_bofors_mk7_single_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_40mm_qf_bofors_mk7_single_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxMaxAngle_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_40mm_qf_bofors_staag_mk2_twin_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_102mm_45_BL_Mk_IX_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_102mm_45_BL_Mk_IX_naval_user_cannon { get; set; }
@@ -1048,6 +1072,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("shipAuxMaxAngle_37mm_AN_M4_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_37mm_AN_M4_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_127mm_38_mk12_turret_mk38_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_127mm_38_mk12_turret_mk38_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_127mm_38_mk12_turret_mk38_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_127mm_38_mk12_turret_mk38_twin_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAuxCaliberReloadTime_40mm_l60_bofors_mk2_quad_naval_user_cannon")]
         public decimal? ShipAuxCaliberReloadTime_40mm_l60_bofors_mk2_quad_naval_user_cannon { get; set; }
@@ -1091,6 +1121,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_133mm_5_25inch_50_qf_mk1_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_133mm_5_25inch_50_qf_mk1_naval_user_cannon { get; set; }
 
+        [JsonProperty("shipMainCaliberReloadTime_127mm_38_mk12_turret_mk22_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_127mm_38_mk12_turret_mk22_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_127mm_38_mk12_turret_mk22_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_127mm_38_mk12_turret_mk22_twin_naval_user_cannon { get; set; }
+
         [JsonProperty("shipAuxCaliberReloadTime_28mm_75_mk_1_chicago_piano_naval_user_cannon")]
         public decimal? ShipAuxCaliberReloadTime_28mm_75_mk_1_chicago_piano_naval_user_cannon { get; set; }
 
@@ -1115,12 +1151,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_152mm_6inch_50_bl_mk_xxiii_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_152mm_6inch_50_bl_mk_xxiii_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_QF_2pdr_mk_VIII_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirMaxAngle_40mm_QF_2pdr_mk_VIII_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_40mm_QF_2pdr_mk_VIII_naval_user_cannon { get; set; }
-
         [JsonProperty("shipMainCaliberReloadTime_180mm_b1p_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_180mm_b1p_naval_user_cannon { get; set; }
 
@@ -1138,6 +1168,12 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("shipAntiAirMaxAngle_45mm_21K_naval_user_cannon")]
         public decimal? ShipAntiAirMaxAngle_45mm_21K_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_37mm_FlaKM42_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_37mm_FlaKM42_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_37mm_FlaKM42_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_37mm_FlaKM42_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_152mm_6inch_50_qf_mk_5_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_152mm_6inch_50_qf_mk_5_naval_user_cannon { get; set; }
@@ -1181,11 +1217,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_25mm_Type_96_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_25mm_Type_96_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberReloadTime_37mm_type_94_naval_user_cannon")]
-        public decimal? ShipMainCaliberReloadTime_37mm_type_94_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberReloadTime_37mm_type_4_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_37mm_type_4_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipMainCaliberMaxAngle_37mm_type_94_naval_user_cannon")]
-        public decimal? ShipMainCaliberMaxAngle_37mm_type_94_naval_user_cannon { get; set; }
+        [JsonProperty("shipMainCaliberMaxAngle_37mm_type_4_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_37mm_type_4_naval_user_cannon { get; set; }
 
         [JsonProperty("shipAuxCaliberReloadTime_20mm_type_98_naval_user_cannon")]
         public decimal? ShipAuxCaliberReloadTime_20mm_type_98_naval_user_cannon { get; set; }
@@ -1295,23 +1331,23 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("shipMainCaliberMaxAngle_200mm_50_3rd_year_type_no1_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_200mm_50_3rd_year_type_no1_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxCaliberReloadTime_120mm_40_10th_year_type_naval_user_cannon")]
-        public decimal? ShipAuxCaliberReloadTime_120mm_40_10th_year_type_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxCaliberReloadTime_120mm_45_10th_year_type_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_120mm_45_10th_year_type_naval_user_cannon { get; set; }
 
-        [JsonProperty("shipAuxMaxAngle_120mm_40_10th_year_type_naval_user_cannon")]
-        public decimal? ShipAuxMaxAngle_120mm_40_10th_year_type_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirCaliberReloadTime_25mm_Type_96_naval_user_cannon")]
-        public decimal? ShipAntiAirCaliberReloadTime_25mm_Type_96_naval_user_cannon { get; set; }
-
-        [JsonProperty("shipAntiAirMaxAngle_25mm_Type_96_naval_user_cannon")]
-        public decimal? ShipAntiAirMaxAngle_25mm_Type_96_naval_user_cannon { get; set; }
+        [JsonProperty("shipAuxMaxAngle_120mm_45_10th_year_type_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_120mm_45_10th_year_type_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_203mm_50_3rd_year_type_no2_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_203mm_50_3rd_year_type_no2_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberMaxAngle_203mm_50_3rd_year_type_no2_naval_user_cannon")]
         public decimal? ShipMainCaliberMaxAngle_203mm_50_3rd_year_type_no2_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_25mm_Type_96_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_25mm_Type_96_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_25mm_Type_96_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_25mm_Type_96_naval_user_cannon { get; set; }
 
         [JsonProperty("shipMainCaliberReloadTime_152mm_50_type_41_naval_user_cannon")]
         public decimal? ShipMainCaliberReloadTime_152mm_50_type_41_naval_user_cannon { get; set; }
@@ -1324,6 +1360,108 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("shipAuxMaxAngle_80mm_60_type_98_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_80mm_60_type_98_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_102mm_Mark_XVI_Mark_XIX_mount_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_40mm_62_hi_type91_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_40mm_62_hi_type91_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_40mm_62_hi_type91_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_40mm_62_hi_type91_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_203mm_60_skc_34_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_203mm_60_skc_34_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_203mm_60_skc_34_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_203mm_60_skc_34_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_105mm_60_sk_c33_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_105mm_60_sk_c33_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_105mm_60_sk_c33_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_105mm_60_sk_c33_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_127mm_38_mk12_turret_mk28_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_127mm_38_mk12_turret_mk28_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_127mm_38_mk12_turret_mk28_twin_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_127mm_38_mk12_turret_mk28_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_102mm_45_4inch_mk15_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_102mm_45_4inch_mk15_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_102mm_45_4inch_mk15_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_102mm_45_4inch_mk15_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_20mm_Oerlikon_mk_v_twin_mount_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_l60_bofors_mk2_quad_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_40mm_l60_bofors_mk2_quad_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_40mm_l60_bofors_mk2_quad_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_40mm_l60_bofors_mk2_quad_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_152mm_57_b38_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_152mm_57_b38_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_152mm_57_b38_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_152mm_57_b38_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_100mm_70_sm_5_1_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_100mm_70_sm_5_1_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_100mm_70_sm_5_1_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_100mm_70_sm_5_1_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_37mm_67_70k_twin_v11_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_37mm_67_70k_twin_v11_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_37mm_67_70k_twin_v11_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_37mm_67_70k_twin_v11_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_127mm_5_40_type_89_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_127mm_5_40_type_89_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_127mm_5_40_type_89_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_127mm_5_40_type_89_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
+        public decimal? ShipAntiAirCaliberReloadTime_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon")]
+        public decimal? ShipAntiAirMaxAngle_40mm_qf_bofors_mk5_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_127mm_38_mk12_turret_mk28_twin_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_127mm_38_mk12_turret_mk28_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_127mm_38_mk12_turret_mk28_twin_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_127mm_38_mk12_turret_mk28_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberReloadTime_203mm_55_8inch_mk14_naval_user_cannon")]
+        public decimal? ShipMainCaliberReloadTime_203mm_55_8inch_mk14_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipMainCaliberMaxAngle_203mm_55_8inch_mk14_naval_user_cannon")]
+        public decimal? ShipMainCaliberMaxAngle_203mm_55_8inch_mk14_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAntiAirCaliberReloadTime_6_5mm_type_3_naval_user_machinegun")]
+        public decimal? ShipAntiAirCaliberReloadTime_6_5mm_type_3_naval_user_machinegun { get; set; }
+
+        [JsonProperty("shipAntiAirMaxAngle_6_5mm_type_3_naval_user_machinegun")]
+        public decimal? ShipAntiAirMaxAngle_6_5mm_type_3_naval_user_machinegun { get; set; }
+
+        [JsonProperty("shipAuxCaliberReloadTime_37mm_flak_lm42_twin_naval_user_cannon")]
+        public decimal? ShipAuxCaliberReloadTime_37mm_flak_lm42_twin_naval_user_cannon { get; set; }
+
+        [JsonProperty("shipAuxMaxAngle_37mm_flak_lm42_twin_naval_user_cannon")]
+        public decimal? ShipAuxMaxAngle_37mm_flak_lm42_twin_naval_user_cannon { get; set; }
 
         #endregion Ship Cannon Data
 
