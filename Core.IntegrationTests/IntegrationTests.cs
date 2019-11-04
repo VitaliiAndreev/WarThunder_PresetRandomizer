@@ -163,6 +163,45 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Branch?.GaijinId)).Should().BeTrue();
 
+                    // crew
+                    vehicleCollection.Any(vehicle => vehicle.CrewData is null).Should().BeFalse();
+
+                    vehicleCollection.All(vehicle => vehicle.CrewData.CrewCount > 0).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.CrewData.MinumumCrewCountToOperate <= 0).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.CrewData.GunnersCount >= 0).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.CrewData.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.CrewData.HullBreachRepairSpeed <= 0).Should().BeFalse();
+
+                    // economy
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData is null).Should().BeFalse();
+
+                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.EconomyData.TargetClassGaijinId)).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.UnlockCostInResearch < 0).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.PurchaseCostInSilver >= 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.AceCrewTrainCostInGold > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.AceCrewTrainCostInResearch > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BackupSortieCostInGold > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.RepairTimeWithCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.RepairTimeWithoutCrew.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0m)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.RepairCost.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value >= 0)).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.FreeRepairs < 0).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTimeReward.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTimeReward.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTimeReward.Simulator >= 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Simulator >= 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.RewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.VisualRewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.VisualPremiumRewardMultiplier.Arcade <= 0m || vehicle.EconomyData.VisualPremiumRewardMultiplier.Realistic <= 0m || vehicle.EconomyData.VisualPremiumRewardMultiplier.Simulator <= 0m).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.ResearchRewardMultiplier > 0m).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.GroundKillRewardMultiplier > 0m).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTime.Arcade > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTime.Realistic > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.BattleTime.Simulator >= 0).Should().BeTrue();
+
                     // general
                     vehicleCollection.All(vehicle => vehicle.Id != 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
@@ -171,17 +210,46 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
 
+                    // graphics
+                    vehicleCollection.Any(vehicle => vehicle.GraphicsData.BulletsIconParam < 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.GraphicsData.WeaponMask < 0).Should().BeFalse();
+
                     // localization
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(EInteger.Number.Thousand);
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(EInteger.Number.Thousand);
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(EInteger.Number.Thousand);
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ClassName?.German)).Should().BeGreaterThan(EInteger.Number.Thousand);
 
+                    // modifications
+                    vehicleCollection.Any(vehicle => vehicle.ModificationsData is null).Should().BeFalse();
+
+                    vehicleCollection.All(vehicle => vehicle.ModificationsData.AmountOfModificationsResearchedIn_Tier0_RequiredToUnlock_Tier1 == 1).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.ModificationsData.AmountOfModificationsResearchedIn_Tier1_RequiredToUnlock_Tier2 >= 1).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.ModificationsData.AmountOfModificationsResearchedIn_Tier2_RequiredToUnlock_Tier3 >= 1).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.ModificationsData.AmountOfModificationsResearchedIn_Tier3_RequiredToUnlock_Tier4 >= 1).Should().BeTrue();
+
+                    // performance
+                    vehicleCollection.Any(vehicle => vehicle.PerformanceData is null).Should().BeFalse();
+
+                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.PerformanceData.MoveType)).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.PerformanceData.Speed <= 0m).Should().BeFalse();
+                    vehicleCollection.All(vehicle => vehicle.PerformanceData.NumberOfSpawns.Event is null || vehicle.PerformanceData.NumberOfSpawns.Event == 3).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.PerformanceData.NumberOfSpawns.Arcade <= 0 || vehicle.PerformanceData.NumberOfSpawns.Realistic <= 0 || vehicle.PerformanceData.NumberOfSpawns.Simulator <= 0).Should().BeFalse();
+
                     // rank
                     vehicleCollection.All(vehicle => vehicle.Rank > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomicRank.Arcade >= 0 && vehicle.EconomicRank.Realistic >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomicRank.Simulator < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.BattleRatingFormatted.Arcade.Matches(Vehicle.BattleRatingRegExPattern) && vehicle.BattleRatingFormatted.Realistic.Matches(Vehicle.BattleRatingRegExPattern)).Should().BeTrue();
+
+                    // weapons
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData is null).Should().BeFalse();
+
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData.TurretTraverseSpeeds?.Any(value => value < 0m) ?? false).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData.MachineGunReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData.CannonReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData.GunnerReloadTime <= 0m).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.WeaponsData.MaximumAmmunition <= 0).Should().BeFalse();
 
                     // research tree data
                     vehicleCollection.Any(vehicle => !(vehicle.ResearchTreeData is null)).Should().BeTrue();

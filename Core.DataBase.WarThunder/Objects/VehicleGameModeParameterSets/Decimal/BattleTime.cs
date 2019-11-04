@@ -81,10 +81,10 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The vehicle this set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
-        public override IVehicle Vehicle { get; protected set; }
+        /// <summary> The entity this set belongs to. </summary>
+        [ManyToOne(0, Column = ETable.VehicleEconomyData + "_" + EColumn.Id, ClassType = typeof(VehicleEconomyData), NotNull = true, Lazy = Laziness.Proxy)]
+        [Key(1, Unique = true, Column = ETable.VehicleEconomyData + "_" + EColumn.Id)]
+        public override IPersistentWarThunderObjectWithId Entity { get; protected set; }
 
         /// <summary> The value in Arcade Battles. </summary>
         [Property(NotNull = false)]
@@ -112,41 +112,41 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTime(IDataRepository dataRepository, IVehicle vehicle)
-            : this(dataRepository, vehicle, null, null, null, null)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        public BattleTime(IDataRepository dataRepository, IVehicleEconomyData economyData)
+            : this(dataRepository, economyData, null, null, null, null)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The set's ID. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTime(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : this(dataRepository, id, vehicle, null, null, null, null)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        public BattleTime(IDataRepository dataRepository, long id, IVehicleEconomyData economyData)
+            : this(dataRepository, id, economyData, null, null, null, null)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
+        /// <param name="economyData"> The entity the set belongs to. </param>
         /// <param name="valueInArcade"> The value in Arcade Battles. </param>
         /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
         /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
         /// <param name="valueInEvent"> The value in Event Battles. </param>
-        public BattleTime(IDataRepository dataRepository, IVehicle vehicle, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
-            : this(dataRepository, -1L, vehicle, valueInArcade, valueInRealistic, valueInSimulator, valueInEvent)
+        public BattleTime(IDataRepository dataRepository, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
+            : this(dataRepository, -1L, economyData, valueInArcade, valueInRealistic, valueInSimulator, valueInEvent)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The set's ID. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTime(IDataRepository dataRepository, long id, IVehicle vehicle, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        public BattleTime(IDataRepository dataRepository, long id, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
             : base(dataRepository, id)
         {
-            Vehicle = vehicle;
+            Entity = economyData;
 
             Arcade = valueInArcade;
             Realistic = valueInRealistic;

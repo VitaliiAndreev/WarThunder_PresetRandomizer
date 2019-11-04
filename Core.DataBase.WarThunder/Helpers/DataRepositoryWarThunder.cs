@@ -20,8 +20,14 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IBranch>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicle>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleTagSet>());
-            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGameModeParameterSetBase>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleResearchTreeData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleEconomyData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehiclePerformanceData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleCrewData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleWeaponsData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleModificationsData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGraphicsData>());
+            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleGameModeParameterSetBase>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<ILocalization>());
 
             if (sortedNewObjects.Count() != dataRepository.NewObjects.Count())

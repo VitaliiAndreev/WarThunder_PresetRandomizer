@@ -96,9 +96,15 @@
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleCrewData.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleEconomyData.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleGraphicsData.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleModificationsData.cs" />
+    <Compile Include="Objects\Interfaces\IVehiclePerformanceData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Interfaces\IPersistentWarThunderObjectWithId.cs" />
     <Compile Include="Objects\Interfaces\IVehicleTagSet.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleWeaponsData.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
@@ -127,6 +133,8 @@
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\PersistentWarThunderObjectWithId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
+    <Compile Include="Objects\VehicleCrewData.cs" />
+    <Compile Include="Objects\VehicleEconomyData.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleTime.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualPremiumRewardMultiplier.cs" />
@@ -134,8 +142,8 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RewardMultiplier.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithoutCrew.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithCrew.cs" />
-    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\AverageAward.cs" />
-    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\BattleTimeAward.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\AverageReward.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Integer\BattleTimeReward.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Integer\RepairCost.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Integer\EconomicRank.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Integer\NumberOfSpawns.cs" />
@@ -143,8 +151,12 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\Interfaces\IVehicleGameModeParameterSetBase.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\String\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\VehicleGameModeParameterSetBase.cs" />
+    <Compile Include="Objects\VehicleGraphicsData.cs" />
+    <Compile Include="Objects\VehicleModificationsData.cs" />
+    <Compile Include="Objects\VehiclePerformanceData.cs" />
     <Compile Include="Objects\VehicleResearchTreeData.cs" />
     <Compile Include="Objects\VehicleTagSet.cs" />
+    <Compile Include="Objects\VehicleWeaponsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

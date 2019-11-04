@@ -82,9 +82,9 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         public override long Id { get; protected set; }
 
         /// <summary> The vehicle this set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
-        public override IVehicle Vehicle { get; protected set; }
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
+        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
+        public override IPersistentWarThunderObjectWithId Entity { get; protected set; }
 
         /// <summary> The value in Arcade Battles. </summary>
         [Property(NotNull = false)]
@@ -146,7 +146,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         public BattleRating(IDataRepository dataRepository, long id, IVehicle vehicle, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
             : base(dataRepository, id)
         {
-            Vehicle = vehicle;
+            Entity = vehicle;
 
             Arcade = valueInArcade;
             Realistic = valueInRealistic;

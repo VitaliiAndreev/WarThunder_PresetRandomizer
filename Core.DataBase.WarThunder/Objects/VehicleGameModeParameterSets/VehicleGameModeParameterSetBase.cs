@@ -9,7 +9,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets
         #region Properties
 
         /// <summary> The vehicle this set belongs to. </summary>
-        public virtual IVehicle Vehicle { get; protected set; }
+        public virtual IPersistentWarThunderObjectWithId Entity { get; protected set; }
 
         /// <summary> An internal value used during initialization. </summary>
         protected internal virtual object InternalArcade { get; set; }

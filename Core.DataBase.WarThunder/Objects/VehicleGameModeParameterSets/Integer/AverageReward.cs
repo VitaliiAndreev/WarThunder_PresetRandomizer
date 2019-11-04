@@ -10,8 +10,8 @@ using NHibernate.Mapping.Attributes;
 namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
 {
     /// <summary> A set of nullable integer parameters that vary depending on the game mode. </summary>
-    [Class(Table = ETable.VehicleBattleTimeAward)]
-    public class BattleTimeAward: VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<int?>
+    [Class(Table = ETable.VehicleAverageReward)]
+    public class AverageReward: VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<int?>
     {
         #region Fields
 
@@ -81,10 +81,10 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The vehicle this set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
-        public override IVehicle Vehicle { get; protected set; }
+        /// <summary> The entity this set belongs to. </summary>
+        [ManyToOne(0, Column = ETable.VehicleEconomyData + "_" + EColumn.Id, ClassType = typeof(VehicleEconomyData), NotNull = true, Lazy = Laziness.Proxy)]
+        [Key(1, Unique = true, Column = ETable.VehicleEconomyData + "_" + EColumn.Id)]
+        public override IPersistentWarThunderObjectWithId Entity { get; protected set; }
 
         /// <summary> The value in Arcade Battles. </summary>
         [Property(NotNull = false)]
@@ -106,47 +106,51 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected BattleTimeAward()
+        protected AverageReward()
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTimeAward(IDataRepository dataRepository, IVehicle vehicle)
-            : this(dataRepository, vehicle, null, null, null, null)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        public AverageReward(IDataRepository dataRepository, IVehicleEconomyData economyData)
+            : this(dataRepository, economyData, null, null, null, null)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The set's ID. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTimeAward(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : this(dataRepository, id, vehicle, null, null, null, null)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        public AverageReward(IDataRepository dataRepository, long id, IVehicleEconomyData economyData)
+            : this(dataRepository, id, economyData, null, null, null, null)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
+        /// <param name="economyData"> The entity the set belongs to. </param>
         /// <param name="valueInArcade"> The value in Arcade Battles. </param>
         /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
         /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
         /// <param name="valueInEvent"> The value in Event Battles. </param>
-        public BattleTimeAward(IDataRepository dataRepository, IVehicle vehicle, int? valueInArcade, int? valueInRealistic, int? valueInSimulator, int? valueInEvent)
-            : this(dataRepository, -1L, vehicle, valueInArcade, valueInRealistic, valueInSimulator, valueInEvent)
+        public AverageReward(IDataRepository dataRepository, IVehicleEconomyData economyData, int? valueInArcade, int? valueInRealistic, int? valueInSimulator, int? valueInEvent)
+            : this(dataRepository, -1L, economyData, valueInArcade, valueInRealistic, valueInSimulator, valueInEvent)
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The set's ID. </param>
-        /// <param name="vehicle"> The set's vehicle. </param>
-        public BattleTimeAward(IDataRepository dataRepository, long id, IVehicle vehicle, int? valueInArcade, int? valueInRealistic, int? valueInSimulator, int? valueInEvent)
+        /// <param name="economyData"> The entity the set belongs to. </param>
+        /// <param name="valueInArcade"> The value in Arcade Battles. </param>
+        /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
+        /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
+        /// <param name="valueInEvent"> The value in Event Battles. </param>
+        public AverageReward(IDataRepository dataRepository, long id, IVehicleEconomyData economyData, int? valueInArcade, int? valueInRealistic, int? valueInSimulator, int? valueInEvent)
             : base(dataRepository, id)
         {
-            Vehicle = vehicle;
+            Entity = economyData;
 
             Arcade = valueInArcade;
             Realistic = valueInRealistic;
@@ -161,19 +165,14 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         /// <summary> Return value of the game mode parameter corresponding to the given enumeration value. </summary>
         /// <param name="gameMode"> The game mode the value for which to get. </param>
         /// <returns></returns>
-        public virtual int? this[EGameMode gameMode]
-        {
-            get
+        public virtual int? this[EGameMode gameMode] =>
+            gameMode switch
             {
-                return gameMode switch
-                {
-                    EGameMode.Arcade => Arcade,
-                    EGameMode.Realistic => Realistic,
-                    EGameMode.Simulator => Simulator,
-                    EGameMode.Event => Event,
-                    _ => null,
-                };
-            }
-        }
+                EGameMode.Arcade => Arcade,
+                EGameMode.Realistic => Realistic,
+                EGameMode.Simulator => Simulator,
+                EGameMode.Event => Event,
+                _ => null,
+            };
     }
 }

@@ -66,6 +66,12 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
 
+        /// <summary> The gift requirement that grants ownerhip of this vehicle. </summary>
+        [Property()] public virtual string OwnershipGiftPrerequisite { get; protected set; }
+
+        /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
+        [Property()] public virtual bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; protected set; }
+
         /// <summary> The purchase requirement that grants ownerhip of this vehicle. </summary>
         [Property()] public virtual string OwnershipPurchasePrerequisite { get; protected set; }
 
@@ -112,17 +118,41 @@ namespace Core.DataBase.WarThunder.Objects
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Vehicle))]
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Entity), Lazy = Laziness.Proxy)]
         public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Vehicle))]
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Entity), Lazy = Laziness.Proxy)]
         public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
 
         /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle))]
         public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
         
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleEconomyData), PropertyRef = nameof(VehicleEconomyData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehicleEconomyData EconomyData { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehiclePerformanceData), PropertyRef = nameof(VehiclePerformanceData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehiclePerformanceData PerformanceData { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleCrewData), PropertyRef = nameof(VehicleCrewData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehicleCrewData CrewData { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleWeaponsData), PropertyRef = nameof(VehicleWeaponsData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehicleWeaponsData WeaponsData { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleModificationsData), PropertyRef = nameof(VehicleModificationsData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehicleModificationsData ModificationsData { get; protected set; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        [OneToOne(ClassType = typeof(VehicleGraphicsData), PropertyRef = nameof(VehicleGraphicsData.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual VehicleGraphicsData GraphicsData { get; protected set; }
+
         [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle))]
         /// <summary> The full name of the vehicle. </summary>
         public virtual IVehicleLocalization FullName { get; protected set; }
@@ -211,6 +241,13 @@ namespace Core.DataBase.WarThunder.Objects
                 ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
 
             ConsolidateGameModeParameterPropertiesIntoSets(deserializedVehicle);
+
+            EconomyData = new VehicleEconomyData(_dataRepository, this, deserializedVehicle);
+            PerformanceData = new VehiclePerformanceData(_dataRepository, this, deserializedVehicle);
+            CrewData = new VehicleCrewData(_dataRepository, this, deserializedVehicle);
+            ModificationsData = new VehicleModificationsData(_dataRepository, this, deserializedVehicle);
+            WeaponsData = new VehicleWeaponsData(_dataRepository, this, deserializedVehicle);
+            GraphicsData = new VehicleGraphicsData(_dataRepository, this, deserializedVehicle);
         }
 
         /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
@@ -347,9 +384,7 @@ namespace Core.DataBase.WarThunder.Objects
             {
                 { nameof(EconomicRank), EconomicRank },
             };
-
-            foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // With a dictionary of game mode parameter set properties now there's only need to look through the JSON mapping class once.
-                parameterSets.InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty);
+            ConsolidateGameModeParameterPropertiesIntoSets(parameterSets, instanceDeserializedFromJson);
         }
 
         /// <summary> Initializes formatted string representations of <see cref="BattleRating"/>. </summary>
@@ -380,6 +415,12 @@ namespace Core.DataBase.WarThunder.Objects
                 EconomicRank,
                 BattleRating,
                 ResearchTreeData,
+                EconomyData,
+                PerformanceData,
+                CrewData,
+                WeaponsData,
+                ModificationsData,
+                GraphicsData,
             };
 
             return nestedObjects;

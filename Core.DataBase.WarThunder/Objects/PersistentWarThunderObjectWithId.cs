@@ -1,7 +1,13 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
+using Core.DataBase.WarThunder.Extensions;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Json.Interfaces;
+using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
+using NHibernate.Mapping.Attributes;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -44,6 +50,14 @@ namespace Core.DataBase.WarThunder.Objects
                 if (properties.TryGetValue(jsonProperty.Key, out var property))
                     property.SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
             }
+        }
+
+        /// <summary> Consolidates values of JSON properties for <see cref="EGameMode"/> parameters into sets defined in the persistent class. </summary>
+        /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
+        protected void ConsolidateGameModeParameterPropertiesIntoSets(IDictionary<string, VehicleGameModeParameterSetBase> parameterSets, VehicleDeserializedFromJsonWpCost instanceDeserializedFromJson)
+        {
+            foreach (var jsonProperty in instanceDeserializedFromJson.GetType().GetProperties()) // With a dictionary of game mode parameter set properties now there's only need to look through the JSON mapping class once.
+                parameterSets.InsertJsonPropertyValueIntoGameModeParameterSet(instanceDeserializedFromJson, jsonProperty);
         }
 
         #endregion Methods: Initialization

@@ -4,7 +4,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     public interface IVehicleGameModeParameterSetBase: IPersistentObjectWithId
     {
-        /// <summary> The vehicle this set belongs to. </summary>
-        IVehicle Vehicle { get; }
+        /// <summary> The entity this set belongs to. </summary>
+        IPersistentWarThunderObjectWithId Entity { get; }
     }
 }

@@ -27,6 +27,12 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         string CategoryOfHiddenVehicles { get; }
 
+        /// <summary> The gift requirement that grants ownerhip of this vehicle. </summary>
+        string OwnershipGiftPrerequisite { get; }
+
+        /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
+        bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
+
         /// <summary> The purchase requirement that grants ownerhip of this vehicle. </summary>
         string OwnershipPurchasePrerequisite { get; }
 
@@ -77,6 +83,24 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleResearchTreeData ResearchTreeData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleEconomyData EconomyData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehiclePerformanceData PerformanceData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleCrewData CrewData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleWeaponsData WeaponsData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleModificationsData ModificationsData { get; }
+
+        /// <summary> A set of information pertaining to the research tree. </summary>
+        VehicleGraphicsData GraphicsData { get; }
 
         /// <summary> The full name of the vehicle. </summary>
         IVehicleLocalization FullName { get; }
