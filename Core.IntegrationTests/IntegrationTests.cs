@@ -157,7 +157,7 @@ namespace Core.IntegrationTests
             {
                 static void assert(IEnumerable<IVehicle> vehicleCollection)
                 {
-                    vehicleCollection.Count().Should().BeGreaterThan(1300);
+                    vehicleCollection.Count().Should().BeGreaterThan(1500);
 
                     // association
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
