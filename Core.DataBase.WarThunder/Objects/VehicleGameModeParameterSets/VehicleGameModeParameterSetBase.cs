@@ -6,6 +6,8 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets
 {
     public class VehicleGameModeParameterSetBase : PersistentObjectWithId, IVehicleGameModeParameterSetBase
     {
+        #region Properties
+
         /// <summary> The vehicle this set belongs to. </summary>
         public virtual IVehicle Vehicle { get; protected set; }
 
@@ -21,6 +23,9 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets
         /// <summary> An internal value used during initialization. </summary>
         protected internal virtual object InternalEvent { get; set; }
 
+        #endregion Properties
+        #region Constructors
+
         public VehicleGameModeParameterSetBase()
         {
         }
@@ -29,5 +34,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets
             : base(dataRepository, id)
         {
         }
+
+        #endregion Constructors
     }
 }

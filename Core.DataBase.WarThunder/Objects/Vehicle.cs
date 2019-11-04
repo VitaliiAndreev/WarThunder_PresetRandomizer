@@ -111,7 +111,7 @@ namespace Core.DataBase.WarThunder.Objects
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
-        /// <summary> [OBSOLETE, NOW AN INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
+        /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Vehicle))]
         public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
 
@@ -190,9 +190,6 @@ namespace Core.DataBase.WarThunder.Objects
         {
             LogCreation();
         }
-
-        // This class is not supposed to have a constructor that allows injection of most property values.
-        // That is done when deserializing instances from JSON.
 
         #endregion Constructors
         #region Methods: Initialization
@@ -411,6 +408,7 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Methods: Initialization Helpers
 
         #endregion Methods: Initialization
+        #region Methods: Overrides
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
         /// <returns></returns>
@@ -428,5 +426,7 @@ namespace Core.DataBase.WarThunder.Objects
 
             return nestedObjects;
         }
+
+        #endregion Methods: Overrides
     }
 }

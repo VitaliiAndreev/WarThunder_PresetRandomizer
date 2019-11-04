@@ -21,8 +21,8 @@ namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
         public override string GaijinId { get; protected set; }
 
         /// <summary> The vehicle this localization belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Objects.Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Objects.Vehicle), NotNull = true)]
+        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
         public override IVehicle Vehicle { get; protected set; }
 
         [Property] public override string English { get; protected set; }

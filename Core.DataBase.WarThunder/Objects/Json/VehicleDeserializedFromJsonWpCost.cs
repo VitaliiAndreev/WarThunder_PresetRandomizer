@@ -342,6 +342,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("weaponUpgrade4")]
         public string WeaponUpgrade4 { get; set; }
 
+        #region Ship Cannon Data
+
         // Properties in this group below are here to match JSON object composition, even though these should not be here.
 
         [JsonProperty("shipMainCaliberReloadTime_76mm_F34_naval_user_cannon")]
@@ -1291,6 +1293,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("shipAuxMaxAngle_80mm_60_type_98_naval_user_cannon")]
         public decimal? ShipAuxMaxAngle_80mm_60_type_98_naval_user_cannon { get; set; }
+
+        #endregion Ship Cannon Data
 
         #endregion Weapons
 

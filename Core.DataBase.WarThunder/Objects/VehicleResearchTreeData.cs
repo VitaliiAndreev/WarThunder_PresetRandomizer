@@ -63,8 +63,8 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> The vehicle the data set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.GaijinId, ClassType = typeof(Vehicle), NotNull = true)]
-        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.GaijinId)]
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true)]
+        [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
         public virtual IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties

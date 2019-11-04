@@ -30,6 +30,7 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Constructors
+        #region Methods: Initialization
 
         /// <summary> Fills valid properties of the object with values deserialized from JSON data. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>
@@ -44,5 +45,7 @@ namespace Core.DataBase.WarThunder.Objects
                     property.SetValue(this, jsonProperty.Value.GetValue(instanceDeserializedFromJson));
             }
         }
+
+        #endregion Methods: Initialization
     }
 }
