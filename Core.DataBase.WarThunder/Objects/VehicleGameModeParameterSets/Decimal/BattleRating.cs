@@ -143,6 +143,10 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The set's ID. </param>
         /// <param name="vehicle"> The set's vehicle. </param>
+        /// <param name="valueInArcade"> The value in Arcade Battles. </param>
+        /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
+        /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
+        /// <param name="valueInEvent"> The value in Event Battles. </param>
         public BattleRating(IDataRepository dataRepository, long id, IVehicle vehicle, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
             : base(dataRepository, id)
         {

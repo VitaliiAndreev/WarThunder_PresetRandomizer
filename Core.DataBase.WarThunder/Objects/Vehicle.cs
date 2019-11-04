@@ -1,14 +1,12 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
-using Core.DataBase.WarThunder.Attributes;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.DataBase.WarThunder.Objects.Json.Interfaces;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
@@ -19,7 +17,6 @@ using NHibernate.Mapping.Attributes;
 using NHibernate.Type;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Objects
 {
