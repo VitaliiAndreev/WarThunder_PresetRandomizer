@@ -106,15 +106,15 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> A set of vehicle tags. </summary>
-        [OneToOne(ClassType = typeof(VehicleTagSet), PropertyRef = nameof(VehicleTagSet.Vehicle))]
+        [OneToOne(ClassType = typeof(VehicleTagSet), PropertyRef = nameof(VehicleTagSet.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleTagSet Tags { get; protected set; }
 
         /// <summary> The vehicle's nation. </summary>
-        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true)]
+        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1)] public virtual INation Nation { get; protected internal set; }
 
         /// <summary> The vehicle's branch. </summary>
-        [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true)]
+        [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
@@ -126,7 +126,7 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
 
         /// <summary> A set of information pertaining to the research tree. </summary>
-        [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle))]
+        [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
         
         /// <summary> A set of information pertaining to the research tree. </summary>
@@ -153,19 +153,19 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGraphicsData), PropertyRef = nameof(VehicleGraphicsData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleGraphicsData GraphicsData { get; protected set; }
 
-        [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle))]
+        [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The full name of the vehicle. </summary>
         public virtual IVehicleLocalization FullName { get; protected set; }
 
-        [OneToOne(ClassType = typeof(ResearchTreeName), PropertyRef = nameof(Localization.Vehicle.ResearchTreeName.Vehicle))]
+        [OneToOne(ClassType = typeof(ResearchTreeName), PropertyRef = nameof(Localization.Vehicle.ResearchTreeName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The name of the vehicle shown in the research tree. </summary>
         public virtual IVehicleLocalization ResearchTreeName { get; protected set; }
 
-        [OneToOne(ClassType = typeof(ShortName), PropertyRef = nameof(Localization.Vehicle.ShortName.Vehicle))]
+        [OneToOne(ClassType = typeof(ShortName), PropertyRef = nameof(Localization.Vehicle.ShortName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The short name of the vehicle. </summary>
         public virtual IVehicleLocalization ShortName { get; protected set; }
 
-        [OneToOne(ClassType = typeof(ClassName), PropertyRef = nameof(Localization.Vehicle.ClassName.Vehicle))]
+        [OneToOne(ClassType = typeof(ClassName), PropertyRef = nameof(Localization.Vehicle.ClassName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
         public virtual IVehicleLocalization ClassName { get; protected set; }
 

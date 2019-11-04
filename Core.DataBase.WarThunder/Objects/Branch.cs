@@ -29,12 +29,12 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> The branch's nation. </summary>
-        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true)]
+        [ManyToOne(0, Column = ETable.Nation + "_" + EColumn.Id, ClassType = typeof(Nation), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1)]
         public virtual INation Nation { get; protected set; }
 
         /// <summary> The branch's vehicles. </summary>
-        [Bag(0, Name = nameof(Vehicles), Inverse = true, Generic = true)]
+        [Bag(0, Name = nameof(Vehicles), Inverse = true, Generic = true, Lazy = CollectionLazy.True)]
         [Key(1, Column = ETable.Branch + "_" + EColumn.Id, NotNull = true)]
         [OneToMany(1, ClassType = typeof(Vehicle))]
         public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();

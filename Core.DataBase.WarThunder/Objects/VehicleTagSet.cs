@@ -10,7 +10,7 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle tags. </summary>
     [Class(Table = ETable.VehicleTagSet)]
-    public class VehicleTagSet : PersistentObjectWithIdAndGaijinId, IVehicleTagSet
+    public class VehicleTagSet : PersistentWarThunderObjectWithId, IVehicleTagSet
     {
         #region Persistent Properties
 
@@ -226,7 +226,7 @@ namespace Core.DataBase.WarThunder.Objects
         #region Association Properties
 
         /// <summary> The vehicle the set belongs to. </summary>
-        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true)]
+        [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
         public virtual IVehicle Vehicle { get; protected set; }
 
@@ -251,7 +251,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="id"> The set's ID. </param>
         /// <param name="vehicle"> The set's vehicle. </param>
         public VehicleTagSet(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id, vehicle.GaijinId)
+            : base(dataRepository, id)
         {
             Vehicle = vehicle;
 

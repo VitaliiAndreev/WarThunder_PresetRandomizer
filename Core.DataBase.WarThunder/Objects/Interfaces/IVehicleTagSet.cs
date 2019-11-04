@@ -1,7 +1,7 @@
 ﻿namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle tags. </summary>
-    public interface IVehicleTagSet : IPersistentObjectWithIdAndGaijinId
+    public interface IVehicleTagSet : IPersistentWarThunderObjectWithId
     {
         #region Persistent Properties
 
