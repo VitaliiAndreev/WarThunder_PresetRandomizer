@@ -12,7 +12,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Client.Wpf
 {

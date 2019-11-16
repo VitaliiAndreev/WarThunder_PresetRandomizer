@@ -51,6 +51,8 @@ namespace Core.Organization.Helpers
 
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
+        /// <summary> Playable vehicles loaded into memory. </summary>
+        private readonly List<IVehicle> _playableVehicles;
 
         /// <summary> The string representation of the game client version. </summary>
         private string _gameClientVersion;
@@ -78,8 +80,6 @@ namespace Core.Organization.Helpers
         protected IDataRepository _dataRepository;
         /// <summary> The cache of persistent objects. </summary>
         protected readonly List<IPersistentObject> _cache;
-        /// <summary> Playable vehicles loaded into memory. </summary>
-        private readonly List<IVehicle> _playableVehicles;
 
         #endregion Fields
         #region Properties
