@@ -26,9 +26,9 @@
             public const string Hungary = _prefix + "hungary" + _suffix;
             public const string Iraq = _prefix + "iraq" + _suffix;
             public const string Israel = _prefix + "israel" + _suffix;
-            public const string Italy = _prefix + "italy_modern" + _suffix;
+            public const string Italy = _prefix + "italy" + _suffix;
             public const string Japan = _prefix + "japan_modern" + _suffix;
-            public const string KingdomOfItaly = _prefix + "italy" + _suffix;
+            public const string KingdomOfItaly = _prefix + "italy_kingdom" + _suffix;
             public const string NaziGermany = _prefix + "germany" + _suffix;
             public const string Netherlands = _prefix + "netherlands" + _suffix;
             public const string NewZealand = _prefix + "new_zealand" + _suffix;

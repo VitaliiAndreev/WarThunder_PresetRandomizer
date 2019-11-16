@@ -94,55 +94,24 @@
     <GeometryDrawing Brush="#FF003580" Geometry="{StaticResource country_finlandGeometry}" />
   </DrawingGroup>
   <DrawingImage x:Key="country_finlandDrawingImage" Drawing="{StaticResource country_finlandDrawingGroup}" />
-  <DrawingGroup x:Key="country_italy_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+  <DrawingGroup x:Key="country_italyDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
     <DrawingGroup Opacity="1">
-      <GeometryDrawing Brush="#FFFFFFFF">
+      <GeometryDrawing Brush="#FFF1F2F1">
         <GeometryDrawing.Geometry>
-          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30,10,40,75" />
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,16,100,68" />
         </GeometryDrawing.Geometry>
       </GeometryDrawing>
-      <GeometryDrawing Brush="#FF008B3A">
+      <GeometryDrawing Brush="#FF009246">
         <GeometryDrawing.Geometry>
-          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,10,33,75" />
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,16,33,68" />
         </GeometryDrawing.Geometry>
       </GeometryDrawing>
-      <GeometryDrawing Brush="#FFCB1D2A">
+      <GeometryDrawing Brush="#FFCE2B37">
         <GeometryDrawing.Geometry>
-          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="67,10,33,75" />
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="67,16,33,68" />
         </GeometryDrawing.Geometry>
       </GeometryDrawing>
     </DrawingGroup>
-  </DrawingGroup>
-  <DrawingImage x:Key="country_italy_modernDrawingImage" Drawing="{StaticResource country_italy_modernDrawingGroup}" />
-  <Geometry x:Key="country_italyGeometry1">F0 M100,100z M0,0z M35,41L65,41 65,74A2,2,0,0,1,63,76L37,76A2,2,0,0,1,35,74L35,41z M48,76L50,78 52,76 48,76z</Geometry>
-  <Geometry x:Key="country_italyGeometry2">F0 M100,100z M0,0z M61,61L52,61 52,72 48,72 48,61 39,61 39,57 48,57 48,45 52,45 52,57 61,57 61,61z</Geometry>
-  <Geometry x:Key="country_italyGeometry3">F0 M100,100z M0,0z M43.132,25.077L56.868,25.077A2,2,0,0,1,58.868,27.077L58.868,36.485A2,2,0,0,1,56.868,38.485L43.132,38.485A2,2,0,0,1,41.132,36.485L41.132,27.077A2,2,0,0,1,43.132,25.077z</Geometry>
-  <Geometry x:Key="country_italyGeometry4">F0 M100,100z M0,0z M63.875,23.625L59.975,35 59.975,39 40.025,39 40.025,35 36.125,23.625 38.725,21 48.013,21 48.013,18 51.988,18 51.988,21 61.276,21z M40.025,24L38.725,25.313 43.925,35 48.013,35 48.013,24 40.025,24z M51.987,24L51.987,35 56.075,35 61.275,25.313 59.975,24 51.988,24z</Geometry>
-  <DrawingGroup x:Key="country_italyDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
-    <GeometryDrawing Brush="#FF008B3A">
-      <GeometryDrawing.Geometry>
-        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,30,75" />
-      </GeometryDrawing.Geometry>
-    </GeometryDrawing>
-    <GeometryDrawing Brush="#FFE3E3E3">
-      <GeometryDrawing.Geometry>
-        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30,12,40,75" />
-      </GeometryDrawing.Geometry>
-    </GeometryDrawing>
-    <GeometryDrawing Brush="#FF2D43AC" Geometry="{StaticResource country_italyGeometry1}" />
-    <GeometryDrawing Brush="#FFCB1D2A">
-      <GeometryDrawing.Geometry>
-        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="39,45,22,27" />
-      </GeometryDrawing.Geometry>
-    </GeometryDrawing>
-    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_italyGeometry2}" />
-    <GeometryDrawing Brush="#FFCB1D2A" Geometry="{StaticResource country_italyGeometry3}" />
-    <GeometryDrawing Brush="#FFF7AE2E" Geometry="{StaticResource country_italyGeometry4}" />
-    <GeometryDrawing Brush="#FFCB1D2A">
-      <GeometryDrawing.Geometry>
-        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="70,12,30,75" />
-      </GeometryDrawing.Geometry>
-    </GeometryDrawing>
   </DrawingGroup>
   <DrawingImage x:Key="country_italyDrawingImage" Drawing="{StaticResource country_italyDrawingGroup}" />
   <Geometry x:Key="country_canadaGeometry1">F0 M100,100z M0,0z M75.5,71C70.144,71,62,61.55,62,57.974L62,38 89,38 89,57.974C89,61.694,81.456,71,75.5,71z</Geometry>
@@ -421,6 +390,37 @@
     <GeometryDrawing Brush="#FFE9E907" Geometry="{StaticResource country_portugalGeometry5}" />
   </DrawingGroup>
   <DrawingImage x:Key="country_portugalDrawingImage" Drawing="{StaticResource country_portugalDrawingGroup}" />
+  <Geometry x:Key="country_italy_kingdomGeometry1">F0 M100,100z M0,0z M35,41L65,41 65,74A2,2,0,0,1,63,76L37,76A2,2,0,0,1,35,74L35,41z M48,76L50,78 52,76 48,76z</Geometry>
+  <Geometry x:Key="country_italy_kingdomGeometry2">F0 M100,100z M0,0z M61,61L52,61 52,72 48,72 48,61 39,61 39,57 48,57 48,45 52,45 52,57 61,57 61,61z</Geometry>
+  <Geometry x:Key="country_italy_kingdomGeometry3">F0 M100,100z M0,0z M43.132,25.077L56.868,25.077A2,2,0,0,1,58.868,27.077L58.868,36.485A2,2,0,0,1,56.868,38.485L43.132,38.485A2,2,0,0,1,41.132,36.485L41.132,27.077A2,2,0,0,1,43.132,25.077z</Geometry>
+  <Geometry x:Key="country_italy_kingdomGeometry4">F0 M100,100z M0,0z M63.875,23.625L59.975,35 59.975,39 40.025,39 40.025,35 36.125,23.625 38.725,21 48.013,21 48.013,18 51.988,18 51.988,21 61.276,21z M40.025,24L38.725,25.313 43.925,35 48.013,35 48.013,24 40.025,24z M51.987,24L51.987,35 56.075,35 61.275,25.313 59.975,24 51.988,24z</Geometry>
+  <DrawingGroup x:Key="country_italy_kingdomDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FF008B3A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,12,30,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30,12,40,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF2D43AC" Geometry="{StaticResource country_italy_kingdomGeometry1}" />
+    <GeometryDrawing Brush="#FFCB1D2A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="39,45,22,27" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFE3E3E3" Geometry="{StaticResource country_italy_kingdomGeometry2}" />
+    <GeometryDrawing Brush="#FFCB1D2A" Geometry="{StaticResource country_italy_kingdomGeometry3}" />
+    <GeometryDrawing Brush="#FFF7AE2E" Geometry="{StaticResource country_italy_kingdomGeometry4}" />
+    <GeometryDrawing Brush="#FFCB1D2A">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="70,12,30,75" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+  </DrawingGroup>
+  <DrawingImage x:Key="country_italy_kingdomDrawingImage" Drawing="{StaticResource country_italy_kingdomDrawingGroup}" />
   <Geometry x:Key="country_japanGeometry">F0 M100,100z M0,0z M44.9,45.163L79.275,11.993 66.406,11.993 42.987,43.134 57.062,11.993 49.019,11.993 40.505,42.063 42.521,11.993 35.883,11.993 37.841,42.109 28.966,11.993 21.5,11.993 35.4,43.268 11.958,11.993 0,11.993 0,13.293 33.54,45.365 0,25.44 0,36.047 32.555,48.075 0,44.915 0,53.494 32.6,50.989 0,62.481 0,73.055 33.663,53.665 0,85.138 0,87.011 11.716,87.011 35.575,55.694 21.075,87.011 29.075,87.011 38.057,56.765 36.03,87.011 42.31,87.011 40.722,56.719 48.965,87.011 57.014,87.011 43.17,55.558 67.051,87.011 79.819,87.011 45.025,53.464 100.005,86.141 100.005,70.128 46.005,50.754 99.851,56.2 100.005,70.124 100.005,42.453 45.963,47.838 100.005,28.528 100.005,11.993 99.778,11.993z</Geometry>
   <DrawingGroup x:Key="country_japanDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
     <GeometryDrawing Brush="#FFE3E3E3">

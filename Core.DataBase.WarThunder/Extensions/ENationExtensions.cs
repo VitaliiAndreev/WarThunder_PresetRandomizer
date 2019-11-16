@@ -20,7 +20,7 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.Britain => ECountry.Britain,
                 ENation.Japan => ECountry.EmpireOfJapan,
                 ENation.China => ECountry.China,
-                ENation.Italy => ECountry.KingdomOfItaly,
+                ENation.Italy => ECountry.Italy,
                 ENation.France => ECountry.France,
                 ENation.Sweden => ECountry.Sweden,
                 _ => ECountry.None,
