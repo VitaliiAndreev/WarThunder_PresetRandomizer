@@ -1,4 +1,5 @@
 ﻿using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Helpers;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
@@ -49,11 +50,17 @@ namespace Core.Organization.Helpers
         #endregion Constants
         #region Fields
 
+        /// <summary> Whether to generate the database. </summary>
+        private readonly bool _generateDatabase;
+        /// <summary> Whether to read data from JSON instead of the database. </summary>
+        private readonly bool _readOnlyJson;
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
         /// <summary> Playable vehicles loaded into memory. </summary>
         private readonly List<IVehicle> _playableVehicles;
 
+        /// <summary> Whether a new database should be generated. </summary>
+        private bool _generateNewDatabase;
         /// <summary> The string representation of the game client version. </summary>
         private string _gameClientVersion;
 
@@ -91,6 +98,8 @@ namespace Core.Organization.Helpers
         #region Constructors
 
         /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
+        /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
+        /// <param name="readOnlyJson"> Whether to generate the database. </param>
         public Manager
         (
             IWarThunderFileManager fileManager,
@@ -102,9 +111,13 @@ namespace Core.Organization.Helpers
             ICsvDeserializer csvDeserializer,
             IRandomizer randomizer,
             IVehicleSelector vehicleSelector,
+            bool generateDatabase,
+            bool readOnlyJson,
             params IConfiguredLogger[] loggers
         ) : base(EOrganizationLogCategory.Manager, loggers)
         {
+            _generateDatabase = generateDatabase;
+            _readOnlyJson = readOnlyJson;
             _excludedGaijinIdParts = new List<string>()
             {
                 "_football",
@@ -210,20 +223,16 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.ResearchTreesInitialized);
         }
 
-        /// <summary> Fills the <see cref="_cache"/> up. </summary>
-        public void CacheData()
+        /// <summary> Tries to unpack game files, convert them into JSON, deserialise it into objects, and persist them into the database. </summary>
+        private void TryToUnpackDeserialiseAndPersist()
         {
-            var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
-
-            if (availableDatabaseVersions.IsEmpty() || !_gameClientVersion.IsIn(availableDatabaseVersions.Max().ToString()))
+            try
             {
-                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
-
-                try
-                {
-                    UnpackDeserializePersist();
-                }
-                catch
+                UnpackDeserializePersist();
+            }
+            catch
+            {
+                if (_generateDatabase && _generateNewDatabase)
                 {
                     var databaseFile = $"{_gameClientVersion}{ECharacter.Period}{EFileExtension.SqLite3}";
 
@@ -232,18 +241,65 @@ namespace Core.Organization.Helpers
                     _fileManager.DeleteFileSafely(databaseFile);
 
                     LogInfo(ECoreLogMessage.Deleted.FormatFluently(databaseFile));
-
-                    throw;
                 }
+                throw;
+            }
+        }
+
+        /// <summary> Initialises the <see cref="_dataRepository"/> with a as a <see cref="DataRepositoryInMemory"/>. </summary>
+        private void InitialiseDatabaselessDataRepository()
+        {
+            TryToUnpackDeserialiseAndPersist();
+        }
+
+        /// <summary> Checks for an existing database and initialises the <see cref="_generateNewDatabase"/> field appropriately. </summary>
+        private void CheckForExistingDatabase()
+        {
+            var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
+
+            if (availableDatabaseVersions.IsEmpty() || !_gameClientVersion.IsIn(availableDatabaseVersions.Max().ToString()))
+            {
+                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
+                _generateNewDatabase = true;
             }
             else
             {
                 LogInfo(EOrganizationLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
+                _generateNewDatabase = false;
+            }
+        }
 
+        /// <summary> Initialises the <see cref="_dataRepository"/> with a as a <see cref="DataRepositoryWarThunderWithSession"/>. </summary>
+        private void InitialiseDatabaseBasedDataRepository()
+        {
+            if (_generateNewDatabase)
+            {
+                TryToUnpackDeserialiseAndPersist();
+            }
+            else
+            {
                 _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
                 LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
             }
+        }
+
+        /// <summary> Initialises the <see cref="_dataRepository"/>. </summary>
+        private void InitialiseDataRepository()
+        {
+            if (_generateDatabase)
+                CheckForExistingDatabase();
+
+            if (_readOnlyJson)
+                InitialiseDatabaselessDataRepository();
+            else
+                InitialiseDatabaseBasedDataRepository();
+        }
+
+        /// <summary> Fills the <see cref="_cache"/> up. </summary>
+        public void CacheData()
+        {
+            InitialiseDataRepository();
 
             LogInfo(EOrganizationLogMessage.CachingObjects);
 
@@ -306,17 +362,35 @@ namespace Core.Organization.Helpers
         /// <summary> Creates the database for the current War Thunder client version. </summary>
         private void CreateDataBase()
         {
-            LogInfo(EOrganizationLogMessage.CreatingDatabase);
+            if (_generateNewDatabase)
+                LogInfo(EOrganizationLogMessage.CreatingDatabase);
 
-            _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, true, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+            _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, _generateNewDatabase, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
-            LogInfo(EOrganizationLogMessage.DatabaseCreatedConnectionEstablished);
+            if (_generateNewDatabase)
+                LogInfo(EOrganizationLogMessage.DatabaseCreated);
+
+            if (!_readOnlyJson)
+                LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
+        }
+
+        /// <summary> Initialises the database with the <see cref="_dataRepository"/>. </summary>
+        private void InitialiseDatabase()
+        {
+            LogInfo(EOrganizationLogMessage.InitializingDatabase);
+
+            _dataRepository.PersistNewObjects();
+
+            LogInfo(EOrganizationLogMessage.DatabaseInitialized);
         }
 
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
         private void UnpackDeserializePersist()
         {
-            CreateDataBase();
+            if (_generateDatabase)
+                CreateDataBase();
+            else
+                _dataRepository = new DataRepositoryInMemory(_loggers);
 
             LogInfo(EOrganizationLogMessage.PreparingGameFiles);
 
@@ -329,7 +403,7 @@ namespace Core.Organization.Helpers
             var vehicleLocalizationRecords = GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
 
             LogInfo(EOrganizationLogMessage.GameFilesPrepared);
-            LogInfo(EOrganizationLogMessage.InitializingDatabase);
+            LogInfo(EOrganizationLogMessage.DeserialisingGameFiles);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
             var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
@@ -345,11 +419,12 @@ namespace Core.Organization.Helpers
             }
 
             _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
-
             _cache.AddRange(_dataRepository.NewObjects);
-            _dataRepository.PersistNewObjects();
 
-            LogInfo(EOrganizationLogMessage.DatabaseInitialized);
+            LogInfo(EOrganizationLogMessage.DeserialisationComplete);
+
+            if (_generateNewDatabase)
+                InitialiseDatabase();
         }
 
         #endregion Methods: Initialization

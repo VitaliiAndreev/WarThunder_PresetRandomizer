@@ -18,6 +18,8 @@
 
         #region A
 
+        private const string _al = _a + _l;
+
         protected const string _A = "A";
         protected const string _a = "a";
         protected const string _able = _a + "ble";
@@ -141,7 +143,9 @@
         #endregion C
         #region D
 
+        private const string _D = "D";
         private const string _d = "d";
+        private const string _De = _D + _e;
         private const string _de = _d + _e;
         private const string _di = _d + _i;
 
@@ -154,10 +158,12 @@
         protected const string _deleted = _delete + "d";
         protected const string _Deleting = "Delet" + _ing;
         protected const string _deleting = _d + "elet" + _ing;
+        protected const string _Deserialization = _De + _serial + _iz + _at + _ion;
         protected const string _deserialize = _d + "eserialize";
         protected const string _deserialized = _deserialize + "d";
         protected const string _Deserializer = "Deserializer";
-        protected const string _deserializing = _d + "eserializ" + _ing;
+        protected const string _Deserializing = _De + _serial + _iz + _ing;
+        protected const string _deserializing = _de + _serial + _iz + _ing;
         protected const string _details = _d + "etails";
         protected const string _dialog = _d + "ia" + _log;
         protected const string _direct = _di + _rect;
@@ -183,6 +189,8 @@
         private const string _ed = _e + _d;
         private const string _em = _e + _m;
         private const string _er = _e + _r;
+        private const string _eri = _er + _i;
+        private const string _erial = _eri + _al;
         private const string _es = _e + _s;
         private const string _ess = _es + _s;
         private const string _est = _es + _t;
@@ -270,7 +278,8 @@
         private const string _ilt = _i + "lt";
         private const string _ing = _i + "ng";
         private const string _itializ = _it + _ializ;
-        private const string _ize = _i + "z" + _e;
+        private const string _iz = _i + _z;
+        private const string _ize = _iz + _e;
 
         protected const string _I = "I";
         protected const string _ill = _i + _ll;
@@ -509,8 +518,10 @@
         protected const string _Selecting = _Select + _ing;
         protected const string _selection = _select + _ion;
         protected const string _separated = _s + "eparate" + _d;
-        protected const string _serialized = _s + "erial" + _ize + _d;
-        protected const string _Serializing = _S + "erializ" + _ing;
+        protected const string _Serial = _S + _erial;
+        protected const string _serial = _s + _erial;
+        protected const string _serialized = _serial + _ize + _d;
+        protected const string _Serializing = _Serial + "iz" + _ing;
         protected const string _Session = _S + _ess + _ion;
         protected const string _session = _s + _ess + _ion;
         protected const string _set = _s + _e + _t;
@@ -652,6 +663,8 @@
 
         #endregion Y
         #region Z
+
+        private const string _z = "z";
 
         #endregion Z
 

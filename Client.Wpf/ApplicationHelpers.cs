@@ -98,7 +98,9 @@ namespace Client.Wpf
         }
 
         /// <summary> Initializes fields and properties. Repeated initialization is being skipped. </summary>
-        public static void Initialize()
+        /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
+        /// <param name="readOnlyJson"> Whether to generate the database. </param>
+        public static void Initialize(bool generateDatabase, bool readOnlyJson)
         {
             if (!_loggersInitialized)
                 InitializeLoggers();
@@ -108,14 +110,16 @@ namespace Client.Wpf
 
             Log.Debug(ECoreLogMessage.Initializing.FormatFluently(EWord.Helpers.ToLower()));
 
-            InitializeHelpers();
+            InitializeHelpers(generateDatabase, readOnlyJson);
 
             Log.Debug(ECoreLogMessage.ObjectInitialized.FormatFluently(EWord.Helpers));
             _helpersInitialized = true;
         }
 
         /// <summary> Initializes helpers. </summary>
-        private static void InitializeHelpers()
+        /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
+        /// <param name="readOnlyJson"> Whether to generate the database. </param>
+        private static void InitializeHelpers(bool generateDatabase, bool readOnlyJson)
         {
             var settingsTypes = new List<Type>
             {
@@ -140,7 +144,7 @@ namespace Client.Wpf
             _randomizer = new CustomRandomizer(Loggers);
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
 
-            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, Loggers);
+            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, generateDatabase, readOnlyJson, Loggers);
             InitializeLocalizationManager();
         }
 

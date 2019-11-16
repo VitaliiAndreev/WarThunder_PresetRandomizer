@@ -12,6 +12,9 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
+        public static readonly string DeserialisingGameFiles = $"{_Deserializing} {_game} {_files}.";
+        public static readonly string DeserialisationComplete = $"{_Deserialization} {_complete}.";
+
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: game version. </para>
@@ -24,7 +27,7 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string NotFoundDatabaseFor = $"{_Not} {_found} {_databaseFor} {{0}}.";
 
         public static readonly string CreatingDatabase = $"{_Creating} {_database}.";
-        public static readonly string DatabaseCreatedConnectionEstablished = $"{_Database} {_created}. {_Connection} {_established}.";
+        public static readonly string DatabaseCreated = $"{_Database} {_created}.";
         public static readonly string DatabaseConnectionEstablished = $"{_Database} {_connection} {_established}.";
 
         public static readonly string InitializingDatabase = $"{_Initializing} {_database}.";

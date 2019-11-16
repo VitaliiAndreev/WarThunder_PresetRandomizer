@@ -79,7 +79,7 @@ namespace Core.IntegrationTests
                 .Setup(manager => manager.GetSetting(nameof(Settings.TempLocation)))
                 .Returns(Settings.TempLocation);
 
-            _manager = new Manager(_fileManager, _fileReader, settingsManager.Object, new Mock<IParser>().Object, _unpacker, _jsonHelper, _csvDeserializer, new Mock<IRandomizer>().Object, new Mock<IVehicleSelector>().Object, Presets.Logger);
+            _manager = new Manager(_fileManager, _fileReader, settingsManager.Object, new Mock<IParser>().Object, _unpacker, _jsonHelper, _csvDeserializer, new Mock<IRandomizer>().Object, new Mock<IVehicleSelector>().Object, true, false, Presets.Logger);
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
             _defaultTempDirectory = Settings.TempLocation;
 

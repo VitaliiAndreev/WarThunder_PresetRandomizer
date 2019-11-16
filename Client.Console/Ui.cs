@@ -56,7 +56,7 @@ namespace Client.Console
                 var randomizer = new CustomRandomizer(loggers);
                 var vehicleSelector = new VehicleSelector(randomizer, loggers);
 
-                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, true, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
                     manager.InitializeGameClientVersion();

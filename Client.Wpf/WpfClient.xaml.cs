@@ -18,6 +18,15 @@ namespace Client.Wpf
     /// <summary> Interaction logic for App.xaml. </summary>
     public partial class WpfClient : Application, IWpfClient
     {
+        #region Fields
+
+        /// <summary> Whether to read data from JSON instead of the database. </summary>
+        private bool _readOnlyJson;
+
+        /// <summary> Whether to generate the database. </summary>
+        private bool _generateDatabase;
+
+        #endregion Fields
         #region Constants
 
         /// <summary> The default <see cref="TextBlock.FontSize"/>.</summary>
@@ -40,6 +49,8 @@ namespace Client.Wpf
         {
             try
             {
+                ProcessStartupArguments(eventArguments.Args);
+
                 Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
                 ApplicationHelpers.InitializeLoggers();
@@ -47,7 +58,7 @@ namespace Client.Wpf
                 Log = ApplicationHelpers.CreateActiveLogger(EWpfClientLogCategory.WpfClient);
                 Log.Info(ECoreLogMessage.Started);
 
-                ApplicationHelpers.Initialize();
+                ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson);
                 ApplicationHelpers.Manager.RemoveOldLogFiles();
 
                 ApplicationHelpers.WindowFactory.CreateLoadingWindow().ShowDialog();
@@ -80,6 +91,31 @@ namespace Client.Wpf
         }
 
         #endregion Constuctors
+
+        /// <summary> Processes startup arguments. </summary>
+        /// <param name="startupArguments"> Startup arguments </param>
+        private void ProcessStartupArguments(string[] startupArguments)
+        {
+            _generateDatabase = true;
+
+            if (startupArguments is null || startupArguments.IsEmpty())
+                return;
+
+            string getArgument(string targetArgument) => startupArguments.FirstOrDefault(argument => argument.ToLower() == targetArgument.ToLower());
+
+            if (getArgument("-j") is string)
+            {
+                _readOnlyJson = true;
+            }
+            if (getArgument("-!d") is string)
+            {
+                _generateDatabase = false;
+                _readOnlyJson = true;
+            }
+
+            if (!_generateDatabase && !_readOnlyJson)
+                _readOnlyJson = true;
+        }
 
         /// <summary>
         /// Shows the error message.
