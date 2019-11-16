@@ -32,11 +32,6 @@ Preset compositions are based on whether the main selected branch involves combi
 - Clicking a vehicle in the research tree toggles it on/off which affects whether it's used in randomisation.
 - Presets need to be scrapped (recycle icon) before research trees are unlocked for free browsing.
 
-### Startup arguments:
-
-- "-j" forces the app to work with data deserialised from JSON directly. Doesn't affect whether SQLite databases are generated or not.
-- "-!d" prevents the app from generating SQLite databases for game versions. Automatically engages "-j" if the latter isn't being used.
-
 ### User settings
 
 *Client.Wpf.Settings.xml* stores user preferences. While it can be edited manually, it shouldn't be necessary to do so.
