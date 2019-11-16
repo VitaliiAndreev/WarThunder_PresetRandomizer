@@ -131,8 +131,7 @@ namespace Core.Helpers
         /// <param name="files"> A collection of file information. </param>
         private void DeleteFiles(IEnumerable<FileInfo> files)
         {
-            var fileCount = files.Count();
-            LogDebug(ECoreLogMessage.DeletingFiles.FormatFluently(fileCount));
+            LogDebug(ECoreLogMessage.DeletingFiles.FormatFluently(files.Count()));
 
             try
             {

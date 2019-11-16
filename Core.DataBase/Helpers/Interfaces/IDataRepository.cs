@@ -17,9 +17,6 @@ namespace Core.DataBase.Helpers.Interfaces
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         bool IsClosed { get; }
 
-        /// <summary> A session factory that provides units of work. </summary>
-        IConfiguredSessionFactory SessionFactory { get; }
-
         /// <summary>
         /// Transient objects cached in the repository and not yet persisted.
         /// Objects should not be added to the collection directly, instead they are added on their instantiation.
