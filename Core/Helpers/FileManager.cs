@@ -127,6 +127,11 @@ namespace Core.Helpers
 
         #region DeleteFiles()
 
+        /// <summary> Deletes all files under names/paths listed in the specified collection. </summary>
+        /// <param name="filePaths"> A collection of file names/paths. </param>
+        public void DeleteFiles(IEnumerable<string> filePaths) =>
+            DeleteFiles(filePaths.Select(filePath => Path.IsPathRooted(filePath) ? filePath : Path.Combine(Directory.GetCurrentDirectory(), filePath)));
+
         /// <summary> Deletes all files listed in the specified collection. </summary>
         /// <param name="files"> A collection of file information. </param>
         private void DeleteFiles(IEnumerable<FileInfo> files)

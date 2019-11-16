@@ -40,6 +40,10 @@ namespace Core.Helpers.Interfaces
 
         #region DeleteFiles()
 
+        /// <summary> Deletes all files under names/paths listed in the specified collection. </summary>
+        /// <param name="filePaths"> A collection of file names/paths. </param>
+        void DeleteFiles(IEnumerable<string> filePaths);
+
         /// <summary> Deletes all files in a folder. </summary>
         /// <param name="path"> The path to a folder. </param>
         /// <param name="includeNested"> Whether to delete files in all nested directories. </param>
