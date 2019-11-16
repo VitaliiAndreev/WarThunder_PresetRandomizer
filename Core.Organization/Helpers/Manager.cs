@@ -234,13 +234,10 @@ namespace Core.Organization.Helpers
             {
                 if (_generateDatabase && _generateNewDatabase)
                 {
-                    var databaseFile = $"{_gameClientVersion}{ECharacter.Period}{EFileExtension.SqLite3}";
+                    var databaseFileName = $"{_gameClientVersion}{ECharacter.Period}{EFileExtension.SqLite3}";
+                    var databaseJournalFileName = $"{databaseFileName}-journal";
 
-                    LogInfo(ECoreLogMessage.Deleting.FormatFluently(databaseFile));
-
-                    _fileManager.DeleteFileSafely(databaseFile);
-
-                    LogInfo(ECoreLogMessage.Deleted.FormatFluently(databaseFile));
+                    _fileManager.DeleteFiles(new string[] { databaseFileName, databaseJournalFileName });
                 }
                 throw;
             }
