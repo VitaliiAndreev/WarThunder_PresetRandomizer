@@ -133,16 +133,8 @@ namespace Core.Helpers
         {
             LogDebug(ECoreLogMessage.DeletingFiles.FormatFluently(files.Count()));
 
-            try
-            {
-                foreach (var file in files)
-                    DeleteFileSafely(file);
-            }
-            catch (Exception exception)
-            {
-                LogError(ECoreLogMessage.ErrorDeletingFiles, exception);
-                throw;
-            }
+            foreach (var file in files)
+                DeleteFileSafely(file);
 
             LogDebug(ECoreLogMessage.FilesDeleted);
         }
