@@ -286,6 +286,7 @@
         protected const string _Initialized = _Initialize + _d;
         protected const string _initialized = _initialize + _d;
         protected const string _Initializing = _In + _it + "ializ" + _ing;
+        protected const string _inmemory = _in + ECharacterString.Minus + _memory;
         protected const string _input = _in + _put;
         protected const string _install = _in + _s + _t + _all;
         protected const string _Instance = _In + _stance;
@@ -343,6 +344,7 @@
         #region M
 
         private const string _m = "m";
+        private const string _mem = _me + _m;
 
         protected const string _Main = "M" + _a + _in;
         protected const string _Manager = "M" + _an + _a + "ger";
@@ -351,6 +353,9 @@
         protected const string _mat = "mat";
         protected const string _match = _mat + _ch;
         protected const string _matching = _match + _ing;
+        protected const string _me = _m + _e;
+        protected const string _memo = _mem + _o;
+        protected const string _memory = _memo + _ry;
         protected const string _men = "men";
         protected const string _ment = _men + _t;
         protected const string _Method = "Metho" + _d;

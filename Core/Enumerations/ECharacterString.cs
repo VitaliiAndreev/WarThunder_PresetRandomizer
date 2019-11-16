@@ -4,6 +4,7 @@
     public class ECharacterString
     {
         public const string Apostrophe = "'";
+        public const string Minus = "-";
         public const string Period = ".";
         public const string Slash = "/";
     }

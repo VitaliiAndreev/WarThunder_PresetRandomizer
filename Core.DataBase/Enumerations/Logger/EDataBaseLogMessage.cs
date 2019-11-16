@@ -9,6 +9,8 @@ namespace Core.DataBase.Enumerations.Logger
 
         private static readonly string _dataRepository = $"{_data} {_repository}";
 
+        public static readonly string TheInMemoryDataRepository = $"{_The} {_inmemory} {_data} {_repository}.";
+        public static readonly string CreatingInMemoryDataRepository = $"{_Creating} {_an} {_inmemory} {_data} {_repository}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: database file name. </para>

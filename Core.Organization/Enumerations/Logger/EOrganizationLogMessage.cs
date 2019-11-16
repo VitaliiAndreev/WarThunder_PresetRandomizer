@@ -25,7 +25,7 @@ namespace Core.Organization.Enumerations.Logger
 
         public static readonly string CreatingDatabase = $"{_Creating} {_database}.";
         public static readonly string DatabaseCreatedConnectionEstablished = $"{_Database} {_created}. {_Connection} {_established}.";
-        public static readonly string DataBaseConnectionEstablished = $"{_Database} {_connection} {_established}.";
+        public static readonly string DatabaseConnectionEstablished = $"{_Database} {_connection} {_established}.";
 
         public static readonly string InitializingDatabase = $"{_Initializing} {_database}.";
         public static readonly string DatabaseInitialized = $"{_Database} {_initialized}.";

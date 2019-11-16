@@ -242,7 +242,7 @@ namespace Core.Organization.Helpers
 
                 _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
 
-                LogInfo(EOrganizationLogMessage.DataBaseConnectionEstablished);
+                LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
             }
 
             LogInfo(EOrganizationLogMessage.CachingObjects);
