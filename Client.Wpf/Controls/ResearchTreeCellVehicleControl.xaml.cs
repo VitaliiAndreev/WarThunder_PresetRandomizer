@@ -126,7 +126,7 @@ namespace Client.Wpf.Controls
         /// <param name="gameMode"> The game mode for which to display the information. </param>
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
-            _battleRating.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
+            _informationTextBlock.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
