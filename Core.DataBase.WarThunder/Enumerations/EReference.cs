@@ -115,7 +115,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         };
 
         /// <summary> The map of the country enumeration onto corresponding resource keys. </summary>
-        public static IDictionary<ECountry, string> CountryIconsKeys { get; }
+        public static IDictionary<ECountry, string> CountryIconKeys { get; }
 
         /// <summary> Countries grouped by nations they are aligned with. </summary>
         public static IDictionary<ENation, IEnumerable<ECountry>> CountriesByNation { get; }
@@ -176,7 +176,7 @@ namespace Core.DataBase.WarThunder.Enumerations
 
         static EReference()
         {
-            CountryIconsKeys = new Dictionary<ECountry, string>();
+            CountryIconKeys = new Dictionary<ECountry, string>();
             CountriesByNation = new Dictionary<ENation, IEnumerable<ECountry>>();
             NationsByCountry = new Dictionary<ECountry, IEnumerable<ENation>>();
         }

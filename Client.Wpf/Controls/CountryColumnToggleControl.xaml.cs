@@ -35,8 +35,8 @@ namespace Client.Wpf.Controls
                     _groupedItems
                         .Values
                         .SelectMany(nationCountryPairs => nationCountryPairs)
-                        .Where(nationCountryPair => nationCountryPair.Country.IsKeyIn(EReference.CountryIconsKeys))
-                        .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => EReference.CountryIconsKeys[nationCountryPair.Country]),
+                        .Where(nationCountryPair => nationCountryPair.Country.IsKeyIn(EReference.CountryIconKeys))
+                        .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => EReference.CountryIconKeys[nationCountryPair.Country]),
                     EStyleKey.ToggleButton.CountryToggle, false
                 );
             }

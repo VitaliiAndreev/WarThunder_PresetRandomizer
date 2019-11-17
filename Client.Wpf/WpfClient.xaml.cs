@@ -86,7 +86,7 @@ namespace Client.Wpf
             foreach(var item in typeof(ECountry).GetEnumerationItems<ECountry>())
             {
                 if (vectorImageKeys.TryGetValue(item.ToString(), out var resourceKey))
-                    EReference.CountryIconsKeys.Add(item, resourceKey);
+                    EReference.CountryIconKeys.Add(item, resourceKey);
             }
         }
 
