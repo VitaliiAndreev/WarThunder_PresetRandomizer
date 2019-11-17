@@ -251,9 +251,14 @@
 
         <!-- t:TextBlock -->
 
-        <Style TargetType="TextBlock" x:Key="VehicleCard">
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake">
             <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="VehicleCard" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
