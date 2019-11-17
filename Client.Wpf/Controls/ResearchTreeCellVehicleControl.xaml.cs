@@ -2,11 +2,13 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -20,6 +22,9 @@ namespace Client.Wpf.Controls
 
         /// <summary> A strategy for generating a formatted string with <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </summary>
         private readonly IDisplayVehicleInformationStrategy _displayVehicleInformationStrategy;
+
+        /// <summary> Whether to display the <see cref="Vehicle"/>'s <see cref="IVehicle.Country"/> flag. </summary>
+        private readonly bool _useCountryFlag;
 
         #endregion Fields
         #region Properties
@@ -67,6 +72,7 @@ namespace Client.Wpf.Controls
 
             Vehicle = vehicle;
             _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
+            _useCountryFlag = Vehicle.Country != Vehicle.Nation.AsEnumerationItem.GetBaseCountry();
 
             if (Vehicle.IsSquadronVehicle)
                 _reseachType = EVehicleResearchType.Squadron;
@@ -127,6 +133,15 @@ namespace Client.Wpf.Controls
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
             _informationTextBlock.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
+
+            if (_useCountryFlag && _countryFlag.Source is null)
+            {
+                _countryFlag.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[Vehicle.Country]) as ImageSource;
+
+                // The size and margin are being set here to avoid breaking white-space when there is no source provided.
+                _countryFlag.SetSize(14);
+                _countryFlag.Margin = new Thickness(3, 0, 0, 0);
+            }
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>

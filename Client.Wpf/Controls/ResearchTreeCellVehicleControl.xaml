@@ -27,13 +27,16 @@
 
             </Grid>
             
-            <Grid Grid.Row="1" HorizontalAlignment="Right">
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
 
                 <TextBlock Text="--.- / -"
                     x:Name="_informationTextBlock"
                     Style="{StaticResource VehicleCard}"/>
-                
-            </Grid>
+                <Image
+                    x:Name="_countryFlag"
+                    Style="{StaticResource FlagIcon}"/>
+
+            </WrapPanel>
         </Grid>
         
     </Border>
