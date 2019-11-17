@@ -3,6 +3,7 @@ using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Collections;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -120,7 +122,8 @@ namespace Client.Wpf.Controls
         {
             _primaryPresetPanel.Children.Clear();
             _fallbackPresetPanel.Children.Clear();
-            _currentPresetInfo.Text = string.Empty;
+            _currentPresetNationFlag.Source = null;
+            _currentPresetInfoTextBlock.Text = string.Empty;
 
             RaiseCanExecuteChanged();
         }
@@ -148,7 +151,9 @@ namespace Client.Wpf.Controls
             }
 
             var primaryPreset = presets[EPreset.Primary];
-            _currentPresetInfo.Text = $"{EReference.NationIcons[primaryPreset.Nation]}{EReference.BranchIcons[primaryPreset.MainBranch]} {primaryPreset.BattleRating}";
+
+            _currentPresetNationFlag.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[primaryPreset.Nation.GetBaseCountry()]) as ImageSource;
+            _currentPresetInfoTextBlock.Text = $"{EReference.BranchIcons[primaryPreset.MainBranch]} {primaryPreset.BattleRating}";
 
             RaiseCanExecuteChanged();
         }
