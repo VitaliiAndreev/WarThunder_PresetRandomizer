@@ -21,6 +21,7 @@
         public class Image
         {
             public const string FlagIcon = "FlagIcon";
+            public const string FlagIcon16px = "FlagIcon16px";
             public const string LocalizationIcon = "LocalizationIcon";
         }
         /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>

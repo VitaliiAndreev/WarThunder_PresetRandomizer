@@ -157,6 +157,11 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Image" x:Key="FlagIcon16px" BasedOn="{StaticResource FlagIcon}">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+        </Style>
+
         <!-- t:NationToggleControl -->
 
         <Style TargetType="controls:NationToggleControl">

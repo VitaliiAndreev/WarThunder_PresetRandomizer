@@ -1,13 +1,17 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
 using NHibernate.Util;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -85,10 +89,36 @@ namespace Client.Wpf.Controls
             base.Localize();
 
             foreach (var tab in _tabControl.Items.OfType<TabItem>())
-                tab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
+               if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
+                    textBlock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
 
             foreach (var nationControl in _nationControls.Values)
                 nationControl.Localize();
+        }
+
+        /// <summary> Creates a header for a tab control of the given <paramref name="nation"/>. </summary>
+        /// <param name="nation"> The nation for whose tab to create a header for. </param>
+        /// <returns></returns>
+        private object CreateHeader(ENation nation)
+        {
+            var headerImage = new Image()
+            {
+                Style = this.GetStyle(EStyleKey.Image.FlagIcon16px),
+            };
+            var headerText = new TextBlock
+            {
+                Margin = new Thickness(5, 0, 0, 0),
+                Text = nation.ToString(), // For the designer.
+            };
+            var headerPanel = new WrapPanel();
+
+            if (!DesignerProperties.GetIsInDesignMode(this))
+                headerImage.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys.TryGetValue(nation.GetBaseCountry(), out var iconKey) ? iconKey : string.Empty) as ImageSource;
+
+            headerPanel.Children.Add(headerImage);
+            headerPanel.Children.Add(headerText);
+
+            return headerPanel;
         }
 
         private void CreateControls()
@@ -102,7 +132,7 @@ namespace Client.Wpf.Controls
                 var tabItem = new TabItem()
                 {
                     Tag = nation,
-                    Header = nation.ToString(), // For the designer.
+                    Header = CreateHeader(nation),
                     Content = nationControl,
                 };
                 _tabControl.Items.Add(tabItem);
