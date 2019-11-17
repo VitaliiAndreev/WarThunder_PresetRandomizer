@@ -121,6 +121,7 @@ namespace Client.Wpf.Controls
             return headerPanel;
         }
 
+        /// <summary> Creates controls. </summary>
         private void CreateControls()
         {
             foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Except(ENation.None))
