@@ -259,6 +259,9 @@
         <Style TargetType="TextBlock" x:Key="VehicleCard" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="FontSize" Value="12"/>
         </Style>
+
+        <Style TargetType="TextBlock" x:Key="TabHeaderPrefixWithSkyQuake" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
@@ -269,6 +272,10 @@
 
         <Style TargetType="TextBlock" x:Key="CenteredBold" BasedOn="{StaticResource Centered}">
             <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithLeftMargin">
+            <Setter Property="Padding" Value="5 0 0 0"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="PaddedBottom">

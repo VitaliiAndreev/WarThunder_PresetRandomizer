@@ -11,26 +11,50 @@
     <TabControl
         x:Name="_tabControl">
 
-        <TabItem Header="Army"
+        <TabItem
             x:Name="_armyTab">
+            <TabItem.Header>
+                <WrapPanel>
+                    <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">╤</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Army</TextBlock>
+                </WrapPanel>
+            </TabItem.Header>
             <local:ResearchTreeBranchControl
                 x:Name="_armyBranch"/>
         </TabItem>
 
-        <TabItem Header="Helicopters"
+        <TabItem
             x:Name="_helicoptersTab">
+            <TabItem.Header>
+                <WrapPanel>
+                    <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">⋡</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Helicopters</TextBlock>
+                </WrapPanel>
+            </TabItem.Header>
             <local:ResearchTreeBranchControl
                 x:Name="_helicoptersBranch"/>
         </TabItem>
 
-        <TabItem Header="Aviation"
+        <TabItem
             x:Name="_aviationTab">
+            <TabItem.Header>
+                <WrapPanel>
+                    <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">┏</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Aviation</TextBlock>
+                </WrapPanel>
+            </TabItem.Header>
             <local:ResearchTreeBranchControl
                 x:Name="_aviationBranch"/>
         </TabItem>
 
-        <TabItem Header="Fleet"
+        <TabItem
             x:Name="_fleetTab">
+            <TabItem.Header>
+                <WrapPanel>
+                    <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">┚</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Fleet</TextBlock>
+                </WrapPanel>
+            </TabItem.Header>
             <local:ResearchTreeBranchControl
                 x:Name="_fleetBranch"/>
         </TabItem>

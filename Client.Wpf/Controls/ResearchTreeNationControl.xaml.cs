@@ -68,10 +68,16 @@ namespace Client.Wpf.Controls
         {
             base.Localize();
 
-            _armyTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Army);
-            _helicoptersTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Helicopters);
-            _aviationTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Aviation);
-            _fleetTab.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Fleet);
+            static void localiseTabHeader(TabItem tab)
+            {
+                if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().LastOrDefault() is TextBlock textBlock)
+                    textBlock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
+            }
+
+            localiseTabHeader(_armyTab);
+            localiseTabHeader(_helicoptersTab);
+            localiseTabHeader(_helicoptersTab);
+            localiseTabHeader(_fleetTab);
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
