@@ -140,6 +140,11 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Image" x:Key="Icon32px" BasedOn="{StaticResource Icon}">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+
         <Style TargetType="Image" x:Key="FlagIcon">
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="True">

@@ -24,7 +24,7 @@
                     x:Name="_arcadeButton">
             <Image
                 Source="{StaticResource ArcadeIcon}"
-                Style="{StaticResource Icon}">
+                Style="{StaticResource Icon32px}">
             </Image>
         </ToggleButton>
         <ToggleButton ToolTip ="Realistic"
@@ -32,7 +32,7 @@
                     x:Name="_realisticButton">
             <Image
                 Source="{StaticResource RealisticIcon}"
-                Style="{StaticResource Icon}">
+                Style="{StaticResource Icon32px}">
             </Image>
         </ToggleButton>
         <ToggleButton ToolTip ="Simulator"
@@ -40,7 +40,7 @@
                     x:Name="_simulatorButton">
             <Image
                 Source="{StaticResource SimulatorIcon}"
-                Style="{StaticResource Icon}">
+                Style="{StaticResource Icon32px}">
             </Image>
         </ToggleButton>
 
