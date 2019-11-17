@@ -7,6 +7,10 @@
 
         <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
 
+        <BitmapImage x:Key="ArcadeIcon">pack://application:,,,/Resources/Game Mode Icons/arcade.png</BitmapImage>
+        <BitmapImage x:Key="RealisticIcon">pack://application:,,,/Resources/Game Mode Icons/realistic.png</BitmapImage>
+        <BitmapImage x:Key="SimulatorIcon">pack://application:,,,/Resources/Game Mode Icons/simulator.png</BitmapImage>
+        
         <BitmapImage x:Key="PresetIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/inbox_4.png</BitmapImage>
         <BitmapImage x:Key="Delete">pack://application:,,,/Resources/IconSweets 2 by Yummygum/recycle.png</BitmapImage>
         <BitmapImage x:Key="Settings">pack://application:,,,/Resources/IconSweets 2 by Yummygum/preferences_gear_5_single.png</BitmapImage>

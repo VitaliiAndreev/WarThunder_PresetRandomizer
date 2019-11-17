@@ -1,4 +1,4 @@
-﻿<base:ToggleButtonGroupControlWithDropCap
+﻿<base:ToggleButtonGroupControlWithToolTip
     x:TypeArguments="enumerations:EGameMode"
     x:Class="Client.Wpf.Controls.GameModeSelectionControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -19,18 +19,30 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <local:DropCapToggleButton Caption ="Arcade"
+        <ToggleButton ToolTip ="Arcade"
                     Grid.Column="0"
-                    x:Name="_arcadeButton"
-                    DropCapFontSize="16"/>
-        <local:DropCapToggleButton Caption ="Realistic"
+                    x:Name="_arcadeButton">
+            <Image
+                Source="{StaticResource ArcadeIcon}"
+                Style="{StaticResource Icon}">
+            </Image>
+        </ToggleButton>
+        <ToggleButton ToolTip ="Realistic"
                     Grid.Column="1"
-                    x:Name="_realisticButton"
-                    DropCapFontSize="16"/>
-        <local:DropCapToggleButton Caption ="Simulator"
+                    x:Name="_realisticButton">
+            <Image
+                Source="{StaticResource RealisticIcon}"
+                Style="{StaticResource Icon}">
+            </Image>
+        </ToggleButton>
+        <ToggleButton ToolTip ="Simulator"
                     Grid.Column="2"
-                    x:Name="_simulatorButton"
-                    DropCapFontSize="16"/>
+                    x:Name="_simulatorButton">
+            <Image
+                Source="{StaticResource SimulatorIcon}"
+                Style="{StaticResource Icon}">
+            </Image>
+        </ToggleButton>
 
     </Grid>
-</base:ToggleButtonGroupControlWithDropCap>
+</base:ToggleButtonGroupControlWithToolTip>

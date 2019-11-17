@@ -10,7 +10,7 @@ using System.Windows.Controls.Primitives;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for GameModeSelectionControl.xaml. </summary>
-    public partial class GameModeSelectionControl : ToggleButtonGroupControlWithDropCap<EGameMode>
+    public partial class GameModeSelectionControl : ToggleButtonGroupControlWithToolTip<EGameMode>
     {
         #region Constuctors
 
@@ -19,31 +19,16 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _dropCapToggleButtons.AddRange
+            Buttons.AddRange
             (
-                new Dictionary<EGameMode, DropCapToggleButton>
+                new Dictionary<EGameMode, ToggleButton>
                 {
                     { EGameMode.Arcade, _arcadeButton },
                     { EGameMode.Realistic, _realisticButton },
                     { EGameMode.Simulator, _simulatorButton },
                 }
             );
-            Buttons.AddRange
-            (
-                _dropCapToggleButtons.ToDictionary
-                (
-                    keyValuePair => keyValuePair.Key,
-                    keyValuePair => keyValuePair.Value.EmbeddedButton
-                )
-            );
 
-            foreach (var buttonKeyValuePair in _dropCapToggleButtons)
-            {
-                var gameMode = buttonKeyValuePair.Key;
-                var button = buttonKeyValuePair.Value;
-
-                button.Tag = gameMode;
-            }
             foreach (var buttonKeyValuePair in Buttons)
             {
                 var gameMode = buttonKeyValuePair.Key;

@@ -5,7 +5,7 @@
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="Приложение будет перезапущено. Продолжить?"/>
-  <Line key="Arcade" value="Аркада"/>
+  <Line key="Arcade" value="Аркадный режим"/>
   <Line key="Argentina" value="Аргентина"/>
   <Line key="Army" value="Армия"/>
   <Line key="Attacker" value="Штурмовик"/>
@@ -72,14 +72,14 @@
   <Line key="Portugal" value="Португалия"/>
   <Line key="Ready" value="Готово! Нажмите &quot;Нет&quot; в диалоговом окне."/>
   <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
-  <Line key="Realistic" value="Реализм"/>
+  <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
-  <Line key="Simulator" value="Симулятор"/>
+  <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="SouthAfrica" value="Южная Африка"/>
   <Line key="Spaa" value="СЗУ"/>
