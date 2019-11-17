@@ -19,5 +19,21 @@ namespace Client.Wpf.Extensions
         /// <returns></returns>
         public static T GetTag<T>(this FrameworkElement frameworkElement) =>
             frameworkElement.Tag.CastTo<T>();
+
+        /// <summary> Sets the size of the <paramref name="frameworkElement"/> along both axes. </summary>
+        /// <param name="frameworkElement"> The framework element whose size to set. </param>
+        /// <param name="size"> The new size of <paramref name="frameworkElement"/> along both axes. </param>
+        public static void SetSize(this FrameworkElement frameworkElement, double size) =>
+            frameworkElement.SetSize(size, size);
+
+        /// <summary> Sets the size of the <paramref name="frameworkElement"/>. </summary>
+        /// <param name="frameworkElement"> The framework element whose size to set. </param>
+        /// <param name="height"> The new height of <paramref name="frameworkElement"/>. </param>
+        /// <param name="width"> The new width of <paramref name="frameworkElement"/>. </param>
+        public static void SetSize(this FrameworkElement frameworkElement, double height, double width)
+        {
+            frameworkElement.Height = height;
+            frameworkElement.Width = width;
+        }
     }
 }
