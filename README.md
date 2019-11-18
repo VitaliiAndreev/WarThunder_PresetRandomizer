@@ -8,7 +8,7 @@ In order to work **WTPR** requires an up-to-date version of the **War Thunder** 
 
 ### Workflow
 
-At the start **WTPR** scans the **War Thunder** client for its current version. With every new patch **WT Tools** are used to unpack data stored with the client and convert it into JSON and CSV, **WTPR** deserializes that data into entities and stores them in an SQLite database (a new database for every patch). From that point **WTPR** uses only the database unless it detects a new **War Thunder** version.
+At the start **WTPR** scans the **War Thunder** client for its current version. With every new patch **WT Tools** are used to unpack data stored with the client and convert it into JSON and CSV. **WTPR** deserializes that data into entities and stores them in an SQLite database (a new database for every patch). From that point **WTPR** uses only the database unless it detects a new **War Thunder** version.
 
 ### Randomization criteria
 
@@ -24,13 +24,18 @@ Preset compositions are based on whether the main selected branch involves combi
 
 ### GUI tips
 
-- Hovering over nation, country, and vehicle class icons shows clarification.
+- Hovering over game mode, vehicle class, nation, and country icons shows clarification.
 - Battle ratings can be adjusted either by clicking arrows or scrolling with the mouse wheel.
 - Hovering over a vehicle in the research tree highlights the one required to unlock said vehicle.
 - Hovering over a vehicle in a preset highlights the former in the research tree.
 - Clicking a vehicle in the preset opens the research tree tab it's on (if necessary) and scrolls it to bring the vehicle into view.
 - Clicking a vehicle in the research tree toggles it on/off which affects whether it's used in randomisation.
 - Presets need to be scrapped (recycle icon) before research trees are unlocked for free browsing.
+
+### Startup arguments:
+
+- "-j" forces the app to work with data deserialised from JSON directly. Doesn't affect whether SQLite databases are generated or not.
+- "-!d" prevents the app from generating SQLite databases for game versions. Automatically engages "-j" if the latter isn't being used.
 
 ### User settings
 
