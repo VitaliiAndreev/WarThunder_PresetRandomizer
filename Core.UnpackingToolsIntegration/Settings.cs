@@ -14,15 +14,30 @@ namespace Core.WarThunderExtractionToolsIntegration
         public const string Separator = ", ";
 
         #endregion Constants
+        #region Fields
+
+        private static string _klensysWarThunderToolsLocation;
+
+        #endregion Fields
         #region Properties
 
         [RequiredSetting]
         public static string WarThunderLocation { get; set; }
         [RequiredSetting]
-        public static string KlensysWarThunderToolsLocation { get; set; }
+        public static string KlensysWarThunderToolsLocation
+        {
+            get => _klensysWarThunderToolsLocation;
+            set
+            {
+                _klensysWarThunderToolsLocation = value;
+                TempLocation = GetTempLocation();
+            }
+        }
 
-        public static string TempLocation { get; set; } = KlensysWarThunderToolsLocation + @"\_temp";
+        public static string TempLocation { get; set; }
 
         #endregion Properties
+
+        private static string GetTempLocation() => _klensysWarThunderToolsLocation is null ? null : _klensysWarThunderToolsLocation + @"\_temp";
     }
 }

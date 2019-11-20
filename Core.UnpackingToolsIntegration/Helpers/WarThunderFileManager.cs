@@ -31,6 +31,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Removes all directories and files in <see cref="Settings.TempLocation"/>. </summary>
         public void CleanUpTempDirectory()
         {
+            if (Settings.TempLocation is null)
+                return;
+
             var tempDirectory = new DirectoryInfo(Settings.TempLocation);
 
             if (tempDirectory.Exists)
