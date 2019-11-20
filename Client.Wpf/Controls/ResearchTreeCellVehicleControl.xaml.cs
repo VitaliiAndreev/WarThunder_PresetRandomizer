@@ -140,7 +140,7 @@ namespace Client.Wpf.Controls
 
                 // The size and margin are being set here to avoid breaking white-space when there is no source provided.
                 _countryFlag.SetSize(14);
-                _countryFlag.Margin = new Thickness(3, 0, 0, 0);
+                _countryFlag.Margin = new Thickness(5, 0, 0, 0);
             }
         }
 
