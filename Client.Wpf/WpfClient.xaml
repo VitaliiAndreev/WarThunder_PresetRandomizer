@@ -323,7 +323,7 @@
         <Style TargetType="ToggleButton" x:Key="NationToggle" BasedOn="{StaticResource BranchToggle}">
             <Setter Property="Padding" Value="0"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontSize" Value="15"/>
         </Style>
 
         <Style TargetType="ToggleButton" x:Key="VehicleClassToggle" BasedOn="{StaticResource NationToggle}">
