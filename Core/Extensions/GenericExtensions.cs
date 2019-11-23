@@ -1,4 +1,5 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,27 @@ namespace Core.Extensions
         /// <returns></returns>
         public static bool IsKeyIn<T, U>(this T source, IDictionary<T, U> collection) =>
             collection.ContainsKey(source);
+
+        /// <summary> Fluently checks whether the value of the given enumeration item is positive. </summary>
+        /// <typeparam name="T"> The enumeration type of the <paramref name="source"/>. </typeparam>
+        /// <param name="source"> The enumeration item to check. </param>
+        /// <returns></returns>
+        public static bool EnumerationItemValueIsPositive<T>(this T source) where T : struct
+        {
+            var type = typeof(T);
+
+            if (type.IsEnum)
+            {
+                var enumerationValueType = type.GetEnumUnderlyingType();
+
+                if (enumerationValueType == typeof(int))
+                    return source.CastTo<int>() > EInteger.Number.Zero;
+                else
+                    throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(enumerationValueType.ToStringLikeCode()));
+            }
+            else
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.ToStringLikeCode()));
+        }
 
         #endregion Fluency
 
