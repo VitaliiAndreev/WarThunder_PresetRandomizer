@@ -10,6 +10,15 @@ namespace Core.Extensions
     {
         #region Fluency
 
+        /// <summary> Fluently executes an operation on the <paramref name="value"/> and returns the result. </summary>
+        /// <typeparam name="T"> The input type. </typeparam>
+        /// <typeparam name="U"> The output type. </typeparam>
+        /// <param name="value"> The value to do the operation on. </param>
+        /// <param name="function"> The function to execute over the <paramref name="value"/>. </param>
+        /// <returns></returns>
+        public static U Do<T, U>(this T value, Func<T, U> function) =>
+            function(value);
+
         /// <summary> Fluently determines whether the given collection contains the object. </summary>
         /// <typeparam name="T"> The object type. </typeparam>
         /// <param name="source"> The source object. </param>
