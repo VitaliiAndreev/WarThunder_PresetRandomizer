@@ -36,10 +36,10 @@ namespace Client.Wpf.Windows
         private readonly EInitializationStatus _initializationStatus = EInitializationStatus.NotInitialized;
 
         /// <summary> A collection of boxed instances of <see cref="IList{T}"/> accessed by their generic types. </summary>
-        private readonly IDictionary<Type, object> _presenterToggleLists;
+        private IDictionary<Type, object> _presenterToggleLists;
 
         /// <summary> A collection of command names accesed by generic types appropriate to them. </summary>
-        private readonly IDictionary<Type, ECommandName> _toggleCommands;
+        private IDictionary<Type, ECommandName> _toggleCommands;
 
         #endregion Fields
         #region Properties
@@ -60,75 +60,16 @@ namespace Client.Wpf.Windows
         {
             _initializationStatus = EInitializationStatus.Initializing;
 
-            _presenterToggleLists = new Dictionary<Type, object>
-            {
-                { typeof(EBranch), Presenter.EnabledBranches },
-                { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
-                { typeof(ENation), Presenter.EnabledNations },
-                { typeof(NationCountryPair), Presenter.EnabledCountries },
-            };
-            _toggleCommands = new Dictionary<Type, ECommandName>
-            {
-                { typeof(EBranch), ECommandName.ToggleBranch },
-                { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
-                { typeof(ENation), ECommandName.ToggleNation },
-                { typeof(NationCountryPair), ECommandName.ToggleCountry },
-            };
-
+            InitializeDictionaries();
             InitializeComponent();
             Localize();
 
+            SetControlTags();
+            AttachCommands();
+            PopulateControls();
+            UpdateControlsBasedOnSettingsAndData();
+
             Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
-
-            _gameModeSelectionControl.Tag = EGameMode.None;
-            _branchToggleControl.Tag = EBranch.None;
-            _vehicleClassControl.Tag = EVehicleClass.None;
-            _nationToggleControl.Tag = ENation.None;
-            _countryToggleControl.Tag = ECountry.None;
-            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
-
-            _generatePresetButton.Command = Presenter.GetCommand(ECommandName.GeneratePreset);
-            _generatePresetButton.CommandParameter = Presenter;
-
-            _settingsButton.CommandParameter = Presenter;
-            _settingsButton.Command = Presenter.GetCommand(ECommandName.OpenSettings);
-
-            _localizationButton.CommandParameter = Presenter;
-            _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
-            _localizationButton.Content = new Image()
-            {
-                Style = this.GetStyle(EStyleKey.Image.LocalizationIcon),
-                Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
-            };
-
-            _aboutButton.EmbeddedButton.CommandParameter = Presenter;
-            _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);
-
-            _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
-
-            SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
-
-            _nationToggleControl.RemoveUnavailableNations();
-            _countryToggleControl.RemoveCountriesForUnavailableNations();
-            _battleRatingControl.RemoveControlsForUnavailableNations();
-
-            _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
-            _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
-            _nationToggleControl.Toggle(Presenter.EnabledNations, true);
-            _countryToggleControl.Toggle(Presenter.EnabledCountries, true);
-
-            AdjustCountryControlsAvailability();
-
-            _battleRatingControl.InitializeControls();
-            AdjustBattleRatingControlsAvailability();
-
-            foreach (var branch in Presenter.EnabledBranches)
-                UpdateToggleAllButtonState(_vehicleClassControl, branch);
-
-            _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
-
-            AdjustBranchTogglesAvailability();
-            RaiseGeneratePresetCommandCanExecuteChanged();
 
             Log.Debug(ECoreLogMessage.Initialized);
 
@@ -392,6 +333,93 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Initialization
+
+        /// <summary> Initialized dictionaries. </summary>
+        private void InitializeDictionaries()
+        {
+            _presenterToggleLists = new Dictionary<Type, object>
+            {
+                { typeof(EBranch), Presenter.EnabledBranches },
+                { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
+                { typeof(ENation), Presenter.EnabledNations },
+                { typeof(NationCountryPair), Presenter.EnabledCountries },
+            };
+            _toggleCommands = new Dictionary<Type, ECommandName>
+            {
+                { typeof(EBranch), ECommandName.ToggleBranch },
+                { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
+                { typeof(ENation), ECommandName.ToggleNation },
+                { typeof(NationCountryPair), ECommandName.ToggleCountry },
+            };
+        }
+
+        private void AttachCommands()
+        {
+            _generatePresetButton.CommandParameter = Presenter;
+            _generatePresetButton.Command = Presenter.GetCommand(ECommandName.GeneratePreset);
+
+            _settingsButton.CommandParameter = Presenter;
+            _settingsButton.Command = Presenter.GetCommand(ECommandName.OpenSettings);
+
+            _localizationButton.CommandParameter = Presenter;
+            _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
+
+            _aboutButton.EmbeddedButton.CommandParameter = Presenter;
+            _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);
+
+            _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
+        }
+
+        /// <summary> Sets control tags. </summary>
+        private void SetControlTags()
+        {
+            _gameModeSelectionControl.Tag = EGameMode.None;
+            _branchToggleControl.Tag = EBranch.None;
+            _vehicleClassControl.Tag = EVehicleClass.None;
+            _nationToggleControl.Tag = ENation.None;
+            _countryToggleControl.Tag = ECountry.None;
+            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
+        }
+
+        /// <summary> Populates controls after initialization. </summary>
+        private void PopulateControls()
+        {
+            _localizationButton.Content = new Image()
+            {
+                Style = this.GetStyle(EStyleKey.Image.LocalizationIcon),
+                Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
+            };
+            _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
+        }
+
+        /// <summary> Updates controls on the window base on saved user settings and loaded data. </summary>
+        private void UpdateControlsBasedOnSettingsAndData()
+        {
+            SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
+
+            _nationToggleControl.RemoveUnavailableNations();
+            _countryToggleControl.RemoveCountriesForUnavailableNations();
+            _battleRatingControl.RemoveControlsForUnavailableNations();
+
+            _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+            _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
+            _nationToggleControl.Toggle(Presenter.EnabledNations, true);
+            _countryToggleControl.Toggle(Presenter.EnabledCountries, true);
+
+            AdjustCountryControlsAvailability();
+
+            _battleRatingControl.InitializeControls();
+            AdjustBattleRatingControlsAvailability();
+
+            foreach (var branch in Presenter.EnabledBranches)
+                UpdateToggleAllButtonState(_vehicleClassControl, branch);
+
+            AdjustBranchTogglesAvailability();
+            RaiseGeneratePresetCommandCanExecuteChanged();
+        }
+
+        #endregion Methods: Initialization
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text in the window. </summary>
