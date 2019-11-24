@@ -27,6 +27,20 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         [TestMethod]
+        public void GetPreviousRank_All_None()
+        {
+            // arrange
+            var currentRank = ERank.All;
+            var expectedPreviousRank = ERank.None;
+
+            // act
+            var previousRank = currentRank.GetPreviousRank();
+
+            // assert
+            previousRank.Should().Be(expectedPreviousRank);
+        }
+
+        [TestMethod]
         public void GetPreviousRank_I_None()
         {
             // arrange
