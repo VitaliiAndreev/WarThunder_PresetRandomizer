@@ -15,6 +15,7 @@ namespace Client.Wpf.Enumerations.Logger
         public static readonly string InitializationCancelled_ClosingApplication = $"{_Initialization} {_cancelled}. {_Closing} {_the} {_application}.";
         public static readonly string StackPanelCantBeHorizontal = $"{_Stack} {_panel} {_cant} {_be} {_horizontal}.";
         public static readonly string WrapPanelCantBeVertical = $"{_Wrap} {_panel} {_cant} {_be} {_vertical}.";
+        public static readonly string NonEnumerationTagsAreNotSupportedYet = $"{_Non_}{_enumeration} {_tags} {_are} {_not} {_supported} {_yet}.";
 
         #endregion WpfClient
     }

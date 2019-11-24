@@ -14,7 +14,7 @@ namespace Client.Wpf.Controls.Base
 {
     /// <summary> A user control consisting of a row or a column of <see cref="ToggleButton"/>s, indexed by <typeparamref name="T"/> values. </summary>
     /// <typeparam name="T"> The key type. </typeparam>
-    public class ToggleButtonGroupControl<T> : LocalizedUserControl
+    public class ToggleButtonGroupControl<T> : LocalizedUserControl, IEnumerable<ToggleButton>
     {
         #region Fields
 
@@ -151,6 +151,33 @@ namespace Client.Wpf.Controls.Base
                 toggleButton.IsEnabled = enable;
         }
 
+        #region Methods: AllButtonsMeetCondition()
+
+        /// <summary> Checks whether all <see cref="Buttons"/> meet the given condition. </summary>
+        /// <param name="predicate"> The predicate that the condition is defined by. </param>
+        /// <returns></returns>
+        private bool AllButtonsMeetCondition(Predicate<ToggleButton> predicate)
+        {
+            return Buttons
+                .Values
+                .Except(_toggleAllButton)
+                .All(toggleButton => predicate(toggleButton))
+            ;
+        }
+
+        /// <summary> Checks whether all <see cref="Buttons"/> are toggled on, except the <see cref="_toggleAllButton"/>. </summary>
+        /// <returns></returns>
+        public bool AllButtonsAreToggledOn() =>
+            AllButtonsMeetCondition(toggleButton => toggleButton.IsChecked.HasValue && toggleButton.IsChecked.Value);
+
+        /// <summary> Checks whether all <see cref="Buttons"/> are toggled off, except the <see cref="_toggleAllButton"/>. </summary>
+        /// <returns></returns>
+        public bool AllButtonsAreToggledOff() =>
+            AllButtonsMeetCondition(toggleButton => !toggleButton.IsChecked.HasValue || !toggleButton.IsChecked.Value);
+
+        #endregion Methods: AllButtonsMeetCondition()
+        #region Methods: Toggling()
+
         /// <summary> Toggles a button corresponding to the specified key. </summary>
         /// <param name="key"> The key whose button to toggle. </param>
         /// <param name="newState"> Whether to toggle the button on or off. </param>
@@ -168,5 +195,23 @@ namespace Client.Wpf.Controls.Base
             foreach (var branch in keys)
                 Toggle(branch, newState);
         }
+
+        /// <summary> Toggles all <see cref="Buttons"/>. </summary>
+        /// <param name="newState"> Whether to toggle buttons on or off. </param>
+        public void ToggleAll(bool newState)
+        {
+            foreach (var button in Buttons.Values)
+                if (button.IsChecked != newState)
+                    button.IsChecked = newState;
+        }
+
+        #endregion Methods: Toggling()
+        #region Implementation of IEnumerable<ToggleButton>
+
+        public IEnumerator<ToggleButton> GetEnumerator() => Buttons.Values.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        #endregion Implementation of IEnumerable<ToggleButton>
     }
 }

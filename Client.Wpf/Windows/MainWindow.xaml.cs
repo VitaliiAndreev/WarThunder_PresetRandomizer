@@ -83,6 +83,13 @@ namespace Client.Wpf.Windows
 
             Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
+            _gameModeSelectionControl.Tag = EGameMode.None;
+            _branchToggleControl.Tag = EBranch.None;
+            _vehicleClassControl.Tag = EVehicleClass.None;
+            _nationToggleControl.Tag = ENation.None;
+            _countryToggleControl.Tag = ECountry.None;
+            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
+
             _generatePresetButton.Command = Presenter.GetCommand(ECommandName.GeneratePreset);
             _generatePresetButton.CommandParameter = Presenter;
 
@@ -117,6 +124,9 @@ namespace Client.Wpf.Windows
 
             _battleRatingControl.InitializeControls();
             AdjustBattleRatingControlsAvailability();
+
+            foreach (var branch in Presenter.EnabledBranches)
+                UpdateToggleAllButtonState(_vehicleClassControl, branch);
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
 
@@ -159,9 +169,14 @@ namespace Client.Wpf.Windows
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
+        /// <summary> Executes a command associated with with the given type. </summary>
+        /// <param name="key"> The type whose associated command to execute. </param>
+        private void ExecuteToggleCommand(Type key) =>
+            Presenter.ExecuteCommand(_toggleCommands[key]);
+
         /// <summary> Updates a collection and executes a command associated with with the <typeparamref name="T"/> <see cref="FrameworkElement.Tag"/> of the <paramref name="toggleButton"/> according to its <see cref="ToggleButton.IsChecked"/> status. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
-        private void OnToggleButtonGroupControlClick<T>(ToggleButton toggleButton)
+        /// <param name="toggleButton"> The button that has been clicked. </param>
+        private void OnToggleButtonGroupControlClick<T>(ToggleButton toggleButton, bool executeCommand = true)
         {
             var keyType = typeof(T);
             var buttonTag = toggleButton.GetTag<T>();
@@ -174,7 +189,8 @@ namespace Client.Wpf.Windows
             else
                 _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(buttonTag);
 
-            Presenter.ExecuteCommand(_toggleCommands[keyType]);
+            if (executeCommand)
+                ExecuteToggleCommand(keyType);
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
@@ -202,6 +218,23 @@ namespace Client.Wpf.Windows
             }
         }
 
+        private void UpdateToggleAllButtonState<T, U>(IControlWithToggleColumns<T, U> toggleControl, T ownerEntity)
+        {
+            var toggleColumn = toggleControl.ToggleClassColumns[ownerEntity];
+            var toggleButtonTagType = typeof(U);
+            var toggleAllOn = toggleColumn.AllButtonsAreToggledOn();
+
+            if (toggleButtonTagType.IsEnum)
+            {
+                if (toggleButtonTagType.GetEnumValues().OfType<U>().FirstOrDefault(item => item.ToString() == EWord.All) is U toggleButtonKey)
+                    toggleColumn.Toggle(toggleButtonKey, toggleAllOn);
+            }
+            else
+            {
+                throw new NotImplementedException(EWpfClientLogMessage.NonEnumerationTagsAreNotSupportedYet);
+            }
+        }
+
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleClasses"/> according to the action. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Event arguments. </param>
@@ -209,12 +242,28 @@ namespace Client.Wpf.Windows
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
             {
-                OnToggleButtonGroupControlClick<EVehicleClass>(toggleButton);
-
                 var vehicleClass = toggleButton.GetTag<EVehicleClass>();
                 var ownerBranch = vehicleClass.GetBranch();
 
-                if (!toggleButton.IsChecked.Value && !Presenter.BranchHasVehicleClassesEnabled(ownerBranch))
+                if (vehicleClass.ToString().StartsWith(EWord.All))
+                {
+                    var disabledButtons = _vehicleClassControl.GetButtons(ownerBranch, !toggleButton.IsChecked.Value, false);
+
+                    foreach (var button in disabledButtons)
+                    {
+                        _vehicleClassControl.Toggle(button.Tag.CastTo<EVehicleClass>(), toggleButton.IsChecked.Value);
+                        OnToggleButtonGroupControlClick<EVehicleClass>(button, false);
+                    }
+
+                    ExecuteToggleCommand(typeof(EVehicleClass));
+                }
+                else
+                {
+                    OnToggleButtonGroupControlClick<EVehicleClass>(toggleButton);
+                    UpdateToggleAllButtonState(_vehicleClassControl, ownerBranch);
+                }
+
+                if (!Presenter.BranchHasVehicleClassesEnabled(ownerBranch))
                 {
                     _branchToggleControl.Toggle(ownerBranch, false);
                     OnBranchToggleControlClick(_branchToggleControl, new RoutedEventArgs(BranchToggleControl.ClickEvent, _branchToggleControl.Buttons[ownerBranch]));

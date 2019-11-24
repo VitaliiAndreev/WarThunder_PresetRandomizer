@@ -14,6 +14,9 @@
 
         #endregion A
         #region B
+
+        public static string Battle => _Battle;
+
         #endregion B
         #region C
 
@@ -91,6 +94,7 @@
         #endregion Q
         #region R
 
+        public static string Rating => _Rating;
         public static string Reader => _Reader;
 
         #endregion R

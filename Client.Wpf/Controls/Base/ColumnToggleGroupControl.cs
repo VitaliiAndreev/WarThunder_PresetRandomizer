@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Controls.Base.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -69,6 +70,23 @@ namespace Client.Wpf.Controls.Base
         /// <param name="keys"> Vehicle branches to create columns of toggle buttons for. </param>
         public abstract void CreateToggleColumns(IEnumerable<T> keys);
 
+        /// <summary> Gets toggle buttons in the specified column with the specified toggle state. </summary>
+        /// <param name="outerKey"> The key by which to access the column. </param>
+        /// <param name="searchedState"> The required toggle state. </param>
+        /// <param name="includeToggleAllButton"> Whether to include the toggle-all button. </param>
+        /// <returns></returns>
+        public IEnumerable<ToggleButton> GetButtons(T outerKey, bool searchedState, bool includeToggleAllButton = true)
+        {
+            if (!ToggleClassColumns.TryGetValue(outerKey, out var toggleColumn))
+                return new List<ToggleButton>();
+
+            var allButtons = includeToggleAllButton
+                ? toggleColumn.Buttons.Values
+                : toggleColumn.GetButtonsExceptToggleAll();
+
+            return allButtons.Where(button => button.IsChecked == searchedState);
+        }
+
         /// <summary> Changes the <see cref="UIElement.IsEnabled"/> status of the toggle column corresponding to the specified outer key. </summary>
         /// <param name="outerKey"> The key by which to access toggle columns. </param>
         /// <param name="enable"> Whether to enable or disable toggle buttons. </param>
@@ -92,6 +110,21 @@ namespace Client.Wpf.Controls.Base
         {
             foreach (var innerKey in innerKeys)
                 Toggle(innerKey, newState);
+        }
+
+        /// <summary> Toggles buttons in the specified column. </summary>
+        /// <param name="outerKey"> The key by which to access the column. </param>
+        /// <param name="newState"> Whether to toggle buttons on or off. </param>
+        public void Toggle(T outerKey, bool newState, bool includeToggleAllButton = true)
+        {
+            if (!ToggleClassColumns.TryGetValue(outerKey, out var toggleColumn))
+                return;
+
+            var buttons = includeToggleAllButton ? toggleColumn : toggleColumn.GetButtonsExceptToggleAll();
+
+            foreach (var button in buttons)
+                if (button.IsChecked != newState)
+                    button.IsChecked = newState;
         }
 
         #endregion Methods: Toggle()

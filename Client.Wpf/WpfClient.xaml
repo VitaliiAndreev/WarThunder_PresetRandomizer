@@ -333,6 +333,11 @@
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
+        <Style TargetType="ToggleButton" x:Key="VehicleClassToggleAll" BasedOn="{StaticResource VehicleClassToggle}">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+
         <Style TargetType="ToggleButton" x:Key="CountryToggle" BasedOn="{StaticResource VehicleClassToggle}">
             <Setter Property="Height" Value="20"/>
             <Setter Property="Padding" Value="4 0"/>

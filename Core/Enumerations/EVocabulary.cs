@@ -19,20 +19,23 @@
         #region A
 
         private const string _al = _a + _l;
+        private const string _aw = _a + _w;
 
         protected const string _A = "A";
         protected const string _a = "a";
-        protected const string _able = _a + "ble";
+        protected const string _ab = _a + _b;
+        protected const string _able = _ab + "le";
         protected const string _aborted = _a + _b + _or + _t + _ed;
         protected const string _About = _A + _b + _out;
-        protected const string _act = _a + "c" + _t;
+        protected const string _act = _a + _c + _t;
         protected const string _ad = _a + _d;
-        protected const string _after = _a + "f" + _t + _er;
+        protected const string _aft = _a + _f + _t;
+        protected const string _after = _aft + _er;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;
         protected const string _Already = _A + _lready;
         protected const string _already = _a + _lready;
-        protected const string _am = _a + "m";
+        protected const string _am = _a + _m;
         protected const string _among = _a + _mong;
         protected const string _An = _A + _n;
         protected const string _an = _a + _n;
@@ -62,7 +65,10 @@
         private const string _b = "b";
 
         protected const string _base = _b + _a + _s + _e;
-        protected const string _battle = _b + _at + _t + "l" + _e;
+        protected const string _Bat = _B + _at;
+        protected const string _bat = _b + _at;
+        protected const string _Battle = _Bat + _t + _l + _e;
+        protected const string _battle = _bat + _t + _l + _e;
         protected const string _be = _b + _e;
         protected const string _been = _be + _e + _n;
         protected const string _BR = _B + "R";
@@ -246,6 +252,7 @@
         #region G
 
         private const string _g = "g";
+        private const string _gr = _g + _r;
 
         protected const string _Game = "Game";
         protected const string _game = _g + "ame";
@@ -387,6 +394,7 @@
         protected const string _No = "No";
         protected const string _no = _n + "o";
         protected const string _node = _no + "de";
+        protected const string _Non_ = _No + _n + ECharacterString.Minus;
         protected const string _None = _No + _ne;
         protected const string _Not = _No + _t;
         protected const string _not = _no + _t;
@@ -466,21 +474,24 @@
         #endregion Q
         #region R
 
+        private const string _R = "R";
         private const string _r = "r";
-        private const string _Re = "R" + _e;
+        private const string _Re = _R + _e;
         private const string _re = _r + _e;
         private const string _rect = _re + _ct;
         private const string _ri = _r + _i;
         private const string _ry = _r + _y;
 
-        protected const string _ranch = _r + "anch";
+        protected const string _ranch = _r + _an + _ch;
         protected const string _rank = _r + "ank";
         protected const string _ranks = _rank + _s;
         protected const string _rap = _r + _a + _p;
+        protected const string _Rat = _R + _at;
         protected const string _rat = _r + _at;
+        protected const string _Rating = _Rat + _ing;
         protected const string _rating = _rat + _ing;
         protected const string _ratings = _rating + _s;
-        protected const string _raw = _r + "aw";
+        protected const string _raw = _r + _aw;
         protected const string _Read = _Re + _ad;
         protected const string _read = _re + _ad;
         protected const string _ready = _read + _y;
@@ -563,11 +574,13 @@
 
         private const string _T = "T";
         private const string _t = "t";
-        private const string _tegrat = _t + _e + "gr" + _a + _t;
+        private const string _tegrat = _t + _e + _gr + _a + _t;
         private const string _tre = _t + _re;
 
         protected const string _tab = _t + _a + _b;
         protected const string _tack = _t + _a + _c + _k;
+        protected const string _tag = _t + _a + _g;
+        protected const string _tags = _tag + _s;
         protected const string _tart = _t + _art;
         protected const string _ten = _t + _e + _n;
         protected const string _test = _t + _est;
