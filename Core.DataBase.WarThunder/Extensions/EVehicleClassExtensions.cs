@@ -11,7 +11,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="vehicleClass"> The vehicle class to check. </param>
         /// <returns></returns>
         public static bool IsValid(this EVehicleClass vehicleClass) =>
-            vehicleClass.ToString().HasSeveral();
+            vehicleClass.CastTo<int>() > EInteger.Number.Nine;
 
         /// <summary> Returns the vehicle branch to which the class belongs to. </summary>
         /// <param name="vehicleClass"> The vehicle class whose branch to get. </param>
