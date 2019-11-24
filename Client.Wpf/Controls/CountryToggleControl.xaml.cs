@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects;
@@ -11,7 +12,7 @@ using System.Windows.Controls;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for CountryToggleControl.xaml. </summary>
-    public partial class CountryToggleControl : ColumnToggleGroupControl<ENation, CountryColumnToggleControl, NationCountryPair>
+    public partial class CountryToggleControl : ColumnToggleGroupControl<ENation, NationCountryPair>, IControlWithToggleColumns<ENation, NationCountryPair>
     {
         #region Constructors
 

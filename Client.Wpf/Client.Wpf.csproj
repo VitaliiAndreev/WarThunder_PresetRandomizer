@@ -243,6 +243,7 @@
     <Compile Include="Controls\Base\ColumnToggleControl.cs" />
     <Compile Include="Controls\Base\ColumnToggleGroupControl.cs" />
     <Compile Include="Controls\Base\Interfaces\IControlWithSubcontrols.cs" />
+    <Compile Include="Controls\Base\Interfaces\IControlWithToggleColumns.cs" />
     <Compile Include="Controls\Base\LocalizedUserControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithResource.cs" />

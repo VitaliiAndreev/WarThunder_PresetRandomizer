@@ -1,5 +1,5 @@
 ﻿<base:ColumnToggleGroupControl
-    x:TypeArguments="enumerations:EBranch, controls:VehicleClassColumnToggleControl, enumerations:EVehicleClass"
+    x:TypeArguments="enumerations:EBranch, enumerations:EVehicleClass"
     x:Class="Client.Wpf.Controls.VehicleClassToggleControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

@@ -9,7 +9,7 @@ using System.Linq;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleClassToggleControl.xaml. </summary>
-    public partial class VehicleClassToggleControl : ColumnToggleGroupControl<EBranch, VehicleClassColumnToggleControl, EVehicleClass>
+    public partial class VehicleClassToggleControl : ColumnToggleGroupControl<EBranch, EVehicleClass>
     {
         #region Constructors
 

@@ -5,23 +5,21 @@ using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
 {
-    /// <summary> A user control consisting of <typeparamref name="U"/> toggle button columns indexed by <typeparamref name="T"/> values. </summary>
-    /// <typeparam name="T"> The type of keys by which to group <typeparamref name="U"/> toggle button columns. </typeparam>
-    /// <typeparam name="U"> The type of toggle button columns. </typeparam>
-    /// <typeparam name="V"> The type of keys by which to group items in <typeparamref name="U"/> toggle button columns. </typeparam>
-    public abstract class ColumnToggleGroupControl<T, U, V> : LocalizedUserControl, IControlWithSubcontrols<T>
-        where U : LocalizedUserControl
+    /// <summary> A user control consisting of toggle button columns indexed by <typeparamref name="T"/> values. </summary>
+    /// <typeparam name="T"> The type of keys by which to group toggle button columns. </typeparam>
+    /// <typeparam name="V"> The type of keys by which to group items in toggle button columns. </typeparam>
+    public abstract class ColumnToggleGroupControl<T, V> : LocalizedUserControl, IControlWithToggleColumns<T, V>
     {
-        #region Fields
+        #region Properties
 
-        /// <summary> The map of the vehicle branch enumeration onto corresponding toggle button columns. </summary>
-        protected internal readonly IDictionary<T, U> ToggleClassColumns;
+        /// <summary> Toggle button columns indexed by the <typeparamref name="T"/> key. </summary>
+        public IDictionary<T, ToggleButtonGroupControl<V>> ToggleClassColumns { get; }
 
-        #endregion Fields
+        #endregion Properties
         #region Events
 
         /// <summary> A routed event for <see cref="Click"/>. </summary>
-        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ColumnToggleGroupControl<T, U, V>));
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(nameof(Click), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ColumnToggleGroupControl<T, V>));
 
         /// <summary> An event for clicking toggle buttons. </summary>
         public event RoutedEventHandler Click
@@ -36,7 +34,7 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Creates a new control. </summary>
         public ColumnToggleGroupControl()
         {
-            ToggleClassColumns = new Dictionary<T, U>();
+            ToggleClassColumns = new Dictionary<T, ToggleButtonGroupControl<V>>();
         }
 
         #endregion Constructors
