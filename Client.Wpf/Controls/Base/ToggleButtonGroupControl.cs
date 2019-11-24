@@ -58,7 +58,7 @@ namespace Client.Wpf.Controls.Base
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with character <paramref name="icons"/>. </summary>
-        /// <param name="panel"> The panel to add buttons into. </param>
+        /// <param name="panel"> The panel to add buttons onto. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="icons"> Icons for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>

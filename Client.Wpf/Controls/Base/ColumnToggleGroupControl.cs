@@ -78,18 +78,22 @@ namespace Client.Wpf.Controls.Base
                 column.IsEnabled = enable;
         }
 
+        #region Methods: Toggle()
+
         /// <summary> Toggles a button corresponding to the specified inner key. </summary>
         /// <param name="innerKey"> The key by which to access buttons. </param>
         /// <param name="newState"> Whether to toggle the button on or off. </param>
         public abstract void Toggle(V innerKey, bool newState);
 
         /// <summary> Toggles buttons corresponding to specified inner keys. </summary>
-        /// <param name="inneryKeys"> Keys by which to access buttons. </param>
+        /// <param name="innerKeys"> Keys by which to access buttons. </param>
         /// <param name="newState"> Whether to toggle buttons on or off. </param>
-        public void Toggle(IEnumerable<V> inneryKeys, bool newState)
+        public void Toggle(IEnumerable<V> innerKeys, bool newState)
         {
-            foreach (var vehicleClass in inneryKeys)
-                Toggle(vehicleClass, newState);
+            foreach (var innerKey in innerKeys)
+                Toggle(innerKey, newState);
         }
+
+        #endregion Methods: Toggle()
     }
 }
