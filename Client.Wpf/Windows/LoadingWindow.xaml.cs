@@ -30,10 +30,10 @@ namespace Client.Wpf.Windows
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
-        new public ILoadingWindowPresenter Presenter { get; private set; }
+        new public ILoadingWindowPresenter Presenter => base.Presenter as ILoadingWindowPresenter;
 
         /// <summary> An instance of a presenter. </summary>
-        IPresenter IWindowWithPresenter.Presenter => Presenter;
+        IPresenter IWindowWithPresenter.Presenter => base.Presenter;
 
         /// <summary> Indicates whether the initialization has been completed. </summary>
         public bool InitializationComplete { get; set; }

@@ -16,10 +16,10 @@ namespace Client.Wpf.Windows
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
-        new public IAboutWindowPresenter Presenter { get; private set; }
+        new public IAboutWindowPresenter Presenter => base.Presenter as IAboutWindowPresenter;
 
         /// <summary> An instance of a presenter. </summary>
-        IPresenter IWindowWithPresenter.Presenter => Presenter;
+        IPresenter IWindowWithPresenter.Presenter => base.Presenter;
 
         #endregion Properties
         #region Constructors

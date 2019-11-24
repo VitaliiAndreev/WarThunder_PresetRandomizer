@@ -45,10 +45,10 @@ namespace Client.Wpf.Windows
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
-        new public IMainWindowPresenter Presenter { get; private set; }
+        new public IMainWindowPresenter Presenter => base.Presenter as IMainWindowPresenter;
 
         /// <summary> An instance of a presenter. </summary>
-        IPresenter IWindowWithPresenter.Presenter => Presenter;
+        IPresenter IWindowWithPresenter.Presenter => base.Presenter;
 
         #endregion Properties
         #region Constructors

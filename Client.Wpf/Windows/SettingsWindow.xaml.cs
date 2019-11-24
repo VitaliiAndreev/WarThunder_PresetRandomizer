@@ -20,10 +20,10 @@ namespace Client.Wpf.Windows
         #region Properties
 
         /// <summary> An instance of a presenter. </summary>
-        new public ISettingsWindowPresenter Presenter { get; private set; }
+        new public ISettingsWindowPresenter Presenter => base.Presenter as ISettingsWindowPresenter;
 
         /// <summary> An instance of a presenter. </summary>
-        IPresenter IWindowWithPresenter.Presenter => Presenter;
+        IPresenter IWindowWithPresenter.Presenter => base.Presenter;
 
         /// <summary> Indicates whether the location of the War Thunder directory is valid. </summary>
         public bool WarThunderLocationIsValid => _warThunderLocationControl.AddressIsValid;
