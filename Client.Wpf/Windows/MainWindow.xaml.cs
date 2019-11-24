@@ -56,12 +56,9 @@ namespace Client.Wpf.Windows
         /// <summary> Creates a new main window. </summary>
         /// <param name="presenter"> The presenter to attach. </param>
         public MainWindow(IMainWindowPresenter presenter)
-            : base(EWpfClientLogCategory.MainWindow)
+            : base(EWpfClientLogCategory.MainWindow, null, presenter)
         {
             _initializationStatus = EInitializationStatus.Initializing;
-
-            Presenter = presenter;
-            Presenter.SetParentWindow(this);
 
             _presenterToggleLists = new Dictionary<Type, object>
             {

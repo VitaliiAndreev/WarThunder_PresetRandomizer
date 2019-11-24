@@ -28,11 +28,8 @@ namespace Client.Wpf.Windows
         /// <param name="presenter"> The presenter to attach. </param>
         /// <param name="parentWindow"> The window that owns this one. </param>
         public AboutWindow(IAboutWindowPresenter presenter, IBaseWindow parentWindow)
-            : base(EWpfClientLogCategory.AboutWindow, parentWindow)
+            : base(EWpfClientLogCategory.AboutWindow, parentWindow, presenter)
         {
-            Presenter = presenter;
-            Presenter.SetParentWindow(this);
-
             InitializeComponent();
 
             _version.Text = $"{EApplicationData.Version} ({{0}})";
