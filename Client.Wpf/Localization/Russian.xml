@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
   <Line key="AboutWtpr" value="О проекте"/>
+  <Line key="All" value="Все"/>
   <Line key="Alpha" value="Альфа"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
@@ -79,6 +80,7 @@
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
+  <Line key="SelectAllVehicleClasses" value="Активирует все классы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы. "/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="SouthAfrica" value="Южная Африка"/>

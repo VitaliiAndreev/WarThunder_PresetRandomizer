@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
   <Line key="AboutWtpr" value="About W.T.P.R."/>
+  <Line key="All" value="All"/>
   <Line key="Alpha" value="Alpha"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
@@ -79,6 +80,7 @@
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
+  <Line key="SelectAllVehicleClasses" value="Enables all vehicle classes in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise. "/>
   <Line key="Simulator" value="Simulator Battles"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="SouthAfrica" value="South Africa"/>

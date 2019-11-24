@@ -4,6 +4,7 @@
     public class ELocalizationKey
     {
         public const string AboutWtpr = nameof(AboutWtpr);
+        public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
@@ -82,6 +83,7 @@
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
+        public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string Simulator = nameof(Simulator);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string SouthAfrica = nameof(SouthAfrica);
