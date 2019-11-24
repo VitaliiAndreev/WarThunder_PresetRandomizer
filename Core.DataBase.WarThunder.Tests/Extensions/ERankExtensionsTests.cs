@@ -44,8 +44,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         public void GetPreviousRank_II_I()
         {
             // arrange
-            var currentRank = ERank.I;
-            var expectedPreviousRank = ERank.None;
+            var currentRank = ERank.II;
+            var expectedPreviousRank = ERank.I;
 
             // act
             var previousRank = currentRank.GetPreviousRank();

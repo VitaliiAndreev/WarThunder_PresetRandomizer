@@ -357,6 +357,12 @@
             </Style.Triggers>
         </Style>
         
+        <!-- Window -->
+        
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+        </Style>
+
         <!-- t:WrapPanel -->
 
         <Style TargetType="WrapPanel" x:Key="Preset">
