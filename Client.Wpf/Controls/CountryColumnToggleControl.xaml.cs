@@ -59,7 +59,7 @@ namespace Client.Wpf.Controls
             var countriesByNations = typeof(ENation)
                 .GetEnumValues()
                 .Cast<ENation>()
-                .Except(ENation.None)
+                .Where(nation => nation.IsValid())
                 .ToDictionary(nation => nation, nation => nation.GetCountries().Select(country => new NationCountryPair(nation, country)))
             ;
 

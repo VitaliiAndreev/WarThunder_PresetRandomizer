@@ -8,6 +8,12 @@ namespace Core.DataBase.WarThunder.Extensions
     /// <summary> Methods extending the <see cref="EBranch"/> enumeration. </summary>
     public static class EBranchExtensions
     {
+        /// <summary> Checks whether the branch is valid. </summary>
+        /// <param name="branch"> The branch to check. </param>
+        /// <returns></returns>
+        public static bool IsValid(this EBranch branch) =>
+            branch.EnumerationItemValueIsPositive();
+
         /// <summary> Returns vehicle classes which belong to the branch. </summary>
         /// <param name="branch"> The branch whose vehicle classes to get. </param>
         /// <returns></returns>

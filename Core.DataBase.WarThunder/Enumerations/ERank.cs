@@ -4,6 +4,7 @@
     public enum ERank
     {
         None = -1,
+        All = 0,
         I = 1,
         II,
         III,

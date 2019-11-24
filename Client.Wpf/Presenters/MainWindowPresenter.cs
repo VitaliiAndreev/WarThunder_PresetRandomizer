@@ -93,7 +93,7 @@ namespace Client.Wpf.Presenters
         /// <returns></returns>
         public IEnumerable<EBranch> GetValidBraches()
         {
-            var allBranches = Enum.GetValues(typeof(EBranch)).OfType<EBranch>().Where(branch => branch != EBranch.None);
+            var allBranches = Enum.GetValues(typeof(EBranch)).OfType<EBranch>().Where(branch => branch.IsValid());
             var allEmptyBranches = GetEmptyBranches();
             var validBranches = new HashSet<EBranch>();
 

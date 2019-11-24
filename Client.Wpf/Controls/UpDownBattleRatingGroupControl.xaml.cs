@@ -3,6 +3,7 @@ using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Extensions;
 using Core.Organization.Extensions;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ namespace Client.Wpf.Controls
 
         private void CreateBattleRatingPairControls()
         {
-            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Except(ENation.None))
+            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Where(nation => nation.IsValid()))
             {
                 var battleRatingControl = new UpDownBattleRatingPairControl()
                 {

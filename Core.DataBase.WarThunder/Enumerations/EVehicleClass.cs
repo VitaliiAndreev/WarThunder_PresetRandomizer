@@ -9,17 +9,22 @@ namespace Core.DataBase.WarThunder.Enumerations
     /// </summary>
     public enum EVehicleClass
     {
-        None = 0,
+        None = -1,
+        All = 0,
+        AllGroundVehicles = 1,
         LightTank = 10,
         MediumTank = 11,
         HeavyTank = 12,
         TankDestroyer = 13,
         Spaa = 14,
+        AllHelicopters = 2,
         AttackHelicopter = 20,
         UtilityHelicopter = 21,
+        AllAircraft = 3,
         Fighter = 30,
         Attacker = 31,
         Bomber = 32,
+        AllShips = 4,
         Boat = 40,
         HeavyBoat = 41,
         Barge = 42,

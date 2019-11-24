@@ -205,8 +205,8 @@ namespace Core.IntegrationTests
                     // general
                     vehicleCollection.All(vehicle => vehicle.Id != 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
-                    vehicleCollection.All(vehicle => vehicle.Country != ECountry.None).Should().BeTrue();
-                    vehicleCollection.All(vehicle => vehicle.Class != EVehicleClass.None).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.Country.IsValid()).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.Class.IsValid()).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
 

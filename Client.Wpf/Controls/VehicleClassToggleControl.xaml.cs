@@ -2,7 +2,6 @@
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +15,7 @@ namespace Client.Wpf.Controls
         /// <summary> Creates a new control. </summary>
         public VehicleClassToggleControl()
         {
-            var branches = typeof(EBranch).GetEnumValues().Cast<EBranch>().Except(EBranch.None);
+            var branches = typeof(EBranch).GetEnumValues().Cast<EBranch>().Where(branch => branch.IsValid());
 
             InitializeComponent();
             CreateToggleColumns(branches);

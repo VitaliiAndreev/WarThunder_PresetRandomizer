@@ -146,7 +146,7 @@ namespace Client.Console
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectNation);
                 return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
             }
-            if (branch == EBranch.None)
+            if (branch.IsValid())
             {
                 System.Console.WriteLine(EConsoleUiLogMessage.IncorrectBranch);
                 return ParseSpecification(TakeSpecificationInput(), enabledVehicleGaijinIds);
@@ -167,7 +167,7 @@ namespace Client.Console
                 Enum
                     .GetValues(typeof(ENation))
                     .Cast<ENation>()
-                    .Where(enumerationItem => enumerationItem != ENation.None)
+                    .Where(enumerationItem => enumerationItem.IsValid())
                     .ToDictionary(enumerationItem => enumerationItem, enumerationItem => new Interval<int>(true, economicRank, economicRank, true)),
                 enabledVehicleGaijinIds
             );

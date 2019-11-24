@@ -192,7 +192,7 @@ namespace Client.Wpf.Windows
 
                 if (toggleButton.IsChecked.Value && !Presenter.BranchHasVehicleClassesEnabled(branch))
                 {
-                    var vehicleClass = branch.GetVehicleClasses().First();
+                    var vehicleClass = branch.GetVehicleClasses().First(vehicleClass => vehicleClass.IsValid());
 
                     _vehicleClassControl.Toggle(vehicleClass, true);
                     OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleClassColumns[branch].Buttons[vehicleClass]));
@@ -374,7 +374,7 @@ namespace Client.Wpf.Windows
         /// <summary> Enables or disables branch toggles depending on whether any of <see cref="IMainWindowPresenter.EnabledNations"/> have associated branches implemented.</summary>
         private void AdjustBranchTogglesAvailability()
         {
-            var allBranches = typeof(EBranch).GetEnumValues().Cast<EBranch>().Where(branch => branch != EBranch.None);
+            var allBranches = typeof(EBranch).GetEnumValues().Cast<EBranch>().Where(branch => branch.IsValid());
             var validBranches = Presenter.GetValidBraches();
 
             foreach (var branch in allBranches)
@@ -444,7 +444,7 @@ namespace Client.Wpf.Windows
             typeof(ENation)
                 .GetEnumValues()
                 .Cast<ENation>()
-                .Except(ENation.None)
+                .Where(nation => nation.IsValid())
                 .Except(Presenter.EnabledNations)
             ;
 

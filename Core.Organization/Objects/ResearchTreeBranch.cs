@@ -29,7 +29,7 @@ namespace Core.Organization.Objects
         {
             var previousRankKey = rankKey.GetPreviousRank(Keys);
 
-            if (previousRankKey == ERank.None)
+            if (!previousRankKey.IsValid())
             {
                 rank.StartingRowNumber = EInteger.Number.One;
                 rank.MaximumRowNumber = rank.RowCount;

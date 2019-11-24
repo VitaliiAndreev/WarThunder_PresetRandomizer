@@ -2,8 +2,8 @@
 using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects;
-using Core.Extensions;
 using Core.Organization.Extensions;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace Client.Wpf.Controls
         /// <summary> Creates a new control. </summary>
         public CountryToggleControl()
         {
-            var nations = typeof(ENation).GetEnumValues().Cast<ENation>().Except(ENation.None);
+            var nations = typeof(ENation).GetEnumValues().Cast<ENation>().Where(nation => nation.IsValid());
 
             InitializeComponent();
             CreateToggleColumns(nations);

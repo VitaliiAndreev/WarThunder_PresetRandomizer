@@ -3,7 +3,8 @@
     /// <summary> Contries in War Thunder with flags present in game files. For playable in-game nations see <see cref="ENation"/>. </summary>
     public enum ECountry
     {
-        None,
+        None = -1,
+        All,
         Argentina,
         Australia,
         Belgium,

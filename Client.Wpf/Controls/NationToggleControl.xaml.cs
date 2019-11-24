@@ -2,7 +2,7 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Organization.Extensions;
 using System.Linq;
 using System.Windows.Controls;
@@ -18,7 +18,7 @@ namespace Client.Wpf.Controls
         public NationToggleControl()
         {
             InitializeComponent();
-            CreateToggleButtons(_buttonGrid, typeof(ENation).GetEnumValues().Cast<ENation>().Except(ENation.None), EReference.NationIcons, EStyleKey.ToggleButton.NationToggle);
+            CreateToggleButtons(_buttonGrid, typeof(ENation).GetEnumValues().Cast<ENation>().Where(nation => nation.IsValid()), EReference.NationIcons, EStyleKey.ToggleButton.NationToggle);
         }
 
         #endregion Constructors

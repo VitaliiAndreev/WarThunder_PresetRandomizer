@@ -48,8 +48,8 @@ namespace Client.Wpf.Controls
             var vehicleClasses = typeof(EBranch)
                 .GetEnumValues()
                 .Cast<EBranch>()
-                .Except(EBranch.None)
-                .ToDictionary(branch => branch, branch => branch.GetVehicleClasses())
+                .Where(branch => branch.IsValid())
+                .ToDictionary(branch => branch, branch => branch.GetVehicleClasses().Where(vehicleClass => vehicleClass.IsValid()))
             ;
 
             _groupedItems.AddRange(vehicleClasses);

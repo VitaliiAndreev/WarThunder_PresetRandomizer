@@ -3,7 +3,8 @@
     /// <summary> Game modes available in War Thunder. </summary>
     public enum EGameMode
     {
-        None,
+        None = -1,
+        All,
         Arcade,
         Realistic,
         Simulator,

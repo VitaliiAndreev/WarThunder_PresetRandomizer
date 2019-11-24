@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using Core.Enumerations.Logger;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,9 +43,9 @@ namespace Core.Extensions
         /// <summary> Fluently gets enumeration items of the given type (the generic type and the type parameters have to match), optionally skipping the "None" item. </summary>
         /// <typeparam name="T"> The enumeration type. </typeparam>
         /// <param name="type"> The enumeration type. </param>
-        /// <param name="excludeItemNone"> Whether to exclude the "None" item. </param>
+        /// <param name="skipInvalidItems"> Whether to exclude invalid items. </param>
         /// <returns></returns>
-        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool excludeItemNone = false)
+        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool skipInvalidItems = false)
         {
             var genericType = typeof(T);
 
@@ -59,8 +60,8 @@ namespace Core.Extensions
 
             var enumerationItems = type.GetEnumValues().Cast<T>();
 
-            if (excludeItemNone)
-                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None);
+            if (skipInvalidItems)
+                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None && !enumerationItem.ToString().StartsWith(EWord.All));
 
             return enumerationItems;
         }

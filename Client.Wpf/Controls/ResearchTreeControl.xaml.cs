@@ -63,7 +63,7 @@ namespace Client.Wpf.Controls
                 {
                     _currentNation = selectedNation;
 
-                    if (_currentBranch != EBranch.None)
+                    if (_currentBranch.IsValid())
                     {
                         var nationControl = _nationControls[_currentNation];
                         var branchTab = nationControl.BranchTabs[_currentBranch];
@@ -124,7 +124,7 @@ namespace Client.Wpf.Controls
         /// <summary> Creates controls. </summary>
         private void CreateControls()
         {
-            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Except(ENation.None))
+            foreach (var nation in typeof(ENation).GetEnumValues().OfType<ENation>().Where(nation => nation.IsValid()))
             {
                 var nationControl = new ResearchTreeNationControl()
                 {

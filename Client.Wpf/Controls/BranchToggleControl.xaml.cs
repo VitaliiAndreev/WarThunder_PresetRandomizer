@@ -1,7 +1,7 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
+using Core.DataBase.WarThunder.Extensions;
 using System.Linq;
 
 namespace Client.Wpf.Controls
@@ -15,7 +15,7 @@ namespace Client.Wpf.Controls
         public BranchToggleControl()
         {
             InitializeComponent();
-            CreateToggleButtons(_buttonGrid, typeof(EBranch).GetEnumValues().Cast<EBranch>().Except(EBranch.None), EReference.BranchIcons, EStyleKey.ToggleButton.BranchToggle);
+            CreateToggleButtons(_buttonGrid, typeof(EBranch).GetEnumValues().Cast<EBranch>().Where(branch => branch.IsValid()), EReference.BranchIcons, EStyleKey.ToggleButton.BranchToggle);
         }
 
         #endregion Constructors

@@ -7,6 +7,12 @@ namespace Core.DataBase.WarThunder.Extensions
     /// <summary> Methods extending the <see cref="ENation"/> enumeration. </summary>
     public static class ENationExtensions
     {
+        /// <summary> Checks whether the nation is valid. </summary>
+        /// <param name="nation"> The nation to check. </param>
+        /// <returns></returns>
+        public static bool IsValid(this ENation nation) =>
+            nation.EnumerationItemValueIsPositive();
+
         /// <summary> Returns the base country of the given playable <paramref name="nation"/>. </summary>
         /// <param name="nation"> The playable nation whose base country to return. </param>
         /// <returns></returns>

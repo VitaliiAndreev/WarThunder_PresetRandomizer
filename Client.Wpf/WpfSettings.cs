@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -43,7 +44,7 @@ namespace Client.Wpf
             set => EnabledBranchesCollection = value
                 .Split(Separator)
                 .Select(branchString => branchString.TryParseEnumeration<EBranch>(out var branch) ? branch : EBranch.None)
-                .Where(branch => branch != EBranch.None)
+                .Where(branch => branch.IsValid())
                 .ToList()
             ;
         }
@@ -55,7 +56,7 @@ namespace Client.Wpf
             set => EnabledVehicleClassesCollection = value
                 .Split(Separator)
                 .Select(vehicleClassString => vehicleClassString.TryParseEnumeration<EVehicleClass>(out var vehicleClass) ? vehicleClass : EVehicleClass.None)
-                .Where(vehicleClass => vehicleClass != EVehicleClass.None)
+                .Where(vehicleClass => vehicleClass.IsValid())
                 .ToList()
             ;
         }
@@ -67,7 +68,7 @@ namespace Client.Wpf
             set => EnabledNationsCollection = value
                 .Split(Separator)
                 .Select(nationString => nationString.TryParseEnumeration<ENation>(out var nation) ? nation : ENation.None)
-                .Where(nation => nation != ENation.None)
+                .Where(vehicleClass => vehicleClass.IsValid())
                 .ToList()
             ;
         }
@@ -105,7 +106,7 @@ namespace Client.Wpf
                     Enum
                         .GetValues(typeof(ENation))
                         .Cast<ENation>()
-                        .Where(enumerationItem => enumerationItem != ENation.None)
+                        .Where(nation => nation.IsValid())
                     ,
                     (interval, enumerationItem) => new { EnumerationItem = enumerationItem, Interval = interval }
                 )
