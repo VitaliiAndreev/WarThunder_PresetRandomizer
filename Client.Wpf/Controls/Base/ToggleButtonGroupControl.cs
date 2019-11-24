@@ -1,6 +1,11 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using Core.Enumerations;
+using Core.Extensions;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,6 +17,9 @@ namespace Client.Wpf.Controls.Base
     public class ToggleButtonGroupControl<T> : LocalizedUserControl
     {
         #region Fields
+
+        /// <summary> The toggle-all button. </summary>
+        protected ToggleButton _toggleAllButton;
 
         /// <summary> Toggle buttons grouped by the generic "<see cref="T"/>" key. </summary>
         protected internal readonly IDictionary<T, ToggleButton> Buttons;
@@ -57,28 +65,81 @@ namespace Client.Wpf.Controls.Base
         public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
+        #region Methods: CreateToggleButton()
+
+        /// <summary> Creates a toggle button for the given <paramref name="enumerationItem"/>. </summary>
+        /// <param name="panel"> The panel to the button onto. </param>
+        /// <param name="enumerationItem"> The enumeration item to create the toggle button for. </param>
+        /// <param name="content"> Content displayed (for the designer). </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
+        private ToggleButton CreateToggleButton(Panel panel, T enumerationItem, object content, string styleKey, bool horizontal)
+        {
+            var toggleButton = new ToggleButton
+            {
+                Style = this.GetStyle(styleKey),
+                Tag = enumerationItem,
+                Content = content,
+            };
+
+            toggleButton.Click += OnClick;
+            toggleButton.AddToPanel(panel, horizontal);
+
+            Buttons.Add(enumerationItem, toggleButton);
+
+            return toggleButton;
+        }
+
+        /// <summary> Creates a toggle-all button. </summary>
+        /// <param name="panel"> The panel to the button onto. </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
+        private void CreateToggleAllButton(Panel panel, string styleKey, bool horizontal)
+        {
+            var tagType = typeof(T);
+
+            if (tagType.IsEnum)
+            {
+                var enumerationItem = typeof(T).GetEnumValues().OfType<T>().FirstOrDefault(item => item.ToString() == EWord.All);
+                _toggleAllButton = CreateToggleButton(panel, enumerationItem, enumerationItem.ToString(), styleKey, horizontal);
+            }
+            else
+            {
+                _toggleAllButton = CreateToggleButton(panel, default, EWord.All, styleKey, horizontal);
+            }
+        }
+
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with character <paramref name="icons"/>. </summary>
         /// <param name="panel"> The panel to add buttons onto. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="icons"> Icons for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
-        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true)
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
+            if (createToggleAllButton)
+                CreateToggleAllButton(panel, $"{styleKey}{EWord.All}", horizontal);
+
             foreach (var enumerationItem in enumerationItems)
             {
-                var toggleButton = new ToggleButton
+                try
                 {
-                    Style = this.GetStyle(styleKey),
-                    Tag = enumerationItem,
-                    Content = icons[enumerationItem],
-                };
-
-                toggleButton.Click += OnClick;
-                toggleButton.AddToPanel(panel, horizontal);
-
-                Buttons.Add(enumerationItem, toggleButton);
+                    CreateToggleButton(panel, enumerationItem, icons[enumerationItem], styleKey, horizontal);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"{e.Message} | {enumerationItem.ToString()} | {enumerationItem.GetType().ToStringLikeCode()}", e);
+                }
             }
+        }
+
+        #endregion Methods: CreateToggleButton()
+
+        /// <summary> Returns all <see cref="Buttons"/> on the control except <see cref="_toggleAllButton"/>. </summary>
+        /// <returns></returns>
+        public IEnumerable<ToggleButton> GetButtonsExceptToggleAll()
+        {
+            return Buttons.Values.Except(_toggleAllButton);
         }
 
         /// <summary> Changes the <see cref="UIElement.IsEnabled"/> status of a button corresponding to the specified key. </summary>
