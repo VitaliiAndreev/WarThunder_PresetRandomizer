@@ -20,11 +20,10 @@ namespace Core.DataBase.WarThunder.Extensions
         {
             var vehicleClassEnumerationValue = vehicleClass.CastTo<int>();
 
-            if (vehicleClassEnumerationValue.ToString().HasSingle()) // For all classes in one branch.
-                return vehicleClassEnumerationValue.CastTo<EBranch>();
-
-            else // For specific classes.
+            if (vehicleClass.IsValid())
                 return vehicleClassEnumerationValue.Do(value => value / EInteger.Number.Ten).CastTo<EBranch>();
+            else
+                return vehicleClassEnumerationValue.CastTo<EBranch>();
         }
     }
 }
