@@ -4,17 +4,34 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Client.Wpf.Controls"
     mc:Ignorable="d" 
     d:DesignHeight="400"
     d:DesignWidth="600">
     <ScrollViewer>
         <StackPanel
-            Style="{StaticResource StackPanelInsideScrollViewer}">
+            Style="{StaticResource StackPanelNoMargin}">
 
-            <Grid
-                Style="{StaticResource ResearchTreeGrid}"
-                x:Name="_grid"/>
+            <WrapPanel>
 
+                <ToggleButton Content="All"
+                    Style="{StaticResource VehicleClassToggleAll}"
+                    x:Name="_toggleAllVehiclesButton"
+                    Width="50"
+                    Click="OnToggleAllClick"/>
+
+            </WrapPanel>
+            
+            <StackPanel
+                Style="{StaticResource StackPanelInsideScrollViewer}">
+
+                <Grid
+                    Style="{StaticResource ResearchTreeGrid}"
+                    x:Name="_grid"
+                    controls:ResearchTreeCellVehicleControl.Click="OnClick"/>    
+
+            </StackPanel>
+            
         </StackPanel>
     </ScrollViewer>
 </UserControl>

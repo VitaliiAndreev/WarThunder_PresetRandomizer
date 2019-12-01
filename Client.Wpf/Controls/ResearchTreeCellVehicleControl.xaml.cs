@@ -107,10 +107,14 @@ namespace Client.Wpf.Controls
                 ApplyIdleStyle();
         }
 
-        /// <summary> Toggles the control on/off and updates its opacity. </summary>
+        /// <summary> Calls <see cref="HandleClick"/>. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
-        private void OnClick(object sender, MouseButtonEventArgs eventArguments)
+        private void OnClick(object sender, MouseButtonEventArgs eventArguments) =>
+            HandleClick();
+
+        /// <summary> Toggles the control on/off and updates its opacity. </summary>
+        internal void HandleClick()
         {
             if (Type == EVehicleCard.ResearchTree)
             {
