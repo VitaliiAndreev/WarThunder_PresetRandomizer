@@ -17,12 +17,27 @@ namespace Core.Extensions
         public static object CreateInstance(this Type type) =>
             Activator.CreateInstance(type);
 
+        /// <summary> Creates an instance of the specified type. </summary>
+        /// <param name="type"> A type to instantiate. </param>
+        /// <param name="arguments"> Constructor arguments. </param>
+        /// <returns></returns>
+        public static object CreateInstance(this Type type, params object[] arguments) =>
+            Activator.CreateInstance(type, arguments);
+
         /// <summary> Creates an instance of the specified type and casts it into the desired type. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
         /// <param name="type"> A type to instantiate. </param>
         /// <returns></returns>
         public static T CreateInstance<T>(this Type type) where T : class =>
             CreateInstance(type) as T;
+
+        /// <summary> Creates an instance of the specified type and casts it into the desired type. </summary>
+        /// <typeparam name="T"> A generic type. </typeparam>
+        /// <param name="type"> A type to instantiate. </param>
+        /// <param name="arguments"> Constructor arguments. </param>
+        /// <returns></returns>
+        public static T CreateInstance<T>(this Type type, params object[] arguments) where T : class =>
+            CreateInstance(type, arguments) as T;
 
         #endregion Methods: Instantiation
 
