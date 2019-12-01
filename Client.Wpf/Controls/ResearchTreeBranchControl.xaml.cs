@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -17,7 +18,7 @@ using System.Windows.Threading;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeBranchControl.xaml. </summary>
-    public partial class ResearchTreeBranchControl : UserControl
+    public partial class ResearchTreeBranchControl : LocalizedUserControl
     {
         #region Fields
 
@@ -217,6 +218,19 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Initialisation
+        #region Methods: Overrides
+
+        public override void Localize()
+        {
+            base.Localize();
+
+            static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localisationKey);
+
+            _toggleAllVehiclesButton.Content = getLocalisedString(ELocalizationKey.All);
+            _toggleAllVehiclesButton.ToolTip = getLocalisedString(ELocalizationKey.SelectAllVehicles);
+        }
+
+        #endregion Methods: Overrides
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>

@@ -85,6 +85,7 @@
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string SelectAllCountries = nameof(SelectAllCountries);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
+        public const string SelectAllVehicles = nameof(SelectAllVehicles);
         public const string Simulator = nameof(Simulator);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string SouthAfrica = nameof(SouthAfrica);

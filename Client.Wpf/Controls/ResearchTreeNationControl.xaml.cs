@@ -78,6 +78,9 @@ namespace Client.Wpf.Controls
             localiseTabHeader(_helicoptersTab);
             localiseTabHeader(_helicoptersTab);
             localiseTabHeader(_fleetTab);
+
+            foreach (var control in _branchControls.Values)
+                control.Localize();
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
