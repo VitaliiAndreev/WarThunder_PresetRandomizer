@@ -113,6 +113,12 @@ namespace Client.Wpf.Controls
         private void OnClick(object sender, MouseButtonEventArgs eventArguments) =>
             HandleClick();
 
+        #endregion Methods: Event Handlers
+
+        /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
+        public void RaiseClickEvent() =>
+            RaiseEvent(new RoutedEventArgs(ClickEvent, this));
+
         /// <summary> Toggles the control on/off and updates its opacity. </summary>
         internal void HandleClick()
         {
@@ -124,13 +130,6 @@ namespace Client.Wpf.Controls
             }
             RaiseClickEvent();
         }
-
-        #endregion Methods: Event Handlers
-
-        /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
-        /// <param name="toggleButton"> The toggle button to raise the event for. </param>
-        public void RaiseClickEvent() =>
-            RaiseEvent(new RoutedEventArgs(ClickEvent, this));
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the information. </param>
