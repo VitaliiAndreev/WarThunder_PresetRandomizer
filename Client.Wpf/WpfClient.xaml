@@ -351,11 +351,8 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="CountryToggleAll" BasedOn="{StaticResource CountryToggle}">
-            <Setter Property="Padding" Value="-5"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="11"/>
+        <Style TargetType="ToggleButton" x:Key="CountryToggleAll" BasedOn="{StaticResource VehicleClassToggleAll}">
+            <Setter Property="Height" Value="20"/>
         </Style>
 
         <!-- t:UpDownControl -->
