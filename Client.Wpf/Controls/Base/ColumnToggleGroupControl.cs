@@ -105,10 +105,6 @@ namespace Client.Wpf.Controls.Base
         public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
-        /// <summary> Creates columns of toggle buttons for given vehicle branches, with character icons. </summary>
-        /// <param name="keys"> Vehicle branches to create columns of toggle buttons for. </param>
-        public abstract void CreateToggleColumns(IEnumerable<T> keys);
-
         /// <summary> Gets toggle buttons in the specified column with the specified toggle state. </summary>
         /// <param name="outerKey"> The key by which to access the column. </param>
         /// <param name="searchedState"> The required toggle state. </param>

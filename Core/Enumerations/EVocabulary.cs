@@ -18,6 +18,7 @@
 
         #region A
 
+        private const string _ag = _a + _g;
         private const string _al = _a + _l;
         private const string _aw = _a + _w;
 
