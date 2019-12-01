@@ -126,6 +126,7 @@ namespace Core.Organization.Helpers
                 "po-2_nw",
                 "_race",
                 "_tutorial",
+                "uk_centaur_aa_mk_",
                 "us_m35",
                 "us_m35_2",
                 "ussr_sht_1",
