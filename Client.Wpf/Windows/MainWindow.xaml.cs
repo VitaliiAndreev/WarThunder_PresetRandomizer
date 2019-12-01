@@ -149,7 +149,7 @@ namespace Client.Wpf.Windows
                     var vehicleClass = branch.GetVehicleClasses().First(vehicleClass => vehicleClass.IsValid());
 
                     _vehicleClassControl.Toggle(vehicleClass, true);
-                    OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleClassColumns[branch].Buttons[vehicleClass]));
+                    OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleColumns[branch].Buttons[vehicleClass]));
                 }
 
                 RaiseGeneratePresetCommandCanExecuteChanged();
@@ -163,7 +163,7 @@ namespace Client.Wpf.Windows
         /// <param name="ownerEntity"></param>
         private void UpdateToggleAllButtonState<T, U>(IControlWithToggleColumns<T, U> toggleControl, T ownerEntity)
         {
-            var toggleColumn = toggleControl.ToggleClassColumns[ownerEntity];
+            var toggleColumn = toggleControl.ToggleColumns[ownerEntity];
             var toggleButtonTagType = typeof(U);
             var toggleAllOn = toggleColumn.AllButtonsAreToggledOn();
 
@@ -232,7 +232,7 @@ namespace Client.Wpf.Windows
                     var nationCountryPair = new NationCountryPair(nation, country);
 
                     _countryToggleControl.Toggle(nationCountryPair, true);
-                    OnCountryToggleControlClick(_countryToggleControl, new RoutedEventArgs(CountryToggleControl.ClickEvent, _countryToggleControl.ToggleClassColumns[nation].Buttons[nationCountryPair]));
+                    OnCountryToggleControlClick(_countryToggleControl, new RoutedEventArgs(CountryToggleControl.ClickEvent, _countryToggleControl.ToggleColumns[nation].Buttons[nationCountryPair]));
                 }
 
                 RaiseGeneratePresetCommandCanExecuteChanged();

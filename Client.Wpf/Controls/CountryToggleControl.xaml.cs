@@ -43,14 +43,14 @@ namespace Client.Wpf.Controls
                 columnControl.Click += OnClick;
                 columnControl.AddToPanel(_grid, true);
 
-                ToggleClassColumns.Add(nation, columnControl);
+                ToggleColumns.Add(nation, columnControl);
             }
         }
 
         /// <summary> Removes countries of nations that have no vehicles. </summary>
         public void RemoveCountriesForUnavailableNations()
         {
-            foreach (var columnKeyValuePair in ToggleClassColumns)
+            foreach (var columnKeyValuePair in ToggleColumns)
             {
                 var nation = columnKeyValuePair.Key;
                 var column = columnKeyValuePair.Value;

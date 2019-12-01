@@ -15,7 +15,7 @@ namespace Client.Wpf.Controls.Base
         #region Properties
 
         /// <summary> Toggle button columns indexed by the <typeparamref name="T"/> key. </summary>
-        public IDictionary<T, ToggleButtonGroupControl<V>> ToggleClassColumns { get; }
+        public IDictionary<T, ToggleButtonGroupControl<V>> ToggleColumns { get; }
 
         #endregion Properties
         #region Events
@@ -42,7 +42,7 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Creates a new control. </summary>
         public ColumnToggleGroupControl()
         {
-            ToggleClassColumns = new Dictionary<T, ToggleButtonGroupControl<V>>();
+            ToggleColumns = new Dictionary<T, ToggleButtonGroupControl<V>>();
         }
 
         #endregion Constructors
@@ -72,7 +72,7 @@ namespace Client.Wpf.Controls.Base
         {
             base.Localize();
 
-            foreach (var column in ToggleClassColumns.Values)
+            foreach (var column in ToggleColumns.Values)
                 column.Localize();
         }
 
@@ -94,7 +94,7 @@ namespace Client.Wpf.Controls.Base
         /// <returns></returns>
         public IEnumerable<ToggleButton> GetButtons(T outerKey, bool searchedState, bool includeToggleAllButton = true)
         {
-            if (!ToggleClassColumns.TryGetValue(outerKey, out var toggleColumn))
+            if (!ToggleColumns.TryGetValue(outerKey, out var toggleColumn))
                 return new List<ToggleButton>();
 
             var allButtons = includeToggleAllButton
@@ -109,7 +109,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="enable"> Whether to enable or disable toggle buttons. </param>
         public void Enable(T outerKey, bool enable)
         {
-            if (ToggleClassColumns.TryGetValue(outerKey, out var column) && column.IsEnabled != enable)
+            if (ToggleColumns.TryGetValue(outerKey, out var column) && column.IsEnabled != enable)
                 column.IsEnabled = enable;
         }
 
@@ -120,7 +120,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="newState"> Whether to toggle the button on or off. </param>
         public void Toggle(V innerKey, bool newState)
         {
-            if (ToggleClassColumns.TryGetValue(_getOuterKey(innerKey), out var column))
+            if (ToggleColumns.TryGetValue(_getOuterKey(innerKey), out var column))
                 column.Toggle(innerKey, newState);
         }
 
@@ -138,7 +138,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="newState"> Whether to toggle buttons on or off. </param>
         public void Toggle(T outerKey, bool newState, bool includeToggleAllButton = true)
         {
-            if (!ToggleClassColumns.TryGetValue(outerKey, out var toggleColumn))
+            if (!ToggleColumns.TryGetValue(outerKey, out var toggleColumn))
                 return;
 
             var buttons = includeToggleAllButton ? toggleColumn : toggleColumn.GetButtonsExceptToggleAll();

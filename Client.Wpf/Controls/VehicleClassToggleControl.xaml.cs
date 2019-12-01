@@ -39,7 +39,7 @@ namespace Client.Wpf.Controls
                 columnControl.Click += OnClick;
                 columnControl.AddToPanel(_grid, true);
 
-                ToggleClassColumns.Add(branch, columnControl);
+                ToggleColumns.Add(branch, columnControl);
             }
         }
     }
