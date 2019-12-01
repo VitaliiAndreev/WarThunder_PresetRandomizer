@@ -105,6 +105,24 @@ namespace Client.Wpf.Controls.Base
         public void RaiseClickEvent(ToggleButton toggleButton) =>
             RaiseEvent(new RoutedEventArgs(ClickEvent, toggleButton));
 
+        /// <summary> Return the outer key of the given <paramref name="toggleButton"/>. </summary>
+        /// <param name="toggleButton"> The button whose outer key to get. </param>
+        /// <returns></returns>
+        public T GetOuterKey(ToggleButton toggleButton)
+        {
+            foreach (var buttonColumnKeyValuePair in ToggleColumns)
+            {
+                var owner = buttonColumnKeyValuePair.Key;
+                var buttonColumn = buttonColumnKeyValuePair.Value;
+
+                foreach (var existingButton in buttonColumn.Buttons.Values)
+                    if (toggleButton.Equals(existingButton))
+                        return owner;
+            }
+
+            return default;
+        }
+
         /// <summary> Gets toggle buttons in the specified column with the specified toggle state. </summary>
         /// <param name="outerKey"> The key by which to access the column. </param>
         /// <param name="searchedState"> The required toggle state. </param>
