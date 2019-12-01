@@ -201,12 +201,7 @@ namespace Client.Wpf.Windows
                     UpdateToggleAllButtonState(_vehicleClassControl, ownerBranch);
                 }
 
-                if (!Presenter.BranchHasVehicleClassesEnabled(ownerBranch))
-                {
-                    _branchToggleControl.Toggle(ownerBranch, false);
-                    OnBranchToggleControlClick(_branchToggleControl, new RoutedEventArgs(BranchToggleControl.ClickEvent, _branchToggleControl.Buttons[ownerBranch]));
-                }
-
+                UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleClassesEnabled, ownerBranch, OnBranchToggleControlClick);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -236,6 +231,21 @@ namespace Client.Wpf.Windows
                 }
 
                 RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
+        /// <summary> Updates the state of the given owner control based on whether the specified subordinate control has any buttons toggle on or not. </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ownerControl"> The owner control to update. </param>
+        /// <param name="thereAreButtonsToggled"> The predicate to check if there are any toggled on buttons with. </param>
+        /// <param name="key"> The key by which to look up buttons on the <paramref name="ownerControl"/>. </param>
+        /// <param name="eventHandler"> The handler to process the state change further with. </param>
+        private void UpdateOwnerControl<T>(ToggleButtonGroupControl<T> ownerControl, Predicate<T> thereAreButtonsToggled, T key, RoutedEventHandler eventHandler)
+        {
+            if (!thereAreButtonsToggled(key))
+            {
+                ownerControl.Toggle(key, false);
+                eventHandler(ownerControl, new RoutedEventArgs(ownerControl.ClickEventReference, ownerControl.Buttons[key]));
             }
         }
 

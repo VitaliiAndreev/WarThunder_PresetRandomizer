@@ -25,6 +25,12 @@ namespace Client.Wpf.Controls.Base
         protected internal readonly IDictionary<T, ToggleButton> Buttons;
 
         #endregion Fields
+        #region Properties
+
+        /// <summary> The reference to the static <see cref="ClickEvent"/>. </summary>
+        internal RoutedEvent ClickEventReference { get; }
+
+        #endregion Properties
         #region Events
 
         /// <summary> A routed event for <see cref="Click"/>. </summary>
@@ -44,6 +50,7 @@ namespace Client.Wpf.Controls.Base
         public ToggleButtonGroupControl()
         {
             Buttons = new Dictionary<T, ToggleButton>();
+            ClickEventReference = ClickEvent;
         }
 
         #endregion Constructors
