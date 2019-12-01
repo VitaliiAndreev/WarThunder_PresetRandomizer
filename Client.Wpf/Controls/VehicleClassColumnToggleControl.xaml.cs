@@ -28,7 +28,7 @@ namespace Client.Wpf.Controls
                 _panel.Children.Clear();
 
                 CreateToggleButtons(_panel, _groupedItems[value], EReference.ClassIcons, EStyleKey.ToggleButton.VehicleClassToggle, false, true);
-                _toggleAllButton.Tag = _branch.CastTo<int>().CastTo<EVehicleClass>();
+                _toggleAllButton.Tag = _branch.GetAllVehicleClassesItem();
             }
         }
 

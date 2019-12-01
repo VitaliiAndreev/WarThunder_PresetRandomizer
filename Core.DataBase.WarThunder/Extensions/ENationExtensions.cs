@@ -45,5 +45,23 @@ namespace Core.DataBase.WarThunder.Extensions
             EReference.CountriesByNation.TryGetValue(nation, out var countries)
                 ? countries
                 : new List<ECountry>();
+
+        /// <summary> Returns the enumeration item representing selection of all countries serving with the given nation. </summary>
+        /// <param name="nation"> The nation whose item to get. </param>
+        /// <returns></returns>
+        public static ECountry GetAllCountriesItem(this ENation nation) =>
+            nation switch
+            {
+                ENation.Usa => ECountry.AllUsa,
+                ENation.Germany => ECountry.AllGermany,
+                ENation.Ussr => ECountry.AllUssr,
+                ENation.Britain => ECountry.AllBritain,
+                ENation.Japan => ECountry.AllJapan,
+                ENation.China => ECountry.AllChina,
+                ENation.Italy => ECountry.AllItaly,
+                ENation.France => ECountry.AllFrance,
+                ENation.Sweden => ECountry.AllSweden,
+                _ => ECountry.None,
+            };
     }
 }

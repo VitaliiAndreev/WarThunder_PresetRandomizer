@@ -22,5 +22,11 @@ namespace Core.DataBase.WarThunder.Extensions
                 .GetEnumerationItems<EVehicleClass>()
                 .Where(vehicleClass => vehicleClass.GetBranch() == branch)
             ;
+
+        /// <summary> Returns the enumeration item representing selection of all vehicle types under the given branch. </summary>
+        /// <param name="branch"> The branch whose vehicle classes to get. </param>
+        /// <returns></returns>
+        public static EVehicleClass GetAllVehicleClassesItem(this EBranch branch) =>
+            branch.CastTo<int>().CastTo<EVehicleClass>();
     }
 }
