@@ -19,9 +19,6 @@ namespace Client.Wpf.Controls
     {
         #region Fields
 
-        /// <summary> The research tree branch the control has been populated with. </summary>
-        private ResearchTreeBranch _researchTreeBranch;
-
         /// <summary> The map of the rank enumeration onto corresponding style keys. </summary>
         private readonly IDictionary<ERank, string> _styleKeys;
 
@@ -30,6 +27,9 @@ namespace Client.Wpf.Controls
 
         /// <summary> Vehicle controls in the grid. </summary>
         private readonly IDictionary<string, ResearchTreeCellVehicleControl> _cellVehicleControls;
+
+        /// <summary> The research tree branch the control has been populated with. </summary>
+        private ResearchTreeBranch _researchTreeBranch;
 
         #endregion Fields
         #region Properties
@@ -87,6 +87,7 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Initialisation
 
         /// <summary> Attaches event handlers to enable highligting vehicles required for unlocking the currenly highlighted one. </summary>
         /// <param name="cell"> The research tree cell to whose content attach event handlers to. </param>
@@ -182,6 +183,8 @@ namespace Client.Wpf.Controls
                 }
             }
         }
+
+        #endregion Methods: Initialisation
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>

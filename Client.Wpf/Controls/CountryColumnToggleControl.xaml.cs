@@ -41,7 +41,7 @@ namespace Client.Wpf.Controls
                         .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => EReference.CountryIconKeys[nationCountryPair.Country]),
                     EStyleKey.ToggleButton.CountryToggle,
                     false,
-                    true // Note: the designer doesn't create the toggle-all button.
+                    true
                 );
             }
         }
