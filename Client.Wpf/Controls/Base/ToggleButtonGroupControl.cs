@@ -66,6 +66,18 @@ namespace Client.Wpf.Controls.Base
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Overrides
+
+        /// <summary> Applies localization to visible text on the control. </summary>
+        public override void Localize()
+        {
+            base.Localize();
+
+            if (_toggleAllButton is ToggleButton)
+                _toggleAllButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.All);
+        }
+
+        #endregion Methods: Overrides
 
         /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
         /// <param name="toggleButton"> The toggle button to raise the event for. </param>

@@ -1,6 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Objects;
-using Core.Enumerations;
-using System.Linq;
 using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
@@ -21,7 +19,7 @@ namespace Client.Wpf.Controls.Base
                 switch (button.Tag)
                 {
                     case NationCountryPair nationCountryPair:
-                        localizationKey = nationCountryPair.ToString().Split(ECharacter.Underscore).Last();
+                        localizationKey = nationCountryPair.Country.ToString();
                         break;
                     case T key:
                         localizationKey = key.ToString();

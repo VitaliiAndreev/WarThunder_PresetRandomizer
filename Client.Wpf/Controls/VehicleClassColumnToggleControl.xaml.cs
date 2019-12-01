@@ -68,7 +68,6 @@ namespace Client.Wpf.Controls
 
             static string getLocalizedString(string localizationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
 
-            _toggleAllButton.Content = getLocalizedString(ELocalizationKey.All);
             _toggleAllButton.ToolTip = getLocalizedString(ELocalizationKey.SelectAllVehicleClasses).FormatFluently(getLocalizedString(Owner.ToString()));
         }
 
