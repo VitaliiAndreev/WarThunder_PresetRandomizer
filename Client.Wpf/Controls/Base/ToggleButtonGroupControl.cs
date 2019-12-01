@@ -113,7 +113,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="panel"> The panel to the button onto. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
-        private void CreateToggleAllButton(Panel panel, string styleKey, bool horizontal)
+        protected void CreateToggleAllButton(Panel panel, string styleKey, bool horizontal)
         {
             var tagType = typeof(T);
 
@@ -128,12 +128,23 @@ namespace Client.Wpf.Controls.Base
             }
         }
 
+        /// <summary> Creates a toggle-all button. </summary>
+        /// <param name="panel"> The panel to add the button onto. </param>
+        /// <param name="enumerationItem"> The enumeration item to create the toggle button for. </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
+        protected virtual void CreateToggleAllButton(Panel panel, T enumerationItem, string styleKey, bool horizontal)
+        {
+            _toggleAllButton = CreateToggleButton(panel, enumerationItem, typeof(T).IsEnum ? enumerationItem.ToString() : EWord.All, $"{styleKey}{EWord.All}", horizontal);
+        }
+
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with character <paramref name="icons"/>. </summary>
         /// <param name="panel"> The panel to add buttons onto. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="icons"> Icons for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
+        /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
         public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
             if (createToggleAllButton)

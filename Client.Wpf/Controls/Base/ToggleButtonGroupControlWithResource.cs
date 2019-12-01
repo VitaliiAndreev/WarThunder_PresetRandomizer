@@ -1,6 +1,8 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -20,8 +22,12 @@ namespace Client.Wpf.Controls.Base
         /// <param name="resourceKeys"> Resource keys for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
-        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> resourceKeys, string styleKey, bool horizontal = true)
+        /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> resourceKeys, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
+            if (createToggleAllButton && enumerationItems.Any())
+                CreateToggleAllButton(panel, enumerationItems.First(), styleKey, horizontal);
+
             foreach (var enumerationItem in enumerationItems)
             {
                 var toggleButton = new ToggleButton

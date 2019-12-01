@@ -5,6 +5,8 @@ using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects;
 using Core.Extensions;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls
 {
@@ -37,7 +39,8 @@ namespace Client.Wpf.Controls
                         .SelectMany(nationCountryPairs => nationCountryPairs)
                         .Where(nationCountryPair => nationCountryPair.Country.IsKeyIn(EReference.CountryIconKeys))
                         .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => EReference.CountryIconKeys[nationCountryPair.Country]),
-                    EStyleKey.ToggleButton.CountryToggle, false
+                    EStyleKey.ToggleButton.CountryToggle,
+                    false
                 );
             }
         }
@@ -69,5 +72,30 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Overrides
+
+        /// <summary> Creates a toggle-all button. </summary>
+        /// <param name="panel"> The panel to add the button onto. </param>
+        /// <param name="enumerationItem"> The enumeration item to create the toggle button for. </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
+        protected override void CreateToggleAllButton(Panel panel, NationCountryPair enumerationItem, string styleKey, bool horizontal)
+        {
+            static NationCountryPair getAllCountriesTag(NationCountryPair nationCountryPair) => new NationCountryPair(nationCountryPair.Nation, nationCountryPair.Nation.GetAllCountriesItem());
+
+            base.CreateToggleAllButton(panel, getAllCountriesTag(enumerationItem), styleKey, horizontal);
+        }
+
+        /// <summary> Applies localization to visible text on the control. </summary>
+        public override void Localize()
+        {
+            base.Localize();
+
+            static string getLocalizedString(string localizationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
+
+            _toggleAllButton.ToolTip = getLocalizedString(ELocalizationKey.SelectAllCountries).FormatFluently(getLocalizedString(Owner.ToString()));
+        }
+
+        #endregion Methods: Overrides
     }
 }
