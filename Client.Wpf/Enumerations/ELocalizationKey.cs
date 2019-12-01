@@ -83,6 +83,7 @@
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
+        public const string SelectAllCountries = nameof(SelectAllCountries);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string Simulator = nameof(Simulator);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);

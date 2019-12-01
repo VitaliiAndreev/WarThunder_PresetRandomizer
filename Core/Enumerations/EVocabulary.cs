@@ -580,7 +580,8 @@
 
         protected const string _tab = _t + _a + _b;
         protected const string _tack = _t + _a + _c + _k;
-        protected const string _tag = _t + _a + _g;
+        protected const string _Tag = _T + _ag;
+        protected const string _tag = _t + _ag;
         protected const string _tags = _tag + _s;
         protected const string _tart = _t + _art;
         protected const string _ten = _t + _e + _n;

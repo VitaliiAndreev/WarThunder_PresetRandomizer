@@ -1,5 +1,6 @@
 ﻿using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Controls;
+using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
@@ -174,7 +175,11 @@ namespace Client.Wpf.Windows
             }
             else
             {
-                throw new NotImplementedException(EWpfClientLogMessage.NonEnumerationTagsAreNotSupportedYet);
+                if (toggleButtonTagType == typeof(NationCountryPair) && ownerEntity is ENation nation)
+                    toggleColumn.Toggle(new NationCountryPair(nation, nation.GetAllCountriesItem()).CastTo<U>(), toggleAllOn);
+
+                else
+                    throw new NotImplementedException(EWpfClientLogMessage.TagTypeNotSupportedYet.FormatFluently(toggleButtonTagType.ToStringLikeCode()));
             }
         }
 
@@ -261,16 +266,29 @@ namespace Client.Wpf.Windows
         {
             if (eventArguments.OriginalSource is ToggleButton toggleButton)
             {
-                OnToggleButtonGroupControlClick<NationCountryPair>(toggleButton);
-
                 var nationCountryPair = toggleButton.GetTag<NationCountryPair>();
+                var country = nationCountryPair.Country;
+                var nation = nationCountryPair.Nation;
 
-                if (!toggleButton.IsChecked.Value && !Presenter.NationHasCountriesEnabled(nationCountryPair.Nation))
+                if (country.ToString().StartsWith(EWord.All))
                 {
-                    _nationToggleControl.Toggle(nationCountryPair.Nation, false);
-                    OnNationToggleControlClick(_nationToggleControl, new RoutedEventArgs(NationToggleControl.ClickEvent, _nationToggleControl.Buttons[nationCountryPair.Nation]));
+                    var disabledButtons = _countryToggleControl.GetButtons(nation, !toggleButton.IsChecked.Value, false);
+
+                    foreach (var button in disabledButtons)
+                    {
+                        _countryToggleControl.Toggle(button.Tag.CastTo<NationCountryPair>(), toggleButton.IsChecked.Value);
+                        OnToggleButtonGroupControlClick<NationCountryPair>(button, false);
+                    }
+
+                    ExecuteToggleCommand(typeof(NationCountryPair));
+                }
+                else
+                {
+                    OnToggleButtonGroupControlClick<NationCountryPair>(toggleButton);
+                    UpdateToggleAllButtonState(_countryToggleControl, nation);
                 }
 
+                UpdateOwnerControl(_nationToggleControl, Presenter.NationHasCountriesEnabled, nation, OnNationToggleControlClick);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -429,6 +447,9 @@ namespace Client.Wpf.Windows
 
             foreach (var branch in Presenter.EnabledBranches)
                 UpdateToggleAllButtonState(_vehicleClassControl, branch);
+
+            foreach (var nation in Presenter.EnabledNations)
+                UpdateToggleAllButtonState(_countryToggleControl, nation);
 
             AdjustBranchTogglesAvailability();
             RaiseGeneratePresetCommandCanExecuteChanged();

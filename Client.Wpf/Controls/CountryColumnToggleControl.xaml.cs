@@ -40,7 +40,8 @@ namespace Client.Wpf.Controls
                         .Where(nationCountryPair => nationCountryPair.Country.IsKeyIn(EReference.CountryIconKeys))
                         .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => EReference.CountryIconKeys[nationCountryPair.Country]),
                     EStyleKey.ToggleButton.CountryToggle,
-                    false
+                    false,
+                    true // Note: the designer doesn't create the toggle-all button.
                 );
             }
         }
