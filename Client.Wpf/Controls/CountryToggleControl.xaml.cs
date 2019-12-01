@@ -19,6 +19,8 @@ namespace Client.Wpf.Controls
         /// <summary> Creates a new control. </summary>
         public CountryToggleControl()
         {
+            AttachKeyConverter(nationCountryPair => nationCountryPair.Nation);
+
             var nations = typeof(ENation).GetEnumValues().Cast<ENation>().Where(nation => nation.IsValid());
 
             InitializeComponent();
@@ -59,15 +61,6 @@ namespace Client.Wpf.Controls
                         grid.Remove(column);
                 }
             }
-        }
-
-        /// <summary> Toggles a button corresponding to the specified <paramref name="nationCountryPair"/>. </summary>
-        /// <param name="nationCountryPair"> The country whose button to toggle. </param>
-        /// <param name="newState"> Whether to toggle the button on or off. </param>
-        public override void Toggle(NationCountryPair nationCountryPair, bool newState)
-        {
-            if (ToggleClassColumns.TryGetValue(nationCountryPair.Nation, out var column))
-                column.Toggle(nationCountryPair, newState);
         }
     }
 }

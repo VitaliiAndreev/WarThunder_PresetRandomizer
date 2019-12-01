@@ -15,6 +15,8 @@ namespace Client.Wpf.Controls
         /// <summary> Creates a new control. </summary>
         public VehicleClassToggleControl()
         {
+            AttachKeyConverter(vehicleClass => vehicleClass.GetBranch());
+
             var branches = typeof(EBranch).GetEnumValues().Cast<EBranch>().Where(branch => branch.IsValid());
 
             InitializeComponent();
@@ -39,15 +41,6 @@ namespace Client.Wpf.Controls
 
                 ToggleClassColumns.Add(branch, columnControl);
             }
-        }
-
-        /// <summary> Toggles a button corresponding to the specified <paramref name="vehicleClass"/>. </summary>
-        /// <param name="vehicleClass"> The vehicle class whose button to toggle. </param>
-        /// <param name="newState"> Whether to toggle the button on or off. </param>
-        public override void Toggle(EVehicleClass vehicleClass, bool newState)
-        {
-            if (ToggleClassColumns.TryGetValue(vehicleClass.GetBranch(), out var column))
-                column.Toggle(vehicleClass, newState);
         }
     }
 }

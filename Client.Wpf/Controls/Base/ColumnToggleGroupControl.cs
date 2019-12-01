@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Controls.Base.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -30,6 +31,12 @@ namespace Client.Wpf.Controls.Base
         }
 
         #endregion Events
+        #region Delegates
+
+        /// <summary> The function to get the outer key (<see cref="T"/>) corresponding to the given inner key (<see cref="V"/>). </summary>
+        private Func<V, T> _getOuterKey;
+
+        #endregion Delegates
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
@@ -51,6 +58,14 @@ namespace Client.Wpf.Controls.Base
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Initilisation
+
+        /// <summary> Attaches the given function to convert inner keys into outer keys. </summary>
+        /// <param name="keyConversionfunction"> The function to attach. </param>
+        protected void AttachKeyConverter(Func<V, T> keyConversionfunction)
+        {
+            _getOuterKey = keyConversionfunction;
+        }
 
         /// <summary> Applies localization to visible text on the control. </summary>
         public override void Localize()
@@ -60,6 +75,8 @@ namespace Client.Wpf.Controls.Base
             foreach (var column in ToggleClassColumns.Values)
                 column.Localize();
         }
+
+        #endregion Methods: Initilisation
 
         /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
         /// <param name="toggleButton"> The toggle button to raise the event for. </param>
@@ -101,7 +118,11 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Toggles a button corresponding to the specified inner key. </summary>
         /// <param name="innerKey"> The key by which to access buttons. </param>
         /// <param name="newState"> Whether to toggle the button on or off. </param>
-        public abstract void Toggle(V innerKey, bool newState);
+        public void Toggle(V innerKey, bool newState)
+        {
+            if (ToggleClassColumns.TryGetValue(_getOuterKey(innerKey), out var column))
+                column.Toggle(innerKey, newState);
+        }
 
         /// <summary> Toggles buttons corresponding to specified inner keys. </summary>
         /// <param name="innerKeys"> Keys by which to access buttons. </param>
