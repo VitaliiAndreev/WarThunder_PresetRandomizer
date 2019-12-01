@@ -1,8 +1,11 @@
 ﻿using Client.Wpf.Controls.Base.Interfaces;
+using Client.Wpf.Extensions;
+using Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
@@ -13,6 +16,9 @@ namespace Client.Wpf.Controls.Base
     public abstract class ColumnToggleGroupControl<T, V> : LocalizedUserControl, IControlWithToggleColumns<T, V>
     {
         #region Properties
+
+        /// <summary> The main panel of the control. </summary>
+        internal abstract Panel MainPanel { get; }
 
         /// <summary> Toggle button columns indexed by the <typeparamref name="T"/> key. </summary>
         public IDictionary<T, ToggleButtonGroupControl<V>> ToggleColumns { get; }
@@ -74,6 +80,22 @@ namespace Client.Wpf.Controls.Base
 
             foreach (var column in ToggleColumns.Values)
                 column.Localize();
+        }
+
+        /// <summary> Creates columns of toggle buttons for given vehicle branches, with character icons. </summary>
+        /// <param name="keys"> Vehicle branches to create columns of toggle buttons for. </param>
+        protected void CreateToggleColumnsBase(Type controlType, IEnumerable<T> keys)
+        {
+            foreach (var key in keys)
+            {
+                var column = controlType.CreateInstance<ToggleButtonGroupControl<V>>(key);
+
+                column.Tag = key;
+                column.Click += OnClick;
+                column.AddToPanel(MainPanel, true);
+
+                ToggleColumns.Add(key, column);
+            }
         }
 
         #endregion Methods: Initilisation

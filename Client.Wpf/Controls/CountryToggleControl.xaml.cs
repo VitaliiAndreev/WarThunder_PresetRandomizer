@@ -14,6 +14,12 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for CountryToggleControl.xaml. </summary>
     public partial class CountryToggleControl : ColumnToggleGroupControl<ENation, NationCountryPair>, IControlWithToggleColumns<ENation, NationCountryPair>
     {
+        #region Properties
+
+        /// <summary> The main panel of the control. </summary>
+        internal override Panel MainPanel => _grid;
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new control. </summary>
@@ -31,21 +37,8 @@ namespace Client.Wpf.Controls
 
         /// <summary> Creates columns of toggle buttons for given <paramref name="nations"/>, with character icons. </summary>
         /// <param name="nations"> Nations to create columns of toggle buttons for. </param>
-        public override void CreateToggleColumns(IEnumerable<ENation> nations)
-        {
-            foreach (var nation in nations)
-            {
-                var columnControl = new CountryColumnToggleControl(nation)
-                {
-                    Tag = nation,
-                };
-
-                columnControl.Click += OnClick;
-                columnControl.AddToPanel(_grid, true);
-
-                ToggleColumns.Add(nation, columnControl);
-            }
-        }
+        public void CreateToggleColumns(IEnumerable<ENation> nations) =>
+            CreateToggleColumnsBase(typeof(CountryColumnToggleControl), nations);
 
         /// <summary> Removes countries of nations that have no vehicles. </summary>
         public void RemoveCountriesForUnavailableNations()
