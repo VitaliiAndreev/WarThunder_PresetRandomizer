@@ -39,7 +39,7 @@ namespace Core.DataBase.WarThunder.Extensions
         }
 
         /// <summary> Returns all countries that have vehicles serving with the given nation. </summary>
-        /// <param name="nation"> The nation to seach by. </param>
+        /// <param name="nation"> The nation to search by. </param>
         /// <returns></returns>
         public static IEnumerable<ECountry> GetCountries(this ENation nation) =>
             EReference.CountriesByNation.TryGetValue(nation, out var countries)

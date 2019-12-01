@@ -156,6 +156,11 @@ namespace Client.Wpf.Windows
             }
         }
 
+        /// <summary> Adjusts the state of the toggle all button. </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="toggleControl"></param>
+        /// <param name="ownerEntity"></param>
         private void UpdateToggleAllButtonState<T, U>(IControlWithToggleColumns<T, U> toggleControl, T ownerEntity)
         {
             var toggleColumn = toggleControl.ToggleClassColumns[ownerEntity];

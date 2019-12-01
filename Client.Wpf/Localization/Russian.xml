@@ -80,7 +80,7 @@
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
-  <Line key="SelectAllVehicleClasses" value="Активирует все классы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы. "/>
+  <Line key="SelectAllVehicleClasses" value="Активирует все классы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="SouthAfrica" value="Южная Африка"/>

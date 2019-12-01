@@ -12,6 +12,8 @@ namespace Client.Wpf.Controls.Base
     /// <typeparam name="T"> The key type. </typeparam>
     public class ToggleButtonGroupControlWithResource<T> : ToggleButtonGroupControlWithToolTip<T>
     {
+        #region Methods: CreateToggleButtons()
+
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with icons read from resources by their <paramref name="resourceKeys"/>. </summary>
         /// <param name="panel"> The panel to add buttons into. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
@@ -39,5 +41,7 @@ namespace Client.Wpf.Controls.Base
                 Buttons.Add(enumerationItem, toggleButton);
             }
         }
+
+        #endregion Methods: CreateToggleButtons()
     }
 }
