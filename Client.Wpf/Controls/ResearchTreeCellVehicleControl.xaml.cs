@@ -71,7 +71,7 @@ namespace Client.Wpf.Controls
             _displayVehicleInformationStrategy = displayVehicleInformationStrategy;
 
             Vehicle = vehicle;
-            _name.Text = Vehicle.ResearchTreeName.GetLocalization(WpfSettings.LocalizationLanguage);
+            _name.Text = Vehicle?.ResearchTreeName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
             _useCountryFlag = Vehicle.Country != Vehicle.Nation.AsEnumerationItem.GetBaseCountry();
 
             if (Vehicle.IsSquadronVehicle)

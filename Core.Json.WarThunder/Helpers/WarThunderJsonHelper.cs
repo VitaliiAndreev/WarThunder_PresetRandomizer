@@ -321,8 +321,6 @@ namespace Core.Json.Helpers
 
             if (JsonTokenContainsResearchTreeColumnAsJsonObject(jsonToken, out var researchTreeColumnAsJsonObject))
                 column.Cells.AddRange(DeserializeResearchTreeCells(researchTreeColumnAsJsonObject, columnIndex));
-            else
-                throw new JsonDeserializationException(EJsonWarThunderLogMessage.ColumnIsEmpty);
 
             return column;
         }
