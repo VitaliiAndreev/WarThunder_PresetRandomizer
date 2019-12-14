@@ -79,6 +79,7 @@
         public const string Realistic = nameof(Realistic);
         public const string RemovePresets = nameof(RemovePresets);
         public const string RepublicOfChina = nameof(RepublicOfChina);
+        public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
@@ -88,7 +89,6 @@
         public const string SelectAllVehicles = nameof(SelectAllVehicles);
         public const string Simulator = nameof(Simulator);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
-        public const string SouthAfrica = nameof(SouthAfrica);
         public const string Spaa = nameof(Spaa);
         public const string Status = nameof(Status);
         public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
@@ -97,6 +97,7 @@
         public const string Thailand = nameof(Thailand);
         public const string Thanks = nameof(Thanks);
         public const string Ukraine = nameof(Ukraine);
+        public const string UnionOfSouthAfrica = nameof(UnionOfSouthAfrica);
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string UtilityHelicopter = nameof(UtilityHelicopter);

@@ -76,6 +76,7 @@
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
+  <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
@@ -85,7 +86,6 @@
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
-  <Line key="SouthAfrica" value="Южная Африка"/>
   <Line key="Spaa" value="СЗУ"/>
   <Line key="Status" value="Статус:"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
@@ -94,6 +94,7 @@
   <Line key="Thailand" value="Тайланд"/>
   <Line key="Thanks" value="Благодарности"/>
   <Line key="Ukraine" value="Украина"/>
+  <Line key="UnionOfSouthAfrica" value="Южно-Африканский Союз"/>
   <Line key="Usa" value="США"/>
   <Line key="Ussr" value="СССР"/>
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>

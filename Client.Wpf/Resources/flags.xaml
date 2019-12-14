@@ -367,6 +367,24 @@
     <GeometryDrawing Brush="#FFCF142B" Geometry="{StaticResource country_cubaGeometry3}" />
   </DrawingGroup>
   <DrawingImage x:Key="country_cubaDrawingImage" Drawing="{StaticResource country_cubaDrawingGroup}" />
+  <Geometry x:Key="country_south_africa_modernGeometry1">F0 M100,100z M0,0z M0,72.26L0,27.628 33,49.967z</Geometry>
+  <Geometry x:Key="country_south_africa_modernGeometry2">F0 M100,100z M0,0z M51,57L12,83 0,83 0,73 34,50 0,27 0,17 12,17 51,43 100,43 100,57 51,57z</Geometry>
+  <Geometry x:Key="country_south_africa_modernGeometry3">F0 M100,100z M0,0z M0,75L0,69.519 30,49.967 0,30.256 0,25 38,49.967z</Geometry>
+  <Geometry x:Key="country_south_africa_modernGeometry4">F0 M100,100z M0,0z M20,83L100,83 100,61 53,61z</Geometry>
+  <Geometry x:Key="country_south_africa_modernGeometry5">F0 M100,100z M0,0z M20,17L100,17 100,39 53,39z</Geometry>
+  <DrawingGroup x:Key="country_south_africa_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFFFFFFF">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,17,100,66" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FF0A0A0A" Geometry="{StaticResource country_south_africa_modernGeometry1}" />
+    <GeometryDrawing Brush="#FF007E4A" Geometry="{StaticResource country_south_africa_modernGeometry2}" />
+    <GeometryDrawing Brush="#FFFFB81C" Geometry="{StaticResource country_south_africa_modernGeometry3}" />
+    <GeometryDrawing Brush="#FF002089" Geometry="{StaticResource country_south_africa_modernGeometry4}" />
+    <GeometryDrawing Brush="#FFE03C31" Geometry="{StaticResource country_south_africa_modernGeometry5}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_south_africa_modernDrawingImage" Drawing="{StaticResource country_south_africa_modernDrawingGroup}" />
   <Geometry x:Key="country_portugalGeometry1">F0 M100,100z M0,0z M57,50.719L56.939,50.749A19.474,19.474,0,0,1,38.719,68.939L38.719,69 36.281,69 36.281,68.939A19.474,19.474,0,0,1,18.061,50.75L18,50.719 18.057,50.678C18.034,50.286,18,49.9,18,49.5A19.485,19.485,0,0,1,36.281,30.062L36.281,30 38.719,30 38.719,30.061A19.485,19.485,0,0,1,57,49.5C57,49.9,56.966,50.286,56.943,50.678z M52.892,56.6A16.846,16.846,0,0,0,54.273,51.846L48.643,56.069z M22.108,56.6L26.357,56.069 20.727,51.846A16.846,16.846,0,0,0,22.108,56.6z M21.422,44.145A16.872,16.872,0,0,0,20.728,47.063L23.118,47.063 24.242,46.263z M38.719,32.6L38.719,36.1 36.281,36.1 36.281,32.6A16.912,16.912,0,0,0,23.923,39.37L28.969,43.407 26.938,45.438 27.751,47.063 25.314,48.688 25.314,50.719 23.364,50.719 30.189,55.594 32.627,61.688 26.827,62.655A16.87,16.87,0,0,0,36.281,66.4L36.281,62.9 38.719,62.9 38.719,66.4A16.87,16.87,0,0,0,48.174,62.651L42.374,61.684 44.812,55.59 51.637,50.715 49.687,50.715 49.687,48.688 47.25,47.063 48.063,45.438 46.032,43.407 51.078,39.37A16.912,16.912,0,0,0,38.719,32.6z M54.271,47.063A16.872,16.872,0,0,0,53.577,44.145L50.757,46.26 51.881,47.06 54.271,47.06z</Geometry>
   <Geometry x:Key="country_portugalGeometry2">F1 M100,100z M0,0z M25,36L50,36A0,0,0,0,1,50,36L50,53A10,10,0,0,1,40,63L35,63A10,10,0,0,1,25,53L25,36A0,0,0,0,1,25,36z</Geometry>
   <Geometry x:Key="country_portugalGeometry3">F1 M100,100z M0,0z M31,42L44,42A0,0,0,0,1,44,42L44,53A5,5,0,0,1,39,58L36,58A5,5,0,0,1,31,53L31,42A0,0,0,0,1,31,42z</Geometry>

@@ -76,6 +76,7 @@
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
+  <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
@@ -85,7 +86,6 @@
   <Line key="SelectAllVehicles" value="Enables all vehicles in the branch if at least one is disabled. Disables all of them otherwise."/>
   <Line key="Simulator" value="Simulator Battles"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
-  <Line key="SouthAfrica" value="South Africa"/>
   <Line key="Spaa" value="SPAA"/>
   <Line key="Status" value="Status:"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
@@ -94,6 +94,7 @@
   <Line key="Thailand" value="Thailand"/>
   <Line key="Thanks" value="Thanks"/>
   <Line key="Ukraine" value="Ukraine"/>
+  <Line key="UnionOfSouthAfrica" value="Union of South Africa"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>

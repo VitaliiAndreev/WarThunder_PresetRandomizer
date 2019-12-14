@@ -38,12 +38,13 @@
             public const string Poland = _prefix + "poland" + _suffix;
             public const string Portugal = _prefix + "portugal" + _suffix;
             public const string RepublicOfChina = "flag_republic_china" + _suffix;
+            public const string RepublicOfSouthAfrica = _prefix + "south_africa_modern" + _suffix;
             public const string Romania = _prefix + "romania" + _suffix;
             public const string Russia = _prefix + "russia" + _suffix;
-            public const string SouthAfrica = _prefix + "south_africa" + _suffix;
             public const string Sweden = _prefix + "sweden" + _suffix;
             public const string Thailand = _prefix + "thailand" + _suffix;
             public const string Ukraine = _prefix + "ukraine" + _suffix;
+            public const string UnionOfSouthAfrica = _prefix + "south_africa" + _suffix;
             public const string Usa = _prefix + "usa" + _suffix;
             public const string Ussr = _prefix + "ussr" + _suffix;
             public const string Yugoslavia = _prefix + "yugoslavia" + _suffix;
