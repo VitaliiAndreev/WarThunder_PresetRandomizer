@@ -460,7 +460,7 @@ namespace Core.Organization.Helpers
         /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="vehicleGaijinIds"/>. </summary>
         /// <param name="vehicleGaijinIds"> Gaijin IDs of vehicles enabled via GUI. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithGaijinIdFilter(IEnumerable<string> vehicleGaijinIds)
+        private IEnumerable<IVehicle> FilterVehiclesByGaijinIds(IEnumerable<string> vehicleGaijinIds)
         {
             var filteredVehicles = _playableVehicles.Where(vehicle => vehicle.GaijinId.IsIn(vehicleGaijinIds));
 
@@ -487,14 +487,14 @@ namespace Core.Organization.Helpers
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehicles) =>
+        private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, enabledNationCountryPairs, vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country));
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validVehicleClasses"/>. </summary>
         /// <param name="validVehicleClasses"> Vehicle classes enabled via GUI and actually available. </param>
-        /// <param name="vehicles"> Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter"/>. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithClassFilter(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
+        private IEnumerable<IVehicle> FilterVehiclesByClassFilters(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validVehicleClasses, vehicle => vehicle.Class);
 
         /// <summary> Selects the main branch from selected via GUI (passed with <paramref name="specification"/>) and <paramref name="availableBranches"/>. </summary>
@@ -553,10 +553,10 @@ namespace Core.Organization.Helpers
         /// <summary> Selects valid branches from <paramref name="vehiclesByBranches"/>. </summary>
         /// <param name="vehiclesByBranches">
         /// Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter(IEnumerable{NationCountryPair})"/>,
-        /// <see cref="SelectVehiclesWithClassFilter(IEnumerable{EVehicleClass}, IEnumerable{IVehicle})"/>, and by the selected nation.
+        /// <see cref="FilterVehiclesByClassFilters(IEnumerable{EVehicleClass}, IEnumerable{IVehicle})"/>, and by the selected nation.
         /// </param>
         /// <returns></returns>
-        private IEnumerable<EBranch> SelectValidBranches(IDictionary<EBranch, IEnumerable<IVehicle>> vehiclesByBranches)
+        private IEnumerable<EBranch> GetValidBranches(IDictionary<EBranch, IEnumerable<IVehicle>> vehiclesByBranches)
         {
             var validBranches = vehiclesByBranches.Keys;
 
@@ -575,7 +575,7 @@ namespace Core.Organization.Helpers
         /// <param name="nation"> The nation. </param>
         /// <param name="mainBranch"> The main branch. </param>
         /// <returns></returns>
-        private IEnumerable<int> SelectValidEconomicRanks(IEnumerable<int> enabledEconomicRanks, IEnumerable<int> economicRanksWithVehicles, Func<int, string> getFormattedBattleRating, ENation nation, EBranch mainBranch)
+        private IEnumerable<int> GetEconomicRanks(IEnumerable<int> enabledEconomicRanks, IEnumerable<int> economicRanksWithVehicles, Func<int, string> getFormattedBattleRating, ENation nation, EBranch mainBranch)
         {
             var validEconomicRanks = enabledEconomicRanks.Intersect(economicRanksWithVehicles);
 
@@ -722,7 +722,7 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by vehicle Gaijin IDs.
 
-            var vehiclesWithGaijinIdFilter = SelectVehiclesWithGaijinIdFilter(specification.VehicleGaijinIds);
+            var vehiclesWithGaijinIdFilter = FilterVehiclesByGaijinIds(specification.VehicleGaijinIds);
 
             if (vehiclesWithGaijinIdFilter is null)
                 return emptyPreset;
@@ -730,7 +730,7 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by countiries.
 
-            var vehiclesWithCountryFilter = SelectVehiclesWithCountryFilter(enabledNationCountryPairs, vehiclesWithGaijinIdFilter);
+            var vehiclesWithCountryFilter = FilterVehiclesByCountries(enabledNationCountryPairs, vehiclesWithGaijinIdFilter);
 
             if (vehiclesWithCountryFilter is null)
                 return emptyPreset;
@@ -740,7 +740,7 @@ namespace Core.Organization.Helpers
 
             var availableVehicleClasses = vehiclesWithCountryFilter.Select(vehicle => vehicle.Class).Distinct().ToList();
             var validVehicleClasses = enabledVehicleClassesByBranch.Values.SelectMany(branchVehicleClasses => branchVehicleClasses.Where(vehicleClass => vehicleClass.IsIn(availableVehicleClasses)));
-            var vehiclesWithClassFilter = SelectVehiclesWithClassFilter(validVehicleClasses, vehiclesWithCountryFilter);
+            var vehiclesWithClassFilter = FilterVehiclesByClassFilters(validVehicleClasses, vehiclesWithCountryFilter);
 
             if (vehiclesWithClassFilter is null)
                 return emptyPreset;
@@ -779,7 +779,7 @@ namespace Core.Organization.Helpers
             #region Branch selection.
 
             var vehiclesByBranches = vehiclesFromNation.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
-            var validBranches = SelectValidBranches(vehiclesByBranches);
+            var validBranches = GetValidBranches(vehiclesByBranches);
 
             if (validBranches is null)
                 return emptyPreset;
@@ -804,7 +804,7 @@ namespace Core.Organization.Helpers
             static string getFormattedBattleRating(int economicRank) => Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
 
             var enabledEconomicRanks = specification.EconomicRankIntervals[nation].AsEnumerable();
-            var validEconomicRanks = SelectValidEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
+            var validEconomicRanks = GetEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
 
             if (validEconomicRanks is null)
                 return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(nation, mainBranch, string.Empty, new List<IVehicle>()) } };
