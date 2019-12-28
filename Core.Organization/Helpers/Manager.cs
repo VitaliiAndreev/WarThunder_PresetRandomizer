@@ -472,36 +472,30 @@ namespace Core.Organization.Helpers
             return filteredVehicles;
         }
 
-        /// <summary> Filters <paramref name="vehiclesWithGaijinIdFilter"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
+        private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector)
+        {
+            var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).IsIn(validItems));
+
+            if (filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
+                return null;
+            }
+            return filteredVehicles;
+        }
+
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehiclesWithGaijinIdFilter)
-        {
-            var filteredVehicles = vehiclesWithGaijinIdFilter.Where(vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country).IsIn(enabledNationCountryPairs));
+        private IEnumerable<IVehicle> SelectVehiclesWithCountryFilter(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, enabledNationCountryPairs, vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country));
 
-            if (filteredVehicles.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(enabledNationCountryPairs.StringJoin(EVocabulary.ListSeparator)));
-                return null;
-            }
-            return filteredVehicles;
-        }
-
-        /// <summary> Filters <paramref name="vehiclesWithCountryFilter"/> with <paramref name="validVehicleClasses"/>. </summary>
-        /// <param name="validVehicleClasses"> Vehicle classes available after filtering with nation-country pairs. </param>
-        /// <param name="vehiclesWithCountryFilter"> Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter"/>. </param>
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validVehicleClasses"/>. </summary>
+        /// <param name="validVehicleClasses"> Vehicle classes enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles filtered by <see cref="SelectVehiclesWithCountryFilter"/>. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> SelectVehiclesWithClassFilter(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehiclesWithCountryFilter)
-        {
-            var filteredVehicles = vehiclesWithCountryFilter.Where(vehicle => vehicle.Class.IsIn(validVehicleClasses));
-
-            if (filteredVehicles.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validVehicleClasses.StringJoin(EVocabulary.ListSeparator)));
-                return null;
-            }
-            return filteredVehicles;
-        }
+        private IEnumerable<IVehicle> SelectVehiclesWithClassFilter(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, validVehicleClasses, vehicle => vehicle.Class);
 
         /// <summary> Selects the main branch from selected via GUI (passed with <paramref name="specification"/>) and <paramref name="availableBranches"/>. </summary>
         /// <param name="specification"> The search specification. </param>
