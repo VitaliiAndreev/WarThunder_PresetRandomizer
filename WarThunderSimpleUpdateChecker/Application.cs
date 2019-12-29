@@ -91,7 +91,6 @@ namespace WarThunderSimpleUpdateChecker
             var excludedBinFileNames = new string[]
             {
                 EFile.WarThunder.GuiParameters,
-                EFile.WarThunder.MissionParameters,
                 EFile.WarThunder.WebUiParameters,
             };
 
