@@ -497,6 +497,13 @@ namespace Core.Organization.Helpers
         private IEnumerable<IVehicle> FilterVehiclesByClassFilters(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validVehicleClasses, vehicle => vehicle.Class);
 
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validNations"/>. </summary>
+        /// <param name="validNations"> Vehicle classes enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByNations(IEnumerable<ENation> validNations, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, validNations, vehicle => vehicle.Nation.AsEnumerationItem);
+
         /// <summary> Selects the main branch from selected via GUI (passed with <paramref name="specification"/>) and <paramref name="availableBranches"/>. </summary>
         /// <param name="specification"> The search specification. </param>
         /// <param name="availableBranches"> Branches available after filtering with vehicle classes. </param>
@@ -773,12 +780,15 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by nation.
 
-            var vehiclesFromNation = vehiclesWithClassFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == nation);
+            var vehiclesWithNationFilter = FilterVehiclesByNations(new List<ENation> { nation }, vehiclesWithClassFilter);
+
+            if (vehiclesWithNationFilter is null)
+                return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Branch selection.
 
-            var vehiclesByBranches = vehiclesFromNation.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
+            var vehiclesByBranches = vehiclesWithNationFilter.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
             var validBranches = GetValidBranches(vehiclesByBranches);
 
             if (validBranches is null)
