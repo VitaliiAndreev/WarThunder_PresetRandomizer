@@ -37,7 +37,9 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             
-            <StackPanel Grid.Row="0">
+            <StackPanel
+                Grid.Row="0"
+                Style="{StaticResource PaddedStackPanel}">
 
                 <Button Content="Generate a preset"
                     x:Name="_generatePresetButton"

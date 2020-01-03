@@ -222,13 +222,12 @@
         <!-- t:StackPanel -->
         
         <Style TargetType="StackPanel">
-            <Setter Property="Margin" Value="10"/>
             <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
             <Setter Property="TextBlock.FontSize" Value="16"/>
         </Style>
-
-        <Style TargetType="StackPanel" x:Key="StackPanelNoMargin" BasedOn="{StaticResource {x:Type StackPanel}}">
-            <Setter Property="Margin" Value="0"/>
+        
+        <Style TargetType="StackPanel" x:Key="PaddedStackPanel">
+            <Setter Property="Margin" Value="10"/>
         </Style>
 
         <Style TargetType="StackPanel" x:Key="StackPanelInsideScrollViewer">
@@ -311,6 +310,9 @@
 
         <Style TargetType="ToggleButton">
             <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
         </Style>
 
         <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource {x:Type ToggleButton}}">

@@ -8,8 +8,7 @@
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     mc:Ignorable="d"
     d:DesignWidth="800">
-    <StackPanel
-        Style="{StaticResource StackPanelNoMargin}">
+    <StackPanel>
 
         <controls:DropCapTextBlock Text="Battle Ratings"
             x:Name="_header"

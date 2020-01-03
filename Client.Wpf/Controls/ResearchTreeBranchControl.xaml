@@ -10,8 +10,7 @@
     d:DesignHeight="400"
     d:DesignWidth="600">
     <ScrollViewer>
-        <StackPanel
-            Style="{StaticResource StackPanelNoMargin}">
+        <StackPanel>
 
             <WrapPanel>
 

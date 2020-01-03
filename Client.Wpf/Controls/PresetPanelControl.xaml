@@ -15,7 +15,7 @@
             <ColumnDefinition Width="840"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Style="{StaticResource StackPanelNoMargin}">
+        <StackPanel>
 
             <Grid
                 Grid.Row="0">

@@ -35,7 +35,9 @@
             Style="{StaticResource CenteredBold}"
             FontWeight="Bold"/>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel
+            Grid.Row="2"
+            Style="{StaticResource PaddedStackPanel}">
 
             <Grid
                 TextBlock.FontSize="14">
@@ -72,7 +74,9 @@
             Style="{StaticResource CenteredBold}"
             FontWeight="Bold"/>
 
-        <StackPanel Grid.Row="4">
+        <StackPanel
+            Grid.Row="4"
+            Style="{StaticResource PaddedStackPanel}">
 
             <Grid
                 TextBlock.FontSize="14">
