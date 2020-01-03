@@ -12,36 +12,5 @@
     d:DesignWidth="200">
     <Grid x:Name="_buttonGrid">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <ToggleButton ToolTip ="Arcade"
-                    Grid.Column="0"
-                    x:Name="_arcadeButton">
-            <Image
-                Source="{StaticResource ArcadeIcon}"
-                Style="{StaticResource Icon32px}">
-            </Image>
-        </ToggleButton>
-        <ToggleButton ToolTip ="Realistic"
-                    Grid.Column="1"
-                    x:Name="_realisticButton">
-            <Image
-                Source="{StaticResource RealisticIcon}"
-                Style="{StaticResource Icon32px}">
-            </Image>
-        </ToggleButton>
-        <ToggleButton ToolTip ="Simulator"
-                    Grid.Column="2"
-                    x:Name="_simulatorButton">
-            <Image
-                Source="{StaticResource SimulatorIcon}"
-                Style="{StaticResource Icon32px}">
-            </Image>
-        </ToggleButton>
-
     </Grid>
 </base:ExclusiveToggleButtonGroupControlWithToolTip>

@@ -22,6 +22,7 @@
         {
             public const string FlagIcon = "FlagIcon";
             public const string FlagIcon16px = "FlagIcon16px";
+            public const string Icon32px = "Icon32px";
             public const string LocalizationIcon = "LocalizationIcon";
         }
         /// <summary> String keys of styles for <see cref="Controls.ResearchTreeCellControl"/>. </summary>
@@ -49,6 +50,7 @@
             public const string BranchToggle = "BranchToggle";
             public const string CountryToggle = "CountryToggle";
             public const string NationToggle = "NationToggle";
+            public const string BaseToggleButton = "ToggleButton";
             public const string VehicleClassToggle = "VehicleClassToggle";
         }
     }

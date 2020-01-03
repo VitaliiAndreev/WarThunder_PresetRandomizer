@@ -1,11 +1,10 @@
 ﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -18,24 +17,30 @@ namespace Client.Wpf.Controls
         public GameModeSelectionControl()
         {
             InitializeComponent();
-
-            Buttons.AddRange
-            (
-                new Dictionary<EGameMode, ToggleButton>
-                {
-                    { EGameMode.Arcade, _arcadeButton },
-                    { EGameMode.Realistic, _realisticButton },
-                    { EGameMode.Simulator, _simulatorButton },
-                }
-            );
+            CreateToggleButtons(_buttonGrid, new List<EGameMode> { EGameMode.Arcade, EGameMode.Realistic, EGameMode.Simulator }, null, EStyleKey.ToggleButton.BaseToggleButton);
 
             foreach (var buttonKeyValuePair in Buttons)
             {
                 var gameMode = buttonKeyValuePair.Key;
                 var button = buttonKeyValuePair.Value;
 
-                button.Tag = gameMode;
-                button.Click += OnClick;
+                void setImageAsButtonContent(string imageKey)
+                {
+                    button.Content = new Image()
+                    {
+                        Source = FindResource(imageKey) as ImageSource,
+                        Style = this.GetStyle(EStyleKey.Image.Icon32px),
+                    };
+                }
+
+                if (gameMode == EGameMode.Arcade)
+                    setImageAsButtonContent(EBitmapImageKey.ArcadeIcon);
+
+                else if (gameMode == EGameMode.Realistic)
+                    setImageAsButtonContent(EBitmapImageKey.RealisticIcon);
+
+                else if (gameMode == EGameMode.Simulator)
+                    setImageAsButtonContent(EBitmapImageKey.SimulatorIcon);
             }
         }
 
