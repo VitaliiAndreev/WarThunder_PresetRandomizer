@@ -11,7 +11,7 @@ namespace Client.Wpf.Extensions
         /// <param name="styleKey"> The string key of the style. </param>
         /// <returns></returns>
         public static Style GetStyle(this FrameworkElement frameworkElement, string styleKey) =>
-            frameworkElement.FindResource(styleKey) as Style;
+            styleKey is null ? null : frameworkElement.FindResource(styleKey) as Style;
 
         /// <summary> Gets the tag of the given <paramref name="frameworkElement"/> and casts it to <typeparamref name="T"/>. </summary>
         /// <typeparam name="T"> The type to cast the tag to. </typeparam>

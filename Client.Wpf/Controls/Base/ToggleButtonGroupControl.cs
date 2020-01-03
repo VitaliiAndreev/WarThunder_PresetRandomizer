@@ -73,6 +73,27 @@ namespace Client.Wpf.Controls.Base
         {
             base.Localize();
 
+            static void localizeButtonContent(ToggleButton toggleButton, string @string)
+            {
+                var localizedString = ApplicationHelpers.LocalizationManager.GetLocalizedString(@string);
+
+                if (@string != localizedString)
+                    toggleButton.Content = localizedString;
+            }
+
+            foreach (var button in Buttons.Values)
+            {
+                if (button.Content is string @string)
+                {
+                    localizeButtonContent(button, @string);
+                }
+                else if (button.Content is Enum enumerationItem)
+                {
+                    var enumerationItemString = enumerationItem.ToString();
+                    localizeButtonContent(button, enumerationItemString);
+                }
+            }
+
             if (_toggleAllButton is ToggleButton)
                 _toggleAllButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.All);
         }
@@ -138,14 +159,14 @@ namespace Client.Wpf.Controls.Base
             _toggleAllButton = CreateToggleButton(panel, enumerationItem, typeof(T).IsEnum ? enumerationItem.ToString() : EWord.All, $"{styleKey}{EWord.All}", horizontal);
         }
 
-        /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with character <paramref name="icons"/>. </summary>
+        /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with <paramref name="characterIcons"/>. </summary>
         /// <param name="panel"> The panel to add buttons onto. </param>
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
-        /// <param name="icons"> Icons for <paramref name="enumerationItems"/>. </param>
+        /// <param name="characterIcons"> Character icons for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
         /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
-        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> icons, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> characterIcons, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
             if (createToggleAllButton)
                 CreateToggleAllButton(panel, $"{styleKey}{EWord.All}", horizontal);
@@ -154,7 +175,7 @@ namespace Client.Wpf.Controls.Base
             {
                 try
                 {
-                    CreateToggleButton(panel, enumerationItem, icons[enumerationItem], styleKey, horizontal);
+                    CreateToggleButton(panel, enumerationItem, (characterIcons is null || !characterIcons.TryGetValue(enumerationItem, out var characterIcon)) ? enumerationItem.ToString() : characterIcon.ToString(), styleKey, horizontal);
                 }
                 catch (Exception e)
                 {
