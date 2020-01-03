@@ -445,7 +445,7 @@ namespace Client.Wpf.Windows
         /// <summary> Updates controls on the window base on saved user settings and loaded data. </summary>
         private void UpdateControlsBasedOnSettingsAndData()
         {
-            SelectGameMode(string.IsNullOrWhiteSpace(WpfSettings.CurrentGameMode) ? EGameMode.Arcade : WpfSettings.CurrentGameMode.ParseEnumeration<EGameMode>(), true);
+            SelectGameMode(WpfSettings.CurrentGameModeAsEnumerationItem, true);
 
             _nationToggleControl.RemoveUnavailableNations();
             _countryToggleControl.RemoveCountriesForUnavailableNations();
