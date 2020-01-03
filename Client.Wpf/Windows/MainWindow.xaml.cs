@@ -408,10 +408,13 @@ namespace Client.Wpf.Windows
         private void SetControlTags()
         {
             _gameModeSelectionControl.Tag = EGameMode.None;
+
             _branchToggleControl.Tag = EBranch.None;
             _vehicleClassControl.Tag = EVehicleClass.None;
+
             _nationToggleControl.Tag = ENation.None;
             _countryToggleControl.Tag = ECountry.None;
+
             _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
         }
 
@@ -423,6 +426,7 @@ namespace Client.Wpf.Windows
                 Style = this.GetStyle(EStyleKey.Image.LocalizationIcon),
                 Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
             };
+
             _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
         }
 

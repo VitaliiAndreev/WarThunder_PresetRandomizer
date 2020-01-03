@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Enumerations
 {

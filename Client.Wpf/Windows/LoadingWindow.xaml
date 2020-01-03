@@ -16,7 +16,7 @@
     Loaded="OnLoaded"
     Closing="OnClosing">
     <Grid
-        Style="{StaticResource PaddedGrid}">
+        Style="{StaticResource PaddedGrid_10}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
