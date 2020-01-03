@@ -77,7 +77,7 @@ namespace Core.Organization.Helpers
         {
             var randomizedVehicles = new List<IVehicle>();
 
-            while (randomizedVehicles.Count < amountToSelect && vehiclesByBattleRatings.Any() && vehiclesByBattleRatings[vehiclesByBattleRatings.Keys.First()].Any())
+            while (randomizedVehicles.Count < amountToSelect && vehiclesByBattleRatings.Any())
             {
                 var currentBattleRating = vehiclesByBattleRatings.Keys.First();
                 var vehiclesOnCurrentBattleRating = vehiclesByBattleRatings[currentBattleRating];
