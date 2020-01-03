@@ -105,7 +105,7 @@ namespace Client.Wpf.Windows
         }
 
         /// <summary> Selects the game mode whose button is pressed. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnGameModeButtonClick(object sender, RoutedEventArgs eventArguments)
         {

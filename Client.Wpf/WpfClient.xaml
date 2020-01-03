@@ -108,6 +108,10 @@
             <Setter Property="TextBlock.FontSize" Value="16"/>
         </Style>
 
+        <Style TargetType="Grid" x:Key="PaddedGrid_03" BasedOn="{StaticResource {x:Type Grid}}">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+
         <Style TargetType="Grid" x:Key="PaddedGrid_10" BasedOn="{StaticResource {x:Type Grid}}">
             <Setter Property="Margin" Value="10"/>
         </Style>
