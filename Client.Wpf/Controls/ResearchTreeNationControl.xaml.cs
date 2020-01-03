@@ -76,7 +76,7 @@ namespace Client.Wpf.Controls
 
             localiseTabHeader(_armyTab);
             localiseTabHeader(_helicoptersTab);
-            localiseTabHeader(_helicoptersTab);
+            localiseTabHeader(_aviationTab);
             localiseTabHeader(_fleetTab);
 
             foreach (var control in _branchControls.Values)
