@@ -10,7 +10,7 @@ using System.Windows.Controls.Primitives;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for GameModeSelectionControl.xaml. </summary>
-    public partial class GameModeSelectionControl : ToggleButtonGroupControlWithToolTip<EGameMode>
+    public partial class GameModeSelectionControl : ExclusiveToggleButtonGroupControlWithToolTip<EGameMode>
     {
         #region Constuctors
 
@@ -40,36 +40,5 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constuctors
-        #region Methods: Event Handlers
-
-        /// <summary> Adjust font weights to indicate the button pressed last. </summary>
-        /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
-        /// <param name="eventArguments"> Not used. </param>
-        public override void OnClick(object sender, RoutedEventArgs eventArguments)
-        {
-            if (!(sender is ToggleButton clickedButton))
-            {
-                return;
-            }
-
-            var buttons = Buttons.Values;
-            var allButtonsAreToggledOff = buttons.All(button => !button.IsChecked.HasValue || !button.IsChecked.Value);
-
-            if (allButtonsAreToggledOff)
-            {
-                clickedButton.IsChecked = true;
-                return;
-            }
-
-            buttons
-                .Except(new ToggleButton[] { clickedButton })
-                .ToList()
-                .ForEach(button => button.IsChecked = false)
-            ;
-
-            RaiseClickEvent(clickedButton);
-        }
-
-        #endregion Methods: Event Handlers
     }
 }

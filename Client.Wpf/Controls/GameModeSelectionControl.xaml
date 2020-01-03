@@ -1,4 +1,4 @@
-﻿<base:ToggleButtonGroupControlWithToolTip
+﻿<base:ExclusiveToggleButtonGroupControlWithToolTip
     x:TypeArguments="enumerations:EGameMode"
     x:Class="Client.Wpf.Controls.GameModeSelectionControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -44,4 +44,4 @@
         </ToggleButton>
 
     </Grid>
-</base:ToggleButtonGroupControlWithToolTip>
+</base:ExclusiveToggleButtonGroupControlWithToolTip>
