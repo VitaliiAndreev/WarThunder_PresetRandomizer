@@ -7,6 +7,7 @@ using Core.Enumerations;
 using Core.Extensions;
 using Core.Localization.Enumerations;
 using Core.Objects;
+using Core.Organization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
@@ -28,6 +29,13 @@ namespace Client.Wpf
         {
             get => LocalizationLanguage == ELanguage.None ? null : LocalizationLanguage.ToString();
             set => LocalizationLanguage = !string.IsNullOrWhiteSpace(value) && value.TryParseEnumeration<ELanguage>(out var language) ? language : ELanguage.None;
+        }
+
+        [RequiredSetting]
+        public static string Randomisation
+        {
+            get => RandomisationAsEnumerationItem.ToString();
+            set => RandomisationAsEnumerationItem = value.TryParseEnumeration<ERandomisation>(out var enumerationItem) ? enumerationItem : ERandomisation.CategoryBased;
         }
 
         [RequiredSetting]
@@ -126,6 +134,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
         /// </summary>
         public static ELanguage LocalizationLanguage { get; private set; }
+
+        /// <summary>
+        /// The currently selected randomisation method.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Randomisation"/> instead. </para>
+        /// </summary>
+        public static ERandomisation RandomisationAsEnumerationItem { get; private set; }
 
         /// <summary>
         /// The currently selected game mode.

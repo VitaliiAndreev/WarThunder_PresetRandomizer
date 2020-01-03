@@ -10,9 +10,9 @@
     Title="Main Window"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
-    MinHeight="700"
+    MinHeight="725"
     MinWidth="1160"
-    Height="700"
+    Height="725"
     Width="1473"
     Loaded="OnLoaded"
     Closed="OnClosed">
@@ -44,6 +44,10 @@
                 <Button Content="Generate a preset"
                     x:Name="_generatePresetButton"
                     FontWeight="Bold"/>
+
+                <controls:RandomisationSelectionControl
+                    x:Name="_randomisationSelectionControl"
+                    Click="OnRandomisationButtonClick"/>
 
                 <controls:GameModeSelectionControl
                     x:Name="_gameModeSelectionControl"

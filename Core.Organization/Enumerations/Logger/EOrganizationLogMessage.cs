@@ -67,5 +67,11 @@ namespace Core.Organization.Enumerations.Logger
         /// <para> 2: nation. </para>
         /// </summary>
         public static readonly string NoVehiclesAvailableForSelectedBattleRatings = $"{_noVehiclesAvailable} {_among} {{0}}-{{1}} {{2}} {_of} {{3}}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: branch. </para>
+        /// <para> 2: nation. </para>
+        /// </summary>
+        public static readonly string NoEconomiRankSetForVehicleInGameMode = $"{_Economic} {_rank} {_is} {_set} {_for} {{0}}.";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
+using Core.Organization.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.Organization.Objects.SearchSpecifications
@@ -9,6 +10,9 @@ namespace Core.Organization.Objects.SearchSpecifications
     public class Specification
     {
         #region Properties
+
+        /// <summary> The method of randomisation. </summary>
+        public ERandomisation Randomisation { get; }
 
         /// <summary> The game mode. </summary>
         public EGameMode GameMode { get; }
@@ -29,6 +33,7 @@ namespace Core.Organization.Objects.SearchSpecifications
         #region Constructors
 
         /// <summary> Creates a new filter specification with the given parameters. </summary>
+        /// <param name="randomisation"> The method of randomisation. </param>
         /// <param name="gameMode"> The game mode. </param>
         /// <param name="nationSpecifications"> Nation specifications. </param>
         /// <param name="branchSpecifications"> Branch specifications. </param>
@@ -36,6 +41,7 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <param name="vehicleGaijinIds"> Allowed vehicle Gaijin IDs. </param>
         public Specification
         (
+            ERandomisation randomisation,
             EGameMode gameMode,
             IDictionary<ENation, NationSpecification> nationSpecifications,
             IDictionary<EBranch, BranchSpecification> branchSpecifications,
@@ -44,6 +50,7 @@ namespace Core.Organization.Objects.SearchSpecifications
         )
         {
             GameMode = gameMode;
+            Randomisation = randomisation;
             NationSpecifications = nationSpecifications;
             BranchSpecifications = branchSpecifications;
             EconomicRankIntervals = economicRankIntervals;

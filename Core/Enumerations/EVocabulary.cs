@@ -205,6 +205,8 @@
         private const string _Ex = _E + _x;
         private const string _ey = _e + _y;
 
+        protected const string _Eco = "E" + _co;
+        protected const string _Economic = _Eco + _no + _mic;
         protected const string _el = _e + _l;
         protected const string _elect = _el + _ect;
         protected const string _emptied = _e + "mpti" + _ed;
@@ -377,6 +379,7 @@
         protected const string _ment = _men + _t;
         protected const string _Method = "Metho" + _d;
         protected const string _method = "metho" + _d;
+        protected const string _mic = _m + _i + _c;
         protected const string _mode = "mo" + _d + _e;
         protected const string _mong = "mo" + _n + _g;
         protected const string _Must = "Mu" + _s + _t;
@@ -688,6 +691,8 @@
 
         /// <summary> A separator between items in a collection. </summary>
         public const string ListSeparator = ", ";
+        /// <summary> A separator between items in a collection. </summary>
+        public const string ListGroupSeparator = "| ";
 
         #endregion Public Constants
     }

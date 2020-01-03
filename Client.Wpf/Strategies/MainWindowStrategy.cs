@@ -14,6 +14,7 @@ namespace Client.Wpf.Strategies
             base.InitializeCommands();
 
             _commands.Add(ECommandName.GeneratePreset, new GeneratePresetCommand());
+            _commands.Add(ECommandName.SelectRandomisation, new SelectRandomisationCommand());
             _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
             _commands.Add(ECommandName.ToggleBranch, new ToggleBranchCommand());
             _commands.Add(ECommandName.ToggleCountry, new ToggleCountryCommand());

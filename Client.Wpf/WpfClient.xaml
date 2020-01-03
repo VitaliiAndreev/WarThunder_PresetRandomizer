@@ -249,7 +249,7 @@
         </Style>
 
         <!-- t:TextBlock -->
-
+        
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake">
             <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>

@@ -23,6 +23,9 @@ namespace Client.Wpf.Presenters
         /// <summary> The parent window. </summary>
         new public IMainWindow Owner => base.Owner as IMainWindow;
 
+        /// <summary> The currently selected randomisation method. </summary>
+        public ERandomisation Randomisation { get; set; }
+
         /// <summary> The currently selected game mode. </summary>
         public EGameMode CurrentGameMode { get; set; }
 
@@ -72,6 +75,7 @@ namespace Client.Wpf.Presenters
         public MainWindowPresenter(IMainWindowStrategy strategy)
             : base(strategy)
         {
+            Randomisation = WpfSettings.RandomisationAsEnumerationItem;
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
             EnabledVehicleClasses = new List<EVehicleClass>(WpfSettings.EnabledVehicleClassesCollection);

@@ -38,6 +38,8 @@ namespace Client.Wpf.Enumerations
         ToggleCountry,
         /// <summary> See <see cref="ToggleNationCommand"/>. </summary>
         ToggleNation,
+        /// <summary> See <see cref="SelectRandomisationCommand"/>. </summary>
+        SelectRandomisation,
         /// <summary> See <see cref="ToggleVehicleCommand"/>. </summary>
         ToggleVehicle,
         /// <summary> See <see cref="ToggleVehicleClassCommand"/>. </summary>

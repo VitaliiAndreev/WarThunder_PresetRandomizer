@@ -92,6 +92,18 @@ namespace Client.Wpf.Windows
         private void OnClosed(object sender, EventArgs eventArguments) =>
             Log.Debug(ECoreLogMessage.Closed);
 
+        /// <summary> Selects the randomisation method whose button is pressed. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnRandomisationButtonClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (!(eventArguments.OriginalSource is ToggleButton toggleButton))
+                return;
+
+            Presenter.Randomisation = toggleButton.Tag.CastTo<ERandomisation>();
+            Presenter.ExecuteCommand(ECommandName.SelectRandomisation);
+        }
+
         /// <summary> Selects the game mode whose button is pressed. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="Button"/> is expected. </param>
         /// <param name="eventArguments"> Not used. </param>
@@ -439,6 +451,7 @@ namespace Client.Wpf.Windows
             _countryToggleControl.RemoveCountriesForUnavailableNations();
             _battleRatingControl.RemoveControlsForUnavailableNations();
 
+            _randomisationSelectionControl.Toggle(Presenter.Randomisation, true);
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
@@ -472,6 +485,7 @@ namespace Client.Wpf.Windows
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
             _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
+            _randomisationSelectionControl.Localize();
             _gameModeSelectionControl.Localize();
             _vehicleClassControl.Localize();
             _nationToggleControl.Localize();

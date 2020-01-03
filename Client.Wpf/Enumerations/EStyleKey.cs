@@ -49,6 +49,7 @@
         {
             public const string BranchToggle = "BranchToggle";
             public const string CountryToggle = "CountryToggle";
+            public const string CountryToggleAll = "CountryToggleAll";
             public const string NationToggle = "NationToggle";
             public const string BaseToggleButton = "ToggleButton";
             public const string VehicleClassToggle = "VehicleClassToggle";

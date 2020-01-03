@@ -26,6 +26,8 @@
         public const string Bulgaria = nameof(Bulgaria);
         public const string Canada = nameof(Canada);
         public const string Cancel = nameof(Cancel);
+        public const string CategoryBased = nameof(CategoryBased);
+        public const string CategoryBasedDescription = nameof(CategoryBasedDescription);
         public const string China = nameof(China);
         public const string Commits = nameof(Commits);
         public const string Contributors = nameof(Contributors);
@@ -101,6 +103,8 @@
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string UtilityHelicopter = nameof(UtilityHelicopter);
+        public const string VehicleBased = nameof(VehicleBased);
+        public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
         public const string VitalyAndreyev = nameof(VitalyAndreyev);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);

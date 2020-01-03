@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Client.Wpf
 {
@@ -88,6 +89,8 @@ namespace Client.Wpf
                 if (vectorImageKeys.TryGetValue(item.ToString(), out var resourceKey))
                     EReference.CountryIconKeys.Add(item, resourceKey);
             }
+
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
         }
 
         #endregion Constuctors

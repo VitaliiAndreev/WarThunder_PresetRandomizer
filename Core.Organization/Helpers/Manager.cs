@@ -472,13 +472,25 @@ namespace Core.Organization.Helpers
             return filteredVehicles;
         }
 
-        private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector)
+        /// <summary>
+        /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
+        /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
+        /// </summary>
+        /// <typeparam name="T"> The type of filter criteria items. </typeparam>
+        /// <param name="vehicles"> Vehicles to filter through. </param>
+        /// <param name="validItems"> Items accepted by the filter. </param>
+        /// <param name="itemSelector"> The selector function that extracts an evaluated value from given <paramref name="vehicles"/>. </param>
+        /// <param name="suppressLogging"> Whether to log empty results. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector, bool suppressLogging = false)
         {
             var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).IsIn(validItems));
 
             if (filteredVehicles.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
+                if (!suppressLogging)
+                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
+
                 return null;
             }
             return filteredVehicles;
@@ -497,12 +509,56 @@ namespace Core.Organization.Helpers
         private IEnumerable<IVehicle> FilterVehiclesByClassFilters(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validVehicleClasses, vehicle => vehicle.Class);
 
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validBranches"/>. </summary>
+        /// <param name="validBranches"> Vehicle branches enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByBranches(IEnumerable<EBranch> validBranches, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, validBranches, vehicle => vehicle.Branch.AsEnumerationItem);
+
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validNations"/>. </summary>
         /// <param name="validNations"> Vehicle classes enabled via GUI and actually available. </param>
         /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByNations(IEnumerable<ENation> validNations, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validNations, vehicle => vehicle.Nation.AsEnumerationItem);
+
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validEconomicRanksNations"/>. </summary>
+        /// <param name="validEconomicRanksNations"> Vehicle classes enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByEconomicRanks(EGameMode gameMode, IDictionary<ENation, IEnumerable<IVehicle>> vehiclesByNations, IDictionary<ENation, IEnumerable<int>> validEconomicRanks)
+        {
+            var vehiclesWithEconomocRankFilter = new List<IVehicle>();
+
+            foreach (var nationKeyValuePair in validEconomicRanks)
+            {
+                var nation = nationKeyValuePair.Key;
+                var economicRanks = nationKeyValuePair.Value;
+
+                vehiclesWithEconomocRankFilter.AddRange(FilterVehiclesByEconomicRanks(gameMode, economicRanks, vehiclesByNations[nation]));
+            }
+
+            if (vehiclesWithEconomocRankFilter.IsEmpty())
+            {
+                var parameterString = validEconomicRanks
+                    .Select(keyValuePair => $"{keyValuePair.Key}: {keyValuePair.Value.StringJoin(EVocabulary.ListSeparator)}")
+                    .StringJoin(EVocabulary.ListGroupSeparator)
+                ;
+
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(parameterString));
+                return null;
+            }
+
+            return vehiclesWithEconomocRankFilter;
+        }
+
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validEconomicRanksNations"/>. </summary>
+        /// <param name="validEconomicRanksNations"> Vehicle classes enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByEconomicRanks(EGameMode gameMode, IEnumerable<int> validEconomicRanksNations, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, validEconomicRanksNations, vehicle => vehicle.EconomicRank.AsDictionary()[gameMode].Value, true);
 
         /// <summary> Selects the main branch from selected via GUI (passed with <paramref name="specification"/>) and <paramref name="availableBranches"/>. </summary>
         /// <param name="specification"> The search specification. </param>
@@ -684,14 +740,46 @@ namespace Core.Organization.Helpers
             return presetComposition;
         }
 
+        /// <summary> Removes the <paramref name="mainVehicle"/> from <paramref name="randomVehicles"/>. </summary>
+        /// <param name="vehiclesByBranchesAndBattleRatings"> The collection of vehicles grouped first by battle ratings and then by branches.</param>
+        /// <param name="presetComposition"> The affected preset composition. </param>
+        /// <param name="gameMode"> The selected game mode. </param>
+        /// <param name="randomVehicles"> Random vehicles to remove <paramref name="mainVehicle"/> from. </param>
+        /// <param name="mainVehicle"> The vehicle to remove from <paramref name="randomVehicles"/>. </param>
+        private void RemoveMainVehicleBeforeSelectingRandomVehicles
+        (
+            VehiclesByBranchesAndBattleRating vehiclesByBranchesAndBattleRatings,
+            IDictionary<EBranch, int> presetComposition,
+            EGameMode gameMode,
+            List<IVehicle> randomVehicles,
+            IVehicle mainVehicle = null
+        )
+        {
+            if
+            (
+                mainVehicle is IVehicle
+                && presetComposition.ContainsKey(mainVehicle.Branch.AsEnumerationItem)
+                && vehiclesByBranchesAndBattleRatings.TryGetValue(mainVehicle.Branch.AsEnumerationItem, out var vehiclesByBattleRating)
+                && mainVehicle.BattleRating.AsDictionary()[gameMode] is decimal battleRating
+                && vehiclesByBattleRating.ContainsKey(battleRating)
+            )
+            {
+                randomVehicles.Add(mainVehicle);
+                presetComposition[mainVehicle.Branch.AsEnumerationItem]--;
+                vehiclesByBattleRating[battleRating].Remove(mainVehicle);
+            }
+        }
+
         /// <summary> Randomly selects vehicles from the provided collection based on given parameters. </summary>
         /// <param name="vehiclesByBranchesAndBattleRatings"> The vehicle collecion to select from, grouped by branches and battle ratings. </param>
         /// <param name="presetComposition"> The preset composition. </param>
         /// <param name="crewSlotAmount"> The amount of available crew slots. </param>
         /// <returns></returns>
-        private IList<IVehicle> GetRandomVehiclesForPreset(VehiclesByBranchesAndBattleRating vehiclesByBranchesAndBattleRatings, IDictionary<EBranch, int> presetComposition, int crewSlotAmount)
+        private IList<IVehicle> GetRandomVehiclesForPreset(VehiclesByBranchesAndBattleRating vehiclesByBranchesAndBattleRatings, IDictionary<EBranch, int> presetComposition, int crewSlotAmount, EGameMode gameMode, IVehicle mainVehicle = null)
         {
             var randomVehicles = new List<IVehicle>();
+
+            RemoveMainVehicleBeforeSelectingRandomVehicles(vehiclesByBranchesAndBattleRatings, presetComposition, gameMode, randomVehicles, mainVehicle);
 
             while (randomVehicles.Count() < crewSlotAmount && vehiclesByBranchesAndBattleRatings.Any())
                 foreach (var branch in vehiclesByBranchesAndBattleRatings.Keys.ToList())
@@ -722,7 +810,6 @@ namespace Core.Organization.Helpers
             #region Initial extraction of parameters from specification.
 
             var emptyPreset = new Dictionary<EPreset, Preset>();
-            var gameMode = specification.GameMode;
             var enabledVehicleClassesByBranch = specification.BranchSpecifications.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.VehicleClasses);
             var enabledNationCountryPairs = specification.NationSpecifications.Values.SelectMany(nationSpecification => nationSpecification.Countries.Select(country => new NationCountryPair(nationSpecification.Nation, country)));
 
@@ -753,6 +840,69 @@ namespace Core.Organization.Helpers
                 return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            return specification.Randomisation switch
+            {
+                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithClassFilter),
+                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithClassFilter),
+                _ => new Dictionary<EPreset, Preset>(),
+            };
+        }
+
+        /// <summary> Finalises generation of presets by grouping vehicles by battle ratings and branches for orderly selection and doing selection proper. </summary>
+        /// <param name="gameMode"> The selected game mode. </param>
+        /// <param name="vehicles"> Vehicles to choose from. </param>
+        /// <param name="nation"> The chosen nation. </param>
+        /// <param name="mainBranch"> The chosen branch, main in the <paramref name="presetComposition"/>. </param>
+        /// <param name="presetComposition"> The preset composition used for selection. </param>
+        /// <param name="battleRatingBracket"> The battle rating bracket to pick from. </param>
+        /// <param name="formattedBattleRating"> The chose battle rating, formatted for display. </param>
+        /// <param name="crewSlotAmount"> The amount of crew slots. </param>
+        /// <param name="mainVehicle"> The main vehicle in the primary preset. </param>
+        /// <returns></returns>
+        private IDictionary<EPreset, Preset> FinalisePresetGeneration
+        (
+            EGameMode gameMode,
+            IEnumerable<IVehicle> vehicles,
+            ENation nation,
+            EBranch mainBranch,
+            IDictionary<EBranch, int> presetComposition,
+            Interval<decimal> battleRatingBracket,
+            string formattedBattleRating,
+            int crewSlotAmount,
+            IVehicle mainVehicle = null)
+        {
+            var presets = new Dictionary<EPreset, Preset>();
+
+            var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
+            (
+                presetComposition
+                    .Keys
+                    .Select(branch => new { Branch = branch, Vehicles = vehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
+            );
+
+            void addPreset(EPreset presetType) =>
+                presets.Add
+                (
+                    presetType,
+                    new Preset(nation, mainBranch, formattedBattleRating, GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount, gameMode, presetType == EPreset.Primary ? mainVehicle : null))
+                );
+
+            addPreset(EPreset.Primary);
+            addPreset(EPreset.Fallback);
+
+            return presets;
+        }
+
+        /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification, following the <see cref="ERandomisation.CategoryBased"/> algorithm. </summary>
+        /// <param name="specification"> The specification to base vehicle selection on. </param>
+        /// <returns></returns>
+        private IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresetsByCategories(Specification specification, IEnumerable<IVehicle> vehiclesWithClassFilter)
+        {
+            var emptyPreset = new Dictionary<EPreset, Preset>();
+            var gameMode = specification.GameMode;
+
             #region Main branch selection.
 
             var availableBranches = vehiclesWithClassFilter.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
@@ -826,20 +976,106 @@ namespace Core.Organization.Helpers
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-            var vehiclesByBranchesAndBattleRatings = new VehiclesByBranchesAndBattleRating
+            return FinalisePresetGeneration(gameMode, vehiclesForPreset, nation, mainBranch, presetComposition, battleRatingBracket, formattedBattleRating, crewSlotAmount);
+        }
+
+        /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification, following the <see cref="ERandomisation.VehicleBased"/> algorithm. </summary>
+        /// <param name="specification"> The specification to base vehicle selection on. </param>
+        /// <returns></returns>
+        private IDictionary<EPreset, Preset> GeneratePrimaryAndFallbackPresetsByVehicles(Specification specification, IEnumerable<IVehicle> vehiclesWithClassFilter)
+        {
+            var emptyPreset = new Dictionary<EPreset, Preset>();
+            var gameMode = specification.GameMode;
+
+            #region Filtering by branches.
+
+            var availableBranches = vehiclesWithClassFilter.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var validBranches = availableBranches.Intersect(specification.BranchSpecifications.Keys).ToList();
+            var vehiclesWithBranchFilter = FilterVehiclesByBranches(validBranches, vehiclesWithClassFilter);
+
+            if (vehiclesWithBranchFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by nations.
+
+            var availableNations = vehiclesWithBranchFilter.Select(vehicle => vehicle.Nation.AsEnumerationItem).Distinct().ToList();
+            var validNations = availableNations.Intersect(specification.NationSpecifications.Keys).ToList();
+            var vehiclesWithNationFilter = FilterVehiclesByNations(validNations, vehiclesWithBranchFilter);
+
+            if (vehiclesWithNationFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by economic ranks.
+
+            var vehiclesByNations = vehiclesWithNationFilter.GroupBy(item => item.Nation.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
+            var availableEconomicRanks = vehiclesByNations.ToDictionary
             (
-                presetComposition
-                    .Keys
-                    .Select(branch => new { Branch = branch, Vehicles = vehiclesForPreset.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
-                    .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
+                nationKeyValuePair => nationKeyValuePair.Key,
+                nationKeyValuePair => nationKeyValuePair.Value.Select(vehicle =>
+                {
+                    if (vehicle.EconomicRank.AsDictionary()[gameMode] is int economicRank)
+                        return new { Nation = nationKeyValuePair.Key, EconomicRank = economicRank };
+
+                    return null;
+                })
+                .Distinct()
+                .Where(item => !(item is null))
             );
+            var validEconomicRanks = new Dictionary<ENation, IEnumerable<int>>();
 
-            void addPreset(EPreset presetType) => presets.Add(presetType, new Preset(nation, mainBranch, formattedBattleRating, GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount)));
+            foreach (var nation in availableEconomicRanks.Keys)
+            {
+                var availableEconomicRanksForNation = availableEconomicRanks[nation].Select(item => item.EconomicRank);
+                var validEconomicRanksForNation = availableEconomicRanksForNation.Where(economicRanks => specification.EconomicRankIntervals[nation].Contains(economicRanks));
 
-            addPreset(EPreset.Primary);
-            addPreset(EPreset.Fallback);
+                validEconomicRanks.Add(nation, validEconomicRanksForNation);
+            }
 
-            return presets;
+            var vehiclesWithEconomocRankFilter = FilterVehiclesByEconomicRanks(gameMode, vehiclesByNations, validEconomicRanks);
+
+            if (vehiclesWithEconomocRankFilter is null)
+            {
+                return emptyPreset;
+            }
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Vehicle selection.
+
+            var mainVehicle = _randomizer.GetRandom(vehiclesWithEconomocRankFilter);
+            var selectedNation = mainVehicle.Nation.AsEnumerationItem;
+            var branch = mainVehicle.Branch.AsEnumerationItem;
+            var availableSupplementaryVehicles = vehiclesWithEconomocRankFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == selectedNation).Except(mainVehicle);
+            var branchesAvailableForPresetComposition = availableSupplementaryVehicles.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var crewSlotAmount = specification.NationSpecifications[selectedNation].CrewSlots;
+            var presetComposition = GetPresetComposition(gameMode, branchesAvailableForPresetComposition, crewSlotAmount, branch);
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by nation.
+
+            var vehiclesOfSelectedNation = FilterVehiclesByNations(new List<ENation> { selectedNation }, vehiclesWithEconomocRankFilter);
+
+            if (vehiclesWithNationFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Battle rating selection.
+
+            static string getFormattedBattleRating(int economicRank) => Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
+
+            if (!(mainVehicle.EconomicRank.AsDictionary()[gameMode] is int economicRank))
+            {
+                LogWarn(EOrganizationLogMessage.NoEconomiRankSetForVehicleInGameMode.FormatFluently(mainVehicle.GaijinId));
+                return null;
+            }
+            var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);
+            var formattedBattleRating = getFormattedBattleRating(economicRank);
+            var battleRatingBracket = new Interval<decimal>(true, battleRating - _maximumBattleRatingDifference, battleRating, true);
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            return FinalisePresetGeneration(gameMode, vehiclesOfSelectedNation, selectedNation, branch, presetComposition, battleRatingBracket, formattedBattleRating, crewSlotAmount, mainVehicle);
         }
     }
 }

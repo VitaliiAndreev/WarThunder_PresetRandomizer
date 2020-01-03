@@ -126,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RandomisationSelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UpDownBattleRatingGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +235,7 @@
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
+    <Compile Include="Commands\MainWindow\SelectRandomisationCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
@@ -257,6 +262,9 @@
     </Compile>
     <Compile Include="Controls\CountryToggleControl.xaml.cs">
       <DependentUpon>CountryToggleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RandomisationSelectionControl.xaml.cs">
+      <DependentUpon>RandomisationSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingGroupControl.xaml</DependentUpon>

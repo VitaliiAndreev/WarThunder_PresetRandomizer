@@ -18,6 +18,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> The parent window. </summary>
         new IMainWindow Owner { get; }
 
+        /// <summary> The currently selected randomisation method. </summary>
+        ERandomisation Randomisation { get; set; }
+
         /// <summary> The currently selected game mode. </summary>
         EGameMode CurrentGameMode { get; set; }
 

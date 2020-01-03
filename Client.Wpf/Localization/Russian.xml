@@ -23,6 +23,8 @@
   <Line key="Bulgaria" value="Болгария"/>
   <Line key="Canada" value="Канада"/>
   <Line key="Cancel" value="Отмена"/>
+  <Line key="CategoryBased" value="по категориям"/>
+  <Line key="CategoryBasedDescription" value="Случайный выбор с акцентом на выбранные категории. Любая комбинация наций, веток и боевых рейтингов имеет равный шанс быть выбранной, если хоть одна единица техники удовлетворяет условиям.&#xD;&#xA;Данный метод рекомендуется в случаях, когда количество единиц техники в парах нация-ветка сильно несбалансированное."/>
   <Line key="China" value="Китай"/>
   <Line key="Commits" value="коммитов"/>
   <Line key="Contributors" value="Участники"/>
@@ -98,6 +100,8 @@
   <Line key="Usa" value="США"/>
   <Line key="Ussr" value="СССР"/>
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
+  <Line key="VehicleBased" value="по технике"/>
+  <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
   <Line key="VitalyAndreyev" value="Виталий Андреев"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>

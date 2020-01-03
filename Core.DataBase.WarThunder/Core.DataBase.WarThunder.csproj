@@ -129,6 +129,7 @@
     <Compile Include="Objects\Localization\Vehicle\ResearchTreeName.cs" />
     <Compile Include="Objects\Localization\Vehicle\VehicleLocalization.cs" />
     <Compile Include="Objects\Nation.cs" />
+    <Compile Include="Objects\NationBranchPair.cs" />
     <Compile Include="Objects\NationCountryPair.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\PersistentWarThunderObjectWithId.cs" />

@@ -23,6 +23,8 @@
   <Line key="Bulgaria" value="Bulgaria"/>
   <Line key="Canada" value="Canada"/>
   <Line key="Cancel" value="Cancel"/>
+  <Line key="CategoryBased" value="by categories"/>
+  <Line key="CategoryBasedDescription" value="Randomisation based primarily on selected group filters. Any combinations of nations, branches, and battle ratings have an equal probability of being selected, if at least one vehicle fulfills the criteria.&#xD;&#xA;This method is recommended when amounts of available vehicles in nation-branch pairs vary significantly."/>
   <Line key="China" value="China"/>
   <Line key="Commits" value="commits"/>
   <Line key="Contributors" value="Contributors"/>
@@ -98,6 +100,8 @@
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
+  <Line key="VehicleBased" value="by vehicles"/>
+  <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
   <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>
