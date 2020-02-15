@@ -10,7 +10,7 @@ In order to work **WTPR** requires an up-to-date version of the **War Thunder** 
 
 At the start **WTPR** scans the **War Thunder** client for its current version. With every new patch **WT Tools** are used to unpack data stored with the client and convert it into JSON and CSV. **WTPR** deserializes that data into entities and stores them in an SQLite database (a new database for every patch). From that point **WTPR** uses only the database unless it detects a new **War Thunder** version.
 
-### Randomization criteria
+### Randomisation criteria
 
 The following criteria order is used (combinations producing empty presets are meant to be minimized, except for the case of setting too narrow battle rating preferences):
 - Enabled vehicles.
@@ -21,6 +21,11 @@ The following criteria order is used (combinations producing empty presets are m
 - Enabled battle ratings.
 
 Preset compositions are based on whether the main selected branch involves combined battles and which branches are enabled (except helicopters in Realistic or Simulator Battles where they require spawn points primarily earned by ground vehicles).
+
+### Randomisation algorithms
+The following algorithms can be chosen from:
+- Top-down (by category). Randomly selects toggled filter categories (branch, nation, battle rating) before selecting available vehicles.
+- Bottom-up (by vehicle). Randomly selects the main vehicle from those enabled by filters, building presets around it.
 
 ### GUI tips
 
