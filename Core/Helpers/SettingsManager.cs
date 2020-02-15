@@ -104,13 +104,11 @@ namespace Core.Helpers
             {
                 _fileManager.BackUpFile(_settingsFile);
                 GenerateSettingsFile();
-                
-                _settings.ReplaceBy(GetSettingsFromFile());
 
                 foreach (var recognizedSettingName in recognizedSettingNames)
                     Save(recognizedSettingName, _settings[recognizedSettingName]);
 
-                if (missingSettingNames.HasSingle() && unrecognizedSettingNames.HasSingle())
+                if (missingSettingNames.HasSingle() && unrecognizedSettingNames.HasSingle()) // It is assumed that a setting was renamed.
                 {
                     var missingSettingName = missingSettingNames.First();
                     var unrecognizedSettingName = unrecognizedSettingNames.First();
