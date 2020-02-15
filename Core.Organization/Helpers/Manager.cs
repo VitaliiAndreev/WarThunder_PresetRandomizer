@@ -144,10 +144,10 @@ namespace Core.Organization.Helpers
             _cache = new List<IPersistentObject>();
             _playableVehicles = new List<IVehicle>();
 
-            _fileManager.CleanUpTempDirectory();
-
             _settingsManager = settingsManager;
             LoadSettings();
+
+            _fileManager.CleanUpTempDirectory();
 
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
