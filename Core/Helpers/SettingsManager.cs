@@ -124,6 +124,8 @@ namespace Core.Helpers
                 else
                 {
                     SettingsFileStatus = ESettingsFileStatus.FoundAndNeedsManualUpdate;
+
+                    throw new SettingsFileRegeneratedException();
                 }
             }
             else

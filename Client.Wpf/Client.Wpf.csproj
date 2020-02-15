@@ -328,6 +328,7 @@
     <Compile Include="Enumerations\EBitmapImageKey.cs" />
     <Compile Include="Enumerations\ESettingsWindowClosureState.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
+    <Compile Include="Enumerations\EUnlocalisedMessage.cs" />
     <Compile Include="Enumerations\EVectorImageKey.cs" />
     <Compile Include="Enumerations\EVehicleCard.cs" />
     <Compile Include="Enumerations\EVehicleResearchType.cs" />

@@ -20,6 +20,7 @@
 
         private const string _ag = _a + _g;
         private const string _al = _a + _l;
+        private const string _ap = _a + _p;
         private const string _aw = _a + _w;
 
         protected const string _A = "A";
@@ -30,6 +31,8 @@
         protected const string _About = _A + _b + _out;
         protected const string _act = _a + _c + _t;
         protected const string _ad = _a + _d;
+        protected const string _adapt = _ad + _apt;
+        protected const string _adapted = _adapt + _ed;
         protected const string _aft = _a + _f + _t;
         protected const string _after = _aft + _er;
         protected const string _All = _A + _ll;
@@ -45,6 +48,7 @@
         protected const string _any = _an + _y;
         protected const string _Application = _A + _pplication;
         protected const string _application = _a + _pplication;
+        protected const string _apt = _ap + _t;
         protected const string _are = _a + _re;
         protected const string _argument = _a + _r + _g + _u + _ment;
         protected const string _arguments = _argument + _s;
@@ -192,6 +196,7 @@
 
         private const string _E = "E";
         private const string _e = "e";
+        private const string _ea = _e + _a;
         private const string _ect = _e + _c + _t;
         private const string _ed = _e + _d;
         private const string _em = _e + _m;
@@ -260,6 +265,7 @@
         protected const string _Game = "Game";
         protected const string _game = _g + "ame";
         protected const string _gene = _g + "ene";
+        protected const string _generate = _gene + _rat + _e;
         protected const string _generation = _gene + _rat + _ion;
         protected const string _Generic = _gene + _r + _i + _c;
         protected const string _given = _g + "iven";
@@ -362,24 +368,30 @@
         #endregion L
         #region M
 
+        private const string _M = "M";
         private const string _m = "m";
         private const string _mem = _me + _m;
 
-        protected const string _Main = "M" + _a + _in;
-        protected const string _Manager = "M" + _an + _a + "ger";
+        protected const string _Main = _M + _a + _in;
+        protected const string _Man = _M + _an;
+        protected const string _Manager = _Man + _a + "ger";
+        protected const string _Manual = _Man + _u + _al;
         protected const string _mapping = "mapp" + _ing;
         protected const string _markers = "marker" + _s;
         protected const string _mat = "mat";
         protected const string _match = _mat + _ch;
         protected const string _matching = _match + _ing;
+        protected const string _may = _m + _a + _y;
         protected const string _me = _m + _e;
         protected const string _memo = _mem + _o;
         protected const string _memory = _memo + _ry;
         protected const string _men = "men";
         protected const string _ment = _men + _t;
-        protected const string _Method = "Metho" + _d;
-        protected const string _method = "metho" + _d;
+        protected const string _Method = _M + _e + _tho + _d;
+        protected const string _method = _m + _e + _tho + _d;
         protected const string _mic = _m + _i + _c;
+        protected const string _mig = _m + _i + _g;
+        protected const string _migration = _mig + _ration;
         protected const string _mode = "mo" + _d + _e;
         protected const string _mong = "mo" + _n + _g;
         protected const string _Must = "Mu" + _s + _t;
@@ -458,6 +470,8 @@
         protected const string _per = "per";
         protected const string _persisted = _per + "sist" + _ed;
         protected const string _Persisting = "Persist" + _ing;
+        protected const string _Plea = _P + _l + _ea;
+        protected const string _Please = _Plea + _se;
         protected const string _port = "port";
         protected const string _prepared = "prepare" + _d;
         protected const string _Preparing = _Pre + _par + _ing;
@@ -495,6 +509,7 @@
         protected const string _Rating = _Rat + _ing;
         protected const string _rating = _rat + _ing;
         protected const string _ratings = _rating + _s;
+        protected const string _ration = _rat + _ion;
         protected const string _raw = _r + _aw;
         protected const string _Read = _Re + _ad;
         protected const string _read = _re + _ad;
@@ -504,10 +519,12 @@
         protected const string _Reading = _Read + _ing;
         protected const string _reading = _read + _ing;
         protected const string _recognized = _re + "cognize" + _d;
+        protected const string _regenerated = _re + _generate + _d;
         protected const string _repository = _re + "pository";
         protected const string _required = _re + "quire" + _d;
         protected const string _Research = _Re + _search;
         protected const string _research = _re + _search;
+        protected const string _restart = _re + _start;
         protected const string _returned = _re + "turn" + _ed;
         protected const string _rite = _r + _i + _t + _e;
         protected const string _running = _r + "unn" + _ing;
@@ -516,6 +533,7 @@
         #region S
 
         private const string _S = "S";
+        private const string _se = _s + _e;
 
         protected const string _s = "s";
         protected const string _ss = _s + _s;
@@ -559,6 +577,7 @@
         protected const string _Stack = _S + _tack;
         protected const string _stance = _s + "tance";
         protected const string _standardized = _s + "tandardize" + _d;
+        protected const string _start = _s + _tart;
         protected const string _Started = _S + _tart + _ed;
         protected const string _starts = _s + _tart + _s;
         protected const string _Stream = _S + _tre + _am;
@@ -579,6 +598,7 @@
         private const string _T = "T";
         private const string _t = "t";
         private const string _tegrat = _t + _e + _gr + _a + _t;
+        private const string _th = _t + _h;
         private const string _tre = _t + _re;
 
         protected const string _tab = _t + _a + _b;
@@ -597,6 +617,7 @@
         protected const string _there = _the + _re;
         protected const string _thin = _t + _h + _in;
         protected const string _thing = _thin + _g;
+        protected const string _tho = _th + _o;
         protected const string _to = _t + _o;
         protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";

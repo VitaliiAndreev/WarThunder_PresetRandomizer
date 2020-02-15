@@ -1,10 +1,12 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Shared.Enumerations;
+using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Exceptions;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
@@ -59,9 +61,26 @@ namespace Client.Wpf
                 Log = ApplicationHelpers.CreateActiveLogger(EWpfClientLogCategory.WpfClient);
                 Log.Info(ECoreLogMessage.Started);
 
-                ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson);
-                ApplicationHelpers.Manager.RemoveOldLogFiles();
+                try
+                {
+                    ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson);
+                }
+                catch (SettingsFileRegeneratedException)
+                {
+                    Log.Warn(EWpfClientLogMessage.SettingsFileRenegenetated_Closing);
 
+                    MessageBox.Show
+                    (
+                        Current.Windows.OfType<BaseWindow>().LastOrDefault() ?? new Window(),
+                        EUnlocalisedMessage.SettingFileRegenerated,
+                        EClientApplicationName.WarThunderPresetRandomizer,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                    );
+                    Environment.Exit(0);
+                }
+
+                ApplicationHelpers.Manager.RemoveOldLogFiles();
                 ApplicationHelpers.WindowFactory.CreateLoadingWindow().ShowDialog();
                 ApplicationHelpers.WindowFactory.CreateMainWindow().ShowDialog();
             }
