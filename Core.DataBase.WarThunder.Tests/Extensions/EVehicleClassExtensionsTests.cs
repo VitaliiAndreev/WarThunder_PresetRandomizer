@@ -15,7 +15,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         public void GetBranch()
         {
             EVehicleClass.None.GetBranch().Should().Be(EBranch.None);
-            EVehicleClass.All.GetBranch().Should().Be(EBranch.None);
+            EVehicleClass.All.GetBranch().Should().Be(EBranch.All);
 
             EVehicleClass.AllGroundVehicles.GetBranch().Should().Be(EBranch.Army);
             EVehicleClass.LightTank.GetBranch().Should().Be(EBranch.Army);

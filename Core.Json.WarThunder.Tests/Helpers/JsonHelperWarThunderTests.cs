@@ -286,7 +286,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var researchTrees = _jsonHelper.DeserializeResearchTrees(jsonText);
 
             // assert
-            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - EInteger.Number.One);
+            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - EInteger.Number.Two);
             foreach (var tree in researchTrees)
             {
                 tree.Branches.Any().Should().BeTrue();

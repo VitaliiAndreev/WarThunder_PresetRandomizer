@@ -1,5 +1,6 @@
 ﻿using Core.Enumerations;
 using Core.Enumerations.Logger;
+using Core.Exceptions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using FluentAssertions;
@@ -78,11 +79,10 @@ namespace Core.Tests.Helpers
             }
 
             var settingName = "Bananza";
-            var settingsManager = new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { settingName }, Presets.Logger);
-            Action getSetting = () => settingsManager.GetSetting(settingName);
+            Action createSettingsManager = () => new SettingsManager(_fileManager, _settingsFile.Name, new List<string> { settingName }, Presets.Logger);
 
             // act, assert
-            getSetting.Should().NotThrow();
+            createSettingsManager.Should().Throw<SettingsFileRegeneratedException>();
         }
 
         #endregion Tests: SettingsManager()
