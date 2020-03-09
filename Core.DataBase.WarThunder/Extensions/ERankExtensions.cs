@@ -20,7 +20,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <returns></returns>
         public static ERank GetPreviousRank(this ERank currentRank)
         {
-            var invalidRanks = typeof(ERank).GetEnumerationItems<ERank>().Where(item => !item.IsValid());
+            var invalidRanks = typeof(ERank).GetEnumerationItems<ERank>().Where(item => item == ERank.I || !item.IsValid());
 
             if (currentRank.IsIn(invalidRanks))
                 return ERank.None;
