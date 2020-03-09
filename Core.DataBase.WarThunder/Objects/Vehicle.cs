@@ -311,6 +311,9 @@ namespace Core.DataBase.WarThunder.Objects
 
             else if (deserializedTags.IsFrigate)
                 Class = EVehicleClass.Frigate;
+
+            else
+                Class = EVehicleClass.None;
         }
 
         /// <summary> Initializes <see cref="Tags"/> based on <paramref name="deserializedTags"/>. </summary>
