@@ -31,5 +31,6 @@ namespace Core.DataBase.WarThunder.Enumerations
         Destroyer = 43,
         LightCruiser = 44,
         HeavyCruiser = 45,
+        Frigate = 46,
     }
 }

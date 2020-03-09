@@ -38,6 +38,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
             EVehicleClass.Destroyer.GetBranch().Should().Be(EBranch.Fleet);
             EVehicleClass.LightCruiser.GetBranch().Should().Be(EBranch.Fleet);
             EVehicleClass.HeavyCruiser.GetBranch().Should().Be(EBranch.Fleet);
+            EVehicleClass.Frigate.GetBranch().Should().Be(EBranch.Fleet);
         }
 
         #endregion Tests: GetBranch()

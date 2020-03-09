@@ -170,6 +170,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleClass.Destroyer, '␌' },
             { EVehicleClass.LightCruiser, '␎' },
             { EVehicleClass.HeavyCruiser, '␏' },
+            { EVehicleClass.Frigate, '␌' },
         };
 
         #endregion Properties

@@ -323,6 +323,9 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_heavy_cruiser")]
         public bool IsHeavyCruiser { get; set; }
 
+        [JsonProperty("type_frigate")]
+        public bool IsFrigate { get; set; }
+
         [JsonProperty("type_light_cruiser")]
         public bool IsLightCruiser { get; set; }
 
