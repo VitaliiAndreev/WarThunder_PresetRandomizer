@@ -89,11 +89,14 @@ namespace Client.Wpf.Controls
             base.Localize();
 
             foreach (var tab in _tabControl.Items.OfType<TabItem>())
-               if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
+            {
+                if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
                     textBlock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
-
+            }
             foreach (var nationControl in _nationControls.Values)
+            {
                 nationControl.Localize();
+            }
         }
 
         /// <summary> Creates a header for a tab control of the given <paramref name="nation"/>. </summary>

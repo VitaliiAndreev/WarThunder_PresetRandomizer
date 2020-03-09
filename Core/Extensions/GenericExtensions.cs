@@ -55,7 +55,9 @@ namespace Core.Extensions
                     throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(enumerationValueType.ToStringLikeCode()));
             }
             else
+            {
                 throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.ToStringLikeCode()));
+            }
         }
 
         #endregion Fluency
