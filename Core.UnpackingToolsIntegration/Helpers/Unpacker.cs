@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using UnpackingToolsIntegration.Enumerations.Logger;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -87,7 +88,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="exception"> The exception that has been thrown. </param>
         private void LogErrorAndRethrow(Exception exception)
         {
-            LogError(ECoreLogMessage.ErrorRunningUnpackingTool, exception);
+            LogError(EUnpackingToolsIntegrationLogMessage.ErrorRunningUnpackingTool, exception);
             throw exception;
         }
 
@@ -100,15 +101,15 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             if (_toolFileNames.TryGetValue(fileExtension.ToLower().Except(new char[] { ECharacter.Period }).StringJoin(), out var toolFileName))
             {
-                LogDebug(ECoreLogMessage.UnpackingToolSelected.FormatFluently(toolFileName));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.FormatFluently(toolFileName));
                 return toolFileName;
             }
             else
             {
                 LogErrorAndThrow<FileExtensionNotSupportedException>
                 (
-                    ECoreLogMessage.FileExtensionNotSupportedByUnpackingTools.FormatFluently(fileExtension),
-                    ECoreLogMessage.ErrorMatchingUnpakingToolToFileExtension
+                    EUnpackingToolsIntegrationLogMessage.FileExtensionNotSupportedByUnpackingTools.FormatFluently(fileExtension),
+                    EUnpackingToolsIntegrationLogMessage.ErrorMatchingUnpakingToolToFileExtension
                 );
                 return null;
             }
@@ -135,7 +136,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                     }
                 default:
                     {
-                        throw new NotImplementedException(ECoreLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
+                        throw new NotImplementedException(EUnpackingToolsIntegrationLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
                     }
             }
             return outputPath;
@@ -151,7 +152,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             // Preparing temp files.
 
-            LogDebug(ECoreLogMessage.PreparingToUnpack.FormatFluently(sourceFile.FullName));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.PreparingToUnpack.FormatFluently(sourceFile.FullName));
 
             _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation, overwrite, true);
 
@@ -160,14 +161,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             // Unpacking proper.
 
-            LogDebug(ECoreLogMessage.Unpacking.FormatFluently(tempFile.Name));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.FormatFluently(tempFile.Name));
 
             try
             {
                 RunShellCommand(toolFile.FullName, tempFile.FullName);
                 var outputPath = GetOutputPath(tempFile);
 
-                LogDebug(ECoreLogMessage.Unpacked.FormatFluently(tempFile.Name));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.FormatFluently(tempFile.Name));
                 return outputPath;
             }
             catch (Exception exception)
@@ -182,12 +183,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="toolName"> The name of the unpacking tool to use. </param>
         public void Unpack(DirectoryInfo sourceDirectory, string toolName)
         {
-            LogDebug(ECoreLogMessage.Unpacking.FormatFluently(sourceDirectory.FullName));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.FormatFluently(sourceDirectory.FullName));
 
             try
             {
                 RunShellCommand(GetToolFileInfo(toolName).FullName, sourceDirectory.FullName);
-                LogDebug(ECoreLogMessage.Unpacked.FormatFluently(sourceDirectory.Name));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.FormatFluently(sourceDirectory.Name));
             }
             catch (Exception exception)
             {

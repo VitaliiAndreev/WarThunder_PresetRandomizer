@@ -50,6 +50,7 @@
     <Compile Include="Enumerations\EClientVersion.cs" />
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
+    <Compile Include="Enumerations\Logger\EUnpackingToolsIntegrationLogMessage.cs" />
     <Compile Include="Exceptions\FileExtensionNotSupportedException.cs" />
     <Compile Include="Exceptions\OutputDirectoryNotFoundException.cs" />
     <Compile Include="Exceptions\OutputFileNotFoundException.cs" />

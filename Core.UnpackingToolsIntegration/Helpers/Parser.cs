@@ -8,6 +8,7 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnpackingToolsIntegration.Enumerations.Logger;
 
 namespace Core.UnpackingToolsIntegration.Helpers
 {
@@ -31,7 +32,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         public Version GetClientVersion(string rawFileContents)
         {
-            LogDebug(ECoreLogMessage.ReadingClientVersion);
+            LogDebug(EUnpackingToolsIntegrationLogMessage.ReadingClientVersion);
 
             var versionString = default(string);
             var version = default(Version);
@@ -42,7 +43,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 var match = regularExpression.Match(rawFileContents);
 
                 if (match is null)
-                    throw new YupFileParsingException(ECoreLogMessage.VersionNotFoundInSourceString);
+                    throw new YupFileParsingException(EUnpackingToolsIntegrationLogMessage.VersionNotFoundInSourceString);
 
                 var matchStrings = match.Value.Split(ECharacter.Colon);
 
@@ -66,7 +67,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
             catch (Exception exception)
             {
-                LogError(ECoreLogMessage.ErrorReadingRawInstallData, exception);
+                LogError(EUnpackingToolsIntegrationLogMessage.ErrorReadingRawInstallData, exception);
                 throw;
             }
 
@@ -76,11 +77,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
             }
             catch (Exception exception)
             {
-                LogError(ECoreLogMessage.ErrorParsingVersionString, exception);
+                LogError(EUnpackingToolsIntegrationLogMessage.ErrorParsingVersionString, exception);
                 throw;
             }
 
-            LogDebug(ECoreLogMessage.ClientVersionIs.FormatFluently(version.ToString(4)));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.ClientVersionIs.FormatFluently(version.ToString(4)));
             return version;
         }
     }
