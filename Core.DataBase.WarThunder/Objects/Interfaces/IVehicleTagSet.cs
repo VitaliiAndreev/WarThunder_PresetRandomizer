@@ -29,6 +29,8 @@
 
         bool IsFrench { get; }
 
+        bool IsFrigate { get; }
+
         bool IsBritish { get; }
 
         bool IsGerman { get; }

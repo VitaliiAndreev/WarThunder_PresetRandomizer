@@ -42,6 +42,8 @@ namespace Core.DataBase.WarThunder.Objects
 
         [Property()] public virtual bool IsFrench { get; protected set; }
 
+        [Property()] public virtual bool IsFrigate { get; protected set; }
+
         [Property()] public virtual bool IsBritish { get; protected set; }
 
         [Property()] public virtual bool IsGerman { get; protected set; }
