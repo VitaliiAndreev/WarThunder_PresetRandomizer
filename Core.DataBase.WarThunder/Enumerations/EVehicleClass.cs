@@ -28,9 +28,9 @@ namespace Core.DataBase.WarThunder.Enumerations
         Boat = 40,
         HeavyBoat = 41,
         Barge = 42,
+        Frigate = 46,
         Destroyer = 43,
         LightCruiser = 44,
         HeavyCruiser = 45,
-        Frigate = 46,
     }
 }
