@@ -133,8 +133,6 @@
 
         bool IsSwedish { get; }
 
-        bool IsFlyingBoat { get; }
-
         bool UsedInChina { get; }
 
         bool UsedAtPortMoresby { get; }

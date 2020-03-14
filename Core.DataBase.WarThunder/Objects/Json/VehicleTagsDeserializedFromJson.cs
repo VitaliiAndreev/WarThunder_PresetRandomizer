@@ -200,9 +200,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("country_sweden")]
         public bool IsSwedish { get; set; }
 
-        [JsonProperty("type_flying_boat")]
-        public bool IsFlyingBoat { get; set; }
-
         [JsonProperty("hydroplane")]
         public bool IsHydroplane_ { get; set; }
 

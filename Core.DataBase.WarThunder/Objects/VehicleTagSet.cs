@@ -146,8 +146,6 @@ namespace Core.DataBase.WarThunder.Objects
 
         [Property()] public virtual bool IsSwedish { get; protected set; }
 
-        [Property()] public virtual bool IsFlyingBoat { get; protected set; }
-
         [Property()] public virtual bool UsedInChina { get; protected set; }
 
         [Property()] public virtual bool UsedAtPortMoresby { get; protected set; }
