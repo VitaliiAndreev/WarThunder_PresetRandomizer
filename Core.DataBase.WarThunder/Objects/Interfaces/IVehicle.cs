@@ -13,10 +13,10 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region General
 
         /// <summary> The vehicle's country of origin (not the nation in whose research tree the vehicles is in). </summary>
-        public ECountry Country { get; }
+        ECountry Country { get; }
 
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
-        public EVehicleClass Class { get; }
+        EVehicleClass Class { get; }
 
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         bool IsPremium { get; }

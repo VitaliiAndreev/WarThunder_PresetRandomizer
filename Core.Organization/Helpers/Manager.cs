@@ -782,6 +782,7 @@ namespace Core.Organization.Helpers
             RemoveMainVehicleBeforeSelectingRandomVehicles(vehiclesByBranchesAndBattleRatings, presetComposition, gameMode, randomVehicles, mainVehicle);
 
             while (randomVehicles.Count() < crewSlotAmount && vehiclesByBranchesAndBattleRatings.Any())
+            {
                 foreach (var branch in vehiclesByBranchesAndBattleRatings.Keys.ToList())
                 {
                     var vehiclesToTake = Math.Min(crewSlotAmount - randomVehicles.Count, presetComposition[branch]);
@@ -792,6 +793,7 @@ namespace Core.Organization.Helpers
                     if (vehiclesByBranchesAndBattleRatings[branch].IsEmpty())
                         vehiclesByBranchesAndBattleRatings.Remove(branch);
                 }
+            }
 
             return presetComposition
                 .Keys
