@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,5 +116,22 @@ namespace Core.Extensions
         #endregion StringJoin<T>()
 
         #endregion Methods: Fluency
+        #region Methods: Testing
+
+        public static void ExecuteIfTestCountMatchesEnumerationSize<T>(this IEnumerable<Action> tests, string cancellationMessage) where T : struct
+        {
+            var type = typeof(T);
+
+            if (!type.IsEnum)
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.Name));
+
+            if (type.GetEnumerationItems<T>().Count() != tests.Count())
+                throw new NotImplementedException(cancellationMessage);
+
+            foreach (var executeTest in tests)
+                executeTest();
+        }
+
+        #endregion Methods: Testing
     }
 }
