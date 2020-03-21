@@ -78,8 +78,10 @@ namespace Client.Wpf.Controls
             if (sender is ToggleButton toggleButton)
             {
                 foreach (var vehicleCellControl in _cellVehicleControls.Values)
+                {
                     if (vehicleCellControl.IsToggled != toggleButton.IsChecked)
                         vehicleCellControl.HandleClick();
+                }
             }
 
             _toggleAllVehiclesButtonIsSuspended = false;

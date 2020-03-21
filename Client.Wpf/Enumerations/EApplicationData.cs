@@ -5,9 +5,9 @@ namespace Client.Wpf.Enumerations
     /// <summary> Pre-determined reference information. </summary>
     public class EApplicationData
     {
-        public static Version Version = new Version(0, 2, 6, 0);
+        public static Version Version = new Version(0, 2, 6, 1);
         public const string DevelopmentStageLocalizationKey = ELocalizationKey.Alpha;
 
-        public const string ContributionsByVitalyAndreyev = "900+";
+        public const string ContributionsByVitalyAndreyev = "1000+";
     }
 }
