@@ -125,6 +125,7 @@ namespace Core.Organization.Helpers
                 "germ_panzerkampflaufer_565_r_2",
                 "po-2_nw",
                 "_race",
+                "_space_suit",
                 "_tutorial",
                 "uk_centaur_aa_mk_",
                 "us_m35",
