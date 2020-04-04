@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Client.Wpf.Extensions;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -24,7 +25,7 @@ namespace Client.Wpf.Controls.Base
             }
 
             var buttons = Buttons.Values;
-            var allButtonsAreToggledOff = buttons.All(button => !button.IsChecked.HasValue || !button.IsChecked.Value);
+            var allButtonsAreToggledOff = buttons.All(button => !button.IsChecked());
 
             if (allButtonsAreToggledOff)
             {

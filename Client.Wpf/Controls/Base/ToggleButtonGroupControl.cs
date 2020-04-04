@@ -219,12 +219,12 @@ namespace Client.Wpf.Controls.Base
         /// <summary> Checks whether all <see cref="Buttons"/> are toggled on, except the <see cref="_toggleAllButton"/>. </summary>
         /// <returns></returns>
         public bool AllButtonsAreToggledOn() =>
-            AllButtonsMeetCondition(toggleButton => toggleButton.IsChecked.HasValue && toggleButton.IsChecked.Value);
+            AllButtonsMeetCondition(toggleButton => toggleButton.IsChecked());
 
         /// <summary> Checks whether all <see cref="Buttons"/> are toggled off, except the <see cref="_toggleAllButton"/>. </summary>
         /// <returns></returns>
         public bool AllButtonsAreToggledOff() =>
-            AllButtonsMeetCondition(toggleButton => !toggleButton.IsChecked.HasValue || !toggleButton.IsChecked.Value);
+            AllButtonsMeetCondition(toggleButton => !toggleButton.IsChecked());
 
         #endregion Methods: AllButtonsMeetCondition()
         #region Methods: Toggling()

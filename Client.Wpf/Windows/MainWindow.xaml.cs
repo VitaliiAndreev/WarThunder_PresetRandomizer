@@ -155,9 +155,9 @@ namespace Client.Wpf.Windows
 
                 var branch = toggleButton.GetTag<EBranch>();
 
-                _vehicleClassControl.Enable(branch, toggleButton.IsChecked.Value);
+                _vehicleClassControl.Enable(branch, toggleButton.IsChecked());
 
-                if (toggleButton.IsChecked.Value && !Presenter.BranchHasVehicleClassesEnabled(branch))
+                if (toggleButton.IsChecked() && !Presenter.BranchHasVehicleClassesEnabled(branch))
                 {
                     var vehicleClass = branch.GetVehicleClasses().First(vehicleClass => vehicleClass.IsValid());
 
@@ -207,11 +207,11 @@ namespace Client.Wpf.Windows
 
                 if (vehicleClass.ToString().StartsWith(EWord.All))
                 {
-                    var disabledButtons = _vehicleClassControl.GetButtons(ownerBranch, !toggleButton.IsChecked.Value, false);
+                    var disabledButtons = _vehicleClassControl.GetButtons(ownerBranch, !toggleButton.IsChecked(), false);
 
                     foreach (var button in disabledButtons)
                     {
-                        _vehicleClassControl.Toggle(button.Tag.CastTo<EVehicleClass>(), toggleButton.IsChecked.Value);
+                        _vehicleClassControl.Toggle(button.Tag.CastTo<EVehicleClass>(), toggleButton.IsChecked());
                         OnToggleButtonGroupControlClick<EVehicleClass>(button, false);
                     }
 
@@ -240,10 +240,10 @@ namespace Client.Wpf.Windows
                 var nation = toggleButton.GetTag<ENation>();
 
                 AdjustBranchTogglesAvailability();
-                _countryToggleControl.Enable(nation, toggleButton.IsChecked.Value);
-                _battleRatingControl.Enable(nation, toggleButton.IsChecked.Value);
+                _countryToggleControl.Enable(nation, toggleButton.IsChecked());
+                _battleRatingControl.Enable(nation, toggleButton.IsChecked());
 
-                if (toggleButton.IsChecked.Value && !Presenter.NationHasCountriesEnabled(nation))
+                if (toggleButton.IsChecked() && !Presenter.NationHasCountriesEnabled(nation))
                 {
                     var country = nation.GetCountries().First();
                     var nationCountryPair = new NationCountryPair(nation, country);
@@ -284,11 +284,11 @@ namespace Client.Wpf.Windows
 
                 if (country.ToString().StartsWith(EWord.All))
                 {
-                    var disabledButtons = _countryToggleControl.GetButtons(nation, !toggleButton.IsChecked.Value, false);
+                    var disabledButtons = _countryToggleControl.GetButtons(nation, !toggleButton.IsChecked(), false);
 
                     foreach (var button in disabledButtons)
                     {
-                        _countryToggleControl.Toggle(button.Tag.CastTo<NationCountryPair>(), toggleButton.IsChecked.Value);
+                        _countryToggleControl.Toggle(button.Tag.CastTo<NationCountryPair>(), toggleButton.IsChecked());
                         OnToggleButtonGroupControlClick<NationCountryPair>(button, false);
                     }
 

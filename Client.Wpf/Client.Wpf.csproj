@@ -339,6 +339,7 @@
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\ILocalizationExtensions.cs" />
+    <Compile Include="Extensions\ToggleButtonExtensions.cs" />
     <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
     <Compile Include="Helpers\Interfaces\IWpfClientSettingsManager.cs" />
