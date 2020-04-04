@@ -60,6 +60,44 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         #endregion Tests: GetBranch()
+        #region Tests: GetVehicleSubclasses()
+
+        [TestMethod]
+        public void GetVehicleSubclasses()
+        {
+            var tests = new List<Action>
+            {
+                () => EVehicleClass.None.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.All.GetVehicleSubclasses().Should().BeEmpty(),
+
+                () => EVehicleClass.AllGroundVehicles.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.LightTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.MediumTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.HeavyTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.TankDestroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Spaa.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+
+                () => EVehicleClass.AllHelicopters.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.AttackHelicopter.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.UtilityHelicopter.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+
+                () => EVehicleClass.AllAircraft.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.Fighter.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.JetFighter }),
+                () => EVehicleClass.Attacker.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Bomber.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+
+                () => EVehicleClass.AllShips.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.Boat.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.HeavyBoat.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Barge.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Frigate.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Destroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.LightCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.HeavyCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+            };
+        }
+
+        #endregion Tests: GetVehicleSubclasses()
         #region Tests: IsValid()
 
         [TestMethod]
