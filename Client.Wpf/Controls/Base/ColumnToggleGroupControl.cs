@@ -116,10 +116,11 @@ namespace Client.Wpf.Controls.Base
                 var buttonColumn = buttonColumnKeyValuePair.Value;
 
                 foreach (var existingButton in buttonColumn.Buttons.Values)
+                {
                     if (toggleButton.Equals(existingButton))
                         return owner;
+                }
             }
-
             return default;
         }
 
@@ -180,8 +181,10 @@ namespace Client.Wpf.Controls.Base
             var buttons = includeToggleAllButton ? toggleColumn : toggleColumn.GetButtonsExceptToggleAll();
 
             foreach (var button in buttons)
+            {
                 if (button.IsChecked != newState)
                     button.IsChecked = newState;
+            }
         }
 
         #endregion Methods: Toggle()

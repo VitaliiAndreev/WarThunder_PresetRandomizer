@@ -113,8 +113,10 @@ namespace Client.Wpf.Presenters
             var validBranches = new HashSet<EBranch>();
 
             foreach (var nation in EnabledNations)
+            {
                 if (allEmptyBranches.TryGetValue(nation, out var emptyBranches))
                     validBranches.AddRange(allBranches.Except(emptyBranches));
+            }
 
             return validBranches;
         }

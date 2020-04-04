@@ -227,7 +227,7 @@ namespace Client.Wpf.Controls.Base
             AllButtonsMeetCondition(toggleButton => !toggleButton.IsChecked());
 
         #endregion Methods: AllButtonsMeetCondition()
-        #region Methods: Toggling()
+        #region Methods: Toggle()
 
         /// <summary> Toggles a button corresponding to the specified key. </summary>
         /// <param name="key"> The key whose button to toggle. </param>
@@ -252,11 +252,13 @@ namespace Client.Wpf.Controls.Base
         public void ToggleAll(bool newState)
         {
             foreach (var button in Buttons.Values)
+            {
                 if (button.IsChecked != newState)
                     button.IsChecked = newState;
+            }
         }
 
-        #endregion Methods: Toggling()
+        #endregion Methods: Toggle()
         #region Implementation of IEnumerable<ToggleButton>
 
         public IEnumerator<ToggleButton> GetEnumerator() => Buttons.Values.GetEnumerator();

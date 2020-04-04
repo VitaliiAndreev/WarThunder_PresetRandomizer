@@ -26,8 +26,10 @@ namespace Client.Wpf.Commands.MainWindow
             base.Execute(parameter);
 
             if (parameter is IMainWindowPresenter presenter)
+            {
                 if (!WpfSettings.EnabledVehiclesCollection.SequenceEqual(presenter.EnabledVehicleGaijinIds))
                     ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.EnabledVehicles), presenter.EnabledVehicleGaijinIds.StringJoin(Settings.Separator));
+            }
         }
     }
 }
