@@ -20,6 +20,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.ToggleCountry, new ToggleCountryCommand());
             _commands.Add(ECommandName.ToggleNation, new ToggleNationCommand());
             _commands.Add(ECommandName.ToggleVehicleClass, new ToggleVehicleClassCommand());
+            _commands.Add(ECommandName.ToggleVehicleSubclass, new ToggleVehicleSubclassCommand());
             _commands.Add(ECommandName.ChangeBattleRating, new ChangeBattleRatingCommand());
             _commands.Add(ECommandName.SwapPresets, new SwapPresetsCommand());
             _commands.Add(ECommandName.DeletePresets, new DeletePresetsCommand());

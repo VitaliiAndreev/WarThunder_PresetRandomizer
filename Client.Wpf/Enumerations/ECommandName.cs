@@ -44,5 +44,7 @@ namespace Client.Wpf.Enumerations
         ToggleVehicle,
         /// <summary> See <see cref="ToggleVehicleClassCommand"/>. </summary>
         ToggleVehicleClass,
+        /// <summary> See <see cref="ToggleVehicleSubclassCommand"/>. </summary>
+        ToggleVehicleSubclass,
     }
 }

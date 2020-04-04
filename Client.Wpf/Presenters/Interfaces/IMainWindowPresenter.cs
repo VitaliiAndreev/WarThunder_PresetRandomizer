@@ -30,6 +30,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Vehicles classes enabled for preset generation. </summary>
         IList<EVehicleClass> EnabledVehicleClasses { get; }
 
+        /// <summary> Vehicles subclasses enabled for preset generation. </summary>
+        IList<EVehicleSubclass> EnabledVehicleSubclasses { get; }
+
         /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
         IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches { get; }
 
@@ -68,6 +71,11 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <param name="branch"> The branch to check. </param>
         /// <returns></returns>
         bool BranchHasVehicleClassesEnabled(EBranch branch);
+
+        /// <summary> Checks whether the given <paramref name="vehicleClass"/> has any <see cref="EVehicleSubclass"/> items enabled or not. </summary>
+        /// <param name="vehicleClass"> The vehicle class to check. </param>
+        /// <returns></returns>
+        bool VehicleClassHasSubclassesEnabled(EVehicleClass vehicleClass);
 
         /// <summary> Checks whether the given <paramref name="nation"/> has any <see cref="ECountry"/> items enabled or not. </summary>
         /// <param name="nation"> The nation to check. </param>

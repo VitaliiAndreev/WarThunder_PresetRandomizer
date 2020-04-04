@@ -125,6 +125,20 @@ namespace Client.Wpf.Windows
         private void ExecuteToggleCommand(Type key) =>
             Presenter.ExecuteCommand(_toggleCommands[key]);
 
+        private void OnTogglableItemClicked<T>(Type keyType, T tag, bool isChecked, bool executeCommand)
+        {
+            if (!keyType.IsKeyIn(_presenterToggleLists) || !keyType.IsKeyIn(_toggleCommands))
+                return;
+
+            if (isChecked)
+                _presenterToggleLists[keyType].CastTo<IList<T>>().Add(tag);
+            else
+                _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(tag);
+
+            if (executeCommand)
+                ExecuteToggleCommand(keyType);
+        }
+
         /// <summary> Updates a collection and executes a command associated with with the <typeparamref name="T"/> <see cref="FrameworkElement.Tag"/> of the <paramref name="toggleButton"/> according to its <see cref="ToggleButton.IsChecked"/> status. </summary>
         /// <param name="toggleButton"> The button that has been clicked. </param>
         private void OnToggleButtonGroupControlClick<T>(ToggleButton toggleButton, bool executeCommand = true)
@@ -132,16 +146,17 @@ namespace Client.Wpf.Windows
             var keyType = typeof(T);
             var buttonTag = toggleButton.GetTag<T>();
 
-            if (!keyType.IsKeyIn(_presenterToggleLists) || !keyType.IsKeyIn(_toggleCommands))
-                return;
+            OnTogglableItemClicked(keyType, buttonTag, toggleButton.IsChecked(), executeCommand);
+        }
 
-            if (toggleButton.IsChecked.Value)
-                _presenterToggleLists[keyType].CastTo<IList<T>>().Add(buttonTag);
-            else
-                _presenterToggleLists[keyType].CastTo<IList<T>>().Remove(buttonTag);
+        /// <summary> Updates a collection and executes a command associated with with the <typeparamref name="T"/> <see cref="FrameworkElement.Tag"/> of the <paramref name="menuItem"/> according to its <see cref="ToggleButton.IsChecked"/> status. </summary>
+        /// <param name="menuItem"> The menu item that has been clicked. </param>
+        private void OnMenuItemClicked<T>(MenuItem menuItem, bool executeCommand = true)
+        {
+            var keyType = typeof(T);
+            var menuItemTag = menuItem.GetTag<T>();
 
-            if (executeCommand)
-                ExecuteToggleCommand(keyType);
+            OnTogglableItemClicked(keyType, menuItemTag, menuItem.IsChecked, executeCommand);
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledBranches"/> according to the action. </summary>
@@ -224,6 +239,23 @@ namespace Client.Wpf.Windows
                 }
 
                 UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleClassesEnabled, ownerBranch, OnBranchToggleControlClick);
+                UpdateChildControl(_vehicleClassControl.ToggleColumns[ownerBranch], vehicleClass, OnVehicleSubclassToggled);
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleSubclasses"/> according to the action. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="MenuItem"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnVehicleSubclassToggled(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is MenuItem menuItem)
+            {
+                var vehicleSubclass = menuItem.GetTag<EVehicleSubclass>();
+                var ownerClass = vehicleSubclass.GetVehicleClass();
+
+                OnMenuItemClicked<EVehicleSubclass>(menuItem);
+                UpdateOwnerControl(_vehicleClassControl.ToggleColumns[ownerClass.GetBranch()], Presenter.VehicleClassHasSubclassesEnabled, ownerClass, OnVehicleClassToggleControlClick);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -256,6 +288,12 @@ namespace Client.Wpf.Windows
             }
         }
 
+        private void UpdateOwnerControl<T>(ToggleButtonGroupControl<T> ownerControl, T key, RoutedEventHandler eventHandler, bool newState)
+        {
+            ownerControl.Toggle(key, newState);
+            eventHandler(ownerControl, new RoutedEventArgs(ownerControl.ClickEventReference, ownerControl.Buttons[key]));
+        }
+
         /// <summary> Updates the state of the given owner control based on whether the specified subordinate control has any buttons toggle on or not. </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="ownerControl"> The owner control to update. </param>
@@ -266,9 +304,45 @@ namespace Client.Wpf.Windows
         {
             if (!thereAreButtonsToggled(key))
             {
-                ownerControl.Toggle(key, false);
-                eventHandler(ownerControl, new RoutedEventArgs(ownerControl.ClickEventReference, ownerControl.Buttons[key]));
+                UpdateOwnerControl(ownerControl, key, eventHandler, false);
             }
+            else
+            {
+                if (!ownerControl.Buttons[key].IsChecked())
+                    UpdateOwnerControl(ownerControl, key, eventHandler, true);
+            }
+        }
+
+        private void UpdateChildControl<T>(ToggleButtonGroupControl<T> ownerControl, T parentElement, RoutedEventHandler eventHandler)
+        {
+            if (!ownerControl.Buttons.TryGetValue(parentElement, out var parentControl) || !(parentControl.ContextMenu is ContextMenu contextMenu))
+                return;
+
+            if (!parentControl.IsChecked())
+            {
+                contextMenu.IsEnabled
+                    = contextMenu.StaysOpen
+                    = false;
+            }
+            else
+            {
+                if (contextMenu.IsEnabled == false)
+                {
+                    contextMenu.IsEnabled
+                        = contextMenu.StaysOpen
+                        = true;
+                }
+
+                if (!contextMenu.HasCheckedItems())
+                {
+                    var firstMenuItem = contextMenu.GetMenuItems().FirstOrDefault();
+
+                    firstMenuItem.IsChecked = true;
+                    eventHandler(firstMenuItem, new RoutedEventArgs(null, firstMenuItem));
+                }
+            }
+
+            contextMenu.IsOpen = false;
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledCountries"/> according to the action. </summary>
@@ -387,6 +461,7 @@ namespace Client.Wpf.Windows
             {
                 { typeof(EBranch), Presenter.EnabledBranches },
                 { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
+                { typeof(EVehicleSubclass), Presenter.EnabledVehicleSubclasses },
                 { typeof(ENation), Presenter.EnabledNations },
                 { typeof(NationCountryPair), Presenter.EnabledCountries },
             };
@@ -394,6 +469,7 @@ namespace Client.Wpf.Windows
             {
                 { typeof(EBranch), ECommandName.ToggleBranch },
                 { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
+                { typeof(EVehicleSubclass), ECommandName.ToggleVehicleSubclass },
                 { typeof(ENation), ECommandName.ToggleNation },
                 { typeof(NationCountryPair), ECommandName.ToggleCountry },
             };
@@ -453,9 +529,11 @@ namespace Client.Wpf.Windows
 
             _randomisationSelectionControl.Toggle(Presenter.Randomisation, true);
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
-            _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
             _countryToggleControl.Toggle(Presenter.EnabledCountries, true);
+
+            _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
+            _vehicleClassControl.Toggle(Presenter.EnabledVehicleSubclasses, true);
 
             AdjustCountryControlsAvailability();
 

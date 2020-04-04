@@ -236,6 +236,7 @@
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectRandomisationCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleVehicleSubclassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleBranchCommand.cs" />
@@ -334,6 +335,7 @@
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
+    <Compile Include="Extensions\ContextMenuExtensions.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />

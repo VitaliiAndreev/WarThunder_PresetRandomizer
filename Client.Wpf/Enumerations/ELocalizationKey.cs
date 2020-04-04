@@ -57,6 +57,7 @@
         public const string Israel = nameof(Israel);
         public const string Italy = nameof(Italy);
         public const string Japan = nameof(Japan);
+        public const string JetFighter = nameof(JetFighter);
         public const string KingdomOfItaly = nameof(KingdomOfItaly);
         public const string KlensyForWtTools = nameof(KlensyForWtTools);
         public const string LightCruiser = nameof(LightCruiser);

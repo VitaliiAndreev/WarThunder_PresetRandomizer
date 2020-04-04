@@ -70,6 +70,18 @@ namespace Client.Wpf
         }
 
         [RequiredSetting]
+        public static string EnabledVehicleSubclasses
+        {
+            get => EnabledVehicleSubclassesCollection.StringJoin(Separator);
+            set => EnabledVehicleSubclassesCollection = value
+                .Split(Separator)
+                .Select(vehicleSubclassString => vehicleSubclassString.TryParseEnumeration<EVehicleSubclass>(out var vehicleSubclass) ? vehicleSubclass : EVehicleSubclass.None)
+                .Where(vehicleSubclass => vehicleSubclass.IsValid())
+                .ToList()
+            ;
+        }
+
+        [RequiredSetting]
         public static string EnabledNations
         {
             get => EnabledNationsCollection.StringJoin(Separator);
@@ -158,6 +170,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledVehicleClasses"/> instead. </para>
         /// </summary>
         public static IEnumerable<EVehicleClass> EnabledVehicleClassesCollection { get; private set; }
+
+        /// <summary>
+        /// Currently enabled vehicle subclasses.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledVehicleSubclasses"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<EVehicleSubclass> EnabledVehicleSubclassesCollection { get; private set; }
 
         /// <summary>
         /// Currently enabled nations.

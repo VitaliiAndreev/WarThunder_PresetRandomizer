@@ -53,6 +53,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
         public virtual EVehicleClass Class { get; protected internal set; }
 
+        /// <summary> The vehicle's subclass. </summary>
+        [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
+        public virtual EVehicleSubclass Subclass { get; protected internal set; }
+
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         [Property(NotNull = true)]
         public virtual bool IsPremium { get; protected set; }
@@ -316,6 +320,24 @@ namespace Core.DataBase.WarThunder.Objects
                 Class = EVehicleClass.None;
         }
 
+        /// <summary> Initializes the <see cref="Class"/> based on <paramref name="deserializedTags"/>. Order of conditions is important because vehicles may have overlapping tags. </summary>
+        /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
+        private void InitializeSubclasses(VehicleTagsDeserializedFromJson deserializedTags)
+        {
+            if (Class == EVehicleClass.Fighter)
+            {
+                if (deserializedTags.IsJetFighter)
+                    Subclass = EVehicleSubclass.JetFighter;
+
+                else
+                    Subclass = EVehicleSubclass.Fighter;
+            }
+            else
+            {
+                Subclass = EVehicleSubclass.None;
+            }
+        }
+
         /// <summary> Initializes <see cref="Tags"/> based on <paramref name="deserializedTags"/>. </summary>
         /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
         private void InitializeTags(VehicleTagsDeserializedFromJson deserializedTags)
@@ -336,6 +358,7 @@ namespace Core.DataBase.WarThunder.Objects
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
             {
                 InitializeClass(tags);
+                InitializeSubclasses(tags);
                 InitializeTags(tags);
             }
 

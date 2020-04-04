@@ -60,7 +60,8 @@
 
                 <controls:VehicleClassToggleControl
                     x:Name="_vehicleClassControl"
-                    Click="OnVehicleClassToggleControlClick"/>
+                    Click="OnVehicleClassToggleControlClick"
+                    VehicleSubclassToggled="OnVehicleSubclassToggled"/>
 
                 <controls:NationToggleControl
                     x:Name="_nationToggleControl"

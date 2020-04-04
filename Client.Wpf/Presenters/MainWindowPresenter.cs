@@ -35,10 +35,20 @@ namespace Client.Wpf.Presenters
         /// <summary> Vehicles classes enabled for preset generation. </summary>
         public IList<EVehicleClass> EnabledVehicleClasses { get; }
 
+        /// <summary> Vehicles subclasses enabled for preset generation. </summary>
+        public IList<EVehicleSubclass> EnabledVehicleSubclasses { get; }
+
         /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
         public IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches =>
             EnabledVehicleClasses
                 .GroupBy(vehicleClass => vehicleClass.GetBranch())
+                .ToDictionary(group => group.Key, group => group.AsEnumerable())
+            ;
+
+        /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
+        public IDictionary<EVehicleClass, IEnumerable<EVehicleSubclass>> EnabledVehicleSubclassesByClasses =>
+            EnabledVehicleSubclasses
+                .GroupBy(vehicleSubclass => vehicleSubclass.GetVehicleClass())
                 .ToDictionary(group => group.Key, group => group.AsEnumerable())
             ;
 
@@ -79,6 +89,7 @@ namespace Client.Wpf.Presenters
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
             EnabledVehicleClasses = new List<EVehicleClass>(WpfSettings.EnabledVehicleClassesCollection);
+            EnabledVehicleSubclasses = new List<EVehicleSubclass>(WpfSettings.EnabledVehicleSubclassesCollection);
             EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
             EnabledCountries = new List<NationCountryPair>(WpfSettings.EnabledCountriesCollection);
             EnabledEconomicRankIntervals = new Dictionary<ENation, Interval<int>>(WpfSettings.EnabledEconomicRankIntervals);
@@ -113,6 +124,12 @@ namespace Client.Wpf.Presenters
         /// <returns></returns>
         public bool BranchHasVehicleClassesEnabled(EBranch branch) =>
             EnabledVehicleClassesByBranches.TryGetValue(branch, out var vehicleClasses) && vehicleClasses.Any();
+
+        /// <summary> Checks whether the given <paramref name="vehicleClass"/> has any <see cref="EVehicleSubclass"/> items enabled or not. </summary>
+        /// <param name="vehicleClass"> The vehicle class to check. </param>
+        /// <returns></returns>
+        public bool VehicleClassHasSubclassesEnabled(EVehicleClass vehicleClass) =>
+            EnabledVehicleSubclassesByClasses.TryGetValue(vehicleClass, out var vehicleSubclasses) && vehicleSubclasses.Any();
 
         /// <summary> Checks whether the given <paramref name="nation"/> has any <see cref="ECountry"/> items enabled or not. </summary>
         /// <param name="nation"> The nation to check. </param>

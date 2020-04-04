@@ -158,13 +158,15 @@ namespace Client.Console
             }
 
             var economicRank = Calculator.GetEconomicRank(Calculator.GetRoundedBattleRating(battleRating));
+            var vehicleClasses = branch.GetVehicleClasses();
 
             return new Specification
             (
                 ERandomisation.VehicleBased,
                 gamemode,
                 new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, EReference.CountriesByNation[nation], new List<EBranch> { branch }, EInteger.Number.Ten) } },
-                new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, branch.GetVehicleClasses()) } },
+                new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, vehicleClasses) } },
+                vehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses()),
                 Enum
                     .GetValues(typeof(ENation))
                     .Cast<ENation>()

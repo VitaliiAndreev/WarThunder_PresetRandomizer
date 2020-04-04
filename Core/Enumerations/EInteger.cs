@@ -16,6 +16,7 @@
             public const int Nine = 9;
             public const int Ten = 10;
             public const int Sixteen = 16;
+            public const int NinetyNine = 99;
             public const int Hundred = 100;
             public const int Thousand = 1_000;
         }

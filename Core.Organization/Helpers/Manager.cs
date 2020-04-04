@@ -510,6 +510,13 @@ namespace Core.Organization.Helpers
         private IEnumerable<IVehicle> FilterVehiclesByClassFilters(IEnumerable<EVehicleClass> validVehicleClasses, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validVehicleClasses, vehicle => vehicle.Class);
 
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validVehicleSubclasses"/>. </summary>
+        /// <param name="validVehicleSubclasses"> Vehicle subclasses enabled via GUI and actually available. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesBySubclassFilters(IEnumerable<EVehicleSubclass> validVehicleSubclasses, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclass);
+
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validBranches"/>. </summary>
         /// <param name="validBranches"> Vehicle branches enabled via GUI and actually available. </param>
         /// <param name="vehicles"> Vehicles to filter. </param>
@@ -843,11 +850,18 @@ namespace Core.Organization.Helpers
                 return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by subclasses.
+
+            var vehicleSubclassesFromValidClasses = validVehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses());
+            var validVehicleSubclasses = specification.VehicleSubclasses.Intersect(vehicleSubclassesFromValidClasses).Including(EVehicleSubclass.None);
+            var vehiclesWithSubclassFilter = FilterVehiclesBySubclassFilters(validVehicleSubclasses, vehiclesWithClassFilter);
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
             return specification.Randomisation switch
             {
-                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithClassFilter),
-                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithClassFilter),
+                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithSubclassFilter),
+                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithSubclassFilter),
                 _ => new Dictionary<EPreset, Preset>(),
             };
         }

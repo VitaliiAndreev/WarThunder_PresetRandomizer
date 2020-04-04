@@ -80,11 +80,13 @@
     <Compile Include="Enumerations\EReference.cs" />
     <Compile Include="Enumerations\EVehicleClass.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseWarThunderLogMessage.cs" />
+    <Compile Include="Enumerations\EVehicleSubclass.cs" />
     <Compile Include="Extensions\EBranchExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
+    <Compile Include="Extensions\EVehicleSubclassExtensions.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />

@@ -1,6 +1,8 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 using Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.DataBase.WarThunder.Extensions
 {
@@ -24,6 +26,21 @@ namespace Core.DataBase.WarThunder.Extensions
                 return vehicleClassEnumerationValue.Do(value => value / EInteger.Number.Ten).CastTo<EBranch>();
             else
                 return vehicleClassEnumerationValue.CastTo<EBranch>();
+        }
+
+        /// <summary> Returns vehicle classes which belong to the branch. </summary>
+        /// <param name="vehicleClass"> The branch whose vehicle classes to get. </param>
+        /// <returns></returns>
+        public static IEnumerable<EVehicleSubclass> GetVehicleSubclasses(this EVehicleClass vehicleClass)
+        {
+            if (vehicleClass.IsValid())
+            {
+                return typeof(EVehicleSubclass)
+                    .GetEnumerationItems<EVehicleSubclass>()
+                    .Where(vehicleSubclass => vehicleSubclass.GetVehicleClass() == vehicleClass && vehicleSubclass.IsValid())
+                ;
+            }
+            return new List<EVehicleSubclass>();
         }
     }
 }
