@@ -34,11 +34,13 @@
             
             <TextBlock Text="Status:"
                 Grid.Column="0"
-                Name="_statusLabel"/>
+                Name="_statusLabel"
+                Style="{StaticResource TextBlockFontSize16}"/>
             
             <TextBlock Text="PENDING..."
                 Grid.Column="1"
-                Name="_status"/>
+                Name="_status"
+                Style="{StaticResource TextBlockFontSize16}"/>
             
         </Grid>
 

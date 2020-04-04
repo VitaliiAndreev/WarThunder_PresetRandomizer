@@ -17,7 +17,7 @@
             <TabItem.Header>
                 <WrapPanel>
                     <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">╤</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Army</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Army</TextBlock>
                 </WrapPanel>
             </TabItem.Header>
             <local:ResearchTreeBranchControl
@@ -29,7 +29,7 @@
             <TabItem.Header>
                 <WrapPanel>
                     <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">⋡</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Helicopters</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Helicopters</TextBlock>
                 </WrapPanel>
             </TabItem.Header>
             <local:ResearchTreeBranchControl
@@ -41,7 +41,7 @@
             <TabItem.Header>
                 <WrapPanel>
                     <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">┏</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Aviation</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Aviation</TextBlock>
                 </WrapPanel>
             </TabItem.Header>
             <local:ResearchTreeBranchControl
@@ -53,7 +53,7 @@
             <TabItem.Header>
                 <WrapPanel>
                     <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">┚</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockWithLeftMargin}">Fleet</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Fleet</TextBlock>
                 </WrapPanel>
             </TabItem.Header>
             <local:ResearchTreeBranchControl

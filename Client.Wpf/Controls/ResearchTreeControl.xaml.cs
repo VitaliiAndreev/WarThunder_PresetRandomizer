@@ -110,6 +110,7 @@ namespace Client.Wpf.Controls
             };
             var headerText = new TextBlock
             {
+                Style = this.GetStyle(EStyleKey.TextBlock.TextBlockFontSize16),
                 Margin = new Thickness(5, 0, 0, 0),
                 Text = nation.ToString(), // For the designer.
             };

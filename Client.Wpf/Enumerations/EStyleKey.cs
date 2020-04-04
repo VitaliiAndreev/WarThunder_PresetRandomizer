@@ -37,6 +37,12 @@
             public const string Rank7 = "Rank7";
         }
 
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBlock"/>. </summary>
+        public class TextBlock
+        {
+            public const string TextBlockFontSize16 = "TextBlockFontSize16";
+        }
+
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBox"/>. </summary>
         public class TextBox
         {

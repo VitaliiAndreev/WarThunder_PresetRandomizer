@@ -43,6 +43,7 @@
 
                 <Button Content="Generate a preset"
                     x:Name="_generatePresetButton"
+                    Style="{StaticResource ButtonFontSize16}"
                     FontWeight="Bold"/>
 
                 <controls:RandomisationSelectionControl
