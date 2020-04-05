@@ -18,9 +18,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
         EVehicleClass Class { get; }
 
-        /// <summary> The vehicle's subclass. </summary>
-        EVehicleSubclass Subclass { get; }
-
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         bool IsPremium { get; }
 
@@ -74,6 +71,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> The vehicle's branch. </summary>
         IBranch Branch { get; }
+
+        /// <summary> The vehicle's subclass. </summary>
+        IVehicleSubclass Subclass { get; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }

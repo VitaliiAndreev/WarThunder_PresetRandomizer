@@ -473,6 +473,23 @@ namespace Core.Organization.Helpers
             return filteredVehicles;
         }
 
+        /// <summary> Assesses <paramref name="filteredVehicles"/> does post-filtering operations. </summary>
+        /// <param name="filteredVehicles"> Filtered vehicles to assess. </param>
+        /// <param name="validItems"> Items accepted by the filter. </param>
+        /// <param name="suppressLogging"> Whether to log empty results. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> AssessFilterResult<T>(IEnumerable<IVehicle> filteredVehicles, IEnumerable<T> validItems, bool suppressLogging)
+        {
+            if (filteredVehicles.IsEmpty())
+            {
+                if (!suppressLogging)
+                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
+
+                return null;
+            }
+            return filteredVehicles;
+        }
+
         /// <summary>
         /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
         /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
@@ -487,14 +504,24 @@ namespace Core.Organization.Helpers
         {
             var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).IsIn(validItems));
 
-            if (filteredVehicles.IsEmpty())
-            {
-                if (!suppressLogging)
-                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
+            return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
+        }
 
-                return null;
-            }
-            return filteredVehicles;
+        /// <summary>
+        /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
+        /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
+        /// </summary>
+        /// <typeparam name="T"> The type of filter criteria items. </typeparam>
+        /// <param name="vehicles"> Vehicles to filter through. </param>
+        /// <param name="validItems"> Items accepted by the filter. </param>
+        /// <param name="itemSelector"> The selector function that extracts evaluated values from given <paramref name="vehicles"/>. </param>
+        /// <param name="suppressLogging"> Whether to log empty results. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, IEnumerable<T>> itemSelector, bool suppressLogging = false)
+        {
+            var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).Intersect(validItems).Any());
+
+            return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
         }
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
@@ -515,7 +542,7 @@ namespace Core.Organization.Helpers
         /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesBySubclassFilters(IEnumerable<EVehicleSubclass> validVehicleSubclasses, IEnumerable<IVehicle> vehicles) =>
-            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclass);
+            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclass.All);
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validBranches"/>. </summary>
         /// <param name="validBranches"> Vehicle branches enabled via GUI and actually available. </param>

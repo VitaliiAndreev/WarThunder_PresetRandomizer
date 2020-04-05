@@ -51,6 +51,7 @@
   <Line key="Helicopters" value="Helicopters"/>
   <Line key="Hungary" value="Hungary"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Initialization is underway. Proceed?"/>
+  <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
   <Line key="Israel" value="Israel"/>
   <Line key="Italy" value="Italy"/>
@@ -68,6 +69,7 @@
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
+  <Line key="NightFighter" value="Night Fighter"/>
   <Line key="NorthKorea" value="North Korea"/>
   <Line key="Norway" value="Norway"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>
@@ -92,6 +94,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="Spaa" value="SPAA"/>
   <Line key="Status" value="Status:"/>
+  <Line key="StrikeFighter" value="Strike Fighter"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Sweden" value="Sweden"/>
   <Line key="TankDestroyer" value="Tank Destroyer"/>

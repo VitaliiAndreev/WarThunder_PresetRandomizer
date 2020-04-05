@@ -53,6 +53,7 @@
         public const string Helicopters = nameof(Helicopters);
         public const string Hungary = nameof(Hungary);
         public const string InitializationUnderwayConfirmClosure = nameof(InitializationUnderwayConfirmClosure);
+        public const string Interceptor = nameof(Interceptor);
         public const string Iraq = nameof(Iraq);
         public const string Israel = nameof(Israel);
         public const string Italy = nameof(Italy);
@@ -70,6 +71,7 @@
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);
+        public const string NightFighter = nameof(NightFighter);
         public const string NorthKorea = nameof(NorthKorea);
         public const string Norway = nameof(Norway);
         public const string NoVehiclesAvailableWithinSpecifiedParameters = nameof(NoVehiclesAvailableWithinSpecifiedParameters);
@@ -94,6 +96,7 @@
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string Spaa = nameof(Spaa);
         public const string Status = nameof(Status);
+        public const string StrikeFighter = nameof(StrikeFighter);
         public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
         public const string Sweden = nameof(Sweden);
         public const string TankDestroyer = nameof(TankDestroyer);

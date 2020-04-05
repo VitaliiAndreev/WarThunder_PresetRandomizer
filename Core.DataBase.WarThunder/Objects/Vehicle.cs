@@ -53,10 +53,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
         public virtual EVehicleClass Class { get; protected internal set; }
 
-        /// <summary> The vehicle's subclass. </summary>
-        [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
-        public virtual EVehicleSubclass Subclass { get; protected internal set; }
-
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         [Property(NotNull = true)]
         public virtual bool IsPremium { get; protected set; }
@@ -113,6 +109,10 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle's branch. </summary>
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
+
+        /// <summary> The vehicle's subclass. </summary>
+        [OneToOne(ClassType = typeof(VehicleSubclass), PropertyRef = nameof(VehicleSubclass.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual IVehicleSubclass Subclass { get; protected internal set; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Entity), Lazy = Laziness.Proxy)]
@@ -320,17 +320,32 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
         private void InitializeSubclasses(VehicleTagsDeserializedFromJson deserializedTags)
         {
+            VehicleSubclass createSubclass(IDictionary<EVehicleSubclass, bool> subclassFlags) =>
+                new VehicleSubclass(_dataRepository, this, subclassFlags.Where(subclassIsUsed => subclassIsUsed.Value).Select(subclassIsUsed => subclassIsUsed.Key));
+
             if (Class == EVehicleClass.Fighter)
             {
-                if (deserializedTags.IsJetFighter)
-                    Subclass = EVehicleSubclass.JetFighter;
+                var subclasses = new Dictionary<EVehicleSubclass, bool>
+                {
+                    {
+                        EVehicleSubclass.Fighter,
+                        deserializedTags.IsFighter
+                            && !deserializedTags.IsInterceptor
+                            && !deserializedTags.IsNightFighter
+                            && !deserializedTags.IsStrikeFighter
+                            && !deserializedTags.IsJetFighter
+                    },
+                    { EVehicleSubclass.Interceptor, deserializedTags.IsInterceptor },
+                    { EVehicleSubclass.NightFighter, deserializedTags.IsNightFighter },
+                    { EVehicleSubclass.StrikeFighter, deserializedTags.IsStrikeFighter },
+                    { EVehicleSubclass.JetFighter, deserializedTags.IsJetFighter },
+                };
 
-                else
-                    Subclass = EVehicleSubclass.Fighter;
+                Subclass = createSubclass(subclasses);
             }
             else
             {
-                Subclass = EVehicleSubclass.None;
+                Subclass = createSubclass(new Dictionary<EVehicleSubclass, bool>());
             }
         }
 

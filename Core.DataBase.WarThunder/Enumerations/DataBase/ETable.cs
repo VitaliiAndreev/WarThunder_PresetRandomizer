@@ -15,6 +15,7 @@
         private const string _repair = "Repair";
         private const string _research = "Research";
         private const string _reward = "Reward";
+        private const string _subclass = "SubClass";
         private const string _time = "Time";
         private const string _tree = "Tree";
         private const string _vehicles = "Vehicles";
@@ -49,6 +50,7 @@
         internal const string VehicleRepairTimeWithoutCrew = _vehicleTable + _repair + _time + "Without" + _crew;
         internal const string VehicleResearchTreeData = _vehicleTable + _research + _tree + _data;
         internal const string VehicleRewardMultiplier = _vehicleTable + _reward + _multiplier;
+        internal const string VehicleSubclass = _vehicleTable + _subclass;
         internal const string VehicleVisualPremiumRewardMultiplier = _vehicleTable + _visual + "Premium" + _reward + _multiplier;
         internal const string VehicleVisualRewardMultiplier = _vehicleTable + _visual + _reward + _multiplier;
         internal const string VehicleWeaponsData = _vehicleTable + "Weapons" + _data;

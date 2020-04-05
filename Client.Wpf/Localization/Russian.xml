@@ -51,6 +51,7 @@
   <Line key="Helicopters" value="Вертолёты"/>
   <Line key="Hungary" value="Венгрия"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
+  <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>
   <Line key="Israel" value="Израиль"/>
   <Line key="Italy" value="Италия"/>
@@ -68,6 +69,7 @@
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
   <Line key="NewZealand" value="Новая Зеландия"/>
+  <Line key="NightFighter" value="Ночной истребитель"/>
   <Line key="NorthKorea" value="Северная Корея"/>
   <Line key="Norway" value="Норвегия"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>
@@ -92,6 +94,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="Spaa" value="СЗУ"/>
   <Line key="Status" value="Статус:"/>
+  <Line key="StrikeFighter" value="Ударный истребитель"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
   <Line key="Sweden" value="Швеция"/>
   <Line key="TankDestroyer" value="САУ"/>

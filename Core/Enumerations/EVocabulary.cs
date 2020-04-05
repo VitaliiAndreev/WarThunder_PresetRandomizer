@@ -349,6 +349,7 @@
 
         private const string _l = "l";
         private const string _ll = _l + _l;
+        private const string _lo = _l + _o;
         private const string _lready = _l + _ready;
         private const string _ly = _l + _y;
 
@@ -364,6 +365,7 @@
         protected const string _Logger = _Log + "ger";
         protected const string _Loggers = _Logger + _s;
         protected const string _Logs = _Log + _s;
+        protected const string _lot = _lo + _t;
 
         #endregion L
         #region M
@@ -371,6 +373,7 @@
         private const string _M = "M";
         private const string _m = "m";
         private const string _mem = _me + _m;
+        private const string _mo = _m + _o;
 
         protected const string _Main = _M + _a + _in;
         protected const string _Man = _M + _an;
@@ -392,8 +395,9 @@
         protected const string _mic = _m + _i + _c;
         protected const string _mig = _m + _i + _g;
         protected const string _migration = _mig + _ration;
-        protected const string _mode = "mo" + _d + _e;
-        protected const string _mong = "mo" + _n + _g;
+        protected const string _mode = _mo + _d + _e;
+        protected const string _mong = _mo + _n + _g;
+        protected const string _more = _mo + _re;
         protected const string _Must = "Mu" + _s + _t;
         protected const string _must = "mu" + _s + _t;
         protected const string _my = "my";
@@ -401,11 +405,13 @@
         #endregion M
         #region N
 
+        private const string _N = "N";
         private const string _n = "n";
         private const string _ne = _n + _e;
 
         protected const string _nation = _n + "ation";
-        protected const string _need = _n + "eed";
+        protected const string _Need = _N + _e + _ed;
+        protected const string _need = _n + _e + _ed;
         protected const string _new = _n + "ew";
         protected const string _No = "No";
         protected const string _no = _n + "o";
@@ -568,6 +574,7 @@
         protected const string _Shutting = _S + "hutt" + _ing;
         protected const string _sign = _s + "ign";
         protected const string _skipped = _s + "kipp" + _ed;
+        protected const string _slots = _s + _lot + _s;
         protected const string _sorting = _s + "ort" + _ing;
         protected const string _source = _s + "ource";
         protected const string _spaces = _s + "pace" + _s;
@@ -585,6 +592,7 @@
         protected const string _string = _s + "tr" + _ing;
         protected const string _Style = _S + "tyle";
         protected const string _sub = _s + _u + _b;
+        protected const string _subclass = _sub + _class;
         protected const string _subdirectories = _sub + _direct + "orie" + _s;
         protected const string _subfolders = _sub + _folder + _s;
         protected const string _substrings = _sub + _string + _s;
