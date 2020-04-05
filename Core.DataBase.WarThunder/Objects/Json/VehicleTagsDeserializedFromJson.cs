@@ -254,9 +254,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("boat")]
         public bool IsBoat_ { get; set; }
 
-        [JsonProperty("type_armored_submarine_chaser")]
-        public bool IsArmoredSubmarineChaser { get; set; }
-
         [JsonProperty("type_boat")]
         public bool IsBoat { get; set; }
 
@@ -283,9 +280,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("type_minelayer")]
         public bool IsMinelayer { get; set; }
-
-        [JsonProperty("type_hydrofoil_torpedo_boat")]
-        public bool IsHydrofoilTorpedoBoat { get; set; }
 
         [JsonProperty("type_minesweeper")]
         public bool IsMinesweeper { get; set; }
@@ -316,9 +310,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("type_heavy_gun_boat")]
         public bool IsHeavyGunBoat { get; set; }
-
-        [JsonProperty("type_small_submarine_chaser")]
-        public bool IsSmallSubmarineChaser { get; set; }
 
         [JsonProperty("cruiser")]
         public bool IsCruiser_ { get; set; }

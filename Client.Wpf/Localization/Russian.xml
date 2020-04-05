@@ -10,6 +10,7 @@
   <Line key="ApplicationWillBeRestarted" value="Приложение будет перезапущено. Продолжить?"/>
   <Line key="Arcade" value="Аркадный режим"/>
   <Line key="Argentina" value="Аргентина"/>
+  <Line key="ArmoredGunBoat" value="Бронекатер"/>
   <Line key="Army" value="Армия"/>
   <Line key="Attacker" value="Штурмовик"/>
   <Line key="AttackHelicopter" value="Ударный вертолёт"/>
@@ -75,6 +76,7 @@
   <Line key="MediumTank" value="Средний танк"/>
   <Line key="MotorGunBoat" value="Артиллерийский катер"/>
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
+  <Line key="MotorTorpedoGunBoat" value="Многоцелевой катер"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
   <Line key="NewZealand" value="Новая Зеландия"/>
@@ -103,6 +105,7 @@
   <Line key="Spaa" value="ЗСУ"/>
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
+  <Line key="SubChaser" value="Морской охотник"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
   <Line key="Sweden" value="Швеция"/>
   <Line key="TankDestroyer" value="САУ"/>

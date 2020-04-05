@@ -385,6 +385,17 @@ namespace Core.DataBase.WarThunder.Objects
 
                 Subclass = createSubclass(subclasses);
             }
+            else if (Class == EVehicleClass.HeavyBoat)
+            {
+                var subclasses = new Dictionary<EVehicleSubclass, bool>
+                {
+                    { EVehicleSubclass.ArmoredGunBoat, deserializedTags.IsArmoredBoat },
+                    { EVehicleSubclass.MotorTorpedoGunBoat, deserializedTags.IsTorpedoGunBoat },
+                    { EVehicleSubclass.SubChaser, deserializedTags.IsSubmarineChaser }
+                };
+
+                Subclass = createSubclass(subclasses);
+            }
             else
             {
                 Subclass = createSubclass(new Dictionary<EVehicleSubclass, bool>());

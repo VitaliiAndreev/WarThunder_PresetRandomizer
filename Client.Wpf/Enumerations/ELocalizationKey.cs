@@ -11,6 +11,7 @@
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
         public const string Arcade = nameof(Arcade);
         public const string Argentina = nameof(Argentina);
+        public const string ArmoredGunBoat = nameof(ArmoredGunBoat);
         public const string Army = nameof(Army);
         public const string Attacker = nameof(Attacker);
         public const string AttackHelicopter = nameof(AttackHelicopter);
@@ -75,6 +76,7 @@
         public const string MediumTank = nameof(MediumTank);
         public const string MotorGunBoat = nameof(MotorGunBoat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
+        public const string MotorTorpedoGunBoat = nameof(MotorTorpedoGunBoat);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);
@@ -104,6 +106,7 @@
         public const string Spaa = nameof(Spaa);
         public const string Status = nameof(Status);
         public const string StrikeFighter = nameof(StrikeFighter);
+        public const string SubChaser = nameof(SubChaser);
         public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
         public const string Sweden = nameof(Sweden);
         public const string TankDestroyer = nameof(TankDestroyer);

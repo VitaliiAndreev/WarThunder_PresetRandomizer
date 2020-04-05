@@ -10,6 +10,7 @@
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>
   <Line key="Arcade" value="Arcade Battles"/>
   <Line key="Argentina" value="Argentina"/>
+  <Line key="ArmoredGunBoat" value="Armored Gun Boat"/>
   <Line key="Army" value="Army"/>
   <Line key="Attacker" value="Attacker"/>
   <Line key="AttackHelicopter" value="Attack Helicopter"/>
@@ -75,6 +76,7 @@
   <Line key="MediumTank" value="Medium Tank"/>
   <Line key="MotorGunBoat" value="Motor Gun Boat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
+  <Line key="MotorTorpedoGunBoat" value="Motor Torpedo Gun Boat"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
@@ -103,6 +105,7 @@
   <Line key="Spaa" value="SPAA"/>
   <Line key="Status" value="Status:"/>
   <Line key="StrikeFighter" value="Strike Fighter"/>
+  <Line key="SubChaser" value="Sub-chaser"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Sweden" value="Sweden"/>
   <Line key="TankDestroyer" value="Tank Destroyer"/>
