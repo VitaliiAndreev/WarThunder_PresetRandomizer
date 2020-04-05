@@ -291,9 +291,6 @@ namespace Core.DataBase.WarThunder.Objects
             else if (deserializedTags.IsBomber)
                 Class = EVehicleClass.Bomber;
 
-            else if (deserializedTags.IsBoat)
-                Class = EVehicleClass.Boat;
-
             else if (deserializedTags.IsHeavyBoat)
                 Class = EVehicleClass.HeavyBoat;
 
@@ -311,6 +308,9 @@ namespace Core.DataBase.WarThunder.Objects
 
             else if (deserializedTags.IsFrigate)
                 Class = EVehicleClass.Frigate;
+
+            else if (deserializedTags.IsBoat)
+                Class = EVehicleClass.Boat;
 
             else
                 Class = EVehicleClass.None;
@@ -371,6 +371,16 @@ namespace Core.DataBase.WarThunder.Objects
                     { EVehicleSubclass.FrontlineBomber, deserializedTags.IsFrontlineBomber },
                     { EVehicleSubclass.LongRangeBomber, deserializedTags.IsLongRangeBomber },
                     { EVehicleSubclass.JetBomber, deserializedTags.IsJetBomber },
+                };
+
+                Subclass = createSubclass(subclasses);
+            }
+            else if (Class == EVehicleClass.Boat)
+            {
+                var subclasses = new Dictionary<EVehicleSubclass, bool>
+                {
+                    { EVehicleSubclass.MotorGunBoat, deserializedTags.IsGunBoat },
+                    { EVehicleSubclass.MotorTorpedoBoat, deserializedTags.IsTorpedoBoat },
                 };
 
                 Subclass = createSubclass(subclasses);

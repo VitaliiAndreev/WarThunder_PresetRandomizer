@@ -124,7 +124,7 @@ namespace Client.Console
         /// <returns></returns>
         private static Specification ParseSpecification(string specificationInput, IEnumerable<string> enabledVehicleGaijinIds)
         {
-            var parameters = specificationInput.Split(" ");
+            var parameters = specificationInput.Split(ESeparator.Space);
 
             if (parameters.Count() != 4)
             {

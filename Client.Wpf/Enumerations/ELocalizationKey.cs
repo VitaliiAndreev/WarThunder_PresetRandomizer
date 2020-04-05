@@ -73,6 +73,8 @@
         public const string LongRangeBomber = nameof(LongRangeBomber);
         public const string LookUp = nameof(LookUp);
         public const string MediumTank = nameof(MediumTank);
+        public const string MotorGunBoat = nameof(MotorGunBoat);
+        public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);

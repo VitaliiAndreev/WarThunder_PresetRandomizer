@@ -35,6 +35,8 @@ namespace Core.DataBase.WarThunder.Enumerations
         LongRangeBomber = 325,
         JetBomber = 326,
         AllBoats = 40,
+        MotorGunBoat = 401,
+        MotorTorpedoBoat = 402,
         AllHeavyBoats = 41,
         AllBarges = 42,
         AllFrigates = 43,

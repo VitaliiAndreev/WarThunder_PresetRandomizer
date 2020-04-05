@@ -73,6 +73,8 @@
   <Line key="LongRangeBomber" value="Long Range Bomber"/>
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
+  <Line key="MotorGunBoat" value="Motor Gun Boat"/>
+  <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
