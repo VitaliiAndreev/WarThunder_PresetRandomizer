@@ -123,7 +123,15 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                         EVehicleSubclass.MotorTorpedoBoat,
                     }
                 ),
-                () => EVehicleClass.HeavyBoat.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.HeavyBoat.GetVehicleSubclasses().Should().BeEquivalentTo
+                (
+                    new List<EVehicleSubclass>
+                    {
+                        EVehicleSubclass.ArmoredGunBoat,
+                        EVehicleSubclass.MotorTorpedoGunBoat,
+                        EVehicleSubclass.SubChaser,
+                    }
+                ),
                 () => EVehicleClass.Barge.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Frigate.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Destroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
