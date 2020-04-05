@@ -32,6 +32,7 @@
   <Line key="Cuba" value="Куба"/>
   <Line key="CzechRepublic" value="Чешская республика"/>
   <Line key="Destroyer" value="Эсминец"/>
+  <Line key="DiveBomber" value="Пикирующий бомбардировщик"/>
   <Line key="DominionOfCanada" value="Доминион Британской империи Канада"/>
   <Line key="EmpireOfJapan" value="Японская империя"/>
   <Line key="Error" value="Ошибка"/>
@@ -41,6 +42,7 @@
   <Line key="Fleet" value="Флот"/>
   <Line key="France" value="Франция"/>
   <Line key="Frigate" value="Фрегат"/>
+  <Line key="FrontlineBomber" value="Фронтовой бомбардировщик"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment за War Thunder."/>
   <Line key="Gdr" value="ГДР"/>
   <Line key="GeneratePreset" value="Случайный набор"/>
@@ -57,14 +59,17 @@
   <Line key="Israel" value="Израиль"/>
   <Line key="Italy" value="Италия"/>
   <Line key="Japan" value="Япония"/>
+  <Line key="JetBomber" value="Реактивный бомбардировщик"/>
   <Line key="JetFighter" value="Реактивный истребитель"/>
   <Line key="KingdomOfItaly" value="Итальянское королевство"/>
   <Line key="KlensyForWtTools" value="Klensy за WT Tools."/>
+  <Line key="LightBomber" value="Лёгкий бомбардировщик"/>
   <Line key="LightCruiser" value="Лёгкий крейсер"/>
   <Line key="LightTank" value="Лёгкий танк"/>
   <Line key="Loading" value="Загрузка..."/>
   <Line key="Location" value="Путь к {0}"/>
   <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Изменения в путях вступят в силу после перезагрузки приложения."/>
+  <Line key="LongRangeBomber" value="Дальний бомбардировщик"/>
   <Line key="LookUp" value="Обзор"/>
   <Line key="MediumTank" value="Средний танк"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>

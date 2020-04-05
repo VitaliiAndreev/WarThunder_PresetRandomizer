@@ -34,6 +34,7 @@
         public const string Cuba = nameof(Cuba);
         public const string CzechRepublic = nameof(CzechRepublic);
         public const string Destroyer = nameof(Destroyer);
+        public const string DiveBomber = nameof(DiveBomber);
         public const string DominionOfCanada = nameof(DominionOfCanada);
         public const string EmpireOfJapan = nameof(EmpireOfJapan);
         public const string Error = nameof(Error);
@@ -42,6 +43,7 @@
         public const string Finland = nameof(Finland);
         public const string Fleet = nameof(Fleet);
         public const string France = nameof(France);
+        public const string FrontlineBomber = nameof(FrontlineBomber);
         public const string GaijinEntertainmentForWarThunder = nameof(GaijinEntertainmentForWarThunder);
         public const string Gdr = nameof(Gdr);
         public const string GeneratePreset = nameof(GeneratePreset);
@@ -58,14 +60,17 @@
         public const string Israel = nameof(Israel);
         public const string Italy = nameof(Italy);
         public const string Japan = nameof(Japan);
+        public const string JetBomber = nameof(JetBomber);
         public const string JetFighter = nameof(JetFighter);
         public const string KingdomOfItaly = nameof(KingdomOfItaly);
         public const string KlensyForWtTools = nameof(KlensyForWtTools);
+        public const string LightBomber = nameof(LightBomber);
         public const string LightCruiser = nameof(LightCruiser);
         public const string LightTank = nameof(LightTank);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
+        public const string LongRangeBomber = nameof(LongRangeBomber);
         public const string LookUp = nameof(LookUp);
         public const string MediumTank = nameof(MediumTank);
         public const string NaziGermany = nameof(NaziGermany);

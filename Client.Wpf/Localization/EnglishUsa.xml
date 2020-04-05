@@ -32,6 +32,7 @@
   <Line key="Cuba" value="Cuba"/>
   <Line key="CzechRepublic" value="Czech Republic"/>
   <Line key="Destroyer" value="Destroyer"/>
+  <Line key="DiveBomber" value="Dive Bomber"/>
   <Line key="DominionOfCanada" value="Dominion of Canada"/>
   <Line key="EmpireOfJapan" value="Empire of Japan"/>
   <Line key="Error" value="Error"/>
@@ -41,6 +42,7 @@
   <Line key="Fleet" value="Fleet"/>
   <Line key="France" value="France"/>
   <Line key="Frigate" value="Frigate"/>
+  <Line key="FrontlineBomber" value="Frontline Bomber"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment for War Thunder."/>
   <Line key="Gdr" value="GDR"/>
   <Line key="GeneratePreset" value="Generate a preset"/>
@@ -57,14 +59,17 @@
   <Line key="Israel" value="Israel"/>
   <Line key="Italy" value="Italy"/>
   <Line key="Japan" value="Japan"/>
+  <Line key="JetBomber" value="Jet Bomber"/>
   <Line key="JetFighter" value="Jet Fighter"/>
   <Line key="KingdomOfItaly" value="Kingdom of Italy"/>
   <Line key="KlensyForWtTools" value="Klensy for WT Tools."/>
+  <Line key="LightBomber" value="Light Bomber"/>
   <Line key="LightCruiser" value="Light Cruiser"/>
   <Line key="LightTank" value="Light Tank"/>
   <Line key="Loading" value="Loading..."/>
   <Line key="Location" value="{0} location"/>
   <Line key="LocationChangesWillComeIntoEffectAfterRestart" value="Location changes will come into after at the next application start."/>
+  <Line key="LongRangeBomber" value="Long Range Bomber"/>
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
