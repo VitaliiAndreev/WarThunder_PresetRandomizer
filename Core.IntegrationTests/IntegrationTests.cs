@@ -267,11 +267,6 @@ namespace Core.IntegrationTests
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsHiddenOn)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.HideCondition)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.MarketplaceId.HasValue).Should().BeTrue();
-
-                    // tags
-                    vehicleCollection.Any(vehicle => vehicle.Tags is null).Should().BeFalse();
-
-                    vehicleCollection.Where(vehicle => vehicle.Class == EVehicleClass.Fighter).All(vehicle => vehicle.Tags.IsFighter).Should().BeTrue();
                 }
 
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);

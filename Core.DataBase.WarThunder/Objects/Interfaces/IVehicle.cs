@@ -69,9 +69,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Persistent Properties
         #region Association Properties
 
-        /// <summary> A set of vehicle tags. </summary>
-        VehicleTagSet Tags { get; }
-
         /// <summary> The vehicle's nation. </summary>
         INation Nation { get; }
 

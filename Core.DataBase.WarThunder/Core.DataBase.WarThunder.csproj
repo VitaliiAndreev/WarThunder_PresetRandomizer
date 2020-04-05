@@ -158,7 +158,6 @@
     <Compile Include="Objects\VehicleModificationsData.cs" />
     <Compile Include="Objects\VehiclePerformanceData.cs" />
     <Compile Include="Objects\VehicleResearchTreeData.cs" />
-    <Compile Include="Objects\VehicleTagSet.cs" />
     <Compile Include="Objects\VehicleWeaponsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
