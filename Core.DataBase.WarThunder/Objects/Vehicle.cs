@@ -357,6 +357,8 @@ namespace Core.DataBase.WarThunder.Objects
             {
                 var subclasses = new Dictionary<EVehicleSubclass, bool>
                 {
+                    { EVehicleSubclass.LightBomber, deserializedTags.IsLightBomber },
+                    { EVehicleSubclass.DiveBomber, deserializedTags.IsDiveBomber },
                     {
                         EVehicleSubclass.Bomber,
                         deserializedTags.IsBomber
@@ -366,8 +368,6 @@ namespace Core.DataBase.WarThunder.Objects
                             && !deserializedTags.IsLongRangeBomber
                             && !deserializedTags.IsJetBomber
                     },
-                    { EVehicleSubclass.LightBomber, deserializedTags.IsLightBomber },
-                    { EVehicleSubclass.DiveBomber, deserializedTags.IsDiveBomber },
                     { EVehicleSubclass.FrontlineBomber, deserializedTags.IsFrontlineBomber },
                     { EVehicleSubclass.LongRangeBomber, deserializedTags.IsLongRangeBomber },
                     { EVehicleSubclass.JetBomber, deserializedTags.IsJetBomber },
