@@ -336,7 +336,7 @@ namespace Core.DataBase.WarThunder.Objects
                             && !deserializedTags.IsJetFighter
                     },
                     { EVehicleSubclass.Interceptor, deserializedTags.IsInterceptor },
-                    { EVehicleSubclass.NightFighter, deserializedTags.IsNightFighter },
+                    { EVehicleSubclass.AirDefenceFighter, deserializedTags.IsNightFighter },
                     { EVehicleSubclass.StrikeFighter, deserializedTags.IsStrikeFighter },
                     { EVehicleSubclass.JetFighter, deserializedTags.IsJetFighter },
                 };

@@ -82,7 +82,17 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleClass.UtilityHelicopter.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
 
                 () => EVehicleClass.AllAircraft.GetVehicleSubclasses().Should().BeEmpty(),
-                () => EVehicleClass.Fighter.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.NightFighter, EVehicleSubclass.StrikeFighter, EVehicleSubclass.JetFighter }),
+                () => EVehicleClass.Fighter.GetVehicleSubclasses().Should().BeEquivalentTo
+                    (
+                        new List<EVehicleSubclass>
+                        {
+                            EVehicleSubclass.Fighter,
+                            EVehicleSubclass.Interceptor,
+                            EVehicleSubclass.AirDefenceFighter,
+                            EVehicleSubclass.StrikeFighter,
+                            EVehicleSubclass.JetFighter,
+                        }
+                    ),
                 () => EVehicleClass.Attacker.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Bomber.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
 

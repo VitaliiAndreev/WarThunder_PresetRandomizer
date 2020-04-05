@@ -95,7 +95,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             var mockVehicle = new Mock<IVehicle>();
             mockVehicle.Setup(vehicle => vehicle.GaijinId).Returns(nameof(mockVehicle));
 
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.NightFighter, EVehicleSubclass.JetFighter };
+            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.AirDefenceFighter, EVehicleSubclass.JetFighter };
 
             // act
             Action createSubclass = () => { new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses); };

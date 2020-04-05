@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
   <Line key="AboutWtpr" value="О проекте"/>
+  <Line key="AirDefenceFighter" value="Истребитель ПВО"/>
   <Line key="All" value="Все"/>
   <Line key="Alpha" value="Альфа"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
@@ -69,7 +70,6 @@
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
   <Line key="NewZealand" value="Новая Зеландия"/>
-  <Line key="NightFighter" value="Ночной истребитель"/>
   <Line key="NorthKorea" value="Северная Корея"/>
   <Line key="Norway" value="Норвегия"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>

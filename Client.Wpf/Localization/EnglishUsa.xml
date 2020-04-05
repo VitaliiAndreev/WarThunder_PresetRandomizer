@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
   <Line key="AboutWtpr" value="About W.T.P.R."/>
+  <Line key="AirDefenceFighter" value="Air Defence Fighter"/>
   <Line key="All" value="All"/>
   <Line key="Alpha" value="Alpha"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
@@ -69,7 +70,6 @@
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
-  <Line key="NightFighter" value="Night Fighter"/>
   <Line key="NorthKorea" value="North Korea"/>
   <Line key="Norway" value="Norway"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>

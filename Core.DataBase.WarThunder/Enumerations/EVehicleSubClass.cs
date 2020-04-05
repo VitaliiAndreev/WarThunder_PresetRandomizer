@@ -4,7 +4,7 @@ namespace Core.DataBase.WarThunder.Enumerations
 {
     /// <summary>
     /// <see cref="IVehicle"/> sub-classes.
-    /// Valid values must consist of a digit designating the parent <see cref="EBranch"/>, <see cref="EVehicleClass"/>, and a digit designating an ID of the class within its parent branch.
+    /// Valid values must consist of a digit designating the parent <see cref="EBranch"/>, <see cref="EVehicleClass"/>, and a digit designating an ID of the subclass within its parent class.
     /// <see cref="None"/> is an exception.
     /// </summary>
     public enum EVehicleSubclass
@@ -21,7 +21,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         AllFighters = 30,
         Fighter = 301,
         Interceptor = 302,
-        NightFighter = 303,
+        AirDefenceFighter = 303,
         StrikeFighter = 304,
         JetFighter = 305,
         AllAttackers = 31,
