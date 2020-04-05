@@ -74,7 +74,14 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleClass.LightTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.MediumTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.HeavyTank.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
-                () => EVehicleClass.TankDestroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.TankDestroyer.GetVehicleSubclasses().Should().BeEquivalentTo
+                (
+                    new List<EVehicleSubclass>
+                    {
+                        EVehicleSubclass.TankDestroyer,
+                        EVehicleSubclass.AntiTankMissileCarrier,
+                    }
+                ),
                 () => EVehicleClass.Spaa.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
 
                 () => EVehicleClass.AllHelicopters.GetVehicleSubclasses().Should().BeEmpty(),
@@ -83,16 +90,16 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
 
                 () => EVehicleClass.AllAircraft.GetVehicleSubclasses().Should().BeEmpty(),
                 () => EVehicleClass.Fighter.GetVehicleSubclasses().Should().BeEquivalentTo
-                    (
-                        new List<EVehicleSubclass>
-                        {
-                            EVehicleSubclass.Fighter,
-                            EVehicleSubclass.Interceptor,
-                            EVehicleSubclass.AirDefenceFighter,
-                            EVehicleSubclass.StrikeFighter,
-                            EVehicleSubclass.JetFighter,
-                        }
-                    ),
+                (
+                    new List<EVehicleSubclass>
+                    {
+                        EVehicleSubclass.Fighter,
+                        EVehicleSubclass.Interceptor,
+                        EVehicleSubclass.AirDefenceFighter,
+                        EVehicleSubclass.StrikeFighter,
+                        EVehicleSubclass.JetFighter,
+                    }
+                ),
                 () => EVehicleClass.Attacker.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Bomber.GetVehicleSubclasses().Should().BeEquivalentTo
                 (

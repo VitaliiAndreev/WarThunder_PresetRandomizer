@@ -37,6 +37,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.AllHeavyTanks.GetVehicleClass().Should().Be(EVehicleClass.HeavyTank),
 
                 () => EVehicleSubclass.AllTankDestroyers.GetVehicleClass().Should().Be(EVehicleClass.TankDestroyer),
+                () => EVehicleSubclass.TankDestroyer.GetVehicleClass().Should().Be(EVehicleClass.TankDestroyer),
+                () => EVehicleSubclass.AntiTankMissileCarrier.GetVehicleClass().Should().Be(EVehicleClass.TankDestroyer),
 
                 () => EVehicleSubclass.AllSpaas.GetVehicleClass().Should().Be(EVehicleClass.Spaa),
 
