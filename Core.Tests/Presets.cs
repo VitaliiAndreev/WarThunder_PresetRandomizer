@@ -83,15 +83,19 @@ namespace Core.Tests
         public static void CleanUp()
         {
             if (UseLiveLogging)
+            {
                 while (LogManager.IsLoggingEnabled())
                     LogManager.DisableLogging();
+            }
 
             DeleteDataBaseFiles();
             DeleteLogFiles();
 
             if (UseLiveLogging)
+            {
                 while (!LogManager.IsLoggingEnabled())
                     LogManager.EnableLogging();
+            }
         }
 
         /// <summary> Deletes "sqlite3" database files. </summary>

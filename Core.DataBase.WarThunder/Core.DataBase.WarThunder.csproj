@@ -105,7 +105,6 @@
     <Compile Include="Objects\Interfaces\IVehiclePerformanceData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Interfaces\IPersistentWarThunderObjectWithId.cs" />
-    <Compile Include="Objects\Interfaces\IVehicleTagSet.cs" />
     <Compile Include="Objects\Interfaces\IVehicleWeaponsData.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />

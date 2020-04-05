@@ -19,7 +19,6 @@ namespace Core.DataBase.WarThunder.Helpers
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<INation>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IBranch>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicle>());
-            sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleTagSet>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleResearchTreeData>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehicleEconomyData>());
             sortedNewObjects.AddRange(dataRepository.NewObjects.OfType<IVehiclePerformanceData>());

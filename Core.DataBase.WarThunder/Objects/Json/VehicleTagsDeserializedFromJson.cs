@@ -53,9 +53,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_interceptor")]
         public bool IsInterceptor { get; set; }
 
-        [JsonProperty("type_heavy_fighter")]
-        public bool IsHeavyFighter { get; set; }
-
         [JsonProperty("mediterranean")]
         public bool UsedInMediterranean { get; set; }
 
@@ -64,9 +61,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("far_eastern_front")]
         public bool UsedOnFarEasternFront { get; set; }
-
-        [JsonProperty("type_naval_fighter")]
-        public bool IsNavalFighter { get; set; }
 
         [JsonProperty("korean_front")]
         public bool UsedOnKoreanFront { get; set; }
@@ -137,9 +131,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("midway")]
         public bool UsedInBattleOfMidway { get; set; }
 
-        [JsonProperty("type_medium_fighter")]
-        public bool IsMediumFighter { get; set; }
-
         [JsonProperty("korsun")]
         public bool UsedAtKorsun { get; set; }
 
@@ -154,12 +145,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         [JsonProperty("stalingrad_w")]
         public bool UsedAtStalingrad_ { get; set; }
-
-        [JsonProperty("type_light_fighter")]
-        public bool IsLightFighter { get; set; }
-
-        [JsonProperty("type_biplane")]
-        public bool IsBiplane { get; set; }
 
         [JsonProperty("krymsk")]
         public bool UsedAtKrymsk { get; set; }

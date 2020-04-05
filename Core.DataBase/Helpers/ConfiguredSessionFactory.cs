@@ -139,7 +139,9 @@ namespace Core.DataBase.Helpers
                 LogDebug(EDatabaseLogMessage.OverwritingSchema);
             }
             else
+            {
                 LogDebug(EDatabaseLogMessage.CreatingFileWithSchema);
+            }
 
             new SchemaExport(configuration).Create(false, true);
             LogDebug(ECoreLogMessage.Created.FormatFluently(EWord.Schema));
