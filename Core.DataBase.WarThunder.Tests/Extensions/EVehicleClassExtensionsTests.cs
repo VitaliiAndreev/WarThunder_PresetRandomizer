@@ -132,12 +132,21 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                         EVehicleSubclass.SubChaser,
                     }
                 ),
-                () => EVehicleClass.Barge.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Barge.GetVehicleSubclasses().Should().BeEquivalentTo
+                (
+                    new List<EVehicleSubclass>
+                    {
+                        EVehicleSubclass.AntiAirFerry,
+                        EVehicleSubclass.NavalFerryBarge,
+                    }
+                ),
                 () => EVehicleClass.Frigate.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Destroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.LightCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.HeavyCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
             };
+
+            DoTests(tests);
         }
 
         #endregion Tests: GetVehicleSubclasses()
@@ -176,6 +185,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleClass.LightCruiser.IsValid().Should().BeTrue(),
                 () => EVehicleClass.HeavyCruiser.IsValid().Should().BeTrue(),
             };
+
+            DoTests(tests);
         }
 
         #endregion Tests: IsValid()
