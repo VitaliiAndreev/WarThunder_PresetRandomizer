@@ -323,7 +323,17 @@ namespace Core.DataBase.WarThunder.Objects
             VehicleSubclass createSubclass(IDictionary<EVehicleSubclass, bool> subclassFlags) =>
                 new VehicleSubclass(_dataRepository, this, subclassFlags.Where(subclassIsUsed => subclassIsUsed.Value).Select(subclassIsUsed => subclassIsUsed.Key));
 
-            if (Class == EVehicleClass.Fighter)
+            if (Class == EVehicleClass.TankDestroyer)
+            {
+                var subclasses = new Dictionary<EVehicleSubclass, bool>
+                {
+                    { EVehicleSubclass.TankDestroyer, deserializedTags.IsTankDestroyer && !deserializedTags.IsAtgmCarrier },
+                    { EVehicleSubclass.AntiTankMissileCarrier, deserializedTags.IsAtgmCarrier },
+                };
+
+                Subclass = createSubclass(subclasses);
+            }
+            else if (Class == EVehicleClass.Fighter)
             {
                 var subclasses = new Dictionary<EVehicleSubclass, bool>
                 {

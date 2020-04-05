@@ -219,7 +219,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsTankDestroyer { get; set; }
 
         [JsonProperty("type_missile_tank")]
-        public bool IsMissileTank { get; set; }
+        public bool IsAtgmCarrier { get; set; }
 
         [JsonProperty("type_spaa")]
         public bool IsSpaa { get; set; }

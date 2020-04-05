@@ -4,6 +4,7 @@
   <Line key="AirDefenceFighter" value="Истребитель ПВО"/>
   <Line key="All" value="Все"/>
   <Line key="Alpha" value="Альфа"/>
+  <Line key="AntiTankMissileCarrier" value="Носитель ПТУР"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="Приложение будет перезапущено. Продолжить?"/>

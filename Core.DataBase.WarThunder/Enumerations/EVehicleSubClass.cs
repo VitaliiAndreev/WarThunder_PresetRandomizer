@@ -15,6 +15,8 @@ namespace Core.DataBase.WarThunder.Enumerations
         AllMediumTanks = 11,
         AllHeavyTanks = 12,
         AllTankDestroyers = 13,
+        TankDestroyer = 131,
+        AntiTankMissileCarrier = 132,
         AllSpaas = 14,
         AllAttackHelicopters = 20,
         AllUtilityHelicopters = 21,
