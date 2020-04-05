@@ -6,6 +6,7 @@
         public const string AboutWtpr = nameof(AboutWtpr);
         public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
+        public const string AntiAirFerry = nameof(AntiAirFerry);
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
@@ -77,6 +78,7 @@
         public const string MotorGunBoat = nameof(MotorGunBoat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
         public const string MotorTorpedoGunBoat = nameof(MotorTorpedoGunBoat);
+        public const string NavalFerryBarge = nameof(NavalFerryBarge);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);

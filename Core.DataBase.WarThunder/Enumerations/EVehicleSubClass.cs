@@ -42,6 +42,8 @@ namespace Core.DataBase.WarThunder.Enumerations
         MotorTorpedoGunBoat = 412,
         SubChaser = 413,
         AllBarges = 42,
+        AntiAirFerry = 421,
+        NavalFerryBarge = 422,
         AllFrigates = 43,
         AllDestroyers = 44,
         AllLightCruisers = 45,

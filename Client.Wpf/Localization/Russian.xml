@@ -4,6 +4,7 @@
   <Line key="AirDefenceFighter" value="Истребитель ПВО"/>
   <Line key="All" value="Все"/>
   <Line key="Alpha" value="Альфа"/>
+  <Line key="AntiAirFerry" value="Плавбатарея ПВО"/>
   <Line key="AntiTankMissileCarrier" value="Носитель ПТУР"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
@@ -77,6 +78,7 @@
   <Line key="MotorGunBoat" value="Артиллерийский катер"/>
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
   <Line key="MotorTorpedoGunBoat" value="Многоцелевой катер"/>
+  <Line key="NavalFerryBarge" value="Артиллерийская баржа"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
   <Line key="NewZealand" value="Новая Зеландия"/>

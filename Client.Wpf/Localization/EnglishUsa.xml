@@ -5,6 +5,7 @@
   <Line key="All" value="All"/>
   <Line key="Alpha" value="Alpha"/>
   <Line key="AntiTankMissileCarrier" value="Anti-Tank Missile Carrier"/>
+  <Line key="AntiAirFerry" value="Anti-air Ferry"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>
@@ -77,6 +78,7 @@
   <Line key="MotorGunBoat" value="Motor Gun Boat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="MotorTorpedoGunBoat" value="Motor Torpedo Gun Boat"/>
+  <Line key="NavalFerryBarge" value="Naval Ferry Barge"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
