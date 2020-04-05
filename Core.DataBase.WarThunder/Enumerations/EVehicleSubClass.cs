@@ -45,6 +45,8 @@ namespace Core.DataBase.WarThunder.Enumerations
         AntiAirFerry = 421,
         NavalFerryBarge = 422,
         AllFrigates = 43,
+        HeavyGunboat = 431,
+        Frigate = 432,
         AllDestroyers = 44,
         AllLightCruisers = 45,
         AllHeavyCruisers = 46,

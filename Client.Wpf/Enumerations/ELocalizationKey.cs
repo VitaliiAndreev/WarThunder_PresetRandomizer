@@ -54,6 +54,7 @@
         public const string Greece = nameof(Greece);
         public const string HeavyBoat = nameof(HeavyBoat);
         public const string HeavyCruiser = nameof(HeavyCruiser);
+        public const string HeavyGunboat = nameof(HeavyGunboat);
         public const string HeavyTank = nameof(HeavyTank);
         public const string Helicopters = nameof(Helicopters);
         public const string Hungary = nameof(Hungary);

@@ -53,6 +53,7 @@
   <Line key="Greece" value="Греция"/>
   <Line key="HeavyBoat" value="Лёгкое судно"/>
   <Line key="HeavyCruiser" value="Тяжёлый крейсер"/>
+  <Line key="HeavyGunboat" value="Канонерская лодка"/>
   <Line key="HeavyTank" value="Тяжёлый танк"/>
   <Line key="Helicopters" value="Вертолёты"/>
   <Line key="Hungary" value="Венгрия"/>
