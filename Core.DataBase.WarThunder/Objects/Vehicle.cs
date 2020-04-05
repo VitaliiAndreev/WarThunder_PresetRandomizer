@@ -411,7 +411,7 @@ namespace Core.DataBase.WarThunder.Objects
                 var subclasses = new Dictionary<EVehicleSubclass, bool>
                 {
                     { EVehicleSubclass.HeavyGunboat, deserializedTags.IsHeavyGunBoat },
-                    { EVehicleSubclass.Frigate, deserializedTags.IsFrigate },
+                    { EVehicleSubclass.Frigate, deserializedTags.IsFrigate && !deserializedTags.IsHeavyGunBoat },
                 };
 
                 Subclass = createSubclass(subclasses);
