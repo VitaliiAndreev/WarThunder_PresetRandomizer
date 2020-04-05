@@ -77,6 +77,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.NavalFerryBarge.GetVehicleClass().Should().Be(EVehicleClass.Barge),
 
                 () => EVehicleSubclass.AllFrigates.GetVehicleClass().Should().Be(EVehicleClass.Frigate),
+                () => EVehicleSubclass.HeavyGunboat.GetVehicleClass().Should().Be(EVehicleClass.Frigate),
+                () => EVehicleSubclass.Frigate.GetVehicleClass().Should().Be(EVehicleClass.Frigate),
 
                 () => EVehicleSubclass.AllDestroyers.GetVehicleClass().Should().Be(EVehicleClass.Destroyer),
 
@@ -146,6 +148,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.NavalFerryBarge.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllFrigates.IsValid().Should().BeFalse(),
+                () => EVehicleSubclass.HeavyGunboat.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.Frigate.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllDestroyers.IsValid().Should().BeFalse(),
 
