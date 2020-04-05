@@ -92,7 +92,7 @@
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
-  <Line key="Spaa" value="СЗУ"/>
+  <Line key="Spaa" value="ЗСУ"/>
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>

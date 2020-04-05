@@ -29,6 +29,9 @@ namespace Client.Wpf
         /// <summary> Whether to generate the database. </summary>
         private bool _generateDatabase;
 
+        /// <summary> Startup arguments. </summary>
+        internal static string StartupArguments;
+
         #endregion Fields
         #region Constants
 
@@ -118,6 +121,8 @@ namespace Client.Wpf
         /// <param name="startupArguments"> Startup arguments </param>
         private void ProcessStartupArguments(string[] startupArguments)
         {
+            StartupArguments = startupArguments.StringJoin(ESeparator.Space);
+
             _generateDatabase = true;
 
             if (startupArguments is null || startupArguments.IsEmpty())

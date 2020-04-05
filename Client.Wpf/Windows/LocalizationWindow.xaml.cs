@@ -113,7 +113,7 @@ namespace Client.Wpf.Windows
 
             if (_restartAfterSelection)
             {
-                Process.Start(Application.ResourceAssembly.Location);
+                Process.Start(Application.ResourceAssembly.Location, WpfClient.StartupArguments);
 
                 Log.Debug(ECoreLogMessage.Closed);
                 Environment.Exit(0);
