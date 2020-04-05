@@ -46,6 +46,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
 
                 () => EVehicleSubclass.AllFighters.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
                 () => EVehicleSubclass.Fighter.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
+                () => EVehicleSubclass.Interceptor.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
+                () => EVehicleSubclass.NightFighter.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
+                () => EVehicleSubclass.StrikeFighter.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
                 () => EVehicleSubclass.JetFighter.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
 
                 () => EVehicleSubclass.AllAttackers.GetVehicleClass().Should().Be(EVehicleClass.Attacker),
@@ -97,6 +100,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
 
                 () => EVehicleSubclass.AllFighters.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.Fighter.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.Interceptor.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.NightFighter.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.StrikeFighter.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.JetFighter.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllAttackers.IsValid().Should().BeFalse(),
