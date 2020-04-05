@@ -119,7 +119,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 (
                     new List<EVehicleSubclass>
                     {
-                        EVehicleSubclass.MotorGunBoat,
+                        EVehicleSubclass.MotorGunboat,
                         EVehicleSubclass.MotorTorpedoBoat,
                     }
                 ),
@@ -127,8 +127,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 (
                     new List<EVehicleSubclass>
                     {
-                        EVehicleSubclass.ArmoredGunBoat,
-                        EVehicleSubclass.MotorTorpedoGunBoat,
+                        EVehicleSubclass.ArmoredGunboat,
+                        EVehicleSubclass.MotorTorpedoGunboat,
                         EVehicleSubclass.SubChaser,
                     }
                 ),

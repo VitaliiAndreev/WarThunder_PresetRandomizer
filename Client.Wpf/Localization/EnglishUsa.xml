@@ -11,7 +11,7 @@
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>
   <Line key="Arcade" value="Arcade Battles"/>
   <Line key="Argentina" value="Argentina"/>
-  <Line key="ArmoredGunBoat" value="Armored Gun Boat"/>
+  <Line key="ArmoredGunboat" value="Armored Gunboat"/>
   <Line key="Army" value="Army"/>
   <Line key="Attacker" value="Attacker"/>
   <Line key="AttackHelicopter" value="Attack Helicopter"/>
@@ -76,9 +76,9 @@
   <Line key="LongRangeBomber" value="Long Range Bomber"/>
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
-  <Line key="MotorGunBoat" value="Motor Gun Boat"/>
+  <Line key="MotorGunboat" value="Motor Gunboat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
-  <Line key="MotorTorpedoGunBoat" value="Motor Torpedo Gun Boat"/>
+  <Line key="MotorTorpedoGunboat" value="Motor Torpedo Gunboat"/>
   <Line key="NavalFerryBarge" value="Naval Ferry Barge"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>

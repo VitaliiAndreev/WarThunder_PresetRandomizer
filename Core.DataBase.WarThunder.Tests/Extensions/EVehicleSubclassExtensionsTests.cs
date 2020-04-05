@@ -64,12 +64,12 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.JetBomber.GetVehicleClass().Should().Be(EVehicleClass.Bomber),
 
                 () => EVehicleSubclass.AllBoats.GetVehicleClass().Should().Be(EVehicleClass.Boat),
-                () => EVehicleSubclass.MotorGunBoat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
+                () => EVehicleSubclass.MotorGunboat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
                 () => EVehicleSubclass.MotorTorpedoBoat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
 
                 () => EVehicleSubclass.AllHeavyBoats.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
-                () => EVehicleSubclass.ArmoredGunBoat.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
-                () => EVehicleSubclass.MotorTorpedoGunBoat.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
+                () => EVehicleSubclass.ArmoredGunboat.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
+                () => EVehicleSubclass.MotorTorpedoGunboat.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
                 () => EVehicleSubclass.SubChaser.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
 
                 () => EVehicleSubclass.AllBarges.GetVehicleClass().Should().Be(EVehicleClass.Barge),
@@ -133,12 +133,12 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.JetBomber.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllBoats.IsValid().Should().BeFalse(),
-                () => EVehicleSubclass.MotorGunBoat.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.MotorGunboat.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.MotorTorpedoBoat.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllHeavyBoats.IsValid().Should().BeFalse(),
-                () => EVehicleSubclass.ArmoredGunBoat.IsValid().Should().BeTrue(),
-                () => EVehicleSubclass.MotorTorpedoGunBoat.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.ArmoredGunboat.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.MotorTorpedoGunboat.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.SubChaser.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllBarges.IsValid().Should().BeFalse(),

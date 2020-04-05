@@ -13,7 +13,7 @@
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
         public const string Arcade = nameof(Arcade);
         public const string Argentina = nameof(Argentina);
-        public const string ArmoredGunBoat = nameof(ArmoredGunBoat);
+        public const string ArmoredGunboat = nameof(ArmoredGunboat);
         public const string Army = nameof(Army);
         public const string Attacker = nameof(Attacker);
         public const string AttackHelicopter = nameof(AttackHelicopter);
@@ -46,6 +46,7 @@
         public const string Finland = nameof(Finland);
         public const string Fleet = nameof(Fleet);
         public const string France = nameof(France);
+        public const string Frigate = nameof(Frigate);
         public const string FrontlineBomber = nameof(FrontlineBomber);
         public const string GaijinEntertainmentForWarThunder = nameof(GaijinEntertainmentForWarThunder);
         public const string Gdr = nameof(Gdr);
@@ -77,9 +78,9 @@
         public const string LongRangeBomber = nameof(LongRangeBomber);
         public const string LookUp = nameof(LookUp);
         public const string MediumTank = nameof(MediumTank);
-        public const string MotorGunBoat = nameof(MotorGunBoat);
+        public const string MotorGunboat = nameof(MotorGunboat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
-        public const string MotorTorpedoGunBoat = nameof(MotorTorpedoGunBoat);
+        public const string MotorTorpedoGunboat = nameof(MotorTorpedoGunboat);
         public const string NavalFerryBarge = nameof(NavalFerryBarge);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
