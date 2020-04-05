@@ -115,7 +115,14 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 ),
 
                 () => EVehicleClass.AllShips.GetVehicleSubclasses().Should().BeEmpty(),
-                () => EVehicleClass.Boat.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Boat.GetVehicleSubclasses().Should().BeEquivalentTo
+                (
+                    new List<EVehicleSubclass>
+                    {
+                        EVehicleSubclass.MotorGunBoat,
+                        EVehicleSubclass.MotorTorpedoBoat,
+                    }
+                ),
                 () => EVehicleClass.HeavyBoat.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Barge.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
                 () => EVehicleClass.Frigate.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),

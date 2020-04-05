@@ -64,6 +64,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.JetBomber.GetVehicleClass().Should().Be(EVehicleClass.Bomber),
 
                 () => EVehicleSubclass.AllBoats.GetVehicleClass().Should().Be(EVehicleClass.Boat),
+                () => EVehicleSubclass.MotorGunBoat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
+                () => EVehicleSubclass.MotorTorpedoBoat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
 
                 () => EVehicleSubclass.AllHeavyBoats.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
 
