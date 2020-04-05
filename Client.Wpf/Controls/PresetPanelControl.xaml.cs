@@ -2,6 +2,7 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
@@ -164,6 +165,7 @@ namespace Client.Wpf.Controls
             {
                 var textBlock = new TextBlock()
                 {
+                    Style = this.GetStyle(EStyleKey.TextBlock.TextBlockFontSize16),
                     Margin = new Thickness(0, 5, 0, 0),
                     Text = text,
                 };

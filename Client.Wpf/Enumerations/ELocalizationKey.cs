@@ -7,6 +7,7 @@
         public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
         public const string AntiAirFerry = nameof(AntiAirFerry);
+        public const string AntiTankMissileCarrier = nameof(AntiTankMissileCarrier);
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
