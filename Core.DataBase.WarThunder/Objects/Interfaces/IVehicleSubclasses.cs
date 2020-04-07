@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle subclasses a vehicle belongs to. </summary>
-    public interface IVehicleSubclass : IPersistentObjectWithId
+    public interface IVehicleSubclasses : IPersistentObjectWithId
     {
         #region Persistent Properties
 

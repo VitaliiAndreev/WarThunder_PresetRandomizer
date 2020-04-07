@@ -73,7 +73,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         IBranch Branch { get; }
 
         /// <summary> The vehicle's subclass. </summary>
-        IVehicleSubclass Subclass { get; }
+        IVehicleSubclasses Subclasses { get; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; }

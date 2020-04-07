@@ -110,9 +110,9 @@ namespace Core.DataBase.WarThunder.Objects
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1)] public virtual IBranch Branch { get; protected internal set; }
 
-        /// <summary> The vehicle's subclass. </summary>
-        [OneToOne(ClassType = typeof(VehicleSubclass), PropertyRef = nameof(VehicleSubclass.Vehicle), Lazy = Laziness.Proxy)]
-        public virtual IVehicleSubclass Subclass { get; protected internal set; }
+        /// <summary> The vehicle's subclasses. </summary>
+        [OneToOne(ClassType = typeof(VehicleSubclasses), PropertyRef = nameof(VehicleSubclasses.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual IVehicleSubclasses Subclasses { get; protected internal set; }
 
         /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Entity), Lazy = Laziness.Proxy)]
@@ -316,112 +316,6 @@ namespace Core.DataBase.WarThunder.Objects
                 Class = EVehicleClass.None;
         }
 
-        /// <summary> Initializes the <see cref="Class"/> based on <paramref name="deserializedTags"/>. Order of conditions is important because vehicles may have overlapping tags. </summary>
-        /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
-        private void InitializeSubclasses(VehicleTagsDeserializedFromJson deserializedTags)
-        {
-            VehicleSubclass createSubclass(IDictionary<EVehicleSubclass, bool> subclassFlags) =>
-                new VehicleSubclass(_dataRepository, this, subclassFlags.Where(subclassIsUsed => subclassIsUsed.Value).Select(subclassIsUsed => subclassIsUsed.Key));
-
-            if (Class == EVehicleClass.TankDestroyer)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.TankDestroyer, deserializedTags.IsTankDestroyer && !deserializedTags.IsAtgmCarrier },
-                    { EVehicleSubclass.AntiTankMissileCarrier, deserializedTags.IsAtgmCarrier },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.Fighter)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    {
-                        EVehicleSubclass.Fighter,
-                        deserializedTags.IsFighter
-                            && !deserializedTags.IsInterceptor
-                            && !deserializedTags.IsNightFighter
-                            && !deserializedTags.IsStrikeFighter
-                            && !deserializedTags.IsJetFighter
-                    },
-                    { EVehicleSubclass.Interceptor, deserializedTags.IsInterceptor },
-                    { EVehicleSubclass.AirDefenceFighter, deserializedTags.IsNightFighter },
-                    { EVehicleSubclass.StrikeFighter, deserializedTags.IsStrikeFighter },
-                    { EVehicleSubclass.JetFighter, deserializedTags.IsJetFighter },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.Bomber)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.LightBomber, deserializedTags.IsLightBomber },
-                    { EVehicleSubclass.DiveBomber, deserializedTags.IsDiveBomber },
-                    {
-                        EVehicleSubclass.Bomber,
-                        deserializedTags.IsBomber
-                            && !deserializedTags.IsLightBomber
-                            && !deserializedTags.IsDiveBomber
-                            && !deserializedTags.IsFrontlineBomber
-                            && !deserializedTags.IsLongRangeBomber
-                            && !deserializedTags.IsJetBomber
-                    },
-                    { EVehicleSubclass.FrontlineBomber, deserializedTags.IsFrontlineBomber },
-                    { EVehicleSubclass.LongRangeBomber, deserializedTags.IsLongRangeBomber },
-                    { EVehicleSubclass.JetBomber, deserializedTags.IsJetBomber },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.Boat)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.MotorGunboat, deserializedTags.IsGunBoat },
-                    { EVehicleSubclass.MotorTorpedoBoat, deserializedTags.IsTorpedoBoat },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.HeavyBoat)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.ArmoredGunboat, deserializedTags.IsArmoredBoat },
-                    { EVehicleSubclass.MotorTorpedoGunboat, deserializedTags.IsTorpedoGunBoat },
-                    { EVehicleSubclass.SubChaser, deserializedTags.IsSubmarineChaser }
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.Barge)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.AntiAirFerry, deserializedTags.IsAaFerry },
-                    { EVehicleSubclass.NavalFerryBarge, deserializedTags.IsFerry },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else if (Class == EVehicleClass.Frigate)
-            {
-                var subclasses = new Dictionary<EVehicleSubclass, bool>
-                {
-                    { EVehicleSubclass.HeavyGunboat, deserializedTags.IsHeavyGunBoat },
-                    { EVehicleSubclass.Frigate, deserializedTags.IsFrigate && !deserializedTags.IsHeavyGunBoat },
-                };
-
-                Subclass = createSubclass(subclasses);
-            }
-            else
-            {
-                Subclass = createSubclass(new Dictionary<EVehicleSubclass, bool>());
-            }
-        }
-
         /// <summary> Performs additional initialization with data deserialized from "unittags.blkx". </summary>
         /// <param name="deserializedVehicleData"></param>
         public virtual void InitializeWithDeserializedAdditionalVehicleDataJson(VehicleDeserializedFromJsonUnitTags deserializedVehicleData)
@@ -434,7 +328,8 @@ namespace Core.DataBase.WarThunder.Objects
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
             {
                 InitializeClass(tags);
-                InitializeSubclasses(tags);
+
+                Subclasses = new VehicleSubclasses(_dataRepository, this, tags);
             }
 
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.

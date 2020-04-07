@@ -1,6 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Json;
 using Core.Enumerations.Logger;
 using Core.Tests;
 using FluentAssertions;
@@ -8,11 +9,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Core.DataBase.WarThunder.Tests.Objects
 {
-    /// <summary> See <see cref="VehicleSubclass"/>.</summary>
+    /// <summary> See <see cref="VehicleSubclasses"/>.</summary>
     [TestClass]
     public class VehicleSubclassTests
     {
@@ -26,15 +26,21 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         #endregion Internal Methods
-        #region Tests: All
+        #region Tests: Constructor()
 
         [TestMethod]
-        public void All_1_Returns_1()
+        public void Constructor_1_Returns_1()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
+
+            var vehicleTags = new VehicleTagsDeserializedFromJson
+            {
+                IsFighter = true,
+            };
             var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter };
-            var subclass = new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses);
+            var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
 
             // act
             var allSubclasses = subclass.All;
@@ -44,12 +50,19 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         [TestMethod]
-        public void All_2_Returns_2()
+        public void Constructor_2_Returns_2()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor };
-            var subclass = new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses);
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
+
+            var vehicleTags = new VehicleTagsDeserializedFromJson
+            {
+                IsInterceptor = true,
+                IsAirDefenceFighter = true,
+            };
+            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Interceptor, EVehicleSubclass.AirDefenceFighter };
+            var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
 
             // act
             var allSubclasses = subclass.All;
@@ -59,12 +72,20 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         [TestMethod]
-        public void All_3_Returns_3()
+        public void Constructor_3_Returns_3()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.JetFighter };
-            var subclass = new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses);
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
+
+            var vehicleTags = new VehicleTagsDeserializedFromJson
+            {
+                IsInterceptor = true,
+                IsAirDefenceFighter = true,
+                IsJetFighter = true,
+            };
+            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Interceptor, EVehicleSubclass.AirDefenceFighter, EVehicleSubclass.JetFighter };
+            var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
 
             // act
             var allSubclasses = subclass.All;
@@ -74,36 +95,28 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         [TestMethod]
-        public void All_4_1_Dupe_Returns_3()
-        {
-            // arrange
-            var mockVehicle = new Mock<IVehicle>();
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.JetFighter };
-            var subclass = new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses);
-
-            // act
-            var allSubclasses = subclass.All;
-
-            // assert
-            allSubclasses.Should().BeEquivalentTo(subclasses.Distinct());
-        }
-
-        [TestMethod]
-        public void All_4_Throws()
+        public void Constructor_4_Throws()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
             mockVehicle.Setup(vehicle => vehicle.GaijinId).Returns(nameof(mockVehicle));
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
 
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Fighter, EVehicleSubclass.Interceptor, EVehicleSubclass.AirDefenceFighter, EVehicleSubclass.JetFighter };
+            var vehicleTags = new VehicleTagsDeserializedFromJson
+            {
+                IsInterceptor = true,
+                IsAirDefenceFighter = true,
+                IsStrikeFighter = true,
+                IsJetFighter = true,
+            };
 
             // act
-            Action createSubclass = () => { new VehicleSubclass(Presets.MockDataRepository.Object, mockVehicle.Object, subclasses); };
+            Action createSubclass = () => { new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags); };
 
             // assert
             createSubclass.Should().Throw<NotImplementedException>();
         }
 
-        #endregion Tests: All
+        #endregion Tests: Constructor
     }
 }

@@ -156,7 +156,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public bool IsDiveBomber { get; set; }
 
         [JsonProperty("type_aa_fighter")]
-        public bool IsNightFighter { get; set; }
+        public bool IsAirDefenceFighter { get; set; }
 
         [JsonProperty("type_naval_bomber")]
         public bool IsNavalBomber { get; set; }

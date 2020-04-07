@@ -542,7 +542,7 @@ namespace Core.Organization.Helpers
         /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesBySubclassFilters(IEnumerable<EVehicleSubclass> validVehicleSubclasses, IEnumerable<IVehicle> vehicles) =>
-            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclass.All);
+            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclasses.All);
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validBranches"/>. </summary>
         /// <param name="validBranches"> Vehicle branches enabled via GUI and actually available. </param>
