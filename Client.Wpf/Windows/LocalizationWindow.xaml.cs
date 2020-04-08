@@ -46,7 +46,7 @@ namespace Client.Wpf.Windows
             Presenter.Language = WpfSettings.Localization;
 
             InitializeComponent();
-            Localize();
+            Localise();
 
             _buttonEnglishUsa.Tag = ELanguage.EnglishUsa;
             _buttonRussian.Tag = ELanguage.Russian;
@@ -86,9 +86,9 @@ namespace Client.Wpf.Windows
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text in the window. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             Title = ApplicationHelpers.LocalizationManager is null
                 ? EClientApplicationName.WarThunderPresetRandomizerAbbreviated

@@ -79,6 +79,7 @@ namespace Core.DataBase.WarThunder.Objects
             Vehicle = vehicle;
 
             InitialiseProperties(SelectSubclassesToProcess(deserializedTags, vehicle.Class));
+            LogCreation();
         }
 
         #endregion Constructors
@@ -86,7 +87,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Selects subclasses from <paramref name="deserializedTags"/> based on what pertains to the <paramref name="vehicleClass"/>. </summary>
         /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to select subclasses from. </param>
-        /// <param name="vehicleClass"> The vehicle for which to select subclasses. </param>
+        /// <param name="vehicleClass"> The vehicle class for which to select subclasses. </param>
         /// <returns></returns>
         private IEnumerable<EVehicleSubclass> SelectSubclassesToProcess(VehicleTagsDeserializedFromJson deserializedTags, EVehicleClass vehicleClass)
         {

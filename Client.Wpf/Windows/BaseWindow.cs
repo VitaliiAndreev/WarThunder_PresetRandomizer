@@ -33,7 +33,7 @@ namespace Client.Wpf.Windows
         #endregion Constructors
 
         /// <summary> Applies localization to visible text in the window. </summary>
-        public virtual void Localize()
+        public virtual void Localise()
         {
         }
 

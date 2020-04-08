@@ -222,9 +222,9 @@ namespace Client.Wpf.Controls
         #endregion Methods: Initialisation
         #region Methods: Overrides
 
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localisationKey);
 

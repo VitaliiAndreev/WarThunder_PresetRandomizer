@@ -84,9 +84,9 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Raisers
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             _swapPresetsButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.SwapPrimaryAndFallbackPresets);
             _deletePresetsButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.RemovePresets);

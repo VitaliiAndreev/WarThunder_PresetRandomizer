@@ -23,9 +23,9 @@ namespace Client.Wpf.Controls.Base
         #endregion Constructors
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             foreach (var dropCapToggleButton in _dropCapToggleButtons.Values)
                 if (dropCapToggleButton.Tag is T key)

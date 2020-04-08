@@ -23,9 +23,9 @@ namespace Client.Wpf.Controls
         #endregion Constuctors
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
             Buttons[ERandomisation.CategoryBased].ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.CategoryBasedDescription);
             Buttons[ERandomisation.VehicleBased].ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.VehicleBasedDescription);
         }

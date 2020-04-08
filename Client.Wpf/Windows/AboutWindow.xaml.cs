@@ -35,7 +35,7 @@ namespace Client.Wpf.Windows
             _version.Text = $"{EApplicationData.Version} ({{0}})";
             _vitalyAndreyevStats.Text = EApplicationData.ContributionsByVitalyAndreyev;
 
-            Localize();
+            Localise();
 
             Log.Debug(ECoreLogMessage.Initialized);
         }
@@ -58,9 +58,9 @@ namespace Client.Wpf.Windows
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text in the window. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationNameAbbreviated);
 

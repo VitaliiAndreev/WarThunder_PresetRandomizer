@@ -74,12 +74,12 @@ namespace Client.Wpf.Controls.Base
         }
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             foreach (var column in ToggleColumns.Values)
-                column.Localize();
+                column.Localise();
         }
 
         /// <summary> Creates columns of toggle buttons for given vehicle branches, with character icons. </summary>

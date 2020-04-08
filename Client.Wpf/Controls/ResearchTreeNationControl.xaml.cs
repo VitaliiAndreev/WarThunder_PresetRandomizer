@@ -64,9 +64,9 @@ namespace Client.Wpf.Controls
         public override string ToString() => $"[{base.ToString()}] {(Parent as FrameworkElement)?.Tag}";
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             static void localiseTabHeader(TabItem tab)
             {
@@ -80,7 +80,7 @@ namespace Client.Wpf.Controls
             localiseTabHeader(_fleetTab);
 
             foreach (var control in _branchControls.Values)
-                control.Localize();
+                control.Localise();
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>

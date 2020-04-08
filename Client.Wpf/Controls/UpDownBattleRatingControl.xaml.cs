@@ -61,7 +61,11 @@ namespace Client.Wpf.Controls
         public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UpDownBattleRatingControl));
 
         /// <summary> Occurs when <see cref="Value"/> changes. </summary>
-        public event RoutedEventHandler ValueChanged;
+        public event RoutedEventHandler ValueChanged
+        {
+            add { AddHandler(ValueChangedEvent, value); }
+            remove { RemoveHandler(ValueChangedEvent, value); }
+        }
 
         #endregion Events
         #region Constructors

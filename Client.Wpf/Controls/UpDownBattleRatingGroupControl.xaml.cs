@@ -28,7 +28,11 @@ namespace Client.Wpf.Controls
         public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UpDownBattleRatingGroupControl));
 
         /// <summary> Occurs when <see cref="Value"/> changes. </summary>
-        public event RoutedEventHandler ValueChanged;
+        public event RoutedEventHandler ValueChanged
+        {
+            add { AddHandler(ValueChangedEvent, value); }
+            remove { RemoveHandler(ValueChangedEvent, value); }
+        }
 
         #endregion Events
         #region Constructors
@@ -59,9 +63,9 @@ namespace Client.Wpf.Controls
             RaiseEvent(new RoutedEventArgs(ValueChangedEvent, this));
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             _header.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.BattleRatings);
         }

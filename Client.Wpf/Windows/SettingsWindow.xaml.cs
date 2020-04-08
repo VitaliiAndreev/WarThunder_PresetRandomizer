@@ -49,7 +49,7 @@ namespace Client.Wpf.Windows
             Presenter.ClosingState = ESettingsWindowClosureState.NotClosing;
 
             InitializeComponent();
-            Localize();
+            Localise();
 
             _warThunderLocationControl.AddressValidator = ApplicationHelpers.FileManager.WarThunderLocationIsValid;
             _warThunderLocationControl.TextBoxText = Settings.WarThunderLocation;
@@ -111,9 +111,9 @@ namespace Client.Wpf.Windows
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text in the window. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 

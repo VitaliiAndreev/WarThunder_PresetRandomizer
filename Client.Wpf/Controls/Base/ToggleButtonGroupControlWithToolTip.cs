@@ -8,9 +8,9 @@ namespace Client.Wpf.Controls.Base
     public class ToggleButtonGroupControlWithToolTip<T> : ToggleButtonGroupControl<T>
     {
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             foreach (var button in Buttons.Values)
             {

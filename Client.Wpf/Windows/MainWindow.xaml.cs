@@ -63,7 +63,7 @@ namespace Client.Wpf.Windows
 
             InitializeDictionaries();
             InitializeComponent();
-            Localize();
+            Localise();
 
             SetControlTags();
             AttachCommands();
@@ -554,24 +554,24 @@ namespace Client.Wpf.Windows
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text in the window. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
             _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
 
-            _randomisationSelectionControl.Localize();
-            _gameModeSelectionControl.Localize();
-            _vehicleClassControl.Localize();
-            _nationToggleControl.Localize();
-            _countryToggleControl.Localize();
-            _battleRatingControl.Localize();
+            _randomisationSelectionControl.Localise();
+            _gameModeSelectionControl.Localise();
+            _vehicleClassControl.Localise();
+            _nationToggleControl.Localise();
+            _countryToggleControl.Localise();
+            _battleRatingControl.Localise();
 
-            _presetPanel.Localize();
-            _researchTreeControl.Localize();
+            _presetPanel.Localise();
+            _researchTreeControl.Localise();
         }
 
         #endregion Methods: Overrides

@@ -10,7 +10,8 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
-    <Grid x:Name="_buttonGrid">
+    <Grid
+        x:Name="_buttonGrid">
         
     </Grid>
 </base:ToggleButtonGroupControl>

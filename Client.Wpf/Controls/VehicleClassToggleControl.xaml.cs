@@ -14,7 +14,7 @@ namespace Client.Wpf.Controls
         #region Fields
 
         /// <summary> Togglable vehicle subclass menu items indexed by vehicle subclass keys. </summary>
-        private readonly IDictionary<EVehicleSubclass, MenuItem> VehicleSubclassToggleMenuItems;
+        private readonly IDictionary<EVehicleSubclass, MenuItem> _vehicleSubclassToggleMenuItems;
 
         #endregion Fields
         #region Properties
@@ -28,8 +28,12 @@ namespace Client.Wpf.Controls
         /// <summary> A routed event for <see cref="VehicleSubclassToggled"/>. </summary>
         public static readonly RoutedEvent VehicleSubclassToggledEvent = EventManager.RegisterRoutedEvent(nameof(VehicleSubclassToggled), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(VehicleClassToggleControl));
 
-        /// <summary> Occurs when any of the <see cref="VehicleSubclassToggleMenuItems"/> is toggled. </summary>
-        public event RoutedEventHandler VehicleSubclassToggled;
+        /// <summary> Occurs when any of the <see cref="_vehicleSubclassToggleMenuItems"/> is toggled. </summary>
+        public event RoutedEventHandler VehicleSubclassToggled
+        {
+            add { AddHandler(VehicleSubclassToggledEvent, value); }
+            remove { RemoveHandler(VehicleSubclassToggledEvent, value); }
+        }
 
         #endregion Events
         #region Constructors
@@ -37,7 +41,7 @@ namespace Client.Wpf.Controls
         /// <summary> Creates a new control. </summary>
         public VehicleClassToggleControl()
         {
-            VehicleSubclassToggleMenuItems = new Dictionary<EVehicleSubclass, MenuItem>();
+            _vehicleSubclassToggleMenuItems = new Dictionary<EVehicleSubclass, MenuItem>();
 
             AttachKeyConverter(vehicleClass => vehicleClass.GetBranch());
 
@@ -64,11 +68,11 @@ namespace Client.Wpf.Controls
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
-            foreach (var pair in VehicleSubclassToggleMenuItems)
+            foreach (var pair in _vehicleSubclassToggleMenuItems)
             {
                 var vehicleSubclass = pair.Key;
                 var menuItem = pair.Value;
@@ -78,11 +82,15 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Overrides
+        #region Methods: Event Raising
 
         /// <summary> Raises the <see cref="VehicleSubclassToggledEvent"/> event. </summary>
         /// <param name="menuItem"> The menu item that has been toggled. </param>
         public void RaiseVehicleSubclassToggled(MenuItem menuItem) =>
             RaiseEvent(new RoutedEventArgs(VehicleSubclassToggledEvent, menuItem));
+
+        #endregion Methods: Event Raising
+        #region Methods: Initialisation
 
         /// <summary> Creates columns of toggle buttons for given vehicle <paramref name="branches"/>, with character icons. </summary>
         /// <param name="branches"> Vehicle branches to create columns of toggle buttons for. </param>
@@ -118,13 +126,14 @@ namespace Client.Wpf.Controls
                 var contextMenuItem = CreateTogglableContextMenuItem(vehicleSubclass);
 
                 contextMenu.Items.Add(contextMenuItem);
-                VehicleSubclassToggleMenuItems.Add(vehicleSubclass, contextMenuItem);
+                _vehicleSubclassToggleMenuItems.Add(vehicleSubclass, contextMenuItem);
 
                 if (ToggleColumns[branch].Buttons[vehicleClass].ContextMenu is null)
                     ToggleColumns[branch].Buttons[vehicleClass].ContextMenu = contextMenu;
             }
         }
 
+        #endregion Methods: Initialisation
         #region Methods: Toggle()
 
         /// <summary> Toggles a menu item corresponding to the specified vehicle subclass key. </summary>
@@ -132,7 +141,7 @@ namespace Client.Wpf.Controls
         /// <param name="newState"> Whether to toggle the menu item on or off. </param>
         public void Toggle(EVehicleSubclass vehicleSubclass, bool newState)
         {
-            if (VehicleSubclassToggleMenuItems.TryGetValue(vehicleSubclass, out var subclassMenuItem) && subclassMenuItem.IsChecked != newState)
+            if (_vehicleSubclassToggleMenuItems.TryGetValue(vehicleSubclass, out var subclassMenuItem) && subclassMenuItem.IsChecked != newState)
                 subclassMenuItem.IsChecked = newState;
         }
 

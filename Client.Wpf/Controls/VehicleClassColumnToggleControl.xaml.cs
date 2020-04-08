@@ -62,9 +62,9 @@ namespace Client.Wpf.Controls
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             static string getLocalizedString(string localizationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
 

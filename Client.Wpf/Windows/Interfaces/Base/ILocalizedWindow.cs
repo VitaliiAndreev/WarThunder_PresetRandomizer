@@ -6,6 +6,6 @@ namespace Client.Wpf.Windows.Interfaces.Base
     public interface ILocalizedWindow : IWindow
     {
         /// <summary> Applies localization to visible text in the window. </summary>
-        void Localize();
+        void Localise();
     }
 }

@@ -69,9 +69,9 @@ namespace Client.Wpf.Controls.Base
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             static void localizeButtonContent(ToggleButton toggleButton, string @string)
             {

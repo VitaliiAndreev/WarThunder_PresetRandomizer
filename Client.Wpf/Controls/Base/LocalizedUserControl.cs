@@ -6,7 +6,7 @@ namespace Client.Wpf.Controls.Base
     public class LocalizedUserControl : UserControl
     {
         /// <summary> Applies localization to visible text on the control. </summary>
-        public virtual void Localize()
+        public virtual void Localise()
         {
         }
     }

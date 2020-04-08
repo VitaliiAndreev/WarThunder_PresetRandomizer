@@ -84,9 +84,9 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
 
         /// <summary> Applies localization to visible text on the control. </summary>
-        public override void Localize()
+        public override void Localise()
         {
-            base.Localize();
+            base.Localise();
 
             foreach (var tab in _tabControl.Items.OfType<TabItem>())
             {
@@ -95,7 +95,7 @@ namespace Client.Wpf.Controls
             }
             foreach (var nationControl in _nationControls.Values)
             {
-                nationControl.Localize();
+                nationControl.Localise();
             }
         }
 
