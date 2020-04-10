@@ -119,6 +119,7 @@
     <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Extensions\EBranchExtensionsTests.cs" />
     <Compile Include="Extensions\ERankExtensionsTests.cs" />
+    <Compile Include="Extensions\EVehicleBranchTagExtensionsTests.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensionsTests.cs" />
     <Compile Include="Extensions\EVehicleClassExtensionsTests.cs" />
     <Compile Include="Helpers\CalculatorTests.cs" />

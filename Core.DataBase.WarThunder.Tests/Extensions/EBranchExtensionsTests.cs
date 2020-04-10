@@ -39,6 +39,25 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         #endregion Tests: GetAllVehicleClassesItem()
+        #region Tests: GetVehicleBranchTags()
+
+        [TestMethod]
+        public void GetVehicleBranchTags()
+        {
+            var tests = new List<Action>
+            {
+                () => EBranch.None.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.None }),
+                () => EBranch.All.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.All }),
+                () => EBranch.Army.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllGroundVehicles, }),
+                () => EBranch.Helicopters.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllHelicopters, }),
+                () => EBranch.Aviation.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllAircraft, EVehicleBranchTag.UntaggedAircraft, EVehicleBranchTag.NavalAircraft, EVehicleBranchTag.Hydroplane, EVehicleBranchTag.TorpedoBomber }),
+                () => EBranch.Fleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllShips }),
+            };
+
+            DoTests(tests);
+        }
+
+        #endregion Tests: GetVehicleBranchTags()
         #region Tests: GetVehicleClasses()
 
         [TestMethod]
