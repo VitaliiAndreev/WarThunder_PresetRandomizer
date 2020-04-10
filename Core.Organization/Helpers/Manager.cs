@@ -463,9 +463,9 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByGaijinIds(IEnumerable<string> vehicleGaijinIds)
         {
-            var filteredVehicles = _playableVehicles.Where(vehicle => vehicle.GaijinId.IsIn(vehicleGaijinIds));
+            var filteredVehicles = _playableVehicles?.Where(vehicle => vehicle.GaijinId.IsIn(vehicleGaijinIds));
 
-            if (filteredVehicles.IsEmpty())
+            if (filteredVehicles is null || filteredVehicles.IsEmpty())
             {
                 LogWarn(EOrganizationLogMessage.NoVehiclesSelected);
                 return null;
@@ -480,7 +480,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> AssessFilterResult<T>(IEnumerable<IVehicle> filteredVehicles, IEnumerable<T> validItems, bool suppressLogging)
         {
-            if (filteredVehicles.IsEmpty())
+            if (filteredVehicles is null || filteredVehicles.IsEmpty())
             {
                 if (!suppressLogging)
                     LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(EVocabulary.ListSeparator)));
@@ -517,7 +517,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).IsIn(validItems));
+            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).IsIn(validItems)) ?? new List<IVehicle>();
 
             return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
         }
@@ -540,6 +540,7 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
+        /// <param name="vehicles"> Vehicles to filter. </param>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<IVehicle> vehicles, IEnumerable<NationCountryPair> enabledNationCountryPairs) =>

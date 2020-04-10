@@ -26,8 +26,10 @@ namespace Client.Wpf.Commands.MainWindow
             base.Execute(parameter);
 
             if (parameter is IMainWindowPresenter presenter)
+            {
                 if (!WpfSettings.EnabledBranchesCollection.SequenceEqual(presenter.EnabledBranches))
                     ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.EnabledBranches), presenter.EnabledBranches.StringJoin(Settings.Separator));
+            }
         }
     }
 }

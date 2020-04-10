@@ -474,7 +474,7 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Event Handlers
-        #region Methods: Initialization
+        #region Methods: Initialisation
 
         /// <summary> Initialized dictionaries. </summary>
         private void InitializeDictionaries()
@@ -577,7 +577,7 @@ namespace Client.Wpf.Windows
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
-        #endregion Methods: Initialization
+        #endregion Methods: Initialisation
         #region Methods: Overrides
 
         /// <summary> Applies localization to visible text in the window. </summary>
@@ -627,7 +627,7 @@ namespace Client.Wpf.Windows
         /// Disabling the toggle also disables the associated branch, but enabling the toggle doesn't enable the branch.
         /// </summary>
         /// <param name="branch"> The branch whose toggle to adjust. </param>
-        /// <param name="branch"> Whether to enable the toggle or not. </param>
+        /// <param name="enable"> Whether to enable the toggle or not. </param>
         private void AdjustBranchToggleAvailability(EBranch branch, bool enable)
         {
             if (!enable)
@@ -636,6 +636,7 @@ namespace Client.Wpf.Windows
 
                 _branchToggleControl.Toggle(branch, false);
             }
+
             _branchToggleControl.Enable(branch, enable);
             _vehicleClassControl.Enable(branch, enable && Presenter.EnabledBranches.Contains(branch));
 
@@ -644,7 +645,7 @@ namespace Client.Wpf.Windows
             Presenter.ExecuteCommand(ECommandName.ToggleBranch);
         }
 
-        /// <summary> Enables or disables the fleet toggle depending on the specified game mode. </summary>
+        /// <summary> Enables or disables the fleet toggle depending on the specified <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode to adjust for. </param>
         /// <param name="validBranches"> A collection of valid branches. </param>
         private void AdjustFleetAvailability(EGameMode gameMode, IEnumerable<EBranch> validBranches = null) =>
