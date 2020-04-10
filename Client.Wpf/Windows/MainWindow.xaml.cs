@@ -180,6 +180,7 @@ namespace Client.Wpf.Windows
                     OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleColumns[branch].Buttons[vehicleClass]));
                 }
 
+                UpdateChildControl(_branchToggleControl, branch, OnVehicleBranchTagToggled);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -240,6 +241,22 @@ namespace Client.Wpf.Windows
 
                 UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleClassesEnabled, ownerBranch, OnBranchToggleControlClick);
                 UpdateChildControl(_vehicleClassControl.ToggleColumns[ownerBranch], vehicleClass, OnVehicleSubclassToggled);
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledVehicleBranchTags"/> according to the action. </summary>
+        /// <param name="sender"> The object that has triggered the event. A <see cref="MenuItem"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnVehicleBranchTagToggled(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is MenuItem menuItem)
+            {
+                var vehicleBranchTag = menuItem.GetTag<EVehicleBranchTag>();
+                var ownerBranch = vehicleBranchTag.GetBranch();
+
+                OnMenuItemClicked<EVehicleBranchTag>(menuItem);
+                UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleBranchTagsEnabled, ownerBranch, OnBranchToggleControlClick);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -313,12 +330,17 @@ namespace Client.Wpf.Windows
             }
         }
 
-        private void UpdateChildControl<T>(ToggleButtonGroupControl<T> ownerControl, T parentElement, RoutedEventHandler eventHandler)
+        /// <summary> Updates <paramref name="ownerControl"/>'s child control (accessed by <paramref name="childControlTag"/>). </summary>
+        /// <typeparam name="T"> The tag type. </typeparam>
+        /// <param name="ownerControl"> The owner control whose child control to update. </param>
+        /// <param name="childControlTag"> The tag of the child control to update. </param>
+        /// <param name="eventHandler"> The method to call after updating to control. </param>
+        private void UpdateChildControl<T>(ToggleButtonGroupControl<T> ownerControl, T childControlTag, RoutedEventHandler eventHandler)
         {
-            if (!ownerControl.Buttons.TryGetValue(parentElement, out var parentControl) || !(parentControl.ContextMenu is ContextMenu contextMenu))
+            if (!ownerControl.Buttons.TryGetValue(childControlTag, out var childControl) || !(childControl.ContextMenu is ContextMenu contextMenu))
                 return;
 
-            if (!parentControl.IsChecked())
+            if (!childControl.IsChecked())
             {
                 contextMenu.IsEnabled
                     = contextMenu.StaysOpen
@@ -460,6 +482,7 @@ namespace Client.Wpf.Windows
             _presenterToggleLists = new Dictionary<Type, object>
             {
                 { typeof(EBranch), Presenter.EnabledBranches },
+                { typeof(EVehicleBranchTag), Presenter.EnabledVehicleBranchTags },
                 { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
                 { typeof(EVehicleSubclass), Presenter.EnabledVehicleSubclasses },
                 { typeof(ENation), Presenter.EnabledNations },
@@ -468,6 +491,7 @@ namespace Client.Wpf.Windows
             _toggleCommands = new Dictionary<Type, ECommandName>
             {
                 { typeof(EBranch), ECommandName.ToggleBranch },
+                { typeof(EVehicleBranchTag), ECommandName.ToggleVehicleBranchTag },
                 { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
                 { typeof(EVehicleSubclass), ECommandName.ToggleVehicleSubclass },
                 { typeof(ENation), ECommandName.ToggleNation },
@@ -528,13 +552,17 @@ namespace Client.Wpf.Windows
             _battleRatingControl.RemoveControlsForUnavailableNations();
 
             _randomisationSelectionControl.Toggle(Presenter.Randomisation, true);
-            _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _nationToggleControl.Toggle(Presenter.EnabledNations, true);
             _countryToggleControl.Toggle(Presenter.EnabledCountries, true);
+
+            _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
+            _branchToggleControl.Toggle(Presenter.EnabledVehicleBranchTags, true);
 
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleSubclasses, true);
 
+            AdjustBranchTogglesAvailability();
+            AdjustChildControlContextMenuVisibility(_vehicleClassControl, OnVehicleSubclassToggled);
             AdjustCountryControlsAvailability();
 
             _battleRatingControl.InitializeControls();
@@ -546,7 +574,6 @@ namespace Client.Wpf.Windows
             foreach (var nation in Presenter.EnabledNations)
                 UpdateToggleAllButtonState(_countryToggleControl, nation);
 
-            AdjustBranchTogglesAvailability();
             RaiseGeneratePresetCommandCanExecuteChanged();
         }
 
@@ -565,6 +592,7 @@ namespace Client.Wpf.Windows
 
             _randomisationSelectionControl.Localise();
             _gameModeSelectionControl.Localise();
+            _branchToggleControl.Localise();
             _vehicleClassControl.Localise();
             _nationToggleControl.Localise();
             _countryToggleControl.Localise();
@@ -611,6 +639,8 @@ namespace Client.Wpf.Windows
             _branchToggleControl.Enable(branch, enable);
             _vehicleClassControl.Enable(branch, enable && Presenter.EnabledBranches.Contains(branch));
 
+            UpdateChildControl(_branchToggleControl, branch, OnVehicleBranchTagToggled);
+
             Presenter.ExecuteCommand(ECommandName.ToggleBranch);
         }
 
@@ -621,6 +651,25 @@ namespace Client.Wpf.Windows
             AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator && EBranch.Fleet.IsIn(validBranches is null ? Presenter.GetValidBraches() : validBranches));
 
         #endregion Methods: Adjusting Branch Toggle Availability
+
+        /// <summary> Adjusts availability of context menus of <see cref="ToggleButtonGroupControl{T}.Buttons"/> in <paramref name="toggleButtonGroupControl"/>. </summary>
+        /// <typeparam name="T"> The outer key type. </typeparam>
+        /// <typeparam name="U"> The inner key type. </typeparam>
+        /// <param name="toggleButtonGroupControl"> The toggle button group control, whose buttons' context menu to update. </param>
+        /// <param name="eventHandler"> The method to call after updating to control. </param>
+        private void AdjustChildControlContextMenuVisibility<T, U>(ColumnToggleGroupControl<T, U> toggleButtonGroupControl, RoutedEventHandler eventHandler)
+        {
+            foreach (var toggleButtonGroup in toggleButtonGroupControl.ToggleColumns.Values)
+            {
+                foreach (var indexedButton in toggleButtonGroup.Buttons)
+                {
+                    var tag = indexedButton.Key;
+                    var button = indexedButton.Value;
+
+                    UpdateChildControl(toggleButtonGroup, tag, eventHandler);
+                }
+            }
+        }
 
         /// <summary> Checks whether it is possible to generate presets. </summary>
         private void RaiseGeneratePresetCommandCanExecuteChanged() =>

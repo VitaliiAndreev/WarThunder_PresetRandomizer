@@ -1,4 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using System.Collections.Generic;
@@ -97,23 +98,6 @@ namespace Client.Wpf.Controls
         public void CreateToggleColumns(IEnumerable<EBranch> branches) =>
             CreateToggleColumnsBase(typeof(VehicleClassColumnToggleControl), branches);
 
-        /// <summary> Creates a togglable context menu item for the given <paramref name="vehicleSubclass"/>. </summary>
-        /// <param name="vehicleSubclass"> The vehicle subclass for whom to create the context menu item. </param>
-        /// <returns></returns>
-        private MenuItem CreateTogglableContextMenuItem(EVehicleSubclass vehicleSubclass)
-        {
-            var menuItem = new MenuItem()
-            {
-                IsCheckable = true,
-                Tag = vehicleSubclass,
-                Header = vehicleSubclass.ToString(),
-                StaysOpenOnClick = true,
-            };
-            menuItem.Click += OnMenuItemClick;
-
-            return menuItem;
-        }
-
         /// <summary> Creates context menus for buttons whose assigned vehicle classes have subclasses. </summary>
         private void CreateContextMenus()
         {
@@ -123,9 +107,8 @@ namespace Client.Wpf.Controls
                 var branch = vehicleClass.GetBranch();
 
                 var contextMenu = ToggleColumns[branch].Buttons[vehicleClass].ContextMenu ?? new ContextMenu() { Tag = vehicleClass };
-                var contextMenuItem = CreateTogglableContextMenuItem(vehicleSubclass);
+                var contextMenuItem = contextMenu.CreateTogglableMenuItem(vehicleSubclass, OnMenuItemClick);
 
-                contextMenu.Items.Add(contextMenuItem);
                 _vehicleSubclassToggleMenuItems.Add(vehicleSubclass, contextMenuItem);
 
                 if (ToggleColumns[branch].Buttons[vehicleClass].ContextMenu is null)

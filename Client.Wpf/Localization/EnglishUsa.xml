@@ -57,6 +57,7 @@
   <Line key="HeavyTank" value="Heavy Tank"/>
   <Line key="Helicopters" value="Helicopters"/>
   <Line key="Hungary" value="Hungary"/>
+  <Line key="Hydroplane" value="Hydroplane"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Initialization is underway. Proceed?"/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
@@ -79,6 +80,7 @@
   <Line key="MotorGunboat" value="Motor Gunboat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="MotorTorpedoGunboat" value="Motor Torpedo Gunboat"/>
+  <Line key="NavalAircraft" value="Naval Aircraft"/>
   <Line key="NavalFerryBarge" value="Naval Ferry Barge"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
@@ -114,8 +116,10 @@
   <Line key="TankDestroyer" value="Tank Destroyer"/>
   <Line key="Thailand" value="Thailand"/>
   <Line key="Thanks" value="Thanks"/>
+  <Line key="TorpedoBomber" value="Torpedo Bomber"/>
   <Line key="Ukraine" value="Ukraine"/>
   <Line key="UnionOfSouthAfrica" value="Union of South Africa"/>
+  <Line key="UntaggedAircraft" value="Untagged Aircraft"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>

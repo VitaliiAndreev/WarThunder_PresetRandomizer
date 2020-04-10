@@ -58,6 +58,18 @@ namespace Client.Wpf
         }
 
         [RequiredSetting]
+        public static string EnabledVehicleBranchTags
+        {
+            get => EnabledVehicleBranchTagsCollection.StringJoin(Separator);
+            set => EnabledVehicleBranchTagsCollection = value
+                .Split(Separator)
+                .Select(vehicleBranchTagString => vehicleBranchTagString.TryParseEnumeration<EVehicleBranchTag>(out var vehicleBranchTag) ? vehicleBranchTag : EVehicleBranchTag.None)
+                .Where(vehicleBranchTag => vehicleBranchTag.IsValid())
+                .ToList()
+            ;
+        }
+
+        [RequiredSetting]
         public static string EnabledVehicleClasses
         {
             get => EnabledVehicleClassesCollection.StringJoin(Separator);
@@ -164,6 +176,12 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledBranches"/> instead. </para>
         /// </summary>
         public static IEnumerable<EBranch> EnabledBranchesCollection { get; private set; }
+
+        /// <summary>
+        /// Currently enabled vehicle branch tags.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledVehicleBranchTags"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<EVehicleBranchTag> EnabledVehicleBranchTagsCollection { get; private set; }
 
         /// <summary>
         /// Currently enabled vehicle classes.

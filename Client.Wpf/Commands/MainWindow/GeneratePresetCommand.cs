@@ -73,6 +73,7 @@ namespace Client.Wpf.Commands.MainWindow
                     gameMode,
                     nationSpecifications,
                     branchSpecifications,
+                    presenter.EnabledVehicleBranchTags,
                     presenter.EnabledVehicleSubclasses,
                     presenter.EnabledEconomicRankIntervals,
                     presenter.EnabledVehicleGaijinIds

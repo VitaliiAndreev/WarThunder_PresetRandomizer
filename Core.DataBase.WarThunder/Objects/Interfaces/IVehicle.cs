@@ -81,6 +81,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; }
 
+        /// <summary> A set of vehicle branch tags. </summary>
+        IAircraftTags AircraftTags { get; }
+
         /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleResearchTreeData ResearchTreeData { get; }
 

@@ -491,6 +491,21 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary>
+        /// Filters given <paramref name="vehicles"/> by <see cref="IVehicle.AircraftTags"/> and <paramref name="validTags"/>.
+        /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
+        /// </summary>
+        /// <param name="vehicles"> Vehicles to filter through. </param>
+        /// <param name="validTags"> Vehicle branch tags accepted by the filter. </param>
+        /// <param name="suppressLogging"> Whether to log empty results. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByAircraftTags(IEnumerable<IVehicle> vehicles, IEnumerable<EVehicleBranchTag> validTags, bool suppressLogging = false)
+        {
+            var filteredVehicles = vehicles.Where(vehicle => vehicle.AircraftTags?[validTags] ?? false);
+
+            return AssessFilterResult(filteredVehicles, validTags, suppressLogging);
+        }
+
+        /// <summary>
         /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
         /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
         /// </summary>
@@ -527,7 +542,7 @@ namespace Core.Organization.Helpers
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehicles) =>
+        private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<IVehicle> vehicles, IEnumerable<NationCountryPair> enabledNationCountryPairs) =>
             FilterVehicles(vehicles, enabledNationCountryPairs, vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country));
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validVehicleClasses"/>. </summary>
@@ -859,19 +874,26 @@ namespace Core.Organization.Helpers
                 return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            #region Filtering by countiries.
+            #region Filtering by branch tags.
 
-            var vehiclesWithCountryFilter = FilterVehiclesByCountries(enabledNationCountryPairs, vehiclesWithGaijinIdFilter);
+            var vehiclesWithBranchTagFilter = vehiclesWithGaijinIdFilter;
 
-            if (vehiclesWithCountryFilter is null)
+            if (specification.BranchSpecifications.ContainsKey(EBranch.Aviation))
+            {
+                var validVehicleBranchTags = specification.VehicleBranchTags.Intersect(EBranch.Aviation.GetVehicleBranchTags());
+
+                vehiclesWithBranchTagFilter = FilterVehiclesByAircraftTags(vehiclesWithBranchTagFilter, validVehicleBranchTags);
+            }
+
+            if (vehiclesWithBranchTagFilter is null)
                 return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by classes.
 
-            var availableVehicleClasses = vehiclesWithCountryFilter.Select(vehicle => vehicle.Class).Distinct().ToList();
+            var availableVehicleClasses = vehiclesWithBranchTagFilter.Select(vehicle => vehicle.Class).Distinct().ToList();
             var validVehicleClasses = enabledVehicleClassesByBranch.Values.SelectMany(branchVehicleClasses => branchVehicleClasses.Where(vehicleClass => vehicleClass.IsIn(availableVehicleClasses)));
-            var vehiclesWithClassFilter = FilterVehiclesByClassFilters(validVehicleClasses, vehiclesWithCountryFilter);
+            var vehiclesWithClassFilter = FilterVehiclesByClassFilters(validVehicleClasses, vehiclesWithBranchTagFilter);
 
             if (vehiclesWithClassFilter is null)
                 return emptyPreset;
@@ -883,12 +905,23 @@ namespace Core.Organization.Helpers
             var validVehicleSubclasses = specification.VehicleSubclasses.Intersect(vehicleSubclassesFromValidClasses).Including(EVehicleSubclass.None);
             var vehiclesWithSubclassFilter = FilterVehiclesBySubclassFilters(validVehicleSubclasses, vehiclesWithClassFilter);
 
+            if (vehiclesWithSubclassFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by countiries.
+
+            var vehiclesWithCountryFilter = FilterVehiclesByCountries(vehiclesWithSubclassFilter, enabledNationCountryPairs);
+
+            if (vehiclesWithCountryFilter is null)
+                return emptyPreset;
+
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
             return specification.Randomisation switch
             {
-                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithSubclassFilter),
-                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithSubclassFilter),
+                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithCountryFilter),
+                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithCountryFilter),
                 _ => new Dictionary<EPreset, Preset>(),
             };
         }

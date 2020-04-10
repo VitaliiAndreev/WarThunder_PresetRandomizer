@@ -57,6 +57,7 @@
   <Line key="HeavyTank" value="Тяжёлый танк"/>
   <Line key="Helicopters" value="Вертолёты"/>
   <Line key="Hungary" value="Венгрия"/>
+  <Line key="Hydroplane" value="Гидросамолёт"/>
   <Line key="InitializationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
   <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>
@@ -79,6 +80,7 @@
   <Line key="MotorGunboat" value="Артиллерийский катер"/>
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
   <Line key="MotorTorpedoGunboat" value="Многоцелевой катер"/>
+  <Line key="NavalAircraft" value="Палубный самолёт"/>
   <Line key="NavalFerryBarge" value="Артиллерийская баржа"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
@@ -114,8 +116,10 @@
   <Line key="TankDestroyer" value="САУ"/>
   <Line key="Thailand" value="Тайланд"/>
   <Line key="Thanks" value="Благодарности"/>
+  <Line key="TorpedoBomber" value="Торпедоносец"/>
   <Line key="Ukraine" value="Украина"/>
   <Line key="UnionOfSouthAfrica" value="Южно-Африканский Союз"/>
+  <Line key="UntaggedAircraft" value="Авиация без меток"/>
   <Line key="Usa" value="США"/>
   <Line key="Ussr" value="СССР"/>
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>

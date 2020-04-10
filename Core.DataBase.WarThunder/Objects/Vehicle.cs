@@ -122,6 +122,10 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.BattleRating), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.BattleRating.Entity), Lazy = Laziness.Proxy)]
         public virtual VehicleGameModeParameterSet.Decimal.BattleRating BattleRating { get; protected set; }
 
+        /// <summary> A set of vehicle branch tags. </summary>
+        [OneToOne(ClassType = typeof(AircraftTags), PropertyRef = nameof(Objects.AircraftTags.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual IAircraftTags AircraftTags { get; protected internal set; }
+
         /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
@@ -325,19 +329,22 @@ namespace Core.DataBase.WarThunder.Objects
             else
                 Country = Nation.AsEnumerationItem.GetBaseCountry();
 
-            if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
-            {
-                InitializeClass(tags);
-
-                Subclasses = new VehicleSubclasses(_dataRepository, this, tags);
-            }
-
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
             var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
 
             Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
                 ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
                 ?? new Branch(_dataRepository, branchIdAppended, Nation);
+
+            if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
+            {
+                InitializeClass(tags);
+
+                Subclasses = new VehicleSubclasses(_dataRepository, this, tags);
+                
+                if (Branch.AsEnumerationItem == EBranch.Aviation)
+                    AircraftTags = new AircraftTags(_dataRepository, this, tags);
+            }
         }
 
         /// <summary> Fills properties of the object with values deserialized from JSON data read from "shop.blkx". </summary>

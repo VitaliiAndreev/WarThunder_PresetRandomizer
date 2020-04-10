@@ -32,11 +32,21 @@ namespace Client.Wpf.Presenters
         /// <summary> Branches enabled for preset generation. </summary>
         public IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Vehicle branch tags enabled for preset generation. </summary>
+        public IList<EVehicleBranchTag> EnabledVehicleBranchTags { get; }
+
         /// <summary> Vehicles classes enabled for preset generation. </summary>
         public IList<EVehicleClass> EnabledVehicleClasses { get; }
 
         /// <summary> Vehicles subclasses enabled for preset generation. </summary>
         public IList<EVehicleSubclass> EnabledVehicleSubclasses { get; }
+
+        /// <summary> Vehicles branch tags enabled for preset generation, grouped by branches. </summary>
+        public IDictionary<EBranch, IEnumerable<EVehicleBranchTag>> EnabledVehicleBranchTagsByBranches =>
+            EnabledVehicleBranchTags
+                .GroupBy(vehicleBranchTag => vehicleBranchTag.GetBranch())
+                .ToDictionary(group => group.Key, group => group.AsEnumerable())
+            ;
 
         /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
         public IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches =>
@@ -88,6 +98,7 @@ namespace Client.Wpf.Presenters
             Randomisation = WpfSettings.RandomisationAsEnumerationItem;
             CurrentGameMode = WpfSettings.CurrentGameModeAsEnumerationItem;
             EnabledBranches = new List<EBranch>(WpfSettings.EnabledBranchesCollection);
+            EnabledVehicleBranchTags = new List<EVehicleBranchTag>(WpfSettings.EnabledVehicleBranchTagsCollection);
             EnabledVehicleClasses = new List<EVehicleClass>(WpfSettings.EnabledVehicleClassesCollection);
             EnabledVehicleSubclasses = new List<EVehicleSubclass>(WpfSettings.EnabledVehicleSubclassesCollection);
             EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
@@ -121,7 +132,13 @@ namespace Client.Wpf.Presenters
             return validBranches;
         }
 
-        /// <summary> Checks whether the given branch has any vehicle classes enabled or not. </summary>
+        /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleBranchTag"/> items enabled or not. </summary>
+        /// <param name="branch"> The branch to check. </param>
+        /// <returns></returns>
+        public bool BranchHasVehicleBranchTagsEnabled(EBranch branch) =>
+            EnabledVehicleBranchTagsByBranches.TryGetValue(branch, out var vehicleBranchTags) && vehicleBranchTags.Any();
+
+        /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleClass"/> items enabled or not. </summary>
         /// <param name="branch"> The branch to check. </param>
         /// <returns></returns>
         public bool BranchHasVehicleClassesEnabled(EBranch branch) =>

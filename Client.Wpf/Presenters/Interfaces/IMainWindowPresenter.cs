@@ -27,11 +27,17 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Branches enabled for preset generation. </summary>
         IList<EBranch> EnabledBranches { get; }
 
+        /// <summary> Vehicle branch tags enabled for preset generation. </summary>
+        IList<EVehicleBranchTag> EnabledVehicleBranchTags { get; }
+
         /// <summary> Vehicles classes enabled for preset generation. </summary>
         IList<EVehicleClass> EnabledVehicleClasses { get; }
 
         /// <summary> Vehicles subclasses enabled for preset generation. </summary>
         IList<EVehicleSubclass> EnabledVehicleSubclasses { get; }
+
+        /// <summary> Vehicles branch tags enabled for preset generation, grouped by branches. </summary>
+        IDictionary<EBranch, IEnumerable<EVehicleBranchTag>> EnabledVehicleBranchTagsByBranches { get; }
 
         /// <summary> Vehicles classes enabled for preset generation, grouped by branches. </summary>
         IDictionary<EBranch, IEnumerable<EVehicleClass>> EnabledVehicleClassesByBranches { get; }
@@ -66,6 +72,11 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Gets all valid branches. </summary>
         /// <returns></returns>
         IEnumerable<EBranch> GetValidBraches();
+
+        /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleBranchTag"/> items enabled or not. </summary>
+        /// <param name="branch"> The branch to check. </param>
+        /// <returns></returns>
+        bool BranchHasVehicleBranchTagsEnabled(EBranch branch);
 
         /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleClass"/> items enabled or not. </summary>
         /// <param name="branch"> The branch to check. </param>

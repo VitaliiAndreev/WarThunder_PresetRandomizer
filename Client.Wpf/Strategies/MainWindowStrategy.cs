@@ -17,6 +17,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.SelectRandomisation, new SelectRandomisationCommand());
             _commands.Add(ECommandName.SelectGameMode, new SelectGameModeCommand());
             _commands.Add(ECommandName.ToggleBranch, new ToggleBranchCommand());
+            _commands.Add(ECommandName.ToggleVehicleBranchTag, new ToggleVehicleBranchTagCommand());
             _commands.Add(ECommandName.ToggleCountry, new ToggleCountryCommand());
             _commands.Add(ECommandName.ToggleNation, new ToggleNationCommand());
             _commands.Add(ECommandName.ToggleVehicleClass, new ToggleVehicleClassCommand());

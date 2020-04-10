@@ -14,6 +14,15 @@ namespace Core.DataBase.WarThunder.Extensions
         public static bool IsValid(this EBranch branch) =>
             branch.EnumerationItemValueIsPositive();
 
+        /// <summary> Returns vehicle branch tags which belong to the branch. </summary>
+        /// <param name="branch"> The branch whose vehicle branch tags to get. </param>
+        /// <returns></returns>
+        public static IEnumerable<EVehicleBranchTag> GetVehicleBranchTags(this EBranch branch) =>
+            typeof(EVehicleBranchTag)
+                .GetEnumerationItems<EVehicleBranchTag>()
+                .Where(vehicleBranchTag => vehicleBranchTag.GetBranch() == branch && vehicleBranchTag.IsValid())
+            ;
+
         /// <summary> Returns vehicle classes which belong to the branch. </summary>
         /// <param name="branch"> The branch whose vehicle classes to get. </param>
         /// <returns></returns>

@@ -7,7 +7,9 @@
         private const string _localizationPrefix = "loc";
         private const string _objectPrefix = "obj";
 
+        private const string _aircraft = "Aircraft";
         private const string _battle = "Battle";
+        private const string _branch = "Branch";
         private const string _data = "Data";
         private const string _crew = "Crew";
         private const string _multiplier = "Multiplier";
@@ -16,6 +18,7 @@
         private const string _research = "Research";
         private const string _reward = "Reward";
         private const string _subclass = "SubClass";
+        private const string _tags = "Tags";
         private const string _time = "Time";
         private const string _tree = "Tree";
         private const string _vehicles = "Vehicles";
@@ -24,7 +27,9 @@
         private const string _vehicleTable = Vehicle + _;
         private const string _vehicleLocalizationTable = _localizationPrefix + _vehicles + _;
 
-        internal const string Branch = "objBranches";
+        internal const string AircraftTags = _objectPrefix + _aircraft + _tags;
+
+        internal const string Branch = _objectPrefix + _branch + "es";
 
         internal const string LocalizationVehicleClassName = _vehicleLocalizationTable + "Class" + _name;
         internal const string LocalizationVehicleFullName = _vehicleLocalizationTable + "Full" + _name;

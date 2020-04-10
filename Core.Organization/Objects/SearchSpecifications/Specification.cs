@@ -23,6 +23,9 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Branch specifications. </summary>
         public IDictionary<EBranch, BranchSpecification> BranchSpecifications { get; }
 
+        /// <summary> Vehicle branch tags. </summary>
+        public IEnumerable<EVehicleBranchTag> VehicleBranchTags { get; }
+
         /// <summary> Vehicle subclasses. </summary>
         public IEnumerable<EVehicleSubclass> VehicleSubclasses { get; }
 
@@ -40,6 +43,7 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <param name="gameMode"> The game mode. </param>
         /// <param name="nationSpecifications"> Nation specifications. </param>
         /// <param name="branchSpecifications"> Branch specifications. </param>
+        /// <param name="vehicleBranchTags"> Vehicle branch tags. </param>
         /// <param name="vehicleSubclasses"> Vehicle subclasses. </param>
         /// <param name="economicRankIntervals"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
         /// <param name="vehicleGaijinIds"> Allowed vehicle Gaijin IDs. </param>
@@ -49,6 +53,7 @@ namespace Core.Organization.Objects.SearchSpecifications
             EGameMode gameMode,
             IDictionary<ENation, NationSpecification> nationSpecifications,
             IDictionary<EBranch, BranchSpecification> branchSpecifications,
+            IEnumerable<EVehicleBranchTag> vehicleBranchTags,
             IEnumerable<EVehicleSubclass> vehicleSubclasses,
             IDictionary<ENation, Interval<int>> economicRankIntervals,
             IEnumerable<string> vehicleGaijinIds
@@ -58,6 +63,7 @@ namespace Core.Organization.Objects.SearchSpecifications
             Randomisation = randomisation;
             NationSpecifications = nationSpecifications;
             BranchSpecifications = branchSpecifications;
+            VehicleBranchTags = vehicleBranchTags;
             VehicleSubclasses = vehicleSubclasses;
             EconomicRankIntervals = economicRankIntervals;
             VehicleGaijinIds = vehicleGaijinIds;

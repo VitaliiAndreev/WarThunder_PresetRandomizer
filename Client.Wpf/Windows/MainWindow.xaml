@@ -56,7 +56,8 @@
 
                 <controls:BranchToggleControl
                     x:Name="_branchToggleControl"
-                    Click="OnBranchToggleControlClick"/>
+                    Click="OnBranchToggleControlClick"
+                    VehicleBranchTagToggled="OnVehicleBranchTagToggled"/>
 
                 <controls:VehicleClassToggleControl
                     x:Name="_vehicleClassControl"

@@ -42,6 +42,8 @@ namespace Client.Wpf.Enumerations
         SelectRandomisation,
         /// <summary> See <see cref="ToggleVehicleCommand"/>. </summary>
         ToggleVehicle,
+        /// <summary> See <see cref="ToggleVehicleBranchTagCommand"/>. </summary>
+        ToggleVehicleBranchTag,
         /// <summary> See <see cref="ToggleVehicleClassCommand"/>. </summary>
         ToggleVehicleClass,
         /// <summary> See <see cref="ToggleVehicleSubclassCommand"/>. </summary>

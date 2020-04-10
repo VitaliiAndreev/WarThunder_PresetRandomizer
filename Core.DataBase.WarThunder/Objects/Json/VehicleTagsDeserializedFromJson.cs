@@ -158,8 +158,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_aa_fighter")]
         public bool IsAirDefenceFighter { get; set; }
 
-        [JsonProperty("type_naval_bomber")]
-        public bool IsNavalBomber { get; set; }
+        [JsonProperty("type_naval_aircraft")]
+        public bool IsNavalAircraft { get; set; }
 
         [JsonProperty("guadalcanal")]
         public bool UsedAtGuadalcanal { get; set; }

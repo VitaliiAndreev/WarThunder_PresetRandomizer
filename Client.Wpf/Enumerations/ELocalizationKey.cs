@@ -59,6 +59,7 @@
         public const string HeavyTank = nameof(HeavyTank);
         public const string Helicopters = nameof(Helicopters);
         public const string Hungary = nameof(Hungary);
+        public const string Hydroplane = nameof(Hydroplane);
         public const string InitializationUnderwayConfirmClosure = nameof(InitializationUnderwayConfirmClosure);
         public const string Interceptor = nameof(Interceptor);
         public const string Iraq = nameof(Iraq);
@@ -81,6 +82,7 @@
         public const string MotorGunboat = nameof(MotorGunboat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
         public const string MotorTorpedoGunboat = nameof(MotorTorpedoGunboat);
+        public const string NavalAircraft = nameof(NavalAircraft);
         public const string NavalFerryBarge = nameof(NavalFerryBarge);
         public const string NaziGermany = nameof(NaziGermany);
         public const string Netherlands = nameof(Netherlands);
@@ -117,8 +119,10 @@
         public const string TankDestroyer = nameof(TankDestroyer);
         public const string Thailand = nameof(Thailand);
         public const string Thanks = nameof(Thanks);
+        public const string TorpedoBomber = nameof(TorpedoBomber);
         public const string Ukraine = nameof(Ukraine);
         public const string UnionOfSouthAfrica = nameof(UnionOfSouthAfrica);
+        public const string UntaggedAircraft = nameof(UntaggedAircraft);
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string UtilityHelicopter = nameof(UtilityHelicopter);

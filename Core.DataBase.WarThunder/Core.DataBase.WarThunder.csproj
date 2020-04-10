@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
+    <Compile Include="Enumerations\EVehicleBranchTag.cs" />
     <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
+    <Compile Include="Extensions\EVehicleBranchTagExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensions.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
+    <Compile Include="Objects\Interfaces\IAircraftTags.cs" />
     <Compile Include="Objects\Interfaces\IVehicleCrewData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleEconomyData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleGraphicsData.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\PersistentWarThunderObjectWithId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
+    <Compile Include="Objects\AircraftTags.cs" />
     <Compile Include="Objects\VehicleCrewData.cs" />
     <Compile Include="Objects\VehicleEconomyData.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleRating.cs" />
