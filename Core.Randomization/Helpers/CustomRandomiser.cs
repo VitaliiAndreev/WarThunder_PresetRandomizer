@@ -11,8 +11,8 @@ using System.Linq;
 
 namespace Core.Randomization.Helpers
 {
-    /// <summary> Provides methods to randomize selection. </summary>
-    public class CustomRandomizer : LoggerFluency, IRandomizer
+    /// <summary> Provides methods to randomise selection. </summary>
+    public class CustomRandomiser : LoggerFluency, IRandomiser
     {
         #region Fields
 
@@ -22,17 +22,22 @@ namespace Core.Randomization.Helpers
         #endregion Fields
         #region Constructors
 
-        /// <summary> Creates a new randomizer. </summary>
+        /// <summary> Creates a new randomiser. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
-        public CustomRandomizer(params IConfiguredLogger[] loggers)
-            : base(ERandomizerLogCategory.Ranzomizer, loggers)
+        public CustomRandomiser(params IConfiguredLogger[] loggers)
+            : base(ERandomizerLogCategory.Randomiser, loggers)
         {
             _generator = new Random();
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ERandomizerLogCategory.Ranzomizer));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(ERandomizerLogCategory.Randomiser));
         }
 
         #endregion Constructors
+
+        protected virtual T GetRandomCore<T>(IEnumerable<T> items)
+        {
+            return items.ToList()[_generator.Next(items.Count())];
+        }
 
         /// <summary> Picks randomly an item from the collection. </summary>
         /// <typeparam name="T"> The type of items in the collection. </typeparam>
@@ -61,9 +66,7 @@ namespace Core.Randomization.Helpers
                     return default;
             }
 
-            var itemList = items.ToList();
-
-            return itemList[_generator.Next(itemList.Count)];
+            return GetRandomCore(items);
         }
     }
 }

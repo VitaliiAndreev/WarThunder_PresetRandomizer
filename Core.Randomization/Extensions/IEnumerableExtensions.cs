@@ -12,7 +12,7 @@ namespace Core.Randomization.Extensions
         /// <param name="collection"> The collection to randomize. </param>
         /// <param name="randomizer"> The instance of a randomizer to randomize the collection with. </param>
         /// <returns></returns>
-        public static IEnumerable<T> Randomize<T>(this IEnumerable<T> collection, IRandomizer randomizer)
+        public static IEnumerable<T> Randomize<T>(this IEnumerable<T> collection, IRandomiser randomizer)
         {
             var sourceList = collection.ToList();
             var randomizedList = new List<T>();

@@ -39,8 +39,9 @@ namespace Client.Wpf
         private static IUnpacker _unpacker;
         private static IWarThunderJsonHelper _jsonHelper;
         private static ICsvDeserializer _csvDeserializer;
-        private static IRandomizer _randomizer;
+        private static IRandomiser _randomizer;
         private static IVehicleSelector _vehicleSelector;
+        private static IPresetGenerator _presetGenerator;
 
         /// <summary> Indicates whether loggers have been initialized. </summary>
         private static bool _loggersInitialized;
@@ -141,10 +142,11 @@ namespace Client.Wpf
             _unpacker = new Unpacker(FileManager, Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);
             _csvDeserializer = new CsvDeserializer(Loggers);
-            _randomizer = new CustomRandomizer(Loggers);
+            _randomizer = new CustomRandomiser(Loggers);
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
+            _presetGenerator = new PresetGenerator(_randomizer, _vehicleSelector, Loggers);
 
-            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, generateDatabase, readOnlyJson, Loggers);
+            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, _presetGenerator, generateDatabase, readOnlyJson, Loggers);
             InitializeLocalizationManager();
         }
 

@@ -53,10 +53,11 @@ namespace Client.Console
                 var unpacker = new Unpacker(fileManager, loggers);
                 var jsonHelper = new WarThunderJsonHelper(loggers);
                 var csvDeserializer = new CsvDeserializer(loggers);
-                var randomizer = new CustomRandomizer(loggers);
-                var vehicleSelector = new VehicleSelector(randomizer, loggers);
+                var randomiser = new CustomRandomiser(loggers);
+                var vehicleSelector = new VehicleSelector(randomiser, loggers);
+                var presetGenerator = new PresetGenerator(randomiser, vehicleSelector, loggers);
 
-                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, true, false, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomiser, vehicleSelector, presetGenerator, true, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
                     manager.InitializeGameClientVersion();

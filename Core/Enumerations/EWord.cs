@@ -88,6 +88,7 @@
         #region P
 
         public static string Parser => _Parser;
+        public static string PresetGenerator => _Preset + ESeparator.Space + _Generator;
         public static string Proxy => _Proxy;
 
         #endregion P
@@ -95,6 +96,7 @@
         #endregion Q
         #region R
 
+        public static string Randomiser => _Randomiser;
         public static string Rating => _Rating;
         public static string Reader => _Reader;
 
@@ -120,6 +122,7 @@
         #region V
 
         public static string Value => _Value;
+        public static string VehicleSelector => _Vehicle + ESeparator.Space + _Selector;
 
         #endregion V
         #region W

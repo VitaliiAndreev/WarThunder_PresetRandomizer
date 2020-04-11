@@ -2,8 +2,8 @@
 
 namespace Core.Randomization.Helpers.Interfaces
 {
-    /// <summary> Provides methods to randomize selection. </summary>
-    public interface IRandomizer
+    /// <summary> Provides methods to randomise selection. </summary>
+    public interface IRandomiser
     {
         /// <summary> Picks randomly an item from the collection. </summary>
         /// <typeparam name="T"> The type of items in the collection. </typeparam>

@@ -15,24 +15,24 @@ using System.Linq;
 
 namespace Core.Organization.Helpers
 {
-    /// <summary> Provides methods to randomize selection. </summary>
+    /// <summary> Provides methods to select vehicles. </summary>
     public class VehicleSelector : LoggerFluency, IVehicleSelector
     {
         #region Fields
 
         /// <summary> An instance of a randomizer. </summary>
-        private readonly IRandomizer _randomizer;
+        private readonly IRandomiser _randomiser;
 
         #endregion Fields
         #region Constructors
 
-        /// <summary> Creates a new randomizer. </summary>
-        /// <param name="randomizer"> An instance of a randomizer. </param>
+        /// <summary> Creates a new vehicle selector. </summary>
+        /// <param name="randomiser"> An instance of a randomiser. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public VehicleSelector(IRandomizer randomizer, params IConfiguredLogger[] loggers)
+        public VehicleSelector(IRandomiser randomiser, params IConfiguredLogger[] loggers)
             : base(EOrganizationLogCategory.VehicleSelector, loggers)
         {
-            _randomizer = randomizer;
+            _randomiser = randomiser;
 
             LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.VehicleSelector));
         }
@@ -83,7 +83,7 @@ namespace Core.Organization.Helpers
                 var vehiclesOnCurrentBattleRating = vehiclesByBattleRatings[currentBattleRating];
 
                 var vehiclesToAdd = vehiclesOnCurrentBattleRating
-                    .Randomize(_randomizer)
+                    .Randomize(_randomiser)
                     .Take(amountToSelect - randomizedVehicles.Count())
                 ;
 

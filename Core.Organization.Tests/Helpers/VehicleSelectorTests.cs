@@ -23,7 +23,7 @@ namespace Core.Organization.Tests.Helpers
     {
         #region Fields
 
-        private IRandomizer _randomizer;
+        private IRandomiser _randomizer;
         private IVehicleSelector _vehicleSelector;
 
         #endregion Fields
@@ -32,7 +32,7 @@ namespace Core.Organization.Tests.Helpers
         [TestInitialize]
         public void Initialize()
         {
-            _randomizer = new CustomRandomizer(Presets.Logger);
+            _randomizer = new CustomRandomiser(Presets.Logger);
             _vehicleSelector = new VehicleSelector(_randomizer, Presets.Logger);
         }
 

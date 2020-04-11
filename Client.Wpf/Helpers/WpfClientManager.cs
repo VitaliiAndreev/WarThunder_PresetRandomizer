@@ -27,12 +27,13 @@ namespace Client.Wpf.Helpers
             IUnpacker unpacker,
             IWarThunderJsonHelper jsonHelper,
             ICsvDeserializer csvDeserializer,
-            IRandomizer randomizer,
+            IRandomiser randomizer,
             IVehicleSelector vehicleSelector,
+            IPresetGenerator presetGenerator,
             bool generateDatabase,
             bool readOnlyJson,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, generateDatabase, readOnlyJson, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, loggers)
         {
         }
 

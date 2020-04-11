@@ -14,14 +14,14 @@ namespace Core.Randomization.Tests.Extensions
     [TestClass]
     public class IEnumerableExtensionsTests
     {
-        private IRandomizer _randomizer;
+        private IRandomiser _randomizer;
 
         #region Internal Methods
 
         [TestInitialize]
         public void Initialize()
         {
-            _randomizer = new CustomRandomizer(Presets.Logger);
+            _randomizer = new CustomRandomiser(Presets.Logger);
         }
 
         [TestCleanup]

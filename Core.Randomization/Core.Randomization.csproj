@@ -49,8 +49,8 @@
   <ItemGroup>
     <Compile Include="Enumerations\Logger\ERandomizerLogCategory.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Helpers\Interfaces\IRandomizer.cs" />
-    <Compile Include="Helpers\CustomRandomizer.cs" />
+    <Compile Include="Helpers\Interfaces\IRandomiser.cs" />
+    <Compile Include="Helpers\CustomRandomiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -20,6 +20,7 @@
 
         private const string _ag = _a + _g;
         private const string _al = _a + _l;
+        private const string _ame = _a + _me;
         private const string _ap = _a + _p;
         private const string _aw = _a + _w;
 
@@ -204,6 +205,8 @@
         private const string _ect = _e + _c + _t;
         private const string _ed = _e + _d;
         private const string _em = _e + _m;
+        private const string _en = _e + _n;
+        private const string _ene = _en + _e;
         private const string _er = _e + _r;
         private const string _eri = _er + _i;
         private const string _erial = _eri + _al;
@@ -216,6 +219,7 @@
 
         protected const string _Eco = "E" + _co;
         protected const string _Economic = _Eco + _no + _mic;
+        protected const string _eh = _e + _h;
         protected const string _el = _e + _l;
         protected const string _elect = _el + _ect;
         protected const string _emptied = _e + "mpti" + _ed;
@@ -263,14 +267,17 @@
         #endregion F
         #region G
 
+        private const string _G = "G";
         private const string _g = "g";
         private const string _gr = _g + _r;
 
-        protected const string _Game = "Game";
-        protected const string _game = _g + "ame";
-        protected const string _gene = _g + "ene";
+        protected const string _Game = _G + _ame;
+        protected const string _game = _g + _ame;
+        protected const string _Gene = _G + _ene;
+        protected const string _gene = _g + _ene;
         protected const string _generate = _gene + _rat + _e;
         protected const string _generation = _gene + _rat + _ion;
+        protected const string _Generator = _Gene + _rat + _or;
         protected const string _Generic = _gene + _r + _i + _c;
         protected const string _given = _g + "iven";
 
@@ -295,8 +302,10 @@
 
         private const string _i = "i";
         private const string _ializ = _i + _a + "liz";
+        private const string _ic = _i + _c;
         private const string _ilt = _i + "lt";
         private const string _ing = _i + "ng";
+        private const string _ise = _is + _e;
         private const string _itializ = _it + _ializ;
         private const string _iz = _i + _z;
         private const string _ize = _iz + _e;
@@ -359,6 +368,7 @@
 
         protected const string _language = "language";
         protected const string _latest = "latest";
+        protected const string _le = _l + _e;
         protected const string _Line = "Line";
         protected const string _Loading = "Load" + _ing;
         protected const string _Localization = "Localizat" + _ion;
@@ -432,6 +442,7 @@
         #region O
 
         private const string _o = "o";
+        private const string _om = _o + _m;
         private const string _ory = _o + _ry;
         private const string _ound = _o + _und;
 
@@ -485,6 +496,7 @@
         protected const string _port = "port";
         protected const string _prepared = "prepare" + _d;
         protected const string _Preparing = _Pre + _par + _ing;
+        protected const string _Preset = _Pre + _set;
         protected const string _preset = _pre + _set;
         protected const string _Press = _Pre + _s + _s;
         protected const string _proper = _pro + _per;
@@ -511,6 +523,7 @@
         private const string _ry = _r + _y;
 
         protected const string _ranch = _r + _an + _ch;
+        protected const string _Randomiser = _R + _and + _om + _ise + _r;
         protected const string _rank = _r + "ank";
         protected const string _ranks = _rank + _s;
         protected const string _rap = _r + _a + _p;
@@ -560,6 +573,7 @@
         protected const string _selected = _select + _ed;
         protected const string _Selecting = _Select + _ing;
         protected const string _selection = _select + _ion;
+        protected const string _Selector = _Select + _or;
         protected const string _separated = _s + "eparate" + _d;
         protected const string _Serial = _S + _erial;
         protected const string _serial = _s + _erial;
@@ -672,13 +686,15 @@
         #endregion U
         #region V
 
+        private const string _V = "V";
         private const string _v = "v";
         private const string _vert = _v + _e + _r + _t;
 
         protected const string _valid = "valid";
         protected const string _Value = "Value";
         protected const string _value = "value";
-        protected const string _vehicle = "vehicle";
+        protected const string _Vehicle = _V + _eh + _ic + _le;
+        protected const string _vehicle = _v + _eh + _ic + _le;
         protected const string _vehicles = _vehicle + _s;
         protected const string _version = "vers" + _ion;
         protected const string _vertical = _vert + "ical";
@@ -721,13 +737,5 @@
         #endregion Z
 
         #endregion Words
-        #region Public Constatns
-
-        /// <summary> A separator between items in a collection. </summary>
-        public const string ListSeparator = ", ";
-        /// <summary> A separator between items in a collection. </summary>
-        public const string ListGroupSeparator = "| ";
-
-        #endregion Public Constants
     }
 }

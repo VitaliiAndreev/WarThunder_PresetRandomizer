@@ -1,10 +1,12 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core.Enumerations;
+using Core.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
 {
     public class EOrganizationLogCategory : ECoreLogCategory
     {
-        public const string Manager = "Manager";
-        public const string VehicleSelector = "Vehicle Selector";
+        public static string Manager = EWord.Manager;
+        public static string PresetGenerator = EWord.PresetGenerator;
+        public static string VehicleSelector = EWord.VehicleSelector;
     }
 }
