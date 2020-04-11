@@ -85,6 +85,7 @@
         #endregion B
         #region C
 
+        private const string _C = "C";
         private const string _c = "c";
         private const string _cc = _c + _c;
         private const string _ch = _c + _h;
@@ -127,14 +128,17 @@
         protected const string _Committing = "Committ" + _ing;
         protected const string _complete = "complete";
         protected const string _completed = _complete + _d;
-        protected const string _configuration = "configurat" + _ion;
-        protected const string _Connect = "Connect";
-        protected const string _connect = "connect";
+        protected const string _Con = _C + _on;
+        protected const string _con = _c + _on;
+        protected const string _configuration = _con + "figurat" + _ion;
+        protected const string _Connect = _Con + "nect";
+        protected const string _connect = _con + "nect";
         protected const string _Connection = _Connect + _ion;
         protected const string _connection = _connect + _ion;
-        protected const string _contain = "contain";
+        protected const string _contain = _con + "tain";
         protected const string _container = _contain + _er;
-        protected const string _converted = "convert" + _ed;
+        protected const string _converted = _con + _vert + _ed;
+        protected const string _Converter = _Con + _vert + _ed;
         protected const string _Copied = "Copi" + _ed;
         protected const string _copied = "copi" + _ed;
         protected const string _Copying = "Copy" + _ing;
@@ -669,6 +673,7 @@
         #region V
 
         private const string _v = "v";
+        private const string _vert = _v + _e + _r + _t;
 
         protected const string _valid = "valid";
         protected const string _Value = "Value";
@@ -676,7 +681,7 @@
         protected const string _vehicle = "vehicle";
         protected const string _vehicles = _vehicle + _s;
         protected const string _version = "vers" + _ion;
-        protected const string _vertical = _v + "ertical";
+        protected const string _vertical = _vert + "ical";
 
         #endregion V
         #region W

@@ -74,11 +74,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Runs a shell command that calls the specified tool with the given directory/file as a parameter. </summary>
         /// <param name="toolPath"> The path to the tool file. </param>
-        /// <param name="argumentFilePath"> The path to the argument file. </param>
+        /// <param name="argumentFilePath"> The path to the argument directory. </param>
         /// <returns></returns>
-        private Process RunShellCommand(string toolPath, string argumentFilePath)
+        private Process RunShellCommand(string toolPath, string argument)
         {
-            var process = Process.Start(new ProcessStartInfo(EProcess.CommandShell, $"CMD /c \"\"{toolPath}\" \"{argumentFilePath}\"\""));
+            var process = Process.Start(new ProcessStartInfo(toolPath, $"\"{argument}\""));
+
             process.WaitForExit();
 
             return process;
@@ -99,7 +100,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         private string GetToolFileNameByFileExtension(string fileExtension)
         {
-            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Except(new char[] { ECharacter.Period }).StringJoin(), out var toolFileName))
+            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Skip(EInteger.Number.One).StringJoin(), out var toolFileName))
             {
                 LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.FormatFluently(toolFileName));
                 return toolFileName;
@@ -125,19 +126,24 @@ namespace Core.UnpackingToolsIntegration.Helpers
             switch (file.Extension.Split(ECharacter.Period).Last().ToLower())
             {
                 case EFileExtension.Bin:
-                    {
-                        outputPath = $"{outputPath}{_outputDirectorySuffix}";
-                        break;
-                    }
+                {
+                    outputPath = $"{outputPath}{_outputDirectorySuffix}";
+                    break;
+                }
                 case EFileExtension.Blk:
-                    {
-                        outputPath = $"{outputPath}{_outputFileSuffix}";
-                        break;
-                    }
+                {
+                    outputPath = $"{outputPath}{_outputFileSuffix}";
+                    break;
+                }
+                case EFileExtension.Ddsx:
+                {
+                    outputPath = $@"{file.Directory}\{file.GetNameWithoutExtension()}.{EFileExtension.Dds}";
+                    break;
+                }
                 default:
-                    {
-                        throw new NotImplementedException(EUnpackingToolsIntegrationLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
-                    }
+                {
+                    throw new NotImplementedException(EUnpackingToolsIntegrationLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
+                }
             }
             return outputPath;
         }

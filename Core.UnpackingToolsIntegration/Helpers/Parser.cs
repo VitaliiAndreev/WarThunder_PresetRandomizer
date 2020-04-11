@@ -20,9 +20,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Creates a new parser. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public Parser(params IConfiguredLogger[] loggers)
-            : base(ECoreLogCategory.Parser, loggers)
+            : base(EUnpackingToolsIntegrationLogCategory.Parser, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.Parser));
+            LogDebug(ECoreLogMessage.Created.FormatFluently(EUnpackingToolsIntegrationLogCategory.Parser));
         }
 
         #endregion Constructors

@@ -11,6 +11,7 @@
         public const string Clog = "clog";
         public const string Css = "css";
         public const string Csv = "csv";
+        public const string Dds = "dds";
         public const string Ddsx = "ddsx";
         public const string Dxp = "dxp";
         public const string Exe = "exe";

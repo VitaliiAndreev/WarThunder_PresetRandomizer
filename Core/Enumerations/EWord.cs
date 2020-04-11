@@ -21,6 +21,7 @@
         #region C
 
         public static string Client => _Client;
+        public static string Converter => _Converter;
         public static string CSV => _CSV;
 
         #endregion C

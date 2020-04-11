@@ -20,26 +20,28 @@ namespace WarThunderSimpleUpdateChecker
     {
         private const bool _dev = false;
 
-        private const string _commonPath = @"D:\";
-        private const string _gamesPath = _commonPath + @"Games\";
-        private const string _repositoriesPath = _commonPath + @"Code\Source\_Repositories\";
+        private const string _driveD = @"D:\";
+        private const string _driveF = @"F:\";
         private const string _trackerProjectName = "WarThunderJsonFileChanges";
 
-        private static readonly string _warThunderPath = _gamesPath + (_dev ? @"War Thunder (Dev)\" : @"_Steam\steamapps\common\War Thunder\");
-        private static readonly string _klensysWarThunderToolsPath = _commonPath + @"Software\War Thunder Tools";
-        private static readonly string _trackerProjectPath = _repositoriesPath + (_dev ? $@"{_trackerProjectName}DevClient\" : $@"{_trackerProjectName}\");
-        private static readonly string _copiedFilesPath = _trackerProjectPath + @"Files\";
+        private static readonly string _gamesPath = Path.Combine(_driveD, "Games");
+        private static readonly string _repositoriesPath = Path.Combine(_driveD, @"Code\Source\_Repositories");
+        private static readonly string _warThunderPath = Path.Combine(_gamesPath, _dev ? @"War Thunder (Dev)" : @"_Steam\steamapps\common\War Thunder");
+        private static readonly string _warThunderToolsPath = Path.Combine(_driveF, @"Software\Klensy's WT Tools");
+        private static readonly string _trackerProjectPath = Path.Combine(_repositoriesPath, _dev ? $"{_trackerProjectName}DevClient" : $@"{_trackerProjectName}");
+        private static readonly string _copiedFilesPath = Path.Combine(_trackerProjectPath, "Files");
 
         private static readonly IConfiguredLogger _logger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly IFileManager _fileManager = new FileManager(_logger);
         private static readonly IFileReader _fileReader = new FileReader(_logger);
         private static readonly IParser _parser = new Parser(_logger);
         private static readonly IUnpacker _unpacker = new Unpacker(_fileManager, _logger);
+        private static readonly IConverter _converter = new Converter(_logger);
 
         static void Main()
         {
             Settings.WarThunderLocation = _warThunderPath;
-            Settings.KlensysWarThunderToolsLocation = _klensysWarThunderToolsPath;
+            Settings.KlensysWarThunderToolsLocation = _warThunderToolsPath;
 
             var sourceFiles = GetFilesFromGameDirectories(_warThunderPath);
             var yupFile = GetVersionInfoFile(sourceFiles);
@@ -49,7 +51,11 @@ namespace WarThunderSimpleUpdateChecker
             _fileManager.EmptyDirectory(gameFileCopyDirectory.FullName);
 
             AppendCurrentClientVersion(yupFile);
-            CopyAndUnpackBinFiles(binFiles, gameFileCopyDirectory);
+
+            var unpackedDirectories = CopyAndUnpackBinFiles(binFiles, gameFileCopyDirectory);
+
+            DecompressBlkFiles(unpackedDirectories);
+            DecompressDdsxFiles(unpackedDirectories);
             RemoveCopiedSourceFiles(gameFileCopyDirectory);
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"Procedure complete.");
@@ -116,7 +122,7 @@ namespace WarThunderSimpleUpdateChecker
             _logger.LogInfo(ECoreLogCategory.Empty, $"Version history appended.");
         }
 
-        private static void CopyAndUnpackBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
+        private static IEnumerable<DirectoryInfo> CopyAndUnpackBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
         {
             foreach(var sourceFile in sourceBinFiles)
             {
@@ -132,15 +138,47 @@ namespace WarThunderSimpleUpdateChecker
                 _logger.LogInfo(ECoreLogCategory.Empty, $"Unpacked.");
             }
 
-            var unpackedDirectories = gameFileCopyDirectory.GetDirectories();
+            return gameFileCopyDirectory.GetDirectories();
+        }
 
+        private static void DecompressBlkFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
+        {
             foreach (var unpackedDirectory in unpackedDirectories)
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Converting BLK files from {unpackedDirectory.Name}...");
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing BLK files in {unpackedDirectory.Name}...");
 
                 _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Converted.");
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
+            }
+        }
+
+        private static void DecompressDdsxFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
+        {
+            var ddsxFilter = "*.ddsx";
+
+            bool directoryContainsDdsxFiles(DirectoryInfo directrory) => directrory.GetFiles(ddsxFilter, SearchOption.AllDirectories).Any();
+
+            foreach (var unpackedDirectory in unpackedDirectories)
+            {
+                if (!directoryContainsDdsxFiles(unpackedDirectory))
+                    continue;
+
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing DDSX files in {unpackedDirectory.Name}...");
+
+                foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories))
+                {
+                    if (!directoryContainsDdsxFiles(subdirectory))
+                        continue;
+
+                    _unpacker.Unpack(subdirectory, ETool.DdsxUnpacker);
+                    _converter.ConvertDdsToPng(subdirectory, SearchOption.AllDirectories);
+
+                    foreach (var sourceFile in subdirectory.GetFiles(file => file.GetExtensionWithoutPeriod().ToLower().IsIn(new List<string> { EFileExtension.Dds, EFileExtension.Ddsx }), SearchOption.AllDirectories))
+                        _fileManager.DeleteFileSafely(sourceFile.FullName);
+
+                    _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
+                }
             }
         }
 
@@ -153,6 +191,8 @@ namespace WarThunderSimpleUpdateChecker
                 EFileExtension.Bin,
                 EFileExtension.Blk,
                 EFileExtension.Css,
+                EFileExtension.Dds,
+                EFileExtension.Ddsx,
                 EFileExtension.Html,
                 EFileExtension.Js,
                 EFileExtension.Nut,
