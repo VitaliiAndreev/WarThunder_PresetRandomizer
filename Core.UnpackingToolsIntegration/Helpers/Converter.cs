@@ -5,6 +5,8 @@ using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Objects;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core.UnpackingToolsIntegration.Helpers
@@ -26,7 +28,24 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public void ConvertDdsToPng(DirectoryInfo directory, SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
             foreach (var file in directory.GetFiles(searchOption))
-                new DdsImage(file.FullName).Save(Path.Combine(file.DirectoryName, $"{file.GetNameWithoutExtension()}.{EFileExtension.Png}"));
+            {
+                Func<DdsImage> readFile = () => new DdsImage(file.FullName);
+
+                var ignoredReadErrorParts = new List<string>
+                {
+                    "invalid targa",
+                    "21 not supported",
+                };
+
+                if (readFile.TryExecuting(out var ddsImage, out var exception))
+                {
+                    ddsImage.Save(Path.Combine(file.DirectoryName, $"{file.GetNameWithoutExtension()}.{EFileExtension.Png}"));
+                }
+                else if (!(exception is ArgumentException argumentException) || !exception.Message.ContainsAny(ignoredReadErrorParts))
+                {
+                    throw exception;
+                }
+            }
         }
     }
 }
