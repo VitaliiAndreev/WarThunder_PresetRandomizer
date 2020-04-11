@@ -18,18 +18,7 @@ namespace WarThunderSimpleUpdateChecker
 {
     class Application
     {
-        private const bool _dev = false;
-
-        private const string _driveD = @"D:\";
-        private const string _driveF = @"F:\";
-        private const string _trackerProjectName = "WarThunderJsonFileChanges";
-
-        private static readonly string _gamesPath = Path.Combine(_driveD, "Games");
-        private static readonly string _repositoriesPath = Path.Combine(_driveD, @"Code\Source\_Repositories");
-        private static readonly string _warThunderPath = Path.Combine(_gamesPath, _dev ? @"War Thunder (Dev)" : @"_Steam\steamapps\common\War Thunder");
-        private static readonly string _warThunderToolsPath = Path.Combine(_driveF, @"Software\Klensy's WT Tools");
-        private static readonly string _trackerProjectPath = Path.Combine(_repositoriesPath, _dev ? $"{_trackerProjectName}DevClient" : $@"{_trackerProjectName}");
-        private static readonly string _copiedFilesPath = Path.Combine(_trackerProjectPath, "Files");
+        #region Fields
 
         private static readonly IConfiguredLogger _logger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly IFileManager _fileManager = new FileManager(_logger);
@@ -38,28 +27,116 @@ namespace WarThunderSimpleUpdateChecker
         private static readonly IUnpacker _unpacker = new Unpacker(_fileManager, _logger);
         private static readonly IConverter _converter = new Converter(_logger);
 
-        static void Main()
+        private static string _warThunderPath;
+        private static string _warThunderToolsPath;
+        private static string _outputPath;
+
+        #endregion Fields
+        #region Properties
+
+        private static string OutputFilesPath => Path.Combine(_outputPath, "Files");
+
+        #endregion Properties
+
+        static void Main(params string[] args)
         {
-            Settings.WarThunderLocation = _warThunderPath;
-            Settings.KlensysWarThunderToolsLocation = _warThunderToolsPath;
+            if (args.Count() != 3)
+            {
+                _logger.LogInfo(ECoreLogCategory.Empty, $"The app requires 3 arguments: path to War Thunder, path to Klensy's WT Tools, output path.");
+                return;
+            }
+
+            _warThunderPath = args[0];
+            _warThunderToolsPath = args[1];
+            _outputPath = args[2];
+
+            if (!PathsAreValid())
+                return;
+
+            InitialiseSettings();
 
             var sourceFiles = GetFilesFromGameDirectories(_warThunderPath);
             var yupFile = GetVersionInfoFile(sourceFiles);
             var binFiles = GetBinFiles(sourceFiles);
-            var gameFileCopyDirectory = new DirectoryInfo(_copiedFilesPath);
+            var outputFilesDirectory = new DirectoryInfo(OutputFilesPath);
 
-            _fileManager.EmptyDirectory(gameFileCopyDirectory.FullName);
+            _fileManager.EmptyDirectory(outputFilesDirectory.FullName);
 
             AppendCurrentClientVersion(yupFile);
 
-            var unpackedDirectories = CopyAndUnpackBinFiles(binFiles, gameFileCopyDirectory);
+            var unpackedDirectories = CopyAndUnpackBinFiles(binFiles, outputFilesDirectory);
 
             DecompressBlkFiles(unpackedDirectories);
             DecompressDdsxFiles(unpackedDirectories);
-            RemoveCopiedSourceFiles(gameFileCopyDirectory);
+            RemoveCopiedSourceFiles(outputFilesDirectory);
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"Procedure complete.");
         }
+
+        #region Methods: Initialisation
+
+        private static bool PathsAreValid()
+        {
+            if (!Directory.Exists(_warThunderPath))
+            {
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified path to War Thunder doesn't exist.");
+                return false;
+            }
+            if (!Directory.Exists(_warThunderToolsPath))
+            {
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified path to Klensy's WT Tools doesn't exist.");
+                return false;
+            }
+            if (!Directory.Exists(_warThunderToolsPath))
+            {
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified output path doesn't exist.");
+                return false;
+            }
+            return true;
+        }
+
+        private static void InitialiseSettings()
+        {
+            Settings.WarThunderLocation = _warThunderPath;
+            Settings.KlensysWarThunderToolsLocation = _warThunderToolsPath;
+        }
+
+        #endregion Methods: Initialisation
+        #region Methods: Working with Game Version
+
+        private static FileInfo GetVersionInfoFile(IEnumerable<FileInfo> files)
+        {
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting the current YUP file...");
+
+            var yupFile = files.First(file => file.Extension.Contains(EFileExtension.Yup) && !file.Name.Contains("old"));
+
+            _logger.LogInfo(ECoreLogCategory.Empty, $"{yupFile.Name} found.");
+
+            return yupFile;
+        }
+
+        private static void AppendCurrentClientVersion(FileInfo yupFile)
+        {
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Reading client version...");
+
+            var currentVersion = _parser.GetClientVersion(_fileReader.Read(yupFile));
+
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Client is {currentVersion}.");
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Writing version to versions.txt...");
+
+            var pathToVersionsLog = Path.Combine(_outputPath, "versions.txt");
+
+            if (!File.Exists(pathToVersionsLog))
+                File.Create(pathToVersionsLog).Close();
+
+            using (var streamWriter = File.AppendText(pathToVersionsLog))
+                streamWriter.WriteLine($"{yupFile.LastWriteTime.ToShortDateString()} - {currentVersion}");
+
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Version history appended.");
+        }
+
+        #endregion Methods: Working with Game Version
+        #region Methods: Selecting Files
 
         private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath)
         {
@@ -79,17 +156,6 @@ namespace WarThunderSimpleUpdateChecker
             return sourceFiles;
         }
 
-        private static FileInfo GetVersionInfoFile(IEnumerable<FileInfo> files)
-        {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting the current YUP file...");
-
-            var yupFile = files.First(file => file.Extension.Contains(EFileExtension.Yup) && !file.Name.Contains("old"));
-
-            _logger.LogInfo(ECoreLogCategory.Empty, $"{yupFile.Name} found.");
-
-            return yupFile;
-        }
-
         private static IEnumerable<FileInfo> GetBinFiles(IEnumerable<FileInfo> files)
         {
             _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting BIN files...");
@@ -107,24 +173,12 @@ namespace WarThunderSimpleUpdateChecker
             return binFiles;
         }
 
-        private static void AppendCurrentClientVersion(FileInfo yupFile)
-        {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Reading client version...");
-
-            var currentVersion = _parser.GetClientVersion(_fileReader.Read(yupFile));
-
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Client is {currentVersion}.");
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Writing version to versions.txt...");
-
-            using (var streamWriter = File.AppendText($@"{_trackerProjectPath}versions.txt"))
-                streamWriter.WriteLine($"{yupFile.LastWriteTime.ToShortDateString()} - {currentVersion}");
-
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Version history appended.");
-        }
+        #endregion Methods: Selecting Files
+        #region Methods: Unpacking Files
 
         private static IEnumerable<DirectoryInfo> CopyAndUnpackBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
         {
-            foreach(var sourceFile in sourceBinFiles)
+            foreach (var sourceFile in sourceBinFiles)
             {
                 _logger.LogInfo(ECoreLogCategory.Empty, $"Unpacking {sourceFile.Name}...");
 
@@ -140,6 +194,9 @@ namespace WarThunderSimpleUpdateChecker
 
             return gameFileCopyDirectory.GetDirectories();
         }
+
+        #endregion Methods: Unpacking Files
+        #region Methods: Decompressing Files
 
         private static void DecompressBlkFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
         {
@@ -164,23 +221,23 @@ namespace WarThunderSimpleUpdateChecker
                 if (!directoryContainsDdsxFiles(unpackedDirectory))
                     continue;
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing DDSX files in {unpackedDirectory.Name}...");
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing DDSX files and converting to PNG in {unpackedDirectory.Name}...");
 
-                foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories))
+                foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories).Including(unpackedDirectory))
                 {
                     if (!directoryContainsDdsxFiles(subdirectory))
                         continue;
 
                     _unpacker.Unpack(subdirectory, ETool.DdsxUnpacker);
                     _converter.ConvertDdsToPng(subdirectory, SearchOption.AllDirectories);
-
-                    foreach (var sourceFile in subdirectory.GetFiles(file => file.GetExtensionWithoutPeriod().ToLower().IsIn(new List<string> { EFileExtension.Dds, EFileExtension.Ddsx }), SearchOption.AllDirectories))
-                        _fileManager.DeleteFileSafely(sourceFile.FullName);
-
-                    _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
                 }
+
+                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
             }
         }
+
+        #endregion Methods: Decompressing Files
+        #region Methods: Clean-up
 
         private static void RemoveCopiedSourceFiles(DirectoryInfo gameFileCopyDirectory)
         {
@@ -191,8 +248,6 @@ namespace WarThunderSimpleUpdateChecker
                 EFileExtension.Bin,
                 EFileExtension.Blk,
                 EFileExtension.Css,
-                EFileExtension.Dds,
-                EFileExtension.Ddsx,
                 EFileExtension.Html,
                 EFileExtension.Js,
                 EFileExtension.Nut,
@@ -211,5 +266,7 @@ namespace WarThunderSimpleUpdateChecker
 
             _logger.LogInfo(ECoreLogCategory.Empty, $"Deleted.");
         }
+
+        #endregion Methods: Clean-up
     }
 }
