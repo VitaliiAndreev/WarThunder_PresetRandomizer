@@ -27,7 +27,7 @@ namespace Core.DataBase.WarThunder.Objects
         public override long Id { get; protected set; }
 
         [Property(NotNull = true)]
-        public bool IsUntagged { get; protected set; }
+        public virtual bool IsUntagged { get; protected set; }
 
         [Property(NotNull = true)]
         public virtual bool IsNavalAircraft { get; protected set; }
