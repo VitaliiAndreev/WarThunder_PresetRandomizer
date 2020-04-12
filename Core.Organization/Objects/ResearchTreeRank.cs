@@ -34,7 +34,7 @@ namespace Core.Organization.Objects
             
             PremiumColumnNumbers = Enumerable
                 .Range(EInteger.Number.One, MaximumColumnNumber)
-                .Where(columnNumber => GetVehiclesInColumn(columnNumber).Any(vehicle => vehicle.NotResearchable))
+                .Where(columnNumber => GetVehiclesInColumn(columnNumber).Any(vehicle => !vehicle.IsResearchable))
             ;
         }
 

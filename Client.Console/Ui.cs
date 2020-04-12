@@ -92,7 +92,7 @@ namespace Client.Console
 
                         foreach (var vehicle in manager.GeneratePrimaryAndFallbackPresets(specification)[EPreset.Primary])
                         {
-                            System.Console.ForegroundColor = vehicle.NotResearchable
+                            System.Console.ForegroundColor = !vehicle.IsResearchable
                                 ? ConsoleColor.Yellow
                                 : ConsoleColor.White;
 

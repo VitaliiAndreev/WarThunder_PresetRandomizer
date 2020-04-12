@@ -55,39 +55,37 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
         public virtual EVehicleClass Class { get; protected internal set; }
 
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
+        [Property(NotNull = true)]
+        public virtual bool IsResearchable { get; protected set; }
+
+        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
+        [Property(NotNull = true)]
+        public virtual bool IsSquadronVehicle { get; protected set; }
+
+        [Property(NotNull = true)]
+        public virtual bool IsSoldOnTheMarket { get; protected set; }
+
+        [Property(NotNull = true)]
+        public virtual bool IsSoldInTheStore { get; protected set; }
+
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         [Property(NotNull = true)]
         public virtual bool IsPremium { get; protected set; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool ShowOnlyWhenBought { get; protected set; }
+        [Property(NotNull = true)] public virtual bool IsHiddenUnlessOwned { get; protected set; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
 
-        /// <summary> The gift requirement that grants ownerhip of this vehicle. </summary>
-        [Property()] public virtual string OwnershipGiftPrerequisite { get; protected set; }
-
         /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
         [Property()] public virtual bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; protected set; }
-
-        /// <summary> The purchase requirement that grants ownerhip of this vehicle. </summary>
-        [Property()] public virtual string OwnershipPurchasePrerequisite { get; protected set; }
-
-        /// <summary>
-        /// The custom research category that this vehicle is unlocked with.
-        /// NULL means that standard research is used.
-        /// <para>
-        /// This property had been introduced with special squadron vehicles that are researched with squadron activity instead of the normal research,
-        /// or are purchased with Golden Eagles, with discount (see <see cref="DiscountedPurchaseCostInGold"/>) if some research progress is made.
-        /// </para>
-        /// </summary>
-        [Property()] public virtual string ResearchUnlockType { get; protected set; }
 
         /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
         [Property()] public virtual int? PurchaseCostInGold { get; protected set; }
 
-        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="ResearchUnlockType"/>) after some progress towards its unlocking is made. </summary>
+        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
         [Property()] public virtual int? DiscountedPurchaseCostInGold { get; protected set; }
 
         /// <summary> The Gaijin ID of the vehicle that has to be researched / unlocked before this one can be purchased. </summary>
@@ -186,12 +184,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
-        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
-        public virtual bool NotResearchable => PurchaseCostInGold.HasValue || ShowOnlyWhenBought || !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
-
-        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
-        public virtual bool IsSquadronVehicle => ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;
-
         #endregion Non-Persistent Properties
         #region Constructors
 
@@ -256,6 +248,9 @@ namespace Core.DataBase.WarThunder.Objects
             ModificationsData = new VehicleModificationsData(_dataRepository, this, deserializedVehicle);
             WeaponsData = new VehicleWeaponsData(_dataRepository, this, deserializedVehicle);
             GraphicsData = new VehicleGraphicsData(_dataRepository, this, deserializedVehicle);
+
+            IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;
+            IsResearchable = !PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
         }
 
         /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
@@ -360,6 +355,9 @@ namespace Core.DataBase.WarThunder.Objects
         {
             ResearchTreeData = new VehicleResearchTreeData(_dataRepository, this);
             ResearchTreeData.InitializeWithDeserializedJson(deserializedResearchTreeVehicle);
+
+            IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
+            IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
         }
 
         /// <summary> Initializes localization association properties. </summary>

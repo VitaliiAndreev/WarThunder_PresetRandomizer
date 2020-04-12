@@ -20,38 +20,32 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
         EVehicleClass Class { get; }
 
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
+        bool IsResearchable { get; }
+
+        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
+        bool IsSquadronVehicle { get; }
+
+        bool IsSoldOnTheMarket { get; }
+
+        bool IsSoldInTheStore { get; }
+
         /// <summary> Indicates whether the vehicle is premium or not. </summary>
         bool IsPremium { get; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        bool ShowOnlyWhenBought { get; }
+        bool IsHiddenUnlessOwned { get; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         string CategoryOfHiddenVehicles { get; }
 
-        /// <summary> The gift requirement that grants ownerhip of this vehicle. </summary>
-        string OwnershipGiftPrerequisite { get; }
-
         /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
         bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
-
-        /// <summary> The purchase requirement that grants ownerhip of this vehicle. </summary>
-        string OwnershipPurchasePrerequisite { get; }
-
-        /// <summary>
-        /// The custom research category that this vehicle is unlocked with.
-        /// NULL means that standard research is used.
-        /// <para>
-        /// This property had been introduced with special squadron vehicles that are researched with squadron activity instead of the normal research,
-        /// or are purchased with Golden Eagles, with discount (see <see cref="DiscountedPurchaseCostInGold"/>) if some research progress is made.
-        /// </para>
-        /// </summary>
-        string ResearchUnlockType { get; }
 
         /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
         int? PurchaseCostInGold { get; }
 
-        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="ResearchUnlockType"/>) after some progress towards its unlocking is made. </summary>
+        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
         int? DiscountedPurchaseCostInGold { get; }
 
         /// <summary> The Gaijin ID of the vehicle that has to be researched / unlocked before this one can be purchased. </summary>
@@ -132,12 +126,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
-
-        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
-        bool NotResearchable { get; }
-
-        /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
-        bool IsSquadronVehicle { get; }
 
         #endregion Non-Persistent Properties
         #region Methods: Initialization

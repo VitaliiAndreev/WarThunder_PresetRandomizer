@@ -215,7 +215,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         #region General
 
         [JsonProperty("showOnlyWhenBought")]
-        public bool ShowOnlyWhenBought { get; set; }
+        public bool IsHiddenUnlessOwned { get; set; }
 
         [JsonProperty("gift")]
         public string CategoryOfHiddenVehicles { get; set; }
