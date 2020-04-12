@@ -4,7 +4,6 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
-using System.Text;
 
 namespace Client.Wpf.Controls.Strategies
 {
@@ -15,18 +14,16 @@ namespace Client.Wpf.Controls.Strategies
         /// <param name="gameMode"> The game mode to account for. </param>
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
-        public string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle)
-            =>
-            "{0}{1}{2}{3} {4} / {5}"
+        public string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle) =>
+            "{0}{1}{2}{3}{4}{5}{6} {7} / {8}"
                 .FormatFluently
                 (
-                    vehicle.IsHiddenUnlessOwned ? $"{ECharacter.Eye}{ECharacter.Space}" : string.Empty,
-                    vehicle.IsSoldOnTheMarket ? $"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}" : string.Empty,
-                    vehicle.IsSoldInTheStore
-                        ? $"{EWord.Pack}{ECharacter.Space}"
-                        : !vehicle.IsHiddenUnlessOwned && !vehicle.IsSoldOnTheMarket && vehicle.IsPremium && vehicle.PurchaseCostInGold.HasValue
-                            ? $"{vehicle.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}{ECharacter.Space}"
-                            : string.Empty,
+                    vehicle.IsHiddenUnlessOwned ? ECharacter.Eye : string.Empty,
+                    vehicle.IsAvailableOnlyOnConsoles ? EGaijinCharacter.Controller.ToString() : string.Empty,
+                    vehicle.IsAvailableOnlyOnConsoles && vehicle.IsSoldInTheStore ? ECharacter.Space.ToString() : string.Empty,
+                    vehicle.IsSoldInTheStore ? EWord.Pack : vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle ? $"{vehicle.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}" : string.Empty,
+                    vehicle.IsSoldOnTheMarket ? EGaijinCharacter.GaijinCoin.ToString() : string.Empty,
+                    vehicle.IsHiddenUnlessOwned || vehicle.IsAvailableOnlyOnConsoles || vehicle.IsSoldOnTheMarket || vehicle.IsSoldInTheStore || vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle ? ECharacter.Space.ToString() : string.Empty,
                     EReference.ClassIcons[vehicle.Class],
                     vehicle.BattleRatingFormatted[gameMode],
                     vehicle.Rank.CastTo<ERank>()

@@ -23,6 +23,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         bool IsResearchable { get; }
 
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
+        bool IsPurchasableForGoldenEagles { get; }
+
         /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
         bool IsSquadronVehicle { get; }
 
@@ -35,6 +38,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         bool IsHiddenUnlessOwned { get; }
+
+        bool IsAvailableOnlyOnConsoles { get; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         string CategoryOfHiddenVehicles { get; }

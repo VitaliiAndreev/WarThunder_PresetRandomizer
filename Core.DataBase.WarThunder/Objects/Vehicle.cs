@@ -59,6 +59,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true)]
         public virtual bool IsResearchable { get; protected set; }
 
+        /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
+        [Property(NotNull = true)]
+        public virtual bool IsPurchasableForGoldenEagles { get; protected set; }
+
         /// <summary> Indicates whether the vehicle can be unlocked with squadron research. </summary>
         [Property(NotNull = true)]
         public virtual bool IsSquadronVehicle { get; protected set; }
@@ -75,6 +79,8 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         [Property(NotNull = true)] public virtual bool IsHiddenUnlessOwned { get; protected set; }
+
+        [Property(NotNull = true)] public virtual bool IsAvailableOnlyOnConsoles { get; protected set; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
@@ -358,10 +364,15 @@ namespace Core.DataBase.WarThunder.Objects
             if (string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles))
                 CategoryOfHiddenVehicles = deserializedResearchTreeVehicle.CategoryOfHiddenVehiclesInResearchTree;
 
-            IsHiddenUnlessOwned = IsHiddenUnlessOwned || deserializedResearchTreeVehicle.IsHiddenUnlessBought || deserializedResearchTreeVehicle.IsHiddenUnlessResearched;
+            IsAvailableOnlyOnConsoles = !string.IsNullOrWhiteSpace(deserializedResearchTreeVehicle.PlatformGaijinIdVehicleIsAvailableOn);
+            IsHiddenUnlessOwned = IsHiddenUnlessOwned
+                || deserializedResearchTreeVehicle.IsHiddenUnlessBought
+                || deserializedResearchTreeVehicle.IsHiddenUnlessResearched
+            ;
             IsResearchable = !PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
             IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
             IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
+            IsPurchasableForGoldenEagles = !IsHiddenUnlessOwned && !IsSoldOnTheMarket && !IsSoldInTheStore && (IsPremium && PurchaseCostInGold.HasValue || IsSquadronVehicle && DiscountedPurchaseCostInGold.HasValue);
         }
 
         /// <summary> Initializes localization association properties. </summary>
