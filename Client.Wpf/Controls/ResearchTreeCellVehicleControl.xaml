@@ -37,6 +37,7 @@
                     Style="{StaticResource VehicleCard}"/>
 
             </WrapPanel>
+            
         </Grid>
         
     </Border>

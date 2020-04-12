@@ -60,8 +60,7 @@ namespace WarThunderSimpleUpdateChecker
             var binFiles = GetBinFiles(sourceFiles);
             var outputFilesDirectory = new DirectoryInfo(OutputFilesPath);
 
-            _fileManager.EmptyDirectory(outputFilesDirectory.FullName);
-
+            RemoveFilesFromPreviousPatch(outputFilesDirectory);
             AppendCurrentClientVersion(yupFile);
 
             var unpackedDirectories = CopyAndUnpackBinFiles(binFiles, outputFilesDirectory);
@@ -99,6 +98,15 @@ namespace WarThunderSimpleUpdateChecker
         {
             Settings.WarThunderLocation = _warThunderPath;
             Settings.KlensysWarThunderToolsLocation = _warThunderToolsPath;
+        }
+
+        private static void RemoveFilesFromPreviousPatch(DirectoryInfo outputFilesDirectory)
+        {
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Removing files from the previous patch.");
+            {
+                _fileManager.EmptyDirectory(outputFilesDirectory.FullName);
+            }
+            _logger.LogInfo(ECoreLogCategory.Empty, $"Files removed.");
         }
 
         #endregion Methods: Initialisation

@@ -554,8 +554,10 @@ namespace Core.Organization.Helpers
         #endregion Methods: Settings
 
         /// <summary> Releases unmanaged resources. </summary>
-        public void Dispose() =>
+        public void Dispose()
+        {
             _dataRepository.Dispose();
+        }
 
         /// <summary> Removes log files older than a week. </summary>
         public void RemoveOldLogFiles() =>

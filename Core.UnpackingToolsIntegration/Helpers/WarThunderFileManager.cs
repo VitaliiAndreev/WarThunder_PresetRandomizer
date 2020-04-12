@@ -70,7 +70,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 return false;
 
             var files = directory.GetFiles().Select(file => file.Name);
-            var requiredFiles = constantType.GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.IsLiteral && !field.IsInitOnly).Select(constant => constant.GetRawConstantValue());
+            var requiredFiles = constantType
+                .GetFields(BindingFlags.Public | BindingFlags.Static)
+                .Where(field => field.IsLiteral && !field.IsInitOnly)
+                .Select(constant => constant.GetRawConstantValue().ToString())
+            ;
 
             foreach (var requiredFile in requiredFiles)
             {
