@@ -62,6 +62,8 @@ namespace Core.Organization.Helpers
         protected readonly IParser _parser;
         /// <summary> An instance of an unpacker. </summary>
         protected readonly IUnpacker _unpacker;
+        /// <summary> An instance of a converter. </summary>
+        protected readonly IConverter _converter;
         /// <summary> An instance of a JSON helper. </summary>
         protected readonly IWarThunderJsonHelper _jsonHelper;
         /// <summary> An instance of a CSV deserializer. </summary>
@@ -97,6 +99,7 @@ namespace Core.Organization.Helpers
             IWarThunderSettingsManager settingsManager,
             IParser parser,
             IUnpacker unpacker,
+            IConverter converter,
             IWarThunderJsonHelper jsonHelper,
             ICsvDeserializer csvDeserializer,
             IRandomiser randomizer,
@@ -128,6 +131,7 @@ namespace Core.Organization.Helpers
             _fileReader = fileReader;
             _parser = parser;
             _unpacker = unpacker;
+            _converter = converter;
             _jsonHelper = jsonHelper;
             _csvDeserializer = csvDeserializer;
             _randomizer = randomizer;
@@ -309,17 +313,27 @@ namespace Core.Organization.Helpers
         /// <summary> Unpacks a file with the speficied name and gets files of the given type from its contents, doing conversions if necessary. </summary>
         /// <param name="fileType"> The type of files to search for after unpacking. </param>
         /// <param name="packedFileName"> The name of the packed file. </param>
+        /// <param name="warThunderSubdirectory"> War Thunder subdirectory where to look for the <paramref name="packedFileName"/>. </param>
+        /// <param name="processedSubdirectory"> Subdirectory of the output directory that requires processing (if only a subset of data is required). </param>
         /// <returns></returns>
-        internal IEnumerable<FileInfo> GetFiles(string fileType, string packedFileName)
+        internal IEnumerable<FileInfo> GetFiles(string fileType, string packedFileName, string warThunderSubdirectory = "", string processedSubdirectory = "")
         {
-            var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, packedFileName);
-            var outputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
+            var sourceFile = _fileManager.GetFileInfo(Path.Combine(Settings.WarThunderLocation, warThunderSubdirectory), packedFileName);
+            var outputDirectory = new DirectoryInfo(Path.Combine(_unpacker.Unpack(sourceFile), processedSubdirectory));
 
             switch (fileType)
             {
                 case EFileExtension.Blkx:
+                {
                     _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
                     break;
+                }
+                case EFileExtension.Png:
+                {
+                    _unpacker.Unpack(outputDirectory, ETool.DdsxUnpacker);
+                    _converter.ConvertDdsToPng(outputDirectory, SearchOption.AllDirectories);
+                    break;
+                }
             }
 
             return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
@@ -336,6 +350,12 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         internal IEnumerable<FileInfo> GetCsvFiles(string sourceFileName) =>
             GetFiles(EFileExtension.Csv, sourceFileName);
+
+        /// <summary> Gets vehicle icon PNG files contained in the <paramref name="sourceFileName"/>. </summary>
+        /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <returns></returns>
+        internal IEnumerable<FileInfo> GetVehicleIcons(string sourceFileName) =>
+            GetFiles(EFileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, EDirectory.WarThunder.Archive.AtlasesWromfsBin.UnitIcons);
 
         /// <summary> Reads a file with the specified name from the given collection of files. </summary>
         /// <param name="files"> The collection of files. </param>
@@ -376,6 +396,99 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.DatabaseInitialized);
         }
 
+        private bool AttachVehicleIcon(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles)
+        {
+            var vehicleGaijinId = vehicle.GaijinId.ToLower();
+            var footballGaijinIdPart = "_football";
+            var forTutorialGaijinIdPart = "_for_tutorial";
+            var raceGaijinIdPart = "_race";
+            var tutorialGaijinIdPart = "_tutorial";
+            var youTubeCupGaijinIdPart = "_yt_cup";
+            var chinesePrefix = $"{EReference.NationPrefixes[ENation.China]}_";
+            var chineseVehicleNumberSuffix = $"_no";
+            var matchedFileName = new Dictionary<string, string>
+            {
+                { "cn_t_26_no531", "ussr_t_26_1940"},
+                { "cn_type_86", "ussr_bmp_1"},
+            };
+
+            bool tryToSetIcon(string gaijinId)
+            {
+                if (vehicleIconFiles.TryGetValue(gaijinId, out var iconFile))
+                {
+                    vehicle.SetIcon(iconFile);
+                    return true;
+                }
+                return false;
+            }
+            bool tryToSetReplacementIcon(string gaijinIdPart)
+            {
+                if (vehicleGaijinId.Contains(gaijinIdPart))
+                {
+                    vehicleGaijinId = vehicleGaijinId.TakeBefore(gaijinIdPart);
+                    return tryToSetIcon(vehicleGaijinId);
+                }
+                return false;
+            }
+            bool tryToSetReplacementIconFromAnotherNation()
+            {
+                var gaijinIdParts = vehicleGaijinId.Split(ECharacter.Underscore);
+                var originalPrefix = gaijinIdParts.FirstOrDefault();
+
+                if (EReference.NationsFromPrefix.TryGetValue(originalPrefix, out var originalNation))
+                {
+                    var gaijinIdWithoutPrefix = gaijinIdParts.Skip(EInteger.Number.One).StringJoin(ECharacter.Underscore);
+
+                    return tryToMatchAnotherPrefix(gaijinIdWithoutPrefix, originalNation);
+                }
+                else
+                {
+                    return tryToMatchAnotherPrefix(vehicleGaijinId);
+                }
+            }
+            bool tryToSetReplacementIconForChineseCapturedVehicles()
+            {
+                if (vehicleGaijinId.Contains(chinesePrefix) && vehicleGaijinId.Contains(chineseVehicleNumberSuffix))
+                {
+                    vehicleGaijinId = vehicleGaijinId.TakeBefore(chineseVehicleNumberSuffix);
+                    return tryToSetIcon(vehicleGaijinId);
+                }
+                return false;
+            }
+            bool tryToSetReplacementIconFromKnownMatches()
+            {
+                return matchedFileName.TryGetValue(vehicleGaijinId, out var replacementGaijinId) && tryToSetIcon(replacementGaijinId);
+            }
+            bool tryToMatchAnotherPrefix(string gaijinIdWithoutPrefix, ENation originalNation = ENation.None)
+            {
+                foreach (var nationPrefix in EReference.NationPrefixes)
+                {
+                    var nation = nationPrefix.Key;
+
+                    if (!nation.IsValid() || nation == originalNation)
+                        continue;
+
+                    var prefix = nationPrefix.Value;
+                    var gaijinIdWithAnotherPrefix = $"{prefix}{ECharacter.Underscore}{gaijinIdWithoutPrefix}";
+
+                    if (tryToSetIcon(gaijinIdWithAnotherPrefix))
+                        return true;
+                }
+                return false;
+            }
+
+            return tryToSetIcon(vehicleGaijinId)
+                || tryToSetReplacementIcon(footballGaijinIdPart)
+                || tryToSetReplacementIcon(forTutorialGaijinIdPart)
+                || tryToSetReplacementIcon(raceGaijinIdPart)
+                || tryToSetReplacementIcon(tutorialGaijinIdPart)
+                || tryToSetReplacementIcon(youTubeCupGaijinIdPart)
+                || tryToSetReplacementIconFromKnownMatches()
+                || tryToSetReplacementIconForChineseCapturedVehicles()
+                || tryToSetReplacementIconFromAnotherNation()
+            ;
+        }
+
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
         private void UnpackDeserializePersist()
         {
@@ -388,6 +501,7 @@ namespace Core.Organization.Helpers
 
             var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
             var csvFiles = GetCsvFiles(EFile.WarThunder.LocalizationParameters);
+            var vehicleIconFiles = GetVehicleIcons(EFile.WarThunderUi.Icons).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
@@ -408,6 +522,8 @@ namespace Core.Organization.Helpers
 
                 if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
                     vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
+
+                AttachVehicleIcon(vehicle, vehicleIconFiles);
             }
 
             _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);

@@ -662,6 +662,7 @@
         #endregion T
         #region U
 
+        private const string _U = "U";
         private const string _u = "u";
         private const string _uccess = _u + _cc + _e + _ss;
         private const string _ult = _u + _l + _t;
@@ -669,11 +670,13 @@
         private const string _un = _u + _n;
         private const string _und = _un + _d;
 
+        protected const string _UI = _U + _I;
         protected const string _under = _und + _er;
         protected const string _underscore = _under + _score;
         protected const string _unfinished = _un + _finish + _ed;
         protected const string _Unit = _Un + _it;
         protected const string _unit = _un + _it;
+        protected const string _units = _un + _it + _s;
         protected const string _unpack = _un + _pack;
         protected const string _Unpacked = _Un + _pack + _ed;
         protected const string _Unpacker = _Un + _pack + _er;

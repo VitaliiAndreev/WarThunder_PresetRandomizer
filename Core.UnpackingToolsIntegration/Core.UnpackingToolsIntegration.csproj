@@ -70,6 +70,7 @@
     <Compile Include="Attributes\RequiredSettingAttribute.cs" />
     <Compile Include="Enumerations\EApplicationName.cs" />
     <Compile Include="Enumerations\EClientVersion.cs" />
+    <Compile Include="Enumerations\EDirectory.cs" />
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
     <Compile Include="Enumerations\Logger\EUnpackingToolsIntegrationLogCategory.cs" />

@@ -54,6 +54,36 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_sweden", ENation.Sweden },
         };
 
+        /// <summary> Nations indexed by string prefixes. </summary>
+        public static IDictionary<string, ENation> NationsFromPrefix { get; } = new Dictionary<string, ENation>
+        {
+            { string.Empty, ENation.None },
+            { "us", ENation.Usa },
+            { "germ", ENation.Germany },
+            { "ussr", ENation.Ussr },
+            { "uk", ENation.Britain },
+            { "jp", ENation.Japan },
+            { "cn", ENation.China},
+            { "it", ENation.Italy },
+            { "fr", ENation.France },
+            { "sw", ENation.Sweden },
+        };
+
+        /// <summary> Nation prefixes indexed by nations. </summary>
+        public static IDictionary<ENation, string> NationPrefixes { get; } = new Dictionary<ENation, string>
+        {
+            { ENation.None, string.Empty },
+            { ENation.Usa, "us" },
+            { ENation.Germany, "germ" },
+            { ENation.Ussr, "ussr" },
+            { ENation.Britain, "uk" },
+            { ENation.Japan, "jp" },
+            { ENation.China, "cn"},
+            { ENation.Italy, "it" },
+            { ENation.France, "fr" },
+            { ENation.Sweden, "sw" },
+        };
+
         /// <summary> The map of the country enumeration onto corresponding database values. </summary>
         public static IDictionary<string, ECountry> CountriesFromString { get; } = new Dictionary<string, ECountry>
         {

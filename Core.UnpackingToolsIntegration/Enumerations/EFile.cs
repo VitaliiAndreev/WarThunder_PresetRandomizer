@@ -4,13 +4,18 @@ namespace Core.UnpackingToolsIntegration.Enumerations
 {
     public class EFile
     {
+        private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
+
         internal const string Vromfs = "vromfs";
         internal const string warthunder = "warthunder";
 
+        /// <summary>
+        /// Files in the root directory of War Thunder.
+        /// Public constants are being used to validate provided paths to War Thunder.
+        /// </summary>
         public class WarThunder
         {
             private const string _exe = ECharacterString.Period + EFileExtension.Exe;
-            private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
             private const string _yup = ECharacterString.Period + EFileExtension.Yup;
 
             public const string CoreParameters = "aces" + _vromfsBin;
@@ -25,6 +30,10 @@ namespace Core.UnpackingToolsIntegration.Enumerations
             public const string PreviousVersionInstallData = warthunder + "_old" + _yup;
 
             public const string Launcher = "launcher" + _exe;
+        }
+        public class WarThunderUi
+        {
+            public const string Icons = "atlases" + _vromfsBin;
         }
         public class CharVromfs
         {

@@ -2,7 +2,6 @@
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Extensions;
 using Core.DataBase.Tests.Enumerations;
-using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
@@ -41,6 +40,7 @@ namespace Core.IntegrationTests
         private IWarThunderFileManager _fileManager;
         private IWarThunderFileReader _fileReader;
         private IUnpacker _unpacker;
+        private IConverter _converter;
         private IWarThunderJsonHelper _jsonHelper;
         private ICsvDeserializer _csvDeserializer;
         private Manager _manager;
@@ -65,6 +65,7 @@ namespace Core.IntegrationTests
             _fileManager = new WarThunderFileManager(Presets.Logger);
             _fileReader = new WarThunderFileReader(Presets.Logger);
             _unpacker = new Unpacker(_fileManager, Presets.Logger);
+            _converter = new Converter(Presets.Logger);
             _jsonHelper = new WarThunderJsonHelper(Presets.Logger);
             _csvDeserializer = new CsvDeserializer(Presets.Logger);
 
@@ -86,6 +87,7 @@ namespace Core.IntegrationTests
                 settingsManager.Object,
                 new Mock<IParser>().Object,
                 _unpacker,
+                _converter,
                 _jsonHelper,
                 _csvDeserializer,
                 new Mock<IRandomiser>().Object,

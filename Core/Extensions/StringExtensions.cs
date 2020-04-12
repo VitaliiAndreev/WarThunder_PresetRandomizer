@@ -122,6 +122,17 @@ namespace Core.Extensions
 
         #endregion Split()
 
+        public static string TakeBefore(this string @string, string substring)
+        {
+            if (string.IsNullOrEmpty(substring) || !@string.Contains(substring))
+                return @string;
+
+            return @string
+                .Take(@string.IndexOf(substring))
+                .StringJoin()
+            ;
+        }
+
         #endregion Methods: Fluency
         #region Methods: Formatting
 

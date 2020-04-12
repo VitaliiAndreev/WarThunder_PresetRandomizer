@@ -25,6 +25,7 @@ namespace Client.Wpf.Helpers
             IWarThunderSettingsManager settingsManager,
             IParser parser,
             IUnpacker unpacker,
+            IConverter converter,
             IWarThunderJsonHelper jsonHelper,
             ICsvDeserializer csvDeserializer,
             IRandomiser randomizer,
@@ -33,7 +34,7 @@ namespace Client.Wpf.Helpers
             bool generateDatabase,
             bool readOnlyJson,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, loggers)
         {
         }
 

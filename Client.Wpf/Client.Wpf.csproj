@@ -439,6 +439,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="oo2core_6_win64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\Game Mode Icons\arcade.png" />
     <Resource Include="Resources\Game Mode Icons\realistic.png" />
     <Resource Include="Resources\Game Mode Icons\simulator.png" />
@@ -451,6 +454,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Legal\DDS Reader MIT Licence %28no NuGet is available%29.txt" />
     <Content Include="Localization\Russian.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

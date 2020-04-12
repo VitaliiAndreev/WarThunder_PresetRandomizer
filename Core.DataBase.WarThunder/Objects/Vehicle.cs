@@ -16,6 +16,8 @@ using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using NHibernate.Type;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
@@ -92,6 +94,11 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual string RequiredVehicleGaijinId { get; protected set; }
 
         #endregion General
+        #region Graphical
+
+        [Property()] public virtual Bitmap Icon { get; protected set; }
+
+        #endregion Graphical
         #region Rank
 
         /// <summary> The vehicle's research rank. </summary>
@@ -376,6 +383,8 @@ namespace Core.DataBase.WarThunder.Objects
 
             InitializeVisualBattleRatings();
         }
+
+        public virtual void SetIcon(FileInfo file) => Icon = new Bitmap(file.FullName);
 
         #region Methods: Initialization Helpers
 

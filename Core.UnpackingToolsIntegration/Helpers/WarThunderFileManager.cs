@@ -83,7 +83,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Checks whether the directory with the specified path contains files required from War Thunder. </summary>
         /// <param name="path"> The path of the directory to validate. </param>
         /// <returns></returns>
-        public bool WarThunderLocationIsValid(string path) => LocationIsValid(path, typeof(EFile.WarThunder));
+        public bool WarThunderLocationIsValid(string path) =>
+            LocationIsValid(path, typeof(EFile.WarThunder))
+            && LocationIsValid(Path.Combine(path, EDirectory.WarThunder.Subdirectory.Ui), typeof(EFile.WarThunderUi));
 
         /// <summary> Checks whether the directory with the specified path contains files required from Klensy's War Thunder Tools. </summary>
         /// <param name="path"> The path of the directory to validate. </param>

@@ -2,6 +2,8 @@
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -56,6 +58,11 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         string RequiredVehicleGaijinId { get; }
 
         #endregion General
+        #region Graphical
+
+        Bitmap Icon { get; }
+
+        #endregion Graphical
         #region Rank
 
         /// <summary> The vehicle's research rank. </summary>
@@ -149,6 +156,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <param name="shortName"> The short name of the vehicle. </param>
         /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
         void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className);
+
+        void SetIcon(FileInfo file);
 
         #endregion Methods: Initialization
     }
