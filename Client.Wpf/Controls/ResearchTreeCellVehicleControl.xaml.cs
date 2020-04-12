@@ -155,6 +155,7 @@ namespace Client.Wpf.Controls
                     Stretch = Stretch.Uniform,
                     AlignmentX = AlignmentX.Left,
                     AlignmentY = AlignmentY.Center,
+                    Opacity = EDouble.Number.PointNine,
                 };
             }
         }
