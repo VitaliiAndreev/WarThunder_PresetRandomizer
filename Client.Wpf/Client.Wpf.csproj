@@ -328,6 +328,7 @@
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />
+    <Compile Include="Enumerations\EGaijinCharacter.cs" />
     <Compile Include="Enumerations\ESettingsWindowClosureState.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\EUnlocalisedMessage.cs" />
