@@ -1,4 +1,6 @@
-﻿namespace Core.Enumerations
+﻿using System.Linq;
+
+namespace Core.Enumerations
 {
     /// <summary> Characters. </summary>
     public class ECharacter
@@ -12,6 +14,7 @@
         public const char CarriageReturn = '\r';
         public const char Colon = ':';
         public const char Comma = ',';
+        public const string Eye = "👁";
         public const char Grave = '`';
         public const char Minus = '-';
         public const char NewLine = '\n';

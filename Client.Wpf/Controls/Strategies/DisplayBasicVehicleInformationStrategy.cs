@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Controls.Strategies.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Extensions;
 
 namespace Client.Wpf.Controls.Strategies
@@ -13,6 +14,14 @@ namespace Client.Wpf.Controls.Strategies
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
         public string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle) =>
-            $"{EReference.ClassIcons[vehicle.Class]} {vehicle.BattleRatingFormatted[gameMode]} / {vehicle.Rank.CastTo<ERank>()}";
+            "{0}{1} {2} / {3}"
+                .FormatFluently
+                (
+                    vehicle.IsHiddenUnlessOwned ? $"{ECharacter.Eye}{ECharacter.Space}" : string.Empty,
+                    EReference.ClassIcons[vehicle.Class],
+                    vehicle.BattleRatingFormatted[gameMode],
+                    vehicle.Rank.CastTo<ERank>()
+                )
+            ;
     }
 }
