@@ -30,14 +30,15 @@ namespace Core.DataBase.WarThunder.Extensions
 
         /// <summary> Returns vehicle classes which belong to the branch. </summary>
         /// <param name="vehicleClass"> The branch whose vehicle classes to get. </param>
+        /// <param name="selectOnlyValidItems"> Whether to select only valid items. </param>
         /// <returns></returns>
-        public static IEnumerable<EVehicleSubclass> GetVehicleSubclasses(this EVehicleClass vehicleClass)
+        public static IEnumerable<EVehicleSubclass> GetVehicleSubclasses(this EVehicleClass vehicleClass, bool selectOnlyValidItems = true)
         {
             if (vehicleClass.IsValid())
             {
                 return typeof(EVehicleSubclass)
                     .GetEnumerationItems<EVehicleSubclass>()
-                    .Where(vehicleSubclass => vehicleSubclass.GetVehicleClass() == vehicleClass && vehicleSubclass.IsValid())
+                    .Where(vehicleSubclass => vehicleSubclass.GetVehicleClass() == vehicleClass && (selectOnlyValidItems ? vehicleSubclass.IsValid() : true))
                 ;
             }
             return new List<EVehicleSubclass>();

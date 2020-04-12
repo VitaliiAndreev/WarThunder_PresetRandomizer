@@ -174,7 +174,7 @@ namespace Client.Wpf.Windows
 
                 if (toggleButton.IsChecked() && !Presenter.BranchHasVehicleClassesEnabled(branch))
                 {
-                    var vehicleClass = branch.GetVehicleClasses().First(vehicleClass => vehicleClass.IsValid());
+                    var vehicleClass = branch.GetVehicleClasses().First();
 
                     _vehicleClassControl.Toggle(vehicleClass, true);
                     OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleColumns[branch].Buttons[vehicleClass]));

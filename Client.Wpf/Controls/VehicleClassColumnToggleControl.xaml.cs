@@ -50,7 +50,7 @@ namespace Client.Wpf.Controls
                 .GetEnumValues()
                 .Cast<EBranch>()
                 .Where(branch => branch.IsValid())
-                .ToDictionary(branch => branch, branch => branch.GetVehicleClasses().Where(vehicleClass => vehicleClass.IsValid()))
+                .ToDictionary(branch => branch, branch => branch.GetVehicleClasses())
             ;
 
             _groupedItems.AddRange(vehicleClasses);
