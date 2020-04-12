@@ -562,6 +562,9 @@ namespace Core.Organization.Helpers
 
             if (_generateNewDatabase)
                 InitialiseDatabase();
+
+            else if(!_generateDatabase)
+                _dataRepository.PersistNewObjects();
         }
 
         #endregion Methods: Initialization

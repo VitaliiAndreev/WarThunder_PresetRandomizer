@@ -89,8 +89,11 @@ namespace Client.Wpf.Windows
         /// <summary> Logs closing of the window. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
-        private void OnClosed(object sender, EventArgs eventArguments) =>
+        private void OnClosed(object sender, EventArgs eventArguments)
+        {
             Log.Debug(ECoreLogMessage.Closed);
+            ApplicationHelpers.Manager.Dispose();
+        }
 
         /// <summary> Selects the randomisation method whose button is pressed. </summary>
         /// <param name="sender"> The object that has triggered the event. A <see cref="ToggleButton"/> is expected. </param>
