@@ -11,9 +11,10 @@
         MouseEnter="OnMouseEnter"
         MouseLeave="OnMouseLeave"
         MouseDown="OnClick">
-        
-        <Grid>
 
+        <Grid
+            x:Name="_innerGrid">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>

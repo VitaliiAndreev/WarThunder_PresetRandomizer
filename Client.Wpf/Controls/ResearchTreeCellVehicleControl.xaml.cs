@@ -5,6 +5,8 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -144,6 +146,16 @@ namespace Client.Wpf.Controls
                 // The size and margin are being set here to avoid breaking white-space when there is no source provided.
                 _countryFlag.SetSize(14);
                 _countryFlag.Margin = new Thickness(5, 0, 0, 0);
+            }
+
+            if (Vehicle.Icon is Bitmap icon)
+            {
+                _innerGrid.Background = new ImageBrush(icon.ToBitmapSource(ImageFormat.Png))
+                {
+                    Stretch = Stretch.Uniform,
+                    AlignmentX = AlignmentX.Left,
+                    AlignmentY = AlignmentY.Center,
+                };
             }
         }
 
