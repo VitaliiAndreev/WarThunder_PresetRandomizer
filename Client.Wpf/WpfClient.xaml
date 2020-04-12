@@ -43,8 +43,15 @@
         </Style>
 
         <Style TargetType="Border" x:Key="ResearchTreeCellHighlighted" BasedOn="{StaticResource ResearchTreeCell}">
-            <Setter Property="BorderThickness" Value="5 1 1 1"/>
             <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                        <GradientStop Color="#ff7e7e" Offset="0"/>
+                        <GradientStop Color="#FFFFFF" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="Border" x:Key="SquadronResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
@@ -52,8 +59,15 @@
         </Style>
 
         <Style TargetType="Border" x:Key="SquadronResearchTreeCellHighlighted" BasedOn="{StaticResource SquadronResearchTreeCell}">
-            <Setter Property="BorderThickness" Value="5 1 1 1"/>
             <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                        <GradientStop Color="#ff7e7e" Offset="0"/>
+                        <GradientStop Color="#D1FF9B" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="Border" x:Key="PremiumResearchTreeCell" BasedOn="{StaticResource ResearchTreeCell}">
@@ -61,8 +75,15 @@
         </Style>
 
         <Style TargetType="Border" x:Key="PremiumResearchTreeCellHighlighted" BasedOn="{StaticResource PremiumResearchTreeCell}">
-            <Setter Property="BorderThickness" Value="5 1 1 1"/>
             <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                        <GradientStop Color="#ff7e7e" Offset="0"/>
+                        <GradientStop Color="#FFE785" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="Border" x:Key="RankDivider">
