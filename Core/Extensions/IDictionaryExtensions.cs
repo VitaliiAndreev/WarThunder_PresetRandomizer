@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,8 +53,9 @@ namespace Core.Extensions
         public static void AddSafely<T, U>(this IDictionary dictionary, T key, U value)
         {
             if (dictionary is IDictionary<T, U> genericDictionary)
+            {
                 genericDictionary.AddSafely(key, value);
-
+            }
             else
             {
                 if (dictionary.Contains(key))
@@ -87,8 +89,9 @@ namespace Core.Extensions
         public static U GetWithInstantiation<T, U>(this IDictionary<T, U> dictionary, T key) where U : class
         {
             if (dictionary.ContainsKey(key))
+            {
                 return dictionary[key];
-
+            }
             else
             {
                 dictionary.Add(key, typeof(U).CreateInstance<U>());
@@ -105,8 +108,9 @@ namespace Core.Extensions
         public static IEnumerable<U> GetWithEnumerableInstantiation<T, U>(this IDictionary<T, IEnumerable<U>> dictionary, T key)
         {
             if (dictionary.ContainsKey(key))
+            {
                 return dictionary[key];
-
+            }
             else
             {
                 dictionary.Add(key, new List<U>());

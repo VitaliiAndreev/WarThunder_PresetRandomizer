@@ -3,8 +3,8 @@
   <Localization></Localization>
   <WarThunderLocation></WarThunderLocation>
   <KlensysWarThunderToolsLocation></KlensysWarThunderToolsLocation>
-  <CurrentGameMode></CurrentGameMode>
   <Randomisation></Randomisation>
+  <CurrentGameMode></CurrentGameMode>
   <EnabledBranches>Army, Aviation, Helicopters, Fleet</EnabledBranches>
   <EnabledVehicleBranchTags>UntaggedAircraft, NavalAircraft, Hydroplane, TorpedoBomber</EnabledVehicleBranchTags>
   <EnabledVehicleClasses>LightTank, MediumTank, HeavyTank, TankDestroyer, Spaa, AttackHelicopter, UtilityHelicopter, Fighter, Attacker, Bomber, Boat, HeavyBoat, Barge, Destroyer, LightCruiser, HeavyCruiser, Frigate</EnabledVehicleClasses>
