@@ -91,6 +91,7 @@
         private const string _cc = _c + _c;
         private const string _ch = _c + _h;
         private const string _chema = _ch + _e + _m + _a;
+        private const string _ck = _c + _k;
         private const string _cla = _c + _l + _a;
         private const string _co = _c + _o;
         private const string _ct = _c + _t;
@@ -480,7 +481,8 @@
         private const string _Pro = _Pr + _o;
         private const string _pro = _pr + _o;
 
-        protected const string _pack = "pack";
+        protected const string _Pack = _P + _a + _ck;
+        protected const string _pack = _p + _a + _ck;
         protected const string _pan = _p + _an;
         protected const string _panel = _pan + _el;
         protected const string _Par = "Par";

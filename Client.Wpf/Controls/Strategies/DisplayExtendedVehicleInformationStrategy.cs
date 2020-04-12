@@ -22,8 +22,12 @@ namespace Client.Wpf.Controls.Strategies
                 (
                     vehicle.IsHiddenUnlessOwned ? $"{ECharacter.Eye}{ECharacter.Space}" : string.Empty,
                     vehicle.IsSoldOnTheMarket ? $"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}" : string.Empty,
+                    vehicle.IsSoldInTheStore
+                        ? $"{EWord.Pack}{ECharacter.Space}"
+                        : !vehicle.IsHiddenUnlessOwned && !vehicle.IsSoldOnTheMarket && vehicle.IsPremium && vehicle.PurchaseCostInGold.HasValue
+                            ? $"{vehicle.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}{ECharacter.Space}"
+                            : string.Empty,
                     EReference.ClassIcons[vehicle.Class],
-                    EReference.BranchIcons[vehicle.Branch.AsEnumerationItem],
                     vehicle.BattleRatingFormatted[gameMode],
                     vehicle.Rank.CastTo<ERank>()
                 )

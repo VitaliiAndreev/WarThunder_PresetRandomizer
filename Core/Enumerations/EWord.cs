@@ -90,6 +90,7 @@
         #endregion O
         #region P
 
+        public static string Pack => _Pack;
         public static string Parser => _Parser;
         public static string PresetGenerator => _Preset + ESeparator.Space + _Generator;
         public static string Proxy => _Proxy;
