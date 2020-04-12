@@ -27,7 +27,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         public void ConvertDdsToPng(DirectoryInfo directory, SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            foreach (var file in directory.GetFiles(searchOption))
+            foreach (var file in directory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Dds}", searchOption))
             {
                 Func<DdsImage> readFile = () => new DdsImage(file.FullName);
 
