@@ -33,10 +33,13 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual int? FolderIndex { get; protected set; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
-        [Property()] public virtual string CategoryOfHiddenVehicles { get; protected set; }
+        [Property()] public virtual string CategoryOfHiddenVehiclesInResearchTree { get; protected set; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool ShowOnlyWhenBought { get; protected set; }
+        [Property()] public virtual bool IsHiddenUnlessBought { get; protected set; }
+
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
+        [Property()] public virtual bool IsHiddenUnlessResearched { get; protected set; }
 
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.
@@ -50,10 +53,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// </summary>
         [Property()] public virtual string PlatformGaijinIdVehicleIsHiddenOn { get; protected set; }
 
-        /// <summary>
-        /// The condition for hiding this vehicle.
-        /// <para> Not related to <see cref="ShowOnlyWhenBought"/> and <see cref="PlatformGaijinIdVehicleIsHiddenOn"/>. </para>
-        /// </summary>
+        /// <summary> The condition for hiding (or bypassing <see cref="IsHiddenUnlessBought"/> and <see cref="IsHiddenUnlessResearched"/>) this vehicle. </summary>
         [Property()] public virtual string HideCondition { get; protected set; }
 
         /// <summary> The Gaijin Marketplace ID. </summary>

@@ -26,11 +26,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
         [JsonProperty("gift")]
-        public string CategoryOfHiddenVehicles { get; set; }
+        public string CategoryOfHiddenVehiclesInResearchTree { get; set; }
 
         /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
         [JsonProperty("showOnlyWhenBought")]
-        public bool ShowOnlyWhenBought { get; set; }
+        public bool IsHiddenUnlessBought { get; set; }
+
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
+        [JsonProperty("showOnlyWhenResearch")]
+        public bool IsHiddenUnlessResearched { get; set; }
 
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.
@@ -46,10 +50,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("hideByPlatform")]
         public string PlatformGaijinIdVehicleIsHiddenOn { get; set; }
 
-        /// <summary>
-        /// The condition for hiding this vehicle.
-        /// <para> Not related to <see cref="ShowOnlyWhenBought"/> and <see cref="PlatformGaijinIdVehicleIsHiddenOn"/>. </para>
-        /// </summary>
+        /// <summary> The condition for hiding (or bypassing <see cref="IsHiddenUnlessBought"/> and <see cref="IsHiddenUnlessResearched"/>) this vehicle. </summary>
         [JsonProperty("hideFeature")]
         public string HideCondition { get; set; }
 

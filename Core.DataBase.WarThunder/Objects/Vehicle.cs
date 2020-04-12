@@ -250,7 +250,6 @@ namespace Core.DataBase.WarThunder.Objects
             GraphicsData = new VehicleGraphicsData(_dataRepository, this, deserializedVehicle);
 
             IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;
-            IsResearchable = !PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
         }
 
         /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
@@ -356,6 +355,11 @@ namespace Core.DataBase.WarThunder.Objects
             ResearchTreeData = new VehicleResearchTreeData(_dataRepository, this);
             ResearchTreeData.InitializeWithDeserializedJson(deserializedResearchTreeVehicle);
 
+            if (string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles))
+                CategoryOfHiddenVehicles = deserializedResearchTreeVehicle.CategoryOfHiddenVehiclesInResearchTree;
+
+            IsHiddenUnlessOwned = IsHiddenUnlessOwned || deserializedResearchTreeVehicle.IsHiddenUnlessBought || deserializedResearchTreeVehicle.IsHiddenUnlessResearched;
+            IsResearchable = !PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
             IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
             IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
         }

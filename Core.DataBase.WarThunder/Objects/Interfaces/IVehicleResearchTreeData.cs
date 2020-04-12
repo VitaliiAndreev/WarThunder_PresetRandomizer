@@ -23,7 +23,13 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         int? FolderIndex { get; }
 
         /// <summary> The category of hidden vehicles this one belongs to. </summary>
-        string CategoryOfHiddenVehicles { get; }
+        string CategoryOfHiddenVehiclesInResearchTree { get; }
+
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
+        bool IsHiddenUnlessBought { get; }
+
+        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
+        bool IsHiddenUnlessResearched { get; }
 
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.
@@ -37,10 +43,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// </summary>
         string PlatformGaijinIdVehicleIsHiddenOn { get; }
 
-        /// <summary>
-        /// The condition for hiding this vehicle.
-        /// <para> Not related to <see cref="ShowOnlyWhenBought"/> and <see cref="PlatformGaijinIdVehicleIsHiddenOn"/>. </para>
-        /// </summary>
+        /// <summary> The condition for hiding (or bypassing <see cref="IsHiddenUnlessBought"/> and <see cref="IsHiddenUnlessResearched"/>) this vehicle. </summary>
         string HideCondition { get; }
 
         /// <summary> The Gaijin Marketplace ID. </summary>
