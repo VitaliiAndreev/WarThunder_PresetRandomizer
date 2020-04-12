@@ -26,6 +26,9 @@ namespace Client.Wpf
         /// <summary> Whether to read data from JSON instead of the database. </summary>
         private bool _readOnlyJson;
 
+        /// <summary> Whether to extract game files. </summary>
+        private bool _readPreviouslyUnpackedJson;
+
         /// <summary> Whether to generate the database. </summary>
         private bool _generateDatabase;
 
@@ -66,7 +69,7 @@ namespace Client.Wpf
 
                 try
                 {
-                    ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson);
+                    ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson, _readPreviouslyUnpackedJson);
                 }
                 catch (SettingsFileRegeneratedException)
                 {
@@ -134,14 +137,20 @@ namespace Client.Wpf
             {
                 _readOnlyJson = true;
             }
+            if (getArgument("-!n") is string)
+            {
+                _readPreviouslyUnpackedJson = true;
+            }
             if (getArgument("-!d") is string)
             {
                 _generateDatabase = false;
-                _readOnlyJson = true;
             }
 
-            if (!_generateDatabase && !_readOnlyJson)
+            if (!_generateDatabase || _readPreviouslyUnpackedJson)
                 _readOnlyJson = true;
+
+            if (_readPreviouslyUnpackedJson)
+                _generateDatabase = false;
         }
 
         /// <summary>

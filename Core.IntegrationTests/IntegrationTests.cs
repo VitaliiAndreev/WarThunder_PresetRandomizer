@@ -95,6 +95,7 @@ namespace Core.IntegrationTests
                 new Mock<IPresetGenerator>().Object,
                 true,
                 false,
+                false,
                 Presets.Logger
             );
             _rootDirectory = $"{Directory.GetCurrentDirectory()}\\TestFiles";
@@ -126,7 +127,7 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistNationList()
         {
             // arrange
-            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
+            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters, false);
             var rankJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.RankData);
 
             // act
@@ -156,8 +157,8 @@ namespace Core.IntegrationTests
         public void DeserializeAndPersistVehicleList()
         {
             // arrange
-            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
-            var csvFiles = _manager.GetCsvFiles(EFile.WarThunder.LocalizationParameters);
+            var blkxFiles = _manager.GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters, false);
+            var csvFiles = _manager.GetCsvFiles(EFile.WarThunder.LocalizationParameters, false);
 
             var wpCostJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = _manager.GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);

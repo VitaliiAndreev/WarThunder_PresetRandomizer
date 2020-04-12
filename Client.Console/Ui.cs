@@ -58,7 +58,7 @@ namespace Client.Console
                 var vehicleSelector = new VehicleSelector(randomiser, loggers);
                 var presetGenerator = new PresetGenerator(randomiser, vehicleSelector, loggers);
 
-                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomiser, vehicleSelector, presetGenerator, true, false, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomiser, vehicleSelector, presetGenerator, true, false, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
                     manager.InitializeGameClientVersion();

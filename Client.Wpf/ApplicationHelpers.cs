@@ -102,7 +102,8 @@ namespace Client.Wpf
         /// <summary> Initializes fields and properties. Repeated initialization is being skipped. </summary>
         /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
         /// <param name="readOnlyJson"> Whether to generate the database. </param>
-        public static void Initialize(bool generateDatabase, bool readOnlyJson)
+        /// <param name="readPreviouslyUnpackedJson"> Whether to extract game files. </param>
+        public static void Initialize(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
         {
             if (!_loggersInitialized)
                 InitializeLoggers();
@@ -112,7 +113,7 @@ namespace Client.Wpf
 
             Log.Debug(ECoreLogMessage.Initializing.FormatFluently(EWord.Helpers.ToLower()));
 
-            InitializeHelpers(generateDatabase, readOnlyJson);
+            InitializeHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
             Log.Debug(ECoreLogMessage.ObjectInitialized.FormatFluently(EWord.Helpers));
             _helpersInitialized = true;
@@ -121,7 +122,8 @@ namespace Client.Wpf
         /// <summary> Initializes helpers. </summary>
         /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
         /// <param name="readOnlyJson"> Whether to generate the database. </param>
-        private static void InitializeHelpers(bool generateDatabase, bool readOnlyJson)
+        /// <param name="readPreviouslyUnpackedJson"> Whether to extract game files. </param>
+        private static void InitializeHelpers(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
         {
             var settingsTypes = new List<Type>
             {
@@ -148,7 +150,24 @@ namespace Client.Wpf
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
             _presetGenerator = new PresetGenerator(_randomizer, _vehicleSelector, Loggers);
 
-            Manager = new WpfClientManager(FileManager, FileReader, SettingsManager, _parser, _unpacker, _converter, _jsonHelper, _csvDeserializer, _randomizer, _vehicleSelector, _presetGenerator, generateDatabase, readOnlyJson, Loggers);
+            Manager = new WpfClientManager
+            (
+                FileManager,
+                FileReader,
+                SettingsManager,
+                _parser,
+                _unpacker,
+                _converter,
+                _jsonHelper,
+                _csvDeserializer,
+                _randomizer,
+                _vehicleSelector,
+                _presetGenerator,
+                generateDatabase,
+                readOnlyJson,
+                readPreviouslyUnpackedJson,
+                Loggers
+            );
             InitializeLocalizationManager();
         }
 

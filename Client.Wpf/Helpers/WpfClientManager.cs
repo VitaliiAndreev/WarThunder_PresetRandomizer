@@ -18,6 +18,7 @@ namespace Client.Wpf.Helpers
         /// <summary> Creates a new manager and loads settings stored in the <see cref="EWpfClientFile.Settings"/> file. </summary>
         /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
         /// <param name="readOnlyJson"> Whether to generate the database. </param>
+        /// <param name="readPreviouslyUnpackedJson"> Whether to extract game files. </param>
         public WpfClientManager
         (
             IWarThunderFileManager fileManager,
@@ -33,8 +34,9 @@ namespace Client.Wpf.Helpers
             IPresetGenerator presetGenerator,
             bool generateDatabase,
             bool readOnlyJson,
+            bool readPreviouslyUnpackedJson,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
         }
 

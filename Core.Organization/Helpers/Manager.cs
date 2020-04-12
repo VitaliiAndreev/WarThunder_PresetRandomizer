@@ -42,6 +42,8 @@ namespace Core.Organization.Helpers
         private readonly bool _generateDatabase;
         /// <summary> Whether to read data from JSON instead of the database. </summary>
         private readonly bool _readOnlyJson;
+        /// <summary> Whether to extract game files. </summary>
+        private readonly bool _readPreviouslyUnpackedJson;
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
         /// <summary> Playable vehicles loaded into memory. </summary>
@@ -107,11 +109,13 @@ namespace Core.Organization.Helpers
             IPresetGenerator presetGenerator,
             bool generateDatabase,
             bool readOnlyJson,
+            bool readPreviouslyUnpackedJson,
             params IConfiguredLogger[] loggers
         ) : base(EOrganizationLogCategory.Manager, loggers)
         {
             _generateDatabase = generateDatabase;
             _readOnlyJson = readOnlyJson;
+            _readPreviouslyUnpackedJson = readPreviouslyUnpackedJson;
             _excludedGaijinIdParts = new List<string>()
             {
                 "_football",
@@ -144,7 +148,8 @@ namespace Core.Organization.Helpers
             _settingsManager = settingsManager;
             LoadSettings();
 
-            _fileManager.CleanUpTempDirectory();
+            if (!_readPreviouslyUnpackedJson)
+                _fileManager.CleanUpTempDirectory();
 
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
@@ -226,7 +231,7 @@ namespace Core.Organization.Helpers
         {
             try
             {
-                UnpackDeserializePersist();
+                UnpackDeserialisePersist(_readPreviouslyUnpackedJson);
             }
             catch
             {
@@ -310,7 +315,14 @@ namespace Core.Organization.Helpers
             InitializeResearchTrees();
         }
 
-        /// <summary> Unpacks a file with the speficied name and gets files of the given type from its contents, doing conversions if necessary. </summary>
+        internal IEnumerable<FileInfo> GetFilesWithoutProcessing(string fileType, string sourceFileName, string processedSubdirectory = "")
+        {
+            var outputDirectory = new DirectoryInfo(Path.Combine(Settings.TempLocation, $"{sourceFileName}_u", processedSubdirectory));
+
+            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
+        }
+
+        /// <summary> Unpacks a file with the <paramref name="packedFileName"/> and gets files of the <paramref name="fileType"/> from its contents, doing conversions if necessary. </summary>
         /// <param name="fileType"> The type of files to search for after unpacking. </param>
         /// <param name="packedFileName"> The name of the packed file. </param>
         /// <param name="warThunderSubdirectory"> War Thunder subdirectory where to look for the <paramref name="packedFileName"/>. </param>
@@ -341,21 +353,34 @@ namespace Core.Organization.Helpers
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns BLK files it contains converted into BLKX files. </summary>
         /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
         /// <returns></returns>
-        internal IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName) =>
-            GetFiles(EFileExtension.Blkx, sourceFileName);
+        internal IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName, bool readAlreadyUnpackedFiles) =>
+            readAlreadyUnpackedFiles
+                ? GetFilesWithoutProcessing(EFileExtension.Blkx, sourceFileName)
+                : GetFiles(EFileExtension.Blkx, sourceFileName);
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns CSV files it contains. </summary>
         /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
         /// <returns></returns>
-        internal IEnumerable<FileInfo> GetCsvFiles(string sourceFileName) =>
-            GetFiles(EFileExtension.Csv, sourceFileName);
+        internal IEnumerable<FileInfo> GetCsvFiles(string sourceFileName, bool readAlreadyUnpackedFiles) =>
+            readAlreadyUnpackedFiles
+                ? GetFilesWithoutProcessing(EFileExtension.Csv, sourceFileName)
+                : GetFiles(EFileExtension.Csv, sourceFileName);
 
         /// <summary> Gets vehicle icon PNG files contained in the <paramref name="sourceFileName"/>. </summary>
         /// <param name="sourceFileName"> The BIN file to unpack. </param>
+        /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
         /// <returns></returns>
-        internal IEnumerable<FileInfo> GetVehicleIcons(string sourceFileName) =>
-            GetFiles(EFileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, EDirectory.WarThunder.Archive.AtlasesWromfsBin.UnitIcons);
+        internal IEnumerable<FileInfo> GetVehicleIcons(string sourceFileName, bool readAlreadyUnpackedFiles)
+        {
+            var processedSubdirectory = EDirectory.WarThunder.Archive.AtlasesWromfsBin.UnitIcons;
+
+            return readAlreadyUnpackedFiles
+                ? GetFilesWithoutProcessing(EFileExtension.Png, sourceFileName, processedSubdirectory)
+                : GetFiles(EFileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, processedSubdirectory);
+        }
 
         /// <summary> Reads a file with the specified name from the given collection of files. </summary>
         /// <param name="files"> The collection of files. </param>
@@ -490,25 +515,29 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
-        private void UnpackDeserializePersist()
+        /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
+        private void UnpackDeserialisePersist(bool readAlreadyUnpackedFiles = false)
         {
             if (_generateDatabase)
                 CreateDataBase();
             else
                 _dataRepository = new DataRepositoryInMemory(_loggers);
 
-            LogInfo(EOrganizationLogMessage.PreparingGameFiles);
+            if (!_readPreviouslyUnpackedJson)
+                LogInfo(EOrganizationLogMessage.PreparingGameFiles);
 
-            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters);
-            var csvFiles = GetCsvFiles(EFile.WarThunder.LocalizationParameters);
-            var vehicleIconFiles = GetVehicleIcons(EFile.WarThunderUi.Icons).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters, readAlreadyUnpackedFiles);
+            var csvFiles = GetCsvFiles(EFile.WarThunder.LocalizationParameters, readAlreadyUnpackedFiles);
+            var vehicleIconFiles = GetVehicleIcons(EFile.WarThunderUi.Icons, readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
 
             var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
             var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
             var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
             var vehicleLocalizationRecords = GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
 
-            LogInfo(EOrganizationLogMessage.GameFilesPrepared);
+            if (!_readPreviouslyUnpackedJson)
+                LogInfo(EOrganizationLogMessage.GameFilesPrepared);
+
             LogInfo(EOrganizationLogMessage.DeserialisingGameFiles);
 
             var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
