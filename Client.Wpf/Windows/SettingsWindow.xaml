@@ -44,10 +44,12 @@
 
             <Button Content="Cancel"
                 Grid.Column="1"
+                Style="{StaticResource ButtonFontSize16}"
                 x:Name="_cancelButton"/>
 
             <Button Content="OK"
                 Grid.Column="3"
+                Style="{StaticResource ButtonFontSize16}"
                 x:Name="_okButton"/>
         </Grid>
         

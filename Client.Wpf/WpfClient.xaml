@@ -310,12 +310,16 @@
 
         <!-- t:TextBox -->
 
-        <Style TargetType="TextBox" x:Key="ValidText">
+        <Style TargetType="TextBox" x:Key="TextBoxFontSize16">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="ValidText" BasedOn="{StaticResource TextBoxFontSize16}">
             <Setter Property="Foreground" Value="#00B414"/>
             <Setter Property="Background" Value="#9BFFA5"/>
         </Style>
 
-        <Style TargetType="TextBox" x:Key="InvalidText">
+        <Style TargetType="TextBox" x:Key="InvalidText" BasedOn="{StaticResource TextBoxFontSize16}">
             <Setter Property="Foreground" Value="#C80000"/>
             <Setter Property="Background" Value="#FFCDFA"/>
         </Style>
