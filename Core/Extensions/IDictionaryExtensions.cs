@@ -135,5 +135,11 @@ namespace Core.Extensions
         /// <returns></returns>
         public static IDictionary<T, U> Copy<T, U>(this IDictionary<T, U> dictionary) =>
             new Dictionary<T, U>(dictionary);
+
+        public static IEnumerable<T> GetKeyWhereValue<T, U>(this IDictionary<T, U> dictionary, Predicate<U> valuePredicate) =>
+            dictionary
+                .Where(keyValuePair => valuePredicate(keyValuePair.Value))
+                .Select(keyValuePair => keyValuePair.Key)
+            ;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Core.Enumerations
+﻿using System.Collections.Generic;
+
+namespace Core.Enumerations
 {
     /// <summary> Integer constants. </summary>
     public class EInteger
@@ -18,7 +20,16 @@
             public const int Sixteen = 16;
             public const int NinetyNine = 99;
             public const int Hundred = 100;
+            public const int HundredOne = 101;
+            public const int HundredThree = 103;
+            public const int HundredSeven = 107;
+            public const int HundredNine = 109;
+            public const int HundredThirteen = 113;
+            public const int HundredTwentySeven = 127;
+            public const int HundredThirtyOne = 131;
             public const int Thousand = 1_000;
+
+            public static IEnumerable<int> PrimesAboveHundred = new List<int> { HundredOne, HundredThree, HundredSeven, HundredNine, HundredThirteen, HundredTwentySeven, HundredThirtyOne };
         }
 
         /// <summary> Time-related constants. </summary>

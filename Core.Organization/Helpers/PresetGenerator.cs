@@ -16,6 +16,7 @@ using Core.Organization.Enumerations.Logger;
 using Core.Organization.Extensions;
 using Core.Organization.Helpers.Interfaces;
 using Core.Organization.Objects.SearchSpecifications;
+using Core.Randomization.Enumerations;
 using Core.Randomization.Helpers.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -227,7 +228,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private EBranch SelectMainBranch(Specification specification, IEnumerable<EBranch> availableBranches)
         {
-            var mainBranch = _randomiser.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)));
+            var mainBranch = _randomiser.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)), ERandomisationStep.MainBranchWhenSelectingByCategories);
 
             LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
 

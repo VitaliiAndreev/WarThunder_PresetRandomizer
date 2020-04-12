@@ -3,6 +3,7 @@ using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
+using Core.Randomization.Enumerations;
 using Core.Randomization.Enumerations.Logger;
 using Core.Randomization.Helpers.Interfaces;
 using System;
@@ -17,7 +18,7 @@ namespace Core.Randomization.Helpers
         #region Fields
 
         /// <summary> The random number generator. </summary>
-        private readonly Random _generator;
+        protected readonly Random _generator;
 
         #endregion Fields
         #region Constructors
@@ -34,7 +35,7 @@ namespace Core.Randomization.Helpers
 
         #endregion Constructors
 
-        protected virtual T GetRandomCore<T>(IEnumerable<T> items)
+        protected virtual T GetRandomCore<T>(IEnumerable<T> items, ERandomisationStep randomisationStep)
         {
             return items.ToList()[_generator.Next(items.Count())];
         }
@@ -42,8 +43,9 @@ namespace Core.Randomization.Helpers
         /// <summary> Picks randomly an item from the collection. </summary>
         /// <typeparam name="T"> The type of items in the collection. </typeparam>
         /// <param name="items"> The collection of items to pick from. </param>
+        /// <param name="randomisationStep"> The current randomisation step. </param>
         /// <returns></returns>
-        public T GetRandom<T>(IEnumerable<T> items)
+        public T GetRandom<T>(IEnumerable<T> items, ERandomisationStep randomisationStep = ERandomisationStep.NotRelevant)
         {
             var itemType = typeof(T);
 
@@ -66,7 +68,7 @@ namespace Core.Randomization.Helpers
                     return default;
             }
 
-            return GetRandomCore(items);
+            return GetRandomCore(items, randomisationStep);
         }
     }
 }

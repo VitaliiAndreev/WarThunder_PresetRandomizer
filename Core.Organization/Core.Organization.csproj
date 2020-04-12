@@ -55,12 +55,14 @@
     <Compile Include="Enumerations\Logger\EOrganizationLogCategory.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Helpers\CustomRandomiserWithNormalisation.cs" />
     <Compile Include="Helpers\Interfaces\IManager.cs" />
     <Compile Include="Helpers\Interfaces\IPresetGenerator.cs" />
     <Compile Include="Helpers\Interfaces\IVehicleSelector.cs" />
     <Compile Include="Helpers\Manager.cs" />
     <Compile Include="Helpers\PresetGenerator.cs" />
     <Compile Include="Helpers\VehicleSelector.cs" />
+    <Compile Include="Objects\BranchSet.cs" />
     <Compile Include="Objects\ResearchTree.cs" />
     <Compile Include="Objects\ResearchTreeBranch.cs" />
     <Compile Include="Objects\ResearchTreeCoordinatesWithinRank.cs" />

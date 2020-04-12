@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\ERandomisationStep.cs" />
     <Compile Include="Enumerations\Logger\ERandomizerLogCategory.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IRandomiser.cs" />

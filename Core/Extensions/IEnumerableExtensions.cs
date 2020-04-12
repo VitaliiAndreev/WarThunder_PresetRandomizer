@@ -11,6 +11,9 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
+        public static bool AllEqual<T>(this IEnumerable<T> collection) =>
+            collection.Distinct().Count() == EInteger.Number.One;
+
         /// <summary> Returns a new collection with the given <paramref name="item"/> added to the <paramref name="collection"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
         /// <param name="collection"> The collection to add the <paramref name="item"/> to. </param>

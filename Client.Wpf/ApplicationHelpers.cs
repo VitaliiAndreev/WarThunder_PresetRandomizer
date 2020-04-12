@@ -142,7 +142,7 @@ namespace Client.Wpf
             _unpacker = new Unpacker(FileManager, Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);
             _csvDeserializer = new CsvDeserializer(Loggers);
-            _randomizer = new CustomRandomiser(Loggers);
+            _randomizer = new CustomRandomiserWithNormalisation(Loggers);
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
             _presetGenerator = new PresetGenerator(_randomizer, _vehicleSelector, Loggers);
 
