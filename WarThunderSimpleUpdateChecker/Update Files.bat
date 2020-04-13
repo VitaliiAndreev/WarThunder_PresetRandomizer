@@ -1,1 +1,1 @@
-D:\Code\Source\_Repositories\WarThunderPresetRandomizer\WarThunderSimpleUpdateChecker\bin\Debug\WarThunderSimpleUpdateChecker.exe "D:\Games\_Steam\steamapps\common\War Thunder" "F:\Software\Klensy's WT Tools" "D:\Code\Source\_Repositories\WarThunderJsonFileChanges"
+WarThunderSimpleUpdateChecker.exe "D:\Games\_Steam\steamapps\common\War Thunder" "F:\Software\Klensy's WT Tools" "D:\Code\Source\_Repositories\WarThunderJsonFileChanges"
