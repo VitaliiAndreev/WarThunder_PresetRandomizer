@@ -34,10 +34,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
         public virtual EVehicleSubclass Second { get; protected set; } = EVehicleSubclass.None;
 
-        /// <summary> The tertiary subclass. </summary>
-        [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
-        public virtual EVehicleSubclass Third { get; protected set; } = EVehicleSubclass.None;
-
         #endregion PersistentProperties
         #region Association Properties
 
@@ -49,7 +45,7 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Association Properties
         #region Non-Persistent Properties
 
-        public virtual IEnumerable<EVehicleSubclass> All => new HashSet<EVehicleSubclass> { First, Second, Third }.AsEnumerable();
+        public virtual IEnumerable<EVehicleSubclass> All => new HashSet<EVehicleSubclass> { First, Second }.AsEnumerable();
 
         #endregion Non-Persistent Properties
         #region Constructors
@@ -209,17 +205,11 @@ namespace Core.DataBase.WarThunder.Objects
                     {
                         First = subclass;
                         Second = subclass;
-                        Third = subclass;
                         break;
                     }
                     case 1:
                     {
                         Second = subclass;
-                        break;
-                    }
-                    case 2:
-                    {
-                        Third = subclass;
                         break;
                     }
                     default:

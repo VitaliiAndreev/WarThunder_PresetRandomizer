@@ -17,7 +17,7 @@
         private const string _repair = "Repair";
         private const string _research = "Research";
         private const string _reward = "Reward";
-        private const string _subclass = "SubClass";
+        private const string _subclass = "Subclass";
         private const string _tags = "Tags";
         private const string _time = "Time";
         private const string _tree = "Tree";

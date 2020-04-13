@@ -13,8 +13,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         EVehicleSubclass First { get; }
         /// <summary> The secondary subclass. </summary>
         EVehicleSubclass Second { get; }
-        /// <summary> The tertiary subclass. </summary>
-        EVehicleSubclass Third { get; }
 
         #endregion PersistentProperties
         #region Non-Persistent Properties
