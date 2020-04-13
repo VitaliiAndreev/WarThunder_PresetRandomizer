@@ -203,6 +203,12 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
 
+        <!-- t:RankToggleControl -->
+
+        <Style TargetType="controls:RankToggleControl">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+        </Style>
+
         <!-- t:ResearchTreeCellControl -->
 
         <Style TargetType="controls:ResearchTreeCellControl" x:Key="Rank1">
@@ -351,26 +357,26 @@
             <Setter Property="Height" Value="30"/>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Style TargetType="ToggleButton" x:Key="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}"/>
+
+        <Style TargetType="ToggleButton" x:Key="ToggleButtonSkyQuake" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource ToggleButtonSkyQuake}">
             <Setter Property="Padding" Value="-5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="FontSize" Value="26"/>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="NationToggle" BasedOn="{StaticResource BranchToggle}">
+        <Style TargetType="ToggleButton" x:Key="NationToggle" BasedOn="{StaticResource ToggleButtonSkyQuake}">
             <Setter Property="Padding" Value="0"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="VehicleClassToggle" BasedOn="{StaticResource NationToggle}">
+        <Style TargetType="ToggleButton" x:Key="VehicleClassToggle" BasedOn="{StaticResource BranchToggle}">
             <Setter Property="Height" Value="16"/>
-            <Setter Property="Padding" Value="-5"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
@@ -394,6 +400,11 @@
 
         <Style TargetType="ToggleButton" x:Key="CountryToggleAll" BasedOn="{StaticResource VehicleClassToggleAll}">
             <Setter Property="Height" Value="20"/>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="RankToggle" BasedOn="{StaticResource CountryToggleAll}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontSize" Value="12"/>
         </Style>
 
         <!-- t:UpDownControl -->

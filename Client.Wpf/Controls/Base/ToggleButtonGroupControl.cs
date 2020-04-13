@@ -168,6 +168,18 @@ namespace Client.Wpf.Controls.Base
         /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
         public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, char> characterIcons, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
+            CreateToggleButtons(panel, enumerationItems, characterIcons?.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value.ToString()), styleKey, horizontal, createToggleAllButton);
+        }
+
+        /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with <paramref name="displayStrings"/>. </summary>
+        /// <param name="panel"> The panel to add buttons onto. </param>
+        /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
+        /// <param name="displayStrings"> Character icons for <paramref name="enumerationItems"/>. </param>
+        /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
+        /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
+        /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> displayStrings, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
+        {
             if (createToggleAllButton)
                 CreateToggleAllButton(panel, $"{styleKey}{EWord.All}", horizontal);
 
@@ -175,7 +187,7 @@ namespace Client.Wpf.Controls.Base
             {
                 try
                 {
-                    CreateToggleButton(panel, enumerationItem, (characterIcons is null || !characterIcons.TryGetValue(enumerationItem, out var characterIcon)) ? enumerationItem.ToString() : characterIcon.ToString(), styleKey, horizontal);
+                    CreateToggleButton(panel, enumerationItem, (displayStrings is null || !displayStrings.TryGetValue(enumerationItem, out var displayString)) ? enumerationItem.ToString() : displayString, styleKey, horizontal);
                 }
                 catch (Exception e)
                 {

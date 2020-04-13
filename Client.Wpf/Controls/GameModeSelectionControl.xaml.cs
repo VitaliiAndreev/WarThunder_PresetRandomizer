@@ -17,7 +17,7 @@ namespace Client.Wpf.Controls
         public GameModeSelectionControl()
         {
             InitializeComponent();
-            CreateToggleButtons(_buttonGrid, new List<EGameMode> { EGameMode.Arcade, EGameMode.Realistic, EGameMode.Simulator }, null, EStyleKey.ToggleButton.BaseToggleButton);
+            CreateToggleButtons(_buttonGrid, new List<EGameMode> { EGameMode.Arcade, EGameMode.Realistic, EGameMode.Simulator }, default(IDictionary<EGameMode, char>), EStyleKey.ToggleButton.BaseToggleButton);
 
             foreach (var buttonKeyValuePair in Buttons)
             {

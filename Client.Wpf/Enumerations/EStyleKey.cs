@@ -59,6 +59,7 @@
             public const string NationToggle = "NationToggle";
             public const string BaseToggleButton = "ToggleButton";
             public const string VehicleClassToggle = "VehicleClassToggle";
+            public const string RankToggle = "RankToggle";
         }
     }
 }

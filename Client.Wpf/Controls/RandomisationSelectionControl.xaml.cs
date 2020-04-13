@@ -1,10 +1,8 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Core.Extensions;
 using Core.Organization.Enumerations;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 namespace Client.Wpf.Controls
 {
@@ -17,7 +15,7 @@ namespace Client.Wpf.Controls
         public RandomisationSelectionControl()
         {
             InitializeComponent();
-            CreateToggleButtons(_buttonGrid, typeof(ERandomisation).GetEnumValues().OfType<ERandomisation>(), null, EStyleKey.ToggleButton.CountryToggleAll);
+            CreateToggleButtons(_buttonGrid, typeof(ERandomisation).GetEnumValues().OfType<ERandomisation>(), default(IDictionary<ERandomisation, char>), EStyleKey.ToggleButton.CountryToggleAll);
         }
 
         #endregion Constuctors

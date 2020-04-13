@@ -23,7 +23,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
         /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
         /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
-        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> resourceKeys, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
+        public void CreateToggleButtonsWithImages(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> resourceKeys, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
             if (createToggleAllButton && enumerationItems.Any())
                 CreateToggleAllButton(panel, enumerationItems.First(), styleKey, horizontal);

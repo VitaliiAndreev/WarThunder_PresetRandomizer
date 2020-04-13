@@ -30,7 +30,7 @@ namespace Client.Wpf.Controls
                 _nation = value;
                 _panel.Children.Clear();
 
-                CreateToggleButtons
+                CreateToggleButtonsWithImages
                 (
                     _panel,
                     _groupedItems[value],

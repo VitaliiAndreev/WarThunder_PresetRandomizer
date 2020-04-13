@@ -203,6 +203,18 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleClass.Frigate, '␌' },
         };
 
+        /// <summary> String representations of ranks. </summary>
+        public static IDictionary<ERank, string> RankIcons { get; } = new Dictionary<ERank, string>
+        {
+            { ERank.I, "I" },
+            { ERank.II, "II" },
+            { ERank.III, "III" },
+            { ERank.IV, "IV" },
+            { ERank.V, "V" },
+            { ERank.VI, "VI" },
+            { ERank.VII, "VII" },
+        };
+
         #endregion Properties
         #region Constructors
 
