@@ -51,6 +51,9 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Countries enabled for preset generation, grouped by nations. </summary>
         IDictionary<ENation, IEnumerable<ECountry>> EnabledCountriesByNations { get; }
 
+        /// <summary> Ranks enabled for preset generation. </summary>
+        IList<ERank> EnabledRanks { get; }
+
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
 

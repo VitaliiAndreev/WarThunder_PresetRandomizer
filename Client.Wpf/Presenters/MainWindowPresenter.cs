@@ -75,6 +75,9 @@ namespace Client.Wpf.Presenters
                 .ToDictionary(group => group.Key, group => group.Select(countryCollection => countryCollection.Country))
             ;
 
+        /// <summary> Ranks enabled for preset generation. </summary>
+        public IList<ERank> EnabledRanks { get; }
+
         /// <summary> <see cref="IVehicle.EconomicRank"/> intervals enabled for preset generation. </summary>
         public IDictionary<ENation, Interval<int>> EnabledEconomicRankIntervals { get; }
 
@@ -103,6 +106,7 @@ namespace Client.Wpf.Presenters
             EnabledVehicleSubclasses = new List<EVehicleSubclass>(WpfSettings.EnabledVehicleSubclassesCollection);
             EnabledNations = new List<ENation>(WpfSettings.EnabledNationsCollection);
             EnabledCountries = new List<NationCountryPair>(WpfSettings.EnabledCountriesCollection);
+            EnabledRanks = new List<ERank>(WpfSettings.EnabledRanksCollection);
             EnabledEconomicRankIntervals = new Dictionary<ENation, Interval<int>>(WpfSettings.EnabledEconomicRankIntervals);
             EnabledVehicleGaijinIds = new List<string>(WpfSettings.EnabledVehiclesCollection);
             GeneratedPresets = new Dictionary<EPreset, Preset>();

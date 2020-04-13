@@ -117,6 +117,18 @@ namespace Client.Wpf
         }
 
         [RequiredSetting]
+        public static string EnabledRanks
+        {
+            get => EnabledRanksCollection.StringJoin(Separator);
+            set => EnabledRanksCollection = value
+                .Split(Separator)
+                .Select(rankString => rankString.TryParseEnumeration<ERank>(out var rank) ? rank : ERank.None)
+                .Where(rank => rank.IsValid())
+                .ToList()
+            ;
+        }
+
+        [RequiredSetting]
         public static string EnabledEconomicRanks
         {
             get => EnabledEconomicRankIntervals.Values.Select(interval => $"{interval.LeftItem}-{interval.RightBounded}").StringJoin(Separator);
@@ -206,7 +218,13 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledCountries"/> instead. </para>
         /// </summary>
         public static IEnumerable<NationCountryPair> EnabledCountriesCollection { get; private set; }
-        
+
+        /// <summary>
+        /// Currently enabled nations.
+        /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledRanks"/> instead. </para>
+        /// </summary>
+        public static IEnumerable<ERank> EnabledRanksCollection { get; private set; }
+
         /// <summary>
         /// Currently enabled <see cref="IVehicle.EconomicRank"/>s.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledEconomicRanks"/> instead. </para>
