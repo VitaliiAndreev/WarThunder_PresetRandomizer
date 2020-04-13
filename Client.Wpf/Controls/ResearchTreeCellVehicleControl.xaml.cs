@@ -148,9 +148,9 @@ namespace Client.Wpf.Controls
                 _countryFlag.Margin = new Thickness(5, 0, 0, 0);
             }
 
-            if (Vehicle.Icon is Bitmap icon)
+            if (Vehicle.Icon is Bitmap)
             {
-                _innerGrid.Background = new ImageBrush(icon.ToBitmapSource(ImageFormat.Png))
+                _innerGrid.Background = new ImageBrush(ApplicationHelpers.Manager.GetIconBitmapSource(Vehicle))
                 {
                     Stretch = Stretch.Uniform,
                     AlignmentX = AlignmentX.Left,

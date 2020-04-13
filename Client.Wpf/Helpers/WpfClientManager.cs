@@ -1,18 +1,28 @@
 ﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
+using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Helpers
 {
     /// <summary> Controls the flow of the application. </summary>
     public class WpfClientManager: Manager, IWpfClientManager
     {
+        #region Fields
+
+        private readonly IDictionary<string, BitmapSource> _vehicleIconBitmapSources;
+
+        #endregion Fields
         #region Constructors
 
         /// <summary> Creates a new manager and loads settings stored in the <see cref="EWpfClientFile.Settings"/> file. </summary>
@@ -38,6 +48,7 @@ namespace Client.Wpf.Helpers
             params IConfiguredLogger[] loggers
         ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
+            _vehicleIconBitmapSources = new Dictionary<string, BitmapSource>();
         }
 
         #endregion Constructors
@@ -52,5 +63,20 @@ namespace Client.Wpf.Helpers
         }
 
         #endregion Methods: Settings
+        #region Methods: Working with Caches
+
+        public BitmapSource GetIconBitmapSource(IVehicle vehicle)
+        {
+            if (_vehicleIconBitmapSources.TryGetValue(vehicle.GaijinId, out var cachedSource))
+                return cachedSource;
+
+            var bitmapSource = vehicle.Icon.ToBitmapSource(ImageFormat.Png);
+
+            _vehicleIconBitmapSources.Add(vehicle.GaijinId, bitmapSource);
+
+            return bitmapSource;
+        }
+
+        #endregion Methods: Working with Caches
     }
 }
