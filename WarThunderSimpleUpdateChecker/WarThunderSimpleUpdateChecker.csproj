@@ -51,8 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Update Files %28Dev%29.bat" />
-    <None Include="Update Files.bat" />
+    <Content Include="Update Files %28Dev%29.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update Files.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
