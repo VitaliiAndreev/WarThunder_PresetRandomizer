@@ -3,6 +3,19 @@
   <Line key="AboutWtpr" value="О проекте"/>
   <Line key="AirDefenceFighter" value="Истребитель ПВО"/>
   <Line key="All" value="Все"/>
+  <Line key="AllAircraft" value="Все"/>
+  <Line key="AllBritain" value="Все"/>
+  <Line key="AllChina" value="Все"/>
+  <Line key="AllFrance" value="Все"/>
+  <Line key="AllGermany" value="Все"/>
+  <Line key="AllGroundVehicles" value="Все"/>
+  <Line key="AllHelicopters" value="Все"/>
+  <Line key="AllItaly" value="Все"/>
+  <Line key="AllJapan" value="Все"/>
+  <Line key="AllShips" value="Все"/>
+  <Line key="AllSweden" value="Все"/>
+  <Line key="AllUsa" value="Все"/>
+  <Line key="AllUssr" value="Все"/>
   <Line key="Alpha" value="Альфа"/>
   <Line key="AntiAirFerry" value="Плавбатарея ПВО"/>
   <Line key="AntiTankMissileCarrier" value="Носитель ПТУР"/>
