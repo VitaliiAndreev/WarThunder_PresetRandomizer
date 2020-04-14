@@ -31,9 +31,11 @@ namespace Core.Csv.WarThunder.Helpers
         /// <param name="csvRecords"> The indexed collection of CSV records to deserialize. </param>
         public void DeserializeVehicleLocalization(IDictionary<string, IVehicle> vehicles, IList<IList<string>> csvRecords)
         {
-            for (var lineIndex = EInteger.Number.One; lineIndex < csvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
+            var sortedCsvRecords = csvRecords.Skip(EInteger.Number.One).OrderBy(record => record.First()).ToList();
+
+            for (var lineIndex = EInteger.Number.One; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
             {
-                var record = csvRecords[lineIndex];
+                var record = sortedCsvRecords[lineIndex];
                 var recordGaijinId = record.First();
                 var shopNameSuffix = "_shop";
 
@@ -41,16 +43,16 @@ namespace Core.Csv.WarThunder.Helpers
                 {
                     var vehicleGaijinId = recordGaijinId.SkipLast(shopNameSuffix.Count());
 
-                    var fullNameRecordIndex = lineIndex + EInteger.Number.One;
-                    var shortNameRecordIndex = fullNameRecordIndex + EInteger.Number.One;
-                    var classNameRecordIndex = shortNameRecordIndex + EInteger.Number.One;
+                    var fullNameRecordIndex = lineIndex - EInteger.Number.Three;
+                    var shortNameRecordIndex = lineIndex - EInteger.Number.Two;
+                    var classNameRecordIndex = lineIndex - EInteger.Number.One;
 
                     var shopNameRecord = record;
-                    var fullNameRecord = csvRecords[fullNameRecordIndex];
-                    var shortNameRecord = csvRecords[shortNameRecordIndex];
-                    var classNameRecord = csvRecords[classNameRecordIndex];
+                    var fullNameRecord = sortedCsvRecords[fullNameRecordIndex];
+                    var shortNameRecord = sortedCsvRecords[shortNameRecordIndex];
+                    var classNameRecord = sortedCsvRecords[classNameRecordIndex];
 
-                    if (!csvRecords[classNameRecordIndex].First().Contains(vehicleGaijinId))
+                    if (!sortedCsvRecords[classNameRecordIndex].First().Contains(vehicleGaijinId))
                     {
                         classNameRecord = shortNameRecord;
                         classNameRecordIndex -= EInteger.Number.One;
@@ -59,7 +61,6 @@ namespace Core.Csv.WarThunder.Helpers
                     if (vehicles.TryGetValue(vehicleGaijinId, out var vehicle))
                         vehicle.InitializeLocalization(fullNameRecord, shopNameRecord, shortNameRecord, classNameRecord);
 
-                    lineIndex = classNameRecordIndex;
                     continue;
                 }
             }
