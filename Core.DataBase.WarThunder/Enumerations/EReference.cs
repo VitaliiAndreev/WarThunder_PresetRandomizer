@@ -154,6 +154,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EVehicleClass, char> ClassIcons { get; } = new Dictionary<EVehicleClass, char>
         {
+            { EVehicleClass.None, ECharacter.Space },
             { EVehicleClass.LightTank, '┪' },
             { EVehicleClass.MediumTank, '┬' },
             { EVehicleClass.HeavyTank, '┨' },
