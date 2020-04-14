@@ -2,6 +2,19 @@
 <Localization>
   <Line key="AboutWtpr" value="About W.T.P.R."/>
   <Line key="All" value="All"/>
+  <Line key="AllAircraft" value="All"/>
+  <Line key="AllBritain" value="All"/>
+  <Line key="AllChina" value="All"/>
+  <Line key="AllFrance" value="All"/>
+  <Line key="AllGermany" value="All"/>
+  <Line key="AllGroundVehicles" value="All"/>
+  <Line key="AllHelicopters" value="All"/>
+  <Line key="AllItaly" value="All"/>
+  <Line key="AllJapan" value="All"/>
+  <Line key="AllShips" value="All"/>
+  <Line key="AllSweden" value="All"/>
+  <Line key="AllUsa" value="All"/>
+  <Line key="AllUssr" value="All"/>
   <Line key="Alpha" value="Alpha"/>
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
