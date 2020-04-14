@@ -236,6 +236,7 @@
     <Compile Include="Commands\MainWindow\ChangeLocalizationCommand.cs" />
     <Compile Include="Commands\MainWindow\DeletePresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />
+    <Compile Include="Commands\MainWindow\LinkToYouTubeCommand.cs" />
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
@@ -452,6 +453,8 @@
     <Content Include="oo2core_6_win64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\IconSweets 2 by Yummygum\youtube.png" />
+    <Resource Include="Resources\IconSweets 2 by Yummygum\team.png" />
     <Resource Include="Resources\Game Mode Icons\arcade.png" />
     <Resource Include="Resources\Game Mode Icons\realistic.png" />
     <Resource Include="Resources\Game Mode Icons\simulator.png" />

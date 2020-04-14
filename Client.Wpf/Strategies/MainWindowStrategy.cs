@@ -29,6 +29,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.ToggleVehicle, new ToggleVehicleCommand());
             _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());
             _commands.Add(ECommandName.ChangeLocalization, new ChangeLocalizationCommand());
+            _commands.Add(ECommandName.LinkToYouTube, new LinkToYouTubeCommand());
             _commands.Add(ECommandName.About, new AboutCommand());
         }
     }

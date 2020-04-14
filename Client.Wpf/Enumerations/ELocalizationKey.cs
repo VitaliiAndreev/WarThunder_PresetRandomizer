@@ -3,7 +3,6 @@
     /// <summary> Keys of localized strings loaded from localization files. </summary>
     public class ELocalizationKey
     {
-        public const string AboutWtpr = nameof(AboutWtpr);
         public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
         public const string AntiAirFerry = nameof(AntiAirFerry);
@@ -73,6 +72,7 @@
         public const string LightBomber = nameof(LightBomber);
         public const string LightCruiser = nameof(LightCruiser);
         public const string LightTank = nameof(LightTank);
+        public const string OpenYouTubePlaylist = nameof(OpenYouTubePlaylist);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);

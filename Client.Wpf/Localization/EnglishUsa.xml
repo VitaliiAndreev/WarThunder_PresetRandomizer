@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
-  <Line key="AboutWtpr" value="About W.T.P.R."/>
   <Line key="AirDefenceFighter" value="Air Defence Fighter"/>
   <Line key="All" value="All"/>
   <Line key="AllAircraft" value="All"/>
@@ -102,6 +101,7 @@
   <Line key="Norway" value="Norway"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
+  <Line key="OpenYouTubePlaylist" value="Open YouTube playlist"/>
   <Line key="Philippines" value="Philippines"/>
   <Line key="Poland" value="Poland"/>
   <Line key="Portugal" value="Portugal"/>

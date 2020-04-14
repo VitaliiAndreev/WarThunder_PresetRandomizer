@@ -527,8 +527,11 @@ namespace Client.Wpf.Windows
             _localizationButton.CommandParameter = Presenter;
             _localizationButton.Command = Presenter.GetCommand(ECommandName.ChangeLocalization);
 
-            _aboutButton.EmbeddedButton.CommandParameter = Presenter;
-            _aboutButton.EmbeddedButton.Command = Presenter.GetCommand(ECommandName.About);
+            _youTubeButton.CommandParameter = Presenter;
+            _youTubeButton.Command = Presenter.GetCommand(ECommandName.LinkToYouTube);
+
+            _aboutButton.CommandParameter = Presenter;
+            _aboutButton.Command = Presenter.GetCommand(ECommandName.About);
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
         }
@@ -606,7 +609,7 @@ namespace Client.Wpf.Windows
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
 
             _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
-            _aboutButton.Caption = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.AboutWtpr);
+            _youTubeButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.OpenYouTubePlaylist);
 
             _randomisationSelectionControl.Localise();
             _gameModeSelectionControl.Localise();

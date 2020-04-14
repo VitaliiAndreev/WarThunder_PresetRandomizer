@@ -87,15 +87,16 @@
                 Style="{StaticResource PaddedGrid_10}">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button
                     Grid.Column="0"
                     x:Name="_settingsButton"
-                    Margin="0 0 10 0">
+                    Margin="0 0 2.5 0">
                     <Image
                         Source="{StaticResource Settings}"
                         Width="19"
@@ -106,17 +107,30 @@
                 <Button
                     Grid.Column="1"
                     x:Name="_localizationButton"
-                    Margin="0 0 10 0">
+                    Margin="2.5 0 2.5 0">
                     <Image
                         Style="{StaticResource LocalizationIcon}"
                         Source="{StaticResource FlagUsaForDesigner}"/>
                 </Button>
 
-                <controls:DropCapButton Caption="About W.T.P.R."
+                <Button
                     Grid.Column="2"
-                    x:Name="_aboutButton"
-                    DropCapFontSize="16"/>
+                    x:Name="_youTubeButton"
+                    Margin="2.5 0 2.5 0">
+                    <Image
+                        Source="{StaticResource YouTubeIcon}"
+                        Style="{StaticResource Icon23pxUniform}"/>
+                </Button>
 
+                <Button
+                    Grid.Column="3"
+                    x:Name="_aboutButton"
+                    Margin="2.5 0 0 0">
+                    <Image
+                        Source="{StaticResource TeamIcon}"
+                        Style="{StaticResource Icon23pxUniform}"/>
+                </Button>
+                
             </Grid>
 
         </Grid>

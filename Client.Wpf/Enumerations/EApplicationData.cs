@@ -9,5 +9,7 @@ namespace Client.Wpf.Enumerations
         public const string DevelopmentStageLocalizationKey = ELocalizationKey.Alpha;
 
         public const string ContributionsByVitalyAndreyev = "1000+";
+
+        public const string LinkToYouTubePlaylist = "https://www.youtube.com/playlist?list=PLTkOsj0Uogp4z4Px8IrmZIl_z6M60mmqX";
     }
 }

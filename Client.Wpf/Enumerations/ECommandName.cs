@@ -22,6 +22,8 @@ namespace Client.Wpf.Enumerations
         GeneratePreset,
         /// <summary> See <see cref="InitializeCommand"/>. </summary>
         Initialize,
+        /// <summary> See <see cref="LinkToYouTubeCommand"/>. </summary>
+        LinkToYouTube,
         /// <summary> See <see cref="OkCommand"/>. </summary>
         Ok,
         /// <summary> See <see cref="OpenSettingsCommand"/>. </summary>
