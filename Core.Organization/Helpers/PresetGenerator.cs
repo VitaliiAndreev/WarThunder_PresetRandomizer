@@ -151,10 +151,10 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
-        /// <param name="vehicles"> Vehicles to filter. </param>
         /// <param name="enabledNationCountryPairs"> Nation-country pairs enabled via GUI. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<IVehicle> vehicles, IEnumerable<NationCountryPair> enabledNationCountryPairs) =>
+        private IEnumerable<IVehicle> FilterVehiclesByCountries(IEnumerable<NationCountryPair> enabledNationCountryPairs, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, enabledNationCountryPairs, vehicle => new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country));
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validVehicleClasses"/>. </summary>
@@ -530,7 +530,7 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Filtering by countiries.
 
-            var vehiclesWithCountryFilter = FilterVehiclesByCountries(vehiclesWithSubclassFilter, enabledNationCountryPairs);
+            var vehiclesWithCountryFilter = FilterVehiclesByCountries(enabledNationCountryPairs, vehiclesWithSubclassFilter);
 
             if (vehiclesWithCountryFilter is null)
                 return emptyPreset;
