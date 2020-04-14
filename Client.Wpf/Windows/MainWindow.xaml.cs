@@ -404,6 +404,18 @@ namespace Client.Wpf.Windows
             }
         }
 
+        /// <summary> Updates <see cref="IMainWindowPresenter.EnabledRanks"/> according to the action. </summary>
+        /// <param name="sender"> Not used. </param>
+        /// <param name="eventArguments"> Event arguments. </param>
+        private void OnRankToggleControlClick(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.OriginalSource is ToggleButton toggleButton)
+            {
+                OnToggleButtonGroupControlClick<ERank>(toggleButton);
+                RaiseGeneratePresetCommandCanExecuteChanged();
+            }
+        }
+
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledEconomicRankIntervals"/> and executes the <see cref="ECommandName.ChangeBattleRating"/> command. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
@@ -489,6 +501,7 @@ namespace Client.Wpf.Windows
                 { typeof(EVehicleClass), Presenter.EnabledVehicleClasses },
                 { typeof(EVehicleSubclass), Presenter.EnabledVehicleSubclasses },
                 { typeof(ENation), Presenter.EnabledNations },
+                { typeof(ERank), Presenter.EnabledRanks },
                 { typeof(NationCountryPair), Presenter.EnabledCountries },
             };
             _toggleCommands = new Dictionary<Type, ECommandName>
@@ -498,6 +511,7 @@ namespace Client.Wpf.Windows
                 { typeof(EVehicleClass), ECommandName.ToggleVehicleClass },
                 { typeof(EVehicleSubclass), ECommandName.ToggleVehicleSubclass },
                 { typeof(ENation), ECommandName.ToggleNation },
+                { typeof(ERank), ECommandName.ToggleRank },
                 { typeof(NationCountryPair), ECommandName.ToggleCountry },
             };
         }
@@ -563,6 +577,7 @@ namespace Client.Wpf.Windows
 
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleSubclasses, true);
+            _rankToggleControl.Toggle(Presenter.EnabledRanks, true);
 
             AdjustBranchTogglesAvailability();
             AdjustChildControlContextMenuVisibility(_vehicleClassControl, OnVehicleSubclassToggled);

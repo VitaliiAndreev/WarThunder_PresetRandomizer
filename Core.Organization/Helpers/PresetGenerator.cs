@@ -185,6 +185,13 @@ namespace Core.Organization.Helpers
         private IEnumerable<IVehicle> FilterVehiclesByNations(IEnumerable<ENation> validNations, IEnumerable<IVehicle> vehicles) =>
             FilterVehicles(vehicles, validNations, vehicle => vehicle.Nation.AsEnumerationItem);
 
+        /// <summary> Filters <paramref name="vehicles"/> with <paramref name="ranks"/>. </summary>
+        /// <param name="ranks"> Ranks enabled via GUI. </param>
+        /// <param name="vehicles"> Vehicles to filter. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByRanks(IEnumerable<ERank> ranks, IEnumerable<IVehicle> vehicles) =>
+            FilterVehicles(vehicles, ranks, vehicle => vehicle.RankAsEnumerationItem);
+
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validEconomicRanksNations"/>. </summary>
         /// <param name="validEconomicRanksNations"> Vehicle classes enabled via GUI and actually available. </param>
         /// <param name="vehicles"> Vehicles to filter. </param>
@@ -529,11 +536,19 @@ namespace Core.Organization.Helpers
                 return emptyPreset;
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            #region Filtering by ranks.
+
+            var vehiclesWithRankFilter = FilterVehiclesByRanks(specification.Ranks, vehiclesWithCountryFilter);
+
+            if (vehiclesWithRankFilter is null)
+                return emptyPreset;
+
+            #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
             return specification.Randomisation switch
             {
-                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithCountryFilter),
-                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithCountryFilter),
+                ERandomisation.CategoryBased => GeneratePrimaryAndFallbackPresetsByCategories(specification, vehiclesWithRankFilter),
+                ERandomisation.VehicleBased => GeneratePrimaryAndFallbackPresetsByVehicles(specification, vehiclesWithRankFilter),
                 _ => new Dictionary<EPreset, Preset>(),
             };
         }

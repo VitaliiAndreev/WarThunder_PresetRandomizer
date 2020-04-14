@@ -37,7 +37,7 @@ namespace Client.Wpf.Commands.MainWindow
             if (!(parameter is IMainWindowPresenter presenter))
                 return false;
 
-            return presenter.EnabledBranches.Any() && presenter.EnabledNations.Any();
+            return presenter.EnabledBranches.Any() && presenter.EnabledNations.Any() && presenter.EnabledRanks.Any() && presenter.EnabledVehicleGaijinIds.Any();
         }
 
         /// <summary> Defines the method to be called when the command is invoked. </summary>
@@ -75,6 +75,7 @@ namespace Client.Wpf.Commands.MainWindow
                     branchSpecifications,
                     presenter.EnabledVehicleBranchTags,
                     presenter.EnabledVehicleSubclasses,
+                    presenter.EnabledRanks,
                     presenter.EnabledEconomicRankIntervals,
                     presenter.EnabledVehicleGaijinIds
                 );

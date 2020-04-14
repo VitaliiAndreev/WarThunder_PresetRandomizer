@@ -10,9 +10,9 @@
     Title="Main Window"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
-    MinHeight="725"
+    MinHeight="755"
     MinWidth="1160"
-    Height="725"
+    Height="755"
     Width="1473"
     Loaded="OnLoaded"
     Closed="OnClosed">
@@ -71,6 +71,10 @@
                 <controls:CountryToggleControl
                     x:Name="_countryToggleControl"
                     Click="OnCountryToggleControlClick"/>
+
+                <controls:RankToggleControl
+                    x:Name="_rankToggleControl"
+                    Click="OnRankToggleControlClick"/>
 
                 <controls:UpDownBattleRatingGroupControl
                     x:Name="_battleRatingControl"

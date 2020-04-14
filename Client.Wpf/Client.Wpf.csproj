@@ -240,6 +240,7 @@
     <Compile Include="Commands\MainWindow\SwapPresetsCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleCountryCommand.cs" />
     <Compile Include="Commands\MainWindow\SelectRandomisationCommand.cs" />
+    <Compile Include="Commands\MainWindow\ToggleRankCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleBranchTagCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleSubclassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleCommand.cs" />

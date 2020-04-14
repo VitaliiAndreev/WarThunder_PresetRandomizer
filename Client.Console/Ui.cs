@@ -170,6 +170,7 @@ namespace Client.Console
                 new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, vehicleClasses) } },
                 branch.GetVehicleBranchTags(),
                 vehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses()),
+                typeof(ERank).GetEnumerationItems<ERank>(true),
                 Enum
                     .GetValues(typeof(ENation))
                     .Cast<ENation>()

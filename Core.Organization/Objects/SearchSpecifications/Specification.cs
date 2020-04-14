@@ -29,6 +29,9 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <summary> Vehicle subclasses. </summary>
         public IEnumerable<EVehicleSubclass> VehicleSubclasses { get; }
 
+        /// <summary> Ranks. </summary>
+        public IEnumerable<ERank> Ranks { get; }
+
         /// <summary> Allowed intervals of <see cref="IVehicle.EconomicRank"/>s. </summary>
         public IDictionary<ENation, Interval<int>> EconomicRankIntervals { get; }
 
@@ -45,6 +48,7 @@ namespace Core.Organization.Objects.SearchSpecifications
         /// <param name="branchSpecifications"> Branch specifications. </param>
         /// <param name="vehicleBranchTags"> Vehicle branch tags. </param>
         /// <param name="vehicleSubclasses"> Vehicle subclasses. </param>
+        /// <param name="ranks"> Ranks. </param>
         /// <param name="economicRankIntervals"> Allowed values of <see cref="IVehicle.EconomicRank"/>. </param>
         /// <param name="vehicleGaijinIds"> Allowed vehicle Gaijin IDs. </param>
         public Specification
@@ -55,6 +59,7 @@ namespace Core.Organization.Objects.SearchSpecifications
             IDictionary<EBranch, BranchSpecification> branchSpecifications,
             IEnumerable<EVehicleBranchTag> vehicleBranchTags,
             IEnumerable<EVehicleSubclass> vehicleSubclasses,
+            IEnumerable<ERank> ranks,
             IDictionary<ENation, Interval<int>> economicRankIntervals,
             IEnumerable<string> vehicleGaijinIds
         )
@@ -65,6 +70,7 @@ namespace Core.Organization.Objects.SearchSpecifications
             BranchSpecifications = branchSpecifications;
             VehicleBranchTags = vehicleBranchTags;
             VehicleSubclasses = vehicleSubclasses;
+            Ranks = ranks;
             EconomicRankIntervals = economicRankIntervals;
             VehicleGaijinIds = vehicleGaijinIds;
         }
