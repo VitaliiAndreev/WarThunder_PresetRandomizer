@@ -109,11 +109,13 @@
   <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
+  <Line key="RepairsAllies" value="Может чинить союзников"/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
+  <Line key="Scout" value="Разведчик"/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
   <Line key="SelectAllCountries" value="Активирует все страны в группе &quot;{0}&quot;, если хотя бы одна из них деактивирована. Если нет - деактивирует все страны."/>
   <Line key="SelectAllVehicleClasses" value="Активирует все классы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
@@ -133,12 +135,14 @@
   <Line key="Ukraine" value="Украина"/>
   <Line key="UnionOfSouthAfrica" value="Южно-Африканский Союз"/>
   <Line key="UntaggedAircraft" value="Авиация без меток"/>
+  <Line key="UntaggedGroundVehicle" value="Наземная техника без меток"/>
   <Line key="Usa" value="США"/>
   <Line key="Ussr" value="СССР"/>
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
   <Line key="VehicleBased" value="по технике"/>
   <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
   <Line key="VitalyAndreyev" value="Виталий Андреев"/>
+  <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>
 </Localization>

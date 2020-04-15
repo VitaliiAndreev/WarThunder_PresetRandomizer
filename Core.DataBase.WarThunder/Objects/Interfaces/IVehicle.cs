@@ -90,6 +90,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> A set of vehicle branch tags. </summary>
         IAircraftTags AircraftTags { get; }
 
+        /// <summary> A set of vehicle branch tags. </summary>
+        IGroundVehicleTags GroundVehicleTags { get; }
+
         /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleResearchTreeData ResearchTreeData { get; }
 

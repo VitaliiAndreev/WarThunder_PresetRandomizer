@@ -1,11 +1,7 @@
-﻿using Core.DataBase.Objects.Interfaces;
-using Core.DataBase.WarThunder.Enumerations;
-using System.Collections.Generic;
-
-namespace Core.DataBase.WarThunder.Objects.Interfaces
+﻿namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of aircraft tags. </summary>
-    public interface IAircraftTags : IPersistentObjectWithId
+    public interface IAircraftTags : IVehicleTags
     {
         #region Persistent Properties
 
@@ -18,11 +14,5 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         bool IsTorpedoBomber { get; }
 
         #endregion Persistent Properties
-        #region Indexers
-
-        bool this[EVehicleBranchTag tag] { get; }
-        bool this[IEnumerable<EVehicleBranchTag> tags] { get; }
-
-        #endregion Indexers
     }
 }

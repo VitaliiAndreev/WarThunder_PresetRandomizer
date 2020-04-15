@@ -31,6 +31,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleBranchTag.All.GetBranch().Should().Be(EBranch.All),
 
                 () => EVehicleBranchTag.AllGroundVehicles.GetBranch().Should().Be(EBranch.Army),
+                () => EVehicleBranchTag.UntaggedGroundVehicle.GetBranch().Should().Be(EBranch.Army),
+                () => EVehicleBranchTag.Wheeled.GetBranch().Should().Be(EBranch.Army),
+                () => EVehicleBranchTag.Scout.GetBranch().Should().Be(EBranch.Army),
+                () => EVehicleBranchTag.RepairsAllies.GetBranch().Should().Be(EBranch.Army),
 
                 () => EVehicleBranchTag.AllHelicopters.GetBranch().Should().Be(EBranch.Helicopters),
 
@@ -58,6 +62,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleBranchTag.All.IsValid().Should().BeFalse(),
 
                 () => EVehicleBranchTag.AllGroundVehicles.IsValid().Should().BeFalse(),
+                () => EVehicleBranchTag.UntaggedGroundVehicle.IsValid().Should().BeTrue(),
+                () => EVehicleBranchTag.Wheeled.IsValid().Should().BeTrue(),
+                () => EVehicleBranchTag.Scout.IsValid().Should().BeTrue(),
+                () => EVehicleBranchTag.RepairsAllies.IsValid().Should().BeTrue(),
 
                 () => EVehicleBranchTag.AllHelicopters.IsValid().Should().BeFalse(),
 

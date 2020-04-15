@@ -96,7 +96,9 @@
     <Compile Include="Helpers\DataRepositoryWarThunder.cs" />
     <Compile Include="Helpers\DataRepositoryWarThunderWithoutSession.cs" />
     <Compile Include="Helpers\DataRepositoryWarThunderWithSession.cs" />
+    <Compile Include="Objects\GroundVehicleTags.cs" />
     <Compile Include="Objects\Branch.cs" />
+    <Compile Include="Objects\Interfaces\IGroundVehicleTags.cs" />
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
     <Compile Include="Objects\Interfaces\IPersistentWarThunderObjectWithId.cs" />
     <Compile Include="Objects\Interfaces\IVehicleSubclasses.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleTags.cs" />
     <Compile Include="Objects\Interfaces\IVehicleWeaponsData.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Objects\VehiclePerformanceData.cs" />
     <Compile Include="Objects\VehicleResearchTreeData.cs" />
     <Compile Include="Objects\VehicleSubclasses.cs" />
+    <Compile Include="Objects\VehicleTags.cs" />
     <Compile Include="Objects\VehicleWeaponsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

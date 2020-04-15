@@ -109,11 +109,13 @@
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
+  <Line key="RepairsAllies" value="Can Repair Allies"/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
+  <Line key="Scout" value="Scout"/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="SelectAllCountries" value="Enables all countries in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehicleClasses" value="Enables all vehicle classes in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
@@ -133,12 +135,14 @@
   <Line key="Ukraine" value="Ukraine"/>
   <Line key="UnionOfSouthAfrica" value="Union of South Africa"/>
   <Line key="UntaggedAircraft" value="Untagged Aircraft"/>
+  <Line key="UntaggedGroundVehicle" value="Untagged Ground Vehicles"/>
   <Line key="Usa" value="USA"/>
   <Line key="Ussr" value="USSR"/>
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VehicleBased" value="by vehicles"/>
   <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
   <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
+  <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>
 </Localization>

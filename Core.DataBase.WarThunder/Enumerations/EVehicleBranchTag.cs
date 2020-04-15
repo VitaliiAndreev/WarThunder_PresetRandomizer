@@ -7,6 +7,10 @@
         All = 0,
 
         AllGroundVehicles = 1,
+        UntaggedGroundVehicle = 11,
+        Wheeled = 12,
+        Scout = 13,
+        RepairsAllies = 14,
 
         AllHelicopters = 2,
 

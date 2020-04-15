@@ -1,17 +1,20 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Mapping.Attributes;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of aircraft tags. </summary>
-    [Class(Table = ETable.AircraftTags)]
-    public class AircraftTags : VehicleTags, IAircraftTags
+    [Class(Table = ETable.GroundVehicleTags)]
+    public class GroundVehicleTags : VehicleTags, IGroundVehicleTags
     {
         #region Persistent Properties
 
@@ -23,13 +26,13 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual bool IsUntagged { get; protected set; }
 
         [Property(NotNull = true)]
-        public virtual bool IsNavalAircraft { get; protected set; }
+        public virtual bool IsWheeled { get; protected set; }
 
         [Property(NotNull = true)]
-        public virtual bool IsHydroplane { get; protected set; }
+        public virtual bool CanScout { get; protected set; }
 
         [Property(NotNull = true)]
-        public virtual bool IsTorpedoBomber { get; protected set; }
+        public virtual bool CanRepairAllies { get; protected set; }
 
         #endregion Persistent Properties
         #region Association Properties
@@ -43,16 +46,17 @@ namespace Core.DataBase.WarThunder.Objects
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected AircraftTags()
+        protected GroundVehicleTags()
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
-        public AircraftTags(IDataRepository dataRepository, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags)
-            : this(dataRepository, -1L, vehicle, deserializedTags)
+        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialise this instance with. </param>
+        /// <param name="vehiclePerformanceData"> Vehicle performance data to initialise this instance with. </param>
+        public GroundVehicleTags(IDataRepository dataRepository, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags, VehiclePerformanceData vehiclePerformanceData)
+            : this(dataRepository, -1L, vehicle, deserializedTags, vehiclePerformanceData)
         {
         }
 
@@ -60,13 +64,14 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The vehicle's ID. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
-        public AircraftTags(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags)
+        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialise this instance with. </param>
+        /// <param name="vehiclePerformanceData"> Vehicle performance data to initialise this instance with. </param>
+        public GroundVehicleTags(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags, VehiclePerformanceData vehiclePerformanceData)
             : base(dataRepository, id)
         {
             Vehicle = vehicle;
 
-            InitialiseProperties(deserializedTags, Vehicle.Branch.AsEnumerationItem);
+            InitialiseProperties(deserializedTags, vehiclePerformanceData, Vehicle.Branch.AsEnumerationItem);
             LogCreation();
         }
 
@@ -75,29 +80,30 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Initialises class properties. </summary>
         /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to select subclasses from. </param>
+        /// <param name="vehiclePerformanceData"> Vehicle performance data to initialise this instance with. </param>
         /// <param name="branch"> The vehicle branch for which to select subclasses. </param>
-        private void InitialiseProperties(VehicleTagsDeserializedFromJson deserializedTags, EBranch branch)
+        private void InitialiseProperties(VehicleTagsDeserializedFromJson deserializedTags, VehiclePerformanceData vehiclePerformanceData, EBranch branch)
         {
-            if (branch == EBranch.Aviation)
+            if (branch == EBranch.Army)
             {
-                IsNavalAircraft = deserializedTags.IsNavalAircraft;
-                IsHydroplane = deserializedTags.IsHydroplane;
-                IsTorpedoBomber = deserializedTags.CanCarryTorpedoes;
+                IsWheeled = vehiclePerformanceData.MoveType.Contains("wheeled");
+                CanScout = deserializedTags.CanScout;
+                CanRepairAllies = deserializedTags.CanRepairTeammates;
             }
 
-            if (IsNavalAircraft)
-                _index.Add(EVehicleBranchTag.NavalAircraft, IsNavalAircraft);
+            if (IsWheeled)
+                _index.Add(EVehicleBranchTag.Wheeled, IsWheeled);
 
-            if (IsHydroplane)
-                _index.Add(EVehicleBranchTag.Hydroplane, IsHydroplane);
+            if (CanScout)
+                _index.Add(EVehicleBranchTag.Scout, CanScout);
 
-            if (IsTorpedoBomber)
-                _index.Add(EVehicleBranchTag.TorpedoBomber, IsTorpedoBomber);
+            if (CanRepairAllies)
+                _index.Add(EVehicleBranchTag.RepairsAllies, CanRepairAllies);
 
             if (_index.IsEmpty())
             {
                 IsUntagged = true;
-                _index.Add(EVehicleBranchTag.UntaggedAircraft, IsUntagged);
+                _index.Add(EVehicleBranchTag.UntaggedGroundVehicle, IsUntagged);
             }
         }
 

@@ -4,6 +4,8 @@
     internal class ETable
     {
         private const string _ = "_";
+        private const string _s = "s";
+        private const string _es = "e" + _s;
         private const string _localizationPrefix = "loc";
         private const string _objectPrefix = "obj";
 
@@ -12,6 +14,7 @@
         private const string _branch = "Branch";
         private const string _data = "Data";
         private const string _crew = "Crew";
+        private const string _ground = "Ground";
         private const string _multiplier = "Multiplier";
         private const string _name = "Name";
         private const string _repair = "Repair";
@@ -21,7 +24,8 @@
         private const string _tags = "Tags";
         private const string _time = "Time";
         private const string _tree = "Tree";
-        private const string _vehicles = "Vehicles";
+        private const string _vehicle = "Vehicle";
+        private const string _vehicles = _vehicle + _s;
         private const string _visual = "Visual";
 
         private const string _vehicleTable = Vehicle + _;
@@ -29,7 +33,9 @@
 
         internal const string AircraftTags = _objectPrefix + _aircraft + _tags;
 
-        internal const string Branch = _objectPrefix + _branch + "es";
+        internal const string Branch = _objectPrefix + _branch + _es;
+
+        internal const string GroundVehicleTags = _objectPrefix + _ground + _vehicle + _tags;
 
         internal const string LocalizationVehicleClassName = _vehicleLocalizationTable + "Class" + _name;
         internal const string LocalizationVehicleFullName = _vehicleLocalizationTable + "Full" + _name;

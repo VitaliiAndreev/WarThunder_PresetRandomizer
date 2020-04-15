@@ -391,7 +391,7 @@
         </Style>
 
         <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource ToggleButtonSkyQuake}">
-            <Setter Property="Padding" Value="5 -5 5 -5"/>
+            <Setter Property="Padding" Value="0 -5 0 -5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="26"/>
         </Style>
@@ -404,6 +404,7 @@
 
         <Style TargetType="ToggleButton" x:Key="VehicleClassToggle" BasedOn="{StaticResource BranchToggle}">
             <Setter Property="Height" Value="16"/>
+            <Setter Property="Padding" Value="5 -5 5 -5"/>
             <Setter Property="FontSize" Value="12"/>
         </Style>
 
@@ -427,6 +428,7 @@
 
         <Style TargetType="ToggleButton" x:Key="CountryToggleAll" BasedOn="{StaticResource VehicleClassToggleAll}">
             <Setter Property="Height" Value="20"/>
+            <Setter Property="Padding" Value="-5"/>
         </Style>
 
         <Style TargetType="ToggleButton" x:Key="RankToggle" BasedOn="{StaticResource CountryToggleAll}">

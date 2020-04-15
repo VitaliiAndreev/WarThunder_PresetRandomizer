@@ -17,7 +17,7 @@ namespace Client.Wpf.Controls
         #region Constants
 
         private const double _branchIconFontSize = EInteger.Number.Ten;
-        private const double _buttonLeftColumnWidth = EInteger.Number.Twenty;
+        private const double _buttonLeftColumnWidth = EInteger.Number.TwentyThree;
         private const double _buttonRightColumnWidth = EInteger.Number.Twenty;
 
         #endregion Constants

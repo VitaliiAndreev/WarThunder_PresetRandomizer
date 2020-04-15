@@ -117,6 +117,21 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary>
+        /// Filters given <paramref name="vehicles"/> by <see cref="IVehicle.GroundVehicleTags"/> and <paramref name="validTags"/>.
+        /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
+        /// </summary>
+        /// <param name="vehicles"> Vehicles to filter through. </param>
+        /// <param name="validTags"> Vehicle branch tags accepted by the filter. </param>
+        /// <param name="suppressLogging"> Whether to log empty results. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByGroundVehicleTags(IEnumerable<IVehicle> vehicles, IEnumerable<EVehicleBranchTag> validTags, bool suppressLogging = false)
+        {
+            var filteredVehicles = vehicles.Where(vehicle => vehicle.GroundVehicleTags?[validTags] ?? true);
+
+            return AssessFilterResult(filteredVehicles, validTags, suppressLogging);
+        }
+
+        /// <summary>
         /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
         /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
         /// </summary>
@@ -502,6 +517,12 @@ namespace Core.Organization.Helpers
                 var validVehicleBranchTags = specification.VehicleBranchTags.Intersect(EBranch.Aviation.GetVehicleBranchTags());
 
                 vehiclesWithBranchTagFilter = FilterVehiclesByAircraftTags(vehiclesWithBranchTagFilter, validVehicleBranchTags);
+            }
+            else if (specification.BranchSpecifications.ContainsKey(EBranch.Army))
+            {
+                var validVehicleBranchTags = specification.VehicleBranchTags.Intersect(EBranch.Army.GetVehicleBranchTags());
+
+                vehiclesWithBranchTagFilter = FilterVehiclesByGroundVehicleTags(vehiclesWithBranchTagFilter, validVehicleBranchTags);
             }
 
             if (vehiclesWithBranchTagFilter is null)

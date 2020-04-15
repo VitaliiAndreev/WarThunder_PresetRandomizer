@@ -99,11 +99,13 @@
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
         public const string RemovePresets = nameof(RemovePresets);
+        public const string RepairsAllies = nameof(RepairsAllies);
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
+        public const string Scout = nameof(Scout);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string SelectAllCountries = nameof(SelectAllCountries);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
@@ -123,12 +125,14 @@
         public const string Ukraine = nameof(Ukraine);
         public const string UnionOfSouthAfrica = nameof(UnionOfSouthAfrica);
         public const string UntaggedAircraft = nameof(UntaggedAircraft);
+        public const string UntaggedGroundVehicle = nameof(UntaggedGroundVehicle);
         public const string Usa = nameof(Usa);
         public const string Ussr = nameof(Ussr);
         public const string UtilityHelicopter = nameof(UtilityHelicopter);
         public const string VehicleBased = nameof(VehicleBased);
         public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
         public const string VitalyAndreyev = nameof(VitalyAndreyev);
+        public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);
     }

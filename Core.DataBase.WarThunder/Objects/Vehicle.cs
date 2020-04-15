@@ -137,6 +137,10 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(AircraftTags), PropertyRef = nameof(Objects.AircraftTags.Vehicle), Lazy = Laziness.Proxy)]
         public virtual IAircraftTags AircraftTags { get; protected internal set; }
 
+        /// <summary> A set of vehicle branch tags. </summary>
+        [OneToOne(ClassType = typeof(GroundVehicleTags), PropertyRef = nameof(Objects.GroundVehicleTags.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual IGroundVehicleTags GroundVehicleTags { get; protected internal set; }
+
         /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
@@ -351,6 +355,9 @@ namespace Core.DataBase.WarThunder.Objects
                 
                 if (Branch.AsEnumerationItem == EBranch.Aviation)
                     AircraftTags = new AircraftTags(_dataRepository, this, tags);
+
+                if (Branch.AsEnumerationItem == EBranch.Army)
+                    GroundVehicleTags = new GroundVehicleTags(_dataRepository, this, tags, PerformanceData);
             }
         }
 
