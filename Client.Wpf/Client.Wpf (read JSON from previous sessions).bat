@@ -1,1 +1,2 @@
-Client.Wpf.exe -!n
+start Client.Wpf.exe -!n
+exit

@@ -10,7 +10,7 @@ namespace Client.Wpf.Controls.Base.Interfaces
         #region Properties
 
         /// <summary> Toggle button columns indexed by the <typeparamref name="T"/> key. </summary>
-        public IDictionary<T, ToggleButtonGroupControl<U>> ToggleColumns { get; }
+        IDictionary<T, ToggleButtonGroupControl<U>> ToggleColumns { get; }
 
         #endregion Properties
     }
