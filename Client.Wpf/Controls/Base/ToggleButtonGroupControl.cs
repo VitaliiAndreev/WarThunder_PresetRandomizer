@@ -238,6 +238,11 @@ namespace Client.Wpf.Controls.Base
         public bool AllButtonsAreToggledOff() =>
             AllButtonsMeetCondition(toggleButton => !toggleButton.IsChecked());
 
+        /// <summary> Checks whether all <see cref="Buttons"/> have all their context menu items on or if they don't have context menus, except the <see cref="_toggleAllButton"/>. </summary>
+        /// <returns></returns>
+        public bool AllContextMenuItemsAreToggledOn() =>
+            AllButtonsMeetCondition(toggleButton => toggleButton.ContextMenu is ContextMenu contextMenu && contextMenu.AllItemsChecked() || toggleButton.ContextMenu is null);
+
         #endregion Methods: AllButtonsMeetCondition()
         #region Methods: Toggle()
 

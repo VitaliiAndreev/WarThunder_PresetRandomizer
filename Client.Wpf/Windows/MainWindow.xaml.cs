@@ -183,7 +183,7 @@ namespace Client.Wpf.Windows
                     OnVehicleClassToggleControlClick(_vehicleClassControl, new RoutedEventArgs(VehicleClassToggleControl.ClickEvent, _vehicleClassControl.ToggleColumns[branch].Buttons[vehicleClass]));
                 }
 
-                UpdateChildControl(_branchToggleControl, branch, OnVehicleBranchTagToggled);
+                UpdateChildControlContextMenu(_branchToggleControl, branch, OnVehicleBranchTagToggled);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -197,7 +197,7 @@ namespace Client.Wpf.Windows
         {
             var toggleColumn = toggleControl.ToggleColumns[ownerEntity];
             var toggleButtonTagType = typeof(U);
-            var toggleAllOn = toggleColumn.AllButtonsAreToggledOn();
+            var toggleAllOn = toggleColumn.AllButtonsAreToggledOn() && toggleColumn.AllContextMenuItemsAreToggledOn();
 
             if (toggleButtonTagType.IsEnum)
             {
@@ -226,12 +226,23 @@ namespace Client.Wpf.Windows
 
                 if (vehicleClass.ToString().StartsWith(EWord.All))
                 {
-                    var disabledButtons = _vehicleClassControl.GetButtons(ownerBranch, !toggleButton.IsChecked(), false);
+                    var toggleAllButton = toggleButton;
+                    var buttons = _vehicleClassControl.ToggleColumns[ownerBranch].Buttons.Values;
 
-                    foreach (var button in disabledButtons)
+                    foreach (var button in buttons.Where(button => button.GetTag<EVehicleClass>().IsValid()))
                     {
-                        _vehicleClassControl.Toggle(button.Tag.CastTo<EVehicleClass>(), toggleButton.IsChecked());
-                        OnToggleButtonGroupControlClick<EVehicleClass>(button, false);
+                        var currentVehicleClass = button.Tag.CastTo<EVehicleClass>();
+
+                        if (button.IsChecked() != toggleAllButton.IsChecked())
+                        {
+                            _vehicleClassControl.Toggle(currentVehicleClass, toggleAllButton.IsChecked());
+                            OnToggleButtonGroupControlClick<EVehicleClass>(button, false);
+                        }
+
+                        if (toggleAllButton.IsChecked())
+                            ToggleAllContextMenuItems(_vehicleClassControl.ToggleColumns[ownerBranch].Buttons[currentVehicleClass], OnVehicleSubclassToggled);
+                        else
+                            button.SetContextMenuState(toggleAllButton.IsChecked());
                     }
 
                     ExecuteToggleCommand(typeof(EVehicleClass));
@@ -243,7 +254,7 @@ namespace Client.Wpf.Windows
                 }
 
                 UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleClassesEnabled, ownerBranch, OnBranchToggleControlClick);
-                UpdateChildControl(_vehicleClassControl.ToggleColumns[ownerBranch], vehicleClass, OnVehicleSubclassToggled);
+                UpdateChildControlContextMenu(_vehicleClassControl.ToggleColumns[ownerBranch], vehicleClass, OnVehicleSubclassToggled);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -274,9 +285,12 @@ namespace Client.Wpf.Windows
             {
                 var vehicleSubclass = menuItem.GetTag<EVehicleSubclass>();
                 var ownerClass = vehicleSubclass.GetVehicleClass();
+                var ownerBranch = ownerClass.GetBranch();
 
                 OnMenuItemClicked<EVehicleSubclass>(menuItem);
-                UpdateOwnerControl(_vehicleClassControl.ToggleColumns[ownerClass.GetBranch()], Presenter.VehicleClassHasSubclassesEnabled, ownerClass, OnVehicleClassToggleControlClick);
+                _vehicleClassControl.UpdateContextMenuItemCount(ownerBranch, ownerClass);
+                UpdateOwnerControl(_vehicleClassControl.ToggleColumns[ownerBranch], Presenter.VehicleClassHasSubclassesEnabled, ownerClass, OnVehicleClassToggleControlClick);
+                UpdateToggleAllButtonState(_vehicleClassControl, ownerBranch);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -339,25 +353,18 @@ namespace Client.Wpf.Windows
         /// <param name="ownerControl"> The owner control whose child control to update. </param>
         /// <param name="childControlTag"> The tag of the child control to update. </param>
         /// <param name="eventHandler"> The method to call after updating to control. </param>
-        private void UpdateChildControl<T>(ToggleButtonGroupControl<T> ownerControl, T childControlTag, RoutedEventHandler eventHandler)
+        private void UpdateChildControlContextMenu<T>(ToggleButtonGroupControl<T> ownerControl, T childControlTag, RoutedEventHandler eventHandler)
         {
             if (!ownerControl.Buttons.TryGetValue(childControlTag, out var childControl) || !(childControl.ContextMenu is ContextMenu contextMenu))
                 return;
 
             if (!childControl.IsChecked())
             {
-                contextMenu.IsEnabled
-                    = contextMenu.StaysOpen
-                    = false;
+                contextMenu.Deactivate();
             }
             else
             {
-                if (contextMenu.IsEnabled == false)
-                {
-                    contextMenu.IsEnabled
-                        = contextMenu.StaysOpen
-                        = true;
-                }
+                contextMenu.Activate();
 
                 if (!contextMenu.HasCheckedItems())
                 {
@@ -367,8 +374,30 @@ namespace Client.Wpf.Windows
                     eventHandler(firstMenuItem, new RoutedEventArgs(null, firstMenuItem));
                 }
             }
+        }
 
-            contextMenu.IsOpen = false;
+        private void ToggleAllContextMenuItems(ToggleButton ownerControl, RoutedEventHandler eventHandler)
+        {
+            if (!(ownerControl.ContextMenu is ContextMenu contextMenu))
+                return;
+
+            if (ownerControl.IsChecked())
+            {
+                contextMenu.Activate();
+
+                foreach (var menuItem in contextMenu.GetTogglableMenuItems())
+                {
+                    if (!menuItem.IsChecked)
+                    {
+                        menuItem.IsChecked = true;
+                        eventHandler(menuItem, new RoutedEventArgs(null, menuItem));
+                    }
+                }
+            }
+            else
+            {
+                contextMenu.Deactivate();
+            }
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledCountries"/> according to the action. </summary>
@@ -582,6 +611,8 @@ namespace Client.Wpf.Windows
 
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleSubclasses, true);
+            _vehicleClassControl.UpdateContextMenuItemCount();
+
             _rankToggleControl.Toggle(Presenter.EnabledRanks, true);
 
             AdjustBranchTogglesAvailability();
@@ -663,7 +694,7 @@ namespace Client.Wpf.Windows
             _branchToggleControl.Enable(branch, enable);
             _vehicleClassControl.Enable(branch, enable && Presenter.EnabledBranches.Contains(branch));
 
-            UpdateChildControl(_branchToggleControl, branch, OnVehicleBranchTagToggled);
+            UpdateChildControlContextMenu(_branchToggleControl, branch, OnVehicleBranchTagToggled);
 
             Presenter.ExecuteCommand(ECommandName.ToggleBranch);
         }
@@ -690,7 +721,7 @@ namespace Client.Wpf.Windows
                     var tag = indexedButton.Key;
                     var button = indexedButton.Value;
 
-                    UpdateChildControl(toggleButtonGroup, tag, eventHandler);
+                    UpdateChildControlContextMenu(toggleButtonGroup, tag, eventHandler);
                 }
             }
         }

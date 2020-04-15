@@ -7,6 +7,17 @@ namespace Client.Wpf.Extensions
     /// <summary> Methods extending the <see cref="Grid"/> class. </summary>
     public static class GridExtensions
     {
+        public static void Add(this Grid grid, UIElement element, int? column = null, int? row = null)
+        {
+            grid.Children.Add(element);
+
+            if (column.HasValue)
+                Grid.SetColumn(element, column.Value);
+
+            if (row.HasValue)
+                Grid.SetRow(element, row.Value);
+        }
+
         /// <summary> Removes the given <paramref name="element"/> from the <paramref name="grid"/> along with its row/column (if not other elements are present). </summary>
         /// <param name="grid"> The grid to remove the <paramref name="element"/> from. </param>
         /// <param name="element"> The element to remove from the <paramref name="grid"/>. </param>

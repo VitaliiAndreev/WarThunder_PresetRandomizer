@@ -134,6 +134,10 @@
             <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
         </Style>
 
+        <Style TargetType="Grid" x:Key="SkyQuakeGrid">
+            <Setter Property="TextBlock.FontFamily" Value="{StaticResource SkyQuake}"/>
+        </Style>
+
         <Style TargetType="Grid" x:Key="PaddedGrid_03" BasedOn="{StaticResource {x:Type Grid}}">
             <Setter Property="Margin" Value="3"/>
         </Style>
@@ -307,7 +311,11 @@
             <Setter Property="FontSize" Value="10"/>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake10pxVerticallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake10px}">
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeVerticallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         
@@ -383,7 +391,7 @@
         </Style>
 
         <Style TargetType="ToggleButton" x:Key="BranchToggle" BasedOn="{StaticResource ToggleButtonSkyQuake}">
-            <Setter Property="Padding" Value="-5"/>
+            <Setter Property="Padding" Value="5 -5 5 -5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="26"/>
         </Style>

@@ -17,6 +17,11 @@
 
             public const string RankDivider = "RankDivider";
         }
+        /// <summary> String keys of styles for <see cref="System.Windows.Controls.Grid"/>. </summary>
+        public class Grid
+        {
+            public const string SkyQuakeGrid = "SkyQuakeGrid";
+        }
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Image"/>. </summary>
         public class Image
         {
@@ -43,7 +48,8 @@
             public const string TextBlockFontSize16 = "TextBlockFontSize16";
             public const string TextBlockWithSkyQuake = "TextBlockWithSkyQuake";
             public const string TextBlockWithSkyQuake10px = "TextBlockWithSkyQuake10px";
-            public const string TextBlockWithSkyQuake10pxVerticallyCentered = "TextBlockWithSkyQuake10pxVerticallyCentered";
+            public const string TextBlockWithSkyQuakeHorizontallyCentered = "TextBlockWithSkyQuakeHorizontallyCentered";
+            public const string TextBlockWithSkyQuakeVerticallyCentered = "TextBlockWithSkyQuakeVerticallyCentered";
         }
 
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBox"/>. </summary>

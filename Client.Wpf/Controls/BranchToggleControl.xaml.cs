@@ -3,17 +3,24 @@ using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
+using Core.Enumerations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for BranchToggleControl.xaml. </summary>
     public partial class BranchToggleControl : ToggleButtonGroupControl<EBranch>
     {
+        #region Constants
+
+        private const double _branchIconFontSize = EInteger.Number.Ten;
+        private const double _buttonLeftColumnWidth = EInteger.Number.Twenty;
+        private const double _buttonRightColumnWidth = EInteger.Number.Twenty;
+
+        #endregion Constants
         #region Fields
 
         /// <summary> Togglable vehicle subclass menu items indexed by vehicle subclass keys. </summary>
@@ -124,48 +131,20 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Toggle()
+        #region Methods: UpdateContextMenuItemCount()
 
         public void UpdateContextMenuItemCount()
         {
             foreach (var button in Buttons.Values)
-                UpdateContextMenuItemCount(button);
+                button.UpdateContextMenuItemCount(_buttonLeftColumnWidth, _buttonRightColumnWidth, _branchIconFontSize);
         }
 
         public void UpdateContextMenuItemCount(EBranch branch)
         {
             if (Buttons.TryGetValue(branch, out var button))
-                UpdateContextMenuItemCount(button);
+                button.UpdateContextMenuItemCount(_buttonLeftColumnWidth, _buttonRightColumnWidth, _branchIconFontSize);
         }
 
-        public void UpdateContextMenuItemCount(ToggleButton button)
-        {
-            if (button.ContextMenu is ContextMenu contextMenu)
-            {
-                var toggleMenuItems = contextMenu.Items.OfType<MenuItem>().Where(i => i.IsCheckable);
-                var newTextBlock = new TextBlock
-                {
-                    Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake10pxVerticallyCentered),
-                    Text = $"{toggleMenuItems.Where(menuItem => menuItem.IsChecked).Count()}/{toggleMenuItems.Count()}",
-                };
-
-                if (button.Content is StackPanel stackPanel)
-                {
-                    var lastTextBlock = stackPanel.Children.OfType<TextBlock>().Last();
-
-                    stackPanel.Children.Remove(lastTextBlock);
-                    stackPanel.Children.Add(newTextBlock);
-                }
-                else
-                {
-                    var newStackPanel = new StackPanel { Orientation = Orientation.Horizontal };
-                    var iconTextBlock = new TextBlock { Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
-
-                    newStackPanel.Children.Add(iconTextBlock);
-                    newStackPanel.Children.Add(newTextBlock);
-
-                    button.Content = newStackPanel;
-                }
-            }
-        }
+        #endregion Methods: UpdateContextMenuItemCount()
     }
 }
