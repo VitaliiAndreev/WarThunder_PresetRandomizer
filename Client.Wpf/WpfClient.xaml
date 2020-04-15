@@ -302,6 +302,14 @@
             <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
             <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
         </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake10px" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake10pxVerticallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake10px}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
         
         <Style TargetType="TextBlock" x:Key="VehicleCard" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="FontSize" Value="12"/>

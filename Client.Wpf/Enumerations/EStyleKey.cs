@@ -41,6 +41,9 @@
         public class TextBlock
         {
             public const string TextBlockFontSize16 = "TextBlockFontSize16";
+            public const string TextBlockWithSkyQuake = "TextBlockWithSkyQuake";
+            public const string TextBlockWithSkyQuake10px = "TextBlockWithSkyQuake10px";
+            public const string TextBlockWithSkyQuake10pxVerticallyCentered = "TextBlockWithSkyQuake10pxVerticallyCentered";
         }
 
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBox"/>. </summary>

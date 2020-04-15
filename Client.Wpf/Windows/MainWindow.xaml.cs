@@ -259,6 +259,7 @@ namespace Client.Wpf.Windows
                 var ownerBranch = vehicleBranchTag.GetBranch();
 
                 OnMenuItemClicked<EVehicleBranchTag>(menuItem);
+                _branchToggleControl.UpdateContextMenuItemCount();
                 UpdateOwnerControl(_branchToggleControl, Presenter.BranchHasVehicleBranchTagsEnabled, ownerBranch, OnBranchToggleControlClick);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
@@ -577,6 +578,7 @@ namespace Client.Wpf.Windows
 
             _branchToggleControl.Toggle(Presenter.EnabledBranches, true);
             _branchToggleControl.Toggle(Presenter.EnabledVehicleBranchTags, true);
+            _branchToggleControl.UpdateContextMenuItemCount();
 
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleClasses, true);
             _vehicleClassControl.Toggle(Presenter.EnabledVehicleSubclasses, true);

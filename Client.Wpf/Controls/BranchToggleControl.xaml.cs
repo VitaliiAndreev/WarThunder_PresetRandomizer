@@ -90,13 +90,14 @@ namespace Client.Wpf.Controls
             foreach (var vehicleBranchTag in typeof(EVehicleBranchTag).GetEnumValues().OfType<EVehicleBranchTag>().Where(tag => tag.IsValid()))
             {
                 var branch = vehicleBranchTag.GetBranch();
-                var contextMenu = Buttons[branch].ContextMenu ?? new ContextMenu() { Tag = vehicleBranchTag };
+                var button = Buttons[branch];
+                var contextMenu = button.ContextMenu ?? new ContextMenu() { Tag = vehicleBranchTag };
                 var contextMenuItem = contextMenu.CreateTogglableMenuItem(vehicleBranchTag, OnMenuItemClick);
 
                 _vehicleBranchTagToggleMenuItems.Add(vehicleBranchTag, contextMenuItem);
 
-                if (Buttons[branch].ContextMenu is null)
-                    Buttons[branch].ContextMenu = contextMenu;
+                if (button.ContextMenu is null)
+                    button.ContextMenu = contextMenu;
             }
         }
 
@@ -122,5 +123,39 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Toggle()
+
+        public void UpdateContextMenuItemCount()
+        {
+            foreach (var button in Buttons.Values)
+            {
+                if (button.ContextMenu is ContextMenu contextMenu)
+                {
+                    var toggleMenuItems = contextMenu.Items.OfType<MenuItem>().Where(i => i.IsCheckable);
+                    var newTextBlock = new TextBlock
+                    {
+                        Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake10pxVerticallyCentered),
+                        Text = $"{toggleMenuItems.Where(menuItem => menuItem.IsChecked).Count()}/{toggleMenuItems.Count()}",
+                    };
+
+                    if (button.Content is StackPanel stackPanel)
+                    {
+                        var lastTextBlock = stackPanel.Children.OfType<TextBlock>().Last();
+
+                        stackPanel.Children.Remove(lastTextBlock);
+                        stackPanel.Children.Add(newTextBlock);
+                    }
+                    else
+                    {
+                        var newStackPanel = new StackPanel { Orientation = Orientation.Horizontal };
+                        var iconTextBlock = new TextBlock { Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
+
+                        newStackPanel.Children.Add(iconTextBlock);
+                        newStackPanel.Children.Add(newTextBlock);
+
+                        button.Content = newStackPanel;
+                    }
+                }
+            }
+        }
     }
 }
