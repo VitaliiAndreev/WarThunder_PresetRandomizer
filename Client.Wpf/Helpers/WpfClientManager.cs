@@ -9,8 +9,10 @@ using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Helpers
@@ -48,7 +50,9 @@ namespace Client.Wpf.Helpers
             params IConfiguredLogger[] loggers
         ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
-            _vehicleIconBitmapSources = new Dictionary<string, BitmapSource>();
+            _vehicleIconBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
+
+            ProcessVehicleImages = (vehicle) => new Task<BitmapSource>(() => GetIconBitmapSource(vehicle)).Start();
         }
 
         #endregion Constructors
@@ -71,6 +75,8 @@ namespace Client.Wpf.Helpers
                 return cachedSource;
 
             var bitmapSource = vehicle.Icon.ToBitmapSource(ImageFormat.Png);
+
+            bitmapSource.Freeze();
 
             _vehicleIconBitmapSources.Add(vehicle.GaijinId, bitmapSource);
 

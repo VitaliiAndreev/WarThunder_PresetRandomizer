@@ -89,6 +89,11 @@ namespace Core.Organization.Helpers
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
         #endregion Properties
+        #region Delegates
+
+        protected Action<IVehicle> ProcessVehicleImages;
+
+        #endregion Delegates
         #region Constructors
 
         /// <summary> Creates a new manager and loads settings stored in the settings file. </summary>
@@ -546,13 +551,14 @@ namespace Core.Organization.Helpers
 
             foreach (var vehicle in vehicles.Values)
             {
+                AttachVehicleIcon(vehicle, vehicleIconFiles);
+                ProcessVehicleImages?.Invoke(vehicle);
+
                 if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
                     vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
 
                 if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
                     vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
-
-                AttachVehicleIcon(vehicle, vehicleIconFiles);
             }
 
             _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
