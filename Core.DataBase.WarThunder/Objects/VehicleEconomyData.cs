@@ -20,9 +20,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The Gaijin ID of the vehicle's target class. It is used to calculate rewards for inflicting damage to this vehicle. </summary>
-        [Property()] public virtual string TargetClassGaijinId { get; protected set; }
-
         /// <summary> The amount of research required to unlock the vehicle. </summary>
         [Property()] public virtual int? UnlockCostInResearch { get; protected set; }
 

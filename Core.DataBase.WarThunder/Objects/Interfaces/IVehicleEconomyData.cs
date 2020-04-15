@@ -5,9 +5,6 @@
     {
         #region Persistent Properties
 
-        /// <summary> The Gaijin ID of the vehicle's target class. It is used to calculate rewards for inflicting damage to this vehicle. </summary>
-        string TargetClassGaijinId { get; }
-
         /// <summary> The amount of research required to unlock the vehicle. </summary>
         int? UnlockCostInResearch { get; }
 

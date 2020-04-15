@@ -193,7 +193,6 @@ namespace Core.IntegrationTests
                     // economy
                     vehicleCollection.Any(vehicle => vehicle.EconomyData is null).Should().BeFalse();
 
-                    vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.EconomyData.TargetClassGaijinId)).Should().BeFalse();
                     vehicleCollection.Any(vehicle => vehicle.EconomyData.UnlockCostInResearch < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.PurchaseCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
@@ -278,8 +277,6 @@ namespace Core.IntegrationTests
                     vehiclesWithResearchTreeData.All(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Count() == 2).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.RequiredVehicleGaijinId)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.FolderIndex.HasValue).Should().BeTrue();
-                    vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.CategoryOfHiddenVehiclesInResearchTree)).Should().BeTrue();
-                    vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.IsHiddenUnlessBought).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsAvailableOn)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsHiddenOn)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.HideCondition)).Should().BeTrue();

@@ -32,15 +32,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> A 0-based index of the vehicle in its research tree folder. </summary>
         [Property()] public virtual int? FolderIndex { get; protected set; }
 
-        /// <summary> The category of hidden vehicles this one belongs to. </summary>
-        [Property()] public virtual string CategoryOfHiddenVehiclesInResearchTree { get; protected set; }
-
-        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool IsHiddenUnlessBought { get; protected set; }
-
-        /// <summary> Whether this vehicle is hidden from those that don't own it. </summary>
-        [Property()] public virtual bool IsHiddenUnlessResearched { get; protected set; }
-
         /// <summary>
         /// The Gaijin ID of the game platform this vehicle is available for purchase on. It is implicitly considered not available on others. Already purchased vehicles are not affected.
         /// <para> This is the opposite of <see cref="PlatformGaijinIdVehicleIsHiddenOn"/>. </para>

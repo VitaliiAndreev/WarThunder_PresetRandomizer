@@ -179,7 +179,6 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
             vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.NationGaijinId)).Should().BeFalse();
             vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.MoveType)).Should().BeFalse();
-            vehicles.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.TargetClassGaijinId)).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.PurchaseCostInSilver >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
