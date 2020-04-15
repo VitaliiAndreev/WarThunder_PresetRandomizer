@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls
 {
@@ -127,33 +128,42 @@ namespace Client.Wpf.Controls
         public void UpdateContextMenuItemCount()
         {
             foreach (var button in Buttons.Values)
+                UpdateContextMenuItemCount(button);
+        }
+
+        public void UpdateContextMenuItemCount(EBranch branch)
+        {
+            if (Buttons.TryGetValue(branch, out var button))
+                UpdateContextMenuItemCount(button);
+        }
+
+        public void UpdateContextMenuItemCount(ToggleButton button)
+        {
+            if (button.ContextMenu is ContextMenu contextMenu)
             {
-                if (button.ContextMenu is ContextMenu contextMenu)
+                var toggleMenuItems = contextMenu.Items.OfType<MenuItem>().Where(i => i.IsCheckable);
+                var newTextBlock = new TextBlock
                 {
-                    var toggleMenuItems = contextMenu.Items.OfType<MenuItem>().Where(i => i.IsCheckable);
-                    var newTextBlock = new TextBlock
-                    {
-                        Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake10pxVerticallyCentered),
-                        Text = $"{toggleMenuItems.Where(menuItem => menuItem.IsChecked).Count()}/{toggleMenuItems.Count()}",
-                    };
+                    Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake10pxVerticallyCentered),
+                    Text = $"{toggleMenuItems.Where(menuItem => menuItem.IsChecked).Count()}/{toggleMenuItems.Count()}",
+                };
 
-                    if (button.Content is StackPanel stackPanel)
-                    {
-                        var lastTextBlock = stackPanel.Children.OfType<TextBlock>().Last();
+                if (button.Content is StackPanel stackPanel)
+                {
+                    var lastTextBlock = stackPanel.Children.OfType<TextBlock>().Last();
 
-                        stackPanel.Children.Remove(lastTextBlock);
-                        stackPanel.Children.Add(newTextBlock);
-                    }
-                    else
-                    {
-                        var newStackPanel = new StackPanel { Orientation = Orientation.Horizontal };
-                        var iconTextBlock = new TextBlock { Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
+                    stackPanel.Children.Remove(lastTextBlock);
+                    stackPanel.Children.Add(newTextBlock);
+                }
+                else
+                {
+                    var newStackPanel = new StackPanel { Orientation = Orientation.Horizontal };
+                    var iconTextBlock = new TextBlock { Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
 
-                        newStackPanel.Children.Add(iconTextBlock);
-                        newStackPanel.Children.Add(newTextBlock);
+                    newStackPanel.Children.Add(iconTextBlock);
+                    newStackPanel.Children.Add(newTextBlock);
 
-                        button.Content = newStackPanel;
-                    }
+                    button.Content = newStackPanel;
                 }
             }
         }
