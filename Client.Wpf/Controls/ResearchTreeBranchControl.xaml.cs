@@ -156,17 +156,11 @@ namespace Client.Wpf.Controls
                     Child = cell,
                 };
 
-                Grid.SetRow(cellWithBottomBorder, rowIndex);
-                Grid.SetColumn(cellWithBottomBorder, columnIndex);
-
-                _grid.Children.Add(cellWithBottomBorder);
+                _grid.Add(cellWithBottomBorder, columnIndex, rowIndex);
             }
             else
             {
-                Grid.SetRow(cell, rowIndex);
-                Grid.SetColumn(cell, columnIndex);
-
-                _grid.Children.Add(cell);
+                _grid.Add(cell, columnIndex, rowIndex);
             }
         }
 

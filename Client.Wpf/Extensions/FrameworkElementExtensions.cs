@@ -1,11 +1,15 @@
 ﻿using Core.Extensions;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Extensions
 {
     /// <summary> Methods extending the <see cref="FrameworkElement"/> class. </summary>
     public static class FrameworkElementExtensions
     {
+        public static BitmapSource GetBitmapSource(this FrameworkElement frameworkElement, string resourceKey) =>
+            frameworkElement.FindResource(resourceKey) as BitmapSource;
+
         /// <summary> Searches for a style with the specified key defined in <see cref="WpfClient"/>, and throws an exception if the requested style is not found. </summary>
         /// <param name="frameworkElement"> The framework element for which to search. </param>
         /// <param name="styleKey"> The string key of the style. </param>

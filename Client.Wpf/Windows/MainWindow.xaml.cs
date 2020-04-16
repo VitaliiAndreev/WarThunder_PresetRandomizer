@@ -586,7 +586,7 @@ namespace Client.Wpf.Windows
             _localizationButton.Content = new Image()
             {
                 Style = this.GetStyle(EStyleKey.Image.LocalizationIcon),
-                Source = FindResource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()) as BitmapSource,
+                Source = this.GetBitmapSource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()),
             };
 
             _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
