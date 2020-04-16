@@ -7,6 +7,8 @@ namespace Client.Wpf.Enumerations
         public const char Controller = '≟';
         public const char GaijinCoin = '⋬';
         public const char GoldenEagle = '¤';
+        public const char Wrench = '▨';
+        public const char Binoculars = '⌂';
         public const char SilverLion = '€';
     }
 }
