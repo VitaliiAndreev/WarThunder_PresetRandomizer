@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Objects\LogEventInfoLaidOutForWpf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\WpfTarget.cs" />

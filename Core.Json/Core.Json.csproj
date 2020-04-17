@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Enumerations\Logger\EJsonLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EJsonLogMessage.cs" />
     <Compile Include="Exceptions\JsonDeserializationException.cs" />

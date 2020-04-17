@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Collections\Preset.cs" />
     <Compile Include="Collections\VehiclesByBattleRating.cs" />
     <Compile Include="Collections\VehiclesByBranchesAndBattleRating.cs" />

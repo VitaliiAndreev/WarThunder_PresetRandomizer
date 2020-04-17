@@ -70,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
     <Compile Include="Enumerations\EVehicleBranchTag.cs" />
     <Compile Include="Enumerations\EBranch.cs" />

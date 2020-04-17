@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Enumerations\Logger\EJsonWarThunderLogMessage.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderJsonHelper.cs" />

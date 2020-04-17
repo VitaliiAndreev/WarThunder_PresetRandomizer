@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Enumerations\Logger\ECsvLogCategory.cs" />
     <Compile Include="Helpers\CsvDeserializer.cs" />
     <Compile Include="Helpers\Interfaces\ICsvDeserializer.cs" />

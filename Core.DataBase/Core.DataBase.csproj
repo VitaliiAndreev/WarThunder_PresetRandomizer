@@ -102,6 +102,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Enumerations\EIdGenerator.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseLogMessage.cs" />

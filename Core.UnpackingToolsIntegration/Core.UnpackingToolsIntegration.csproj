@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Attributes\RequiredSettingAttribute.cs" />
     <Compile Include="Enumerations\EApplicationName.cs" />
     <Compile Include="Enumerations\EClientVersion.cs" />

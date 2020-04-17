@@ -230,6 +230,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\Core\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
     <Compile Include="Commands\MainWindow\AboutCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeBattleRatingCommand.cs" />
