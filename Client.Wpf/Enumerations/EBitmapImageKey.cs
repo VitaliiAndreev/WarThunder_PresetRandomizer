@@ -9,7 +9,7 @@ namespace Client.Wpf.Enumerations
         public const string RealisticIcon = "RealisticIcon";
         public const string SimulatorIcon = "SimulatorIcon";
 
-        public const string FlagRussia = "FlagRussia";
-        public const string FlagUsa = "FlagUsa";
+        public const string FlagRussian = "FlagRussian";
+        public const string FlagUsa = "FlagEnglish";
     }
 }

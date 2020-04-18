@@ -32,7 +32,7 @@
                 Click="OnClick">
                 <Image
                     Style="{StaticResource LocalizationIcon}"
-                    Source="{StaticResource FlagUsaForDesigner}"/>
+                    Source="{StaticResource FlagEnglishForDesigner}"/>
             </Button>
 
             <Button
@@ -42,7 +42,7 @@
                 Click="OnClick">
                 <Image
                     Style="{StaticResource LocalizationIcon}"
-                    Source="{StaticResource FlagRussiaForDesigner}"/>
+                    Source="{StaticResource FlagRussianForDesigner}"/>
             </Button>
 
         </Grid>

@@ -17,11 +17,11 @@
         <BitmapImage x:Key="YouTubeIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/youtube.png</BitmapImage>
         <BitmapImage x:Key="TeamIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/team.png</BitmapImage>
 
-        <BitmapImage x:Key="FlagRussia" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/RU.png" />
-        <BitmapImage x:Key="FlagRussiaForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/RU.png</BitmapImage>
-        
-        <BitmapImage x:Key="FlagUsa" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/US.png" /> <!-- Cannot be loaded in the designer. -->
-        <BitmapImage x:Key="FlagUsaForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/US.png</BitmapImage> <!-- Cannot be set programmatically. -->
+        <BitmapImage x:Key="FlagRussian" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/RU.png" />
+        <BitmapImage x:Key="FlagRussianForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/RU.png</BitmapImage>
+
+        <BitmapImage x:Key="FlagEnglish" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/EN.png" /> <!-- Cannot be loaded in the designer. -->
+        <BitmapImage x:Key="FlagEnglishForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/EN.png</BitmapImage> <!-- Cannot be set programmatically. -->
         
         <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.9" />
 
@@ -158,7 +158,9 @@
         <!-- t:Image -->
 
         <Style TargetType="Image" x:Key="LocalizationIcon">
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Width" Value="23"/>
+            <Setter Property="Height" Value="17"/>
         </Style>
 
         <Style TargetType="Image" x:Key="UniformlyStretchedImage">

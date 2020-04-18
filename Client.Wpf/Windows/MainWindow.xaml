@@ -110,7 +110,7 @@
                     Margin="2.5 0 2.5 0">
                     <Image
                         Style="{StaticResource LocalizationIcon}"
-                        Source="{StaticResource FlagUsaForDesigner}"/>
+                        Source="{StaticResource FlagEnglishForDesigner}"/>
                 </Button>
 
                 <Button

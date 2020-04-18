@@ -4,7 +4,7 @@
     public enum ELanguage
     {
         None,
-        EnglishUsa,
+        English,
         Russian,
     }
 }

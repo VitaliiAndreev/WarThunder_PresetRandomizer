@@ -48,7 +48,7 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            _buttonEnglishUsa.Tag = ELanguage.EnglishUsa;
+            _buttonEnglishUsa.Tag = ELanguage.English;
             _buttonRussian.Tag = ELanguage.Russian;
 
             Log.Debug(ECoreLogMessage.Initialized);

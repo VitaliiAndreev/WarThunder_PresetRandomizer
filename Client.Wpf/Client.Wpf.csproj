@@ -456,6 +456,8 @@
     <Content Include="oo2core_6_win64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\EN.png" />
+    <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\GB.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\youtube.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\team.png" />
     <Resource Include="Resources\Game Mode Icons\arcade.png" />
@@ -561,7 +563,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="icon.ico" />
-    <Content Include="Localisation\EnglishUsa.xml">
+    <Content Include="Localisation\English.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\icon.ico" />

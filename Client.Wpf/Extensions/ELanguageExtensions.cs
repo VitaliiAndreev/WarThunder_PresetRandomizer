@@ -13,8 +13,8 @@ namespace Client.Wpf.Extensions
         {
             return language switch
             {
-                ELanguage.EnglishUsa => EBitmapImageKey.FlagUsa,
-                ELanguage.Russian => EBitmapImageKey.FlagRussia,
+                ELanguage.English => EBitmapImageKey.FlagUsa,
+                ELanguage.Russian => EBitmapImageKey.FlagRussian,
                 _ => null,
             };
         }
