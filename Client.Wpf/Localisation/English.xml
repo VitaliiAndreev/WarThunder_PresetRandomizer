@@ -70,7 +70,7 @@
   <Line key="Helicopters" value="Helicopters"/>
   <Line key="Hungary" value="Hungary"/>
   <Line key="Hydroplane" value="Hydroplane"/>
-  <Line key="InitializationUnderwayConfirmClosure" value="Initialization is underway. Proceed?"/>
+  <Line key="InitialisationUnderwayConfirmClosure" value="Initialisation is underway. Proceed?"/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
   <Line key="Israel" value="Israel"/>

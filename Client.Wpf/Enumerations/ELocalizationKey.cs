@@ -59,7 +59,7 @@
         public const string Helicopters = nameof(Helicopters);
         public const string Hungary = nameof(Hungary);
         public const string Hydroplane = nameof(Hydroplane);
-        public const string InitializationUnderwayConfirmClosure = nameof(InitializationUnderwayConfirmClosure);
+        public const string InitialisationUnderwayConfirmClosure = nameof(InitialisationUnderwayConfirmClosure);
         public const string Interceptor = nameof(Interceptor);
         public const string Iraq = nameof(Iraq);
         public const string Israel = nameof(Israel);

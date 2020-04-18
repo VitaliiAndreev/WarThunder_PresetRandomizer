@@ -46,6 +46,7 @@ namespace Core.Organization.Helpers
         private readonly bool _readOnlyJson;
         /// <summary> Whether to extract game files. </summary>
         private readonly bool _readPreviouslyUnpackedJson;
+        private readonly EStartup _startupConfiguration;
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
         /// <summary> Playable vehicles loaded into memory. </summary>
@@ -126,6 +127,7 @@ namespace Core.Organization.Helpers
             _generateDatabase = generateDatabase;
             _readOnlyJson = readOnlyJson;
             _readPreviouslyUnpackedJson = readPreviouslyUnpackedJson;
+            _startupConfiguration = GetStartupConfiguration(_generateDatabase, _readOnlyJson, _readPreviouslyUnpackedJson);
             _excludedGaijinIdParts = new List<string>()
             {
                 "_football",
@@ -157,10 +159,10 @@ namespace Core.Organization.Helpers
             _playableVehicles = new List<IVehicle>();
 
             _settingsManager = settingsManager;
-            _settingsManager.Initialise(_readPreviouslyUnpackedJson || !_generateDatabase && !_readOnlyJson);
+            _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
             LoadSettings();
 
-            if (!_readPreviouslyUnpackedJson)
+            if (_startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadDatabase, EStartup.CreateDatabaseReadJson, EStartup.ReadJson }))
                 _fileManager.CleanUpTempDirectory();
 
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
@@ -170,6 +172,29 @@ namespace Core.Organization.Helpers
 
         #endregion Constructors
         #region Methods: Initialization
+
+        private EStartup GetStartupConfiguration(bool generateDatabase, bool readJson, bool readUnpackedJson)
+        {
+            if (readUnpackedJson)
+            {
+                return EStartup.ReadUnpackedJson;
+            }
+            else if (readJson)
+            {
+                if (generateDatabase)
+                    return EStartup.CreateDatabaseReadJson;
+                else
+                    return EStartup.ReadJson;
+            }
+            else if (generateDatabase)
+            {
+                return EStartup.CreateDatabaseReadDatabase;
+            }
+            else
+            {
+                return EStartup.ReadDatabase;
+            }
+        }
 
         /// <summary> Reads and stores the version of the game client. </summary>
         public void InitializeGameClientVersion() =>
@@ -303,7 +328,7 @@ namespace Core.Organization.Helpers
 
         private void InitialiseLatestAvailableDatabaseVersion()
         {
-            var databaseIsUsed = _generateDatabase || !_readOnlyJson && !_readPreviouslyUnpackedJson;
+            var databaseIsUsed = _startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadDatabase, EStartup.CreateDatabaseReadJson, EStartup.ReadDatabase });
             var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
 
             if (availableDatabaseVersions.Any())
@@ -317,7 +342,7 @@ namespace Core.Organization.Helpers
                     _generateNewDatabase = false;
             }
 
-            var builtDatabaseIsRequired = !_readOnlyJson && !_readPreviouslyUnpackedJson && !_generateDatabase;
+            var builtDatabaseIsRequired = _startupConfiguration == EStartup.ReadDatabase;
 
             if (_latestAvailableDatabaseVersion is null)
             {

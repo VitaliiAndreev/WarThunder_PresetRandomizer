@@ -70,7 +70,7 @@
   <Line key="Helicopters" value="Вертолёты"/>
   <Line key="Hungary" value="Венгрия"/>
   <Line key="Hydroplane" value="Гидросамолёт"/>
-  <Line key="InitializationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
+  <Line key="InitialisationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
   <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>
   <Line key="Israel" value="Израиль"/>

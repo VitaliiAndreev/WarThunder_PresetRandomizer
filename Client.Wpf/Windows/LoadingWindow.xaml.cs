@@ -168,7 +168,7 @@ namespace Client.Wpf.Windows
         private bool ClosureConfirmed()
         {
             var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
-            var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.InitializationUnderwayConfirmClosure);
+            var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.InitialisationUnderwayConfirmClosure);
 
             _messageBoxIsUp = true;
 

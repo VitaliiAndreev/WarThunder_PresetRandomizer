@@ -55,6 +55,7 @@
     <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Enumerations\EPreset.cs" />
     <Compile Include="Enumerations\ERandomisation.cs" />
+    <Compile Include="Enumerations\EStartup.cs" />
     <Compile Include="Enumerations\Logger\EOrganizationLogMessage.cs" />
     <Compile Include="Enumerations\Logger\EOrganizationLogCategory.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
