@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 
 namespace Core.Helpers.Interfaces
@@ -36,6 +37,8 @@ namespace Core.Helpers.Interfaces
         /// <param name="delimiter"> The field delimeter. </param>
         /// <returns></returns>
         IList<IList<string>> ReadCsv(FileInfo file, char delimiter);
+
+        Bitmap ReadImage(FileInfo file);
 
         #endregion Methods: Read()
     }

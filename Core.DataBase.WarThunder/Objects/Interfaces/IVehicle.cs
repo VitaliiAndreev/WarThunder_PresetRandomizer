@@ -2,7 +2,7 @@
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using System.Collections.Generic;
-using System.IO;
+using System.Drawing;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -149,7 +149,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
         void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className);
 
-        void SetIcon(FileInfo file);
+        void SetIcon(Bitmap image);
 
         #endregion Methods: Initialization
     }

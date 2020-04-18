@@ -510,7 +510,7 @@ namespace Core.Organization.Helpers
             {
                 if (vehicleIconFiles.TryGetValue(gaijinId, out var iconFile))
                 {
-                    vehicle.SetIcon(iconFile);
+                    vehicle.SetIcon(_fileReader.ReadImage(iconFile));
                     return true;
                 }
                 return false;

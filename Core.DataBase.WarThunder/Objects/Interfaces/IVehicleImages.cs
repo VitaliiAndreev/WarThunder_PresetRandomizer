@@ -13,7 +13,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Persistent Properties
         #region Methods: Initialisation
 
-        void SetIcon(FileInfo file);
+        void SetIcon(Bitmap image);
 
         #endregion Methods: Initialisation
     }

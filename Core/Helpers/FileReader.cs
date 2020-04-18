@@ -5,6 +5,7 @@ using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Microsoft.VisualBasic.FileIO;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -104,6 +105,11 @@ namespace Core.Helpers
                 }
             }
             return lines;
+        }
+
+        public Bitmap ReadImage(FileInfo file)
+        {
+            return new Bitmap(file.FullName);
         }
 
         #endregion Methods: Read()

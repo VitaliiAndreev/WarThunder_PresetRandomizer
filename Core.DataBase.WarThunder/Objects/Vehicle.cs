@@ -16,7 +16,7 @@ using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using NHibernate.Type;
 using System.Collections.Generic;
-using System.IO;
+using System.Drawing;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
@@ -408,7 +408,7 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
         }
 
-        public virtual void SetIcon(FileInfo file) => Images.SetIcon(file);
+        public virtual void SetIcon(Bitmap image) => Images.SetIcon(image);
 
         #region Methods: Initialization Helpers
 

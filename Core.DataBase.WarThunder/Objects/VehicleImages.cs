@@ -61,9 +61,9 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Constructors
         #region Methods: Initialisation
 
-        public virtual void SetIcon(FileInfo file)
+        public virtual void SetIcon(Bitmap image)
         {
-            Icon = new Bitmap(file.FullName);
+            Icon = image;
         }
 
         #endregion Methods: Initialisation
