@@ -16,7 +16,6 @@ using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;
 using NHibernate.Type;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 

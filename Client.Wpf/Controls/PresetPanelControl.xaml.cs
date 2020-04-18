@@ -126,6 +126,7 @@ namespace Client.Wpf.Controls
         {
             _primaryPresetPanel.Children.Clear();
             _fallbackPresetPanel.Children.Clear();
+
             _currentPresetNationFlag.Source = null;
             _currentPresetInfoTextBlock.Text = string.Empty;
 
