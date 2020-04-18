@@ -69,21 +69,6 @@ namespace Core.Organization.Helpers
 
         #region Methods: Helper Methods for GeneratePrimaryAndFallbackPresets()
 
-        /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="vehicleGaijinIds"/>. </summary>
-        /// <param name="vehicleGaijinIds"> Gaijin IDs of vehicles enabled via GUI. </param>
-        /// <returns></returns>
-        private IEnumerable<IVehicle> FilterVehiclesByGaijinIds(IEnumerable<string> vehicleGaijinIds)
-        {
-            var filteredVehicles = _playableVehicles?.Where(vehicle => vehicle.GaijinId.IsIn(vehicleGaijinIds));
-
-            if (filteredVehicles is null || filteredVehicles.IsEmpty())
-            {
-                LogWarn(EOrganizationLogMessage.NoVehiclesSelected);
-                return null;
-            }
-            return filteredVehicles;
-        }
-
         /// <summary> Assesses <paramref name="filteredVehicles"/> does post-filtering operations. </summary>
         /// <param name="filteredVehicles"> Filtered vehicles to assess. </param>
         /// <param name="validItems"> Items accepted by the filter. </param>
@@ -101,6 +86,13 @@ namespace Core.Organization.Helpers
             return filteredVehicles;
         }
 
+        private IEnumerable<IVehicle> FilterByBranchTags(IEnumerable<IVehicle> vehicles, IEnumerable<EVehicleBranchTag> validTags, Func<IVehicle, IVehicleTags> tagLocator, bool suppressLogging)
+        {
+            var filteredVehicles = vehicles?.Where(vehicle => tagLocator(vehicle)?[validTags] ?? true).AsParallel().ToList() ?? new List<IVehicle>();
+
+            return AssessFilterResult(filteredVehicles, validTags, suppressLogging);
+        }
+
         /// <summary>
         /// Filters given <paramref name="vehicles"/> by <see cref="IVehicle.AircraftTags"/> and <paramref name="validTags"/>.
         /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
@@ -111,7 +103,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByAircraftTags(IEnumerable<IVehicle> vehicles, IEnumerable<EVehicleBranchTag> validTags, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles.Where(vehicle => vehicle.AircraftTags?[validTags] ?? true);
+            var filteredVehicles = FilterByBranchTags(vehicles, validTags, vehicle => vehicle.AircraftTags, suppressLogging);
 
             return AssessFilterResult(filteredVehicles, validTags, suppressLogging);
         }
@@ -126,7 +118,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByGroundVehicleTags(IEnumerable<IVehicle> vehicles, IEnumerable<EVehicleBranchTag> validTags, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles.Where(vehicle => vehicle.GroundVehicleTags?[validTags] ?? true);
+            var filteredVehicles = FilterByBranchTags(vehicles, validTags, vehicle => vehicle.GroundVehicleTags, suppressLogging);
 
             return AssessFilterResult(filteredVehicles, validTags, suppressLogging);
         }
@@ -143,7 +135,7 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).IsIn(validItems)) ?? new List<IVehicle>();
+            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).IsIn(validItems)).AsParallel().ToList() ?? new List<IVehicle>();
 
             return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
         }
@@ -160,9 +152,24 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, IEnumerable<T>> itemSelector, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles.Where(vehicle => itemSelector(vehicle).Intersect(validItems).Any());
+            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).Intersect(validItems).Any()).AsParallel().ToList() ?? new List<IVehicle>();
 
             return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
+        }
+
+        /// <summary> Filters <see cref="_playableVehicles"/> with <paramref name="vehicleGaijinIds"/>. </summary>
+        /// <param name="vehicleGaijinIds"> Gaijin IDs of vehicles enabled via GUI. </param>
+        /// <returns></returns>
+        private IEnumerable<IVehicle> FilterVehiclesByGaijinIds(IEnumerable<string> vehicleGaijinIds)
+        {
+            var filteredVehicles = FilterVehicles(_playableVehicles ?? new List<IVehicle>(), vehicleGaijinIds, vehicle => vehicle.GaijinId);
+
+            if (filteredVehicles is null || filteredVehicles.IsEmpty())
+            {
+                LogWarn(EOrganizationLogMessage.NoVehiclesSelected);
+                return null;
+            }
+            return filteredVehicles;
         }
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="enabledNationCountryPairs"/>. </summary>
@@ -684,6 +691,8 @@ namespace Core.Organization.Helpers
                 .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
                 .Distinct()
+                .AsParallel()
+                .ToList()
             ;
 
             static string getFormattedBattleRating(int economicRank) => Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
@@ -747,6 +756,8 @@ namespace Core.Organization.Helpers
                 })
                 .Distinct()
                 .Where(item => !(item is null))
+                .AsParallel()
+                .ToList()
             );
             var validEconomicRanks = new Dictionary<ENation, IEnumerable<int>>();
 
@@ -771,7 +782,7 @@ namespace Core.Organization.Helpers
             var mainVehicle = _randomiser.GetRandom(vehiclesWithEconomocRankFilter);
             var selectedNation = mainVehicle.Nation.AsEnumerationItem;
             var branch = mainVehicle.Branch.AsEnumerationItem;
-            var availableSupplementaryVehicles = vehiclesWithEconomocRankFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == selectedNation).Except(mainVehicle);
+            var availableSupplementaryVehicles = vehiclesWithEconomocRankFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == selectedNation).Except(mainVehicle).AsParallel().ToList();
             var branchesAvailableForPresetComposition = availableSupplementaryVehicles.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
             var crewSlotAmount = specification.NationSpecifications[selectedNation].CrewSlots;
             var presetComposition = GetPresetComposition(gameMode, branchesAvailableForPresetComposition, crewSlotAmount, branch);

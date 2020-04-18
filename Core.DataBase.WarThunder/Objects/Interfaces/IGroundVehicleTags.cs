@@ -1,11 +1,10 @@
-﻿using Core.DataBase.Objects.Interfaces;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.WarThunder.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of aircraft tags. </summary>
-    public interface IGroundVehicleTags : IPersistentObjectWithId
+    public interface IGroundVehicleTags : IVehicleTags
     {
         #region Persistent Properties
 

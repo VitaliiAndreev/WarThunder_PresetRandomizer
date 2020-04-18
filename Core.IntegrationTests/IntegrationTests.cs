@@ -23,8 +23,10 @@ using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using FluentAssertions;
+using FluentNHibernate.Conventions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NHibernate.Criterion;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -182,7 +184,9 @@ namespace Core.IntegrationTests
 
                     // association
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.Nation?.AsEnumerationItem.IsValid() ?? false).Should().BeTrue();
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Branch?.GaijinId)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.Branch?.AsEnumerationItem.IsValid() ?? false).Should().BeTrue();
 
                     // crew
                     vehicleCollection.Any(vehicle => vehicle.CrewData is null).Should().BeFalse();

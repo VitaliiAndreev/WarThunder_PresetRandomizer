@@ -6,6 +6,7 @@ using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using NHibernate.Mapping.Attributes;
+using NHibernate.Type;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
@@ -24,6 +25,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
+        [Property(NotNull = true, TypeType = typeof(EnumStringType<ENation>))]
+        public virtual ENation AsEnumerationItem { get; protected set; }
+
         #endregion Persistent Properties
         #region Association Properties
 
@@ -40,12 +44,6 @@ namespace Core.DataBase.WarThunder.Objects
         public virtual IEnumerable<IVehicle> Vehicles { get; protected set; } = new List<IVehicle>();
 
         #endregion Association Properties
-        #region Non-Persistent Properties
-
-        /// <summary> Parses the Gaijin ID of the nation as an item of <see cref="ENation"/>. </summary>
-        public virtual ENation AsEnumerationItem => EReference.NationsFromString[GaijinId];
-
-        #endregion Non-Persistent Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
@@ -76,6 +74,8 @@ namespace Core.DataBase.WarThunder.Objects
         public Nation(IDataRepository dataRepository, long id, string gaijinId)
             : base(dataRepository, id, gaijinId)
         {
+            AsEnumerationItem = EReference.NationsFromString[GaijinId];
+
             LogCreation();
         }
 
