@@ -22,6 +22,7 @@
         private const string _al = _a + _l;
         private const string _ame = _a + _me;
         private const string _ap = _a + _p;
+        private const string _ar = _a + _r;
         private const string _aw = _a + _w;
 
         protected const string _A = "A";
@@ -57,9 +58,9 @@
         protected const string _application = _a + _pplication;
         protected const string _apt = _ap + _t;
         protected const string _are = _a + _re;
-        protected const string _argument = _a + _r + _g + _u + _ment;
+        protected const string _argument = _ar + _g + _u + _ment;
         protected const string _arguments = _argument + _s;
-        protected const string _art = _a + "rt";
+        protected const string _art = _ar + _t;
         protected const string _As = _a + _s;
         protected const string _as = _a + _s;
         protected const string _assembly = _as + "semb" + _ly;
@@ -75,6 +76,7 @@
 
         private const string _B = "B";
         private const string _b = "b";
+        private const string _bu = _b + _u;
 
         protected const string _base = _b + _a + _s + _e;
         protected const string _Bat = _B + _at;
@@ -89,6 +91,7 @@
         protected const string _Branch = _B + _ranch;
         protected const string _branch = _b + _ranch;
         protected const string _branches = _branch + _es;
+        protected const string _built = _bu + _ilt;
         protected const string _by = _b + "y";
 
         #endregion B
@@ -183,6 +186,7 @@
         protected const string _deleted = _delete + "d";
         protected const string _Deleting = "Delet" + _ing;
         protected const string _deleting = _d + "elet" + _ing;
+        protected const string _der = _de + _r;
         protected const string _Deserialisation = _De + _serial + _is + _at + _ion;
         protected const string _deserialise = _d + "eserialise";
         protected const string _deserialised = _deserialise + "d";
@@ -305,6 +309,7 @@
         protected const string _here = _h + "ere";
         protected const string _horizontal = _h + "orizontal";
         protected const string _how = _h + _ow;
+        protected const string _hun = _h + _un;
 
         #endregion H
         #region I
@@ -410,6 +415,7 @@
         protected const string _markers = "marker" + _s;
         protected const string _mat = "mat";
         protected const string _match = _mat + _ch;
+        protected const string _matches = _match + _es;
         protected const string _matching = _match + _ing;
         protected const string _may = _m + _a + _y;
         protected const string _me = _m + _e;
@@ -663,6 +669,7 @@
         protected const string _thin = _t + _h + _in;
         protected const string _thing = _thin + _g;
         protected const string _tho = _th + _o;
+        protected const string _Thunder = _T + _hun + _der;
         protected const string _to = _t + _o;
         protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";
@@ -728,6 +735,7 @@
         private const string _W = "W";
         private const string _w = "w";
 
+        protected const string _War = _W + _ar;
         protected const string _while = _w + "hile";
         protected const string _will = _w + _ill;
         protected const string _Window = "Window";

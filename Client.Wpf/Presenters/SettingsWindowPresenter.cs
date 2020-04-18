@@ -17,7 +17,7 @@ namespace Client.Wpf.Presenters
         public ESettingsWindowClosureState ClosingState { get; set; }
 
         /// <summary> Indicates whether the location of the War Thunder directory is valid. </summary>
-        public bool WarThunderLocationIsValid => Owner.WarThunderLocationIsValid;
+        public bool WarThunderLocationIsValid => Owner.WarThunderLocationIsValid || ApplicationHelpers.SettingsManager.IgnoreWarThunderPath;
 
         /// <summary> Indicates whether the location of the Klensy's War Thunder Tools directory is valid. </summary>
         public bool KlensysWarThunderToolsLocationIsValid => Owner.KlensysWarThunderToolsLocationIsValid;

@@ -18,6 +18,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
         new protected readonly IWarThunderFileManager _fileManager;
 
         #endregion Fields
+        #region Properties
+
+        public bool IgnoreWarThunderPath { get; private set; }
+
+        #endregion Properties
         #region Constructors
 
         /// <summary> Creates a new settings manager. </summary>
@@ -32,6 +37,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
         }
 
         #endregion Constructors
+        #region Methods: Initialisation
+
+        public void Initialise(bool ignoreWarThunderPath)
+        {
+            IgnoreWarThunderPath = ignoreWarThunderPath;
+        }
+
+        #endregion Methods: Initialisation
         #region Methods: Validation
 
         /// <summary> Checks whether the currently loaded location of Klensy's War Thunder Tools is valid. </summary>
@@ -40,7 +53,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         /// <summary> Checks whether the currently loaded location of War Thunder is valid. </summary>
         /// <returns></returns>
-        public bool WarThunderLocationIsValid() => _fileManager.WarThunderLocationIsValid(Settings.WarThunderLocation);
+        public bool WarThunderLocationIsValid() => _fileManager.WarThunderLocationIsValid(Settings.WarThunderLocation) || IgnoreWarThunderPath;
 
         #endregion Methods: Validation
         #region Methods: Writing

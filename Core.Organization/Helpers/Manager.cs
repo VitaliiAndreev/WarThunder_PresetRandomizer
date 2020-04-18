@@ -55,6 +55,7 @@ namespace Core.Organization.Helpers
         private bool _generateNewDatabase;
         /// <summary> The string representation of the game client version. </summary>
         private string _gameClientVersion;
+        private Version _latestAvailableDatabaseVersion;
 
         /// <summary> An instance of a file manager. </summary>
         protected readonly IWarThunderFileManager _fileManager;
@@ -156,6 +157,7 @@ namespace Core.Organization.Helpers
             _playableVehicles = new List<IVehicle>();
 
             _settingsManager = settingsManager;
+            _settingsManager.Initialise(_readPreviouslyUnpackedJson || !_generateDatabase && !_readOnlyJson);
             LoadSettings();
 
             if (!_readPreviouslyUnpackedJson)
@@ -265,16 +267,19 @@ namespace Core.Organization.Helpers
         /// <summary> Checks for an existing database and initialises the <see cref="_generateNewDatabase"/> field appropriately. </summary>
         private void CheckForExistingDatabase()
         {
-            var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
-
-            if (availableDatabaseVersions.IsEmpty() || !_gameClientVersion.IsIn(availableDatabaseVersions.Max().ToString()))
+            if (string.IsNullOrWhiteSpace(_gameClientVersion) && _latestAvailableDatabaseVersion is Version)
+            {
+                LogWarn(EOrganizationLogMessage.WarThunderVersionNotInitialised);
+                _generateNewDatabase = false;
+            }
+            else if (_latestAvailableDatabaseVersion is null || !_gameClientVersion.IsIn(_latestAvailableDatabaseVersion.ToString()))
             {
                 LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
                 _generateNewDatabase = true;
             }
             else
             {
-                LogInfo(EOrganizationLogMessage.FoundDatabaseFor.FormatFluently(_gameClientVersion));
+                LogInfo(EOrganizationLogMessage.FoundDatabaseMatchesWithWarThunderVersion);
                 _generateNewDatabase = false;
             }
         }
@@ -288,15 +293,44 @@ namespace Core.Organization.Helpers
             }
             else
             {
-                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping));
+                var latestAvailableDatabaseVersion = _latestAvailableDatabaseVersion.ToString();
+
+                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _generateDatabase ? (_gameClientVersion ?? latestAvailableDatabaseVersion) : latestAvailableDatabaseVersion, false, Assembly.Load(EAssembly.DataBaseMapping));
 
                 LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
+            }
+        }
+
+        private void InitialiseLatestAvailableDatabaseVersion()
+        {
+            var databaseIsUsed = _generateDatabase || !_readOnlyJson && !_readPreviouslyUnpackedJson;
+            var availableDatabaseVersions = _fileManager.GetWarThunderDatabaseVersions();
+
+            if (availableDatabaseVersions.Any())
+            {
+                _latestAvailableDatabaseVersion = availableDatabaseVersions.Max();
+
+                if (databaseIsUsed)
+                    LogInfo(EOrganizationLogMessage.FoundDatabaseFor.FormatFluently(_latestAvailableDatabaseVersion));
+
+                if (!_generateDatabase)
+                    _generateNewDatabase = false;
+            }
+
+            var builtDatabaseIsRequired = !_readOnlyJson && !_readPreviouslyUnpackedJson && !_generateDatabase;
+
+            if (_latestAvailableDatabaseVersion is null)
+            {
+                if (builtDatabaseIsRequired)
+                    throw new FileNotFoundException(EOrganizationLogMessage.DatabaseNotFound);
             }
         }
 
         /// <summary> Initialises the <see cref="_dataRepository"/>. </summary>
         private void InitialiseDataRepository()
         {
+            InitialiseLatestAvailableDatabaseVersion();
+
             if (_generateDatabase)
                 CheckForExistingDatabase();
 

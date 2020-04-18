@@ -490,6 +490,9 @@
     <Content Include="Client.Wpf %28read JSON%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Client.Wpf %28read DB%29.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

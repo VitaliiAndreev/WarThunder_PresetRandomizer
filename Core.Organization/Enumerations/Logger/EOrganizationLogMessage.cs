@@ -43,16 +43,19 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string ProcessingVehicleImages = $"{_Processing} {_vehicle} {_images}.";
         public static readonly string VehicleImagesProcessed = $"{_Vehicle} {_images} {_processed} .";
 
+        public static readonly string WarThunderVersionNotInitialised = $"{_War} {_Thunder} {_version} {_not} {_initialised}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: game version. </para>
         /// </summary>
         public static readonly string FoundDatabaseFor = $"{_Found} {_databaseFor} {{0}}.";
+        public static readonly string FoundDatabaseMatchesWithWarThunderVersion = $"{_Found} {_database} {_matches} {_War} {_Thunder} {_version}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: game version. </para>
         /// </summary>
         public static readonly string NotFoundDatabaseFor = $"{_Not} {_found} {_databaseFor} {{0}}.";
+        public static readonly string DatabaseNotFound = $"{_Database} {_not} {_found}.";
 
         public static readonly string CreatingBlankDatabase = $"{_Creating} {_blank} {_database}.";
         public static readonly string BlankDatabaseCreated = $"{_Blank} {_database} {_created}.";

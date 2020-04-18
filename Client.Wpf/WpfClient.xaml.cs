@@ -146,11 +146,11 @@ namespace Client.Wpf
                 _generateDatabase = false;
             }
 
-            if (!_generateDatabase || _readPreviouslyUnpackedJson)
-                _readOnlyJson = true;
-
             if (_readPreviouslyUnpackedJson)
+            {
+                _readOnlyJson = true;
                 _generateDatabase = false;
+            }
         }
 
         /// <summary>
