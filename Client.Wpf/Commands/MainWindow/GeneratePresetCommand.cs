@@ -4,6 +4,7 @@ using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Enumerations;
 using Core.Organization.Objects.SearchSpecifications;
+using System;
 using System.Linq;
 using System.Windows.Input;
 
@@ -102,6 +103,8 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.EnableOnly(selectedNation, selectedBranches);
                 presenter.FocusResearchTree(selectedNation, selectedBranches.First());
                 presenter.BringIntoView(firstVehicle);
+
+                GC.Collect();
             }
         }
     }

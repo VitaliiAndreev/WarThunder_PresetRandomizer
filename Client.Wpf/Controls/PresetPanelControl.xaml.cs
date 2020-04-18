@@ -26,6 +26,8 @@ namespace Client.Wpf.Controls
         /// <summary> Preset panels on the control. </summary>
         private readonly IDictionary<EPreset, WrapPanel> _presetPanels;
 
+        private readonly IDictionary<string, ResearchTreeCellVehicleControl> _vehicleCards;
+
         #endregion Fields
         #region Constructors
 
@@ -42,6 +44,7 @@ namespace Client.Wpf.Controls
                 { EPreset.Primary, _primaryPresetPanel },
                 { EPreset.Fallback, _fallbackPresetPanel },
             };
+            _vehicleCards = new Dictionary<string, ResearchTreeCellVehicleControl>();
         }
 
         #endregion Constructors
@@ -141,12 +144,22 @@ namespace Client.Wpf.Controls
 
                 foreach (var vehicle in presetKeyValuePair.Value)
                 {
-                    var vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
+                    var vehicleControl = default(ResearchTreeCellVehicleControl);
 
-                    vehicleControl.MouseEnter += OnMouseEnter;
-                    vehicleControl.MouseLeave += OnMouseLeave;
-                    vehicleControl.DisplayVehicleInformation(gameMode);
+                    if (_vehicleCards.TryGetValue(vehicle.GaijinId, out var alreadyCreatedVehicleControl))
+                    {
+                        vehicleControl = alreadyCreatedVehicleControl;
+                    }
+                    else
+                    {
+                        vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
 
+                        vehicleControl.MouseEnter += OnMouseEnter;
+                        vehicleControl.MouseLeave += OnMouseLeave;
+                        vehicleControl.DisplayVehicleInformation(gameMode);
+
+                        _vehicleCards.Add(vehicle.GaijinId, vehicleControl);
+                    }
                     presetPanel.Children.Add(vehicleControl);
                 }
             }
