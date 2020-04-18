@@ -25,7 +25,7 @@ namespace Core.DataBase.Tests.Extensions
             {
                 SetLogCategory();
                 _dataRepository = dataRepository;
-                _dataRepository.NewObjects.Add(this);
+                _dataRepository.AddToNewObjects(this);
 
                 LogCreation();
             }

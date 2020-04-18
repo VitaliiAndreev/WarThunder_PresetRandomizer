@@ -14,6 +14,8 @@ namespace Core.DataBase.Helpers.Interfaces
         /// <summary> Instances of loggers. </summary>
         IEnumerable<IConfiguredLogger> Loggers { get; }
 
+        object TransactionalLock { get; }
+
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         bool IsClosed { get; }
 
@@ -21,10 +23,14 @@ namespace Core.DataBase.Helpers.Interfaces
         /// Transient objects cached in the repository and not yet persisted.
         /// Objects should not be added to the collection directly, instead they are added on their instantiation.
         /// </summary>
-        IList<IPersistentObject> NewObjects { get; }
+        IEnumerable<IPersistentObject> NewObjects { get; }
 
         #endregion Properties
         #region Methods
+
+        IEnumerable<T> GetNewObjects<T>() where T : IPersistentObject;
+
+        void AddToNewObjects<T>(T newObject) where T : IPersistentObject;
 
         /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
@@ -38,6 +44,10 @@ namespace Core.DataBase.Helpers.Interfaces
 
         /// <summary> Persists any transient objects cached in the repository. </summary>
         void PersistNewObjects();
+
+        void RemoveFromNewObjects(IPersistentObject @object);
+
+        void ClearNewObjects();
 
         #endregion Methods
     }

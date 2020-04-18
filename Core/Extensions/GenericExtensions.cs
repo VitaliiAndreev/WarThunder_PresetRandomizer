@@ -9,7 +9,10 @@ namespace Core.Extensions
     /// <summary> Methods extending a generics. </summary>
     public static class GenericExtensions
     {
-        #region Fluency
+        #region Methods: Fluency
+
+        public static void AddInto<T>(this T item, IList<T> list) =>
+            list.Add(item);
 
         /// <summary> Fluently executes an operation on the <paramref name="value"/> and returns the result. </summary>
         /// <typeparam name="T"> The input type. </typeparam>
@@ -60,7 +63,8 @@ namespace Core.Extensions
             }
         }
 
-        #endregion Fluency
+        #endregion Methods: Fluency
+        #region Methods: Increment() / Decrement()
 
         /// <summary> Increments the value. </summary>
         /// <typeparam name="T"> The type of the value. </typeparam>
@@ -87,5 +91,7 @@ namespace Core.Extensions
                 _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T).FullName)),
             };
         }
+
+        #endregion Methods: Increment() / Decrement()
     }
 }

@@ -31,11 +31,17 @@
         protected const string _aborted = _a + _b + _or + _t + _ed;
         protected const string _About = _A + _b + _out;
         protected const string _act = _a + _c + _t;
+        protected const string _Ad = _A + _d;
         protected const string _ad = _a + _d;
+        protected const string _Add = _Ad + _d;
+        protected const string _add = _ad + _d;
+        protected const string _Additional = _Add + _d + _it + _ion + _al;
+        protected const string _additional = _add + _d + _it + _ion + _al;
         protected const string _adapt = _ad + _apt;
         protected const string _adapted = _adapt + _ed;
         protected const string _aft = _a + _f + _t;
         protected const string _after = _aft + _er;
+        protected const string _age = _ag + _e;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;
         protected const string _Already = _A + _lready;
@@ -77,6 +83,8 @@
         protected const string _battle = _bat + _t + _l + _e;
         protected const string _be = _b + _e;
         protected const string _been = _be + _e + _n;
+        protected const string _Blank = _B + _l + _an + _k;
+        protected const string _blank = _b + _l + _an + _k;
         protected const string _BR = _B + "R";
         protected const string _Branch = _B + _ranch;
         protected const string _branch = _b + _ranch;
@@ -175,12 +183,12 @@
         protected const string _deleted = _delete + "d";
         protected const string _Deleting = "Delet" + _ing;
         protected const string _deleting = _d + "elet" + _ing;
-        protected const string _Deserialization = _De + _serial + _iz + _at + _ion;
-        protected const string _deserialize = _d + "eserialize";
-        protected const string _deserialized = _deserialize + "d";
-        protected const string _Deserializer = "Deserializer";
-        protected const string _Deserializing = _De + _serial + _iz + _ing;
-        protected const string _deserializing = _de + _serial + _iz + _ing;
+        protected const string _Deserialisation = _De + _serial + _is + _at + _ion;
+        protected const string _deserialise = _d + "eserialise";
+        protected const string _deserialised = _deserialise + "d";
+        protected const string _Deserialiser = "Deserialiser";
+        protected const string _Deserialising = _De + _serial + _is + _ing;
+        protected const string _deserialising = _de + _serial + _is + _ing;
         protected const string _details = _d + "etails";
         protected const string _dialog = _d + "ia" + _log;
         protected const string _direct = _di + _rect;
@@ -302,29 +310,31 @@
         #region I
 
         private const string _i = "i";
-        private const string _ializ = _i + _a + "liz";
+        private const string _ialis = _i + _a + "lis";
         private const string _ic = _i + _c;
         private const string _ilt = _i + "lt";
         private const string _ing = _i + "ng";
         private const string _ise = _is + _e;
-        private const string _itializ = _it + _ializ;
+        private const string _itialis = _it + _ialis;
         private const string _iz = _i + _z;
         private const string _ize = _iz + _e;
 
         protected const string _I = "I";
+        protected const string _icons = _i + _con + _s;
         protected const string _ill = _i + _ll;
+        protected const string _images = _i + _mage + _s;
         protected const string _implementation = _i + "mplement" + _at + _ion;
         protected const string _implemented = _i + "mplement" + _ed;
         protected const string _In = _I + _n;
         protected const string _in = _i + _n;
         protected const string _included = _in + "clude" + _d;
         protected const string _Incorrect = _In + _correct;
-        protected const string _Initialization = _In + _itializ + _at + _ion;
-        protected const string _Initialize = _In + _itializ + _e;
-        protected const string _initialize = _in + _itializ + _e;
-        protected const string _Initialized = _Initialize + _d;
-        protected const string _initialized = _initialize + _d;
-        protected const string _Initializing = _In + _it + "ializ" + _ing;
+        protected const string _Initialisation = _In + _itialis + _at + _ion;
+        protected const string _Initialise = _In + _itialis + _e;
+        protected const string _initialise = _in + _itialis + _e;
+        protected const string _Initialised = _Initialise + _d;
+        protected const string _initialised = _initialise + _d;
+        protected const string _Initialising = _In + _it + "ialis" + _ing;
         protected const string _inmemory = _in + ECharacterString.Minus + _memory;
         protected const string _input = _in + _put;
         protected const string _install = _in + _s + _t + _all;
@@ -372,8 +382,8 @@
         protected const string _le = _l + _e;
         protected const string _Line = "Line";
         protected const string _Loading = "Load" + _ing;
-        protected const string _Localization = "Localizat" + _ion;
-        protected const string _localization = "localizat" + _ion;
+        protected const string _Localisation = "Localisat" + _ion;
+        protected const string _localisation = "localisat" + _ion;
         protected const string _location = "locat" + _ion;
         protected const string _Log = "Log";
         protected const string _log = "log";
@@ -390,7 +400,9 @@
         private const string _mem = _me + _m;
         private const string _mo = _m + _o;
 
+        protected const string _mage = _m + _age;
         protected const string _Main = _M + _a + _in;
+        protected const string _main = _m + _a + _in;
         protected const string _Man = _M + _an;
         protected const string _Manager = _Man + _a + "ger";
         protected const string _Manual = _Man + _u + _al;
@@ -444,6 +456,7 @@
 
         private const string _o = "o";
         private const string _om = _o + _m;
+        private const string _os = _o + _s;
         private const string _ory = _o + _ry;
         private const string _ound = _o + _und;
 
@@ -472,6 +485,7 @@
 
         private const string _P = "P";
         private const string _p = "p";
+        private const string _pos = _p + _os;
         private const string _pp = _p + _p;
         private const string _pplication = _pp + "li" + _cat + _ion;
         private const string _Pr = _P + _r;
@@ -501,6 +515,8 @@
         protected const string _Preset = _Pre + _set;
         protected const string _preset = _pre + _set;
         protected const string _Press = _Pre + _s + _s;
+        protected const string _processed = _pro + _c + _ess + _ed;
+        protected const string _Processing = _Pro + _c + _ess + _ing;
         protected const string _proper = _pro + _per;
         protected const string _properly = _proper + _ly;
         protected const string _Proxy = _Pro + _xy;
@@ -545,7 +561,8 @@
         protected const string _reading = _read + _ing;
         protected const string _recognized = _re + "cognize" + _d;
         protected const string _regenerated = _re + _generate + _d;
-        protected const string _repository = _re + "pository";
+        protected const string _Repository = _Re + _pos + _it + _ory;
+        protected const string _repository = _re + _pos + _it + _ory;
         protected const string _required = _re + "quire" + _d;
         protected const string _Research = _Re + _search;
         protected const string _research = _re + _search;
@@ -700,6 +717,7 @@
         protected const string _value = "value";
         protected const string _Vehicle = _V + _eh + _ic + _le;
         protected const string _vehicle = _v + _eh + _ic + _le;
+        protected const string _Vehicles = _Vehicle + _s;
         protected const string _vehicles = _vehicle + _s;
         protected const string _version = "vers" + _ion;
         protected const string _vertical = _vert + "ical";

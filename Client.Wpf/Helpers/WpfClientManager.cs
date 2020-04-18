@@ -2,6 +2,7 @@
 using Client.Wpf.Extensions;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
@@ -41,6 +42,7 @@ namespace Client.Wpf.Helpers
             IConverter converter,
             IWarThunderJsonHelper jsonHelper,
             ICsvDeserializer csvDeserializer,
+            IDataRepositoryFactory dataRepositoryFactory,
             IRandomiser randomizer,
             IVehicleSelector vehicleSelector,
             IPresetGenerator presetGenerator,
@@ -48,11 +50,11 @@ namespace Client.Wpf.Helpers
             bool readOnlyJson,
             bool readPreviouslyUnpackedJson,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
+        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
             _vehicleIconBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
 
-            ProcessVehicleImages = (vehicle) => new Task<BitmapSource>(() => GetIconBitmapSource(vehicle)).Start();
+            ProcessVehicleImages = (vehicle) => GetIconBitmapSource(vehicle);
         }
 
         #endregion Constructors

@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace Core.DataBase.Tests.Helpers
 {
-    /// <summary> See <see cref="DataRepositoryWithoutSession"/>. </summary>
+    /// <summary> See <see cref="DataRepositorySqlite"/>. </summary>
     [TestClass]
     public class DataRepositoryWithoutSessionTests
     {
@@ -34,14 +34,14 @@ namespace Core.DataBase.Tests.Helpers
             // arrange
             var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepositoryWithoutSession(fileName, true, Assembly.Load(EAssembly.AssemblyWithMappingBase), Presets.Logger))
+            using (var dataRepository = new DataRepositorySqlite(fileName, true, Assembly.Load(EAssembly.AssemblyWithMappingBase), false, Presets.Logger))
             {
                 var id = -1L;
 
                 var fakeObject = new PersistentObjectFakeWithId(id);
                 fakeObject.InitializeNonPersistentFields(dataRepository);
 
-                dataRepository.NewObjects.Add(fakeObject);
+                dataRepository.AddToNewObjects(fakeObject);
 
                 // act
                 dataRepository.PersistNewObjects();

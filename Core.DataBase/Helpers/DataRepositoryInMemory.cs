@@ -20,20 +20,23 @@ namespace Core.DataBase.Helpers
         /// <summary> Objects loaded into the data repository. </summary>
         private readonly IList<IPersistentObject> _objects;
 
+        private readonly IList<IPersistentObject> _newObjects;
+
+        protected readonly object _lock = new object();
+
         #endregion Fields
         #region Properties
 
         /// <summary> Instances of loggers. </summary>
         public IEnumerable<IConfiguredLogger> Loggers { get { return _loggers; } }
 
+        public object TransactionalLock { get; }
+
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         public bool IsClosed { get; private set; }
 
-        /// <summary>
-        /// Transient objects cached in the repository and not yet persisted.
-        /// Objects should not be added to the collection directly, instead they are added on their initialization.
-        /// </summary>
-        public IList<IPersistentObject> NewObjects { get; }
+        /// <summary> Transient objects cached in the repository and not yet persisted. </summary>
+        public virtual IEnumerable<IPersistentObject> NewObjects { get { lock (_lock) return _newObjects.ToList(); } }
 
         #endregion Properties
         #region Constructors
@@ -45,14 +48,39 @@ namespace Core.DataBase.Helpers
         {
             LogDebug(EDatabaseLogMessage.CreatingInMemoryDataRepository);
 
+            _lock = new object();
+            TransactionalLock = new object();
+
             _objects = new List<IPersistentObject>();
-            NewObjects = new List<IPersistentObject>();
+            _newObjects = new List<IPersistentObject>();
 
             LogDebug(EDatabaseLogMessage.DataRepositoryCreated);
         }
 
         #endregion Constructors
         #region Methods: IDataRepository Members
+
+        public virtual IEnumerable<T> GetNewObjects<T>() where T : IPersistentObject
+        {
+            lock (_lock)
+            {
+                return _newObjects.OfType<T>().ToList();
+            }
+        }
+
+        public virtual void AddToNewObjects<T>(T newObject) where T : IPersistentObject
+        {
+            lock (_lock)
+            {
+                if (!_newObjects.Contains(newObject))
+                    _newObjects.Add(newObject);
+            }
+        }
+
+        protected virtual IEnumerable<T> GetObjects<T>() where T : IPersistentObject
+        {
+            return _objects.OfType<T>();
+        }
 
         /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
@@ -61,16 +89,20 @@ namespace Core.DataBase.Helpers
         public virtual IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
             LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).FormatFluently(typeof(T).Name));
+            var cachedQuery = default(IEnumerable<T>);
 
-            var query = _objects.OfType<T>().AsQueryable();
-
-            if (!(filter is null))
+            lock (_lock)
             {
-                query = filter(query);
-                LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
-            }
+                var query = GetObjects<T>().AsQueryable();
 
-            var cachedQuery = query.ToList();
+                if (!(filter is null))
+                {
+                    query = filter(query);
+                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                }
+
+                cachedQuery = query.ToList();
+            }
 
             foreach (var instance in cachedQuery)
             {
@@ -95,13 +127,37 @@ namespace Core.DataBase.Helpers
 
         /// <summary> Commits any changes to a specified object to the database. </summary>
         /// <param name="instance"> the object instance to create/update. </param>
-        public virtual void CommitChanges(IPersistentObject instance) { }
+        public virtual void CommitChanges(IPersistentObject instance)
+        {
+            AddToNewObjects(instance);
+            RemoveFromNewObjects(instance);
+        }
 
         /// <summary> Persists any transient objects cached in the repository. </summary>
         public virtual void PersistNewObjects()
         {
-            _objects.AddRange(NewObjects);
-            NewObjects.Clear();
+            lock (_lock)
+            {
+                _objects.AddRange(_newObjects);
+            }
+            ClearNewObjects();
+        }
+
+        public virtual void RemoveFromNewObjects(IPersistentObject newObject)
+        {
+            lock (_lock)
+            {
+                if (_newObjects.Contains(newObject))
+                    _newObjects.Remove(newObject);
+            }
+        }
+
+        public virtual void ClearNewObjects()
+        {
+            lock (_lock)
+            {
+                _newObjects.Clear();
+            }
         }
 
         #endregion Methods: IDataRepository Members

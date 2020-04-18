@@ -65,6 +65,15 @@ namespace Core.DataBase.Enumerations.Logger
         public static readonly string NotAllObjectTypesHaveBeenIncludedInSorting = $"{_Not} {_all} {_object} {_types} {_have} {_been} {_included} {_in} {_sorting} {_of} {_the} \"{{0}}\" {_collection}.";
 
         #endregion DataRepository
+        #region DataRepositoryFactory
+
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: data repository type. </para>
+        /// </summary>
+        public static readonly string DataRepositoryTypeNotSupported = $"{_Data} {_repository} {_type} {_not} {_supported}.";
+
+        #endregion DataRepositoryFactory
         #region General
 
         private static readonly string _forDatabaseUsingAssembly = $"{_for} {_the} \"{{0}}\" {_database} ({{1}}{_overwrite}) {_using} {_mapping} {_from} {_assembly} \"{{2}}\"";

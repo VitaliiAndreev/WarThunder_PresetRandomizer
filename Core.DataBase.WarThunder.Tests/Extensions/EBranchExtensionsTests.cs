@@ -48,7 +48,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
             {
                 () => EBranch.None.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.None }),
                 () => EBranch.All.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.All }),
-                () => EBranch.Army.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllGroundVehicles }),
+                () => EBranch.Army.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllGroundVehicles, EVehicleBranchTag.UntaggedGroundVehicle, EVehicleBranchTag.Wheeled, EVehicleBranchTag.Scout, EVehicleBranchTag.RepairsAllies }),
                 () => EBranch.Helicopters.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllHelicopters, }),
                 () => EBranch.Aviation.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllAircraft, EVehicleBranchTag.UntaggedAircraft, EVehicleBranchTag.NavalAircraft, EVehicleBranchTag.Hydroplane, EVehicleBranchTag.TorpedoBomber }),
                 () => EBranch.Fleet.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllShips }),
@@ -57,7 +57,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
             {
                 () => EBranch.None.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
                 () => EBranch.All.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
-                () => EBranch.Army.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
+                () => EBranch.Army.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.UntaggedGroundVehicle, EVehicleBranchTag.Wheeled, EVehicleBranchTag.Scout, EVehicleBranchTag.RepairsAllies }),
                 () => EBranch.Helicopters.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
                 () => EBranch.Aviation.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.UntaggedAircraft, EVehicleBranchTag.NavalAircraft, EVehicleBranchTag.Hydroplane, EVehicleBranchTag.TorpedoBomber }),
                 () => EBranch.Fleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),

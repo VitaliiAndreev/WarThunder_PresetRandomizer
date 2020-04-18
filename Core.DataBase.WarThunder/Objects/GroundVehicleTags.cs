@@ -1,14 +1,11 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Mapping.Attributes;
-using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -90,7 +87,11 @@ namespace Core.DataBase.WarThunder.Objects
                 CanScout = deserializedTags.CanScout;
                 CanRepairAllies = deserializedTags.CanRepairTeammates;
             }
+            InitialiseIndex();
+        }
 
+        protected override void InitialiseIndex()
+        {
             if (IsWheeled)
                 _index.Add(EVehicleBranchTag.Wheeled, IsWheeled);
 

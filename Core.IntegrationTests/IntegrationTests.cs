@@ -1,7 +1,9 @@
 ﻿using Core.Csv.WarThunder.Helpers;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Extensions;
+using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Tests.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
@@ -69,14 +71,14 @@ namespace Core.IntegrationTests
             _jsonHelper = new WarThunderJsonHelper(Presets.Logger);
             _csvDeserializer = new CsvDeserializer(Presets.Logger);
 
-            var settingsManager = new Mock<IWarThunderSettingsManager>();
-            settingsManager
+            var mockSettingsManager = new Mock<IWarThunderSettingsManager>();
+            mockSettingsManager
                 .Setup(manager => manager.GetSetting(nameof(Settings.WarThunderLocation)))
                 .Returns(Settings.WarThunderLocation);
-            settingsManager
+            mockSettingsManager
                 .Setup(manager => manager.GetSetting(nameof(Settings.KlensysWarThunderToolsLocation)))
                 .Returns(Settings.KlensysWarThunderToolsLocation);
-            settingsManager
+            mockSettingsManager
                 .Setup(manager => manager.GetSetting(nameof(Settings.TempLocation)))
                 .Returns(Settings.TempLocation);
 
@@ -84,12 +86,13 @@ namespace Core.IntegrationTests
             (
                 _fileManager,
                 _fileReader,
-                settingsManager.Object,
+                mockSettingsManager.Object,
                 new Mock<IParser>().Object,
                 _unpacker,
                 _converter,
                 _jsonHelper,
                 _csvDeserializer,
+                new Mock<IDataRepositoryFactory>().Object,
                 new Mock<IRandomiser>().Object,
                 new Mock<IVehicleSelector>().Object,
                 new Mock<IPresetGenerator>().Object,
@@ -133,7 +136,7 @@ namespace Core.IntegrationTests
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepositoryWarThunderWithoutSession(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositorySqliteWarThunder(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
                 static void assert(IEnumerable<INation> nationCollection)
                 {
@@ -171,7 +174,7 @@ namespace Core.IntegrationTests
             // act
             var databaseFileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}()";
 
-            using (var dataRepository = new DataRepositoryWarThunderWithoutSession(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), Presets.Logger))
+            using (var dataRepository = new DataRepositorySqliteWarThunder(databaseFileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
                 static void assert(IEnumerable<IVehicle> vehicleCollection)
                 {
@@ -281,6 +284,9 @@ namespace Core.IntegrationTests
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.PlatformGaijinIdVehicleIsHiddenOn)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.HideCondition)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.MarketplaceId.HasValue).Should().BeTrue();
+
+                    vehicleCollection.Any(vehicle => vehicle.Branch.AsEnumerationItem == EBranch.Aviation && vehicle.AircraftTags.IsHydroplane).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.Branch.AsEnumerationItem == EBranch.Army && vehicle.GroundVehicleTags.CanScout).Should().BeTrue();
                 }
 
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);

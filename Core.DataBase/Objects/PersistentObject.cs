@@ -36,7 +36,7 @@ namespace Core.DataBase.Objects
         {
             SetLogCategory();
             _dataRepository = dataRepository;
-            _dataRepository.NewObjects.Add(this);
+            _dataRepository.AddToNewObjects(this);
         }
 
         #endregion Constructors
@@ -227,9 +227,7 @@ namespace Core.DataBase.Objects
             }
 
             _dataRepository.CommitChanges(this);
-
-            if (_dataRepository.NewObjects.Contains(this))
-                _dataRepository.NewObjects.Remove(this);
+            _dataRepository.RemoveFromNewObjects(this);
         }
     }
 }

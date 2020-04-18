@@ -471,7 +471,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Legal\DDS Reader MIT Licence %28no NuGet is available%29.txt" />
-    <Content Include="Localization\Russian.xml">
+    <Content Include="Localisation\Russian.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NLog.config">
@@ -558,7 +558,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="icon.ico" />
-    <Content Include="Localization\EnglishUsa.xml">
+    <Content Include="Localisation\EnglishUsa.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\icon.ico" />

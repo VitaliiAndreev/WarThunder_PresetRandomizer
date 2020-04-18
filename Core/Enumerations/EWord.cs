@@ -27,7 +27,8 @@
         #endregion C
         #region D
 
-        public static string Deserializer => _Deserializer;
+        public static string Data => _Data;
+        public static string Deserializer => _Deserialiser;
         public static string Dont => _Dont;
 
         #endregion D
@@ -68,7 +69,7 @@
 
         public static string Line => _Line;
         public static string Loading => _Loading;
-        public static string Localization => _Localization;
+        public static string Localization => _Localisation;
         public static string Logger => _Logger;
         public static string Loggers => _Loggers;
 
@@ -104,11 +105,13 @@
         public static string Randomiser => _Randomiser;
         public static string Rating => _Rating;
         public static string Reader => _Reader;
+        public static string Repository => _Repository;
 
         #endregion R
         #region S
 
         public static string Schema => _Schema;
+        public static string Session => _Session;
         public static string Settings => _Settings;
         public static string Style => _Style;
 

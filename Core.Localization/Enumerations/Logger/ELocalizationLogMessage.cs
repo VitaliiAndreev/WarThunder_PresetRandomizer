@@ -9,6 +9,6 @@ namespace Core.Localization.Enumerations.Logger
         /// A message with formatting placeholders.
         /// <para> 1: localization key. </para>
         /// </summary>
-        public static readonly string LocalizationKeyNotFound = $"{_Localization} {_key} \"{{0}}\" {_not} {_found}.";
+        public static readonly string LocalizationKeyNotFound = $"{_Localisation} {_key} \"{{0}}\" {_not} {_found}.";
     }
 }

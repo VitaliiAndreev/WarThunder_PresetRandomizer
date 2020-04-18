@@ -4,6 +4,8 @@ using Client.Wpf.Helpers;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers;
 using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Helpers;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
@@ -16,7 +18,6 @@ using Core.Localization.Helpers;
 using Core.Localization.Helpers.Interfaces;
 using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
-using Core.Randomization.Helpers;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Helpers;
@@ -40,6 +41,7 @@ namespace Client.Wpf
         private static IConverter _converter;
         private static IWarThunderJsonHelper _jsonHelper;
         private static ICsvDeserializer _csvDeserializer;
+        private static IDataRepositoryFactory _dataRepositoryFactory;
         private static IRandomiser _randomizer;
         private static IVehicleSelector _vehicleSelector;
         private static IPresetGenerator _presetGenerator;
@@ -143,6 +145,7 @@ namespace Client.Wpf
             SettingsManager = new WpfClientSettingsManager(FileManager, EWpfClientFile.Settings, requiredSettingNames, Loggers);
             _parser = new Parser(Loggers);
             _unpacker = new Unpacker(FileManager, Loggers);
+            _dataRepositoryFactory = new DataRepositoryFactoryWarThunder(Loggers);
             _converter = new Converter(Loggers);
             _jsonHelper = new WarThunderJsonHelper(Loggers);
             _csvDeserializer = new CsvDeserializer(Loggers);
@@ -160,6 +163,7 @@ namespace Client.Wpf
                 _converter,
                 _jsonHelper,
                 _csvDeserializer,
+                _dataRepositoryFactory,
                 _randomizer,
                 _vehicleSelector,
                 _presetGenerator,

@@ -20,7 +20,7 @@ namespace Core.DataBase.Tests.Objects
             {
                 SetLogCategory();
                 _dataRepository = dataRepository;
-                _dataRepository.NewObjects.Add(this);
+                _dataRepository.AddToNewObjects(this);
 
                 LogCreation();
             }

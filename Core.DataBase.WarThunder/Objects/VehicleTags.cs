@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
-    public class VehicleTags : PersistentObjectWithId, IVehicleTags
+    public abstract class VehicleTags : PersistentObjectWithId, IVehicleTags
     {
         #region Fields
 
@@ -39,6 +39,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
         protected VehicleTags()
         {
+            _index = new Dictionary<EVehicleBranchTag, bool>();
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
@@ -62,5 +63,17 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Constructors
+        #region Methods: Overrides
+
+        public override void InitializeNonPersistentFields(IDataRepository dataRepository)
+        {
+            base.InitializeNonPersistentFields(dataRepository);
+
+            InitialiseIndex();
+        }
+
+        #endregion Methods: Overrides
+
+        protected abstract void InitialiseIndex();
     }
 }

@@ -84,7 +84,11 @@ namespace Core.DataBase.WarThunder.Objects
                 IsHydroplane = deserializedTags.IsHydroplane;
                 IsTorpedoBomber = deserializedTags.CanCarryTorpedoes;
             }
+            InitialiseIndex();
+        }
 
+        protected override void InitialiseIndex()
+        {
             if (IsNavalAircraft)
                 _index.Add(EVehicleBranchTag.NavalAircraft, IsNavalAircraft);
 

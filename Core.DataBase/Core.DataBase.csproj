@@ -105,16 +105,18 @@
     <Compile Include="..\Core\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Enumerations\EDataRepository.cs" />
     <Compile Include="Enumerations\EIdGenerator.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseLogMessage.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\ConfiguredSessionFactory.cs" />
+    <Compile Include="Helpers\DataRepositoryFactory.cs" />
     <Compile Include="Helpers\DataRepositoryInMemory.cs" />
-    <Compile Include="Helpers\DataRepositoryWithoutSession.cs" />
-    <Compile Include="Helpers\DataRepositoryWithSession.cs" />
+    <Compile Include="Helpers\DataRepositorySqlite.cs" />
     <Compile Include="Helpers\Interfaces\IConfiguredSessionFactory.cs" />
     <Compile Include="Helpers\Interfaces\IDataRepository.cs" />
+    <Compile Include="Helpers\Interfaces\IDataRepositoryFactory.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithId.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObject.cs" />
     <Compile Include="Objects\PersistentObjectWithId.cs" />

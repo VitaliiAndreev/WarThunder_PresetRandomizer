@@ -51,6 +51,7 @@ namespace Client.Console
                 var settingsManager = new WarThunderSettingsManager(fileManager, EConsoleClientFile.Settings, requiredSettings, loggers);
                 var parser = new Parser(loggers);
                 var unpacker = new Unpacker(fileManager, loggers);
+                var dataRepositoryFactory = new DataRepositoryFactoryWarThunder(loggers);
                 var converter = new Converter(loggers);
                 var jsonHelper = new WarThunderJsonHelper(loggers);
                 var csvDeserializer = new CsvDeserializer(loggers);
@@ -58,7 +59,7 @@ namespace Client.Console
                 var vehicleSelector = new VehicleSelector(randomiser, loggers);
                 var presetGenerator = new PresetGenerator(randomiser, vehicleSelector, loggers);
 
-                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, randomiser, vehicleSelector, presetGenerator, true, false, false, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomiser, vehicleSelector, presetGenerator, true, false, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
                     manager.InitializeGameClientVersion();

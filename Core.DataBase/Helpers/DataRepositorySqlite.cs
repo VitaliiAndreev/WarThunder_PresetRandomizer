@@ -15,12 +15,23 @@ using System.Reflection;
 namespace Core.DataBase.Helpers
 {
     /// <summary> Handles connections to and actions over an SQLite database. </summary>
-    public class DataRepositoryWithoutSession : LoggerFluency, IDataRepository
+    public class DataRepositorySqlite : LoggerFluency, IDataRepository
     {
+        #region Fields
+
+        private readonly IList<IPersistentObject> _newObjects;
+
+        private readonly ISession _session;
+
+        protected readonly object _lock;
+
+        #endregion Fields
         #region Properties
 
         /// <summary> Instances of loggers. </summary>
         public IEnumerable<IConfiguredLogger> Loggers { get { return _loggers; } }
+
+        public object TransactionalLock { get; } 
 
         /// <summary> Indicates whether the repository has been disposed of. </summary>
         public bool IsClosed { get; private set; }
@@ -28,11 +39,8 @@ namespace Core.DataBase.Helpers
         /// <summary> A session factory that provides units of work. </summary>
         public IConfiguredSessionFactory SessionFactory { get; }
 
-        /// <summary>
-        /// Transient objects cached in the repository and not yet persisted.
-        /// Objects should not be added to the collection directly, instead they are added on their initialization.
-        /// </summary>
-        public IList<IPersistentObject> NewObjects { get; }
+        /// <summary> Transient objects cached in the repository and not yet persisted. </summary>
+        public virtual IEnumerable<IPersistentObject> NewObjects { get { lock(_lock) return _newObjects.ToList(); } }
 
         #endregion Properties
         #region Constructors
@@ -41,8 +49,9 @@ namespace Core.DataBase.Helpers
         /// <param name="dataBaseFileName"> The name of an SQLite database file (without an extension). </param>
         /// <param name="overwriteExistingDataBase"> Indicates whether an existing database should be overwritten on creation of the <see cref="SessionFactory"/>. </param>
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
+        /// <param name="singleSession"> Whether to use a create one session at the start and use throughout the lifecycle of the repository. </param>
         /// <param name="loggers"> Instances of loggers. </param>
-        public DataRepositoryWithoutSession(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
+        public DataRepositorySqlite(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, bool singleSession, params IConfiguredLogger[] loggers)
             : base(EDatabaseLogCategory.DataRepository, loggers)
         {
             LogDebug
@@ -55,14 +64,36 @@ namespace Core.DataBase.Helpers
                 )
             );
 
+            _lock = new object();
+            TransactionalLock = new object();
+
             SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
-            NewObjects = new List<IPersistentObject>();
+            _newObjects = new List<IPersistentObject>();
+
+            if (singleSession)
+                _session = SessionFactory.OpenSession();
 
             LogDebug(EDatabaseLogMessage.DataRepositoryCreated);
         }
 
         #endregion Constructors
         #region Methods: IDataRepository Members
+
+        public virtual IEnumerable<T> GetNewObjects<T>() where T : IPersistentObject
+        {
+            lock (_lock)
+            {
+                return _newObjects.OfType<T>().ToList();
+            }
+        }
+
+        public virtual void AddToNewObjects<T>(T newObject) where T : IPersistentObject
+        {
+            lock (_lock)
+            {
+                _newObjects.Add(newObject);
+            }
+        }
 
         /// <summary> Reads instances (filtered if needed) of a specified persistent class from the database and caches them into a collection. </summary>
         /// <typeparam name="T"> The type of objects to look for. </typeparam>
@@ -73,15 +104,20 @@ namespace Core.DataBase.Helpers
         {
             LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).FormatFluently(typeof(T).Name));
 
-            var query = session.Query<T>();
+            var cachedQuery = default(IEnumerable<T>);
 
-            if (!(filter is null))
+            lock (_lock)
             {
-                query = filter(query);
-                LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
-            }
+                var query = session.Query<T>();
 
-            var cachedQuery = query.ToList();
+                if (!(filter is null))
+                {
+                    query = filter(query);
+                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                }
+
+                cachedQuery = query.ToList();
+            }
 
             foreach (var instance in cachedQuery)
             {
@@ -101,8 +137,15 @@ namespace Core.DataBase.Helpers
         {
             var cachedQuery = default(IEnumerable<T>);
 
-            using (var session = SessionFactory.OpenSession())
-                cachedQuery = Query(session, filter);
+            if (_session is null)
+            {
+                using (var session = SessionFactory.OpenSession())
+                    cachedQuery = Query(session, filter);
+            }
+            else
+            {
+                cachedQuery = Query(_session, filter);
+            }
 
             return cachedQuery;
         }
@@ -125,10 +168,14 @@ namespace Core.DataBase.Helpers
         {
             LogDebug(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
 
-            using (var transaction = session.BeginTransaction())
+            lock (_lock)
             {
-                session.Save(instance);
-                transaction.Commit();
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Save(instance);
+                    transaction.Commit();
+                }
+                RemoveFromNewObjects(instance);
             }
 
             LogDebug(EDatabaseLogMessage.ChangesCommitted);
@@ -138,24 +185,36 @@ namespace Core.DataBase.Helpers
         /// <param name="instance"> the object instance to create/update. </param>
         public virtual void CommitChanges(IPersistentObject instance)
         {
-            using (var session = SessionFactory.OpenSession())
-                CommitChanges(session, instance);
+            if (_session is null)
+            {
+                using (var session = SessionFactory.OpenSession())
+                    CommitChanges(session, instance);
+            }
+            else
+            {
+                CommitChanges(_session, instance);
+            }
         }
 
         protected virtual void PersistNewObjects(ISession session)
         {
-            LogDebug(EDatabaseLogMessage.PersistingNewObjects.FormatFluently(NewObjects.Count()));
+            var newObjects = NewObjects.ToList();
 
-            using (var transaction = session.BeginTransaction())
+            LogDebug(EDatabaseLogMessage.PersistingNewObjects.FormatFluently(newObjects.Count()));
+
+            lock (_lock)
             {
-                foreach (var instance in NewObjects)
+                using (var transaction = session.BeginTransaction())
                 {
-                    LogTrace(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
-                    session.Save(instance);
+                    foreach (var instance in newObjects)
+                    {
+                        LogTrace(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
+                        session.Save(instance);
+                    }
+                    transaction.Commit();
                 }
-
-                transaction.Commit();
             }
+            ClearNewObjects();
 
             LogDebug(EDatabaseLogMessage.AllNewObjectsPersisted);
         }
@@ -163,8 +222,32 @@ namespace Core.DataBase.Helpers
         /// <summary> Persists any transient objects cached in the repository. </summary>
         public virtual void PersistNewObjects()
         {
-            using (var session = SessionFactory.OpenSession())
-                PersistNewObjects(session);
+            if (_session is null)
+            {
+                using (var session = SessionFactory.OpenSession())
+                    PersistNewObjects(session);
+            }
+            else
+            {
+                PersistNewObjects(_session);
+            }
+        }
+
+        public virtual void RemoveFromNewObjects(IPersistentObject @object)
+        {
+            lock (_lock)
+            {
+                if (_newObjects.Contains(@object))
+                    _newObjects.Remove(@object);
+            }
+        }
+
+        public virtual void ClearNewObjects()
+        {
+            lock (_lock)
+            {
+                _newObjects.Clear();
+            }
         }
 
         #endregion Methods: IDataRepository Members
@@ -191,14 +274,15 @@ namespace Core.DataBase.Helpers
 
             if (disposing)
             {
-                if (SessionFactory == null)
+                LogDebug(ECoreLogMessage.Disposing);
+
+                if (!(_session is null))
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EDatabaseLogMessage.TheSessionFactory));
-                    return;
+                    _session.Close();
+                    _session.Dispose();
                 }
-                else
+                if (!(SessionFactory is null))
                 {
-                    LogDebug(ECoreLogMessage.Disposing);
                     SessionFactory.Dispose();
                 }
             }

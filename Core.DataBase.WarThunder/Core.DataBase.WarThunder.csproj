@@ -96,9 +96,9 @@
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
-    <Compile Include="Helpers\DataRepositoryWarThunder.cs" />
-    <Compile Include="Helpers\DataRepositoryWarThunderWithoutSession.cs" />
-    <Compile Include="Helpers\DataRepositoryWarThunderWithSession.cs" />
+    <Compile Include="Helpers\DataRepositoryFactoryWarThunder.cs" />
+    <Compile Include="Helpers\DataRepositoryInMemoryWarThunder.cs" />
+    <Compile Include="Helpers\DataRepositorySqliteWarThunder.cs" />
     <Compile Include="Objects\GroundVehicleTags.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\Interfaces\IGroundVehicleTags.cs" />

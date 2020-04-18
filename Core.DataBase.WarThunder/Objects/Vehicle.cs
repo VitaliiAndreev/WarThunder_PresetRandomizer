@@ -246,10 +246,12 @@ namespace Core.DataBase.WarThunder.Objects
         {
             InitializeWithDeserializedJson(deserializedVehicle);
 
-            Nation = _dataRepository.NewObjects.OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
-                ?? _dataRepository.Query<INation>(query => query.Where(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)).FirstOrDefault()
-                ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
-
+            lock(_dataRepository.TransactionalLock)
+            {
+                Nation = _dataRepository.GetNewObjects<INation>().OfType<INation>().FirstOrDefault(notPersistedNation => notPersistedNation.GaijinId == deserializedVehicle.NationGaijinId)
+                    ?? _dataRepository.Query<INation>(query => query.Where(nation => nation.GaijinId == deserializedVehicle.NationGaijinId)).FirstOrDefault()
+                    ?? new Nation(_dataRepository, deserializedVehicle.NationGaijinId);
+            }
             ConsolidateGameModeParameterPropertiesIntoSets(deserializedVehicle);
 
             EconomyData = new VehicleEconomyData(_dataRepository, this, deserializedVehicle);
@@ -343,9 +345,12 @@ namespace Core.DataBase.WarThunder.Objects
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
             var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
 
-            Branch = _dataRepository.NewObjects.OfType<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
+            lock (_dataRepository.TransactionalLock)
+            {
+                Branch = _dataRepository.GetNewObjects<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
                 ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
                 ?? new Branch(_dataRepository, branchIdAppended, Nation);
+            }
 
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
             {

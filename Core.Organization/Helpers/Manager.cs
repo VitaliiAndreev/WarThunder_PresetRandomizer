@@ -1,4 +1,5 @@
 ﻿using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
@@ -30,6 +31,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Core.Organization.Helpers
 {
@@ -70,6 +72,7 @@ namespace Core.Organization.Helpers
         protected readonly IWarThunderJsonHelper _jsonHelper;
         /// <summary> An instance of a CSV deserializer. </summary>
         protected readonly ICsvDeserializer _csvDeserializer;
+        protected readonly IDataRepositoryFactory _dataRepositoryFactory;
         /// <summary> An instance of a randomizer. </summary>
         protected readonly IRandomiser _randomizer;
         /// <summary> An instance of a vehicle selector. </summary>
@@ -109,6 +112,7 @@ namespace Core.Organization.Helpers
             IConverter converter,
             IWarThunderJsonHelper jsonHelper,
             ICsvDeserializer csvDeserializer,
+            IDataRepositoryFactory dataRepositoryFactory,
             IRandomiser randomizer,
             IVehicleSelector vehicleSelector,
             IPresetGenerator presetGenerator,
@@ -143,6 +147,7 @@ namespace Core.Organization.Helpers
             _converter = converter;
             _jsonHelper = jsonHelper;
             _csvDeserializer = csvDeserializer;
+            _dataRepositoryFactory = dataRepositoryFactory;
             _randomizer = randomizer;
             _vehicleSelector = vehicleSelector;
             _presetGenerator = presetGenerator;
@@ -283,7 +288,7 @@ namespace Core.Organization.Helpers
             }
             else
             {
-                _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _gameClientVersion, false, Assembly.Load(EAssembly.DataBaseMapping));
 
                 LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
             }
@@ -401,16 +406,16 @@ namespace Core.Organization.Helpers
         internal IList<IList<string>> GetCsvRecords(IEnumerable<FileInfo> csvFiles, string unpackedFileName) =>
             _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), ECharacter.Semicolon);
 
-        /// <summary> Creates the database for the current War Thunder client version. </summary>
-        private void CreateDataBase()
+        /// <summary> Creates the database for the current War Thunder client version. It starts out blank and needs to be filled up. </summary>
+        private void CreateBlankDataBase()
         {
             if (_generateNewDatabase)
-                LogInfo(EOrganizationLogMessage.CreatingDatabase);
+                LogInfo(EOrganizationLogMessage.CreatingBlankDatabase);
 
-            _dataRepository = new DataRepositoryWarThunderWithSession(_gameClientVersion, _generateNewDatabase, Assembly.Load(EAssembly.DataBaseMapping), _loggers);
+            _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _gameClientVersion, _generateNewDatabase, Assembly.Load(EAssembly.DataBaseMapping));
 
             if (_generateNewDatabase)
-                LogInfo(EOrganizationLogMessage.DatabaseCreated);
+                LogInfo(EOrganizationLogMessage.BlankDatabaseCreated);
 
             if (!_readOnlyJson)
                 LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
@@ -519,58 +524,209 @@ namespace Core.Organization.Helpers
             ;
         }
 
+        private void InitialiseDataRepositoryCore()
+        {
+            if (_generateDatabase)
+                new Task(CreateBlankDataBase).Start();
+            else
+                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.InMemory);
+        }
+
+        private void FillDataRepository()
+        {
+            if (_generateNewDatabase)
+                InitialiseDatabase();
+
+            else if (!_generateDatabase)
+                _dataRepository.PersistNewObjects();
+        }
+
         /// <summary> Unpacks game files, converts them into JSON, deserializes it into objects, and persists them into the database. </summary>
         /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
         private void UnpackDeserialisePersist(bool readAlreadyUnpackedFiles = false)
         {
-            if (_generateDatabase)
-                CreateDataBase();
-            else
-                _dataRepository = new DataRepositoryInMemory(_loggers);
+            InitialiseDataRepositoryCore();
 
             if (!_readPreviouslyUnpackedJson)
                 LogInfo(EOrganizationLogMessage.PreparingGameFiles);
 
-            var blkxFiles = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters, readAlreadyUnpackedFiles);
-            var csvFiles = GetCsvFiles(EFile.WarThunder.LocalizationParameters, readAlreadyUnpackedFiles);
-            var vehicleIconFiles = GetVehicleIcons(EFile.WarThunderUi.Icons, readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+            #region Start Unpacking Tasks
 
-            var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
-            var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
-            var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
-            var vehicleLocalizationRecords = GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
+            IEnumerable<FileInfo> getBlkxFiles()
+            {
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.PreparingBlkxFiles);
+
+                var files = GetBlkxFiles(EFile.WarThunder.StatAndBalanceParameters, readAlreadyUnpackedFiles);
+
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.BlkxFilesPrepared);
+
+                return files;
+            }
+            var getBlkxFilesTask = new Task<IEnumerable<FileInfo>>(getBlkxFiles);
+            getBlkxFilesTask.Start();
+
+            IEnumerable<FileInfo> getCsvFiles()
+            {
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.PreparingCsvFiles);
+
+                var files = GetCsvFiles(EFile.WarThunder.LocalizationParameters, readAlreadyUnpackedFiles);
+
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.CsvFilesPrepared);
+
+                return files;
+            }
+            var getCsvFilesTask = new Task<IEnumerable<FileInfo>>(getCsvFiles);
+            getCsvFilesTask.Start();
+
+            IDictionary<string, FileInfo> getVehicleIconFiles()
+            {
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.PreparingVehicleIcons);
+
+                var icons = GetVehicleIcons(EFile.WarThunderUi.Icons, readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.VehicleIconsPrepared);
+
+                return icons;
+            }
+            var getVehicleIconFilesTask = new Task<IDictionary<string, FileInfo>>(getVehicleIconFiles);
+            getVehicleIconFilesTask.Start();
+
+            #endregion Start Unpacking Tasks
+
+            getBlkxFilesTask.Wait();
+            getCsvFilesTask.Wait();
+
+            var blkxFiles = getBlkxFilesTask.Result;
+            var csvFiles = getCsvFilesTask.Result;
 
             if (!_readPreviouslyUnpackedJson)
                 LogInfo(EOrganizationLogMessage.GameFilesPrepared);
 
             LogInfo(EOrganizationLogMessage.DeserialisingGameFiles);
 
-            var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
-            var additionalVehicleData = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
-            var researchTreeData = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
+            #region Start Deserialisation Tasks
+
+            IDictionary<string, IVehicle> getVehicles()
+            {
+                LogDebug(EOrganizationLogMessage.DeserialisingMainVehicleData);
+
+                var wpCostJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.GeneralVehicleData);
+                var vehicles = _jsonHelper.DeserializeList<Vehicle>(_dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);
+
+                LogDebug(EOrganizationLogMessage.MainVehicleDataDeserialised);
+
+                return vehicles;
+            };
+            var getVehiclesTask = new Task<IDictionary<string, IVehicle>>(getVehicles);
+            getVehiclesTask.Start();
+
+            IDictionary<string, VehicleDeserializedFromJsonUnitTags> getAdditionalVehicleData()
+            {
+                LogDebug(EOrganizationLogMessage.DeserialisingAdditionalVehicleData);
+
+                var unitTagsJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.AdditionalVehicleData);
+                var unitTags = _jsonHelper.DeserializeList<VehicleDeserializedFromJsonUnitTags>(unitTagsJsonText).ToDictionary(vehicle => vehicle.GaijinId);
+
+                LogDebug(EOrganizationLogMessage.AdditionalVehicleDataDeserialised);
+
+                return unitTags;
+            }
+            var getAdditionalVehicleDataTask = new Task<IDictionary<string, VehicleDeserializedFromJsonUnitTags>>(getAdditionalVehicleData);
+            getAdditionalVehicleDataTask.Start();
+
+            IDictionary<string, ResearchTreeVehicleFromJson> getResearchTreeData()
+            {
+                LogDebug(EOrganizationLogMessage.DeserialisingResearchTrees);
+
+                var researchTreeJsonText = GetJsonText(blkxFiles, EFile.CharVromfs.ResearchTreeData);
+                var researchTrees = _jsonHelper.DeserializeResearchTrees(researchTreeJsonText).SelectMany(researchTree => researchTree.Vehicles).ToDictionary(vehicle => vehicle.GaijinId);
+
+                LogDebug(EOrganizationLogMessage.ResearchTreesDeserialised);
+
+                return researchTrees;
+            }
+            var getResearchTreeDataTask = new Task<IDictionary<string, ResearchTreeVehicleFromJson>>(getResearchTreeData);
+            getResearchTreeDataTask.Start();
+
+            #endregion Start Deserialisation Tasks
+
+            getVehiclesTask.Wait();
+            getVehicleIconFilesTask.Wait();
+            getAdditionalVehicleDataTask.Wait();
+            getResearchTreeDataTask.Wait();
+
+            var vehicles = getVehiclesTask.Result;
+            var vehicleIconFiles = getVehicleIconFilesTask.Result;
+            var additionalVehicleData = getAdditionalVehicleDataTask.Result;
+            var researchTreeData = getResearchTreeDataTask.Result;
+
+            #region Start Deserialisation Tasks
+
+            void deserializeVehicleLocalization()
+            {
+                LogDebug(EOrganizationLogMessage.DeserialisingVehicleLocalisation);
+
+                var vehicleLocalizationRecords = GetCsvRecords(csvFiles, EFile.LangVromfs.Units);
+                _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
+
+                LogDebug(EOrganizationLogMessage.VehicleLocalisationDeserialised);
+            }
+            var deserializeVehicleLocalizationTask = new Task(deserializeVehicleLocalization);
+            deserializeVehicleLocalizationTask.Start();
+
+            #endregion Start Deserialisation Tasks
+
+            var initialiseVehicleTasks = new List<Task>();
+            var processVehicleImagesTasks = new List<Task>();
+
+            LogDebug(EOrganizationLogMessage.InitialisingVehicles);
+            LogDebug(EOrganizationLogMessage.ProcessingVehicleImages);
 
             foreach (var vehicle in vehicles.Values)
             {
                 AttachVehicleIcon(vehicle, vehicleIconFiles);
-                ProcessVehicleImages?.Invoke(vehicle);
 
-                if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
-                    vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
+                #region Start Initialisation Tasks
 
-                if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
-                    vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
+                void initialiseVehicle()
+                {
+                    if (additionalVehicleData.TryGetValue(vehicle.GaijinId, out var additionalDataEntry))
+                        vehicle.InitializeWithDeserializedAdditionalVehicleDataJson(additionalDataEntry);
+
+                    if (researchTreeData.TryGetValue(vehicle.GaijinId, out var researchTreeEntry))
+                        vehicle.InitializeWithDeserializedResearchTreeJson(researchTreeEntry);
+                }
+                var initialiseVehicleTask = new Task(initialiseVehicle);
+                initialiseVehicleTask.AddInto(initialiseVehicleTasks);
+                initialiseVehicleTask.Start();
+
+                void processVehicleImages() => ProcessVehicleImages?.Invoke(vehicle);
+                var processVehicleImagesTask = new Task(processVehicleImages);
+                processVehicleImagesTask.AddInto(processVehicleImagesTasks);
+                processVehicleImagesTask.Start();
+
+                #endregion Start Initialisation Tasks
             }
 
-            _csvDeserializer.DeserializeVehicleLocalization(vehicles, vehicleLocalizationRecords);
-            _cache.AddRange(_dataRepository.NewObjects);
+            initialiseVehicleTasks.ForEach(task => task.Wait());
+            deserializeVehicleLocalizationTask.Wait();
 
             LogInfo(EOrganizationLogMessage.DeserialisationComplete);
+            LogDebug(EOrganizationLogMessage.VehiclesInitialised);
 
-            if (_generateNewDatabase)
-                InitialiseDatabase();
+            _cache.AddRange(_dataRepository.NewObjects);
 
-            else if(!_generateDatabase)
-                _dataRepository.PersistNewObjects();
+            FillDataRepository();
+
+            processVehicleImagesTasks.ForEach(task => task.Wait());
+
+            LogDebug(EOrganizationLogMessage.VehicleImagesProcessed);
         }
 
         #endregion Methods: Initialization

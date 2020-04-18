@@ -51,30 +51,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         [TestMethod]
-        public void Constructor_3_Returns_3()
-        {
-            // arrange
-            var mockVehicle = new Mock<IVehicle>();
-            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
-
-            var vehicleTags = new VehicleTagsDeserializedFromJson
-            {
-                IsInterceptor = true,
-                IsAirDefenceFighter = true,
-                IsJetFighter = true,
-            };
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Interceptor, EVehicleSubclass.AirDefenceFighter, EVehicleSubclass.JetFighter };
-            var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
-
-            // act
-            var allSubclasses = subclass.All;
-
-            // assert
-            allSubclasses.Should().BeEquivalentTo(subclasses);
-        }
-
-        [TestMethod]
-        public void Constructor_4_Throws()
+        public void Constructor_3_Throws()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
@@ -86,7 +63,6 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 IsInterceptor = true,
                 IsAirDefenceFighter = true,
                 IsStrikeFighter = true,
-                IsJetFighter = true,
             };
 
             // act

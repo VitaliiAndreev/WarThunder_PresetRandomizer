@@ -1,4 +1,5 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using Core.Json.WarThunder.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
@@ -12,8 +13,35 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
-        public static readonly string DeserialisingGameFiles = $"{_Deserializing} {_game} {_files}.";
-        public static readonly string DeserialisationComplete = $"{_Deserialization} {_complete}.";
+        public static readonly string PreparingBlkxFiles = $"{_Preparing} {EFileExtension.Blkx.ToUpper()} {_files}.";
+        public static readonly string BlkxFilesPrepared = $"{EFileExtension.Blkx.ToUpper()} {_files} {_prepared}.";
+
+        public static readonly string PreparingCsvFiles = $"{_Preparing} {EFileExtension.Csv.ToUpper()} {_files}.";
+        public static readonly string CsvFilesPrepared = $"{EFileExtension.Csv.ToUpper()} {_files} {_prepared}.";
+
+        public static readonly string PreparingVehicleIcons = $"{_Preparing} {_vehicle} {_icons} {_files}.";
+        public static readonly string VehicleIconsPrepared = $"{_Vehicle} {_icons} {_prepared}.";
+
+        public static readonly string DeserialisingMainVehicleData = $"{_Deserialising} {_main} {_vehicle} {_data}.";
+        public static readonly string MainVehicleDataDeserialised = $"{_Main} {_vehicle} {_data} {_deserialised}.";
+
+        public static readonly string DeserialisingAdditionalVehicleData = $"{_Deserialising} {_additional} {_vehicle} {_data}.";
+        public static readonly string AdditionalVehicleDataDeserialised = $"{_Additional} {_vehicle} {_data} {_deserialised}.";
+
+        public static readonly string DeserialisingResearchTrees = $"{_Deserialising} {_research} {_trees}.";
+        public static readonly string ResearchTreesDeserialised = $"{_Research} {_trees} {_deserialised}.";
+
+        public static readonly string DeserialisingVehicleLocalisation = $"{_Deserialising} {_vehicle} {_localisation}.";
+        public static readonly string VehicleLocalisationDeserialised = $"{_Vehicle} {_localisation} {_deserialised}.";
+
+        public static readonly string DeserialisingGameFiles = $"{_Deserialising} {_game} {_files}.";
+        public static readonly string DeserialisationComplete = $"{_Deserialisation} {_complete}.";
+
+        public static readonly string InitialisingVehicles = $"{_Initialising} {_vehicles}.";
+        public static readonly string VehiclesInitialised = $"{_Vehicles} {_initialised}.";
+
+        public static readonly string ProcessingVehicleImages = $"{_Processing} {_vehicle} {_images}.";
+        public static readonly string VehicleImagesProcessed = $"{_Vehicle} {_images} {_processed} .";
 
         /// <summary>
         /// A message with formatting placeholders.
@@ -26,12 +54,12 @@ namespace Core.Organization.Enumerations.Logger
         /// </summary>
         public static readonly string NotFoundDatabaseFor = $"{_Not} {_found} {_databaseFor} {{0}}.";
 
-        public static readonly string CreatingDatabase = $"{_Creating} {_database}.";
-        public static readonly string DatabaseCreated = $"{_Database} {_created}.";
+        public static readonly string CreatingBlankDatabase = $"{_Creating} {_blank} {_database}.";
+        public static readonly string BlankDatabaseCreated = $"{_Blank} {_database} {_created}.";
         public static readonly string DatabaseConnectionEstablished = $"{_Database} {_connection} {_established}.";
 
-        public static readonly string InitializingDatabase = $"{_Initializing} {_database}.";
-        public static readonly string DatabaseInitialized = $"{_Database} {_initialized}.";
+        public static readonly string InitializingDatabase = $"{_Initialising} {_database}.";
+        public static readonly string DatabaseInitialized = $"{_Database} {_initialised}.";
 
         public static readonly string CachingObjects = $"{_Caching} {_objects}.";
         public static readonly string CachingComplete = $"{_Caching} {_complete}.";
