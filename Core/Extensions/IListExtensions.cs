@@ -17,6 +17,18 @@ namespace Core.Extensions
                 list.Add(item);
         }
 
+        public static void AddIfNotPresent<T>(this IList<T> list, T item)
+        {
+            if (!list.Contains(item))
+                list.Add(item);
+        }
+
+        public static void RemoveSafely<T>(this IList<T> list, T item)
+        {
+            if (list.Contains(item))
+                list.Remove(item);
+        }
+
         #endregion Methods: Fluency
     }
 }

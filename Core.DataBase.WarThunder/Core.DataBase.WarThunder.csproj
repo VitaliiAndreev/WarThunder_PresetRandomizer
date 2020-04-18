@@ -110,6 +110,7 @@
     <Compile Include="Objects\Interfaces\IVehicleCrewData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleEconomyData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleGraphicsData.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleImages.cs" />
     <Compile Include="Objects\Interfaces\IVehicleModificationsData.cs" />
     <Compile Include="Objects\Interfaces\IVehiclePerformanceData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\String\BattleRating.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\VehicleGameModeParameterSetBase.cs" />
     <Compile Include="Objects\VehicleGraphicsData.cs" />
+    <Compile Include="Objects\VehicleImages.cs" />
     <Compile Include="Objects\VehicleModificationsData.cs" />
     <Compile Include="Objects\VehiclePerformanceData.cs" />
     <Compile Include="Objects\VehicleResearchTreeData.cs" />

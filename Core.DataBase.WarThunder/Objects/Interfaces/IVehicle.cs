@@ -2,7 +2,6 @@
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
@@ -57,11 +56,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         string RequiredVehicleGaijinId { get; }
 
         #endregion General
-        #region Graphical
-
-        Bitmap Icon { get; }
-
-        #endregion Graphical
         #region Rank
 
         /// <summary> The vehicle's research rank. </summary>
@@ -113,6 +107,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleGraphicsData GraphicsData { get; }
+
+        IVehicleImages Images { get; }
 
         /// <summary> The full name of the vehicle. </summary>
         IVehicleLocalization FullName { get; }

@@ -15,6 +15,7 @@
         private const string _data = "Data";
         private const string _crew = "Crew";
         private const string _ground = "Ground";
+        private const string _images = "Images";
         private const string _multiplier = "Multiplier";
         private const string _name = "Name";
         private const string _repair = "Repair";
@@ -53,6 +54,7 @@
         internal const string VehicleEconomicRank = _vehicleTable + "EconomicRank";
         internal const string VehicleEconomyData = _vehicleTable + "Economy" + _data;
         internal const string VehicleGraphicsData = _vehicleTable + "Graphics" + _data;
+        internal const string VehicleImages = _vehicleTable + _images;
         internal const string VehicleModificationsData = _vehicleTable + "Modifications" + _data;
         internal const string VehicleNumberOfSpawns = _vehicleTable + "NumberOfSpawns";
         internal const string VehiclePerformanceData = _vehicleTable + "Performance" + _data;

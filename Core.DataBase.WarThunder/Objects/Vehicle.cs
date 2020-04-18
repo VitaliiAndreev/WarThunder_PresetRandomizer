@@ -98,11 +98,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual string RequiredVehicleGaijinId { get; protected set; }
 
         #endregion General
-        #region Graphical
-
-        [Property()] public virtual Bitmap Icon { get; protected set; }
-
-        #endregion Graphical
         #region Rank
 
         /// <summary> The vehicle's research rank. </summary>
@@ -169,6 +164,9 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGraphicsData), PropertyRef = nameof(VehicleGraphicsData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleGraphicsData GraphicsData { get; protected set; }
 
+        [OneToOne(ClassType = typeof(VehicleImages), PropertyRef = nameof(VehicleImages.Vehicle), Lazy = Laziness.Proxy)]
+        public virtual IVehicleImages Images { get; protected set; }
+
         [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The full name of the vehicle. </summary>
         public virtual IVehicleLocalization FullName { get; protected set; }
@@ -216,6 +214,8 @@ namespace Core.DataBase.WarThunder.Objects
         public Vehicle(IDataRepository dataRepository, VehicleDeserializedFromJsonWpCost instanceDerializedFromJson)
             : this(dataRepository, -1L, instanceDerializedFromJson.GaijinId)
         {
+            Images = new VehicleImages(_dataRepository, this);
+
             InitializeGameModeParameterSets();
             InitializeWithDeserializedVehicleDataJson(instanceDerializedFromJson);
             InitializeBattleRatings();
@@ -409,7 +409,7 @@ namespace Core.DataBase.WarThunder.Objects
             InitializeVisualBattleRatings();
         }
 
-        public virtual void SetIcon(FileInfo file) => Icon = new Bitmap(file.FullName);
+        public virtual void SetIcon(FileInfo file) => Images.SetIcon(file);
 
         #region Methods: Initialization Helpers
 

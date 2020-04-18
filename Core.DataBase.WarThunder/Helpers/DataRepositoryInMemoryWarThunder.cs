@@ -28,6 +28,7 @@ namespace Core.DataBase.WarThunder.Helpers
         private readonly IList<IVehicleGraphicsData> _newVehicleGraphicsData;
         private readonly IList<IVehicleGameModeParameterSetBase> _newVehicleGameModeParameterSets;
         private readonly IList<ILocalization> _newLocalizationRecords;
+        private readonly IList<IVehicleImages> _newVehicleImages;
 
         private readonly IList<INation> _nations;
         private readonly IList<IBranch> _branches;
@@ -44,6 +45,7 @@ namespace Core.DataBase.WarThunder.Helpers
         private readonly IList<IVehicleGraphicsData> _vehicleGraphicsData;
         private readonly IList<IVehicleGameModeParameterSetBase> _vehicleGameModeParameterSets;
         private readonly IList<ILocalization> _localizationRecords;
+        private readonly IList<IVehicleImages> _vehicleImages;
 
         #endregion Fields
         #region Properties
@@ -71,6 +73,7 @@ namespace Core.DataBase.WarThunder.Helpers
                     newObjects.AddRange(_newVehicleGraphicsData);
                     newObjects.AddRange(_newVehicleGameModeParameterSets);
                     newObjects.AddRange(_newLocalizationRecords);
+                    newObjects.AddRange(_newVehicleImages);
 
                     return newObjects;
                 }
@@ -98,6 +101,7 @@ namespace Core.DataBase.WarThunder.Helpers
             _newVehicleGraphicsData = new List<IVehicleGraphicsData>();
             _newVehicleGameModeParameterSets = new List<IVehicleGameModeParameterSetBase>();
             _newLocalizationRecords = new List<ILocalization>();
+            _newVehicleImages = new List<IVehicleImages>();
 
             _nations = new List<INation>();
             _branches = new List<IBranch>();
@@ -114,6 +118,7 @@ namespace Core.DataBase.WarThunder.Helpers
             _vehicleGraphicsData = new List<IVehicleGraphicsData>();
             _vehicleGameModeParameterSets = new List<IVehicleGameModeParameterSetBase>();
             _localizationRecords = new List<ILocalization>();
+            _vehicleImages = new List<IVehicleImages>();
         }
 
         #endregion Constructors
@@ -140,6 +145,7 @@ namespace Core.DataBase.WarThunder.Helpers
                 if (objectType == typeof(IVehicleGraphicsData)) return _newVehicleGraphicsData.Cast<T>().ToList();
                 if (objectType == typeof(IVehicleGameModeParameterSetBase)) return _newVehicleGameModeParameterSets.Cast<T>().ToList();
                 if (objectType == typeof(ILocalization)) return _newLocalizationRecords.Cast<T>().ToList();
+                if (objectType == typeof(IVehicleImages)) return _newVehicleImages.Cast<T>().ToList();
             }
             return new List<T>();
         }
@@ -148,21 +154,22 @@ namespace Core.DataBase.WarThunder.Helpers
         {
             lock (_lock)
             {
-                if (newObject is INation newNation && !_newNations.Contains(newNation)) _newNations.Add(newNation);
-                else if (newObject is IBranch newBranch && !_newBranches.Contains(newBranch)) _newBranches.Add(newBranch);
-                else if (newObject is IVehicle newVehicle && !_newVehicles.Contains(newVehicle)) _newVehicles.Add(newVehicle);
-                else if (newObject is IVehicleSubclasses newVehicleSubclass && !_newVehicleSubclasses.Contains(newVehicleSubclass)) _newVehicleSubclasses.Add(newVehicleSubclass);
-                else if (newObject is IAircraftTags newAircraftTagSet && !_newAircraftTags.Contains(newAircraftTagSet)) _newAircraftTags.Add(newAircraftTagSet);
-                else if (newObject is IGroundVehicleTags newGroundVehicleTagSet && !_newGroundVehicleTags.Contains(newGroundVehicleTagSet)) _newGroundVehicleTags.Add(newGroundVehicleTagSet);
-                else if (newObject is IVehicleResearchTreeData newVehicleResearchTreeData && !_newVehicleResearchTreeData.Contains(newVehicleResearchTreeData)) _newVehicleResearchTreeData.Add(newVehicleResearchTreeData);
-                else if (newObject is IVehicleEconomyData newVehicleEconomyData && !_newVehicleEconomyData.Contains(newVehicleEconomyData)) _newVehicleEconomyData.Add(newVehicleEconomyData);
-                else if (newObject is IVehiclePerformanceData newVehiclePerformanceData && !_newVehiclePerformanceData.Contains(newVehiclePerformanceData)) _newVehiclePerformanceData.Add(newVehiclePerformanceData);
-                else if (newObject is IVehicleCrewData newVehicleCrewData && !_newVehicleCrewData.Contains(newVehicleCrewData)) _newVehicleCrewData.Add(newVehicleCrewData);
-                else if (newObject is IVehicleWeaponsData newVehicleWeaponsData && !_newVehicleWeaponsData.Contains(newVehicleWeaponsData)) _newVehicleWeaponsData.Add(newVehicleWeaponsData);
-                else if (newObject is IVehicleModificationsData newVehicleModificationsData && !_newVehicleModificationsData.Contains(newVehicleModificationsData)) _newVehicleModificationsData.Add(newVehicleModificationsData);
-                else if (newObject is IVehicleGraphicsData newVehicleGraphicsData && !_newVehicleGraphicsData.Contains(newVehicleGraphicsData)) _newVehicleGraphicsData.Add(newVehicleGraphicsData);
-                else if (newObject is IVehicleGameModeParameterSetBase newVehicleGameModeParameterSet && !_newVehicleGameModeParameterSets.Contains(newVehicleGameModeParameterSet)) _newVehicleGameModeParameterSets.Add(newVehicleGameModeParameterSet);
-                else if (newObject is ILocalization newLocalizationSet && !_newLocalizationRecords.Contains(newLocalizationSet)) _newLocalizationRecords.Add(newLocalizationSet);
+                if (newObject is INation newNation) _newNations.AddIfNotPresent(newNation);
+                else if (newObject is IBranch newBranch) _newBranches.AddIfNotPresent(newBranch);
+                else if (newObject is IVehicle newVehicle) _newVehicles.AddIfNotPresent(newVehicle);
+                else if (newObject is IVehicleSubclasses newVehicleSubclass) _newVehicleSubclasses.AddIfNotPresent(newVehicleSubclass);
+                else if (newObject is IAircraftTags newAircraftTagSet) _newAircraftTags.AddIfNotPresent(newAircraftTagSet);
+                else if (newObject is IGroundVehicleTags newGroundVehicleTagSet) _newGroundVehicleTags.AddIfNotPresent(newGroundVehicleTagSet);
+                else if (newObject is IVehicleResearchTreeData newVehicleResearchTreeData) _newVehicleResearchTreeData.AddIfNotPresent(newVehicleResearchTreeData);
+                else if (newObject is IVehicleEconomyData newVehicleEconomyData) _newVehicleEconomyData.AddIfNotPresent(newVehicleEconomyData);
+                else if (newObject is IVehiclePerformanceData newVehiclePerformanceData) _newVehiclePerformanceData.AddIfNotPresent(newVehiclePerformanceData);
+                else if (newObject is IVehicleCrewData newVehicleCrewData) _newVehicleCrewData.AddIfNotPresent(newVehicleCrewData);
+                else if (newObject is IVehicleWeaponsData newVehicleWeaponsData) _newVehicleWeaponsData.AddIfNotPresent(newVehicleWeaponsData);
+                else if (newObject is IVehicleModificationsData newVehicleModificationsData) _newVehicleModificationsData.AddIfNotPresent(newVehicleModificationsData);
+                else if (newObject is IVehicleGraphicsData newVehicleGraphicsData) _newVehicleGraphicsData.AddIfNotPresent(newVehicleGraphicsData);
+                else if (newObject is IVehicleGameModeParameterSetBase newVehicleGameModeParameterSet) _newVehicleGameModeParameterSets.AddIfNotPresent(newVehicleGameModeParameterSet);
+                else if (newObject is ILocalization newLocalizationSet) _newLocalizationRecords.AddIfNotPresent(newLocalizationSet);
+                else if (newObject is IVehicleImages newVehicleImageSet) _newVehicleImages.AddIfNotPresent(newVehicleImageSet);
             }
         }
 
@@ -185,6 +192,7 @@ namespace Core.DataBase.WarThunder.Helpers
             if (objectType == typeof(IVehicleGraphicsData)) return _vehicleGraphicsData.Cast<T>();
             if (objectType == typeof(IVehicleGameModeParameterSetBase)) return _vehicleGameModeParameterSets.Cast<T>();
             if (objectType == typeof(ILocalization)) return _localizationRecords.Cast<T>();
+            if (objectType == typeof(IVehicleImages)) return _vehicleImages.Cast<T>();
 
             return new List<T>();
         }
@@ -208,6 +216,7 @@ namespace Core.DataBase.WarThunder.Helpers
                 _vehicleGraphicsData.AddRange(_newVehicleGraphicsData);
                 _vehicleGameModeParameterSets.AddRange(_newVehicleGameModeParameterSets);
                 _localizationRecords.AddRange(_newLocalizationRecords);
+                _vehicleImages.AddRange(_newVehicleImages);
             }
             ClearNewObjects();
         }
@@ -216,21 +225,22 @@ namespace Core.DataBase.WarThunder.Helpers
         {
             lock (_lock)
             {
-                if (@object is INation nation && _newNations.Contains(nation)) _newNations.Remove(nation);
-                else if (@object is IBranch branch && _newBranches.Contains(branch)) _newBranches.Remove(branch);
-                else if (@object is IVehicle vehicle && _newVehicles.Contains(vehicle)) _newVehicles.Remove(vehicle);
-                else if (@object is IVehicleSubclasses vehicleSubclass && _newVehicleSubclasses.Contains(vehicleSubclass)) _newVehicleSubclasses.Remove(vehicleSubclass);
-                else if (@object is IAircraftTags aircraftTagSet && _newAircraftTags.Contains(aircraftTagSet)) _newAircraftTags.Remove(aircraftTagSet);
-                else if (@object is IGroundVehicleTags groundVehicleTagSet && _newGroundVehicleTags.Contains(groundVehicleTagSet)) _newGroundVehicleTags.Remove(groundVehicleTagSet);
-                else if (@object is IVehicleResearchTreeData vehicleResearchTreeData && _newVehicleResearchTreeData.Contains(vehicleResearchTreeData)) _newVehicleResearchTreeData.Remove(vehicleResearchTreeData);
-                else if (@object is IVehicleEconomyData vehicleEconomyData && _newVehicleEconomyData.Contains(vehicleEconomyData)) _newVehicleEconomyData.Remove(vehicleEconomyData);
-                else if (@object is IVehiclePerformanceData vehiclePerformanceData && _newVehiclePerformanceData.Contains(vehiclePerformanceData)) _newVehiclePerformanceData.Remove(vehiclePerformanceData);
-                else if (@object is IVehicleCrewData vehicleCrewData && _newVehicleCrewData.Contains(vehicleCrewData)) _newVehicleCrewData.Remove(vehicleCrewData);
-                else if (@object is IVehicleWeaponsData vehicleWeaponsData && _newVehicleWeaponsData.Contains(vehicleWeaponsData)) _newVehicleWeaponsData.Remove(vehicleWeaponsData);
-                else if (@object is IVehicleModificationsData vehicleModificationsData && _newVehicleModificationsData.Contains(vehicleModificationsData)) _newVehicleModificationsData.Remove(vehicleModificationsData);
-                else if (@object is IVehicleGraphicsData vehicleGraphicsData && _newVehicleGraphicsData.Contains(vehicleGraphicsData)) _newVehicleGraphicsData.Remove(vehicleGraphicsData);
-                else if (@object is IVehicleGameModeParameterSetBase vehicleGameModeParameterSet && _newVehicleGameModeParameterSets.Contains(vehicleGameModeParameterSet)) _newVehicleGameModeParameterSets.Remove(vehicleGameModeParameterSet);
-                else if (@object is ILocalization localizationSet && _newLocalizationRecords.Contains(localizationSet)) _newLocalizationRecords.Remove(localizationSet);
+                if (@object is INation nation) _newNations.RemoveSafely(nation);
+                else if (@object is IBranch branch) _newBranches.RemoveSafely(branch);
+                else if (@object is IVehicle vehicle) _newVehicles.RemoveSafely(vehicle);
+                else if (@object is IVehicleSubclasses vehicleSubclass) _newVehicleSubclasses.RemoveSafely(vehicleSubclass);
+                else if (@object is IAircraftTags aircraftTagSet) _newAircraftTags.RemoveSafely(aircraftTagSet);
+                else if (@object is IGroundVehicleTags groundVehicleTagSet) _newGroundVehicleTags.RemoveSafely(groundVehicleTagSet);
+                else if (@object is IVehicleResearchTreeData vehicleResearchTreeData) _newVehicleResearchTreeData.RemoveSafely(vehicleResearchTreeData);
+                else if (@object is IVehicleEconomyData vehicleEconomyData) _newVehicleEconomyData.RemoveSafely(vehicleEconomyData);
+                else if (@object is IVehiclePerformanceData vehiclePerformanceData) _newVehiclePerformanceData.RemoveSafely(vehiclePerformanceData);
+                else if (@object is IVehicleCrewData vehicleCrewData) _newVehicleCrewData.RemoveSafely(vehicleCrewData);
+                else if (@object is IVehicleWeaponsData vehicleWeaponsData) _newVehicleWeaponsData.RemoveSafely(vehicleWeaponsData);
+                else if (@object is IVehicleModificationsData vehicleModificationsData) _newVehicleModificationsData.RemoveSafely(vehicleModificationsData);
+                else if (@object is IVehicleGraphicsData vehicleGraphicsData) _newVehicleGraphicsData.RemoveSafely(vehicleGraphicsData);
+                else if (@object is IVehicleGameModeParameterSetBase vehicleGameModeParameterSet) _newVehicleGameModeParameterSets.RemoveSafely(vehicleGameModeParameterSet);
+                else if (@object is ILocalization localizationSet) _newLocalizationRecords.RemoveSafely(localizationSet);
+                else if (@object is IVehicleImages vehicleImageSet) _newVehicleImages.RemoveSafely(vehicleImageSet);
             }
         }
 
@@ -251,6 +261,7 @@ namespace Core.DataBase.WarThunder.Helpers
             _newVehicleGraphicsData.Clear();
             _newVehicleGameModeParameterSets.Clear();
             _newLocalizationRecords.Clear();
+            _newVehicleImages.Clear();
         }
 
         #endregion Methods: Overrides

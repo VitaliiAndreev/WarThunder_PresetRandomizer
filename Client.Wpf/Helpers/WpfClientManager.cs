@@ -76,7 +76,7 @@ namespace Client.Wpf.Helpers
             if (_vehicleIconBitmapSources.TryGetValue(vehicle.GaijinId, out var cachedSource))
                 return cachedSource;
 
-            var bitmapSource = vehicle.Icon.ToBitmapSource(ImageFormat.Png);
+            var bitmapSource = vehicle.Images.Icon.ToBitmapSource(ImageFormat.Png);
 
             bitmapSource.Freeze();
 
