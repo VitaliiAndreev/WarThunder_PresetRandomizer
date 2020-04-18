@@ -14,8 +14,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
 
         bool CanScout { get; }
 
-        bool CanRepairAllies { get; }
-
         #endregion Persistent Properties
         #region Indexers
 

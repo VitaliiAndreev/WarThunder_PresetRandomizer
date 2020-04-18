@@ -109,7 +109,6 @@
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
-  <Line key="RepairsAllies" value="Can Repair Allies"/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>

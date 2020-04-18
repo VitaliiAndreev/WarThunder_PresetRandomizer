@@ -772,9 +772,7 @@ namespace Core.Organization.Helpers
             var vehiclesWithEconomocRankFilter = FilterVehiclesByEconomicRanks(gameMode, vehiclesByNations, validEconomicRanks);
 
             if (vehiclesWithEconomocRankFilter is null)
-            {
                 return emptyPreset;
-            }
 
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Vehicle selection.

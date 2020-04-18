@@ -1,13 +1,9 @@
 ﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Presenters;
 using Client.Wpf.Presenters.Interfaces;
-using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Enumerations;
 using Core.Organization.Objects.SearchSpecifications;
-using System;
 using System.Linq;
 using System.Windows.Input;
 

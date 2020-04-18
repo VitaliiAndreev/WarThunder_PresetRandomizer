@@ -109,7 +109,6 @@
   <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
-  <Line key="RepairsAllies" value="Может чинить союзников"/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>

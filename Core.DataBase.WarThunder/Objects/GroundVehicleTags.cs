@@ -28,9 +28,6 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true)]
         public virtual bool CanScout { get; protected set; }
 
-        [Property(NotNull = true)]
-        public virtual bool CanRepairAllies { get; protected set; }
-
         #endregion Persistent Properties
         #region Association Properties
 
@@ -85,7 +82,6 @@ namespace Core.DataBase.WarThunder.Objects
             {
                 IsWheeled = vehiclePerformanceData.MoveType.Contains("wheeled");
                 CanScout = deserializedTags.CanScout;
-                CanRepairAllies = deserializedTags.CanRepairTeammates;
             }
             InitialiseIndex();
         }
@@ -97,9 +93,6 @@ namespace Core.DataBase.WarThunder.Objects
 
             if (CanScout)
                 _index.Add(EVehicleBranchTag.Scout, CanScout);
-
-            if (CanRepairAllies)
-                _index.Add(EVehicleBranchTag.RepairsAllies, CanRepairAllies);
 
             if (_index.IsEmpty())
             {

@@ -99,7 +99,6 @@
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
         public const string RemovePresets = nameof(RemovePresets);
-        public const string RepairsAllies = nameof(RepairsAllies);
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
