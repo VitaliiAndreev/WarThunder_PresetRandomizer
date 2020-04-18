@@ -447,6 +447,9 @@ namespace Core.DataBase.WarThunder.Objects
             {
                 Nation,
                 Branch,
+                Subclasses,
+                AircraftTags,
+                GroundVehicleTags,
                 EconomicRank,
                 BattleRating,
                 ResearchTreeData,
@@ -456,6 +459,7 @@ namespace Core.DataBase.WarThunder.Objects
                 WeaponsData,
                 ModificationsData,
                 GraphicsData,
+                Images,
             };
 
             return nestedObjects;

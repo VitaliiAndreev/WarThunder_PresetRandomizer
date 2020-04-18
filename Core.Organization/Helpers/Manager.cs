@@ -5,7 +5,6 @@ using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
@@ -375,7 +374,7 @@ namespace Core.Organization.Helpers
             if (_cache.IsEmpty())
                 _cache.AddRange(_dataRepository.Query<IVehicle>());
 
-            _playableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).ToList());
+            _playableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).AsParallel().ToList());
             _presetGenerator.SetPlayableVehicles(_playableVehicles);
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
