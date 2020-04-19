@@ -32,7 +32,9 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowSecondSubclass(IVehicle vehicle);
 
-        bool ShowResearchAndSilverLionCosts(IVehicle vehicle);
+        bool ShowResearchCosts(IVehicle vehicle);
+
+        bool ShowSilverLionCosts(IVehicle vehicle);
 
         #endregion Methods: Checks
         #region Methods: Output

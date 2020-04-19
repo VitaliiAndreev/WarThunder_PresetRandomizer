@@ -27,7 +27,7 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowPackTag(IVehicle vehicle) => vehicle.IsSoldInTheStore;
 
-        public bool ShowGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle;
+        public bool ShowGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle && vehicle.PurchaseCostInGold.HasValue;
 
         public bool ShowMarketIcon(IVehicle vehicle) => vehicle.IsSoldOnTheMarket;
 
@@ -39,7 +39,9 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowSecondSubclass(IVehicle vehicle) => vehicle.Subclasses.Second.IsValid() && vehicle.Subclasses.Second != vehicle.Subclasses.First;
 
-        public bool ShowResearchAndSilverLionCosts(IVehicle vehicle) => vehicle.IsResearchable;
+        public bool ShowResearchCosts(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.UnlockCostInResearch.HasValue;
+
+        public bool ShowSilverLionCosts(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.PurchaseCostInSilver.IsPositive();
 
         #endregion Methods: Checks
         #region Methods: Output
@@ -169,8 +171,13 @@ namespace Client.Wpf.Controls.Strategies
             if (ShowPackTag(vehicle))
                 append(GetLocalisedString(ELocalizationKey.AvailableInStorePacks));
 
-            if (ShowResearchAndSilverLionCosts(vehicle))
-                append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}{ECharacter.Space}{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
+            if (ShowResearchCosts(vehicle))
+                append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
+            if (ShowResearchCosts(vehicle) && ShowSilverLionCosts(vehicle))
+                append(ECharacter.Space);
+
+            if (ShowSilverLionCosts(vehicle))
+                append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}");
 
             return stringBuilder.ToString();
         }
