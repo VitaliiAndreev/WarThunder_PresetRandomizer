@@ -16,6 +16,7 @@
         #region B
 
         public static string Battle => _Battle;
+        public static string BattleRating => $"{_Battle}{ECharacter.Space}{_Rating}";
 
         #endregion B
         #region C
@@ -103,6 +104,7 @@
         #region R
 
         public static string Randomiser => _Randomiser;
+        public static string Rank => _Rank;
         public static string Rating => _Rating;
         public static string Reader => _Reader;
         public static string Repository => _Repository;

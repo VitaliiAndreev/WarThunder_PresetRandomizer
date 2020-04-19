@@ -557,7 +557,8 @@
         protected const string _raft = _r + _aft;
         protected const string _ranch = _r + _an + _ch;
         protected const string _Randomiser = _R + _and + _om + _ise + _r;
-        protected const string _rank = _r + "ank";
+        protected const string _Rank = _R + _an + _k;
+        protected const string _rank = _r + _an + _k;
         protected const string _ranks = _rank + _s;
         protected const string _rap = _r + _a + _p;
         protected const string _Rat = _R + _at;

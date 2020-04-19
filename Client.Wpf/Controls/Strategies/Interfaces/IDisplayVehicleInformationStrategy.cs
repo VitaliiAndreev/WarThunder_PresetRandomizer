@@ -39,7 +39,7 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         string GetClass(IVehicle vehicle);
 
-        string GetBattleRating(IVehicle vehicle, EGameMode gameMode);
+        string GetBattleRating(EGameMode gameMode, IVehicle vehicle);
 
         ERank GetRank(IVehicle vehicle);
 
@@ -50,6 +50,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
         string GetVehicleInfoBottomRow(EGameMode gameMode, IVehicle vehicle);
 
         string GetVehicleCardClassRow(IVehicle vehicle);
+
+        string GetVehicleCardCountryRow(IVehicle vehicle);
 
         #endregion Methods: Output
     }

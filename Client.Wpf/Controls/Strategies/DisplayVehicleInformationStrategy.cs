@@ -76,10 +76,8 @@ namespace Client.Wpf.Controls.Strategies
             if (ShowBinocularsIcon(vehicle))
                 append($"{EGaijinCharacter.Binoculars}{ECharacter.Space}");
 
-            append(GetBattleRating(vehicle, gameMode));
-            append($"{ECharacter.Space}");
-            append($"{ECharacter.Slash}");
-            append($"{ECharacter.Space}");
+            append(GetBattleRating(gameMode, vehicle));
+            append($"{ESeparator.SpaceSlashSpace}");
             append(GetRank(vehicle));
             append($"{ECharacter.Space}");
             append(GetClassIcon(vehicle));
@@ -95,7 +93,7 @@ namespace Client.Wpf.Controls.Strategies
             return GetLocalisedString(vehicle.Class);
         }
 
-        public string GetBattleRating(IVehicle vehicle, EGameMode gameMode) => vehicle.BattleRatingFormatted[gameMode];
+        public string GetBattleRating(EGameMode gameMode, IVehicle vehicle) => vehicle.BattleRatingFormatted[gameMode];
 
         public ERank GetRank(IVehicle vehicle) => vehicle.Rank.CastTo<ERank>();
 
@@ -119,6 +117,21 @@ namespace Client.Wpf.Controls.Strategies
 
             if (ShowSecondSubclass(vehicle))
                 append($"{ECharacter.Slash}{ECharacter.Space}{GetLocalisedString(vehicle.Subclasses.Second)}");
+
+            return stringBuilder.ToString();
+        }
+
+        public string GetVehicleCardCountryRow(IVehicle vehicle)
+        {
+            var stringBuilder = new StringBuilder();
+
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
+            append($"{GetLocalisedString(vehicle.Country)}");
+            append($"{ESeparator.SpaceSlashSpace}");
+            append($"{GetLocalisedString(EWord.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
+            append($"{ESeparator.SpaceSlashSpace}");
+            append($"{GetLocalisedString(EWord.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
 
             return stringBuilder.ToString();
         }

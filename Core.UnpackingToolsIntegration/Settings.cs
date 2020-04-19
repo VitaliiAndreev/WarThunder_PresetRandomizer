@@ -12,7 +12,7 @@ namespace Core.WarThunderExtractionToolsIntegration
         #region Constants
 
         /// <summary> A separator between items in a collection string. </summary>
-        public const string Separator = ESeparator.CommaAndSpace;
+        public static string Separator = ESeparator.CommaAndSpace;
 
         #endregion Constants
         #region Fields

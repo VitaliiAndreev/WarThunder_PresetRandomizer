@@ -26,6 +26,8 @@ namespace Client.Wpf.Controls
         /// <summary> Whether to display the <see cref="Vehicle"/>'s <see cref="IVehicle.Country"/> flag. </summary>
         private readonly bool _useCountryFlag;
 
+        private bool _tooltipInitialised;
+
         #endregion Fields
         #region Properties
 
@@ -117,16 +119,22 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
         #region Methods: Initialisation
 
-        private void Initialise()
+        private void SetFlag(Image image, double size, Thickness margin)
         {
-            if (_useCountryFlag && _countryFlag.Source is null)
+            if (image.Source is null)
             {
-                _countryFlag.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[Vehicle.Country]) as ImageSource;
+                image.Source = ApplicationHelpers.Manager.GetFlagImageSource(Vehicle.Country);
 
                 // The size and margin are being set here to avoid breaking white-space when there is no source provided.
-                _countryFlag.SetSize(14);
-                _countryFlag.Margin = new Thickness(5, 0, 0, 0);
+                image.SetSize(size);
+                image.Margin = margin;
             }
+        }
+
+        private void Initialise()
+        {
+            if (_useCountryFlag)
+                SetFlag(_countryFlag, 14, new Thickness(5, 0, 0, 0));
 
             if (Vehicle.Images?.IconBytes is byte[])
             {
@@ -138,9 +146,15 @@ namespace Client.Wpf.Controls
                     Opacity = EDouble.Number.PointNine,
                 };
             }
+        }
+
+        private void InitialiseTooltip()
+        {
+            SetFlag(_tooltipCountryFlag, 16, new Thickness(0, 0, 7, 0));
 
             _tooltipFullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
             _tooltipClass.Text = _displayVehicleInformationStrategy.GetVehicleCardClassRow(Vehicle);
+            _tooltipCountryRankAndBattleRating.Text = _displayVehicleInformationStrategy.GetVehicleCardCountryRow(Vehicle);
 
             if (Vehicle.Images?.PortraitBytes is byte[])
             {
@@ -171,6 +185,7 @@ namespace Client.Wpf.Controls
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
             _informationTextBlock.Text = _displayVehicleInformationStrategy.GetVehicleInfoBottomRow(gameMode, Vehicle);
+            _tooltipBattleRating.Text = _displayVehicleInformationStrategy.GetBattleRating(gameMode, Vehicle);
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
@@ -200,5 +215,15 @@ namespace Client.Wpf.Controls
         /// <summary> Updates the control's opacity according to its <see cref="IsToggled"/> state. </summary>
         private void UpdateOpacity() =>
             _border.Opacity = IsToggled ? EDouble.Number.One : EDouble.Number.Quarter;
+
+        private void OnTooltipOpening(object sender, ToolTipEventArgs e)
+        {
+            if (!_tooltipInitialised)
+            {
+                InitialiseTooltip();
+
+                _tooltipInitialised = true;
+            }
+        }
     }
 }

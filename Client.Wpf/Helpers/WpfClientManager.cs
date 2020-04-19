@@ -3,6 +3,7 @@ using Client.Wpf.Extensions;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
@@ -13,8 +14,8 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Helpers
@@ -24,6 +25,7 @@ namespace Client.Wpf.Helpers
     {
         #region Fields
 
+        private readonly IDictionary<ECountry, ImageSource> _flagImageSources;
         private readonly IDictionary<string, BitmapSource> _vehicleIconBitmapSources;
         private readonly IDictionary<string, BitmapSource> _vehiclePortraitBitmapSources;
 
@@ -54,6 +56,7 @@ namespace Client.Wpf.Helpers
             params IConfiguredLogger[] loggers
         ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
+            _flagImageSources = new Dictionary<ECountry, ImageSource>();
             _vehicleIconBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
             _vehiclePortraitBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
 
@@ -74,7 +77,19 @@ namespace Client.Wpf.Helpers
         #endregion Methods: Settings
         #region Methods: Working with Caches
 
-        public BitmapSource GetBitmapSource(IDictionary<string, BitmapSource> cache, IVehicle vehicle, Func<IVehicle, byte[]> getImageBytes)
+        public ImageSource GetFlagImageSource(ECountry country)
+        {
+            if (!(_flagImageSources is null) && _flagImageSources.TryGetValue(country, out var cachedSource))
+                return cachedSource;
+
+            var imageSource = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[country]) as ImageSource;
+
+            _flagImageSources?.Add(country, imageSource);
+
+            return imageSource;
+        }
+
+        private BitmapSource GetBitmapSource(IDictionary<string, BitmapSource> cache, IVehicle vehicle, Func<IVehicle, byte[]> getImageBytes)
         {
             if (!(cache is null) && cache.TryGetValue(vehicle.GaijinId, out var cachedSource))
                 return cachedSource;

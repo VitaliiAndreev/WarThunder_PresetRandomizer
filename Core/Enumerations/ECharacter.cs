@@ -27,5 +27,6 @@ namespace Core.Enumerations
         public const char Semicolon = ';';
         public const char Space = ' ';
         public const char Underscore = '_';
+        public const char VerticalBar = '|';
     }
 }
