@@ -177,10 +177,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The short name of the vehicle. </summary>
         public virtual IVehicleLocalization ShortName { get; protected set; }
 
-        [OneToOne(ClassType = typeof(ClassName), PropertyRef = nameof(Localization.Vehicle.ClassName.Vehicle), Lazy = Laziness.Proxy)]
-        /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
-        public virtual IVehicleLocalization ClassName { get; protected set; }
-
         #endregion Association Properties
         #region Non-Persistent Properties
 
@@ -389,13 +385,11 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="fullName"> The full name of the vehicle. </param>
         /// <param name="researchTreeName"> The name of the vehicle shown in the research tree. </param>
         /// <param name="shortName"> The short name of the vehicle. </param>
-        /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
-        public virtual void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className)
+        public virtual void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName)
         {
             FullName = new FullName(_dataRepository, this, fullName);
             ResearchTreeName = new ResearchTreeName(_dataRepository, this, researchTreeName);
             ShortName = new ShortName(_dataRepository, this, shortName);
-            ClassName = new ClassName(_dataRepository, this, className);
         }
 
         /// <summary> Initializes non-persistent fields of the instance. Use this method to finalize reading from a database. </summary>

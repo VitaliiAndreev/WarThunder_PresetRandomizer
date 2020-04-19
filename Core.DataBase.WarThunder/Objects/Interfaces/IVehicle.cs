@@ -118,9 +118,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The short name of the vehicle. </summary>
         IVehicleLocalization ShortName { get; }
 
-        /// <summary> The name of the vehicle's <see cref="Class"/>. </summary>
-        IVehicleLocalization ClassName { get; }
-
         #endregion Association Properties
         #region Non-Persistent Properties
 
@@ -145,8 +142,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <param name="fullName"> The full name of the vehicle. </param>
         /// <param name="researchTreeName"> The name of the vehicle shown in the research tree. </param>
         /// <param name="shortName"> The short name of the vehicle. </param>
-        /// <param name="className"> The name of the vehicle's <see cref="Class"/>. </param>
-        void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName, IList<string> className);
+        void InitializeLocalization(IList<string> fullName, IList<string> researchTreeName, IList<string> shortName);
 
         void SetIcon(byte[] bytes);
 

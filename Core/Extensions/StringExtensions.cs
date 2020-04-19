@@ -13,6 +13,18 @@ namespace Core.Extensions
     /// <summary> Methods extending the <see cref="string"/> class. </summary>
     public static class StringExtensions
     {
+        #region Methods: Comparing
+
+        public static bool SameAs(this string @string, string comparedString, bool ignoreCase = true)
+        {
+            return string.CompareOrdinal
+            (
+                ignoreCase ? @string.ToLower() : @string,
+                ignoreCase ? comparedString.ToLower() : comparedString
+            ).IsZero();
+        }
+
+        #endregion Methods: Comparing
         #region Methods: Filtering
 
         /// <summary> Returns the source string as a new string with the specified number of trailing items skipped. </summary>

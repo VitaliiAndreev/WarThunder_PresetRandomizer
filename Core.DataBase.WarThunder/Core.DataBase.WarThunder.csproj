@@ -135,7 +135,6 @@
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
     <Compile Include="Objects\Localization\Interfaces\ILocalization.cs" />
     <Compile Include="Objects\Localization\Localization.cs" />
-    <Compile Include="Objects\Localization\Vehicle\ClassName.cs" />
     <Compile Include="Objects\Localization\Vehicle\Interfaces\IVehicleLocalization.cs" />
     <Compile Include="Objects\Localization\Vehicle\ShortName.cs" />
     <Compile Include="Objects\Localization\Vehicle\FullName.cs" />

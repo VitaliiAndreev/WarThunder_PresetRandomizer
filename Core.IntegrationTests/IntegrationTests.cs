@@ -241,7 +241,6 @@ namespace Core.IntegrationTests
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(EInteger.Number.Thousand);
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(EInteger.Number.Thousand);
                     vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(EInteger.Number.Thousand);
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ClassName?.German)).Should().BeGreaterThan(EInteger.Number.Thousand);
 
                     // modifications
                     vehicleCollection.Any(vehicle => vehicle.ModificationsData is null).Should().BeFalse();
