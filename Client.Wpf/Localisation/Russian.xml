@@ -117,7 +117,7 @@
   <Line key="Scout" value="Разведчик"/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
   <Line key="SelectAllCountries" value="Активирует все страны в группе &quot;{0}&quot;, если хотя бы одна из них деактивирована. Если нет - деактивирует все страны."/>
-  <Line key="SelectAllVehicleClasses" value="Активирует все классы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
+  <Line key="SelectAllVehicleClasses" value="Активирует все классы и подклассы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
