@@ -155,6 +155,7 @@ namespace Client.Wpf.Controls
             _tooltipFullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
             _tooltipClass.Text = _displayVehicleInformationStrategy.GetVehicleCardClassRow(Vehicle);
             _tooltipCountryRankAndBattleRating.Text = _displayVehicleInformationStrategy.GetVehicleCardCountryRow(Vehicle);
+            _tooltipRequirements.Text = _displayVehicleInformationStrategy.GetVehicleCardRequirementsRow(Vehicle);
 
             if (Vehicle.Images?.PortraitBytes is byte[])
             {

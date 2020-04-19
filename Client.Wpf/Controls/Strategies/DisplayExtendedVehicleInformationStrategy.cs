@@ -1,7 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using System.Text;
 
 namespace Client.Wpf.Controls.Strategies

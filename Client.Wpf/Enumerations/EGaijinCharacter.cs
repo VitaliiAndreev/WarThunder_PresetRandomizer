@@ -9,6 +9,7 @@ namespace Client.Wpf.Enumerations
         public const char GoldenEagle = '¤';
         public const char Wrench = '▨';
         public const char Binoculars = '⌂';
+        public const char Research = '▉';
         public const char SilverLion = '€';
         public const char SpaceFromCsv = ' ';
     }

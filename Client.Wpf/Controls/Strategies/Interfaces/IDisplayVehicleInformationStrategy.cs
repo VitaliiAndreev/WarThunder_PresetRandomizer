@@ -32,6 +32,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowSecondSubclass(IVehicle vehicle);
 
+        bool ShowResearchAndSilverLionCosts(IVehicle vehicle);
+
         #endregion Methods: Checks
         #region Methods: Output
 
@@ -52,6 +54,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
         string GetVehicleCardClassRow(IVehicle vehicle);
 
         string GetVehicleCardCountryRow(IVehicle vehicle);
+
+        string GetVehicleCardRequirementsRow(IVehicle vehicle);
 
         #endregion Methods: Output
     }

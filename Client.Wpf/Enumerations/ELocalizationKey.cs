@@ -17,6 +17,7 @@
         public const string Attacker = nameof(Attacker);
         public const string AttackHelicopter = nameof(AttackHelicopter);
         public const string Australia = nameof(Australia);
+        public const string AvailableInStorePacks = nameof(AvailableInStorePacks);
         public const string Aviation = nameof(Aviation);
         public const string Barge = nameof(Barge);
         public const string BattleRating = nameof(BattleRating);
@@ -33,6 +34,7 @@
         public const string CategoryBasedDescription = nameof(CategoryBasedDescription);
         public const string China = nameof(China);
         public const string Commits = nameof(Commits);
+        public const string ConsoleExclusive = nameof(ConsoleExclusive);
         public const string Contributors = nameof(Contributors);
         public const string Cuba = nameof(Cuba);
         public const string CzechRepublic = nameof(CzechRepublic);
@@ -58,6 +60,7 @@
         public const string HeavyGunboat = nameof(HeavyGunboat);
         public const string HeavyTank = nameof(HeavyTank);
         public const string Helicopters = nameof(Helicopters);
+        public const string Hidden = nameof(Hidden);
         public const string Hungary = nameof(Hungary);
         public const string Hydroplane = nameof(Hydroplane);
         public const string InitialisationUnderwayConfirmClosure = nameof(InitialisationUnderwayConfirmClosure);
@@ -114,6 +117,7 @@
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string SelectAllVehicles = nameof(SelectAllVehicles);
         public const string Simulator = nameof(Simulator);
+        public const string SoldOnTheMarket = nameof(SoldOnTheMarket);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string Spaa = nameof(Spaa);
         public const string Starter = nameof(Starter);

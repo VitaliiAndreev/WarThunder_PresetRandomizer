@@ -28,6 +28,7 @@
   <Line key="Attacker" value="Штурмовик"/>
   <Line key="AttackHelicopter" value="Ударный вертолёт"/>
   <Line key="Australia" value="Австралия"/>
+  <Line key="AvailableInStorePacks" value="Продаётся в наборе"/>
   <Line key="Aviation" value="Авиация"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
   <Line key="BattleRating" value="Боевой рейтинг"/>
@@ -44,6 +45,7 @@
   <Line key="CategoryBasedDescription" value="Случайный выбор с акцентом на выбранные категории. Любая комбинация наций, веток и боевых рейтингов имеет равный шанс быть выбранной, если хоть одна единица техники удовлетворяет условиям.&#xD;&#xA;Данный метод рекомендуется в случаях, когда количество единиц техники в парах нация-ветка сильно несбалансированное."/>
   <Line key="China" value="Китай"/>
   <Line key="Commits" value="коммитов"/>
+  <Line key="ConsoleExclusive" value="Консольный эксклюзив"/>
   <Line key="Contributors" value="Участники"/>
   <Line key="Cuba" value="Куба"/>
   <Line key="CzechRepublic" value="Чешская республика"/>
@@ -69,6 +71,7 @@
   <Line key="HeavyGunboat" value="Канонерская лодка"/>
   <Line key="HeavyTank" value="Тяжёлый танк"/>
   <Line key="Helicopters" value="Вертолёты"/>
+  <Line key="Hidden" value="Скрыто до владения"/>
   <Line key="Hungary" value="Венгрия"/>
   <Line key="Hydroplane" value="Гидросамолёт"/>
   <Line key="InitialisationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
@@ -124,6 +127,7 @@
   <Line key="SelectAllVehicleClasses" value="Активирует все классы и подклассы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="Simulator" value="Симуляторный режим"/>
+  <Line key="SoldOnTheMarket" value="Продаётся на бирже"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="Spaa" value="ЗСУ"/>
   <Line key="Starter" value="Подарок"/>

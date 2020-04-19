@@ -70,6 +70,10 @@
 
                 </WrapPanel>
 
+                <TextBlock
+                        x:Name="_tooltipRequirements"
+                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+
                 <Image
                     x:Name="_portrait"
                     Style="{StaticResource Image312x200px}"

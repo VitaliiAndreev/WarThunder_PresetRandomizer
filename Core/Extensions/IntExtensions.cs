@@ -1,4 +1,5 @@
 ﻿using Core.Enumerations;
+using System.Globalization;
 
 namespace Core.Extensions
 {
@@ -26,6 +27,14 @@ namespace Core.Extensions
             value == EInteger.Number.Zero;
 
         #endregion Fluency
+        #region Formatting
+
+        public static string WithNumberGroupsSeparated(this int number, string separator = " ")
+        {
+            return number.ToString("N0", new NumberFormatInfo { NumberGroupSeparator = separator });
+        }
+
+        #endregion Formatting
 
         /// <summary> Calculates the amount of bits required to hold the value. </summary>
         /// <param name="value"> The value to work with. </param>

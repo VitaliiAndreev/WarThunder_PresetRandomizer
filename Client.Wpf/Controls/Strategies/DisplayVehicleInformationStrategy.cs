@@ -39,6 +39,8 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowSecondSubclass(IVehicle vehicle) => vehicle.Subclasses.Second.IsValid() && vehicle.Subclasses.Second != vehicle.Subclasses.First;
 
+        public bool ShowResearchAndSilverLionCosts(IVehicle vehicle) => vehicle.IsResearchable;
+
         #endregion Methods: Checks
         #region Methods: Output
 
@@ -132,6 +134,43 @@ namespace Client.Wpf.Controls.Strategies
             append($"{GetLocalisedString(ELocalizationKey.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
             append($"{ESeparator.SpaceSlashSpace}");
             append($"{GetLocalisedString(ELocalizationKey.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
+
+            return stringBuilder.ToString();
+        }
+
+        public string GetVehicleCardRequirementsRow(IVehicle vehicle)
+        {
+            var stringBuilder = new StringBuilder();
+
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
+            if (ShowReserveTag(vehicle))
+                append($"{GetLocalisedString(ELocalizationKey.Reserve)}");
+
+            if (ShowStarterGiftTag(vehicle))
+                append($"{GetLocalisedString(ELocalizationKey.Starter)}{ESeparator.SpaceSlashSpace}");
+
+            if (ShowGoldenEagleCost(vehicle))
+                append($"{vehicle.PurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
+
+            if (ShowMarketIcon(vehicle))
+                append($"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.SoldOnTheMarket)}");
+
+            if (ShowEyeIcon(vehicle))
+                append($"{ECharacter.Eye}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.Hidden)}");
+            if (ShowEyeIcon(vehicle) && ShowControllerIcon(vehicle))
+                append(ESeparator.SpaceSlashSpace);
+
+            if (ShowControllerIcon(vehicle))
+                append($"{EGaijinCharacter.Controller}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.ConsoleExclusive)}");
+            if (ShowControllerIcon(vehicle) && ShowPackTag(vehicle))
+                append(ESeparator.SpaceSlashSpace);
+
+            if (ShowPackTag(vehicle))
+                append(GetLocalisedString(ELocalizationKey.AvailableInStorePacks));
+
+            if (ShowResearchAndSilverLionCosts(vehicle))
+                append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}{ECharacter.Space}{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
 
             return stringBuilder.ToString();
         }
