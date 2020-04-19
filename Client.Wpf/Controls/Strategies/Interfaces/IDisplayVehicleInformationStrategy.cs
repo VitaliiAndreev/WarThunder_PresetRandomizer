@@ -28,10 +28,16 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowBinocularsIcon(IVehicle vehicle);
 
+        bool ReplaceClassWithSubclass(IVehicle vehicle);
+
+        bool ShowSecondSubclass(IVehicle vehicle);
+
         #endregion Methods: Checks
         #region Methods: Output
 
         char GetClassIcon(IVehicle vehicle);
+
+        string GetClass(IVehicle vehicle);
 
         string GetBattleRating(IVehicle vehicle, EGameMode gameMode);
 
@@ -41,7 +47,9 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
         /// <param name="gameMode"> The game mode to account for. </param>
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
-        string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle);
+        string GetVehicleInfoBottomRow(EGameMode gameMode, IVehicle vehicle);
+
+        string GetVehicleCardClassRow(IVehicle vehicle);
 
         #endregion Methods: Output
     }

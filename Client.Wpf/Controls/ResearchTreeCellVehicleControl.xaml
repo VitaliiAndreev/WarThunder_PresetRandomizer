@@ -47,8 +47,12 @@
                 Margin="5">
 
                 <TextBlock Text="Full Name"
-                    x:Name="_fullName"
+                    x:Name="_tooltipFullName"
                     Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+
+                <TextBlock
+                        x:Name="_tooltipClass"
+                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
                 <Image
                     x:Name="_portrait"

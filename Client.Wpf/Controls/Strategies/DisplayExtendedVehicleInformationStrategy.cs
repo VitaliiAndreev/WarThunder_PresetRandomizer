@@ -20,7 +20,7 @@ namespace Client.Wpf.Controls.Strategies
         /// <param name="gameMode"> The game mode to account for. </param>
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
-        public override string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle)
+        public override string GetVehicleInfoBottomRow(EGameMode gameMode, IVehicle vehicle)
         {
             var stringBuilder = new StringBuilder();
 

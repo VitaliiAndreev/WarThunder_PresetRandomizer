@@ -1,7 +1,10 @@
 ﻿using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
 using System.Text;
@@ -32,8 +35,15 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowBinocularsIcon(IVehicle vehicle) => vehicle.GroundVehicleTags?.CanScout ?? false;
 
+        public bool ReplaceClassWithSubclass(IVehicle vehicle) => vehicle.Subclasses.First.IsValid();
+
+        public bool ShowSecondSubclass(IVehicle vehicle) => vehicle.Subclasses.Second.IsValid() && vehicle.Subclasses.Second != vehicle.Subclasses.First;
+
         #endregion Methods: Checks
         #region Methods: Output
+
+        protected string GetLocalisedString(object localisationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localisationKey.ToString());
+        protected string GetLocalisationText(ILocalization localisation) => localisation?.GetLocalization(WpfSettings.LocalizationLanguage);
 
         protected void SetSharedLeftPart(StringBuilder stringBuilder, IVehicle vehicle)
         {
@@ -76,14 +86,39 @@ namespace Client.Wpf.Controls.Strategies
         }
 
         public char GetClassIcon(IVehicle vehicle) => EReference.ClassIcons[vehicle.Class];
+
+        public string GetClass(IVehicle vehicle)
+        {
+            if (ReplaceClassWithSubclass(vehicle))
+                return GetLocalisedString(vehicle.Subclasses.First);
+
+            return GetLocalisedString(vehicle.Class);
+        }
+
         public string GetBattleRating(IVehicle vehicle, EGameMode gameMode) => vehicle.BattleRatingFormatted[gameMode];
+
         public ERank GetRank(IVehicle vehicle) => vehicle.Rank.CastTo<ERank>();
 
         /// <summary> Generates a formatted string with <paramref name="vehicle"/> information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode to account for. </param>
         /// <param name="vehicle"> The vehicle whose information to display. </param>
         /// <returns></returns>
-        public abstract string GetFormattedVehicleInformation(EGameMode gameMode, IVehicle vehicle);
+        public abstract string GetVehicleInfoBottomRow(EGameMode gameMode, IVehicle vehicle);
+
+        public string GetVehicleCardClassRow(IVehicle vehicle)
+        {
+            var stringBuilder = new StringBuilder();
+
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
+            append($"{GetClassIcon(vehicle)}{ECharacter.Space}");
+            append($"{GetClass(vehicle)}{ECharacter.Space}");
+
+            if (ShowSecondSubclass(vehicle))
+                append($"{ECharacter.Slash}{ECharacter.Space}{GetLocalisedString(vehicle.Subclasses.Second)}");
+
+            return stringBuilder.ToString();
+        }
 
         #endregion Methods: Output
     }

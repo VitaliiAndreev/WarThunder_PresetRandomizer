@@ -139,7 +139,8 @@ namespace Client.Wpf.Controls
                 };
             }
 
-            _fullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
+            _tooltipFullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
+            _tooltipClass.Text = _displayVehicleInformationStrategy.GetVehicleCardClassRow(Vehicle);
 
             if (Vehicle.Images?.PortraitBytes is byte[])
             {
@@ -169,7 +170,7 @@ namespace Client.Wpf.Controls
         /// <param name="gameMode"> The game mode for which to display the information. </param>
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
-            _informationTextBlock.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
+            _informationTextBlock.Text = _displayVehicleInformationStrategy.GetVehicleInfoBottomRow(gameMode, Vehicle);
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>

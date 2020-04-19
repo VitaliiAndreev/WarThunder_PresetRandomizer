@@ -10,5 +10,6 @@ namespace Client.Wpf.Enumerations
         public const char Wrench = '▨';
         public const char Binoculars = '⌂';
         public const char SilverLion = '€';
+        public const char SpaceFromCsv = ' ';
     }
 }
