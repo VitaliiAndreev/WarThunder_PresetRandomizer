@@ -480,19 +480,19 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client.Wpf %28create and read DB%29.bat">
+    <Content Include="Client.Wpf - Mode 1 - create and read from DB %28default, slowest repeated start%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client.Wpf %28create DB, read JSON%29.bat">
+    <Content Include="Client.Wpf - Mode 3 - read from game files and create DB %28average speed start%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client.Wpf %28read JSON from previous sessions%29.bat">
+    <Content Include="Client.Wpf - Mode 5 - read from unpacked game files %28use Mode 4 first, fasterst start%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client.Wpf %28read JSON%29.bat">
+    <Content Include="Client.Wpf - Mode 4 - read from game files %28second fastest start%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client.Wpf %28read DB%29.bat">
+    <Content Include="Client.Wpf - Mode 2 - read from DB %28use Mode 1 first, slowest start%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="NLog.xsd">
