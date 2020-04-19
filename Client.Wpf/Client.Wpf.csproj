@@ -280,6 +280,7 @@
     <Compile Include="Controls\RandomisationSelectionControl.xaml.cs">
       <DependentUpon>RandomisationSelectionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Strategies\DisplayVehicleInformationStrategy.cs" />
     <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingGroupControl.xaml</DependentUpon>
     </Compile>
