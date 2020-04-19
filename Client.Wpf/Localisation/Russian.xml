@@ -35,6 +35,7 @@
   <Line key="BattleRatings" value="Боевые рейтинги"/>
   <Line key="Belgium" value="Бельгия"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>
+  <Line key="Beta" value="Бета"/>
   <Line key="Boat" value="Катер"/>
   <Line key="Bomber" value="Бомбардировщик"/>
   <Line key="Britain" value="Великобритания"/>
@@ -46,7 +47,6 @@
   <Line key="China" value="Китай"/>
   <Line key="Commits" value="коммитов"/>
   <Line key="ConsoleExclusive" value="Консольный эксклюзив"/>
-  <Line key="Contributors" value="Участники"/>
   <Line key="Cuba" value="Куба"/>
   <Line key="CzechRepublic" value="Чешская республика"/>
   <Line key="Destroyer" value="Эсминец"/>
@@ -149,7 +149,6 @@
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
   <Line key="VehicleBased" value="по технике"/>
   <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
-  <Line key="VitalyAndreyev" value="Виталий Андреев"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>

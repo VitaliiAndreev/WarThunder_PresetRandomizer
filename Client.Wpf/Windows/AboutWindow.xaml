@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:Client.Wpf.Windows"
     mc:Ignorable="d"
     Title="About Window"
-    Height="270"
+    Height="200"
     Width="310"
     Loaded="OnLoaded"
     Closed="OnClosed"
@@ -19,8 +19,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="25"/>
-            <RowDefinition/>
-            <RowDefinition Height="25"/>
             <RowDefinition Height="105"/>
         </Grid.RowDefinitions>
 
@@ -29,53 +27,14 @@
             x:Name="_version"
             Style="{StaticResource Centered}"/>
 
-        <TextBlock Text="Contributors"
-            Grid.Row="1"
-            x:Name="_contributors"
-            Style="{StaticResource CenteredBold}"
-            FontWeight="Bold"/>
-
-        <StackPanel
-            Grid.Row="2"
-            Style="{StaticResource PaddedStackPanel}">
-
-            <Grid
-                TextBlock.FontSize="14">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Vitaly Andreyev"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    x:Name="_vitalyAndreyev"
-                    Style="{StaticResource CreditsLeftColumn}"/>
-
-                <TextBlock Text="X+ commits"
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    x:Name="_vitalyAndreyevStats"
-                    Style="{StaticResource CreditsRightColumn}"/>
-
-            </Grid>
-
-        </StackPanel>
-
         <TextBlock Text="Thanks"
-            Grid.Row="3"
+            Grid.Row="1"
             x:Name="_thanks"
             Style="{StaticResource CenteredBold}"
             FontWeight="Bold"/>
 
         <StackPanel
-            Grid.Row="4"
+            Grid.Row="2"
             Style="{StaticResource PaddedStackPanel}">
 
             <Grid

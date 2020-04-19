@@ -33,7 +33,6 @@ namespace Client.Wpf.Windows
             InitializeComponent();
 
             _version.Text = $"{EApplicationData.Version} ({{0}})";
-            _vitalyAndreyevStats.Text = EApplicationData.ContributionsByVitalyAndreyev;
 
             Localise();
 
@@ -65,11 +64,6 @@ namespace Client.Wpf.Windows
             Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationNameAbbreviated);
 
             _version.Text = _version.Text.FormatFluently(ApplicationHelpers.LocalizationManager.GetLocalizedString(EApplicationData.DevelopmentStageLocalizationKey));
-
-            _contributors.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Contributors);
-            _vitalyAndreyev.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.VitalyAndreyev);
-            _vitalyAndreyevStats.Text = $"{_vitalyAndreyevStats.Text} {ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Commits)}";
-
             _thanks.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Thanks);
             _gaijin.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GaijinEntertainmentForWarThunder);
             _klensy.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.KlensyForWtTools);

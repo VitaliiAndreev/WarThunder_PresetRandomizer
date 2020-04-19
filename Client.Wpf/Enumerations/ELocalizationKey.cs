@@ -24,6 +24,7 @@
         public const string BattleRatings = nameof(BattleRatings);
         public const string Belgium = nameof(Belgium);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
+        public const string Beta = nameof(Beta);
         public const string Boat = nameof(Boat);
         public const string Bomber = nameof(Bomber);
         public const string Britain = nameof(Britain);
@@ -35,7 +36,6 @@
         public const string China = nameof(China);
         public const string Commits = nameof(Commits);
         public const string ConsoleExclusive = nameof(ConsoleExclusive);
-        public const string Contributors = nameof(Contributors);
         public const string Cuba = nameof(Cuba);
         public const string CzechRepublic = nameof(CzechRepublic);
         public const string Destroyer = nameof(Destroyer);
@@ -139,7 +139,6 @@
         public const string UtilityHelicopter = nameof(UtilityHelicopter);
         public const string VehicleBased = nameof(VehicleBased);
         public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
-        public const string VitalyAndreyev = nameof(VitalyAndreyev);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);

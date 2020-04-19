@@ -35,6 +35,7 @@
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="Belgium" value="Belgium"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
+  <Line key="Beta" value="Beta"/>
   <Line key="Boat" value="Boat"/>
   <Line key="Bomber" value="Bomber"/>
   <Line key="Britain" value="Great Britain"/>
@@ -46,7 +47,6 @@
   <Line key="China" value="China"/>
   <Line key="Commits" value="commits"/>
   <Line key="ConsoleExclusive" value="Console-exclusive"/>
-  <Line key="Contributors" value="Contributors"/>
   <Line key="Cuba" value="Cuba"/>
   <Line key="CzechRepublic" value="Czech Republic"/>
   <Line key="Destroyer" value="Destroyer"/>
@@ -149,7 +149,6 @@
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VehicleBased" value="by vehicles"/>
   <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
-  <Line key="VitalyAndreyev" value="Vitaly Andreyev"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>
