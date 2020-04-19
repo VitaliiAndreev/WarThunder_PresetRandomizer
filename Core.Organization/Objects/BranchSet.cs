@@ -30,6 +30,14 @@ namespace Core.Organization.Objects
         #endregion Constructors
         #region Methods: Overrides
 
+        public override bool Equals(object obj)
+        {
+            if (obj is BranchSet otherBranchSet)
+                return Branches.OrderBy(branch => branch).SequenceEqual(otherBranchSet.Branches.OrderBy(branch => branch));
+
+            return false;
+        }
+
         public override int GetHashCode()
         {
             var branchesIncluded = Branches.OrderBy(branch => branch).ToList();

@@ -52,10 +52,11 @@ namespace Core.Organization.Helpers
                 }
                 else
                 {
+                    var mostOccurences = mainBranchOccurrences.Max(keyValuePair => keyValuePair.Value);
                     var leastOccurrences = mainBranchOccurrences.Min(keyValuePair => keyValuePair.Value);
                     var leastOccurredMainBranches = mainBranchOccurrences.GetKeyWhereValue(occurrenceCount => occurrenceCount == leastOccurrences);
 
-                    IncreaseMainBranchWeights(branchSet, leastOccurredMainBranches);
+                    IncreaseMainBranchWeights(branchSet, leastOccurredMainBranches, mostOccurences - leastOccurrences);
 
                     selectedBranch = GetRandomMainBranch(branchSet, branches);
 
@@ -105,10 +106,10 @@ namespace Core.Organization.Helpers
                 mainBranchWeights[branch] = EInteger.Number.One;
         }
 
-        private void IncreaseMainBranchWeights(BranchSet branchSet, IEnumerable<EBranch> branches)
+        private void IncreaseMainBranchWeights(BranchSet branchSet, IEnumerable<EBranch> branches, int increment)
         {
             foreach (var branch in branches)
-                _mainBranchWeights[branchSet][branch] += branchSet.Branches.Count() - branches.Count();
+                _mainBranchWeights[branchSet][branch] += increment;
         }
 
         private EBranch GetRandomMainBranch(BranchSet branchSet, IEnumerable<EBranch> branches)
