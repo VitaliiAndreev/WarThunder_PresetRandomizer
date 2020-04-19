@@ -29,7 +29,7 @@ namespace Client.Wpf.Controls.Strategies
             SetSharedLeftPart(stringBuilder, vehicle);
 
             if (ShowPackTag(vehicle))
-                append(EWord.Pack);
+                append(GetLocalisedString(ELocalizationKey.Pack));
             else if (ShowGoldenEagleCost(vehicle))
                 append($"{vehicle.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
 

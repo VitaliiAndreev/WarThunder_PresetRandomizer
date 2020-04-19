@@ -1,6 +1,6 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Wpf.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using System.Text;
 
 namespace Client.Wpf.Controls.Strategies
@@ -23,7 +23,7 @@ namespace Client.Wpf.Controls.Strategies
             SetSharedLeftPart(stringBuilder, vehicle);
 
             if (ShowPackTag(vehicle))
-                append(EWord.Pack);
+                append(GetLocalisedString(ELocalizationKey.Pack));
 
             SetSharedRightPart(stringBuilder, gameMode, vehicle);
 

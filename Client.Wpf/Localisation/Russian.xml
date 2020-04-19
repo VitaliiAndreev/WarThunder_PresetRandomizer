@@ -30,6 +30,7 @@
   <Line key="Australia" value="Австралия"/>
   <Line key="Aviation" value="Авиация"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
+  <Line key="BattleRating" value="Боевой рейтинг"/>
   <Line key="BattleRatings" value="Боевые рейтинги"/>
   <Line key="Belgium" value="Бельгия"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>
@@ -101,16 +102,19 @@
   <Line key="Norway" value="Норвегия"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>
   <Line key="Ok" value="ОК"/>
+  <Line key="Pack" value="Набор"/>
   <Line key="OpenYouTubePlaylist" value="Открыть плейлист на YouTube (англоязычный)"/>
   <Line key="Philippines" value="Филиппины"/>
   <Line key="Poland" value="Польша"/>
   <Line key="Portugal" value="Португалия"/>
+  <Line key="Rank" value="Ранг"/>
   <Line key="Ready" value="Готово! Нажмите &quot;Нет&quot; в диалоговом окне."/>
   <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
+  <Line key="Reserve" value="Резерв"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
@@ -122,6 +126,7 @@
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="Spaa" value="ЗСУ"/>
+  <Line key="Starter" value="Подарок"/>
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
   <Line key="SubChaser" value="Морской охотник"/>

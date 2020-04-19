@@ -30,6 +30,7 @@
   <Line key="Australia" value="Australia"/>
   <Line key="Aviation" value="Aviation"/>
   <Line key="Barge" value="Barge"/>
+  <Line key="BattleRating" value="Battle Rating"/>
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="Belgium" value="Belgium"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
@@ -101,16 +102,19 @@
   <Line key="Norway" value="Norway"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
+  <Line key="Pack" value="Pack"/>
   <Line key="OpenYouTubePlaylist" value="Open YouTube playlist"/>
   <Line key="Philippines" value="Philippines"/>
   <Line key="Poland" value="Poland"/>
   <Line key="Portugal" value="Portugal"/>
+  <Line key="Rank" value="Rank"/>
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
+  <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
@@ -122,6 +126,7 @@
   <Line key="Simulator" value="Simulator Battles"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="Spaa" value="SPAA"/>
+  <Line key="Starter" value="Starter"/>
   <Line key="Status" value="Status:"/>
   <Line key="StrikeFighter" value="Strike Fighter"/>
   <Line key="SubChaser" value="Sub-chaser"/>

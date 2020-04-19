@@ -19,6 +19,7 @@
         public const string Australia = nameof(Australia);
         public const string Aviation = nameof(Aviation);
         public const string Barge = nameof(Barge);
+        public const string BattleRating = nameof(BattleRating);
         public const string BattleRatings = nameof(BattleRatings);
         public const string Belgium = nameof(Belgium);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
@@ -92,9 +93,11 @@
         public const string Norway = nameof(Norway);
         public const string NoVehiclesAvailableWithinSpecifiedParameters = nameof(NoVehiclesAvailableWithinSpecifiedParameters);
         public const string Ok = nameof(Ok);
+        public const string Pack = nameof(Pack);
         public const string Philippines = nameof(Philippines);
         public const string Poland = nameof(Poland);
         public const string Portugal = nameof(Portugal);
+        public const string Rank = nameof(Rank);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
@@ -102,6 +105,7 @@
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
+        public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
         public const string Scout = nameof(Scout);
@@ -112,6 +116,7 @@
         public const string Simulator = nameof(Simulator);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string Spaa = nameof(Spaa);
+        public const string Starter = nameof(Starter);
         public const string Status = nameof(Status);
         public const string StrikeFighter = nameof(StrikeFighter);
         public const string SubChaser = nameof(SubChaser);

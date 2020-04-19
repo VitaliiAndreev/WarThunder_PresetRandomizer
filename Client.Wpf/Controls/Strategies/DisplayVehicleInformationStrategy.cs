@@ -50,9 +50,9 @@ namespace Client.Wpf.Controls.Strategies
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
             if (ShowStarterGiftTag(vehicle))
-                append($"{EWord.Starter}{ECharacter.Space}");
+                append($"{GetLocalisedString(ELocalizationKey.Starter)}{ECharacter.Space}");
             else if (ShowReserveTag(vehicle))
-                append($"{EWord.Reserve}{ECharacter.Space}");
+                append($"{GetLocalisedString(ELocalizationKey.Reserve)}{ECharacter.Space}");
 
             if (ShowEyeIcon(vehicle))
                 append(ECharacter.Eye);
@@ -129,9 +129,9 @@ namespace Client.Wpf.Controls.Strategies
 
             append($"{GetLocalisedString(vehicle.Country)}");
             append($"{ESeparator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(EWord.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
+            append($"{GetLocalisedString(ELocalizationKey.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
             append($"{ESeparator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(EWord.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
+            append($"{GetLocalisedString(ELocalizationKey.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
 
             return stringBuilder.ToString();
         }
