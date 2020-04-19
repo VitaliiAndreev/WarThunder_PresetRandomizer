@@ -10,6 +10,7 @@ using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -24,6 +25,7 @@ namespace Client.Wpf.Helpers
         #region Fields
 
         private readonly IDictionary<string, BitmapSource> _vehicleIconBitmapSources;
+        private readonly IDictionary<string, BitmapSource> _vehiclePortraitBitmapSources;
 
         #endregion Fields
         #region Constructors
@@ -53,8 +55,9 @@ namespace Client.Wpf.Helpers
         ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
         {
             _vehicleIconBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
+            _vehiclePortraitBitmapSources = new ConcurrentDictionary<string, BitmapSource>();
 
-            ProcessVehicleImages = (vehicle) => GetIconBitmapSource(vehicle);
+            ProcessVehicleImages = (vehicle) => { GetIconBitmapSource(vehicle); GetPortraitBitmapSource(vehicle); };
         }
 
         #endregion Constructors
@@ -71,19 +74,25 @@ namespace Client.Wpf.Helpers
         #endregion Methods: Settings
         #region Methods: Working with Caches
 
-        public BitmapSource GetIconBitmapSource(IVehicle vehicle)
+        public BitmapSource GetBitmapSource(IDictionary<string, BitmapSource> cache, IVehicle vehicle, Func<IVehicle, byte[]> getImageBytes)
         {
-            if (_vehicleIconBitmapSources.TryGetValue(vehicle.GaijinId, out var cachedSource))
+            if (!(cache is null) && cache.TryGetValue(vehicle.GaijinId, out var cachedSource))
                 return cachedSource;
 
-            var bitmapSource = vehicle.Images.Icon.ToBitmapSource(ImageFormat.Png);
+            var bitmapSource = getImageBytes(vehicle).ToBitmapSource();
 
             bitmapSource.Freeze();
 
-            _vehicleIconBitmapSources.Add(vehicle.GaijinId, bitmapSource);
+            cache?.Add(vehicle.GaijinId, bitmapSource);
 
             return bitmapSource;
         }
+
+        public BitmapSource GetIconBitmapSource(IVehicle vehicle) =>
+            GetBitmapSource(_vehicleIconBitmapSources, vehicle, anyVehicle => anyVehicle.Images.IconBytes);
+
+        public BitmapSource GetPortraitBitmapSource(IVehicle vehicle) =>
+            GetBitmapSource(_vehiclePortraitBitmapSources, vehicle, anyVehicle => anyVehicle.Images.PortraitBytes);
 
         #endregion Methods: Working with Caches
     }

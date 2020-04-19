@@ -4,8 +4,6 @@ using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
-using System.Drawing;
-using System.IO;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -18,7 +16,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        [Property()] public virtual Bitmap Icon { get; protected set; }
+        [Property()] public virtual byte[] IconBytes { get; protected set; }
+
+        [Property()] public virtual byte[] PortraitBytes { get; protected set; }
 
         #endregion Persistent Properties
         #region Association Properties
@@ -61,9 +61,14 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Constructors
         #region Methods: Initialisation
 
-        public virtual void SetIcon(Bitmap image)
+        public virtual void SetIcon(byte[] bytes)
         {
-            Icon = image;
+            IconBytes = bytes;
+        }
+
+        public virtual void SetPortrait(byte[] bytes)
+        {
+            PortraitBytes = bytes;
         }
 
         #endregion Methods: Initialisation

@@ -1,6 +1,4 @@
 ﻿using Core.DataBase.Objects.Interfaces;
-using System.Drawing;
-using System.IO;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
@@ -8,12 +6,16 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     {
         #region Persistent Properties
 
-        Bitmap Icon { get; }
+        byte[] IconBytes { get; }
+
+        byte[] PortraitBytes { get; }
 
         #endregion Persistent Properties
         #region Methods: Initialisation
 
-        void SetIcon(Bitmap image);
+        void SetIcon(byte[] bytes);
+
+        void SetPortrait(byte[] bytes);
 
         #endregion Methods: Initialisation
     }

@@ -207,6 +207,12 @@
             <Setter Property="Height" Value="16"/>
         </Style>
 
+        <Style TargetType="Image" x:Key="Image312x200px" BasedOn="{StaticResource FlagIcon}">
+            <Setter Property="Width" Value="312"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="Stretch" Value="Fill"/>
+        </Style>
+
         <!-- t:NationToggleControl -->
 
         <Style TargetType="controls:NationToggleControl">
@@ -315,6 +321,10 @@
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered12px" BasedOn="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered}">
+            <Setter Property="FontSize" Value="12"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeVerticallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">

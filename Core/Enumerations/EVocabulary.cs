@@ -43,6 +43,8 @@
         protected const string _aft = _a + _f + _t;
         protected const string _after = _aft + _er;
         protected const string _age = _ag + _e;
+        protected const string _air = _a + _i + _r;
+        protected const string _aircraft = _air + _craft;
         protected const string _All = _A + _ll;
         protected const string _all = _a + _ll;
         protected const string _Already = _A + _lready;
@@ -161,6 +163,7 @@
         protected const string _count = _co + _un + _t;
         protected const string _country = _count + _ry;
         protected const string _countries = _count + _ri + _es;
+        protected const string _craft = _c + _raft;
         protected const string _create = "create";
         protected const string _created = _create + _d;
         protected const string _Creating = "Creat" + _ing;
@@ -307,6 +310,8 @@
         protected const string _Helpers = _Helper + _s;
         protected const string _helpers = _h + "el" + _per + _s;
         protected const string _here = _h + "ere";
+        protected const string _hi = _h + _i;
+        protected const string _hip = _hi + _p;
         protected const string _horizontal = _h + "orizontal";
         protected const string _how = _h + _ow;
         protected const string _hun = _h + _un;
@@ -327,7 +332,8 @@
         protected const string _I = "I";
         protected const string _icons = _i + _con + _s;
         protected const string _ill = _i + _ll;
-        protected const string _images = _i + _mage + _s;
+        protected const string _image = _i + _mage;
+        protected const string _images = _image + _s;
         protected const string _implementation = _i + "mplement" + _at + _ion;
         protected const string _implemented = _i + "mplement" + _ed;
         protected const string _In = _I + _n;
@@ -516,6 +522,8 @@
         protected const string _Plea = _P + _l + _ea;
         protected const string _Please = _Plea + _se;
         protected const string _port = "port";
+        protected const string _portrait = _port + _r + _a + _it;
+        protected const string _portraits = _portrait + _s;
         protected const string _prepared = "prepare" + _d;
         protected const string _Preparing = _Pre + _par + _ing;
         protected const string _Preset = _Pre + _set;
@@ -546,6 +554,7 @@
         private const string _ri = _r + _i;
         private const string _ry = _r + _y;
 
+        protected const string _raft = _r + _aft;
         protected const string _ranch = _r + _an + _ch;
         protected const string _Randomiser = _R + _and + _om + _ise + _r;
         protected const string _rank = _r + "ank";
@@ -610,6 +619,8 @@
         protected const string _Settings = _S + _ett + _ing + _s;
         protected const string _settings = _set + _t + _ing + _s;
         protected const string _Several = _S + "everal";
+        protected const string _ship = _s + _hip;
+        protected const string _ships = _ship + _s;
         protected const string _Showing = _S + _how + _ing;
         protected const string _Shown = _S + _how + _n;
         protected const string _shown = _s + _how + _n;
@@ -657,6 +668,9 @@
         protected const string _Tag = _T + _ag;
         protected const string _tag = _t + _ag;
         protected const string _tags = _tag + _s;
+        protected const string _tan = _t + _an;
+        protected const string _tank = _tan + _k;
+        protected const string _tanks = _tank + _s;
         protected const string _tart = _t + _art;
         protected const string _ten = _t + _e + _n;
         protected const string _test = _t + _est;

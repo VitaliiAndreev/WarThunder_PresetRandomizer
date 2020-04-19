@@ -27,6 +27,7 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -390,6 +391,13 @@ namespace Core.Organization.Helpers
             return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
         }
 
+        internal DirectoryInfo Unpack(string packedFileName, string warThunderSubdirectory = "", string outputSubdirectory = "")
+        {
+            var sourceFile = _fileManager.GetFileInfo(Path.Combine(Settings.WarThunderLocation, warThunderSubdirectory), packedFileName);
+
+            return new DirectoryInfo(Path.Combine(_unpacker.Unpack(sourceFile), outputSubdirectory));
+        }
+
         /// <summary> Unpacks a file with the <paramref name="packedFileName"/> and gets files of the <paramref name="fileType"/> from its contents, doing conversions if necessary. </summary>
         /// <param name="fileType"> The type of files to search for after unpacking. </param>
         /// <param name="packedFileName"> The name of the packed file. </param>
@@ -398,25 +406,31 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         internal IEnumerable<FileInfo> GetFiles(string fileType, string packedFileName, string warThunderSubdirectory = "", string processedSubdirectory = "")
         {
-            var sourceFile = _fileManager.GetFileInfo(Path.Combine(Settings.WarThunderLocation, warThunderSubdirectory), packedFileName);
-            var outputDirectory = new DirectoryInfo(Path.Combine(_unpacker.Unpack(sourceFile), processedSubdirectory));
+            var outputDirectory = Unpack(packedFileName, warThunderSubdirectory, processedSubdirectory);
+
+            return GetFiles(fileType, outputDirectory);
+        }
+
+        internal IEnumerable<FileInfo> GetFiles(string fileType, DirectoryInfo outputDirectory, string subdirectory = "")
+        {
+            var processedDirectory = new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory));
 
             switch (fileType)
             {
                 case EFileExtension.Blkx:
                 {
-                    _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
+                    _unpacker.Unpack(processedDirectory, ETool.BlkUnpacker);
                     break;
                 }
                 case EFileExtension.Png:
                 {
-                    _unpacker.Unpack(outputDirectory, ETool.DdsxUnpacker);
-                    _converter.ConvertDdsToPng(outputDirectory, SearchOption.AllDirectories);
+                    _unpacker.Unpack(processedDirectory, ETool.DdsxUnpacker);
+                    _converter.ConvertDdsToPng(processedDirectory, SearchOption.AllDirectories);
                     break;
                 }
             }
 
-            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
+            return processedDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
         }
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns BLK files it contains converted into BLKX files. </summary>
@@ -448,6 +462,31 @@ namespace Core.Organization.Helpers
             return readAlreadyUnpackedFiles
                 ? GetFilesWithoutProcessing(EFileExtension.Png, sourceFileName, processedSubdirectory)
                 : GetFiles(EFileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, processedSubdirectory);
+        }
+
+        internal IEnumerable<FileInfo> GetVehiclePortraits(bool readAlreadyUnpackedFiles)
+        {
+            var sourceFileName = EFile.WarThunderUi.Textures;
+            var outputDirectory = readAlreadyUnpackedFiles
+                ? new DirectoryInfo(Path.Combine(Settings.TempLocation, $"{sourceFileName}_u"))
+                : Unpack(sourceFileName, EDirectory.WarThunder.Subdirectory.Ui);
+
+            var vehiclePortraitFiles = new List<FileInfo>();
+            var processedSubdirectories = new List<string>
+            {
+                EDirectory.WarThunder.Archive.TexWromfsBin.Aircraft,
+                EDirectory.WarThunder.Archive.TexWromfsBin.Ships,
+                EDirectory.WarThunder.Archive.TexWromfsBin.Tanks,
+            };
+
+            IEnumerable<FileInfo> getPortraitFiles(string subdirectory) => readAlreadyUnpackedFiles
+                ? new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory)).GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Png}", SearchOption.AllDirectories)
+                : GetFiles(EFileExtension.Png, outputDirectory, subdirectory);
+
+            foreach (var processedSubdirectory in processedSubdirectories)
+                vehiclePortraitFiles.AddRange(getPortraitFiles(processedSubdirectory));
+
+            return vehiclePortraitFiles;
         }
 
         /// <summary> Reads a file with the specified name from the given collection of files. </summary>
@@ -488,8 +527,8 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.DatabaseInitialized);
         }
-
-        private bool AttachVehicleIcon(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles)
+        
+        private bool AttachVehicleImage(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles, Action<IVehicle, byte[]> setImage)
         {
             var vehicleGaijinId = vehicle.GaijinId.ToLower();
             var footballGaijinIdPart = "_football";
@@ -509,7 +548,7 @@ namespace Core.Organization.Helpers
             {
                 if (vehicleIconFiles.TryGetValue(gaijinId, out var iconFile))
                 {
-                    vehicle.SetIcon(_fileReader.ReadImage(iconFile));
+                    setImage(vehicle, File.ReadAllBytes(iconFile.FullName));
                     return true;
                 }
                 return false;
@@ -582,12 +621,22 @@ namespace Core.Organization.Helpers
             ;
         }
 
-        private void InitialiseDataRepositoryCore()
+        private Task InitialiseDataRepositoryCore()
         {
             if (_generateDatabase)
-                new Task(CreateBlankDataBase).Start();
+            {
+                var task = new Task(CreateBlankDataBase);
+
+                task.Start();
+
+                return task;
+            }
             else
+            {
                 _dataRepository = _dataRepositoryFactory.Create(EDataRepository.InMemory);
+
+                return null;
+            }
         }
 
         private void FillDataRepository()
@@ -603,7 +652,7 @@ namespace Core.Organization.Helpers
         /// <param name="readAlreadyUnpackedFiles"> Whether to unpack game files. </param>
         private void UnpackDeserialisePersist(bool readAlreadyUnpackedFiles = false)
         {
-            InitialiseDataRepositoryCore();
+            var initialiseDataRepositoryTask = InitialiseDataRepositoryCore();
 
             if (!_readPreviouslyUnpackedJson)
                 LogInfo(EOrganizationLogMessage.PreparingGameFiles);
@@ -640,7 +689,7 @@ namespace Core.Organization.Helpers
             var getCsvFilesTask = new Task<IEnumerable<FileInfo>>(getCsvFiles);
             getCsvFilesTask.Start();
 
-            IDictionary<string, FileInfo> getVehicleIconFiles()
+            IDictionary<string, FileInfo> getVehicleIcons()
             {
                 if (!_readPreviouslyUnpackedJson)
                     LogDebug(EOrganizationLogMessage.PreparingVehicleIcons);
@@ -652,11 +701,27 @@ namespace Core.Organization.Helpers
 
                 return icons;
             }
-            var getVehicleIconFilesTask = new Task<IDictionary<string, FileInfo>>(getVehicleIconFiles);
-            getVehicleIconFilesTask.Start();
+            var getVehicleIconsTask = new Task<IDictionary<string, FileInfo>>(getVehicleIcons);
+            getVehicleIconsTask.Start();
+
+            IDictionary<string, FileInfo> getVehiclePortraitFiles()
+            {
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.PreparingVehiclePortraits);
+
+                var vehiclePortraits = GetVehiclePortraits(readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+
+                if (!_readPreviouslyUnpackedJson)
+                    LogDebug(EOrganizationLogMessage.VehiclePortraitsPrepared);
+
+                return vehiclePortraits;
+            }
+            var getVehiclePortraitFilesTask = new Task<IDictionary<string, FileInfo>>(getVehiclePortraitFiles);
+            getVehiclePortraitFilesTask.Start();
 
             #endregion Start Unpacking Tasks
 
+            initialiseDataRepositoryTask?.Wait();
             getBlkxFilesTask.Wait();
             getCsvFilesTask.Wait();
 
@@ -664,7 +729,7 @@ namespace Core.Organization.Helpers
             var csvFiles = getCsvFilesTask.Result;
 
             if (!_readPreviouslyUnpackedJson)
-                LogInfo(EOrganizationLogMessage.GameFilesPrepared);
+                LogInfo(EOrganizationLogMessage.GameDataFilesPrepared);
 
             LogInfo(EOrganizationLogMessage.DeserialisingGameFiles);
 
@@ -715,12 +780,10 @@ namespace Core.Organization.Helpers
             #endregion Start Deserialisation Tasks
 
             getVehiclesTask.Wait();
-            getVehicleIconFilesTask.Wait();
             getAdditionalVehicleDataTask.Wait();
             getResearchTreeDataTask.Wait();
 
             var vehicles = getVehiclesTask.Result;
-            var vehicleIconFiles = getVehicleIconFilesTask.Result;
             var additionalVehicleData = getAdditionalVehicleDataTask.Result;
             var researchTreeData = getResearchTreeDataTask.Result;
 
@@ -740,15 +803,25 @@ namespace Core.Organization.Helpers
 
             #endregion Start Deserialisation Tasks
 
-            var initialiseVehicleTasks = new List<Task>();
-            var processVehicleImagesTasks = new List<Task>();
+            getVehicleIconsTask.Wait();
+            getVehiclePortraitFilesTask.Wait();
+
+            var vehicleIconFiles = getVehicleIconsTask.Result;
+            var vehiclePortaitFiles = getVehiclePortraitFilesTask.Result;
+
+            if (!_readPreviouslyUnpackedJson)
+                LogInfo(EOrganizationLogMessage.GameImageFilesPrepared);
 
             LogDebug(EOrganizationLogMessage.InitialisingVehicles);
             LogDebug(EOrganizationLogMessage.ProcessingVehicleImages);
 
+            var initialiseVehicleTasks = new List<Task>();
+            var processVehicleImagesTasks = new List<Task>();
+
             foreach (var vehicle in vehicles.Values)
             {
-                AttachVehicleIcon(vehicle, vehicleIconFiles);
+                AttachVehicleImage(vehicle, vehicleIconFiles, (vehicle, bytes) => vehicle.SetIcon(bytes));
+                AttachVehicleImage(vehicle, vehiclePortaitFiles, (vehicle, bytes) => vehicle.SetPortrait(bytes));
 
                 #region Start Initialisation Tasks
 
@@ -775,8 +848,8 @@ namespace Core.Organization.Helpers
             initialiseVehicleTasks.ForEach(task => task.Wait());
             deserializeVehicleLocalizationTask.Wait();
 
-            LogInfo(EOrganizationLogMessage.DeserialisationComplete);
             LogDebug(EOrganizationLogMessage.VehiclesInitialised);
+            LogInfo(EOrganizationLogMessage.DeserialisationComplete);
 
             _cache.AddRange(_dataRepository.NewObjects);
 

@@ -153,7 +153,9 @@ namespace Core.Json.Helpers
                                     throw new NotImplementedException();
                             }
                             else
+                            {
                                 rebuiltJsonObject.Add(new JProperty(jsonProperty.Key, jsonProperty.Value is JArray ? jsonProperty.Value : new JArray(jsonProperty.Value)));
+                            }
                         }
                         else
                         {
@@ -162,7 +164,9 @@ namespace Core.Json.Helpers
                     }
                 }
                 else
+                {
                     throw new NotImplementedException();
+                }
             }
 
             return rebuiltJsonObject;

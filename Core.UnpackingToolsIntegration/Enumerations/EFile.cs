@@ -34,6 +34,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         public class WarThunderUi
         {
             public const string Icons = "atlases" + _vromfsBin;
+            public const string Textures = "tex" + _vromfsBin;
         }
         public class CharVromfs
         {

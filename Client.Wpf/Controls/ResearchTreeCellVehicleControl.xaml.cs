@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -84,6 +83,7 @@ namespace Client.Wpf.Controls
 
             IsToggled = isToggled;
 
+            Initialise();
             ApplyIdleStyle();
         }
 
@@ -115,6 +115,39 @@ namespace Client.Wpf.Controls
             HandleClick();
 
         #endregion Methods: Event Handlers
+        #region Methods: Initialisation
+
+        private void Initialise()
+        {
+            if (_useCountryFlag && _countryFlag.Source is null)
+            {
+                _countryFlag.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[Vehicle.Country]) as ImageSource;
+
+                // The size and margin are being set here to avoid breaking white-space when there is no source provided.
+                _countryFlag.SetSize(14);
+                _countryFlag.Margin = new Thickness(5, 0, 0, 0);
+            }
+
+            if (Vehicle.Images?.IconBytes is byte[])
+            {
+                _innerGrid.Background = new ImageBrush(ApplicationHelpers.Manager.GetIconBitmapSource(Vehicle))
+                {
+                    Stretch = Stretch.Uniform,
+                    AlignmentX = AlignmentX.Left,
+                    AlignmentY = AlignmentY.Center,
+                    Opacity = EDouble.Number.PointNine,
+                };
+            }
+
+            _fullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
+
+            if (Vehicle.Images?.PortraitBytes is byte[])
+            {
+                _portrait.Source = ApplicationHelpers.Manager.GetPortraitBitmapSource(Vehicle);
+            }
+        }
+
+        #endregion Methods: Initialisation
 
         /// <summary> Raises the <see cref="ClickEvent"/> for the specified toggle button. </summary>
         public void RaiseClickEvent() =>
@@ -137,26 +170,6 @@ namespace Client.Wpf.Controls
         public void DisplayVehicleInformation(EGameMode gameMode)
         {
             _informationTextBlock.Text = _displayVehicleInformationStrategy.GetFormattedVehicleInformation(gameMode, Vehicle);
-
-            if (_useCountryFlag && _countryFlag.Source is null)
-            {
-                _countryFlag.Source = Application.Current.MainWindow.FindResource(EReference.CountryIconKeys[Vehicle.Country]) as ImageSource;
-
-                // The size and margin are being set here to avoid breaking white-space when there is no source provided.
-                _countryFlag.SetSize(14);
-                _countryFlag.Margin = new Thickness(5, 0, 0, 0);
-            }
-
-            if (Vehicle.Images?.Icon is Bitmap)
-            {
-                _innerGrid.Background = new ImageBrush(ApplicationHelpers.Manager.GetIconBitmapSource(Vehicle))
-                {
-                    Stretch = Stretch.Uniform,
-                    AlignmentX = AlignmentX.Left,
-                    AlignmentY = AlignmentY.Center,
-                    Opacity = EDouble.Number.PointNine,
-                };
-            }
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>

@@ -12,6 +12,12 @@ namespace Core.UnpackingToolsIntegration.Enumerations
                 {
                     public const string UnitIcons = _units;
                 }
+                public class TexWromfsBin
+                {
+                    public const string Aircraft = _aircraft + _s;
+                    public const string Ships = _ships;
+                    public const string Tanks = _tanks;
+                }
             }
             public class Subdirectory
             {

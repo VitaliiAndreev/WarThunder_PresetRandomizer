@@ -11,6 +11,8 @@ namespace Client.Wpf.Helpers.Interfaces
 
         BitmapSource GetIconBitmapSource(IVehicle vehicle);
 
+        BitmapSource GetPortraitBitmapSource(IVehicle vehicle);
+
         #endregion Methods: Working with Caches
     }
 }

@@ -13,6 +13,12 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
+        public static readonly string PreparingGameDataFiles = $"{_Preparing} {_game} {_data} {_files}.";
+        public static readonly string GameDataFilesPrepared = $"{_Game} {_data} {_files} {_prepared}.";
+
+        public static readonly string PreparingGameImageFiles = $"{_Preparing} {_game} {_image} {_files}.";
+        public static readonly string GameImageFilesPrepared = $"{_Game} {_image} {_files} {_prepared}.";
+
         public static readonly string PreparingBlkxFiles = $"{_Preparing} {EFileExtension.Blkx.ToUpper()} {_files}.";
         public static readonly string BlkxFilesPrepared = $"{EFileExtension.Blkx.ToUpper()} {_files} {_prepared}.";
 
@@ -21,6 +27,9 @@ namespace Core.Organization.Enumerations.Logger
 
         public static readonly string PreparingVehicleIcons = $"{_Preparing} {_vehicle} {_icons} {_files}.";
         public static readonly string VehicleIconsPrepared = $"{_Vehicle} {_icons} {_prepared}.";
+
+        public static readonly string PreparingVehiclePortraits = $"{_Preparing} {_vehicle} {_portraits} {_files}.";
+        public static readonly string VehiclePortraitsPrepared = $"{_Vehicle} {_portraits} {_prepared}.";
 
         public static readonly string DeserialisingMainVehicleData = $"{_Deserialising} {_main} {_vehicle} {_data}.";
         public static readonly string MainVehicleDataDeserialised = $"{_Main} {_vehicle} {_data} {_deserialised}.";
