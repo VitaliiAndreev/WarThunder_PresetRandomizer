@@ -355,6 +355,15 @@ namespace Core.Organization.Helpers
             if (_generateDatabase)
                 CheckForExistingDatabase();
 
+            if (_startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadJson, EStartup.ReadJson }) || _startupConfiguration == EStartup.CreateDatabaseReadDatabase && _generateNewDatabase)
+            {
+                LogInfo(EOrganizationLogMessage.ClearingTempDirectory);
+                {
+                    _fileManager.CleanUpTempDirectory();
+                }
+                LogInfo(EOrganizationLogMessage.TempDirectoryCleared);
+            }
+
             if (_readOnlyJson)
                 InitialiseDatabaselessDataRepository();
             else
@@ -364,15 +373,6 @@ namespace Core.Organization.Helpers
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public void CacheData()
         {
-            if (_startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadDatabase, EStartup.CreateDatabaseReadJson, EStartup.ReadJson }))
-            {
-                LogInfo(EOrganizationLogMessage.ClearingTempDirectory);
-                {
-                    _fileManager.CleanUpTempDirectory();
-                }
-                LogInfo(EOrganizationLogMessage.TempDirectoryCleared);
-            }
-
             InitialiseDataRepository();
 
             LogInfo(EOrganizationLogMessage.CachingObjects);
