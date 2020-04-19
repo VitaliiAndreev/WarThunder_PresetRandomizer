@@ -58,9 +58,22 @@ namespace Core.Csv.WarThunder.Helpers
                 {
                     var vehicleGaijinId = recordGaijinId.SkipLast(shopNameSuffix.Count());
 
-                    var fullNameRecordIndex = lineIndex - EInteger.Number.Three;
-                    var shortNameRecordIndex = lineIndex - EInteger.Number.Two;
-                    var classNameRecordIndex = lineIndex - EInteger.Number.One;
+                    var fullNameRecordIndex = default(int);
+                    var shortNameRecordIndex = default(int);
+                    var classNameRecordIndex = default(int);
+
+                    if (sortedCsvRecords[lineIndex - EInteger.Number.Two].First().Contains("_1st_") && sortedCsvRecords[lineIndex - EInteger.Number.Two].First().Contains(shopNameSuffix))
+                    {
+                        fullNameRecordIndex = lineIndex - EInteger.Number.Seven;
+                        shortNameRecordIndex = lineIndex - EInteger.Number.Six;
+                        classNameRecordIndex = lineIndex - EInteger.Number.One;
+                    }
+                    else
+                    {
+                        fullNameRecordIndex = lineIndex - EInteger.Number.Three;
+                        shortNameRecordIndex = lineIndex - EInteger.Number.Two;
+                        classNameRecordIndex = lineIndex - EInteger.Number.One;
+                    }
 
                     var shopNameRecord = record;
                     var fullNameRecord = sortedCsvRecords[fullNameRecordIndex];
