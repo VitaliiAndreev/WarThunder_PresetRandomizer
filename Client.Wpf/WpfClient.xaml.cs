@@ -11,6 +11,7 @@ using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -58,7 +59,7 @@ namespace Client.Wpf
         {
             try
             {
-                ProcessStartupArguments(eventArguments.Args);
+                ProcessStartupArguments(AdaptStartupArguments(eventArguments.Args));
 
                 Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
@@ -92,8 +93,8 @@ namespace Client.Wpf
             }
             catch (Exception exception)
             {
-                ShowErrorMessage(exception);
                 Log?.Fatal(ECoreLogMessage.AnErrorHasOccurred, exception);
+                ShowErrorMessage(exception);
                 Environment.Exit(1);
             }
         }
@@ -119,6 +120,57 @@ namespace Client.Wpf
         }
 
         #endregion Constuctors
+
+        /// <summary> Interfaces new startup arguments with old ones (to avoid regress during code adjustments). </summary>
+        /// <param name="newStandardStartupArguments"> Startup arguments following the new standard. </param>
+        private string[] AdaptStartupArguments(string[] newStandardStartupArguments)
+        {
+            var tip = "consult BAT files titled \"Mode 1\" through \"Mode 5\" for examples, or just execute those files directly";
+            var oldStandardStartupArguments = new List<string>(); // -r and -w, i.e. read from and write to JSON, respectively, are considered on by default.
+            var legalArguments = new List<string>
+            {
+                "-!w",
+                "-!r",
+                "-dbw",
+                "-dbr",
+            };
+
+            // Mode 1. New default: reading from JSON without generating a database.
+            if (newStandardStartupArguments.IsEmpty())
+            {
+                oldStandardStartupArguments.Add("-j");
+                oldStandardStartupArguments.Add("-!d");
+            }
+            else if (newStandardStartupArguments.Except(legalArguments).Any())
+            {
+                throw new ArgumentException($"Illegal arguments found, {tip}.");
+            }
+            // Mode 4. Not writing or reading from JSON while writing and reading from a database, i.e. old default.
+            else if (new string[] { "-!w", "-!r", "-dbr", "-dbw" } is string[] databaseMode && newStandardStartupArguments.Intersect(databaseMode).Distinct().Count() == databaseMode.Count())
+            {
+                oldStandardStartupArguments.Clear();
+            }
+            // Mode 5. Not writing or reading from JSON while reading from database.
+            else if (new string[] { "-!w", "-!r", "-dbr" } is string[] databaseReadMode && newStandardStartupArguments.Intersect(databaseReadMode).Distinct().Count() == databaseReadMode.Count())
+            {
+                oldStandardStartupArguments.Add("-!d");
+            }
+            // Mode 2. Not writing JSON, i.e. reading from already unpacked files.
+            else if (new string[] { "-!w" } is string[] readMode && newStandardStartupArguments.Intersect(readMode).Distinct().Count() == readMode.Count())
+            {
+                oldStandardStartupArguments.Add("-!n");
+            }
+            // Mode 3. Reading from JSON and creating a database.
+            else if (new string[] { "-dbw" } is string[] databaseWriteMode && newStandardStartupArguments.Intersect(databaseWriteMode).Distinct().Count() == databaseWriteMode.Count())
+            {
+                oldStandardStartupArguments.Add("-j");
+            }
+            else // Other combinations are considered illegal.
+            {
+                throw new ArgumentException($"Argument combination is illegal, {tip}.");
+            }
+            return oldStandardStartupArguments.ToArray();
+        }
 
         /// <summary> Processes startup arguments. </summary>
         /// <param name="startupArguments"> Startup arguments </param>
