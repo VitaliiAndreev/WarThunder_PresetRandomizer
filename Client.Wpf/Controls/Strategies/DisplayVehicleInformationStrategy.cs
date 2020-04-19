@@ -111,6 +111,9 @@ namespace Client.Wpf.Controls.Strategies
 
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
+            if (ShowBinocularsIcon(vehicle))
+                append($"{EGaijinCharacter.Binoculars}{ECharacter.Space}");
+
             append($"{GetClassIcon(vehicle)}{ECharacter.Space}");
             append($"{GetClass(vehicle)}{ECharacter.Space}");
 
