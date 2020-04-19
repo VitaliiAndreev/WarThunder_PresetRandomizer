@@ -31,7 +31,22 @@ namespace Core.Csv.WarThunder.Helpers
         /// <param name="csvRecords"> The indexed collection of CSV records to deserialize. </param>
         public void DeserializeVehicleLocalization(IDictionary<string, IVehicle> vehicles, IList<IList<string>> csvRecords)
         {
-            var sortedCsvRecords = csvRecords.Skip(EInteger.Number.One).OrderBy(record => record.First()).ToList();
+            var gaijinIdPartsToSkip = new List<string>
+            {
+                "_football_",
+                "_nw_",
+                "_race_",
+                "_space_suit_",
+                "_tutorial_",
+            };
+
+            var sortedCsvRecords = csvRecords
+                .Skip(EInteger.Number.One)
+                .Where(record => !record.First().ContainsAny(gaijinIdPartsToSkip))
+                .AsParallel()
+                .ToList()
+                .OrderBy(record => record.First())
+                .ToList();
 
             for (var lineIndex = EInteger.Number.One; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
             {
