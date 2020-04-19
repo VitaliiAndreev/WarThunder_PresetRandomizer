@@ -469,16 +469,16 @@
     <Resource Include="Resources\IconSweets 2 by Yummygum\inbox_4.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\recycle.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\preferences_gear_5_single.png" />
-    <Resource Include="Legal\IconSweets 2 by Yummygum.txt">
+    <Content Include="Legal\IconSweets 2 by Yummygum.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Legal\DDS Reader MIT Licence %28no NuGet is available%29.txt">
+    <Content Include="Legal\DDS Reader MIT Licence %28no NuGet is available%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="Localisation\Russian.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -575,9 +575,9 @@
     <Resource Include="Resources\icon.ico" />
     <Resource Include="Resources\icon.png" />
     <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\US.png" />
-    <Resource Include="Legal\Stripe Flag Set by Benjamin De Cock.txt">
+    <Content Include="Legal\Stripe Flag Set by Benjamin De Cock.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
