@@ -581,6 +581,7 @@
         protected const string _required = _re + "quire" + _d;
         protected const string _Research = _Re + _search;
         protected const string _research = _re + _search;
+        protected const string _Reserve = _Re + _serve;
         protected const string _restart = _re + _start;
         protected const string _returned = _re + "turn" + _ed;
         protected const string _rite = _r + _i + _t + _e;
@@ -613,6 +614,7 @@
         protected const string _serial = _s + _erial;
         protected const string _serialized = _serial + _ize + _d;
         protected const string _Serializing = _Serial + "iz" + _ing;
+        protected const string _serve = _se + _r + _ve;
         protected const string _Session = _S + _ess + _ion;
         protected const string _session = _s + _ess + _ion;
         protected const string _set = _s + _e + _t;
@@ -640,6 +642,7 @@
         protected const string _standardized = _s + "tandardize" + _d;
         protected const string _start = _s + _tart;
         protected const string _Started = _S + _tart + _ed;
+        protected const string _Starter = _S + _tart + _er;
         protected const string _starts = _s + _tart + _s;
         protected const string _Stream = _S + _tre + _am;
         protected const string _stream = _s + _tre + _am;
@@ -731,7 +734,8 @@
 
         private const string _V = "V";
         private const string _v = "v";
-        private const string _vert = _v + _e + _r + _t;
+        private const string _ve = _v + _e;
+        private const string _vert = _ve + _r + _t;
 
         protected const string _valid = "valid";
         protected const string _Value = "Value";

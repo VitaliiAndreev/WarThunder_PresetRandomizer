@@ -106,6 +106,7 @@
         public static string Rating => _Rating;
         public static string Reader => _Reader;
         public static string Repository => _Repository;
+        public static string Reserve => _Reserve;
 
         #endregion R
         #region S
@@ -113,6 +114,7 @@
         public static string Schema => _Schema;
         public static string Session => _Session;
         public static string Settings => _Settings;
+        public static string Starter => _Starter;
         public static string Style => _Style;
 
         #endregion S
