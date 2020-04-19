@@ -27,7 +27,6 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -161,9 +160,6 @@ namespace Core.Organization.Helpers
             _settingsManager = settingsManager;
             _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
             LoadSettings();
-
-            if (_startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadDatabase, EStartup.CreateDatabaseReadJson, EStartup.ReadJson }))
-                _fileManager.CleanUpTempDirectory();
 
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
@@ -368,6 +364,15 @@ namespace Core.Organization.Helpers
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public void CacheData()
         {
+            if (_startupConfiguration.IsIn(new List<EStartup> { EStartup.CreateDatabaseReadDatabase, EStartup.CreateDatabaseReadJson, EStartup.ReadJson }))
+            {
+                LogInfo(EOrganizationLogMessage.ClearingTempDirectory);
+                {
+                    _fileManager.CleanUpTempDirectory();
+                }
+                LogInfo(EOrganizationLogMessage.TempDirectoryCleared);
+            }
+
             InitialiseDataRepository();
 
             LogInfo(EOrganizationLogMessage.CachingObjects);

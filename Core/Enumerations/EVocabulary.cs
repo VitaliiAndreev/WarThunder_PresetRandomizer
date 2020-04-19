@@ -128,6 +128,8 @@
         protected const string _classes = _class + _es;
         protected const string _clean = "clean";
         protected const string _cleanup = _clean + "-up";
+        protected const string _cleared = _c + _le + _ar + _ed;
+        protected const string _Clearing = _C + _le + _ar + _ing;
         protected const string _Client = "Client";
         protected const string _client = "client";
         protected const string _Close = "Close";
@@ -676,6 +678,8 @@
         protected const string _tank = _tan + _k;
         protected const string _tanks = _tank + _s;
         protected const string _tart = _t + _art;
+        protected const string _Temp = _T + _em + _p;
+        protected const string _temp = _t + _em + _p;
         protected const string _ten = _t + _e + _n;
         protected const string _test = _t + _est;
         protected const string _Tests = _T + _est + _s;

@@ -10,6 +10,9 @@ namespace Core.Organization.Enumerations.Logger
         private static readonly string _noVehicles = $"{_No} {_vehicles}";
         private static readonly string _noVehiclesAvailable = $"{_noVehicles} {_available}";
 
+        public static readonly string ClearingTempDirectory = $"{_Clearing} {_temp} {_folder}.";
+        public static readonly string TempDirectoryCleared = $"{_Temp} {_folder} {_cleared}.";
+
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
