@@ -28,7 +28,7 @@
   <Line key="Attacker" value="Штурмовик"/>
   <Line key="AttackHelicopter" value="Ударный вертолёт"/>
   <Line key="Australia" value="Австралия"/>
-  <Line key="AvailableInStorePacks" value="Продаётся в наборе"/>
+  <Line key="AvailableInStorePacks" value="Продаётся в магазине"/>
   <Line key="Aviation" value="Авиация"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
   <Line key="BattleRating" value="Боевой рейтинг"/>

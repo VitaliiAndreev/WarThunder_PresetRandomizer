@@ -125,6 +125,8 @@ namespace Client.Wpf
         /// <param name="newStandardStartupArguments"> Startup arguments following the new standard. </param>
         private string[] AdaptStartupArguments(string[] newStandardStartupArguments)
         {
+            StartupArguments = newStandardStartupArguments.StringJoin(ESeparator.Space);
+
             var tip = "consult BAT files titled \"Mode 1\" through \"Mode 5\" for examples, or just execute those files directly";
             var oldStandardStartupArguments = new List<string>(); // -r and -w, i.e. read from and write to JSON, respectively, are considered on by default.
             var legalArguments = new List<string>
@@ -176,8 +178,6 @@ namespace Client.Wpf
         /// <param name="startupArguments"> Startup arguments </param>
         private void ProcessStartupArguments(string[] startupArguments)
         {
-            StartupArguments = startupArguments.StringJoin(ESeparator.Space);
-
             _generateDatabase = true;
 
             if (startupArguments is null || startupArguments.IsEmpty())
