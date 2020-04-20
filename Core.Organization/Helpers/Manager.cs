@@ -535,6 +535,8 @@ namespace Core.Organization.Helpers
         
         private bool AttachVehicleImage(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles, Action<IVehicle, byte[]> setImage)
         {
+            LogTrace(EOrganizationLogMessage.AttachingImageToVehicle.FormatFluently(vehicle.GaijinId));
+
             var vehicleGaijinId = vehicle.GaijinId.ToLower();
             var footballGaijinIdPart = "_football";
             var forTutorialGaijinIdPart = "_for_tutorial";
@@ -553,7 +555,7 @@ namespace Core.Organization.Helpers
             {
                 if (vehicleIconFiles.TryGetValue(gaijinId, out var iconFile))
                 {
-                    setImage(vehicle, File.ReadAllBytes(iconFile.FullName));
+                    setImage(vehicle, _fileReader.ReadBytes(iconFile));
                     return true;
                 }
                 return false;
@@ -614,7 +616,7 @@ namespace Core.Organization.Helpers
                 return false;
             }
 
-            return tryToSetIcon(vehicleGaijinId)
+            var imageLocated = tryToSetIcon(vehicleGaijinId)
                 || tryToSetReplacementIcon(footballGaijinIdPart)
                 || tryToSetReplacementIcon(forTutorialGaijinIdPart)
                 || tryToSetReplacementIcon(raceGaijinIdPart)
@@ -624,6 +626,13 @@ namespace Core.Organization.Helpers
                 || tryToSetReplacementIconForChineseCapturedVehicles()
                 || tryToSetReplacementIconFromAnotherNation()
             ;
+
+            if (imageLocated)
+                LogTrace(EOrganizationLogMessage.ImageLocatedAndAttachedToVehicle.FormatFluently(vehicle.GaijinId));
+            else
+                LogWarn(EOrganizationLogMessage.ImageNotFoundForVehicle.FormatFluently(vehicle.GaijinId));
+
+            return imageLocated;
         }
 
         private Task InitialiseDataRepositoryCore()

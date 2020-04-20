@@ -53,7 +53,11 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string VehiclesInitialised = $"{_Vehicles} {_initialised}.";
 
         public static readonly string ProcessingVehicleImages = $"{_Processing} {_vehicle} {_images}.";
-        public static readonly string VehicleImagesProcessed = $"{_Vehicle} {_images} {_processed} .";
+        public static readonly string VehicleImagesProcessed = $"{_Vehicle} {_images} {_processed}.";
+
+        public static readonly string AttachingImageToVehicle = $"{_Attaching} {_image} {_to} \"{{0}}\".";
+        public static readonly string ImageLocatedAndAttachedToVehicle = $"{_Image} {_located} {_and} {_attached} {_to} \"{{0}}\".";
+        public static readonly string ImageNotFoundForVehicle = $"{_Image} {_not} {_found} {_for} \"{{0}}\".";
 
         public static readonly string WarThunderVersionNotInitialised = $"{_War} {_Thunder} {_version} {_not} {_initialised}.";
         /// <summary>
