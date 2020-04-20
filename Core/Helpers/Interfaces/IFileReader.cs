@@ -40,6 +40,8 @@ namespace Core.Helpers.Interfaces
 
         Bitmap ReadImage(FileInfo file);
 
+        byte[] ReadBytes(FileInfo file);
+
         #endregion Methods: Read()
     }
 }

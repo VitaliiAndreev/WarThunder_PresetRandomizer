@@ -112,6 +112,20 @@ namespace Core.Helpers
             return new Bitmap(file.FullName);
         }
 
+        public byte[] ReadBytes(FileInfo file)
+        {
+            LogTrace(ECoreLogMessage.ReadingBytesFromFile.FormatFluently(file.FullName));
+
+            var bytes = File.ReadAllBytes(file.FullName);
+
+            if (bytes is null)
+                LogWarn(ECoreLogMessage.ErrorReadingBytesFromFile.FormatFluently(file.FullName));
+            else
+                LogTrace(ECoreLogMessage.ReadBytesFromFile.FormatFluently(bytes.Count(), file.FullName));
+
+            return bytes;
+        }
+
         #endregion Methods: Read()
     }
 }

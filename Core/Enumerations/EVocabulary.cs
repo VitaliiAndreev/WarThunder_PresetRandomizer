@@ -62,13 +62,17 @@
         protected const string _are = _a + _re;
         protected const string _argument = _ar + _g + _u + _ment;
         protected const string _arguments = _argument + _s;
+        protected const string _array = _ar + _ray;
         protected const string _art = _ar + _t;
         protected const string _As = _a + _s;
         protected const string _as = _a + _s;
         protected const string _assembly = _as + "semb" + _ly;
         protected const string _Assigned = _As + _sign + _ed;
+        protected const string _At = _A + _t;
         protected const string _at = _a + _t;
         protected const string _ate = _at + _e;
+        protected const string _attached = _at + _t + _a + _ch + _ed;
+        protected const string _Attaching = _At + _t + _a + _ch + _ing;
         protected const string _attributes = _at + _tribute + _s;
         protected const string _avail = _a + "vail";
         protected const string _available = _avail + _able;
@@ -95,6 +99,8 @@
         protected const string _branches = _branch + _es;
         protected const string _built = _bu + _ilt;
         protected const string _by = _b + "y";
+        protected const string _byte = _by + _t + _e;
+        protected const string _bytes = _byte + _s;
 
         #endregion B
         #region C
@@ -334,6 +340,7 @@
         protected const string _I = "I";
         protected const string _icons = _i + _con + _s;
         protected const string _ill = _i + _ll;
+        protected const string _Image = _I + _mage;
         protected const string _image = _i + _mage;
         protected const string _images = _image + _s;
         protected const string _implementation = _i + "mplement" + _at + _ion;
@@ -396,10 +403,11 @@
         protected const string _Line = "Line";
         protected const string _Loading = "Load" + _ing;
         protected const string _Localisation = "Localisat" + _ion;
-        protected const string _localisation = "localisat" + _ion;
-        protected const string _location = "locat" + _ion;
+        protected const string _localisation = _lo + "calisat" + _ion;
+        protected const string _located = _lo + _cat + _ed;
+        protected const string _location = _lo + _cat + _ion;
         protected const string _Log = "Log";
-        protected const string _log = "log";
+        protected const string _log = _lo + "g";
         protected const string _Logger = _Log + "ger";
         protected const string _Loggers = _Logger + _s;
         protected const string _Logs = _Log + _s;
@@ -570,6 +578,7 @@
         protected const string _ratings = _rating + _s;
         protected const string _ration = _rat + _ion;
         protected const string _raw = _r + _aw;
+        protected const string _ray = _r + _a + _y;
         protected const string _Read = _Re + _ad;
         protected const string _read = _re + _ad;
         protected const string _ready = _read + _y;

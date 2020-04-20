@@ -162,6 +162,24 @@
 
         public static readonly string ErrorReadingFile = $"{_Error} {_reading} {_file}.";
 
+        private static readonly string _bytesFromFile = $"{_bytes} {_from} \"{{0}}\"";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file path. </para>
+        /// </summary>
+        public static readonly string ReadingBytesFromFile = $"{_Reading} {_bytesFromFile}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: file path. </para>
+        /// </summary>
+        public static readonly string ErrorReadingBytesFromFile = $"{_Error} {_reading} {_bytesFromFile}.";
+        /// <summary> 
+        /// A message with formatting placeholders.
+        /// <para> 1: byte count. </para>
+        /// <para> 2: file path. </para>
+        /// </summary>
+        public static readonly string ReadBytesFromFile = $"{_Read} {{0}} {_bytesFromFile}.";
+
         #endregion File Reader
         #region General
 
