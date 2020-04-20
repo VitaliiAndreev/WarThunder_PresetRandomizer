@@ -3,7 +3,7 @@
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle information pertaining to weapons. </summary>
-    public interface IVehicleWeaponsData : IPersistentWarThunderObjectWithId
+    public interface IVehicleWeaponsData : IPersistentDeserialisedObjectWithId
     {
         #region Association Properties
 

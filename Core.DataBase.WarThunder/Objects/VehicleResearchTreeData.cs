@@ -9,7 +9,7 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle information pertaining to the research tree. </summary>
     [Class(Table = ETable.VehicleResearchTreeData)]
-    public class VehicleResearchTreeData : PersistentWarThunderObjectWithId, IVehicleResearchTreeData
+    public class VehicleResearchTreeData : PersistentDeserialisedObjectWithIdAndVehicle, IVehicleResearchTreeData
     {
         #region Persistent Properties
 
@@ -56,7 +56,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties
         #region Constructors
@@ -79,10 +79,8 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="id"> The set's ID. </param>
         /// <param name="vehicle"> The set's vehicle. </param>
         public VehicleResearchTreeData(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             LogCreation();
         }
 

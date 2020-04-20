@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
-    public interface IVehicleTags : IPersistentObjectWithId
+    public interface IVehicleTags : IPersistentObjectWithIdAndVehicle
     {
         #region Indexers
 

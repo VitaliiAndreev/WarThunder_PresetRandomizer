@@ -37,7 +37,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties
         #region Constructors
@@ -58,14 +58,12 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="id"> The objects's ID. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
         /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
         public AircraftTags(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             InitialiseProperties(deserializedTags, Vehicle.Branch.AsEnumerationItem);
             LogCreation();
         }

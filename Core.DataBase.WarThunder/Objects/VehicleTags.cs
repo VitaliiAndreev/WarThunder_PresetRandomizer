@@ -1,12 +1,11 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
-    public abstract class VehicleTags : PersistentObjectWithId, IVehicleTags
+    public abstract class VehicleTags : PersistentObjectWithIdAndVehicle, IVehicleTags
     {
         #region Fields
 
@@ -45,19 +44,17 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
-        public VehicleTags(IDataRepository dataRepository)
-            : this(dataRepository, -1L)
+        public VehicleTags(IDataRepository dataRepository, IVehicle vehicle)
+            : this(dataRepository, -1L, vehicle)
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="id"> The objects's ID. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
-        public VehicleTags(IDataRepository dataRepository, long id)
-            : base(dataRepository, id)
+        public VehicleTags(IDataRepository dataRepository, long id, IVehicle vehicle)
+            : base(dataRepository, id, vehicle)
         {
             _index = new Dictionary<EVehicleBranchTag, bool>();
         }

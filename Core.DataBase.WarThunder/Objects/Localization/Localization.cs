@@ -1,11 +1,12 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Localization
 {
     /// <summary> A localization set. </summary>
-    public class Localization : PersistentObjectWithIdAndGaijinId, ILocalization
+    public class Localization : PersistentObjectWithId, ILocalization
     {
         #region Properties
 
@@ -43,7 +44,7 @@ namespace Core.DataBase.WarThunder.Objects.Localization
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="localizationRecord"> A collection of localization values read from CSV files. </param>
         protected Localization(IDataRepository dataRepository, IList<string> localizationRecord)
-            : base(dataRepository, -1L, localizationRecord[0])
+            : base(dataRepository, -1L)
         {
             English = localizationRecord[1];
             French = localizationRecord[2];

@@ -1,7 +1,7 @@
 ﻿namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle information pertaining to graphics. </summary>
-    public interface IVehicleGraphicsData : IPersistentWarThunderObjectWithId
+    public interface IVehicleGraphicsData : IPersistentDeserialisedObjectWithId
     {
         #region Association Properties
 

@@ -12,7 +12,7 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle information pertaining to the economy. </summary>
     [Class(Table = ETable.VehicleEconomyData)]
-    public class VehicleEconomyData : PersistentWarThunderObjectWithId, IVehicleEconomyData
+    public class VehicleEconomyData : PersistentDeserialisedObjectWithIdAndVehicle, IVehicleEconomyData
     {
         #region Persistent Properties
 
@@ -72,7 +72,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         #region Repairs
 
@@ -147,13 +147,11 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a data set. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="id"> The objects's ID. </param>
         /// <param name="vehicle"> The vehicle this data set belongs to. </param>
         public VehicleEconomyData(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             LogCreation();
         }
 

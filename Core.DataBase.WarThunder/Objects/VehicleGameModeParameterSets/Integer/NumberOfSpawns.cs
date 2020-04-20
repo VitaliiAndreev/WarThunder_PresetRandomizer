@@ -85,7 +85,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Integer
         [ManyToOne(0, Column = ETable.VehiclePerformanceData + "_" + EColumn.Id, ClassType = typeof(VehiclePerformanceData), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.VehiclePerformanceData + "_" + EColumn.Id)]
         [Property(NotNull = false, TypeType = typeof(VehiclePerformanceData))]
-        public override IPersistentWarThunderObjectWithId Entity { get; protected set; }
+        public override IPersistentDeserialisedObjectWithId Entity { get; protected set; }
 
         /// <summary> The value in Arcade Battles. </summary>
         [Property(NotNull = false)]

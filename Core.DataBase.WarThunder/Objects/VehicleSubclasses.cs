@@ -18,7 +18,7 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle subclasses a vehicle belongs to. </summary>
     [Class(Table = ETable.VehicleSubclass)]
-    public class VehicleSubclasses : PersistentObjectWithId, IVehicleSubclasses
+    public class VehicleSubclasses : PersistentObjectWithIdAndVehicle, IVehicleSubclasses
     {
         #region Persistent Properties
 
@@ -40,7 +40,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties
         #region Non-Persistent Properties
@@ -70,10 +70,8 @@ namespace Core.DataBase.WarThunder.Objects
         /// <param name="vehicle"> The vehicle the data set belongs to. </param>
         /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
         protected VehicleSubclasses(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             InitialiseProperties(SelectSubclassesToProcess(deserializedTags, vehicle.Class));
             LogCreation();
         }

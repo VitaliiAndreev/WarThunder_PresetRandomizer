@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
-using Core.DataBase.Objects;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using NHibernate.Mapping.Attributes;
@@ -8,7 +7,7 @@ using NHibernate.Mapping.Attributes;
 namespace Core.DataBase.WarThunder.Objects
 {
     [Class(Table = ETable.VehicleImages)]
-    public class VehicleImages : PersistentObjectWithId, IVehicleImages
+    public class VehicleImages : PersistentObjectWithIdAndVehicle, IVehicleImages
     {
         #region Persistent Properties
 
@@ -26,7 +25,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties
         #region Constructors
@@ -39,7 +38,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
         public VehicleImages(IDataRepository dataRepository, IVehicle vehicle)
             : this(dataRepository, -1L, vehicle)
         {
@@ -47,14 +45,11 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="id"> The objects's ID. </param>
         /// <param name="vehicle"> The vehicle this object belongs to. </param>
-        /// <param name="deserializedTags"> Vehicle tags deserialized from JSON data to initialize this instance with. </param>
         public VehicleImages(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             LogCreation();
         }
 

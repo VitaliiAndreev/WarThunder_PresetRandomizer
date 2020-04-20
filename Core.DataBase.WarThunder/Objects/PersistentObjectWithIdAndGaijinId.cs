@@ -6,12 +6,12 @@ using System.Linq;
 namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A persistent (stored in a database) object that has an ID and a Gaijin ID. </summary>
-    public abstract class PersistentObjectWithIdAndGaijinId : PersistentWarThunderObjectWithId, IPersistentObjectWithIdAndGaijinId
+    public abstract class PersistentObjectWithIdAndGaijinId : PersistentDeserialisedObjectWithId, IPersistentObjectWithIdAndGaijinId
     {
         #region Properties
 
         /// <summary> The object's Gaijin ID. </summary>
-        public virtual string GaijinId { get; protected set; }
+        public abstract string GaijinId { get; protected set; }
 
         #endregion Properties
         #region Constructors

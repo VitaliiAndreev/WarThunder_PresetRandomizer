@@ -11,18 +11,18 @@ using System.Reflection;
 
 namespace Core.DataBase.WarThunder.Objects
 {
-    public class PersistentWarThunderObjectWithId : PersistentObjectWithId
+    public class PersistentDeserialisedObjectWithId : PersistentObjectWithId
     {
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected PersistentWarThunderObjectWithId()
+        protected PersistentDeserialisedObjectWithId()
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        protected PersistentWarThunderObjectWithId(IDataRepository dataRepository)
+        protected PersistentDeserialisedObjectWithId(IDataRepository dataRepository)
             : this(dataRepository, -1L)
         {
         }
@@ -30,7 +30,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="id"> The object's ID. </param>
-        protected PersistentWarThunderObjectWithId(IDataRepository dataRepository, long id)
+        protected PersistentDeserialisedObjectWithId(IDataRepository dataRepository, long id)
             : base(dataRepository, id)
         {
         }

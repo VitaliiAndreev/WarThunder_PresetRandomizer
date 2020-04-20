@@ -16,10 +16,6 @@ namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The localization set's Gaijin ID. </summary>
-        [Property(NotNull = true, Unique = true)]
-        public override string GaijinId { get; protected set; }
-
         /// <summary> The vehicle this localization belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Objects.Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]

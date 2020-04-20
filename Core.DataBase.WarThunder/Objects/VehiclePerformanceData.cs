@@ -12,7 +12,7 @@ namespace Core.DataBase.WarThunder.Objects
 {
     /// <summary> A set of vehicle information pertaining to performance. </summary>
     [Class(Table = ETable.VehiclePerformanceData)]
-    public class VehiclePerformanceData : PersistentWarThunderObjectWithId, IVehiclePerformanceData
+    public class VehiclePerformanceData : PersistentDeserialisedObjectWithIdAndVehicle, IVehiclePerformanceData
     {
         #region Persistent Properties
 
@@ -41,7 +41,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The vehicle the data set belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
-        public virtual IVehicle Vehicle { get; protected set; }
+        public override IVehicle Vehicle { get; protected set; }
 
         /// <summary>
         /// The number of times this vehicle can sortie per match.
@@ -71,13 +71,11 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Creates a data set. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The vehicle's ID. </param>
+        /// <param name="id"> The object's ID. </param>
         /// <param name="vehicle"> The vehicle this data set belongs to. </param>
         public VehiclePerformanceData(IDataRepository dataRepository, long id, IVehicle vehicle)
-            : base(dataRepository, id)
+            : base(dataRepository, id, vehicle)
         {
-            Vehicle = vehicle;
-
             LogCreation();
         }
 
@@ -95,21 +93,10 @@ namespace Core.DataBase.WarThunder.Objects
         protected virtual void InitializeWithDeserializedVehicleDataJson(VehicleDeserializedFromJsonWpCost deserializedVehicle)
         {
             InitializeWithDeserializedJson(deserializedVehicle);
-
-            PatchSpawnType(deserializedVehicle);
-
             ConsolidateGameModeParameterPropertiesIntoSets(deserializedVehicle);
         }
 
         #region Methods: Initialization Helpers
-
-        /// <summary> Clarifies <see cref="SpawnType"/> values. </summary>
-        /// <param name="deserializedVehicle"> The temporary non-persistent object storing deserialized data. </param>
-        private void PatchSpawnType(VehicleDeserializedFromJsonWpCost deserializedVehicle)
-        {
-            if (deserializedVehicle.SpawnType == "ah")
-                SpawnType = "walker (ah)";
-        }
 
         /// <summary> Consolidates values of JSON properties for <see cref="EGameMode"/> parameters into sets defined in the persistent class. </summary>
         /// <param name="instanceDeserializedFromJson"> The temporary non-persistent object storing deserialized data. </param>

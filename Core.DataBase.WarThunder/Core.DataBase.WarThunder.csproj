@@ -105,6 +105,8 @@
     <Compile Include="Objects\Interfaces\IBranch.cs" />
     <Compile Include="Objects\Interfaces\INation.cs" />
     <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndGaijinId.cs" />
+    <Compile Include="Objects\Interfaces\IPersistentObjectWithIdAndVehicle.cs" />
+    <Compile Include="Objects\Interfaces\IPersistentDeserialisedObjectWithIdAndVehicle.cs" />
     <Compile Include="Objects\Interfaces\IVehicle.cs" />
     <Compile Include="Objects\Interfaces\IAircraftTags.cs" />
     <Compile Include="Objects\Interfaces\IVehicleCrewData.cs" />
@@ -114,10 +116,12 @@
     <Compile Include="Objects\Interfaces\IVehicleModificationsData.cs" />
     <Compile Include="Objects\Interfaces\IVehiclePerformanceData.cs" />
     <Compile Include="Objects\Interfaces\IVehicleResearchTreeData.cs" />
-    <Compile Include="Objects\Interfaces\IPersistentWarThunderObjectWithId.cs" />
+    <Compile Include="Objects\Interfaces\IPersistentDeserialisedObjectWithId.cs" />
     <Compile Include="Objects\Interfaces\IVehicleSubclasses.cs" />
     <Compile Include="Objects\Interfaces\IVehicleTags.cs" />
     <Compile Include="Objects\Interfaces\IVehicleWeaponsData.cs" />
+    <Compile Include="Objects\PersistentDeserialisedObjectWithIdAndVehicle.cs" />
+    <Compile Include="Objects\PersistentObjectWithIdAndVehicle.cs" />
     <Compile Include="Objects\Json\BackupSortieDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\DeserializedFromJson.cs" />
     <Compile Include="Objects\Json\Interfaces\IDeserializedFromJson.cs" />
@@ -144,7 +148,7 @@
     <Compile Include="Objects\NationBranchPair.cs" />
     <Compile Include="Objects\NationCountryPair.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
-    <Compile Include="Objects\PersistentWarThunderObjectWithId.cs" />
+    <Compile Include="Objects\PersistentDeserialisedObjectWithId.cs" />
     <Compile Include="Objects\Vehicle.cs" />
     <Compile Include="Objects\AircraftTags.cs" />
     <Compile Include="Objects\VehicleCrewData.cs" />

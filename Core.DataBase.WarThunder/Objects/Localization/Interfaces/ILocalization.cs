@@ -1,9 +1,9 @@
-﻿using Core.DataBase.WarThunder.Objects.Interfaces;
+﻿using Core.DataBase.Objects.Interfaces;
 
 namespace Core.DataBase.WarThunder.Objects.Localization.Interfaces
 {
     /// <summary> A localization set. </summary>
-    public interface ILocalization : IPersistentObjectWithIdAndGaijinId
+    public interface ILocalization : IPersistentObjectWithId
     {
         public string English { get; }
         public string French { get; }

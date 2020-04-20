@@ -1,7 +1,7 @@
 ﻿namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle information pertaining to the economy. </summary>
-    public interface IVehicleEconomyData : IPersistentWarThunderObjectWithId
+    public interface IVehicleEconomyData : IPersistentDeserialisedObjectWithId
     {
         #region Persistent Properties
 

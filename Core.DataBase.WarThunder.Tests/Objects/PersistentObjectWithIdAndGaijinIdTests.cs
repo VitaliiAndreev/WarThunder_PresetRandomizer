@@ -14,6 +14,11 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
         private class MockPersistentObjectWithIdAndGaijinId : PersistentObjectWithIdAndGaijinId
         {
+            #region Properties
+
+            public override string GaijinId { get; protected set; }
+
+            #endregion Properties
             #region Constructors
 
             public MockPersistentObjectWithIdAndGaijinId(IDataRepository dataRepository, string gaijinId)
