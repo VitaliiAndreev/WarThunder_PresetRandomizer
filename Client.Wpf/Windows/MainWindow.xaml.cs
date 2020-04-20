@@ -24,7 +24,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Windows
 {
@@ -184,6 +183,7 @@ namespace Client.Wpf.Windows
                 }
 
                 UpdateChildControlContextMenu(_branchToggleControl, branch, OnVehicleBranchTagToggled);
+                UpdateToggleAllButtonState(_vehicleClassControl, branch);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -240,7 +240,7 @@ namespace Client.Wpf.Windows
                         }
 
                         if (toggleAllButton.IsChecked())
-                            ToggleAllContextMenuItems(_vehicleClassControl.ToggleColumns[ownerBranch].Buttons[currentVehicleClass], OnVehicleSubclassToggled);
+                            ToggleAllContextMenuItems<EVehicleSubclass>(_vehicleClassControl.ToggleColumns[ownerBranch].Buttons[currentVehicleClass], OnTogglableItemClicked);
                         else
                             button.SetContextMenuState(toggleAllButton.IsChecked());
                     }
@@ -319,6 +319,7 @@ namespace Client.Wpf.Windows
                     OnCountryToggleControlClick(_countryToggleControl, new RoutedEventArgs(CountryToggleControl.ClickEvent, _countryToggleControl.ToggleColumns[nation].Buttons[nationCountryPair]));
                 }
 
+                UpdateToggleAllButtonState(_countryToggleControl, nation);
                 RaiseGeneratePresetCommandCanExecuteChanged();
             }
         }
@@ -376,7 +377,7 @@ namespace Client.Wpf.Windows
             }
         }
 
-        private void ToggleAllContextMenuItems(ToggleButton ownerControl, RoutedEventHandler eventHandler)
+        private void ToggleAllContextMenuItems<T>(ToggleButton ownerControl, Action<Type, T, bool, bool> eventHandler)
         {
             if (!(ownerControl.ContextMenu is ContextMenu contextMenu))
                 return;
@@ -389,8 +390,10 @@ namespace Client.Wpf.Windows
                 {
                     if (!menuItem.IsChecked)
                     {
+                        var menuItemTag = menuItem.Tag.CastTo<T>();
+
                         menuItem.IsChecked = true;
-                        eventHandler(menuItem, new RoutedEventArgs(null, menuItem));
+                        eventHandler?.Invoke(typeof(T), menuItemTag, menuItem.IsChecked, true);
                     }
                 }
             }
@@ -398,6 +401,7 @@ namespace Client.Wpf.Windows
             {
                 contextMenu.Deactivate();
             }
+            ownerControl.UpdateContextMenuItemCount();
         }
 
         /// <summary> Updates <see cref="IMainWindowPresenter.EnabledCountries"/> according to the action. </summary>

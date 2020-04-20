@@ -36,6 +36,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowSilverLionCosts(IVehicle vehicle);
 
+        bool ShowPremiumIcon(IVehicle vehicle);
+
         #endregion Methods: Checks
         #region Methods: Output
 

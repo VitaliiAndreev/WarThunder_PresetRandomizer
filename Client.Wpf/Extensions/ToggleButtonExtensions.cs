@@ -45,6 +45,19 @@ namespace Client.Wpf.Extensions
             return newGrid;
         }
 
+        public static void UpdateContextMenuItemCount(this ToggleButton button)
+        {
+            if (button.ContextMenu is ContextMenu contextMenu)
+            {
+                if (button.Content is Grid grid && grid.Children.OfType<TextBlock>().LastOrDefault() is TextBlock textCounter)
+                {
+                    var toggleMenuItems = contextMenu.Items.OfType<MenuItem>().Where(i => i.IsCheckable);
+
+                    textCounter.Text = $"{toggleMenuItems.Where(menuItem => menuItem.IsChecked).Count()}/{toggleMenuItems.Count()}";
+                }
+            }
+        }
+
         public static void UpdateContextMenuItemCount(this ToggleButton button, double leftColumnWidth, double rightColumnWidth, double fontSize)
         {
             if (button.ContextMenu is ContextMenu contextMenu)

@@ -43,6 +43,8 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowSilverLionCosts(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.PurchaseCostInSilver.IsPositive();
 
+        public bool ShowPremiumIcon(IVehicle vehicle) => vehicle.IsPremium;
+
         #endregion Methods: Checks
         #region Methods: Output
 

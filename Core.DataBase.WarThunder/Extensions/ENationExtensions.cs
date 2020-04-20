@@ -1,6 +1,9 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects;
 using Core.Extensions;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.DataBase.WarThunder.Extensions
 {
@@ -45,6 +48,11 @@ namespace Core.DataBase.WarThunder.Extensions
             EReference.CountriesByNation.TryGetValue(nation, out var countries)
                 ? countries
                 : new List<ECountry>();
+
+        public static IEnumerable<NationCountryPair> GetNationCountryPairs(this ENation nation) =>
+            EReference.CountriesByNation.TryGetValue(nation, out var countries)
+                ? countries.Select(country => new NationCountryPair(nation, country))
+                : new List<NationCountryPair>();
 
         /// <summary> Returns the enumeration item representing selection of all countries serving with the given nation. </summary>
         /// <param name="nation"> The nation whose item to get. </param>

@@ -111,9 +111,89 @@ namespace Client.Wpf.Presenters
             EnabledVehicleGaijinIds = new List<string>(WpfSettings.EnabledVehiclesCollection);
             GeneratedPresets = new Dictionary<EPreset, Preset>();
             CurrentPreset = EPreset.Primary;
+
+            Normalise();
         }
 
         #endregion Constructors
+
+        private void NormaliseBranches()
+        {
+            foreach (var branch in typeof(EBranch).GetEnumerationItems<EBranch>(true))
+            {
+                var branchTags = branch.GetVehicleBranchTags();
+                var anyBranchTagEnabled = branchTags.IsEmpty();
+                var anyVehicleClassesEnabled = false;
+
+                foreach (var branchTag in branchTags)
+                {
+                    if (branchTag.IsIn(EnabledVehicleBranchTags))
+                    {
+                        anyBranchTagEnabled = true;
+                        break;
+                    }
+                }
+
+                foreach (var vehicleClass in branch.GetVehicleClasses())
+                {
+                    var vehicleSubclasses = vehicleClass.GetVehicleSubclasses();
+                    var anyVehicleSubclassEnabled = vehicleSubclasses.IsEmpty();
+
+                    foreach (var vehicleSubclass in vehicleSubclasses)
+                    {
+                        if (vehicleSubclass.IsIn(EnabledVehicleSubclasses))
+                        {
+                            anyVehicleSubclassEnabled = true;
+                            break;
+                        }
+                    }
+
+                    if (!anyVehicleSubclassEnabled)
+                    {
+                        EnabledVehicleClasses.Remove(vehicleClass);
+                        continue;
+                    }
+
+                    if (vehicleClass.IsIn(EnabledVehicleClasses) && !anyVehicleClassesEnabled)
+                    {
+                        anyVehicleClassesEnabled = true;
+                    }
+                }
+
+                if (!anyBranchTagEnabled && !anyVehicleClassesEnabled)
+                    EnabledBranches.Remove(branch);
+            }
+        }
+
+        private void NormaliseNations()
+        {
+            foreach (var nation in typeof(ENation).GetEnumerationItems<ENation>(true))
+            {
+                var nationCountryPairs = nation.GetNationCountryPairs();
+                var anyNationCountryPairsEnabled = false;
+
+                foreach (var nationCountryPair in nationCountryPairs)
+                {
+                    if (nationCountryPair.IsIn(EnabledCountries))
+                    {
+                        anyNationCountryPairsEnabled = true;
+                        break;
+                    }
+
+                    if (!anyNationCountryPairsEnabled)
+                    {
+                        EnabledNations.Remove(nation);
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void Normalise()
+        {
+            NormaliseBranches();
+            NormaliseNations();
+        }
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
