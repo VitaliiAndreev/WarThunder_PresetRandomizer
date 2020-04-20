@@ -8,6 +8,8 @@ namespace Client.Wpf.Extensions
     {
         public static BitmapSource ToBitmapSource(this byte[] bytes)
         {
+            if (bytes is null) return null;
+
             using (var memoryStream = new MemoryStream(bytes))
             {
                 memoryStream.Position = 0;

@@ -23,6 +23,11 @@ namespace Client.Wpf.Enumerations.Logger
         /// <para> 1: tag type. </para>
         /// </summary>
         public static readonly string TagTypeNotSupportedYet = $"\"{{0}}\" {_tags} {_are} {_not} {_supported} {_yet}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: vehicle Gaijin ID. </para>
+        /// </summary>
+        public static readonly string ImageByteArrayReadFromVehicleIsNull = $"{_Image} {_byte} {_array} {_read} {_from} \"{{0}}\" {_is} {_NULL}.";
 
         #endregion WpfClient
     }

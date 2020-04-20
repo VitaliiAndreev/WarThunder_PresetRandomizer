@@ -1,10 +1,12 @@
 ﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Extensions;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Helpers;
@@ -94,13 +96,23 @@ namespace Client.Wpf.Helpers
             if (!(cache is null) && cache.TryGetValue(vehicle.GaijinId, out var cachedSource))
                 return cachedSource;
 
-            var bitmapSource = getImageBytes(vehicle).ToBitmapSource();
+            if (getImageBytes(vehicle) is byte[] imageBytes)
+            {
+                var bitmapSource = imageBytes.ToBitmapSource();
 
-            bitmapSource.Freeze();
+                bitmapSource.Freeze();
 
-            cache?.Add(vehicle.GaijinId, bitmapSource);
+                cache?.Add(vehicle.GaijinId, bitmapSource);
 
-            return bitmapSource;
+                return bitmapSource;
+            }
+            else
+            {
+                LogWarn(EWpfClientLogMessage.ImageByteArrayReadFromVehicleIsNull.FormatFluently(vehicle.GaijinId));
+
+                return null;
+            }
+
         }
 
         public BitmapSource GetIconBitmapSource(IVehicle vehicle) =>
