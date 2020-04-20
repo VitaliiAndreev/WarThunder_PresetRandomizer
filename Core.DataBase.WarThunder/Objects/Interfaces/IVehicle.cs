@@ -45,12 +45,6 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
         bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
 
-        /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
-        int? PurchaseCostInGold { get; }
-
-        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
-        int? DiscountedPurchaseCostInGold { get; }
-
         /// <summary> The Gaijin ID of the vehicle that has to be researched / unlocked before this one can be purchased. </summary>
         string RequiredVehicleGaijinId { get; }
 

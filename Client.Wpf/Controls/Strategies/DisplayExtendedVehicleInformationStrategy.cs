@@ -30,7 +30,7 @@ namespace Client.Wpf.Controls.Strategies
             if (ShowPackTag(vehicle))
                 append(GetLocalisedString(ELocalizationKey.Pack));
             else if (ShowGoldenEagleCost(vehicle))
-                append($"{vehicle.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
 
             SetSharedRightPart(stringBuilder, gameMode, vehicle);
 

@@ -27,7 +27,9 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowPackTag(IVehicle vehicle) => vehicle.IsSoldInTheStore;
 
-        public bool ShowGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle && vehicle.PurchaseCostInGold.HasValue;
+        public bool ShowGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle && vehicle.EconomyData.PurchaseCostInGold.HasValue;
+
+        public bool ShowDiscountedGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && vehicle.EconomyData.DiscountedPurchaseCostInGold.HasValue;
 
         public bool ShowMarketIcon(IVehicle vehicle) => vehicle.IsSoldOnTheMarket;
 
@@ -155,7 +157,7 @@ namespace Client.Wpf.Controls.Strategies
                 append($"{GetLocalisedString(ELocalizationKey.Starter)}{ESeparator.SpaceSlashSpace}");
 
             if (ShowGoldenEagleCost(vehicle))
-                append($"{vehicle.PurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.PurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
                 append($"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.SoldOnTheMarket)}");
@@ -175,11 +177,16 @@ namespace Client.Wpf.Controls.Strategies
 
             if (ShowResearchCosts(vehicle))
                 append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
-            if (ShowResearchCosts(vehicle) && ShowSilverLionCosts(vehicle))
+            if (ShowResearchCosts(vehicle) && (ShowSilverLionCosts(vehicle) || ShowDiscountedGoldenEagleCost(vehicle)))
                 append(ECharacter.Space);
 
             if (ShowSilverLionCosts(vehicle))
                 append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}");
+            if (ShowDiscountedGoldenEagleCost(vehicle))
+                append(ECharacter.Space);
+
+            if (ShowDiscountedGoldenEagleCost(vehicle))
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
         }

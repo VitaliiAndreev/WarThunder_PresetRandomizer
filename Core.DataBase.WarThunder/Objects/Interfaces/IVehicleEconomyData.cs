@@ -14,6 +14,12 @@
         /// </summary>
         int PurchaseCostInSilver { get; }
 
+        /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
+        int? PurchaseCostInGold { get; }
+
+        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IVehicle.IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
+        int? DiscountedPurchaseCostInGold { get; }
+
         #region Crew
 
         /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot (except for reserve vehicles). </summary>

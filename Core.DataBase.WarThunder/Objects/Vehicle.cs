@@ -86,12 +86,6 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Whether this vehicle is gifted to new players upon selecting their first vehicle branch and completing the tutorial. </summary>
         [Property()] public virtual bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; protected set; }
 
-        /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
-        [Property()] public virtual int? PurchaseCostInGold { get; protected set; }
-
-        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
-        [Property()] public virtual int? DiscountedPurchaseCostInGold { get; protected set; }
-
         /// <summary> The Gaijin ID of the vehicle that has to be researched / unlocked before this one can be purchased. </summary>
         [Property()] public virtual string RequiredVehicleGaijinId { get; protected set; }
 
@@ -255,7 +249,7 @@ namespace Core.DataBase.WarThunder.Objects
             WeaponsData = new VehicleWeaponsData(_dataRepository, this, deserializedVehicle);
             GraphicsData = new VehicleGraphicsData(_dataRepository, this, deserializedVehicle);
 
-            IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || DiscountedPurchaseCostInGold.HasValue;
+            IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || EconomyData.DiscountedPurchaseCostInGold.HasValue;
         }
 
         /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
@@ -375,10 +369,10 @@ namespace Core.DataBase.WarThunder.Objects
                 || deserializedResearchTreeVehicle.IsHiddenUnlessBought
                 || deserializedResearchTreeVehicle.IsHiddenUnlessResearched
             ;
-            IsResearchable = !PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
+            IsResearchable = !EconomyData.PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
             IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
             IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
-            IsPurchasableForGoldenEagles = !IsHiddenUnlessOwned && !IsSoldOnTheMarket && !IsSoldInTheStore && (IsPremium && PurchaseCostInGold.HasValue || IsSquadronVehicle && DiscountedPurchaseCostInGold.HasValue);
+            IsPurchasableForGoldenEagles = !IsHiddenUnlessOwned && !IsSoldOnTheMarket && !IsSoldInTheStore && (IsPremium && EconomyData.PurchaseCostInGold.HasValue || IsSquadronVehicle && EconomyData.DiscountedPurchaseCostInGold.HasValue);
         }
 
         /// <summary> Initializes localization association properties. </summary>

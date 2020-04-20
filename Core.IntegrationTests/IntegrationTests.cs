@@ -202,6 +202,8 @@ namespace Core.IntegrationTests
 
                     vehicleCollection.Any(vehicle => vehicle.EconomyData.UnlockCostInResearch < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.PurchaseCostInSilver >= 0).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.PurchaseCostInGold < 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.AceCrewTrainCostInGold > 0).Should().BeTrue();
@@ -230,8 +232,6 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.Id != 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => string.IsNullOrWhiteSpace(vehicle.GaijinId)).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.Country.IsValid()).Should().BeTrue();
-                    vehicleCollection.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
 
                     // graphics
                     vehicleCollection.Any(vehicle => vehicle.GraphicsData.BulletsIconParam < 0).Should().BeFalse();

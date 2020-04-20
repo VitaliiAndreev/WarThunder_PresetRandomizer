@@ -29,6 +29,12 @@ namespace Core.DataBase.WarThunder.Objects
         /// </summary>
         [Property()] public virtual int PurchaseCostInSilver { get; protected set; }
 
+        /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
+        [Property()] public virtual int? PurchaseCostInGold { get; protected set; }
+
+        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IVehicle.IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
+        [Property()] public virtual int? DiscountedPurchaseCostInGold { get; protected set; }
+
         #region Crew
 
         /// <summary> The crew train cost in Silver Lions that has to be paid before a vehicle can be put into a crew slot (except for reserve vehicles). </summary>
