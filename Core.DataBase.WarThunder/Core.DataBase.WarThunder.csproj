@@ -197,12 +197,17 @@
     <Content Include="SQLite Queries\Vehicles - All.sql" />
     <Content Include="SQLite Queries\Vehicles - Console Exclusive.sql" />
     <Content Include="SQLite Queries\Vehicles - Hidden.sql" />
+    <Content Include="SQLite Queries\Vehicles - Aircraft - Hydroplanes.sql" />
+    <Content Include="SQLite Queries\Vehicles - Aircraft - Naval.sql" />
     <Content Include="SQLite Queries\Vehicles - Premium.sql" />
     <Content Include="SQLite Queries\Vehicles - Purchasable %28GE%29.sql" />
     <Content Include="SQLite Queries\Vehicles - Purchasable %28Market%29.sql" />
     <Content Include="SQLite Queries\Vehicles - Purchasable %28Store%29.sql" />
     <Content Include="SQLite Queries\Vehicles - Researchable %28Squadron%29.sql" />
     <Content Include="SQLite Queries\Vehicles - Researchable.sql" />
+    <Content Include="SQLite Queries\Vehicles - Ground - Scout Vehicles.sql" />
+    <Content Include="SQLite Queries\Vehicles - Aircraft - Torpedo Bombers.sql" />
+    <Content Include="SQLite Queries\Vehicles - Ground - Wheeled Vehicles.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
