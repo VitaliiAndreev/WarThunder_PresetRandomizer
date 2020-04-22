@@ -485,7 +485,7 @@ namespace Client.Wpf.Windows
         private void OnPresetVehicleMouseEnter(object sender, MouseEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
-                _researchTreeControl.Highlight(vehicleControl.Vehicle);
+                _informationControl.ResearchTreeControl.Highlight(vehicleControl.Vehicle);
         }
 
         /// <summary> Applies the idle style to the vehicle's conterpart in the research tree. </summary>
@@ -494,7 +494,7 @@ namespace Client.Wpf.Windows
         private void OnPresetVehicleMouseLeave(object sender, MouseEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl)
-                _researchTreeControl.RemoveHighlight(vehicleControl.Vehicle);
+                _informationControl.ResearchTreeControl.RemoveHighlight(vehicleControl.Vehicle);
         }
 
         /// <summary> Handles clicking on vehicle cards in the research tree or in presets. </summary>
@@ -506,7 +506,7 @@ namespace Client.Wpf.Windows
             {
                 if (vehicleControl.Type == EVehicleCard.Preset)
                 {
-                    _researchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
+                    _informationControl.ResearchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
                 }
                 else if (vehicleControl.Type == EVehicleCard.ResearchTree)
                 {
@@ -593,7 +593,7 @@ namespace Client.Wpf.Windows
                 Source = this.GetBitmapSource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()),
             };
 
-            _researchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
+            _informationControl.ResearchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
         }
 
         /// <summary> Updates controls on the window base on saved user settings and loaded data. </summary>
@@ -657,7 +657,7 @@ namespace Client.Wpf.Windows
             _battleRatingControl.Localise();
 
             _presetPanel.Localise();
-            _researchTreeControl.Localise();
+            _informationControl.Localise();
         }
 
         #endregion Methods: Overrides
@@ -745,7 +745,7 @@ namespace Client.Wpf.Windows
             if (Presenter.CurrentGameMode == gameMode && !simulateClick)
                 return;
 
-            _researchTreeControl.DisplayVehicleInformation(gameMode);
+            _informationControl.ResearchTreeControl.DisplayVehicleInformation(gameMode);
 
             Presenter.CurrentGameMode = gameMode;
             Presenter.ExecuteCommand(ECommandName.SelectGameMode);
@@ -812,38 +812,38 @@ namespace Client.Wpf.Windows
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
         public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() =>
-            _researchTreeControl.GetEmptyBranches();
+            _informationControl.ResearchTreeControl.GetEmptyBranches();
 
         /// <summary> Resets <see cref="UIElement.IsEnabled"/> statuses of nation and branch tabs of the research tree. </summary>
         public void ResetResearchTreeTabRestrictions() =>
-            _researchTreeControl.ResetTabRestrictions();
+            _informationControl.ResearchTreeControl.ResetTabRestrictions();
 
         /// <summary> Disables all nation and branch tabs of the research tree not specified in the parameters. </summary>
         /// <param name="nation"> The nation tab to keep enabled. </param>
         /// <param name="branches"> Branch tabs to keep enabled. </param>
         public void EnableOnly(ENation nation, IEnumerable<EBranch> branches) =>
-            _researchTreeControl.EnableOnly(nation, branches);
+            _informationControl.ResearchTreeControl.EnableOnly(nation, branches);
 
         /// <summary> Focuses on a research tree by given parameters. </summary>
         /// <param name="nation"> The nation whose <paramref name="branch"/> to put into focus. </param>
         /// <param name="branch"> The branch to put into focus. </param>
         public void FocusResearchTree(ENation nation, EBranch branch) =>
-            _researchTreeControl.FocusResearchTree(nation, branch);
+            _informationControl.ResearchTreeControl.FocusResearchTree(nation, branch);
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         public void BringIntoView(IVehicle vehicle) =>
-            _researchTreeControl.BringIntoView(vehicle);
+            _informationControl.BringIntoView(vehicle);
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to highlight. </param>
         public void Highlight(IVehicle vehicle) =>
-            _researchTreeControl.Highlight(vehicle);
+            _informationControl.ResearchTreeControl.Highlight(vehicle);
 
         /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to remove highlight from. </param>
         public void RemoveHighlight(IVehicle vehicle) =>
-            _researchTreeControl.RemoveHighlight(vehicle);
+            _informationControl.ResearchTreeControl.RemoveHighlight(vehicle);
 
         #endregion Methods: Calls to _researchTreeControl
     }

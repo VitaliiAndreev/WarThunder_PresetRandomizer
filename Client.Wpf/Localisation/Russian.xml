@@ -117,6 +117,7 @@
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
+  <Line key="ResearchTrees" value="Ветки исследований"/>
   <Line key="Reserve" value="Резерв"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
   <Line key="Romania" value="Румыния"/>
@@ -131,6 +132,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="Spaa" value="ЗСУ"/>
   <Line key="Starter" value="Подарок"/>
+  <Line key="Statistics" value="Статистика"/>
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
   <Line key="SubChaser" value="Морской охотник"/>
@@ -149,6 +151,7 @@
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
   <Line key="VehicleBased" value="по технике"/>
   <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
+  <Line key="VehicleInformation" value="Боевая единица"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>

@@ -151,9 +151,9 @@
                 MouseEnter="OnPresetVehicleMouseEnter"
                 MouseLeave="OnPresetVehicleMouseLeave"/>
 
-            <controls:ResearchTreeControl
+            <controls:InformationControl
                 Grid.Row="1"
-                x:Name="_researchTreeControl"
+                x:Name="_informationControl"
                 Margin="0 10 0 0"/>
             
         </Grid>

@@ -117,6 +117,7 @@
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
+  <Line key="ResearchTrees" value="Research Trees"/>
   <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
   <Line key="Romania" value="Romania"/>
@@ -131,6 +132,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="Spaa" value="SPAA"/>
   <Line key="Starter" value="Starter"/>
+  <Line key="Statistics" value="Statistics"/>
   <Line key="Status" value="Status:"/>
   <Line key="StrikeFighter" value="Strike Fighter"/>
   <Line key="SubChaser" value="Sub-chaser"/>
@@ -149,6 +151,7 @@
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VehicleBased" value="by vehicles"/>
   <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
+  <Line key="VehicleInformation" value="Vehicle Information"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>

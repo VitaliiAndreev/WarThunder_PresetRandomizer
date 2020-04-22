@@ -108,6 +108,7 @@
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
+        public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
@@ -121,6 +122,7 @@
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
         public const string Spaa = nameof(Spaa);
         public const string Starter = nameof(Starter);
+        public const string Statistics = nameof(Statistics);
         public const string Status = nameof(Status);
         public const string StrikeFighter = nameof(StrikeFighter);
         public const string SubChaser = nameof(SubChaser);
@@ -139,6 +141,7 @@
         public const string UtilityHelicopter = nameof(UtilityHelicopter);
         public const string VehicleBased = nameof(VehicleBased);
         public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
+        public const string VehicleInformation = nameof(VehicleInformation);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);
