@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
@@ -31,6 +32,7 @@ namespace Client.Wpf.Controls
             _vehicleCardHeader.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.VehicleInformation);
 
             _researchTreeControl.Localise();
+            _statisticsControl.Localise();
         }
 
         #endregion Methods: Overrides
@@ -45,5 +47,17 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Navigation
+        #region Methods: Event Handlers
+
+        private void OnTabChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source == _tabControl)
+            {
+                if (_tabControl.SelectedItem == _statisticsTab)
+                    _statisticsControl.Initialise();
+            }
+        }
+
+        #endregion Methods: Event Handlers
     }
 }

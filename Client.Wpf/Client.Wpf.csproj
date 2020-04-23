@@ -138,6 +138,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\StatisticsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VehicleCounterWithFlag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VehicleCounterWithText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VehicleCountsStatisticsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UpDownBattleRatingGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,6 +288,7 @@
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithToolTip.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
+    <Compile Include="Controls\Base\VehicleCounter.cs" />
     <Compile Include="Controls\InformationControl.xaml.cs">
       <DependentUpon>InformationControl.xaml</DependentUpon>
     </Compile>
@@ -286,6 +303,18 @@
     </Compile>
     <Compile Include="Controls\RandomisationSelectionControl.xaml.cs">
       <DependentUpon>RandomisationSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatisticsControl.xaml.cs">
+      <DependentUpon>StatisticsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleCounterWithFlag.xaml.cs">
+      <DependentUpon>VehicleCounterWithFlag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleCounterWithText.xaml.cs">
+      <DependentUpon>VehicleCounterWithText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleCountsStatisticsControl.xaml.cs">
+      <DependentUpon>VehicleCountsStatisticsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Strategies\DisplayVehicleInformationStrategy.cs" />
     <Compile Include="Controls\UpDownBattleRatingGroupControl.xaml.cs">

@@ -10,7 +10,8 @@
     d:DesignHeight="450"
     d:DesignWidth="800">
     <TabControl
-        x:Name="_tabControl">
+        x:Name="_tabControl"
+        SelectionChanged="OnTabChanged">
 
         <TabItem
             x:Name="_researchTreeTab">
@@ -23,12 +24,15 @@
                 x:Name="_researchTreeControl"/>
         </TabItem>
 
-        <TabItem IsEnabled="False">
+        <TabItem
+            x:Name="_statisticsTab">
             <TabItem.Header>
                 <TextBlock Text="Statistics"
                     x:Name="_statisticsHeader"
                     Style="{StaticResource TextBlockFontSize16WithLeftMargin}"/>
             </TabItem.Header>
+            <controls:StatisticsControl
+                x:Name="_statisticsControl"/>
         </TabItem>
 
         <TabItem IsEnabled="False">

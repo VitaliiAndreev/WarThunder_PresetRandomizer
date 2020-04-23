@@ -151,7 +151,9 @@
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
   <Line key="VehicleBased" value="по технике"/>
   <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
+  <Line key="VehicleCounts" value="Счёт боевых единиц"/>
   <Line key="VehicleInformation" value="Боевая единица"/>
+  <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>

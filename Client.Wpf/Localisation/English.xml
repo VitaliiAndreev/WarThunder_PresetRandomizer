@@ -151,7 +151,9 @@
   <Line key="UtilityHelicopter" value="Utility Helicopter"/>
   <Line key="VehicleBased" value="by vehicles"/>
   <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
+  <Line key="VehicleCounts" value="Vehicle Counts"/>
   <Line key="VehicleInformation" value="Vehicle Information"/>
+  <Line key="VehiclesByNationsAndCountries" value="Vehicles by Nations and Countries"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>

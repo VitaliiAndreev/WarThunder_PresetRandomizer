@@ -141,7 +141,9 @@
         public const string UtilityHelicopter = nameof(UtilityHelicopter);
         public const string VehicleBased = nameof(VehicleBased);
         public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
+        public const string VehicleCounts = nameof(VehicleCounts);
         public const string VehicleInformation = nameof(VehicleInformation);
+        public const string VehiclesByNationsAndCountries = nameof(VehiclesByNationsAndCountries);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);

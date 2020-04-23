@@ -48,8 +48,6 @@ namespace Core.Organization.Helpers
         private readonly EStartup _startupConfiguration;
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
-        /// <summary> Playable vehicles loaded into memory. </summary>
-        private readonly List<IVehicle> _playableVehicles;
 
         /// <summary> Whether a new database should be generated. </summary>
         private bool _generateNewDatabase;
@@ -91,6 +89,9 @@ namespace Core.Organization.Helpers
 
         /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
+
+        /// <summary> Playable vehicles loaded into memory. </summary>
+        public IList<IVehicle> PlayableVehicles { get; }
 
         #endregion Properties
         #region Delegates
@@ -155,7 +156,7 @@ namespace Core.Organization.Helpers
             _presetGenerator = presetGenerator;
 
             _cache = new List<IPersistentObject>();
-            _playableVehicles = new List<IVehicle>();
+            PlayableVehicles = new List<IVehicle>();
 
             _settingsManager = settingsManager;
             _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
@@ -231,7 +232,7 @@ namespace Core.Organization.Helpers
 
             var columnCount = default(int);
 
-            foreach (var vehicle in _playableVehicles)
+            foreach (var vehicle in PlayableVehicles)
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
@@ -380,8 +381,8 @@ namespace Core.Organization.Helpers
             if (_cache.IsEmpty())
                 _cache.AddRange(_dataRepository.Query<IVehicle>());
 
-            _playableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).AsParallel().ToList());
-            _presetGenerator.SetPlayableVehicles(_playableVehicles);
+            PlayableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).AsParallel().ToList());
+            _presetGenerator.SetPlayableVehicles(PlayableVehicles);
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 

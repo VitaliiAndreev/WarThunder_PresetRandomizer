@@ -506,7 +506,7 @@ namespace Client.Wpf.Windows
             {
                 if (vehicleControl.Type == EVehicleCard.Preset)
                 {
-                    _informationControl.ResearchTreeControl.BringIntoView(vehicleControl.Vehicle, true);
+                    _informationControl.BringIntoView(vehicleControl.Vehicle, true);
                 }
                 else if (vehicleControl.Type == EVehicleCard.ResearchTree)
                 {
@@ -833,7 +833,7 @@ namespace Client.Wpf.Windows
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         public void BringIntoView(IVehicle vehicle) =>
-            _informationControl.BringIntoView(vehicle);
+            _informationControl.BringIntoView(vehicle, true);
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to highlight. </param>

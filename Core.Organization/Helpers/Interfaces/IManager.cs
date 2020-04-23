@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using Core.Organization.Objects;
@@ -14,7 +15,10 @@ namespace Core.Organization.Helpers.Interfaces
         #region Properties
 
         /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
-        public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
+        IDictionary<ENation, ResearchTree> ResearchTrees { get; }
+
+        /// <summary> Playable vehicles loaded into memory. </summary>
+        IList<IVehicle> PlayableVehicles { get; }
 
         #endregion Properties
         #region Methods: Initialization

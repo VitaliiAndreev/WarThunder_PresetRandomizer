@@ -319,6 +319,10 @@
             <Setter Property="FontSize" Value="10"/>
         </Style>
 
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake16px" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
@@ -355,6 +359,15 @@
 
         <Style TargetType="TextBlock" x:Key="TextBlockFontSize16WithLeftMargin" BasedOn="{StaticResource TextBlockFontSize16}">
             <Setter Property="Padding" Value="5 0 0 0"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockHeader16px" BasedOn="{StaticResource TextBlockFontSize16}">
+            <Setter Property="Padding" Value="0 10 0 10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlock12px">
+            <Setter Property="FontSize" Value="12"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="PaddedBottom">
