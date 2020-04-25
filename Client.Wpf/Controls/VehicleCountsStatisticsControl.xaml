@@ -1,4 +1,4 @@
-﻿<base:LocalizedUserControl
+﻿<base:LocalisedUserControl
     x:Class="Client.Wpf.Controls.VehicleCountsStatisticsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,18 +8,20 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
-    <Grid Width="auto">
-        <ScrollViewer>
-            <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
 
-                <TextBlock Text="Vehicles by Nations and Countries"
-                    x:Name="_vehiclesByNationsAndCountriesHeader"
-                    Style="{StaticResource TextBlockHeader16px}"/>
+            <TextBlock Text="Click on any of the categories to open an associated vehicle list."
+                x:Name="_hint"
+                Style="{StaticResource TextBlock12px}"/>
 
-                <Grid
-                    x:Name="_vehiclesByNationsAndCountriesGrid"/>
+            <TextBlock Text="Vehicles by Nations and Countries"
+                x:Name="_vehiclesByNationsAndCountriesHeader"
+                Style="{StaticResource TextBlockHeader16px}"/>
 
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
-</base:LocalizedUserControl>
+            <Grid
+                x:Name="_vehiclesByNationsAndCountriesGrid"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</base:LocalisedUserControl>

@@ -15,7 +15,7 @@
     Closing="OnClosing"
     Closed="OnClosed">
     <StackPanel
-        Style="{StaticResource PaddedStackPanel}"
+        Style="{StaticResource StackPanelMargin10}"
         Height="110"
         Width="800">
 

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Core.Localization.Tests.Helpers
 {
-    /// <summary> See <see cref="LocalizationManager"/>. </summary>
+    /// <summary> See <see cref="LocalisationManager"/>. </summary>
     [TestClass]
     public class LocalizationManagerTests
     {
@@ -33,7 +33,7 @@ namespace Core.Localization.Tests.Helpers
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
 
-            _localizationDirectory = $@"{Directory.GetCurrentDirectory()}\{EWord.Localization}";
+            _localizationDirectory = $@"{Directory.GetCurrentDirectory()}\{EWord.Localisation}";
 
             if (!Directory.Exists(_localizationDirectory))
                 Directory.CreateDirectory(_localizationDirectory);
@@ -57,7 +57,7 @@ namespace Core.Localization.Tests.Helpers
         public void Constructor_LanguageNotRecognized_ShouldThrow()
         {
             // arrange, act
-            Action createLocalizationManager = () => new LocalizationManager(_fileReader, "", Presets.Logger);
+            Action createLocalizationManager = () => new LocalisationManager(_fileReader, "", Presets.Logger);
 
             // assert
             createLocalizationManager.Should().Throw<FileNotFoundException>();
@@ -71,9 +71,9 @@ namespace Core.Localization.Tests.Helpers
             var key = "SomethingSomething";
             var value = "Ooh, it actually has something! :D";
             var expectedFileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<{EWord.Localization}>
+<{EWord.Localisation}>
   <{EWord.Line} {EWord.Key.ToLower()}=""{key}"" {EWord.Value.ToLower()}=""{value}""/>
-</{EWord.Localization}>";
+</{EWord.Localisation}>";
 
             var filePath = $@"{_localizationDirectory}\{fileName}{ECharacter.Period}{EFileExtension.Xml}";
             File.Create(filePath).Close();
@@ -82,10 +82,10 @@ namespace Core.Localization.Tests.Helpers
                 streamWriter.Write(expectedFileContents);
 
             // act
-            var localizationManager = new LocalizationManager(_fileReader, fileName, Presets.Logger);
+            var localizationManager = new LocalisationManager(_fileReader, fileName, Presets.Logger);
 
             // assert
-            localizationManager.GetLocalizedString(key).Should().Be(value);
+            localizationManager.GetLocalisedString(key).Should().Be(value);
         }
 
         #endregion Tests: Constructor()

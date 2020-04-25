@@ -16,7 +16,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         public virtual bool this[EVehicleBranchTag tag]
         {
-            get => _index.TryGetValue(tag, out var isTagged) ? isTagged : false;
+            get => _index.TryGetValue(tag, out var isTagged) && isTagged;
         }
 
         public virtual bool this[IEnumerable<EVehicleBranchTag> tags]

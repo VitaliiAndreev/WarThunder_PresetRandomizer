@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Client.Wpf.Controls"
     mc:Ignorable="d">
     <Border
         x:Name="_border"
@@ -43,43 +44,8 @@
         </Grid>
 
         <Border.ToolTip>
-            <StackPanel
-                x:Name="_tooltipPanel"
-                Margin="5">
-
-                <TextBlock Text="Full Name"
-                    x:Name="_tooltipFullName"
-                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-                <TextBlock
-                        x:Name="_tooltipClass"
-                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-
-                <WrapPanel HorizontalAlignment="Center">
-
-                    <Image
-                        x:Name="_tooltipCountryFlag"
-                        Style="{StaticResource FlagIcon}"/>
-                    <TextBlock
-                        x:Name="_tooltipCountryRankAndBattleRating"
-                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-                    <TextBlock
-                        x:Name="_tooltipBattleRating"
-                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-                </WrapPanel>
-
-                <TextBlock
-                        x:Name="_tooltipRequirements"
-                        Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-                <Image
-                    x:Name="_portrait"
-                    Style="{StaticResource Image312x200px}"
-                    Margin="0 5 0 5"/>
-
-            </StackPanel>
+            <controls:VehicleTooltipControl
+                x:Name="_tooltip"/>
         </Border.ToolTip>
 
     </Border>

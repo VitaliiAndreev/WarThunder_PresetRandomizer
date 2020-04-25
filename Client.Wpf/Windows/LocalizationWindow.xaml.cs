@@ -5,8 +5,8 @@ using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
+using Core.Enumerations;
 using Core.Enumerations.Logger;
-using Core.Localization.Enumerations;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -90,9 +90,9 @@ namespace Client.Wpf.Windows
         {
             base.Localise();
 
-            Title = ApplicationHelpers.LocalizationManager is null
+            Title = ApplicationHelpers.LocalisationManager is null
                 ? EClientApplicationName.WarThunderPresetRandomizerAbbreviated
-                : ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationNameAbbreviated);
+                : ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationNameAbbreviated);
         }
 
         /// <summary> Selects the given language for localization and restarts the application if it's not the first start. </summary>
@@ -128,8 +128,8 @@ namespace Client.Wpf.Windows
         /// <returns></returns>
         private bool RestartApproved()
         {
-            var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
-            var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationWillBeRestarted);
+            var title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
+            var message = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationWillBeRestarted);
 
             return MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
         }

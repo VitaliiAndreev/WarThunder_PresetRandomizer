@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -16,7 +17,7 @@ using System.Windows.Media;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeControl.xaml. </summary>
-    public partial class ResearchTreeControl : LocalizedUserControl
+    public partial class ResearchTreeControl : LocalisedUserControl
     {
         #region Fields
 
@@ -26,6 +27,10 @@ namespace Client.Wpf.Controls
         private readonly IDictionary<ENation, ResearchTreeNationControl> _nationControls;
         /// <summary> Whether the control is disabled by default, e.g. when the underlying nation is empty. </summary>
         private readonly IDictionary<ENation, bool> _isEnabledByDefault;
+
+        private bool _initialised;
+
+        private IMainWindowPresenter _presenter;
 
         /// <summary> The currently selected nation. </summary>
         private ENation _currentNation;
@@ -82,8 +87,9 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Overrides
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
@@ -91,13 +97,31 @@ namespace Client.Wpf.Controls
             foreach (var tab in _tabControl.Items.OfType<TabItem>())
             {
                 if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
-                    textBlock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
+                    textBlock.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(tab.Tag.ToString());
             }
             foreach (var nationControl in _nationControls.Values)
             {
                 nationControl.Localise();
             }
         }
+
+        #endregion Methods: Overrides
+        #region Methods: Initialisation
+
+        public void Initialise(IMainWindowPresenter presenter)
+        {
+            if (!_initialised && presenter is IMainWindowPresenter)
+            {
+                _presenter = presenter;
+
+                foreach (var control in _nationControls.Values)
+                    control.Initialise(_presenter);
+
+                _initialised = true;
+            }
+        }
+
+        #endregion Methods: Initialisation
 
         /// <summary> Creates a header for a tab control of the given <paramref name="nation"/>. </summary>
         /// <param name="nation"> The nation for whose tab to create a header for. </param>
@@ -144,6 +168,8 @@ namespace Client.Wpf.Controls
 
                 _nationControls.Add(nation, nationControl);
                 _nationTabs.Add(nation, tabItem);
+
+                nationControl.Initialise(_presenter);
             }
         }
 

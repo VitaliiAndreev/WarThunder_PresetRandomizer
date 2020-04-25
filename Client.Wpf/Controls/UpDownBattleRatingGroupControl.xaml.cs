@@ -14,7 +14,7 @@ using System.Windows.Controls;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for UpDownBattleRatingGroupControl.xaml. </summary>
-    public partial class UpDownBattleRatingGroupControl : LocalizedUserControl, IControlWithSubcontrols<ENation>
+    public partial class UpDownBattleRatingGroupControl : LocalisedUserControl, IControlWithSubcontrols<ENation>
     {
         #region Properties
 
@@ -62,12 +62,12 @@ namespace Client.Wpf.Controls
         public void RaiseValueChanged() =>
             RaiseEvent(new RoutedEventArgs(ValueChangedEvent, this));
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
 
-            _header.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.BattleRatings);
+            _header.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.BattleRatings);
         }
 
         private void CreateBattleRatingPairControls()

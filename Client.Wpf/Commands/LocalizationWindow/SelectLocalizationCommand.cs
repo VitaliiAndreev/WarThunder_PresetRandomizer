@@ -25,7 +25,7 @@ namespace Client.Wpf.Commands.LocalizationWindow
 
             if (parameter is ILocalizationWindowPresenter presenter)
             {
-                ApplicationHelpers.LocalizationManager = new LocalizationManager(ApplicationHelpers.FileReader, presenter.Language, ApplicationHelpers.Loggers);
+                ApplicationHelpers.LocalisationManager = new LocalisationManager(ApplicationHelpers.FileReader, presenter.Language, ApplicationHelpers.Loggers);
                 ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.Localization), presenter.Language);
             }
         }

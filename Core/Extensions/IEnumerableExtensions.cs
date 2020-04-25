@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using Core.Enumerations.Logger;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,7 +44,19 @@ namespace Core.Extensions
         public static IEnumerable<T> Except<T>(this IEnumerable<T> collection, T element) =>
             collection.Except(new List<T> { element });
 
-        #region IsEmpty(), HasSingle(), HasMany()
+        #region Any(), IsEmpty(), HasSingle(), HasMany()
+
+        public static bool Any(this IEnumerable collection)
+        {
+            foreach (var _ in collection)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsEmpty(this IEnumerable collection) =>
+            !collection.Any();
 
         /// <summary> Fluently checks whether a collection is empty. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>

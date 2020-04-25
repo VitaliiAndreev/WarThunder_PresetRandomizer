@@ -1,13 +1,21 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for InformationControl.xaml. </summary>
-    public partial class InformationControl : LocalizedUserControl
+    public partial class InformationControl : LocalisedUserControl
     {
+        #region Fields
+
+        private bool _initialised;
+
+        private IMainWindowPresenter _presenter;
+
+        #endregion Fields
         #region Properties
 
         public ResearchTreeControl ResearchTreeControl => _researchTreeControl;
@@ -27,15 +35,29 @@ namespace Client.Wpf.Controls
         {
             base.Localise();
 
-            _researchTreeHeader.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ResearchTrees);
-            _statisticsHeader.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Statistics);
-            _vehicleCardHeader.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.VehicleInformation);
+            _researchTreeHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ResearchTrees);
+            _statisticsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Statistics);
+            _vehicleCardHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehicleInformation);
 
             _researchTreeControl.Localise();
             _statisticsControl.Localise();
         }
 
         #endregion Methods: Overrides
+        #region Methods: Initialisation
+
+        public void Initialise(IMainWindowPresenter presenter)
+        {
+            if (!_initialised && presenter is IMainWindowPresenter)
+            {
+                _presenter = presenter;
+                _researchTreeControl.Initialise(_presenter);
+
+                _initialised = true;
+            }
+        }
+
+        #endregion Methods: Initialisation
         #region Methods: Navigation
 
         public void BringIntoView(IVehicle vehicle, bool changeTabs = false)
@@ -54,7 +76,7 @@ namespace Client.Wpf.Controls
             if (e.Source == _tabControl)
             {
                 if (_tabControl.SelectedItem == _statisticsTab)
-                    _statisticsControl.Initialise();
+                    _statisticsControl.Initialise(_presenter);
             }
         }
 

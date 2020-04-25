@@ -70,7 +70,7 @@
 
         public static string Line => _Line;
         public static string Loading => _Loading;
-        public static string Localization => _Localisation;
+        public static string Localisation => _Localisation;
         public static string Logger => _Logger;
         public static string Loggers => _Loggers;
 

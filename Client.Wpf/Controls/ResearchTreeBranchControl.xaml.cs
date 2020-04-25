@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -18,7 +19,7 @@ using System.Windows.Threading;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeBranchControl.xaml. </summary>
-    public partial class ResearchTreeBranchControl : LocalizedUserControl
+    public partial class ResearchTreeBranchControl : LocalisedUserControl
     {
         #region Fields
 
@@ -36,6 +37,10 @@ namespace Client.Wpf.Controls
 
         /// <summary> Indicates whether the <see cref="_toggleAllVehiclesButton"/>'s state can be altered. </summary>
         private bool _toggleAllVehiclesButtonIsSuspended;
+
+        private bool _initialised;
+
+        private IMainWindowPresenter _presenter;
 
         #endregion Fields
         #region Properties
@@ -123,6 +128,15 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
         #region Methods: Initialisation
 
+        public void Initialise(IMainWindowPresenter presenter)
+        {
+            if (!_initialised && presenter is IMainWindowPresenter)
+            {
+                _presenter = presenter;
+                _initialised = true;
+            }
+        }
+
         /// <summary> Attaches event handlers to enable highligting vehicles required for unlocking the currenly highlighted one. </summary>
         /// <param name="cell"> The research tree cell to whose content attach event handlers to. </param>
         private void AttachEventHandlers(ResearchTreeCellControl cell)
@@ -193,7 +207,7 @@ namespace Client.Wpf.Controls
                         var cell = new ResearchTreeCellControl()
                         {
                             Style = this.GetStyle(_styleKeys[rankKey]),
-                        };
+                        }.With(_presenter);
 
                         var cellVehicles = rank
                             .GetVehicles(columnNumber, rowNumberRelativeToRank)
@@ -220,10 +234,10 @@ namespace Client.Wpf.Controls
         {
             base.Localise();
 
-            static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localisationKey);
+            static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
 
-            _toggleAllVehiclesButton.Content = getLocalisedString(ELocalizationKey.All);
-            _toggleAllVehiclesButton.ToolTip = getLocalisedString(ELocalizationKey.SelectAllVehicles);
+            _toggleAllVehiclesButton.Content = getLocalisedString(ELocalisationKey.All);
+            _toggleAllVehiclesButton.ToolTip = getLocalisedString(ELocalisationKey.SelectAllVehicles);
         }
 
         #endregion Methods: Overrides
@@ -233,7 +247,7 @@ namespace Client.Wpf.Controls
         internal void DisplayVehicleInformation(EGameMode gameMode)
         {
             foreach (var vehicleCell in _cellVehicleControls.Values)
-                vehicleCell.DisplayVehicleInformation(gameMode);
+                vehicleCell.UpdateFor(gameMode);
         }
 
         /// <summary> Initialises the state of the <see cref="_toggleAllVehiclesButton"/> depending on vehicle selection. </summary>

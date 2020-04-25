@@ -90,7 +90,7 @@ namespace Client.Wpf.Windows
             var closeImmediately = false;
 
             _status.Foreground = new SolidColorBrush(EColor.ValidText);
-            _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ready);
+            _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Ready);
 
             if (_messageBoxIsUp)
             {
@@ -102,7 +102,7 @@ namespace Client.Wpf.Windows
 
             if (!closeImmediately)
             {
-                _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ReadyWithCountDown).FormatFluently(secondsBeforeAutoClosure);
+                _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ReadyWithCountDown).FormatFluently(secondsBeforeAutoClosure);
 
                 await Task.Delay(secondsBeforeAutoClosure * EInteger.Time.MillisecondsInSecond);
             }
@@ -142,11 +142,11 @@ namespace Client.Wpf.Windows
         {
             base.Localise();
 
-            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+            Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
 
-            _statusLabel.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Status);
+            _statusLabel.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Status);
 
-            _status.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Loading);
+            _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Loading);
             _status.Foreground = new SolidColorBrush(EColor.InvalidText);
         }
 
@@ -167,8 +167,8 @@ namespace Client.Wpf.Windows
         /// <returns></returns>
         private bool ClosureConfirmed()
         {
-            var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
-            var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.InitialisationUnderwayConfirmClosure);
+            var title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
+            var message = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.InitialisationUnderwayConfirmClosure);
 
             _messageBoxIsUp = true;
 

@@ -1,4 +1,4 @@
-﻿<base:LocalizedUserControl
+﻿<base:LocalisedUserControl
     x:Class="Client.Wpf.Controls.StatisticsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -24,5 +24,16 @@
                 x:Name="_vehicleCountsControl"/>
         </TabItem>
 
+        <TabItem
+            x:Name="_vehicleListTab">
+            <TabItem.Header>
+                <TextBlock Text="Vehicle List"
+                    x:Name="_vehicleListHeader"
+                    Style="{StaticResource TextBlockFontSize16WithLeftMargin}"/>
+            </TabItem.Header>
+            <controls:VehicleListCountrol
+                x:Name="_vehicleListControl"/>
+        </TabItem>
+
     </TabControl>
-</base:LocalizedUserControl>
+</base:LocalisedUserControl>

@@ -10,9 +10,9 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #region Persistent Properties
 
         /// <summary> The primary subclass. </summary>
-        EVehicleSubclass First { get; }
+        EVehicleSubclass? First { get; }
         /// <summary> The secondary subclass. </summary>
-        EVehicleSubclass Second { get; }
+        EVehicleSubclass? Second { get; }
 
         #endregion PersistentProperties
         #region Non-Persistent Properties

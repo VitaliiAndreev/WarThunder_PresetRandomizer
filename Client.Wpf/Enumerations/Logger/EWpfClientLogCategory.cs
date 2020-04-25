@@ -16,7 +16,7 @@ namespace Client.Wpf.Enumerations.Logger
         public static string LoadingWindow = $"{EWord.Loading} {EWord.Window}";
 
         /// <summary> See <see cref="Windows.LocalizationWindow"/>. </summary>
-        public static string LocalizationWindow = $"{EWord.Localization} {EWord.Window}";
+        public static string LocalizationWindow = $"{EWord.Localisation} {EWord.Window}";
 
         /// <summary> See <see cref="Windows.MainWindow"/>. </summary>
         public static string MainWindow = $"{EWord.Main} {EWord.Window}";

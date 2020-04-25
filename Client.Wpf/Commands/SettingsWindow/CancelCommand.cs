@@ -37,8 +37,8 @@ namespace Client.Wpf.Commands.SettingsWindow
                     return;
                 }
 
-                var title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
-                var message = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.RequiredSettingsHaveNotBeenSet);
+                var title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
+                var message = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.RequiredSettingsHaveNotBeenSet);
 
                 if (MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {

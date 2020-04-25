@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace Client.Wpf.Controls.Base
 {
-    public class VehicleCounter : LocalizedUserControl
+    public class VehicleCount : LocalisedUserControl
     {
         #region Fields
 
@@ -15,11 +15,11 @@ namespace Client.Wpf.Controls.Base
         #endregion Fields
         #region Constructors
 
-        public VehicleCounter()
+        public VehicleCount()
         {
         }
 
-        public VehicleCounter(int count, Thickness margin)
+        public VehicleCount(int count, Thickness margin)
         {
             _textStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
             _count = new TextBlock

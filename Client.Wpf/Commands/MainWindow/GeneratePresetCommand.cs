@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace Client.Wpf.Commands.MainWindow
 {
     /// <summary> A command for generating vehicle presets. </summary>
-    public class GeneratePresetCommand : Command, ICommand
+    public class GeneratePresetCommand : Command
     {
         #region Constructors
 
@@ -45,6 +45,7 @@ namespace Client.Wpf.Commands.MainWindow
 
             if (parameter is IMainWindowPresenter presenter)
             {
+                presenter.ToggleLongOperationIndicator(true);
                 presenter.ExecuteCommand(ECommandName.DeletePresets);
 
                 var gameMode = presenter.CurrentGameMode;
@@ -103,6 +104,8 @@ namespace Client.Wpf.Commands.MainWindow
                 presenter.EnableOnly(selectedNation, selectedBranches);
                 presenter.FocusResearchTree(selectedNation, selectedBranches.First());
                 presenter.BringIntoView(firstVehicle);
+                presenter.ToggleLongOperationIndicator(false);
+                presenter.RaiseSwitchToResearchTreeCommandCanExecuteChanged();
 
                 GC.Collect();
             }

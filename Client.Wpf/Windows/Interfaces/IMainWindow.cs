@@ -16,6 +16,11 @@ namespace Client.Wpf.Windows.Interfaces
         new IMainWindowPresenter Presenter { get; }
 
         #endregion Properties
+        #region Methods: Status Bar
+
+        void ToggleLongOperationIndicator(bool show);
+
+        #endregion Methods: Status Bar
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>

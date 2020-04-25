@@ -66,6 +66,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.AllBoats.GetVehicleClass().Should().Be(EVehicleClass.Boat),
                 () => EVehicleSubclass.MotorGunboat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
                 () => EVehicleSubclass.MotorTorpedoBoat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
+                () => EVehicleSubclass.Minelayer.GetVehicleClass().Should().Be(EVehicleClass.Boat),
 
                 () => EVehicleSubclass.AllHeavyBoats.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
                 () => EVehicleSubclass.ArmoredGunboat.GetVehicleClass().Should().Be(EVehicleClass.HeavyBoat),
@@ -137,6 +138,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.AllBoats.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.MotorGunboat.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.MotorTorpedoBoat.IsValid().Should().BeTrue(),
+                () => EVehicleSubclass.Minelayer.IsValid().Should().BeTrue(),
 
                 () => EVehicleSubclass.AllHeavyBoats.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.ArmoredGunboat.IsValid().Should().BeTrue(),

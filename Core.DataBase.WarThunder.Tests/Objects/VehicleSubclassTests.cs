@@ -402,6 +402,29 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             allSubclasses.Should().BeEquivalentTo(subclasses);
         }
 
+        [TestMethod]
+        public void Constructor_Boat_Minelayer_Returns_Minelayer()
+        {
+            // arrange
+            var mockVehicle = new Mock<IVehicle>();
+            mockVehicle.Setup(vehicle => vehicle.GaijinId).Returns(nameof(mockVehicle));
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Boat);
+
+            var vehicleTags = new VehicleTagsDeserializedFromJson
+            {
+                IsBoat = true,
+                IsMinelayer = true,
+            };
+            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.Minelayer };
+            var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
+
+            // act
+            var allSubclasses = subclass.All;
+
+            // assert
+            allSubclasses.Should().BeEquivalentTo(subclasses);
+        }
+
         #endregion Boats
         #region Heavy Boats
 

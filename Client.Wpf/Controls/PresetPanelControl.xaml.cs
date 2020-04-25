@@ -3,6 +3,7 @@ using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
@@ -19,7 +20,7 @@ using System.Windows.Media;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for PresetPanelControl.xaml. </summary>
-    public partial class PresetPanelControl : LocalizedUserControl
+    public partial class PresetPanelControl : LocalisedUserControl
     {
         #region Fields
 
@@ -27,6 +28,10 @@ namespace Client.Wpf.Controls
         private readonly IDictionary<EPreset, WrapPanel> _presetPanels;
 
         private readonly IDictionary<string, ResearchTreeCellVehicleControl> _vehicleCards;
+
+        private bool _initialised;
+
+        private IMainWindowPresenter _presenter;
 
         #endregion Fields
         #region Constructors
@@ -48,6 +53,18 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Initialisation
+
+        public void Initialise(IMainWindowPresenter presenter)
+        {
+            if (!_initialised)
+            {
+                _presenter = presenter;
+                _initialised = true;
+            }
+        }
+
+        #endregion Methods: Initialisation
         #region Methods: Event Handlers
 
         /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for one of the vehicle cards. </summary>
@@ -86,13 +103,13 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Raisers
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
 
-            _swapPresetsButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.SwapPrimaryAndFallbackPresets);
-            _deletePresetsButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.RemovePresets);
+            _swapPresetsButton.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.SwapPrimaryAndFallbackPresets);
+            _deletePresetsButton.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.RemovePresets);
         }
 
         /// <summary> Attaches specified commands to buttons on the control. </summary>
@@ -153,11 +170,11 @@ namespace Client.Wpf.Controls
                     }
                     else
                     {
-                        vehicleControl = new ResearchTreeCellVehicleControl(vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
+                        vehicleControl = new ResearchTreeCellVehicleControl(_presenter, vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
 
                         vehicleControl.MouseEnter += OnMouseEnter;
                         vehicleControl.MouseLeave += OnMouseLeave;
-                        vehicleControl.DisplayVehicleInformation(gameMode);
+                        vehicleControl.UpdateFor(gameMode);
 
                         _vehicleCards.Add(vehicle.GaijinId, vehicleControl);
                     }
@@ -189,7 +206,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Displays the message that no vehicles suit the criteria. </summary>
         public void ShowNoResults() =>
-            DisplayText(ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.SomethingWentWrongNoVehiclesFitTheCriteria));
+            DisplayText(ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.SomethingWentWrongNoVehiclesFitTheCriteria));
 
         /// <summary> Displays a message that no vehicles suit the criteria with additional information. </summary>
         /// <param name="nation"> The nation. </param>
@@ -197,8 +214,8 @@ namespace Client.Wpf.Controls
         public void ShowNoVehicles(ENation nation, EBranch mainBranch) =>
             DisplayText
             (
-                ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.NoVehiclesAvailableWithinSpecifiedParameters)
-                    .FormatFluently(ApplicationHelpers.LocalizationManager.GetLocalizedString(mainBranch.ToString()), ApplicationHelpers.LocalizationManager.GetLocalizedString(nation.ToString()))
+                ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.NoVehiclesAvailableWithinSpecifiedParameters)
+                    .FormatFluently(ApplicationHelpers.LocalisationManager.GetLocalisedString(mainBranch.ToString()), ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()))
             );
 
         /// <summary> Displays the specified preset. </summary>

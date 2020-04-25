@@ -28,11 +28,11 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> The primary subclass. </summary>
         [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
-        public virtual EVehicleSubclass First { get; protected set; } = EVehicleSubclass.None;
+        public virtual EVehicleSubclass? First { get; protected set; }
 
         /// <summary> The secondary subclass. </summary>
         [Property(TypeType = typeof(EnumStringType<EVehicleSubclass>))]
-        public virtual EVehicleSubclass Second { get; protected set; } = EVehicleSubclass.None;
+        public virtual EVehicleSubclass? Second { get; protected set; }
 
         #endregion PersistentProperties
         #region Association Properties
@@ -45,7 +45,21 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Association Properties
         #region Non-Persistent Properties
 
-        public virtual IEnumerable<EVehicleSubclass> All => new HashSet<EVehicleSubclass> { First, Second }.AsEnumerable();
+        public virtual IEnumerable<EVehicleSubclass> All
+        {
+            get
+            {
+                var allSubclasses = new HashSet<EVehicleSubclass>();
+
+                if (First.HasValue)
+                    allSubclasses.Add(First.Value);
+
+                if (Second.HasValue)
+                    allSubclasses.Add(Second.Value);
+
+                return allSubclasses.AsEnumerable();
+            }
+        }
 
         #endregion Non-Persistent Properties
         #region Constructors
@@ -146,6 +160,7 @@ namespace Core.DataBase.WarThunder.Objects
                 {
                     { EVehicleSubclass.MotorGunboat, deserializedTags.IsGunBoat },
                     { EVehicleSubclass.MotorTorpedoBoat, deserializedTags.IsTorpedoBoat },
+                    { EVehicleSubclass.Minelayer, deserializedTags.IsMinelayer },
                 };
 
                 return selectSubclasses(subclassDictionary);
@@ -202,7 +217,6 @@ namespace Core.DataBase.WarThunder.Objects
                     case 0:
                     {
                         First = subclass;
-                        Second = subclass;
                         break;
                     }
                     case 1:

@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.Tests.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -49,13 +50,13 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
-                var zimbabwe = new Nation(dataRepository, "Zimbabwe");
-                var bicycleCorps = new Branch(dataRepository, "Bicycle Corps", zimbabwe);
+                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.Britain]);
+                var britishArmy = new Branch(dataRepository, EReference.BranchesFromEnumeration[EBranch.Army], britain);
 
                 var wingedBicycle = new Vehicle(dataRepository, "Winged Bycicle")
                 {
-                    Nation = zimbabwe,
-                    Branch = bicycleCorps,
+                    Nation = britain,
+                    Branch = britishArmy,
                 };
 
                 // act

@@ -1,8 +1,9 @@
-﻿<Application x:Class="Client.Wpf.WpfClient"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:controls="clr-namespace:Client.Wpf.Controls"
-             Startup="OnStartup">
+﻿<Application
+    x:Class="Client.Wpf.WpfClient"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Client.Wpf.Controls"
+    Startup="OnStartup">
     <Application.Resources>
 
         <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
@@ -122,6 +123,21 @@
             <Setter Property="Height" Value="17"/>
         </Style>
 
+        <!-- t:DataGridCell -->
+        
+        <Style TargetType="DataGridCell">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="TextBlock.FontFamily" Value="{StaticResource SkyQuake}"/>
+            <Setter Property="TextBlock.LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
+        </Style>
+
+        <!-- t:DataGridColumnHeader -->
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
         <!-- t:GameModeSelectionControl -->
 
         <Style TargetType="controls:GameModeSelectionControl">
@@ -213,6 +229,12 @@
             <Setter Property="Stretch" Value="Fill"/>
         </Style>
 
+        <!-- t:MenuItem -->
+
+        <Style TargetType="MenuItem">
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+        </Style>
+
         <!-- t:NationToggleControl -->
 
         <Style TargetType="controls:NationToggleControl">
@@ -283,7 +305,11 @@
             <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
         </Style>
         
-        <Style TargetType="StackPanel" x:Key="PaddedStackPanel">
+        <Style TargetType="StackPanel" x:Key="StackPanelMargin5">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        
+        <Style TargetType="StackPanel" x:Key="StackPanelMargin10">
             <Setter Property="Margin" Value="10"/>
         </Style>
 
@@ -315,11 +341,19 @@
             <Setter Property="LayoutTransform" Value="{StaticResource FontStretchCondensed}"/>
         </Style>
 
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeUncondensed">
+            <Setter Property="FontFamily" Value="{StaticResource SkyQuake}"/>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake10px" BasedOn="{StaticResource TextBlockWithSkyQuake}">
             <Setter Property="FontSize" Value="10"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake16px" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake16pxUncondensed" BasedOn="{StaticResource TextBlockWithSkyQuakeUncondensed}">
             <Setter Property="FontSize" Value="16"/>
         </Style>
 
@@ -329,6 +363,11 @@
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered12px" BasedOn="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered}">
             <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake12pxRightCenter" BasedOn="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeVerticallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">
@@ -368,6 +407,10 @@
 
         <Style TargetType="TextBlock" x:Key="TextBlock12px">
             <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlock12pxCentred" BasedOn="{StaticResource TextBlock12px}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="PaddedBottom">

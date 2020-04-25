@@ -18,7 +18,7 @@ namespace Core.Organization.Helpers.Interfaces
         IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
         /// <summary> Playable vehicles loaded into memory. </summary>
-        IList<IVehicle> PlayableVehicles { get; }
+        IDictionary<string, IVehicle> PlayableVehicles { get; }
 
         #endregion Properties
         #region Methods: Initialization

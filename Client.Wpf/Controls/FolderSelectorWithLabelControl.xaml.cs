@@ -126,7 +126,7 @@ namespace Client.Wpf.Controls
         /// <summary> Applies localization to visible text on the control. </summary>
         public void Localize()
         {
-            _button.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.LookUp);
+            _button.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.LookUp);
         }
 
         /// <summary> Raises <see cref="AddressValidityChanged"/>. </summary>

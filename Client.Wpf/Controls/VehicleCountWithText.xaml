@@ -1,5 +1,5 @@
-﻿<base:VehicleCounter
-    x:Class="Client.Wpf.Controls.VehicleCounterWithText"
+﻿<base:VehicleCount
+    x:Class="Client.Wpf.Controls.VehicleCountWithText"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,4 +13,4 @@
         Orientation="Horizontal">
 
     </StackPanel>
-</base:VehicleCounter>
+</base:VehicleCount>

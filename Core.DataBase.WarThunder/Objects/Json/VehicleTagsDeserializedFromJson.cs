@@ -281,12 +281,6 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("type_minelayer")]
         public bool IsMinelayer { get; set; }
 
-        [JsonProperty("type_minesweeper")]
-        public bool IsMinesweeper { get; set; }
-
-        [JsonProperty("type_missile_boat")]
-        public bool IsMissileBoat { get; set; }
-
         [JsonProperty("type_naval_aa_ferry")]
         public bool IsAaFerry { get; set; }
 

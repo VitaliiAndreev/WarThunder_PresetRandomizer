@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -37,9 +36,13 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowBinocularsIcon(IVehicle vehicle) => vehicle.GroundVehicleTags?.CanScout ?? false;
 
-        public bool ReplaceClassWithSubclass(IVehicle vehicle) => vehicle.Subclasses.First.IsValid();
+        public bool ReplaceClassWithSubclass(IVehicle vehicle) => vehicle.Subclasses.First.HasValue && vehicle.Subclasses.First.Value.IsValid();
 
-        public bool ShowSecondSubclass(IVehicle vehicle) => vehicle.Subclasses.Second.IsValid() && vehicle.Subclasses.Second != vehicle.Subclasses.First;
+        public bool ShowSecondSubclass(IVehicle vehicle) =>
+            vehicle.Subclasses.First.HasValue
+            && vehicle.Subclasses.Second.HasValue
+            && vehicle.Subclasses.Second.Value.IsValid()
+            && vehicle.Subclasses.Second.Value != vehicle.Subclasses.First.Value;
 
         public bool ShowResearchCosts(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.UnlockCostInResearch.HasValue;
 
@@ -50,7 +53,7 @@ namespace Client.Wpf.Controls.Strategies
         #endregion Methods: Checks
         #region Methods: Output
 
-        protected string GetLocalisedString(object localisationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localisationKey.ToString());
+        protected string GetLocalisedString(object localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey.ToString());
         protected string GetLocalisationText(ILocalization localisation) => localisation?.GetLocalization(WpfSettings.LocalizationLanguage);
 
         protected void SetSharedLeftPart(StringBuilder stringBuilder, IVehicle vehicle)
@@ -58,9 +61,9 @@ namespace Client.Wpf.Controls.Strategies
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
             if (ShowStarterGiftTag(vehicle))
-                append($"{GetLocalisedString(ELocalizationKey.Starter)}{ECharacter.Space}");
+                append($"{GetLocalisedString(ELocalisationKey.Starter)}{ECharacter.Space}");
             else if (ShowReserveTag(vehicle))
-                append($"{GetLocalisedString(ELocalizationKey.Reserve)}{ECharacter.Space}");
+                append($"{GetLocalisedString(ELocalisationKey.Reserve)}{ECharacter.Space}");
 
             if (ShowEyeIcon(vehicle))
                 append(ECharacter.Eye);
@@ -137,9 +140,9 @@ namespace Client.Wpf.Controls.Strategies
 
             append($"{GetLocalisedString(vehicle.Country)}");
             append($"{ESeparator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(ELocalizationKey.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
+            append($"{GetLocalisedString(ELocalisationKey.Rank)}{ECharacter.Colon}{ECharacter.Space}{vehicle.RankAsEnumerationItem}");
             append($"{ESeparator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(ELocalizationKey.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
+            append($"{GetLocalisedString(ELocalisationKey.BattleRating)}{ECharacter.Colon}{ECharacter.Space}");
 
             return stringBuilder.ToString();
         }
@@ -151,29 +154,29 @@ namespace Client.Wpf.Controls.Strategies
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
             if (ShowReserveTag(vehicle))
-                append($"{GetLocalisedString(ELocalizationKey.Reserve)}");
+                append($"{GetLocalisedString(ELocalisationKey.Reserve)}");
 
             if (ShowStarterGiftTag(vehicle))
-                append($"{GetLocalisedString(ELocalizationKey.Starter)}{ESeparator.SpaceSlashSpace}");
+                append($"{GetLocalisedString(ELocalisationKey.Starter)}{ESeparator.SpaceSlashSpace}");
 
             if (ShowGoldenEagleCost(vehicle))
                 append($"{vehicle.EconomyData.PurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
-                append($"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.SoldOnTheMarket)}");
+                append($"{EGaijinCharacter.GaijinCoin}{ECharacter.Space}{GetLocalisedString(ELocalisationKey.SoldOnTheMarket)}");
 
             if (ShowEyeIcon(vehicle))
-                append($"{ECharacter.Eye}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.Hidden)}");
+                append($"{ECharacter.Eye}{ECharacter.Space}{GetLocalisedString(ELocalisationKey.Hidden)}");
             if (ShowEyeIcon(vehicle) && ShowControllerIcon(vehicle))
                 append(ESeparator.SpaceSlashSpace);
 
             if (ShowControllerIcon(vehicle))
-                append($"{EGaijinCharacter.Controller}{ECharacter.Space}{GetLocalisedString(ELocalizationKey.ConsoleExclusive)}");
+                append($"{EGaijinCharacter.Controller}{ECharacter.Space}{GetLocalisedString(ELocalisationKey.ConsoleExclusive)}");
             if (ShowControllerIcon(vehicle) && ShowPackTag(vehicle))
                 append(ESeparator.SpaceSlashSpace);
 
             if (ShowPackTag(vehicle))
-                append(GetLocalisedString(ELocalizationKey.AvailableInStorePacks));
+                append(GetLocalisedString(ELocalisationKey.AvailableInStorePacks));
 
             if (ShowResearchCosts(vehicle))
                 append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");

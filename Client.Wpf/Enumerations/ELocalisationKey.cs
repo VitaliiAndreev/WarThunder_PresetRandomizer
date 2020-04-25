@@ -1,7 +1,7 @@
 ﻿namespace Client.Wpf.Enumerations
 {
-    /// <summary> Keys of localized strings loaded from localization files. </summary>
-    public class ELocalizationKey
+    /// <summary> Keys of localised strings loaded from localisation files. </summary>
+    public class ELocalisationKey
     {
         public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
@@ -34,6 +34,8 @@
         public const string CategoryBased = nameof(CategoryBased);
         public const string CategoryBasedDescription = nameof(CategoryBasedDescription);
         public const string China = nameof(China);
+        public const string ClickOnCategoryOnVehicleCountsTab = nameof(ClickOnCategoryOnVehicleCountsTab);
+        public const string ClickOnCategoryToOpenList = nameof(ClickOnCategoryToOpenList);
         public const string Commits = nameof(Commits);
         public const string ConsoleExclusive = nameof(ConsoleExclusive);
         public const string Cuba = nameof(Cuba);
@@ -51,6 +53,7 @@
         public const string Frigate = nameof(Frigate);
         public const string FrontlineBomber = nameof(FrontlineBomber);
         public const string GaijinEntertainmentForWarThunder = nameof(GaijinEntertainmentForWarThunder);
+        public const string GaijinId = nameof(GaijinId);
         public const string Gdr = nameof(Gdr);
         public const string GeneratePreset = nameof(GeneratePreset);
         public const string Germany = nameof(Germany);
@@ -77,6 +80,7 @@
         public const string LightCruiser = nameof(LightCruiser);
         public const string LightTank = nameof(LightTank);
         public const string OpenYouTubePlaylist = nameof(OpenYouTubePlaylist);
+        public const string OperationUnderwayPleaseWait = nameof(OperationUnderwayPleaseWait);
         public const string Loading = nameof(Loading);
         public const string Location = nameof(Location);
         public const string LocationChangesWillComeIntoEffectAfterRestart = nameof(LocationChangesWillComeIntoEffectAfterRestart);
@@ -100,6 +104,7 @@
         public const string Philippines = nameof(Philippines);
         public const string Poland = nameof(Poland);
         public const string Portugal = nameof(Portugal);
+        public const string Premium = nameof(Premium);
         public const string Rank = nameof(Rank);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
@@ -108,15 +113,18 @@
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
+        public const string Requires = nameof(Requires);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);
         public const string Russia = nameof(Russia);
         public const string Scout = nameof(Scout);
+        public const string ScrapGeneratedPresets = nameof(ScrapGeneratedPresets);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string SelectAllCountries = nameof(SelectAllCountries);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string SelectAllVehicles = nameof(SelectAllVehicles);
+        public const string ShowInResearchTree = nameof(ShowInResearchTree);
         public const string Simulator = nameof(Simulator);
         public const string SoldOnTheMarket = nameof(SoldOnTheMarket);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);
@@ -143,6 +151,7 @@
         public const string VehicleBasedDescription = nameof(VehicleBasedDescription);
         public const string VehicleCounts = nameof(VehicleCounts);
         public const string VehicleInformation = nameof(VehicleInformation);
+        public const string VehicleList = nameof(VehicleList);
         public const string VehiclesByNationsAndCountries = nameof(VehiclesByNationsAndCountries);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);

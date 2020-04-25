@@ -11,7 +11,9 @@ namespace Client.Wpf.Enumerations
         public const char Binoculars = '⌂';
         public const char Premium = '╞';
         public const char Research = '▉';
+        public const char SandClock = '▫';
         public const char SilverLion = '€';
         public const char SpaceFromCsv = ' ';
+        public const char Watch = '▩';
     }
 }

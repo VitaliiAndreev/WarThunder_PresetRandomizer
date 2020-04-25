@@ -91,7 +91,7 @@ namespace Core.Organization.Helpers
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
         /// <summary> Playable vehicles loaded into memory. </summary>
-        public IList<IVehicle> PlayableVehicles { get; }
+        public IDictionary<string, IVehicle> PlayableVehicles { get; }
 
         #endregion Properties
         #region Delegates
@@ -156,7 +156,7 @@ namespace Core.Organization.Helpers
             _presetGenerator = presetGenerator;
 
             _cache = new List<IPersistentObject>();
-            PlayableVehicles = new List<IVehicle>();
+            PlayableVehicles = new Dictionary<string, IVehicle>();
 
             _settingsManager = settingsManager;
             _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
@@ -232,7 +232,7 @@ namespace Core.Organization.Helpers
 
             var columnCount = default(int);
 
-            foreach (var vehicle in PlayableVehicles)
+            foreach (var vehicle in PlayableVehicles.Values)
             {
                 if (vehicle.ResearchTreeData is null)
                     continue;
@@ -381,8 +381,15 @@ namespace Core.Organization.Helpers
             if (_cache.IsEmpty())
                 _cache.AddRange(_dataRepository.Query<IVehicle>());
 
-            PlayableVehicles.AddRange(_cache.OfType<IVehicle>().Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts)).AsParallel().ToList());
-            _presetGenerator.SetPlayableVehicles(PlayableVehicles);
+            PlayableVehicles.AddRange
+            (
+                _cache
+                    .OfType<IVehicle>()
+                    .Where(vehicle => !vehicle.GaijinId.ContainsAny(_excludedGaijinIdParts))
+                    .AsParallel()
+                    .ToDictionary(vehicle => vehicle.GaijinId)
+            );
+            _presetGenerator.SetPlayableVehicles(PlayableVehicles.Values);
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 

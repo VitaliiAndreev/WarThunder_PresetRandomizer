@@ -135,25 +135,12 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, T> itemSelector, bool suppressLogging = false)
         {
-            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).IsIn(validItems)).AsParallel().ToList() ?? new List<IVehicle>();
-
-            return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
-        }
-
-        /// <summary>
-        /// Filters given <paramref name="vehicles"/> based on the <paramref name="itemSelector"/> and <paramref name="validItems"/>.
-        /// If emptiness of the resulting collection is logged elsewhere, it's possible to <paramref name="suppressLogging"/>.
-        /// </summary>
-        /// <typeparam name="T"> The type of filter criteria items. </typeparam>
-        /// <param name="vehicles"> Vehicles to filter through. </param>
-        /// <param name="validItems"> Items accepted by the filter. </param>
-        /// <param name="itemSelector"> The selector function that extracts evaluated values from given <paramref name="vehicles"/>. </param>
-        /// <param name="suppressLogging"> Whether to log empty results. </param>
-        /// <returns></returns>
-        private IEnumerable<IVehicle> FilterVehicles<T>(IEnumerable<IVehicle> vehicles, IEnumerable<T> validItems, Func<IVehicle, IEnumerable<T>> itemSelector, bool suppressLogging = false)
-        {
-            var filteredVehicles = vehicles?.Where(vehicle => itemSelector(vehicle).Intersect(validItems).Any()).AsParallel().ToList() ?? new List<IVehicle>();
-
+            var filteredVehicles = vehicles
+                ?.Where(vehicle => itemSelector(vehicle).IsIn(validItems))
+                ?.AsParallel()
+                ?.ToList()
+                ?? new List<IVehicle>()
+            ;
             return AssessFilterResult(filteredVehicles, validItems, suppressLogging);
         }
 
@@ -190,8 +177,16 @@ namespace Core.Organization.Helpers
         /// <param name="validVehicleSubclasses"> Vehicle subclasses enabled via GUI and actually available. </param>
         /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
-        private IEnumerable<IVehicle> FilterVehiclesBySubclassFilters(IEnumerable<EVehicleSubclass> validVehicleSubclasses, IEnumerable<IVehicle> vehicles) =>
-            FilterVehicles(vehicles, validVehicleSubclasses, vehicle => vehicle.Subclasses.All);
+        private IEnumerable<IVehicle> FilterVehiclesBySubclassFilters(IEnumerable<EVehicleSubclass> validVehicleSubclasses, IEnumerable<IVehicle> vehicles)
+        {
+            var filteredVehicles = vehicles
+                ?.Where(vehicle => vehicle.Subclasses.All.IsEmpty() || vehicle.Subclasses.All.Intersect(validVehicleSubclasses).Any())
+                ?.AsParallel()
+                ?.ToList()
+                ?? new List<IVehicle>()
+            ;
+            return AssessFilterResult(filteredVehicles, validVehicleSubclasses, false);
+        }
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validBranches"/>. </summary>
         /// <param name="validBranches"> Vehicle branches enabled via GUI and actually available. </param>
@@ -549,7 +544,7 @@ namespace Core.Organization.Helpers
             #region Filtering by subclasses.
 
             var vehicleSubclassesFromValidClasses = validVehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses());
-            var validVehicleSubclasses = specification.VehicleSubclasses.Intersect(vehicleSubclassesFromValidClasses).Including(EVehicleSubclass.None);
+            var validVehicleSubclasses = specification.VehicleSubclasses.Intersect(vehicleSubclassesFromValidClasses);
             var vehiclesWithSubclassFilter = FilterVehiclesBySubclassFilters(validVehicleSubclasses, vehiclesWithClassFilter);
 
             if (vehiclesWithSubclassFilter is null)

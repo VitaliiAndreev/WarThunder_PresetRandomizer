@@ -35,7 +35,7 @@
 
         <StackPanel
             Grid.Row="2"
-            Style="{StaticResource PaddedStackPanel}">
+            Style="{StaticResource StackPanelMargin10}">
 
             <Grid
                 TextBlock.FontSize="14">

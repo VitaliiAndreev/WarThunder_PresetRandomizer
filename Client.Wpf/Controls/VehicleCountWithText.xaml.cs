@@ -1,22 +1,20 @@
 ﻿using Client.Wpf.Controls.Base;
-using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleCounterWithText.xaml. </summary>
-    public partial class VehicleCounterWithText : VehicleCounter
+    public partial class VehicleCountWithText : VehicleCount
     {
         #region Constructors
 
-        public VehicleCounterWithText()
+        public VehicleCountWithText()
         {
             InitializeComponent();
         }
 
-        public VehicleCounterWithText(string text, int count, Thickness margin)
+        public VehicleCountWithText(string text, int count, Thickness margin)
             : base(count, margin)
         {
             InitializeComponent();

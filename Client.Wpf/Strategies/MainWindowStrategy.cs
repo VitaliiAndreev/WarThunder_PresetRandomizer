@@ -27,6 +27,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.SwapPresets, new SwapPresetsCommand());
             _commands.Add(ECommandName.DeletePresets, new DeletePresetsCommand());
             _commands.Add(ECommandName.ToggleVehicle, new ToggleVehicleCommand());
+            _commands.Add(ECommandName.SwitchToResearchTree, new SwitchToResearchTreeCommand());
             _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());
             _commands.Add(ECommandName.ChangeLocalization, new ChangeLocalizationCommand());
             _commands.Add(ECommandName.LinkToYouTube, new LinkToYouTubeCommand());

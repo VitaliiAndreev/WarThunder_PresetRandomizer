@@ -24,139 +24,167 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
+        
+        <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="212"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="212"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+            <Grid Grid.Column="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            
-            <StackPanel
-                Grid.Row="0"
-                Style="{StaticResource PaddedStackPanel}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
 
-                <Button Content="Generate a preset"
-                    x:Name="_generatePresetButton"
-                    Style="{StaticResource ButtonFontSize16}"
-                    FontWeight="Bold"/>
+                <StackPanel
+                    Grid.Row="0"
+                    Style="{StaticResource StackPanelMargin10}">
 
-                <controls:RandomisationSelectionControl
-                    x:Name="_randomisationSelectionControl"
-                    Click="OnRandomisationButtonClick"/>
+                    <Button Content="Generate a preset"
+                        x:Name="_generatePresetButton"
+                        Style="{StaticResource ButtonFontSize16}"
+                        FontWeight="Bold"/>
 
-                <controls:GameModeSelectionControl
-                    x:Name="_gameModeSelectionControl"
-                    Click="OnGameModeButtonClick"/>
+                    <controls:RandomisationSelectionControl
+                        x:Name="_randomisationSelectionControl"
+                        Click="OnRandomisationButtonClick"/>
 
-                <controls:BranchToggleControl
-                    x:Name="_branchToggleControl"
-                    Click="OnBranchToggleControlClick"
-                    VehicleBranchTagToggled="OnVehicleBranchTagToggled"/>
+                    <controls:GameModeSelectionControl
+                        x:Name="_gameModeSelectionControl"
+                        Click="OnGameModeButtonClick"/>
 
-                <controls:VehicleClassToggleControl
-                    x:Name="_vehicleClassControl"
-                    Click="OnVehicleClassToggleControlClick"
-                    VehicleSubclassToggled="OnVehicleSubclassToggled"/>
+                    <controls:BranchToggleControl
+                        x:Name="_branchToggleControl"
+                        Click="OnBranchToggleControlClick"
+                        VehicleBranchTagToggled="OnVehicleBranchTagToggled"/>
 
-                <controls:NationToggleControl
-                    x:Name="_nationToggleControl"
-                    Click="OnNationToggleControlClick"/>
+                    <controls:VehicleClassToggleControl
+                        x:Name="_vehicleClassControl"
+                        Click="OnVehicleClassToggleControlClick"
+                        VehicleSubclassToggled="OnVehicleSubclassToggled"/>
 
-                <controls:CountryToggleControl
-                    x:Name="_countryToggleControl"
-                    Click="OnCountryToggleControlClick"/>
+                    <controls:NationToggleControl
+                        x:Name="_nationToggleControl"
+                        Click="OnNationToggleControlClick"/>
 
-                <controls:RankToggleControl
-                    x:Name="_rankToggleControl"
-                    Click="OnRankToggleControlClick"/>
+                    <controls:CountryToggleControl
+                        x:Name="_countryToggleControl"
+                        Click="OnCountryToggleControlClick"/>
 
-                <controls:UpDownBattleRatingGroupControl
-                    x:Name="_battleRatingControl"
-                    ValueChanged="OnBattleRatingValueChanged"/>
+                    <controls:RankToggleControl
+                        x:Name="_rankToggleControl"
+                        Click="OnRankToggleControlClick"/>
 
-            </StackPanel>
+                    <controls:UpDownBattleRatingGroupControl
+                        x:Name="_battleRatingControl"
+                        ValueChanged="OnBattleRatingValueChanged"/>
+
+                </StackPanel>
+
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource PaddedGrid_10}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        x:Name="_settingsButton"
+                        Margin="0 0 2.5 0">
+                        <Image
+                            Source="{StaticResource Settings}"
+                            Width="19"
+                            Height="19"
+                            Stretch="Uniform"/>
+                    </Button>
+
+                    <Button
+                        Grid.Column="1"
+                        x:Name="_localizationButton"
+                        Margin="2.5 0 2.5 0">
+                        <Image
+                            Style="{StaticResource LocalizationIcon}"
+                            Source="{StaticResource FlagEnglishForDesigner}"/>
+                    </Button>
+
+                    <Button
+                        Grid.Column="2"
+                        x:Name="_youTubeButton"
+                        Margin="2.5 0 2.5 0">
+                        <Image
+                            Source="{StaticResource YouTubeIcon}"
+                            Style="{StaticResource Icon23pxUniform}"/>
+                    </Button>
+
+                    <Button
+                        Grid.Column="3"
+                        x:Name="_aboutButton"
+                        Margin="2.5 0 0 0">
+                        <Image
+                            Source="{StaticResource TeamIcon}"
+                            Style="{StaticResource Icon23pxUniform}"/>
+                    </Button>
+
+                </Grid>
+
+            </Grid>
 
             <Grid
-                Grid.Row="1"
-                Style="{StaticResource PaddedGrid_10}">
+                Grid.Column="1"
+                Margin="0 10 10 10"
+                controls:ResearchTreeCellVehicleControl.Click="OnVehicleCardClick">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="95"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
 
-                <Button
-                    Grid.Column="0"
-                    x:Name="_settingsButton"
-                    Margin="0 0 2.5 0">
-                    <Image
-                        Source="{StaticResource Settings}"
-                        Width="19"
-                        Height="19"
-                        Stretch="Uniform"/>
-                </Button>
+                <controls:PresetPanelControl
+                    Grid.Row="0"
+                    x:Name="_presetPanel"
+                    MouseEnter="OnPresetVehicleMouseEnter"
+                    MouseLeave="OnPresetVehicleMouseLeave"/>
 
-                <Button
-                    Grid.Column="1"
-                    x:Name="_localizationButton"
-                    Margin="2.5 0 2.5 0">
-                    <Image
-                        Style="{StaticResource LocalizationIcon}"
-                        Source="{StaticResource FlagEnglishForDesigner}"/>
-                </Button>
-
-                <Button
-                    Grid.Column="2"
-                    x:Name="_youTubeButton"
-                    Margin="2.5 0 2.5 0">
-                    <Image
-                        Source="{StaticResource YouTubeIcon}"
-                        Style="{StaticResource Icon23pxUniform}"/>
-                </Button>
-
-                <Button
-                    Grid.Column="3"
-                    x:Name="_aboutButton"
-                    Margin="2.5 0 0 0">
-                    <Image
-                        Source="{StaticResource TeamIcon}"
-                        Style="{StaticResource Icon23pxUniform}"/>
-                </Button>
+                <controls:InformationControl
+                    Grid.Row="1"
+                    x:Name="_informationControl"
+                    Margin="0 10 0 0"/>
                 
+                <Border
+                    Grid.Row="2">
+                    <StackPanel
+                        Margin="0 5 0 0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Background="LightGray"> 
+
+                        <TextBlock Text="▫"
+                            x:Name="_statusBarIcon"
+                            Style="{StaticResource TextBlockWithSkyQuake16pxUncondensed}"
+                            Margin="5 0 0 0"
+                            VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Operation underway, please wait..."
+                            x:Name="_statusBarMessage"
+                            Style="{StaticResource TextBlock12px}"
+                            Margin="5 0 5 0"
+                            VerticalAlignment="Center"/>
+
+                    </StackPanel>
+                </Border>
+
             </Grid>
 
         </Grid>
-        
-        <Grid
-            Grid.Column="1"
-            Margin="0 10 10 10"
-            controls:ResearchTreeCellVehicleControl.Click="OnVehicleCardClick">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="95"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <controls:PresetPanelControl
-                Grid.Row="0"
-                x:Name="_presetPanel"
-                MouseEnter="OnPresetVehicleMouseEnter"
-                MouseLeave="OnPresetVehicleMouseLeave"/>
-
-            <controls:InformationControl
-                Grid.Row="1"
-                x:Name="_informationControl"
-                Margin="0 10 0 0"/>
             
-        </Grid>
-
     </Grid>
 </local:BaseWindow>

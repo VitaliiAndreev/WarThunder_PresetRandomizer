@@ -38,6 +38,7 @@
   <Line key="Beta" value="Beta"/>
   <Line key="Boat" value="Boat"/>
   <Line key="Bomber" value="Bomber"/>
+  <Line key="Branch" value="Branch"/>
   <Line key="Britain" value="Great Britain"/>
   <Line key="Bulgaria" value="Bulgaria"/>
   <Line key="Canada" value="Canada"/>
@@ -45,8 +46,12 @@
   <Line key="CategoryBased" value="by categories"/>
   <Line key="CategoryBasedDescription" value="Randomisation based primarily on selected group filters. Any combinations of nations, branches, and battle ratings have an equal probability of being selected, if at least one vehicle fulfills the criteria.&#xD;&#xA;This method is recommended when amounts of available vehicles in nation-branch pairs vary significantly."/>
   <Line key="China" value="China"/>
+  <Line key="Class" value="Class"/>
+  <Line key="ClickOnCategoryOnVehicleCountsTab" value="Click on any category on the &quot;Vehicle Counts&quot; tab."/>
+  <Line key="ClickOnCategoryToOpenList" value="Click on any of the categories to open an associated vehicle list."/>
   <Line key="Commits" value="commits"/>
   <Line key="ConsoleExclusive" value="Console-exclusive"/>
+  <Line key="Country" value="Country"/>
   <Line key="Cuba" value="Cuba"/>
   <Line key="CzechRepublic" value="Czech Republic"/>
   <Line key="Destroyer" value="Destroyer"/>
@@ -62,9 +67,11 @@
   <Line key="Frigate" value="Frigate"/>
   <Line key="FrontlineBomber" value="Frontline Bomber"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment for War Thunder."/>
+  <Line key="GaijinId" value="Gaijin ID"/>
   <Line key="Gdr" value="GDR"/>
   <Line key="GeneratePreset" value="Generate a preset"/>
   <Line key="Germany" value="Germany"/>
+  <Line key="GiftedToNewPlayersForSelectingTheirFirstBranch" value="Gifted&#xA;to New&#xA;Players"/>
   <Line key="Greece" value="Greece"/>
   <Line key="HeavyBoat" value="Heavy Boat"/>
   <Line key="HeavyCruiser" value="Heavy Cruiser"/>
@@ -77,7 +84,15 @@
   <Line key="InitialisationUnderwayConfirmClosure" value="Initialisation is underway. Proceed?"/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
+  <Line key="IsAvailableOnlyOnConsoles" value="Consolee&#xA;Exclusive"/>
+  <Line key="IsHiddenUnlessOwned" value="Hidden"/>
+  <Line key="IsPremium" value="Premium"/>
+  <Line key="IsPurchasableForGoldenEagles" value="GE"/>
   <Line key="Israel" value="Israel"/>
+  <Line key="IsResearchable" value="Research"/>
+  <Line key="IsSoldInTheStore" value="Store"/>
+  <Line key="IsSoldOnTheMarket" value="Market"/>
+  <Line key="IsSquadronVehicle" value="Research&#xA;(Squadron)"/>
   <Line key="Italy" value="Italy"/>
   <Line key="Japan" value="Japan"/>
   <Line key="JetBomber" value="Jet Bomber"/>
@@ -93,9 +108,11 @@
   <Line key="LongRangeBomber" value="Long Range Bomber"/>
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
+  <Line key="Minelayer" value="Minelayer"/>
   <Line key="MotorGunboat" value="Motor Gunboat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="MotorTorpedoGunboat" value="Motor Torpedo Gunboat"/>
+  <Line key="Name" value="Name"/>
   <Line key="NavalAircraft" value="Naval Aircraft"/>
   <Line key="NavalFerryBarge" value="Naval Ferry Barge"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
@@ -107,9 +124,11 @@
   <Line key="Ok" value="OK"/>
   <Line key="Pack" value="Pack"/>
   <Line key="OpenYouTubePlaylist" value="Open YouTube playlist"/>
+  <Line key="OperationUnderwayPleaseWait" value="Operation underway, please wait..."/>
   <Line key="Philippines" value="Philippines"/>
   <Line key="Poland" value="Poland"/>
   <Line key="Portugal" value="Portugal"/>
+  <Line key="Premium" value="Premium"/>
   <Line key="Rank" value="Rank"/>
   <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
@@ -120,13 +139,16 @@
   <Line key="ResearchTrees" value="Research Trees"/>
   <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
+  <Line key="Requires" value="Requires"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
   <Line key="Scout" value="Scout"/>
+  <Line key="ScrapGeneratedPresets" value="Scrap generated presets (the button with a recycle icon on the top panel)."/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="SelectAllCountries" value="Enables all countries in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehicleClasses" value="Enables all vehicle classes and subclasses in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehicles" value="Enables all vehicles in the branch if at least one is disabled. Disables all of them otherwise."/>
+  <Line key="ShowInResearchTree" value="Open the research tree"/>
   <Line key="Simulator" value="Simulator Battles"/>
   <Line key="SoldOnTheMarket" value="Sold on the market"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
@@ -136,6 +158,8 @@
   <Line key="Status" value="Status:"/>
   <Line key="StrikeFighter" value="Strike Fighter"/>
   <Line key="SubChaser" value="Sub-chaser"/>
+  <Line key="Subclass1" value="Subclass 1"/>
+  <Line key="Subclass2" value="Subclass 2"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Sweden" value="Sweden"/>
   <Line key="TankDestroyer" value="Tank Destroyer"/>
@@ -153,6 +177,7 @@
   <Line key="VehicleBasedDescription" value="Randomisation based primarily on selected vehicles. Any selected vehicle has an equal chance of being selected as the main vehicle of the primary preset.&#xD;&#xA;This method is recommended when most vehicles across all selected filters are researched, or when research is of no importance."/>
   <Line key="VehicleCounts" value="Vehicle Counts"/>
   <Line key="VehicleInformation" value="Vehicle Information"/>
+  <Line key="VehicleList" value="Vehicle List"/>
   <Line key="VehiclesByNationsAndCountries" value="Vehicles by Nations and Countries"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>

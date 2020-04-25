@@ -59,7 +59,7 @@ namespace Client.Wpf
         public static IWarThunderFileReader FileReader { get; private set; }
         public static IWpfClientSettingsManager SettingsManager { get; private set; }
         public static IWpfClientManager Manager { get; private set; }
-        public static ILocalizationManager LocalizationManager { get; internal set; }
+        public static ILocalisationManager LocalisationManager { get; internal set; }
 
         /// <summary> An instance of a window factory. </summary>
         public static IWindowFactory WindowFactory { get; private set; }
@@ -176,15 +176,15 @@ namespace Client.Wpf
         }
 
         /// <summary>
-        /// Initializes the <see cref="LocalizationManager"/>.
+        /// Initializes the <see cref="LocalisationManager"/>.
         /// If the language stored in the <see cref="EWpfClientFile.Settings"/> file doesn't have a matching localization file, the language selection window is shown.
         /// </summary>
         private static void InitializeLocalizationManager()
         {
             try
             {
-                Log.Debug(ECoreLogMessage.TryingToInitialize.FormatFluently(ELocalizationLogCategory.LocalizationManager));
-                LocalizationManager = new LocalizationManager(FileReader, WpfSettings.Localization, Loggers);
+                Log.Debug(ECoreLogMessage.TryingToInitialize.FormatFluently(ELocalisationLogCategory.LocalisationManager));
+                LocalisationManager = new LocalisationManager(FileReader, WpfSettings.Localization, Loggers);
             }
             catch (FileNotFoundException exception)
             {

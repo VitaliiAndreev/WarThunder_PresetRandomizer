@@ -24,6 +24,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Client.Wpf.Windows
 {
@@ -64,10 +65,9 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            SetControlTags();
-            AttachCommands();
-            PopulateControls();
+            InitialiseControls();
             UpdateControlsBasedOnSettingsAndData();
+            ToggleLongOperationIndicator(false);
 
             Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
@@ -104,6 +104,24 @@ namespace Client.Wpf.Windows
 
             Presenter.Randomisation = toggleButton.Tag.CastTo<ERandomisation>();
             Presenter.ExecuteCommand(ECommandName.SelectRandomisation);
+        }
+
+        /// <summary> Selects the specified game mode. </summary>
+        /// <param name="gameMode"> The game mode to select. </param>
+        /// <param name="simulateClick"> Whether to simulate a click on the appropriate button. </param>
+        private void SelectGameMode(EGameMode gameMode, bool simulateClick = false)
+        {
+            if (simulateClick)
+                _gameModeSelectionControl.OnClick(_gameModeSelectionControl.Buttons[gameMode], new RoutedEventArgs());
+
+            if (Presenter.CurrentGameMode == gameMode && !simulateClick)
+                return;
+
+            _informationControl.ResearchTreeControl.DisplayVehicleInformation(gameMode);
+
+            Presenter.CurrentGameMode = gameMode;
+            Presenter.ExecuteCommand(ECommandName.SelectGameMode);
+            Presenter.ExecuteCommand(ECommandName.DeletePresets);
         }
 
         /// <summary> Selects the game mode whose button is pressed. </summary>
@@ -523,6 +541,13 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Event Raisers
+
+        /// <summary> Checks whether it is possible to generate presets. </summary>
+        private void RaiseGeneratePresetCommandCanExecuteChanged() =>
+            (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
+
+        #endregion Methods: Event Raisers
         #region Methods: Initialisation
 
         /// <summary> Initialized dictionaries. </summary>
@@ -550,6 +575,30 @@ namespace Client.Wpf.Windows
             };
         }
 
+        private void InitialiseControls()
+        {
+            _presetPanel.Initialise(Presenter);
+            _informationControl.Initialise(Presenter);
+
+            SetControlTags();
+            AttachCommands();
+            PopulateControls();
+        }
+
+        /// <summary> Sets control tags. </summary>
+        private void SetControlTags()
+        {
+            _gameModeSelectionControl.Tag = EGameMode.None;
+
+            _branchToggleControl.Tag = EBranch.None;
+            _vehicleClassControl.Tag = EVehicleClass.None;
+
+            _nationToggleControl.Tag = ENation.None;
+            _countryToggleControl.Tag = ECountry.None;
+
+            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
+        }
+
         private void AttachCommands()
         {
             _generatePresetButton.CommandParameter = Presenter;
@@ -568,20 +617,6 @@ namespace Client.Wpf.Windows
             _aboutButton.Command = Presenter.GetCommand(ECommandName.About);
 
             _presetPanel.AttachCommands(Presenter.GetCommand(ECommandName.SwapPresets), Presenter.GetCommand(ECommandName.DeletePresets), Presenter);
-        }
-
-        /// <summary> Sets control tags. </summary>
-        private void SetControlTags()
-        {
-            _gameModeSelectionControl.Tag = EGameMode.None;
-
-            _branchToggleControl.Tag = EBranch.None;
-            _vehicleClassControl.Tag = EVehicleClass.None;
-
-            _nationToggleControl.Tag = ENation.None;
-            _countryToggleControl.Tag = ECountry.None;
-
-            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
         }
 
         /// <summary> Populates controls after initialization. </summary>
@@ -643,10 +678,11 @@ namespace Client.Wpf.Windows
         {
             base.Localise();
 
-            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+            Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
 
-            _generatePresetButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GeneratePreset);
-            _youTubeButton.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.OpenYouTubePlaylist);
+            _generatePresetButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GeneratePreset);
+            _youTubeButton.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.OpenYouTubePlaylist);
+            _statusBarMessage.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.OperationUnderwayPleaseWait);
 
             _randomisationSelectionControl.Localise();
             _gameModeSelectionControl.Localise();
@@ -661,6 +697,64 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Overrides
+        #region Methods: Rendering
+
+        public static void ProcessUiTasks()
+        {
+            var frame = new DispatcherFrame();
+
+            Dispatcher.CurrentDispatcher.BeginInvoke
+            (
+                DispatcherPriority.Background,
+                new DispatcherOperationCallback(delegate (object parameter) { frame.Continue = false; return null; }),
+                null
+            );
+            Dispatcher.PushFrame(frame);
+        }
+
+        #endregion Methods: Rendering
+        #region Methods: Status Bar
+
+        public void ToggleLongOperationIndicator(bool show)
+        {
+            _statusBarIcon.Visibility = show ? Visibility.Visible : Visibility.Hidden;
+            _statusBarMessage.Visibility = show ? Visibility.Visible : Visibility.Hidden;
+
+            ProcessUiTasks();
+        }
+
+        #endregion Methods: Status Bar
+        #region Methods: Adjusting Availability
+
+        /// <summary> Gets disabled nations. </summary>
+        /// <returns></returns>
+        private IEnumerable<ENation> GetDisabledNations() =>
+            typeof(ENation)
+                .GetEnumValues()
+                .Cast<ENation>()
+                .Where(nation => nation.IsValid())
+                .Except(Presenter.EnabledNations)
+            ;
+
+        /// <summary> Disables <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> corresponding to <paramref name="disabledNations"/>. </summary>
+        /// <param name="disabledNations"> Nations whose <see cref="UpDownBattleRatingPairControl"/>s to disable. </param>
+        private void DisableControls(IEnumerable<ENation> disabledNations, IControlWithSubcontrols<ENation> control)
+        {
+            foreach (var disabledNation in disabledNations)
+                control.Enable(disabledNation, false);
+        }
+
+        /// <summary> Adjusts availability of <see cref="_countryToggleControl"/> according to <see cref="IMainWindowPresenter.EnabledNations"/>. </summary>
+        private void AdjustCountryControlsAvailability() =>
+            DisableControls(GetDisabledNations(), _countryToggleControl);
+
+        /// <summary> Adjusts availability of <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> according to <see cref="IMainWindowPresenter.EnabledNations"/>. </summary>
+        private void AdjustBattleRatingControlsAvailability() =>
+            DisableControls(GetDisabledNations(), _battleRatingControl);
+
+        #endregion Methods: Adjusting Availability
+        #region Methods: Adjusting Visibility
+
         #region Methods: Adjusting Branch Toggle Availability
 
         /// <summary> Enables or disables branch toggles depending on whether any of <see cref="IMainWindowPresenter.EnabledNations"/> have associated branches implemented.</summary>
@@ -730,54 +824,7 @@ namespace Client.Wpf.Windows
             }
         }
 
-        /// <summary> Checks whether it is possible to generate presets. </summary>
-        private void RaiseGeneratePresetCommandCanExecuteChanged() =>
-            (_generatePresetButton.Command as ICustomCommand)?.RaiseCanExecuteChanged(Presenter);
-
-        /// <summary> Selects the specified game mode. </summary>
-        /// <param name="gameMode"> The game mode to select. </param>
-        /// <param name="simulateClick"> Whether to simulate a click on the appropriate button. </param>
-        private void SelectGameMode(EGameMode gameMode, bool simulateClick = false)
-        {
-            if (simulateClick)
-                _gameModeSelectionControl.OnClick(_gameModeSelectionControl.Buttons[gameMode], new RoutedEventArgs());
-
-            if (Presenter.CurrentGameMode == gameMode && !simulateClick)
-                return;
-
-            _informationControl.ResearchTreeControl.DisplayVehicleInformation(gameMode);
-
-            Presenter.CurrentGameMode = gameMode;
-            Presenter.ExecuteCommand(ECommandName.SelectGameMode);
-            Presenter.ExecuteCommand(ECommandName.DeletePresets);
-        }
-
-        /// <summary> Gets disabled nations. </summary>
-        /// <returns></returns>
-        private IEnumerable<ENation> GetDisabledNations() =>
-            typeof(ENation)
-                .GetEnumValues()
-                .Cast<ENation>()
-                .Where(nation => nation.IsValid())
-                .Except(Presenter.EnabledNations)
-            ;
-
-        /// <summary> Disables <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> corresponding to <paramref name="disabledNations"/>. </summary>
-        /// <param name="disabledNations"> Nations whose <see cref="UpDownBattleRatingPairControl"/>s to disable. </param>
-        private void DisableControls(IEnumerable<ENation> disabledNations, IControlWithSubcontrols<ENation> control)
-        {
-            foreach (var disabledNation in disabledNations)
-                control.Enable(disabledNation, false);
-        }
-
-        /// <summary> Adjusts availability of <see cref="_countryToggleControl"/> according to <see cref="IMainWindowPresenter.EnabledNations"/>. </summary>
-        private void AdjustCountryControlsAvailability() =>
-            DisableControls(GetDisabledNations(), _countryToggleControl);
-
-        /// <summary> Adjusts availability of <see cref="UpDownBattleRatingPairControl"/>s in <see cref="_battleRatingControl"/> according to <see cref="IMainWindowPresenter.EnabledNations"/>. </summary>
-        private void AdjustBattleRatingControlsAvailability() =>
-            DisableControls(GetDisabledNations(), _battleRatingControl);
-
+        #endregion Methods: Adjusting Visibility
         #region Methods: Calls to _presetPanel
 
         /// <summary> Resets preset control to their default states. </summary>

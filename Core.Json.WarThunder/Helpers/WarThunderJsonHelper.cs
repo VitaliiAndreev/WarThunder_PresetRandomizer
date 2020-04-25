@@ -14,6 +14,7 @@ using Core.Json.WarThunder.Objects;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Core.Json.Helpers
@@ -341,6 +342,7 @@ namespace Core.Json.Helpers
         /// <param name="researchTreeColumnAsJsonObject"> The JSON object to deserialize. </param>
         /// <param name="columnIndex"> The index of the parent column (the 1-based X coordinate). </param>
         /// <returns></returns>
+        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declaration")]
         private IEnumerable<ResearchTreeCellFromJson> DeserializeResearchTreeCells(JObject researchTreeColumnAsJsonObject, int columnIndex)
         {
             var cells = new List<ResearchTreeCellFromJson>();

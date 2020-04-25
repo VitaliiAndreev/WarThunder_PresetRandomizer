@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Objects;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Controls.Primitives;
 
 namespace Client.Wpf.Controls.Base
@@ -7,7 +8,8 @@ namespace Client.Wpf.Controls.Base
     /// <typeparam name="T"> The key type. </typeparam>
     public class ToggleButtonGroupControlWithToolTip<T> : ToggleButtonGroupControl<T>
     {
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
+        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declaration.")]
         public override void Localise()
         {
             base.Localise();
@@ -28,7 +30,7 @@ namespace Client.Wpf.Controls.Base
                         return;
                 }
 
-                button.ToolTip = ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
+                button.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(localizationKey);
             }
         }
     }

@@ -34,6 +34,8 @@ namespace Client.Wpf.Enumerations
         SelectGameMode,
         /// <summary> See <see cref="SwapPresetsCommand"/>. </summary>
         SwapPresets,
+        /// <summary> See <see cref="SwitchToResearchTreeCommand"/>. </summary>
+        SwitchToResearchTree,
         /// <summary> See <see cref="ToggleBranchCommand"/>. </summary>
         ToggleBranch,
         /// <summary> See <see cref="ToggleCountryCommand"/>. </summary>

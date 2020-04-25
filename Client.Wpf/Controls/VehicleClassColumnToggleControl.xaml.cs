@@ -61,14 +61,14 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Overrides
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
 
-            static string getLocalizedString(string localizationKey) => ApplicationHelpers.LocalizationManager.GetLocalizedString(localizationKey);
+            static string getLocalizedString(string localizationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localizationKey);
 
-            _toggleAllButton.ToolTip = getLocalizedString(ELocalizationKey.SelectAllVehicleClasses).FormatFluently(getLocalizedString(Owner.ToString()));
+            _toggleAllButton.ToolTip = getLocalizedString(ELocalisationKey.SelectAllVehicleClasses).FormatFluently(getLocalizedString(Owner.ToString()));
         }
 
         #endregion Methods: Overrides

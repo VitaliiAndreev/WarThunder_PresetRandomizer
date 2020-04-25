@@ -1,6 +1,8 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Extensions;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects;
@@ -9,14 +11,16 @@ using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Criterion;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleCountsStatisticsControl.xaml. </summary>
-    public partial class VehicleCountsStatisticsControl : LocalizedUserControl
+    public partial class VehicleCountsStatisticsControl : LocalisedUserControl
     {
         #region Fields
 
@@ -39,7 +43,8 @@ namespace Client.Wpf.Controls
         {
             base.Localise();
 
-            _vehiclesByNationsAndCountriesHeader.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.VehiclesByNationsAndCountries);
+            _hint.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ClickOnCategoryToOpenList);
+            _vehiclesByNationsAndCountriesHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByNationsAndCountries);
         }
 
         #endregion Methods: Overrides
@@ -47,7 +52,7 @@ namespace Client.Wpf.Controls
 
         public void Initialise(StatisticsControl statisticsControl)
         {
-            if (!_initialised)
+            if (!_initialised && statisticsControl is StatisticsControl)
             {
                 _statisticsControl = statisticsControl;
 
@@ -59,13 +64,16 @@ namespace Client.Wpf.Controls
 
         public void InitialiseVehiclesByNationsAndCountries()
         {
+            if (DesignerProperties.GetIsInDesignMode(this))
+                return;
+
             var nations = typeof(ENation).GetEnumerationItems<ENation>(true);
             var vehiclesCounts = nations
                 .SelectMany(nation => nation.GetNationCountryPairs())
                 .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => new List<IVehicle>())
             ;
 
-            foreach (var vehicle in ApplicationHelpers.Manager.PlayableVehicles)
+            foreach (var vehicle in ApplicationHelpers.Manager?.PlayableVehicles.Values ?? new List<IVehicle>())
                 vehicle.AddInto(vehiclesCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
 
             var vehiclesByNationsAndCountries = vehiclesCounts
@@ -81,8 +89,8 @@ namespace Client.Wpf.Controls
                 .ToDictionary(item => item.Key, item => item.Value.AsEnumerable())
             ;
 
-            _statisticsControl.SetVehiclesByNationsAndCountries(vehiclesByNationsAndCountries);
-            _statisticsControl.SetVehiclesByCountriesAndNations(vehiclesByCountriesAndNations);
+            _statisticsControl?.SetVehiclesByNationsAndCountries(vehiclesByNationsAndCountries);
+            _statisticsControl?.SetVehiclesByCountriesAndNations(vehiclesByCountriesAndNations);
 
             var nationIndex = EInteger.Number.Zero;
 
@@ -96,19 +104,26 @@ namespace Client.Wpf.Controls
                     Style = textStyle,
                     Margin = new Thickness(0, 0, margin, 0),
                     FontWeight = FontWeights.Bold,
-                    Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(nation.ToString()),
+                    Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()),
+                    Tag = nation,
                 };
                 var count = new TextBlock
                 {
                     Style = textStyle,
                     Margin = new Thickness(0, 0, margin, 0),
                     Text = vehiclesByNationsAndCountries.Where(item => item.Key.IsIn(nationKeys)).Sum(item => item.Value.Count()).ToString(),
+                    Tag = nation,
                 };
                 var countryIndex = EInteger.Number.Two;
 
+                header.MouseDown += OnVehiclesByNationsLeftMouseDown;
+                count.MouseDown += OnVehiclesByNationsLeftMouseDown;
+
                 foreach (var nationKey in nationKeys)
                 {
-                    var countryControl = new VehicleCounterWithFlag(nationKey.Country, vehiclesByNationsAndCountries[nationKey].Count(), new Thickness(margin, 0, margin, 0));
+                    var countryControl = new VehicleCountWithFlag(nationKey, vehiclesByNationsAndCountries[nationKey].Count(), new Thickness(margin, 0, margin, 0));
+
+                    countryControl.MouseDown += OnVehiclesByNationsLeftMouseDown;
 
                     _vehiclesByNationsAndCountriesGrid.Add(countryControl, countryIndex++, nationIndex);
                 }
@@ -118,5 +133,47 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Initialisation
+        #region Methods: Event Handlers
+
+        private void OnVehiclesByNationsLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (eventArguments.LeftButton == MouseButtonState.Pressed)
+            {
+                if (sender is FrameworkElement element)
+                {
+                    var keyPrefix = nameof(_statisticsControl.VehiclesByNationsAndCountries);
+                    var language = WpfSettings.LocalizationLanguage;
+
+                    void switchVehicleListTo(string key, IEnumerable<IVehicle> collection, EVehicleProfile shrinkProfile, ELanguage language)
+                    {
+                        _statisticsControl.SwitchVehicleListTo(key, collection, shrinkProfile, language);
+                        eventArguments.Handled = true;
+                    }
+
+                    if (element.Tag is NationCountryPair nationCountryPair)
+                    {
+                        switchVehicleListTo
+                        (
+                            $"{keyPrefix}_{nationCountryPair}",
+                            _statisticsControl.VehiclesByNationsAndCountries[nationCountryPair],
+                            EVehicleProfile.NationAndCountry,
+                            language
+                        );
+                    }
+                    else if (element.Tag is ENation nation)
+                    {
+                        switchVehicleListTo
+                        (
+                            $"{keyPrefix}_{nation}",
+                            _statisticsControl.VehiclesByNationsAndCountries.Where(item => item.Key.Nation == nation).SelectMany(item => item.Value),
+                            EVehicleProfile.Nation,
+                            language
+                        );
+                    }
+                }
+            }
+        }
+
+        #endregion Methods: Event Handlers
     }
 }

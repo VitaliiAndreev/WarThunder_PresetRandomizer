@@ -48,6 +48,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         AllBoats = 40,
         MotorGunboat = 401,
         MotorTorpedoBoat = 402,
+        Minelayer = 403,
 
         AllHeavyBoats = 41,
         ArmoredGunboat = 411,

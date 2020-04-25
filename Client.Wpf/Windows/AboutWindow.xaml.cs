@@ -61,14 +61,14 @@ namespace Client.Wpf.Windows
         {
             base.Localise();
 
-            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationNameAbbreviated);
+            Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationNameAbbreviated);
 
-            _version.Text = _version.Text.FormatFluently(ApplicationHelpers.LocalizationManager.GetLocalizedString(EApplicationData.DevelopmentStageLocalizationKey));
-            _thanks.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Thanks);
-            _gaijin.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.GaijinEntertainmentForWarThunder);
-            _klensy.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.KlensyForWtTools);
-            _benjaminDeCock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.BenjaminDeCockForStripeFlagSet);
-            _yummigum.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.YummigumForIconSweets2);
+            _version.Text = _version.Text.FormatFluently(ApplicationHelpers.LocalisationManager.GetLocalisedString(EApplicationData.DevelopmentStageLocalizationKey));
+            _thanks.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Thanks);
+            _gaijin.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GaijinEntertainmentForWarThunder);
+            _klensy.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.KlensyForWtTools);
+            _benjaminDeCock.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.BenjaminDeCockForStripeFlagSet);
+            _yummigum.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.YummigumForIconSweets2);
         }
     }
 }

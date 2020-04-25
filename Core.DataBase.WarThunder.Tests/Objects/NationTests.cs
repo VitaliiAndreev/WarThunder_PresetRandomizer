@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.Tests.Enumerations;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -50,7 +51,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
                 // act
-                var zimbabwe = new Nation(dataRepository, "Zimbabwe");
+                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.Britain]);
 
                 dataRepository.PersistNewObjects();
 
@@ -60,7 +61,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
                 var nation = query.First();
 
                 // assert
-                nation.IsEquivalentTo(zimbabwe, 1, _ignoredPropertyNames).Should().BeTrue();
+                nation.IsEquivalentTo(britain, 1, _ignoredPropertyNames).Should().BeTrue();
             }
         }
 
@@ -71,11 +72,11 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_Self_ShouldBeTrue()
         {
             // arrange
-            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
-            zimbabwe.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe) };
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabwe, 2, _ignoredPropertyNames);
+            var isEquivalent = britain.IsEquivalentTo(britain, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -85,14 +86,14 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_SameBranches_ShouldBeTrue()
         {
             // arrange
-            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
-            zimbabwe.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe) };
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
-            var zimbabweClone = new Nation(Presets.MockDataRepository.Object, zimbabwe.Id, zimbabwe.GaijinId)
-            { Branches = new List<IBranch> { zimbabwe.Branches.First() } };
+            var britainClone = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId)
+            { Branches = new List<IBranch> { britain.Branches.First() } };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweClone, 2, _ignoredPropertyNames);
+            var isEquivalent = britain.IsEquivalentTo(britainClone, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeTrue();
@@ -102,14 +103,14 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_DifferentBranches_ShouldBeFalse()
         {
             // arrange
-            var zimbabwe = new Nation(Presets.MockDataRepository.Object, "Zimbabwe");
-            zimbabwe.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "BycicleCorps", zimbabwe) };
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
-            var zimbabweCloneFlawed = new Nation(Presets.MockDataRepository.Object, zimbabwe.Id, zimbabwe.GaijinId);
-            zimbabweCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, "SledCorps", zimbabweCloneFlawed) };
+            var britainCloneFlawed = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId);
+            britainCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Aviation], britainCloneFlawed) };
 
             // act
-            var isEquivalent = zimbabwe.IsEquivalentTo(zimbabweCloneFlawed, 2, _ignoredPropertyNames);
+            var isEquivalent = britain.IsEquivalentTo(britainCloneFlawed, 2, _ignoredPropertyNames);
 
             // assert
             isEquivalent.Should().BeFalse();

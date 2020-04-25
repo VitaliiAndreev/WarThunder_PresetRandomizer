@@ -121,6 +121,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                     {
                         EVehicleSubclass.MotorGunboat,
                         EVehicleSubclass.MotorTorpedoBoat,
+                        EVehicleSubclass.Minelayer,
                     }
                 ),
                 () => EVehicleClass.HeavyBoat.GetVehicleSubclasses().Should().BeEquivalentTo

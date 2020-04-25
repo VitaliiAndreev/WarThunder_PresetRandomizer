@@ -208,7 +208,7 @@ namespace Client.Wpf
         /// <summary>
         /// Shows the error message.
         /// If the <see cref="ApplicationHelpers.Loggers"/> are not yet initialized the call stack is shown within the message instead of the logs.
-        /// If the <see cref="ApplicationHelpers.LocalizationManager"/> is not yet initialized, the message is show in English.
+        /// If the <see cref="ApplicationHelpers.LocalisationManager"/> is not yet initialized, the message is show in English.
         /// </summary>
         /// <param name="exception"> The exception whose stack trace to use if <see cref="ApplicationHelpers.Loggers"/> are not yet initialized. </param>
         private void ShowErrorMessage(Exception exception)
@@ -217,10 +217,10 @@ namespace Client.Wpf
             string message;
             string getInstruction(string localizedString) => Log is null ? $"\n{exception}" : localizedString;
 
-            if (ApplicationHelpers.LocalizationManager is ILocalizationManager localizationManager)
+            if (ApplicationHelpers.LocalisationManager is ILocalisationManager localizationManager)
             {
-                title = localizationManager.GetLocalizedString(ELocalizationKey.Error);
-                message = $"{localizationManager.GetLocalizedString(ELocalizationKey.FatalErrorShutdown)}\n{getInstruction(localizationManager.GetLocalizedString(ELocalizationKey.SeeLogsForDetails))}";
+                title = localizationManager.GetLocalisedString(ELocalisationKey.Error);
+                message = $"{localizationManager.GetLocalisedString(ELocalisationKey.FatalErrorShutdown)}\n{getInstruction(localizationManager.GetLocalisedString(ELocalisationKey.SeeLogsForDetails))}";
             }
             else
             {

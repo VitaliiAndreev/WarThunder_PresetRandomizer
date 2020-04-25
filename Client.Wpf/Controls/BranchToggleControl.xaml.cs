@@ -67,7 +67,7 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
         #region Methods: Overrides
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
@@ -77,7 +77,7 @@ namespace Client.Wpf.Controls
                 var vehicleBranchTag = pair.Key;
                 var menuItem = pair.Value;
 
-                menuItem.Header = ApplicationHelpers.LocalizationManager.GetLocalizedString(vehicleBranchTag.ToString());
+                menuItem.Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicleBranchTag.ToString());
             }
         }
 

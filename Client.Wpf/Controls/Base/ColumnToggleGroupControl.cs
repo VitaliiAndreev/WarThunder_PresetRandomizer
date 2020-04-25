@@ -13,7 +13,7 @@ namespace Client.Wpf.Controls.Base
     /// <summary> A user control consisting of toggle button columns indexed by <typeparamref name="T"/> values. </summary>
     /// <typeparam name="T"> The type of keys by which to group toggle button columns. </typeparam>
     /// <typeparam name="V"> The type of keys by which to group items in toggle button columns. </typeparam>
-    public abstract class ColumnToggleGroupControl<T, V> : LocalizedUserControl, IControlWithToggleColumns<T, V>
+    public abstract class ColumnToggleGroupControl<T, V> : LocalisedUserControl, IControlWithToggleColumns<T, V>
     {
         #region Properties
 
@@ -73,7 +73,7 @@ namespace Client.Wpf.Controls.Base
             _getOuterKey = keyConversionfunction;
         }
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();

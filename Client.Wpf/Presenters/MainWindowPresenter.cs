@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Presenters.Interfaces;
+﻿using Client.Wpf.Enumerations;
+using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Strategies.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
@@ -10,6 +11,7 @@ using Core.Objects;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -90,6 +92,14 @@ namespace Client.Wpf.Presenters
         /// <summary> The preset to display. </summary>
         public EPreset CurrentPreset { get; set; }
 
+        #region Properties: Vehicle List
+
+        public IEnumerable VehicleListSource { get; set; }
+
+        public IVehicle ReferencedVehicle { get; set; }
+
+        #endregion Properties: Vehicle List
+
         #endregion Properties
         #region Constructors
 
@@ -116,6 +126,7 @@ namespace Client.Wpf.Presenters
         }
 
         #endregion Constructors
+        #region Methods: Normalisation
 
         private void NormaliseBranches()
         {
@@ -195,6 +206,20 @@ namespace Client.Wpf.Presenters
             NormaliseNations();
         }
 
+        #endregion Methods: Normalisation
+        #region Methods: Event Raisers
+
+        public void RaiseSwitchToResearchTreeCommandCanExecuteChanged() =>
+            GetCommand(ECommandName.SwitchToResearchTree)?.RaiseCanExecuteChanged(this);
+
+        #endregion Methods: Event Raisers
+        #region Methods: Status Bar
+
+        public void ToggleLongOperationIndicator(bool show) => Owner.ToggleLongOperationIndicator(show);
+
+        #endregion Methods: Status Bar
+        #region Methods: Queries
+
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
         public IDictionary<ENation, IEnumerable<EBranch>> GetEmptyBranches() => Owner.GetEmptyBranches();
@@ -215,6 +240,8 @@ namespace Client.Wpf.Presenters
 
             return validBranches;
         }
+
+        #endregion Methods: Queries
 
         /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleBranchTag"/> items enabled or not. </summary>
         /// <param name="branch"> The branch to check. </param>
@@ -271,8 +298,48 @@ namespace Client.Wpf.Presenters
         /// <param name="branch"> The branch to put into focus. </param>
         public void FocusResearchTree(ENation nation, EBranch branch) => Owner.FocusResearchTree(nation, branch);
 
+        #region Methods: CanBeBroughtIntoView()
+
+        public bool CanBeBroughtIntoView(IVehicle focusedVehicle)
+        {
+            if (focusedVehicle is null)
+                return false;
+
+            var canBeBroughtIntoView = false;
+
+            foreach (var preset in GeneratedPresets.Values)
+            {
+                if (canBeBroughtIntoView) break;
+
+                canBeBroughtIntoView = preset.Any(vehicle => vehicle.Nation == focusedVehicle.Nation && vehicle.Branch.AsEnumerationItem == focusedVehicle.Branch.AsEnumerationItem);
+            }
+            return canBeBroughtIntoView;
+        }
+
+        public bool CanBeBroughtIntoView(string vehicleGaijinId)
+        {
+            if (!ApplicationHelpers.Manager.PlayableVehicles.TryGetValue(vehicleGaijinId, out var focusedVehicle))
+                return false;
+
+            return CanBeBroughtIntoView(focusedVehicle);
+        }
+
+        #endregion Methods: CanBeBroughtIntoView()
+        #region Methods: BringIntoView()
+
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
-        public void BringIntoView(IVehicle vehicle) => Owner.BringIntoView(vehicle);
+        public void BringIntoView(IVehicle vehicle) =>
+            Owner.BringIntoView(vehicle);
+
+        public void BringIntoView(string vehicleGaijinId)
+        {
+            if (!ApplicationHelpers.Manager.PlayableVehicles.TryGetValue(vehicleGaijinId, out var vehicle))
+                return;
+
+            Owner.BringIntoView(vehicle);
+        }
+
+        #endregion Methods: BringIntoView()
     }
 }

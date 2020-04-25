@@ -1,6 +1,8 @@
-﻿using Client.Wpf.Controls.Strategies.Interfaces;
+﻿using Client.Wpf.Controls.Strategies;
+using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -17,6 +19,8 @@ namespace Client.Wpf.Controls
     {
         #region Fields
 
+        private readonly IMainWindowPresenter _presenter;
+
         /// <summary> The research type of the <see cref="Vehicle"/> in the cell. </summary>
         private readonly EVehicleResearchType _reseachType;
 
@@ -26,6 +30,7 @@ namespace Client.Wpf.Controls
         /// <summary> Whether to display the <see cref="Vehicle"/>'s <see cref="IVehicle.Country"/> flag. </summary>
         private readonly bool _useCountryFlag;
 
+        private bool _initialised;
         private bool _tooltipInitialised;
 
         #endregion Fields
@@ -62,15 +67,17 @@ namespace Client.Wpf.Controls
         }
 
         /// <summary> Creates a new control. </summary>
+        /// <param name="presenter"> An instance of a main window presenter. </param>
         /// <param name="vehicle"> The vehicle positioned in the cell. </param>
         /// <param name="displayVehicleInformationStrategy"> The strategy for generating a formatted string with <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </param>
         /// <param name="type"> The type of the vehicle card. </param>
         /// <param name="isToggled"> Whether the vehicles is toggled on, i.e. participating in randomisation. </param>
-        public ResearchTreeCellVehicleControl(IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy, EVehicleCard type, bool isToggled)
+        public ResearchTreeCellVehicleControl(IMainWindowPresenter presenter, IVehicle vehicle, IDisplayVehicleInformationStrategy displayVehicleInformationStrategy, EVehicleCard type, bool isToggled)
             : this()
         {
             Type = type;
             _displayVehicleInformationStrategy = displayVehicleInformationStrategy;
+            _presenter = presenter;
 
             Vehicle = vehicle;
             _name.Text = Vehicle?.ResearchTreeName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
@@ -113,28 +120,21 @@ namespace Client.Wpf.Controls
         /// <summary> Calls <see cref="HandleClick"/>. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
-        private void OnClick(object sender, MouseButtonEventArgs eventArguments) =>
-            HandleClick();
+        private void OnClick(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (eventArguments.LeftButton == MouseButtonState.Pressed)
+                HandleClick();
+        }
 
         #endregion Methods: Event Handlers
         #region Methods: Initialisation
 
-        private void SetFlag(Image image, double size, Thickness margin)
-        {
-            if (image.Source is null)
-            {
-                image.Source = ApplicationHelpers.Manager.GetFlagImageSource(Vehicle.Country);
-
-                // The size and margin are being set here to avoid breaking white-space when there is no source provided.
-                image.SetSize(size);
-                image.Margin = margin;
-            }
-        }
-
         private void Initialise()
         {
+            if (_initialised) return;
+
             if (_useCountryFlag)
-                SetFlag(_countryFlag, 14, new Thickness(5, 0, 0, 0));
+                _countryFlag.SetFlag(Vehicle.Country, 14, new Thickness(5, 0, 0, 0));
 
             if (Vehicle.Images?.IconBytes is byte[])
             {
@@ -146,21 +146,8 @@ namespace Client.Wpf.Controls
                     Opacity = EDouble.Number.PointNine,
                 };
             }
-        }
 
-        private void InitialiseTooltip()
-        {
-            SetFlag(_tooltipCountryFlag, 16, new Thickness(0, 0, 7, 0));
-
-            _tooltipFullName.Text = Vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
-            _tooltipClass.Text = _displayVehicleInformationStrategy.GetVehicleCardClassRow(Vehicle);
-            _tooltipCountryRankAndBattleRating.Text = _displayVehicleInformationStrategy.GetVehicleCardCountryRow(Vehicle);
-            _tooltipRequirements.Text = _displayVehicleInformationStrategy.GetVehicleCardRequirementsRow(Vehicle);
-
-            if (Vehicle.Images?.PortraitBytes is byte[])
-            {
-                _portrait.Source = ApplicationHelpers.Manager.GetPortraitBitmapSource(Vehicle);
-            }
+            _initialised = true;
         }
 
         #endregion Methods: Initialisation
@@ -181,12 +168,12 @@ namespace Client.Wpf.Controls
             RaiseClickEvent();
         }
 
-        /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
-        /// <param name="gameMode"> The game mode for which to display the information. </param>
-        public void DisplayVehicleInformation(EGameMode gameMode)
+        public void UpdateFor(EGameMode gameMode)
         {
             _informationTextBlock.Text = _displayVehicleInformationStrategy.GetVehicleInfoBottomRow(gameMode, Vehicle);
-            _tooltipBattleRating.Text = _displayVehicleInformationStrategy.GetBattleRating(gameMode, Vehicle);
+
+            if (_tooltipInitialised)
+                _tooltip.UpdateFor(gameMode);
         }
 
         /// <summary> Applies the idle style to the <see cref="_border"/>. </summary>
@@ -221,8 +208,8 @@ namespace Client.Wpf.Controls
         {
             if (!_tooltipInitialised)
             {
-                InitialiseTooltip();
-
+                _tooltip.Initialise(_presenter, Vehicle, new DisplayExtendedVehicleInformationStrategy());
+                _tooltip.UpdateFor(_presenter.CurrentGameMode);
                 _tooltipInitialised = true;
             }
         }

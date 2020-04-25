@@ -142,11 +142,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\VehicleCounterWithFlag.xaml">
+    <Page Include="Controls\VehicleCountWithFlag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\VehicleCounterWithText.xaml">
+    <Page Include="Controls\VehicleCountWithText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +230,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\VehicleListCountrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VehicleTooltipControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\flags.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -258,6 +266,8 @@
     <Compile Include="Commands\MainWindow\ChangeBattleRatingCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeLocalizationCommand.cs" />
     <Compile Include="Commands\MainWindow\DeletePresetsCommand.cs" />
+    <Compile Include="Commands\MainWindow\Interfaces\ISwitchToResearchTreeCommand.cs" />
+    <Compile Include="Commands\MainWindow\SwitchToResearchTreeCommand.cs" />
     <Compile Include="Commands\MainWindow\GeneratePresetCommand.cs" />
     <Compile Include="Commands\MainWindow\LinkToYouTubeCommand.cs" />
     <Compile Include="Commands\MainWindow\OpenSettingsCommand.cs" />
@@ -281,14 +291,14 @@
     <Compile Include="Controls\Base\ExclusiveToggleButtonGroupControlWithToolTip.cs" />
     <Compile Include="Controls\Base\Interfaces\IControlWithSubcontrols.cs" />
     <Compile Include="Controls\Base\Interfaces\IControlWithToggleColumns.cs" />
-    <Compile Include="Controls\Base\LocalizedUserControl.cs" />
+    <Compile Include="Controls\Base\LocalisedUserControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithResource.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithDropCap.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithToolTip.cs" />
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
-    <Compile Include="Controls\Base\VehicleCounter.cs" />
+    <Compile Include="Controls\Base\VehicleCount.cs" />
     <Compile Include="Controls\InformationControl.xaml.cs">
       <DependentUpon>InformationControl.xaml</DependentUpon>
     </Compile>
@@ -307,11 +317,11 @@
     <Compile Include="Controls\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VehicleCounterWithFlag.xaml.cs">
-      <DependentUpon>VehicleCounterWithFlag.xaml</DependentUpon>
+    <Compile Include="Controls\VehicleCountWithFlag.xaml.cs">
+      <DependentUpon>VehicleCountWithFlag.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VehicleCounterWithText.xaml.cs">
-      <DependentUpon>VehicleCounterWithText.xaml</DependentUpon>
+    <Compile Include="Controls\VehicleCountWithText.xaml.cs">
+      <DependentUpon>VehicleCountWithText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VehicleCountsStatisticsControl.xaml.cs">
       <DependentUpon>VehicleCountsStatisticsControl.xaml</DependentUpon>
@@ -374,6 +384,12 @@
     <Compile Include="Controls\VehicleClassToggleControl.xaml.cs">
       <DependentUpon>VehicleClassToggleControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\VehicleListCountrol.xaml.cs">
+      <DependentUpon>VehicleListCountrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleTooltipControl.xaml.cs">
+      <DependentUpon>VehicleTooltipControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />
@@ -386,14 +402,17 @@
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
+    <Compile Include="Enumerations\ShrinkProfiles\EVehicleProfile.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\ContextMenuExtensions.cs" />
+    <Compile Include="Extensions\DataGridRowExtensions.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
-    <Compile Include="Extensions\ILocalizationExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\IVehicleExtensions.cs" />
     <Compile Include="Extensions\ToggleButtonExtensions.cs" />
     <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
@@ -442,8 +461,7 @@
     </Compile>
     <Compile Include="Enumerations\EAssembly.cs" />
     <Compile Include="Enumerations\ECommandName.cs" />
-    <Compile Include="Enumerations\ELanguage.cs" />
-    <Compile Include="Enumerations\ELocalizationKey.cs" />
+    <Compile Include="Enumerations\ELocalisationKey.cs" />
     <Compile Include="Enumerations\EWpfClientFile.cs" />
     <Compile Include="Enumerations\Logger\EWpfLoggerName.cs" />
     <Compile Include="ApplicationHelpers.cs" />

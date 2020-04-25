@@ -49,6 +49,8 @@
             public const string TextBlockFontSize16 = "TextBlockFontSize16";
             public const string TextBlockWithSkyQuake = "TextBlockWithSkyQuake";
             public const string TextBlockWithSkyQuake10px = "TextBlockWithSkyQuake10px";
+            public const string TextBlockWithSkyQuake12pxRightCenter = "TextBlockWithSkyQuake12pxRightCenter";
+            public const string TextBlockWithSkyQuake12pxCenterDefault = "TextBlockWithSkyQuakeHorizontallyCentered12px";
             public const string TextBlockWithSkyQuake16px = "TextBlockWithSkyQuake16px";
             public const string TextBlockWithSkyQuakeHorizontallyCentered = "TextBlockWithSkyQuakeHorizontallyCentered";
             public const string TextBlockWithSkyQuakeVerticallyCentered = "TextBlockWithSkyQuakeVerticallyCentered";

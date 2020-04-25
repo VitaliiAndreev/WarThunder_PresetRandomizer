@@ -115,16 +115,16 @@ namespace Client.Wpf.Windows
         {
             base.Localise();
 
-            Title = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.ApplicationName);
+            Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
 
             _warThunderLocationControl.Localize();
-            _warThunderLocationControl.LabelText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Location).FormatFluently(EApplicationName.WarThunder);
+            _warThunderLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).FormatFluently(EApplicationName.WarThunder);
 
             _klensysWarThunderToolsLocationControl.Localize();
-            _klensysWarThunderToolsLocationControl.LabelText = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Location).FormatFluently(EApplicationName.KlensysWarThunderTools);
+            _klensysWarThunderToolsLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).FormatFluently(EApplicationName.KlensysWarThunderTools);
 
-            _cancelButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Cancel);
-            _okButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.Ok);
+            _cancelButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Cancel);
+            _okButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Ok);
         }
 
         /// <summary> Logs closing of the window. </summary>

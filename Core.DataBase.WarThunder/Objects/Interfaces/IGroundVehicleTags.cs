@@ -15,11 +15,5 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         bool CanScout { get; }
 
         #endregion Persistent Properties
-        #region Indexers
-
-        bool this[EVehicleBranchTag tag] { get; }
-        bool this[IEnumerable<EVehicleBranchTag> tags] { get; }
-
-        #endregion Indexers
     }
 }

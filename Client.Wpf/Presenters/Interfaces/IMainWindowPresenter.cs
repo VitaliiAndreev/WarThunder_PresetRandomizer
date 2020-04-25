@@ -5,6 +5,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -66,7 +67,26 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> The preset to display. </summary>
         EPreset CurrentPreset { get; set; }
 
+        #region Properties: Vehicle List
+
+        IEnumerable VehicleListSource { get; set; }
+
+        IVehicle ReferencedVehicle { get; set; }
+
+        #endregion Properties: Vehicle List
+
         #endregion Properties
+        #region Methods: Event Raisers
+
+        void RaiseSwitchToResearchTreeCommandCanExecuteChanged();
+
+        #endregion Methods: Event Raisers
+        #region Methods: Status Bar
+
+        void ToggleLongOperationIndicator(bool show);
+
+        #endregion Methods: Status Bar
+        #region Methods: Queries
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
@@ -75,6 +95,8 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <summary> Gets all valid branches. </summary>
         /// <returns></returns>
         IEnumerable<EBranch> GetValidBraches();
+
+        #endregion Methods: Queries
 
         /// <summary> Checks whether the given <paramref name="branch"/> has any <see cref="EVehicleBranchTag"/> items enabled or not. </summary>
         /// <param name="branch"> The branch to check. </param>
@@ -127,8 +149,21 @@ namespace Client.Wpf.Presenters.Interfaces
         /// <param name="branch"> The branch to put into focus. </param>
         void FocusResearchTree(ENation nation, EBranch branch);
 
+        #region Methods: CanBeBroughtIntoView()
+
+        bool CanBeBroughtIntoView(IVehicle vehicle);
+
+        bool CanBeBroughtIntoView(string vehicleGaijinId);
+
+        #endregion Methods: CanBeBroughtIntoView()
+        #region Methods: BringIntoView()
+
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         void BringIntoView(IVehicle vehicle);
+
+        void BringIntoView(string vehicleGaijinId);
+
+        #endregion Methods: BringIntoView()
     }
 }

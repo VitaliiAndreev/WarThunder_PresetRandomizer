@@ -38,6 +38,7 @@
   <Line key="Beta" value="Бета"/>
   <Line key="Boat" value="Катер"/>
   <Line key="Bomber" value="Бомбардировщик"/>
+  <Line key="Branch" value="Ветка"/>
   <Line key="Britain" value="Великобритания"/>
   <Line key="Bulgaria" value="Болгария"/>
   <Line key="Canada" value="Канада"/>
@@ -45,8 +46,12 @@
   <Line key="CategoryBased" value="по категориям"/>
   <Line key="CategoryBasedDescription" value="Случайный выбор с акцентом на выбранные категории. Любая комбинация наций, веток и боевых рейтингов имеет равный шанс быть выбранной, если хоть одна единица техники удовлетворяет условиям.&#xD;&#xA;Данный метод рекомендуется в случаях, когда количество единиц техники в парах нация-ветка сильно несбалансированное."/>
   <Line key="China" value="Китай"/>
+  <Line key="Class" value="Класс"/>
+  <Line key="ClickOnCategoryOnVehicleCountsTab" value="Кликните на любую категорию на вкладке &quot;Счёт техники&quot;."/>
+  <Line key="ClickOnCategoryToOpenList" value="Нажмите на любую из категорий, чтобы перейти на соответствующий список техники."/>
   <Line key="Commits" value="коммитов"/>
   <Line key="ConsoleExclusive" value="Консольный эксклюзив"/>
+  <Line key="Country" value="Страна"/>
   <Line key="Cuba" value="Куба"/>
   <Line key="CzechRepublic" value="Чешская республика"/>
   <Line key="Destroyer" value="Эсминец"/>
@@ -62,9 +67,11 @@
   <Line key="Frigate" value="Фрегат"/>
   <Line key="FrontlineBomber" value="Фронтовой бомбардировщик"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment за War Thunder."/>
+  <Line key="GaijinId" value="Идентификатор"/>
   <Line key="Gdr" value="ГДР"/>
   <Line key="GeneratePreset" value="Случайный набор"/>
   <Line key="Germany" value="Германия"/>
+  <Line key="GiftedToNewPlayersForSelectingTheirFirstBranch" value="Подарок&#xA;новым&#xA;игрокам"/>
   <Line key="Greece" value="Греция"/>
   <Line key="HeavyBoat" value="Лёгкое судно"/>
   <Line key="HeavyCruiser" value="Тяжёлый крейсер"/>
@@ -77,7 +84,15 @@
   <Line key="InitialisationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
   <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>
+  <Line key="IsAvailableOnlyOnConsoles" value="Консольный&#xA;эксклюзив"/>
+  <Line key="IsHiddenUnlessOwned" value="Скрыто"/>
+  <Line key="IsPremium" value="Премиум"/>
+  <Line key="IsPurchasableForGoldenEagles" value="Золотые&#xA;орлы"/>
   <Line key="Israel" value="Израиль"/>
+  <Line key="IsResearchable" value="Исследование"/>
+  <Line key="IsSoldInTheStore" value="Магазин"/>
+  <Line key="IsSoldOnTheMarket" value="Биржа"/>
+  <Line key="IsSquadronVehicle" value="Исследование&#xA;(полк)"/>
   <Line key="Italy" value="Италия"/>
   <Line key="Japan" value="Япония"/>
   <Line key="JetBomber" value="Реактивный бомбардировщик"/>
@@ -93,9 +108,11 @@
   <Line key="LongRangeBomber" value="Дальний бомбардировщик"/>
   <Line key="LookUp" value="Обзор"/>
   <Line key="MediumTank" value="Средний танк"/>
+  <Line key="Minelayer" value="Минный заградитель"/>
   <Line key="MotorGunboat" value="Артиллерийский катер"/>
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
   <Line key="MotorTorpedoGunboat" value="Многоцелевой катер"/>
+  <Line key="Name" value="Наименование"/>
   <Line key="NavalAircraft" value="Палубный самолёт"/>
   <Line key="NavalFerryBarge" value="Артиллерийская баржа"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>
@@ -107,9 +124,11 @@
   <Line key="Ok" value="ОК"/>
   <Line key="Pack" value="Набор"/>
   <Line key="OpenYouTubePlaylist" value="Открыть плейлист на YouTube (англоязычный)"/>
+  <Line key="OperationUnderwayPleaseWait" value="Выполняется. Пожалуйста подождите..."/>
   <Line key="Philippines" value="Филиппины"/>
   <Line key="Poland" value="Польша"/>
   <Line key="Portugal" value="Португалия"/>
+  <Line key="Premium" value="Премиум"/>
   <Line key="Rank" value="Ранг"/>
   <Line key="Ready" value="Готово! Нажмите &quot;Нет&quot; в диалоговом окне."/>
   <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
@@ -120,13 +139,16 @@
   <Line key="ResearchTrees" value="Ветки исследований"/>
   <Line key="Reserve" value="Резерв"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
+  <Line key="Requires" value="Открывается после"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
   <Line key="Scout" value="Разведчик"/>
+  <Line key="ScrapGeneratedPresets" value="Удалите собранные наборы (кнопка с символом переработки на верхней панели)."/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
   <Line key="SelectAllCountries" value="Активирует все страны в группе &quot;{0}&quot;, если хотя бы одна из них деактивирована. Если нет - деактивирует все страны."/>
   <Line key="SelectAllVehicleClasses" value="Активирует все классы и подклассы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
+  <Line key="ShowInResearchTree" value="Перейти к ветке исследования"/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SoldOnTheMarket" value="Продаётся на бирже"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
@@ -136,6 +158,8 @@
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
   <Line key="SubChaser" value="Морской охотник"/>
+  <Line key="Subclass1" value="Подкласс 1"/>
+  <Line key="Subclass2" value="Подкласс 2"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
   <Line key="Sweden" value="Швеция"/>
   <Line key="TankDestroyer" value="САУ"/>
@@ -151,8 +175,9 @@
   <Line key="UtilityHelicopter" value="Многоцелевой вертолёт"/>
   <Line key="VehicleBased" value="по технике"/>
   <Line key="VehicleBasedDescription" value="Случайный выбор с акцентом на выбранную технику. Любая выбранная единица техники имеет равный шанс быть выбранной главной в основном наборе.&#xD;&#xA;Данный метод рекомендуется в случаях, когда исследование техники в выбранных ветках преимущественно закончено, или когда исследование не важно."/>
-  <Line key="VehicleCounts" value="Счёт боевых единиц"/>
+  <Line key="VehicleCounts" value="Счёт техники"/>
   <Line key="VehicleInformation" value="Боевая единица"/>
+  <Line key="VehicleList" value="Список техники"/>
   <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>

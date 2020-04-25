@@ -14,7 +14,7 @@ namespace Client.Wpf.Controls.Base
 {
     /// <summary> A user control consisting of a row or a column of <see cref="ToggleButton"/>s, indexed by <typeparamref name="T"/> values. </summary>
     /// <typeparam name="T"> The key type. </typeparam>
-    public class ToggleButtonGroupControl<T> : LocalizedUserControl, IEnumerable<ToggleButton>
+    public class ToggleButtonGroupControl<T> : LocalisedUserControl, IEnumerable<ToggleButton>
     {
         #region Fields
 
@@ -68,14 +68,14 @@ namespace Client.Wpf.Controls.Base
         #endregion Methods: Event Handlers
         #region Methods: Overrides
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
 
             static void localizeButtonContent(ToggleButton toggleButton, string @string)
             {
-                var localizedString = ApplicationHelpers.LocalizationManager.GetLocalizedString(@string);
+                var localizedString = ApplicationHelpers.LocalisationManager.GetLocalisedString(@string);
 
                 if (@string != localizedString)
                     toggleButton.Content = localizedString;
@@ -95,7 +95,7 @@ namespace Client.Wpf.Controls.Base
             }
 
             if (_toggleAllButton is ToggleButton)
-                _toggleAllButton.Content = ApplicationHelpers.LocalizationManager.GetLocalizedString(ELocalizationKey.All);
+                _toggleAllButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.All);
         }
 
         #endregion Methods: Overrides
@@ -191,7 +191,7 @@ namespace Client.Wpf.Controls.Base
                 }
                 catch (Exception e)
                 {
-                    throw new Exception($"{e.Message} | {enumerationItem.ToString()} | {enumerationItem.GetType().ToStringLikeCode()}", e);
+                    throw new Exception($"{e.Message} | {enumerationItem} | {enumerationItem.GetType().ToStringLikeCode()}", e);
                 }
             }
         }

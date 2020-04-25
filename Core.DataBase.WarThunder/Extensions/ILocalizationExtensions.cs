@@ -1,7 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
-using Core.Localization.Enumerations;
+using Core.Enumerations;
 
-namespace Client.Wpf.Extensions
+namespace Core.DataBase.WarThunder.Extensions
 {
     /// <summary> Methods extending the <see cref="ILocalization"/> interface. </summary>
     public static class ILocalizationExtensions

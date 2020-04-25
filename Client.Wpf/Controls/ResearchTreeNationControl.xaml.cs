@@ -1,5 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
-using Client.Wpf.Enumerations;
+using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
@@ -12,12 +12,16 @@ using System.Windows.Controls;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for ResearchTreeNationControl.xaml. </summary>
-    public partial class ResearchTreeNationControl : LocalizedUserControl
+    public partial class ResearchTreeNationControl : LocalisedUserControl
     {
         #region Fields
 
         /// <summary> The map of the branch enumeration onto corresponding controls. </summary>
         private readonly IDictionary<EBranch, ResearchTreeBranchControl> _branchControls;
+
+        private bool _initialised;
+
+        private IMainWindowPresenter _presenter;
 
         #endregion Fields
         #region Properties
@@ -58,12 +62,13 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Overrides
 
         /// <summary> Returns the string representation of the object. </summary>
         /// <returns></returns>
         public override string ToString() => $"[{base.ToString()}] {(Parent as FrameworkElement)?.Tag}";
 
-        /// <summary> Applies localization to visible text on the control. </summary>
+        /// <summary> Applies localisation to visible text on the control. </summary>
         public override void Localise()
         {
             base.Localise();
@@ -71,7 +76,7 @@ namespace Client.Wpf.Controls
             static void localiseTabHeader(TabItem tab)
             {
                 if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().LastOrDefault() is TextBlock textBlock)
-                    textBlock.Text = ApplicationHelpers.LocalizationManager.GetLocalizedString(tab.Tag.ToString());
+                    textBlock.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(tab.Tag.ToString());
             }
 
             localiseTabHeader(_armyTab);
@@ -81,6 +86,22 @@ namespace Client.Wpf.Controls
 
             foreach (var control in _branchControls.Values)
                 control.Localise();
+        }
+
+        #endregion Methods: Overrides
+        #region Methods: Initialisation
+
+        public void Initialise(IMainWindowPresenter presenter)
+        {
+            if (!_initialised && presenter is IMainWindowPresenter)
+            {
+                _presenter = presenter;
+
+                foreach (var control in _branchControls.Values)
+                    control.Initialise(_presenter);
+
+                _initialised = true;
+            }
         }
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
@@ -98,6 +119,8 @@ namespace Client.Wpf.Controls
                 branchTabKeyValuePair.Value.IsEnabled = false;
             }
         }
+
+        #endregion Methods: Initialisation
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>

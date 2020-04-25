@@ -64,6 +64,7 @@
     <Compile Include="Enumerations\EFileExtension.cs" />
     <Compile Include="Enumerations\EInitializationStatus.cs" />
     <Compile Include="Enumerations\EInteger.cs" />
+    <Compile Include="Enumerations\ELanguage.cs" />
     <Compile Include="Enumerations\EProcess.cs" />
     <Compile Include="Enumerations\ERegularExpression.cs" />
     <Compile Include="Enumerations\ESeparator.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Enumerations\EWord.cs" />
     <Compile Include="Exceptions\NotInitializedException.cs" />
     <Compile Include="Exceptions\SettingsFileRegeneratedException.cs" />
+    <Compile Include="Extensions\AnonymousObjectExtensions.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DelegateExtensions.cs" />
     <Compile Include="Extensions\ICollectionExtensions.cs" />

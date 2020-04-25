@@ -23,7 +23,7 @@ namespace Client.Wpf.Controls.Strategies
             SetSharedLeftPart(stringBuilder, vehicle);
 
             if (ShowPackTag(vehicle))
-                append(GetLocalisedString(ELocalizationKey.Pack));
+                append(GetLocalisedString(ELocalisationKey.Pack));
 
             SetSharedRightPart(stringBuilder, gameMode, vehicle);
 
