@@ -6,7 +6,6 @@ using Core.Organization.Enumerations;
 using Core.Organization.Objects.SearchSpecifications;
 using System;
 using System.Linq;
-using System.Windows.Input;
 
 namespace Client.Wpf.Commands.MainWindow
 {
@@ -46,64 +45,69 @@ namespace Client.Wpf.Commands.MainWindow
             if (parameter is IMainWindowPresenter presenter)
             {
                 presenter.ToggleLongOperationIndicator(true);
-                presenter.ExecuteCommand(ECommandName.DeletePresets);
+                presenter.Owner.BeginInit();
+                {
+                    presenter.ExecuteCommand(ECommandName.DeletePresets);
 
-                var gameMode = presenter.CurrentGameMode;
-                var emptyBranches = presenter.GetEmptyBranches();
-                var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
-                var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
-                var nationSpecifications = presenter
-                    .EnabledNations
-                    .ToDictionary
-                    (
-                        nation => nation,
-                        nation => new NationSpecification
+                    var gameMode = presenter.CurrentGameMode;
+                    var emptyBranches = presenter.GetEmptyBranches();
+                    var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
+                    var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
+                    var nationSpecifications = presenter
+                        .EnabledNations
+                        .ToDictionary
                         (
-                            nation,
-                            presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
-                            presenter.EnabledBranches.Except(emptyBranches[nation]),
-                            EInteger.Number.Ten
-                        )
+                            nation => nation,
+                            nation => new NationSpecification
+                            (
+                                nation,
+                                presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
+                                presenter.EnabledBranches.Except(emptyBranches[nation]),
+                                EInteger.Number.Ten
+                            )
+                        );
+                    var specification = new Specification
+                    (
+                        presenter.Randomisation,
+                        gameMode,
+                        nationSpecifications,
+                        branchSpecifications,
+                        presenter.EnabledVehicleBranchTags,
+                        presenter.EnabledVehicleSubclasses,
+                        presenter.EnabledRanks,
+                        presenter.EnabledEconomicRankIntervals,
+                        presenter.EnabledVehicleGaijinIds
                     );
-                var specification = new Specification
-                (
-                    presenter.Randomisation,
-                    gameMode,
-                    nationSpecifications,
-                    branchSpecifications,
-                    presenter.EnabledVehicleBranchTags,
-                    presenter.EnabledVehicleSubclasses,
-                    presenter.EnabledRanks,
-                    presenter.EnabledEconomicRankIntervals,
-                    presenter.EnabledVehicleGaijinIds
-                );
 
-                presenter.GeneratedPresets.Clear();
-                presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
+                    presenter.GeneratedPresets.Clear();
+                    presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
 
-                if (presenter.GeneratedPresets.IsEmpty())
-                {
-                    presenter.ShowNoResults();
-                    return;
+                    if (presenter.GeneratedPresets.IsEmpty())
+                    {
+                        presenter.ShowNoResults();
+                        return;
+                    }
+
+                    var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
+                    var selectedNation = primaryPreset.Nation;
+
+                    if (primaryPreset.IsEmpty())
+                    {
+                        presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
+                        return;
+                    }
+
+                    var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
+                    var firstVehicle = primaryPreset.First();
+
+                    presenter.LoadPresets();
+                    presenter.DisplayPreset(EPreset.Primary);
+                    presenter.EnableOnly(selectedNation, selectedBranches);
+                    presenter.FocusResearchTree(selectedNation, selectedBranches.First());
+                    presenter.BringIntoView(firstVehicle);
                 }
+                presenter.Owner.EndInit();
 
-                var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
-                var selectedNation = primaryPreset.Nation;
-
-                if (primaryPreset.IsEmpty())
-                {
-                    presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
-                    return;
-                }
-
-                var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
-                var firstVehicle = primaryPreset.First();
-
-                presenter.LoadPresets();
-                presenter.DisplayPreset(EPreset.Primary);
-                presenter.EnableOnly(selectedNation, selectedBranches);
-                presenter.FocusResearchTree(selectedNation, selectedBranches.First());
-                presenter.BringIntoView(firstVehicle);
                 presenter.ToggleLongOperationIndicator(false);
                 presenter.RaiseSwitchToResearchTreeCommandCanExecuteChanged();
 

@@ -28,13 +28,13 @@ namespace Client.Wpf.Extensions
                 .GetType()
                 .GetProperties()
                 .FirstOrDefault(property => property.Name == fieldName)
-                .GetValue(row.Item)
+                ?.GetValue(row.Item)
             ;
         }
 
         public static bool TryGetVehicle(this DataGridRow row, out IVehicle vehicle)
         {
-            var gaijinId = row.GetFieldValue(nameof(IPersistentObjectWithIdAndGaijinId.GaijinId)).ToString();
+            var gaijinId = row.GetFieldValue(nameof(IPersistentObjectWithIdAndGaijinId.GaijinId))?.ToString() ?? string.Empty;
 
             return ApplicationHelpers.Manager.PlayableVehicles.TryGetValue(gaijinId, out vehicle);
         }

@@ -166,7 +166,7 @@ namespace Client.Wpf.Controls
             {
                 if (row.ToolTip is VehicleTooltipControl tooltip && row.TryGetVehicle(out var vehicle))
                 {
-                    if (!tooltip.IsInitialised)
+                    if (!tooltip.IsInitialised && vehicle is IVehicle)
                         tooltip.Initialise(_presenter, vehicle, new DisplayExtendedVehicleInformationStrategy());
 
                     tooltip.UpdateFor(_presenter.CurrentGameMode);
