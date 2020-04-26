@@ -6,6 +6,7 @@ using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls
@@ -22,9 +23,9 @@ namespace Client.Wpf.Controls
         #endregion Fields
         #region Properties
 
-        internal IDictionary<NationCountryPair, IEnumerable<IVehicle>> VehiclesByNationsAndCountries { get; private set; }
+        internal IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> VehiclesByNationsAndCountries { get; private set; }
 
-        internal IDictionary<NationCountryPair, IEnumerable<IVehicle>> VehiclesByCountriesAndNations { get; private set; }
+        internal IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> VehiclesByCountriesAndNations { get; private set; }
 
         #endregion Properties
         #region Constructors
@@ -66,10 +67,10 @@ namespace Client.Wpf.Controls
             }
         }
 
-        internal void SetVehiclesByNationsAndCountries(IDictionary<NationCountryPair, IEnumerable<IVehicle>> collection) =>
+        internal void SetVehiclesByNationsAndCountries(IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> collection) =>
             VehiclesByNationsAndCountries = collection;
 
-        internal void SetVehiclesByCountriesAndNations(IDictionary<NationCountryPair, IEnumerable<IVehicle>> collection) =>
+        internal void SetVehiclesByCountriesAndNations(IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> collection) =>
             VehiclesByCountriesAndNations = collection;
 
         #endregion Methods: Initialisation

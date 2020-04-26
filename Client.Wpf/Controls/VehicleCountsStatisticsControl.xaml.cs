@@ -76,17 +76,30 @@ namespace Client.Wpf.Controls
             foreach (var vehicle in ApplicationHelpers.Manager?.PlayableVehicles.Values ?? new List<IVehicle>())
                 vehicle.AddInto(vehiclesCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
 
+            static IOrderedEnumerable<IVehicle> reorder(IEnumerable<IVehicle> vehicles)
+            {
+                return vehicles
+                    .OrderBy(vehicle => vehicle.Class)
+                    .ThenBy(vehicle => vehicle.Subclasses.First)
+                    .ThenBy(vehicle => vehicle.Subclasses.Second)
+                    .ThenBy(vehicle => vehicle.Rank)
+                    .ThenBy(vehicle => vehicle.GaijinId)
+                ;
+            }
+
             var vehiclesByNationsAndCountries = vehiclesCounts
                 .OrderBy(item => item.Key.Nation)
                 .ThenByDescending(item => item.Value.Count())
                 .ThenBy(item => item.Key.Country)
-                .ToDictionary(item => item.Key, item => item.Value.AsEnumerable())
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, reorder(item.Value)))
+                .ToDictionary(item => item.Key, item => item.Value)
             ;
-            var vehiclesByCountriesAndNations = vehiclesByNationsAndCountries
+            var vehiclesByCountriesAndNations = vehiclesCounts
                 .OrderBy(item => item.Key.Country)
                 .ThenByDescending(item => item.Value.Count())
                 .ThenBy(item => item.Key.Nation)
-                .ToDictionary(item => item.Key, item => item.Value.AsEnumerable())
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, reorder(item.Value)))
+                .ToDictionary(item => item.Key, item => item.Value)
             ;
 
             _statisticsControl?.SetVehiclesByNationsAndCountries(vehiclesByNationsAndCountries);
