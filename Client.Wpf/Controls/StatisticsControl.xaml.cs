@@ -93,6 +93,7 @@ namespace Client.Wpf.Controls
 
             _vehicleListControl.SetDataSource(key, vehicles, shrinkProfile, language);
             _vehicleListControl.AdjustControlVisibility();
+            _vehicleListControl.ResetScrollPosition();
 
             _tabControl.SelectedItem = _vehicleListTab;
 

@@ -227,5 +227,10 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+
+        public void ResetScrollPosition()
+        {
+            FrameworkElementExtensions.GetChild<ScrollViewer>(_grid)?.ScrollToTop();
+        }
     }
 }

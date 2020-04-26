@@ -1,5 +1,7 @@
-﻿using Core.Extensions;
+﻿using Core.Enumerations;
+using Core.Extensions;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Client.Wpf.Extensions
@@ -9,6 +11,27 @@ namespace Client.Wpf.Extensions
     {
         public static BitmapSource GetBitmapSource(this FrameworkElement frameworkElement, string resourceKey) =>
             frameworkElement.FindResource(resourceKey) as BitmapSource;
+
+        public static T GetChild<T>(FrameworkElement parent) where T : Visual
+        {
+            if (parent is null) return null;
+
+            var target = default(T);
+
+            for (var childIndex = EInteger.Number.Zero; childIndex < VisualTreeHelper.GetChildrenCount(parent); childIndex++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, childIndex) as FrameworkElement;
+
+                target = child as T;
+
+                if (target is null)
+                    target = GetChild<T>(child);
+
+                if (target is T)
+                    return target;
+            }
+            return target;
+        }
 
         /// <summary> Searches for a style with the specified key defined in <see cref="WpfClient"/>, and throws an exception if the requested style is not found. </summary>
         /// <param name="frameworkElement"> The framework element for which to search. </param>
