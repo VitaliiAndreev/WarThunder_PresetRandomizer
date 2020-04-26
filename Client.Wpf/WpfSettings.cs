@@ -165,6 +165,13 @@ namespace Client.Wpf
             set => EnabledVehiclesCollection = value.Split(Separator);
         }
 
+        [RequiredSetting]
+        public static string IncludeHeadersOnRowCopy
+        {
+            get => IncludeHeadersOnRowCopyFlag.ToString();
+            set => IncludeHeadersOnRowCopyFlag = bool.TryParse(value, out var flagValue) && flagValue;
+        }
+
         /// <summary>
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
@@ -236,6 +243,8 @@ namespace Client.Wpf
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="EnabledVehicles"/> instead. </para>
         /// </summary>
         public static IEnumerable<string> EnabledVehiclesCollection { get; private set; }
+
+        public static bool IncludeHeadersOnRowCopyFlag { get; private set; }
 
         #endregion Properties
     }

@@ -17,6 +17,22 @@
             x:Name="_hint"
             Style="{StaticResource TextBlockFontSize16}"/>
 
+        <StackPanel Visibility="Hidden"
+            DockPanel.Dock="Bottom"
+            x:Name="_includeHeadersOnCopyPanel"
+            Orientation="Horizontal"
+            Margin="0 5 0 0">
+
+            <CheckBox
+                x:Name="_includeHeadersOnCopyCheckBox"
+                Margin="0 0 5 0"
+                Click="OnIncludeHeadersOnCopyClicked"/>
+            <TextBlock Text="Include column headers when copying selected rows"
+                x:Name="_includeHeadersOnCopyLabel"
+                Style="{StaticResource TextBlock12px}"/>
+
+        </StackPanel>
+
         <DataGrid Visibility="Hidden"
             DockPanel.Dock="Bottom"
             x:Name="_grid"
@@ -38,6 +54,7 @@
             AutoGeneratingColumn="OnGeneratingColumn"
             LoadingRow="OnLoadingRow"
             
+            ClipboardCopyMode="ExcludeHeader"
             PreviewKeyDown="OnGridPreviewKeyDown">
             
         </DataGrid>

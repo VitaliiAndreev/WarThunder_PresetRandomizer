@@ -73,6 +73,8 @@ namespace Client.Wpf.Presenters.Interfaces
 
         IVehicle ReferencedVehicle { get; set; }
 
+        bool IncludeHeadersOnRowCopy { get; set; }
+
         #endregion Properties: Vehicle List
 
         #endregion Properties

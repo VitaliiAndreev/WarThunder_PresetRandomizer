@@ -81,6 +81,7 @@
   <Line key="Hidden" value="Скрыто до владения"/>
   <Line key="Hungary" value="Венгрия"/>
   <Line key="Hydroplane" value="Гидросамолёт"/>
+  <Line key="IncludeColumnHeadersWhenCopyingSelectedRows" value="Копировать заголовки колонок при копировании строк в буфер обмена."/>
   <Line key="InitialisationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
   <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>

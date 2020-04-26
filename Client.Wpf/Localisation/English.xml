@@ -81,6 +81,7 @@
   <Line key="Hidden" value="Hidden if not owned"/>
   <Line key="Hungary" value="Hungary"/>
   <Line key="Hydroplane" value="Hydroplane"/>
+  <Line key="IncludeColumnHeadersWhenCopyingSelectedRows" value="Include column headers when copying selected rows to clipboard"/>
   <Line key="InitialisationUnderwayConfirmClosure" value="Initialisation is underway. Proceed?"/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>

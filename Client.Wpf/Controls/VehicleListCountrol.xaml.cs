@@ -46,6 +46,7 @@ namespace Client.Wpf.Controls
             base.Localise();
 
             _hint.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ClickOnCategoryOnVehicleCountsTab);
+            _includeHeadersOnCopyLabel.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.IncludeColumnHeadersWhenCopyingSelectedRows);
         }
 
         #endregion Methods: Overrides
@@ -56,6 +57,17 @@ namespace Client.Wpf.Controls
             if (!_initialised && presenter is IMainWindowPresenter)
             {
                 _presenter = presenter;
+
+                if (_includeHeadersOnCopyCheckBox.IsChecked != _presenter.IncludeHeadersOnRowCopy)
+                {
+                    _includeHeadersOnCopyCheckBox.IsChecked = _presenter.IncludeHeadersOnRowCopy;
+
+                    SetHeaderCopyBehaviour(_includeHeadersOnCopyCheckBox.IsChecked());
+                }
+
+                _includeHeadersOnCopyCheckBox.CommandParameter = _presenter;
+                _includeHeadersOnCopyCheckBox.Command = _presenter.GetCommand(ECommandName.SwitchIncludeHeadersOnRowCopyFlag);
+
                 _initialised = true;
             }
         }
@@ -74,12 +86,16 @@ namespace Client.Wpf.Controls
             if (_grid.ItemsSource is null || _grid.ItemsSource.IsEmpty())
             {
                 _panel.Children.Insert(EInteger.Number.Zero, _hint);
-                _grid.Visibility = Visibility.Hidden;
+                _grid.Visibility
+                    = _includeHeadersOnCopyPanel.Visibility
+                    = Visibility.Hidden;
             }
             else
             {
                 _panel.Children.Remove(_hint);
-                _grid.Visibility = Visibility.Visible;
+                _grid.Visibility
+                    = _includeHeadersOnCopyPanel.Visibility
+                    = Visibility.Visible;
             }
         }
 
@@ -186,6 +202,28 @@ namespace Client.Wpf.Controls
         {
             if (eventArguments.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
                 Clipboard.Clear();
+        }
+
+        private void SetHeaderCopyBehaviour(bool includeHeaders)
+        {
+            _grid.ClipboardCopyMode = includeHeaders
+                ? DataGridClipboardCopyMode.IncludeHeader
+                : DataGridClipboardCopyMode.ExcludeHeader;
+        }
+
+        private void OnIncludeHeadersOnCopyClicked(object sender, RoutedEventArgs eventArguments)
+        {
+            if (eventArguments.Source is CheckBox checkBox)
+            {
+                var isChecked = checkBox.IsChecked();
+
+                if (_presenter.IncludeHeadersOnRowCopy != isChecked)
+                {
+                    _presenter.IncludeHeadersOnRowCopy = isChecked;
+                    SetHeaderCopyBehaviour(isChecked);
+                }
+                eventArguments.Handled = true;
+            }
         }
 
         #endregion Methods: Event Handlers

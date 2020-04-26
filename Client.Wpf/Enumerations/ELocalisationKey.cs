@@ -66,6 +66,7 @@
         public const string Hidden = nameof(Hidden);
         public const string Hungary = nameof(Hungary);
         public const string Hydroplane = nameof(Hydroplane);
+        public const string IncludeColumnHeadersWhenCopyingSelectedRows = nameof(IncludeColumnHeadersWhenCopyingSelectedRows);
         public const string InitialisationUnderwayConfirmClosure = nameof(InitialisationUnderwayConfirmClosure);
         public const string Interceptor = nameof(Interceptor);
         public const string Iraq = nameof(Iraq);

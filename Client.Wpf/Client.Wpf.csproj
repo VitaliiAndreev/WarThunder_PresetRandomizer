@@ -276,6 +276,7 @@
     <Compile Include="Commands\MainWindow\SelectRandomisationCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleRankCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleBranchTagCommand.cs" />
+    <Compile Include="Commands\MainWindow\SwitchIncludeHeadersOnRowCopyFlagCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleSubclassCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleCommand.cs" />
     <Compile Include="Commands\MainWindow\ToggleVehicleClassCommand.cs" />

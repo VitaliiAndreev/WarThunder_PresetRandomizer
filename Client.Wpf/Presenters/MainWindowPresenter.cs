@@ -98,6 +98,8 @@ namespace Client.Wpf.Presenters
 
         public IVehicle ReferencedVehicle { get; set; }
 
+        public bool IncludeHeadersOnRowCopy { get; set; }
+
         #endregion Properties: Vehicle List
 
         #endregion Properties
@@ -119,6 +121,8 @@ namespace Client.Wpf.Presenters
             EnabledRanks = new List<ERank>(WpfSettings.EnabledRanksCollection);
             EnabledEconomicRankIntervals = new Dictionary<ENation, Interval<int>>(WpfSettings.EnabledEconomicRankIntervals);
             EnabledVehicleGaijinIds = new List<string>(WpfSettings.EnabledVehiclesCollection);
+            IncludeHeadersOnRowCopy = WpfSettings.IncludeHeadersOnRowCopyFlag;
+
             GeneratedPresets = new Dictionary<EPreset, Preset>();
             CurrentPreset = EPreset.Primary;
 
