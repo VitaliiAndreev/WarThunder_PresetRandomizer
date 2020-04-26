@@ -9,39 +9,45 @@
     d:DesignHeight="450"
     d:DesignWidth="800">
     <StackPanel
-        x:Name="_tooltipPanel"
-        Margin="5">
+        x:Name="_underlay"
+        Margin="-6 -4">
+        
+        <StackPanel
+            x:Name="_tooltipPanel"
+            Margin="12 8">
 
-        <TextBlock Text="Full Name"
-            x:Name="_fullName"
-            Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-        <TextBlock Text="Class / Subclass"
-                x:Name="_class"
+            <TextBlock Text="Full Name"
+                x:Name="_fullName"
                 Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
-        <WrapPanel HorizontalAlignment="Center">
+            <TextBlock Text="Class / Subclass"
+                    x:Name="_class"
+                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+
+            <WrapPanel HorizontalAlignment="Center">
+
+                <Image
+                    x:Name="_flag"
+                    Style="{StaticResource FlagIcon}"/>
+                <TextBlock Text="Rank: VII / Battle Rating: 10.3"
+                    x:Name="_countryRankAndBattleRating"
+                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+                <TextBlock
+                    x:Name="_tooltipBattleRating"
+                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+
+            </WrapPanel>
+
+            <TextBlock Text="Requirements"
+                    x:Name="_requirements"
+                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
             <Image
-                x:Name="_flag"
-                Style="{StaticResource FlagIcon}"/>
-            <TextBlock Text="Rank: VII / Battle Rating: 10.3"
-                x:Name="_countryRankAndBattleRating"
-                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-            <TextBlock
-                x:Name="_tooltipBattleRating"
-                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+                x:Name="_portrait"
+                Style="{StaticResource Image312x200px}"
+                Margin="0 5 0 5"/>
 
-        </WrapPanel>
-
-        <TextBlock Text="Requirements"
-                x:Name="_requirements"
-                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
-
-        <Image
-            x:Name="_portrait"
-            Style="{StaticResource Image312x200px}"
-            Margin="0 5 0 5"/>
+        </StackPanel>
 
     </StackPanel>
 </base:LocalisedUserControl>

@@ -39,6 +39,15 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Initialisation
 
+        private void SetBackground()
+        {
+            if (_vehicle.IsPremium)
+                _underlay.Style = this.GetStyle(EStyleKey.StackPanel.StackPanelPremium);
+
+            else if (_vehicle.IsSquadronVehicle)
+                _underlay.Style = this.GetStyle(EStyleKey.StackPanel.StackPanelSquadron);
+        }
+
         private void SetMainText()
         {
             _flag.SetFlag(_vehicle.Country, 16, new Thickness(0, 0, 7, 0));
@@ -105,6 +114,7 @@ namespace Client.Wpf.Controls
             if (!string.IsNullOrWhiteSpace(_vehicle.RequiredVehicleGaijinId) && ApplicationHelpers.Manager.PlayableVehicles.TryGetValue(_vehicle.RequiredVehicleGaijinId, out var requiredVehicle))
                 _requiredVehicle = new ResearchTreeCellVehicleControl(_presenter, requiredVehicle, _displayStrategy, EVehicleCard.Preset, true) { ToolTip = null };
 
+            SetBackground();
             SetMainText();
             SetPortrait();
 

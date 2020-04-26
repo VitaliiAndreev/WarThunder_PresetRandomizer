@@ -46,7 +46,11 @@
             public const string Rank6 = "Rank6";
             public const string Rank7 = "Rank7";
         }
-
+        public class StackPanel
+        {
+            public const string StackPanelPremium = "StackPanelPremium";
+            public const string StackPanelSquadron = "StackPanelSquadron";
+        }
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.TextBlock"/>. </summary>
         public class TextBlock
         {

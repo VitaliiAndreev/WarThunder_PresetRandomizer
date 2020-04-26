@@ -327,6 +327,14 @@
             <Setter Property="Margin" Value="0 5 0 300"/> <!-- Excessive margin is there to prevent unresolved cut-off within ScrollViewer. -->
         </Style>
 
+        <Style TargetType="StackPanel" x:Key="StackPanelSquadron">
+            <Setter Property="Background" Value="#ebffd2"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="StackPanelPremium">
+            <Setter Property="Background" Value="#fff5ce"/>
+        </Style>
+
         <!-- t:TabControl -->
 
         <Style TargetType="TabControl">
