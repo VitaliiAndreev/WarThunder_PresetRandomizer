@@ -98,6 +98,24 @@ namespace Client.Wpf.Controls
             eventArguments.Column.Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(eventArguments.Column.Header.ToString());
         }
 
+        private void ProcessVehicle(DataGridRow row, IVehicle vehicle)
+        {
+            if (_createdTooltips.TryGetValue(vehicle, out var tooltip))
+            {
+                row.ToolTip = tooltip;
+            }
+            else
+            {
+                var newTooltip = new VehicleTooltipControl();
+
+                _createdTooltips.Add(vehicle, newTooltip);
+                row.ToolTip = newTooltip;
+            }
+
+            row.SetRowBackground(vehicle);
+            row.ToolTipOpening += OnRowTooltipOpening;
+        }
+
         private void OnLoadingRow(object sender, DataGridRowEventArgs eventArguments)
         {
             var row = eventArguments.Row;
@@ -130,21 +148,7 @@ namespace Client.Wpf.Controls
             row.MouseDown += OnRowMouseDown;
 
             if (vehicleFound)
-            {
-                if (_createdTooltips.TryGetValue(vehicle, out var tooltip))
-                {
-                    row.ToolTip = tooltip;
-                }
-                else
-                {
-                    var newTooltip = new VehicleTooltipControl();
-
-                    _createdTooltips.Add(vehicle, newTooltip);
-                    row.ToolTip = newTooltip;
-                }
-
-                row.ToolTipOpening += OnRowTooltipOpening;
-            }
+                ProcessVehicle(row, vehicle);
         }
 
         private void OnRowTooltipOpening(object sender, ToolTipEventArgs eventArguments)

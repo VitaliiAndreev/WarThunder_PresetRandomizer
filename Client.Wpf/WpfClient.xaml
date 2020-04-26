@@ -138,6 +138,16 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
+        <!-- t:DataGridRow -->
+
+        <Style TargetType="DataGridRow" x:Key="DataGridRowSquadron">
+            <Setter Property="Background" Value="#ebffd2"/>
+        </Style>
+
+        <Style TargetType="DataGridRow" x:Key="DataGridRowPremium">
+            <Setter Property="Background" Value="#fff5ce"/>
+        </Style>
+
         <!-- t:GameModeSelectionControl -->
 
         <Style TargetType="controls:GameModeSelectionControl">

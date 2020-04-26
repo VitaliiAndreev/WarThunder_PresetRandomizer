@@ -17,6 +17,11 @@
 
             public const string RankDivider = "RankDivider";
         }
+        public class DataGridRow
+        {
+            public const string DataGridRowPremium = "DataGridRowPremium";
+            public const string DataGridRowSquadron = "DataGridRowSquadron";
+        }
         /// <summary> String keys of styles for <see cref="System.Windows.Controls.Grid"/>. </summary>
         public class Grid
         {
