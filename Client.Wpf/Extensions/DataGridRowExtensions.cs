@@ -49,6 +49,9 @@ namespace Client.Wpf.Extensions
 
             else if (vehicle.IsPremium)
                 row.Style = row.GetStyle(EStyleKey.DataGridRow.DataGridRowPremium);
+
+            else
+                row.Style = row.GetStyle(EStyleKey.DataGridRow.DataGridRowRegular);
         }
 
         #endregion Methods: Styling

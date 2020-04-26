@@ -14,8 +14,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Client.Wpf
 {
@@ -49,6 +51,26 @@ namespace Client.Wpf
         public IActiveLogger Log { get; private set; }
 
         #endregion Properties
+        #region Constuctors
+
+        /// <summary> Creates a new application. </summary>
+        public WpfClient()
+        {
+            var vectorImageKeys = typeof(EVectorImageKey.Flag)
+                .GetFields(BindingFlags.Static | BindingFlags.Public)
+                .ToDictionary(property => property.Name, property => property.GetValue(null).ToString())
+            ;
+
+            foreach(var item in typeof(ECountry).GetEnumerationItems<ECountry>())
+            {
+                if (vectorImageKeys.TryGetValue(item.ToString(), out var resourceKey))
+                    EReference.CountryIconKeys.Add(item, resourceKey);
+            }
+
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+        }
+
+        #endregion Constuctors
         #region Methods: Event Handlers
 
         /// <summary> Organizes initialization and the overall flow, handles exceptions. </summary>
@@ -99,27 +121,13 @@ namespace Client.Wpf
             }
         }
 
-        #endregion Methods: Event Handlers
-        #region Constuctors
-
-        /// <summary> Creates a new application. </summary>
-        public WpfClient()
+        private void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArguments)
         {
-            var vectorImageKeys = typeof(EVectorImageKey.Flag)
-                .GetFields(BindingFlags.Static | BindingFlags.Public)
-                .ToDictionary(property => property.Name, property => property.GetValue(null).ToString())
-            ;
-
-            foreach(var item in typeof(ECountry).GetEnumerationItems<ECountry>())
-            {
-                if (vectorImageKeys.TryGetValue(item.ToString(), out var resourceKey))
-                    EReference.CountryIconKeys.Add(item, resourceKey);
-            }
-
-            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+            if (eventArguments.Exception is COMException comException && comException.ErrorCode == -2147221040)
+                eventArguments.Handled = true;
         }
 
-        #endregion Constuctors
+        #endregion Methods: Event Handlers
 
         /// <summary> Interfaces new startup arguments with old ones (to avoid regress during code adjustments). </summary>
         /// <param name="newStandardStartupArguments"> Startup arguments following the new standard. </param>

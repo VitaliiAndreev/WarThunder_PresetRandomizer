@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Client.Wpf.Controls"
-    Startup="OnStartup">
+    Startup="OnStartup"
+    DispatcherUnhandledException="OnUnhandledException">
     <Application.Resources>
 
         <FontFamily x:Key="SkyQuake">pack://application:,,,/Resources/#symbols_skyquake</FontFamily>
@@ -139,6 +140,10 @@
         </Style>
 
         <!-- t:DataGridRow -->
+
+        <Style TargetType="DataGridRow" x:Key="DataGridRowRegular">
+            <Setter Property="Background" Value="White"/>
+        </Style>
 
         <Style TargetType="DataGridRow" x:Key="DataGridRowSquadron">
             <Setter Property="Background" Value="#ebffd2"/>

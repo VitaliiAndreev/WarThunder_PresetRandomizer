@@ -8,33 +8,39 @@
     mc:Ignorable="d"
     d:DesignHeight="450"
     d:DesignWidth="800">
-    <ScrollViewer
-        x:Name="_scrollView"
-        HorizontalScrollBarVisibility="Auto"
-        VerticalScrollBarVisibility="Auto">
-        <StackPanel
-            x:Name="_panel"
-            Style="{StaticResource StackPanelMargin10}">
+    <DockPanel
+        x:Name="_panel"
+        Margin="10">
 
-            <TextBlock Text="Click on any category on the &quot;Vehicle Counts&quot; tab."
-                x:Name="_hint"
-                Style="{StaticResource TextBlockFontSize16}"/>
-        
-            <DataGrid
-                x:Name="_grid"
-                ScrollViewer.CanContentScroll="True"
-                HeadersVisibility="Column"
-                Visibility="Hidden"
-                AutoGeneratingColumn="OnGeneratingColumn"
-                LoadingRow="OnLoadingRow"
-                MouseWheel="OnMouseWheel">
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="MouseWheel" Handler="OnMouseWheel"/>
-                    </Style>
-                </DataGrid.RowStyle>
-            </DataGrid>
-        
-        </StackPanel>
-    </ScrollViewer>
+        <TextBlock Text="Click on any category on the &quot;Vehicle Counts&quot; tab."
+            DockPanel.Dock="Top"
+            x:Name="_hint"
+            Style="{StaticResource TextBlockFontSize16}"/>
+
+        <DataGrid Visibility="Hidden"
+            DockPanel.Dock="Bottom"
+            x:Name="_grid"
+            
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            
+            ScrollViewer.CanContentScroll="True"
+            HorizontalScrollBarVisibility="Visible"
+            VerticalScrollBarVisibility="Visible"
+            HeadersVisibility="Column"
+            
+            HorizontalGridLinesBrush="Gray"
+            VerticalGridLinesBrush="Gray"
+            
+            SelectionMode="Extended"
+            SelectionUnit="FullRow"
+            
+            AutoGeneratingColumn="OnGeneratingColumn"
+            LoadingRow="OnLoadingRow"
+            
+            PreviewKeyDown="OnGridPreviewKeyDown">
+            
+        </DataGrid>
+
+    </DockPanel>
 </base:LocalisedUserControl>

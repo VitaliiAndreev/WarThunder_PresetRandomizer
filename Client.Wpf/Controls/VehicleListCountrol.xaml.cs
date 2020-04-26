@@ -86,13 +86,6 @@ namespace Client.Wpf.Controls
         #endregion Methods: Initialisation
         #region Methods: Event Handlers
 
-        private void OnMouseWheel(object sender, MouseWheelEventArgs eventArguments)
-        {
-            _scrollView.ScrollToVerticalOffset(_scrollView.VerticalOffset - eventArguments.Delta * EDouble.Number.Half);
-
-            eventArguments.Handled = true;
-        }
-
         private void OnGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs eventArguments)
         {
             eventArguments.Column.Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(eventArguments.Column.Header.ToString());
@@ -187,6 +180,12 @@ namespace Client.Wpf.Controls
         {
             if (sender is MenuItem menuItem && menuItem.Tag is IVehicle vehicle)
                 _presenter.ReferencedVehicle = vehicle;
+        }
+
+        private void OnGridPreviewKeyDown(object sender, KeyEventArgs eventArguments)
+        {
+            if (eventArguments.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+                Clipboard.Clear();
         }
 
         #endregion Methods: Event Handlers
