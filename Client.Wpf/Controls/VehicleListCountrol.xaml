@@ -57,6 +57,11 @@
             ClipboardCopyMode="ExcludeHeader"
             PreviewKeyDown="OnGridPreviewKeyDown">
             
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#5d8db3"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+            </DataGrid.Resources>
+            
         </DataGrid>
 
     </DockPanel>
