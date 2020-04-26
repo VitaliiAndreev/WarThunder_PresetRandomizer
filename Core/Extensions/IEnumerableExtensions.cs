@@ -15,13 +15,6 @@ namespace Core.Extensions
         public static bool AllEqual<T>(this IEnumerable<T> collection) =>
             collection.Distinct().Count() == EInteger.Number.One;
 
-        /// <summary> Returns a new collection with the given <paramref name="item"/> added to the <paramref name="collection"/>. </summary>
-        /// <typeparam name="T"> The type of collection items. </typeparam>
-        /// <param name="collection"> The collection to add the <paramref name="item"/> to. </param>
-        /// <param name="item"> The item to add to the <paramref name="collection"/>. </param>
-        public static IEnumerable<T> Including<T>(this IEnumerable<T> collection, T item) =>
-            collection.Concat(new T[] { item });
-
         /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="list"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
         /// <param name="collection"> The collection to add into the <paramref name="list"/>. </param>
@@ -35,14 +28,6 @@ namespace Core.Extensions
         /// <param name="collection"> The collection to extract a dictionary from. </param>
         public static IDictionary<T, U> ToDictionary<T, U>(this IEnumerable<KeyValuePair<T, U>> collection) =>
             collection.ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
-
-        /// <summary> Returns a new enumeration excluding the given <paramref name="element"/>. </summary>
-        /// <typeparam name="T"> The type of collection items. </typeparam>
-        /// <param name="collection"> The collection to exclude <paramref name="element"/> from. </param>
-        /// <param name="element"> The element to exclude from the <paramref name="collection"/>. </param>
-        /// <returns></returns>
-        public static IEnumerable<T> Except<T>(this IEnumerable<T> collection, T element) =>
-            collection.Except(new List<T> { element });
 
         #region Any(), IsEmpty(), HasSingle(), HasMany()
 
@@ -86,6 +71,24 @@ namespace Core.Extensions
         }
 
         #endregion IsEmpty(), HasSingle(), HasMany()
+        #region Exclusion and Inclusion
+
+        /// <summary> Returns a new enumeration excluding the given <paramref name="element"/>. </summary>
+        /// <typeparam name="T"> The type of collection items. </typeparam>
+        /// <param name="collection"> The collection to exclude <paramref name="element"/> from. </param>
+        /// <param name="element"> The element to exclude from the <paramref name="collection"/>. </param>
+        /// <returns></returns>
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> collection, T element) =>
+            collection.Except(new List<T> { element });
+
+        /// <summary> Returns a new collection with the given <paramref name="item"/> added to the <paramref name="collection"/>. </summary>
+        /// <typeparam name="T"> The type of collection items. </typeparam>
+        /// <param name="collection"> The collection to add the <paramref name="item"/> to. </param>
+        /// <param name="item"> The item to add to the <paramref name="collection"/>. </param>
+        public static IEnumerable<T> Including<T>(this IEnumerable<T> collection, T item) =>
+            collection.Concat(new T[] { item });
+
+        #endregion Exclusion and Inclusion
         #region SkipLast()
 
         /// <summary> Returns all items from a collection except the last one. </summary>

@@ -73,7 +73,6 @@ namespace Client.Wpf.Controls
                     Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake12pxCenterDefault),
                     Text = $"{EGaijinCharacter.Premium}{ECharacter.Space}{ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Premium)}",
                 };
-                //_tooltipPanel.Children.Add(premiumTag);
                 _tooltipPanel.Children.Insert(_tooltipPanel.Children.IndexOf(_portrait), premiumTag);
             }
         }
