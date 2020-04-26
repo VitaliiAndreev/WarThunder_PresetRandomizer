@@ -64,19 +64,6 @@ namespace Client.Wpf.Controls
                 _portrait.Source = ApplicationHelpers.Manager.GetPortraitBitmapSource(_vehicle);
         }
 
-        private void AddPremiumTag()
-        {
-            if (_vehicle.IsPremium)
-            {
-                var premiumTag = new TextBlock
-                {
-                    Style = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake12pxCenterDefault),
-                    Text = $"{EGaijinCharacter.Premium}{ECharacter.Space}{ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Premium)}",
-                };
-                _tooltipPanel.Children.Insert(_tooltipPanel.Children.IndexOf(_portrait), premiumTag);
-            }
-        }
-
         private void AddRequiredVehicle()
         {
             if (_requiredVehicle is ResearchTreeCellVehicleControl)
@@ -117,7 +104,6 @@ namespace Client.Wpf.Controls
             SetMainText();
             SetPortrait();
 
-            AddPremiumTag();
             AddRequiredVehicle();
 
             IsInitialised = true;
