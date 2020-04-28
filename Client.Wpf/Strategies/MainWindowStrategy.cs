@@ -27,6 +27,7 @@ namespace Client.Wpf.Strategies
             _commands.Add(ECommandName.SwapPresets, new SwapPresetsCommand());
             _commands.Add(ECommandName.DeletePresets, new DeletePresetsCommand());
             _commands.Add(ECommandName.ToggleVehicle, new ToggleVehicleCommand());
+            _commands.Add(ECommandName.GoToWiki, new GoToWikiCommand());
             _commands.Add(ECommandName.SwitchToResearchTree, new SwitchToResearchTreeCommand());
             _commands.Add(ECommandName.SwitchIncludeHeadersOnRowCopyFlag, new SwitchIncludeHeadersOnRowCopyFlagCommand());
             _commands.Add(ECommandName.OpenSettings, new OpenSettingsCommand());

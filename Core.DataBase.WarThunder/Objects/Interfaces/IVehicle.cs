@@ -104,13 +104,13 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         IVehicleImages Images { get; }
 
         /// <summary> The full name of the vehicle. </summary>
-        IVehicleLocalization FullName { get; }
+        IVehicleLocalisation FullName { get; }
 
         /// <summary> The name of the vehicle shown in the research tree. </summary>
-        IVehicleLocalization ResearchTreeName { get; }
+        IVehicleLocalisation ResearchTreeName { get; }
 
         /// <summary> The short name of the vehicle. </summary>
-        IVehicleLocalization ShortName { get; }
+        IVehicleLocalisation ShortName { get; }
 
         #endregion Association Properties
         #region Non-Persistent Properties

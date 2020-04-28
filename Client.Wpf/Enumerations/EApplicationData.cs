@@ -13,6 +13,7 @@ namespace Client.Wpf.Enumerations
         public static string DevelopmentStageLocalizationKey;
 
         public const string LinkToYouTubePlaylist = "https://www.youtube.com/playlist?list=PLTkOsj0Uogp4z4Px8IrmZIl_z6M60mmqX";
+        public const string LinkToOfficialWikiSearch = "https://wiki.warthunder.{0}/index.php?search={1}";
 
         static EApplicationData()
         {

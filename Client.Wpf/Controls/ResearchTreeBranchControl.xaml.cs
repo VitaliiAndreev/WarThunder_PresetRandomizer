@@ -226,7 +226,7 @@ namespace Client.Wpf.Controls
                             .OrderBy(vehicle => vehicle.ResearchTreeData.FolderIndex)
                         ;
 
-                        loadingTracker.CurrentlyProcessedVehicle = cellVehicles.FirstOrDefault()?.ResearchTreeName?.GetLocalization(WpfSettings.LocalizationLanguage);
+                        loadingTracker.CurrentlyProcessedVehicle = cellVehicles.FirstOrDefault()?.ResearchTreeName?.GetLocalisation(WpfSettings.LocalizationLanguage);
 
                         foreach (var vehicle in cellVehicles)
                             cell.AddVehicle(vehicle, vehicle.GaijinId.IsIn(enabledVehicleGaijinIds));

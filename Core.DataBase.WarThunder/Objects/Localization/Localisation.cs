@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Localization
 {
-    /// <summary> A localization set. </summary>
-    public class Localization : PersistentObjectWithId, ILocalization
+    /// <summary> A localisation set. </summary>
+    public class Localisation : PersistentObjectWithId, ILocalisation
     {
         #region Properties
 
@@ -36,37 +36,37 @@ namespace Core.DataBase.WarThunder.Objects.Localization
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected Localization()
+        protected Localisation()
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="localizationRecord"> A collection of localization values read from CSV files. </param>
-        protected Localization(IDataRepository dataRepository, IList<string> localizationRecord)
+        /// <param name="localisationRecord"> A collection of localisation values read from CSV files. </param>
+        protected Localisation(IDataRepository dataRepository, IList<string> localisationRecord)
             : base(dataRepository, -1L)
         {
-            English = localizationRecord[1];
-            French = localizationRecord[2];
-            Italian = localizationRecord[3];
-            German = localizationRecord[4];
-            Spanish = localizationRecord[5];
-            Russian = localizationRecord[6];
-            Polish = localizationRecord[7];
-            Czech = localizationRecord[8];
-            Turkish = localizationRecord[9];
-            Chinese = localizationRecord[10];
-            Japanese = localizationRecord[11];
-            Portuguese = localizationRecord[12];
-            Vietnamese = localizationRecord[13];
-            Ukrainian = localizationRecord[14];
-            Serbian = localizationRecord[15];
-            Hungarian = localizationRecord[16];
-            Korean = localizationRecord[17];
-            Belarusian = localizationRecord[18];
-            Romanian = localizationRecord[19];
-            TChinese = localizationRecord[20];
-            HChinese = localizationRecord[21];
+            English = localisationRecord[1];
+            French = localisationRecord[2];
+            Italian = localisationRecord[3];
+            German = localisationRecord[4];
+            Spanish = localisationRecord[5];
+            Russian = localisationRecord[6];
+            Polish = localisationRecord[7];
+            Czech = localisationRecord[8];
+            Turkish = localisationRecord[9];
+            Chinese = localisationRecord[10];
+            Japanese = localisationRecord[11];
+            Portuguese = localisationRecord[12];
+            Vietnamese = localisationRecord[13];
+            Ukrainian = localisationRecord[14];
+            Serbian = localisationRecord[15];
+            Hungarian = localisationRecord[16];
+            Korean = localisationRecord[17];
+            Belarusian = localisationRecord[18];
+            Romanian = localisationRecord[19];
+            TChinese = localisationRecord[20];
+            HChinese = localisationRecord[21];
         }
 
         #endregion Constructors

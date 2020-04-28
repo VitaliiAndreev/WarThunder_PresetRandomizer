@@ -20,6 +20,8 @@ namespace Client.Wpf.Enumerations
         DeletePresets,
         /// <summary> See <see cref="GeneratePresetCommand"/>. </summary>
         GeneratePreset,
+        /// <summary> See <see cref="GoToWikiCommand"/>. </summary>
+        GoToWiki,
         /// <summary> See <see cref="InitializeCommand"/>. </summary>
         Initialize,
         /// <summary> See <see cref="LinkToYouTubeCommand"/>. </summary>

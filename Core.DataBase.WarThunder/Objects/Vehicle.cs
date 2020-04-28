@@ -161,15 +161,15 @@ namespace Core.DataBase.WarThunder.Objects
 
         [OneToOne(ClassType = typeof(FullName), PropertyRef = nameof(Localization.Vehicle.FullName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The full name of the vehicle. </summary>
-        public virtual IVehicleLocalization FullName { get; protected set; }
+        public virtual IVehicleLocalisation FullName { get; protected set; }
 
         [OneToOne(ClassType = typeof(ResearchTreeName), PropertyRef = nameof(Localization.Vehicle.ResearchTreeName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The name of the vehicle shown in the research tree. </summary>
-        public virtual IVehicleLocalization ResearchTreeName { get; protected set; }
+        public virtual IVehicleLocalisation ResearchTreeName { get; protected set; }
 
         [OneToOne(ClassType = typeof(ShortName), PropertyRef = nameof(Localization.Vehicle.ShortName.Vehicle), Lazy = Laziness.Proxy)]
         /// <summary> The short name of the vehicle. </summary>
-        public virtual IVehicleLocalization ShortName { get; protected set; }
+        public virtual IVehicleLocalisation ShortName { get; protected set; }
 
         #endregion Association Properties
         #region Non-Persistent Properties

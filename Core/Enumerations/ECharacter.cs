@@ -23,6 +23,7 @@ namespace Core.Enumerations
         public const char ParenthesisLeft = '(';
         public const char ParenthesisRight = ')';
         public const char Period = '.';
+        public const char Plus = '+';
         public const char Slash = '/';
         public const char Semicolon = ';';
         public const char Space = ' ';

@@ -1,5 +1,6 @@
 ﻿using Core.Csv.WarThunder.Enumerations.Logger;
 using Core.Csv.WarThunder.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
@@ -99,9 +100,11 @@ namespace Core.Csv.WarThunder.Helpers
                     var fullNameRecordIndex = indeces.Item1;
                     var shortNameRecordIndex = indeces.Item2;
 
-                    var shopNameRecord = record;
-                    var fullNameRecord = sortedCsvRecords[fullNameRecordIndex];
-                    var shortNameRecord = sortedCsvRecords[shortNameRecordIndex];
+                    static IList<string> standardiseSpaces(IList<string> record) => record.Select(line => line.Replace(EGaijinCharacter.SpaceFromCsv, ECharacter.Space)).ToList();
+
+                    var shopNameRecord = standardiseSpaces(record);
+                    var fullNameRecord = standardiseSpaces(sortedCsvRecords[fullNameRecordIndex]);
+                    var shortNameRecord = standardiseSpaces(sortedCsvRecords[shortNameRecordIndex]);
 
                     if (vehicles.TryGetValue(vehicleGaijinId, out var vehicle))
                         vehicle.InitializeLocalization(fullNameRecord, shopNameRecord, shortNameRecord);

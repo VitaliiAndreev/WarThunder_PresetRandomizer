@@ -80,7 +80,7 @@ namespace Client.Wpf.Controls
             _presenter = presenter;
 
             Vehicle = vehicle;
-            _name.Text = Vehicle?.ResearchTreeName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
+            _name.Text = Vehicle?.ResearchTreeName?.GetLocalisation(WpfSettings.LocalizationLanguage) ?? Vehicle.GaijinId;
             _useCountryFlag = Vehicle.Country != Vehicle.Nation.AsEnumerationItem.GetBaseCountry();
 
             if (Vehicle.IsSquadronVehicle)
@@ -126,8 +126,34 @@ namespace Client.Wpf.Controls
                 HandleClick();
         }
 
+        private void OnContextMenuItemClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Tag is IVehicle vehicle)
+                _presenter.ReferencedVehicle = vehicle;
+        }
+
         #endregion Methods: Event Handlers
         #region Methods: Initialisation
+
+        private void InitialiseContextMenu()
+        {
+            var contextMenu = new ContextMenu();
+            var wikiLinkMenuItem = new MenuItem
+            {
+                IsCheckable = false,
+                StaysOpenOnClick = false,
+                Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GoToWiki),
+                Tag = Vehicle,
+                CommandParameter = _presenter,
+                Command = _presenter.GetCommand(ECommandName.GoToWiki),
+            };
+
+            wikiLinkMenuItem.Click += OnContextMenuItemClick;
+
+            contextMenu.Items.Add(wikiLinkMenuItem);
+
+            _border.ContextMenu = contextMenu;
+        }
 
         private void Initialise()
         {
@@ -146,6 +172,8 @@ namespace Client.Wpf.Controls
                     Opacity = EDouble.Number.PointNine,
                 };
             }
+
+            InitialiseContextMenu();
 
             _initialised = true;
         }

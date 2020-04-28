@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
 {
-    [Class(Table = ETable.LocalizationVehicleFullName)]
-    public class FullName : VehicleLocalization
+    [Class(Table = ETable.LocalisationVehicleFullName)]
+    public class FullName : VehicleLocalisation
     {
         #region Persistent Properties
 
@@ -16,7 +16,7 @@ namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The vehicle this localization belongs to. </summary>
+        /// <summary> The vehicle this localisation belongs to. </summary>
         [ManyToOne(0, Column = ETable.Vehicle + "_" + EColumn.Id, ClassType = typeof(Objects.Vehicle), NotNull = true, Lazy = Laziness.Proxy)]
         [Key(1, Unique = true, Column = ETable.Vehicle + "_" + EColumn.Id)]
         public override IVehicle Vehicle { get; protected set; }
@@ -73,10 +73,10 @@ namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The vehicle this localization belongs to. </param>
-        /// <param name="localizationRecord"> A collection of localization values read from CSV files. </param>
-        public FullName(IDataRepository dataRepository, IVehicle vehicle, IList<string> localizationRecord)
-            : base(dataRepository, vehicle, localizationRecord)
+        /// <param name="vehicle"> The vehicle this localisation belongs to. </param>
+        /// <param name="localisationRecord"> A collection of localisation values read from CSV files. </param>
+        public FullName(IDataRepository dataRepository, IVehicle vehicle, IList<string> localisationRecord)
+            : base(dataRepository, vehicle, localisationRecord)
         {
         }
 

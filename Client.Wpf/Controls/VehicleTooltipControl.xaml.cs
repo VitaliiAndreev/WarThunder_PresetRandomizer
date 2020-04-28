@@ -51,7 +51,7 @@ namespace Client.Wpf.Controls
         {
             _flag.SetFlag(_vehicle.Country, 16, new Thickness(0, 0, 7, 0));
 
-            _fullName.Text = _vehicle.FullName?.GetLocalization(WpfSettings.LocalizationLanguage) ?? _vehicle.GaijinId;
+            _fullName.Text = _vehicle.FullName?.GetLocalisation(WpfSettings.LocalizationLanguage) ?? _vehicle.GaijinId;
             _class.Text = _displayStrategy.GetVehicleCardClassRow(_vehicle);
             _countryRankAndBattleRating.Text = _displayStrategy.GetVehicleCardCountryRow(_vehicle);
             _requirements.Text = _displayStrategy.GetVehicleCardRequirementsRow(_vehicle);

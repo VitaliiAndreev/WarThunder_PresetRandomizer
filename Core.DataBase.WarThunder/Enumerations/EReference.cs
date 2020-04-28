@@ -134,15 +134,15 @@ namespace Core.DataBase.WarThunder.Enumerations
         public static IDictionary<ENation, char> NationIcons { get; } = new Dictionary<ENation, char>
         {
             { ENation.None, ECharacter.Space },
-            { ENation.Usa, '▃' },
-            { ENation.Germany, '▀' },
-            { ENation.Ussr, '▂' },
-            { ENation.Britain, '▄' },
-            { ENation.Japan, '▅' },
-            { ENation.China, '␗' },
-            { ENation.Italy, '▄' },
-            { ENation.France, '▄' },
-            { ENation.Sweden, '⌉' },
+            { ENation.Usa, EGaijinCharacter.StarInCircle },
+            { ENation.Germany, EGaijinCharacter.GermanCross },
+            { ENation.Ussr, EGaijinCharacter.Star },
+            { ENation.Britain, EGaijinCharacter.BritishRoundel },
+            { ENation.Japan, EGaijinCharacter.RisingSun },
+            { ENation.China, EGaijinCharacter.CommunistStars },
+            { ENation.Italy, EGaijinCharacter.ItalianRoundel },
+            { ENation.France, EGaijinCharacter.FrenchRoundel },
+            { ENation.Sweden, EGaijinCharacter.GroundAirSea },
         };
 
         /// <summary> The map of the country enumeration onto corresponding resource keys. </summary>
@@ -175,33 +175,33 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EBranch, char> BranchIcons { get; } = new Dictionary<EBranch, char>
         {
-            { EBranch.Army, '╤' },
-            { EBranch.Aviation, '┏' },
-            { EBranch.Fleet, '┚' },
-            { EBranch.Helicopters, '⋡' },
+            { EBranch.Army, EGaijinCharacter.Tank },
+            { EBranch.Aviation, EGaijinCharacter.Fighter },
+            { EBranch.Fleet, EGaijinCharacter.Battleship },
+            { EBranch.Helicopters, EGaijinCharacter.AttackHelicopter },
         };
 
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EVehicleClass, char> ClassIcons { get; } = new Dictionary<EVehicleClass, char>
         {
             { EVehicleClass.None, ECharacter.Space },
-            { EVehicleClass.LightTank, '┪' },
-            { EVehicleClass.MediumTank, '┬' },
-            { EVehicleClass.HeavyTank, '┨' },
-            { EVehicleClass.TankDestroyer, '┴' },
-            { EVehicleClass.Spaa, '┱' },
-            { EVehicleClass.AttackHelicopter, '┞' },
-            { EVehicleClass.UtilityHelicopter, '┠' },
-            { EVehicleClass.Fighter, '┤' },
-            { EVehicleClass.Attacker, '┞' },
-            { EVehicleClass.Bomber, '┠' },
-            { EVehicleClass.Boat, '␉' },
-            { EVehicleClass.HeavyBoat, '␊' },
-            { EVehicleClass.Barge, '␋' },
-            { EVehicleClass.Destroyer, '␌' },
-            { EVehicleClass.LightCruiser, '␎' },
-            { EVehicleClass.HeavyCruiser, '␏' },
-            { EVehicleClass.Frigate, '␌' },
+            { EVehicleClass.LightTank, EGaijinCharacter.LightTankPip },
+            { EVehicleClass.MediumTank, EGaijinCharacter.MediumTankPip },
+            { EVehicleClass.HeavyTank, EGaijinCharacter.HeavyTankPip },
+            { EVehicleClass.TankDestroyer, EGaijinCharacter.TankDestroyerPip },
+            { EVehicleClass.Spaa, EGaijinCharacter.SpaaPip },
+            { EVehicleClass.AttackHelicopter, EGaijinCharacter.AttackHelicopterPip },
+            { EVehicleClass.UtilityHelicopter, EGaijinCharacter.UtilityHelicopterPip },
+            { EVehicleClass.Fighter, EGaijinCharacter.FighterPip },
+            { EVehicleClass.Attacker, EGaijinCharacter.AttackerPip },
+            { EVehicleClass.Bomber, EGaijinCharacter.BomberPip },
+            { EVehicleClass.Boat, EGaijinCharacter.BoatPip },
+            { EVehicleClass.HeavyBoat, EGaijinCharacter.HeavyBoatPip },
+            { EVehicleClass.Barge, EGaijinCharacter.BargePip },
+            { EVehicleClass.Frigate, EGaijinCharacter.FrigatePip },
+            { EVehicleClass.Destroyer, EGaijinCharacter.DestroyerPip },
+            { EVehicleClass.LightCruiser, EGaijinCharacter.LightCruiserPip },
+            { EVehicleClass.HeavyCruiser, EGaijinCharacter.HeavyCruiserPip },
         };
 
         /// <summary> String representations of ranks. </summary>

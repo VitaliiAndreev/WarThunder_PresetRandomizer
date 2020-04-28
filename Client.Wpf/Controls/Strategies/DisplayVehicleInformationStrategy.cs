@@ -54,7 +54,7 @@ namespace Client.Wpf.Controls.Strategies
         #region Methods: Output
 
         protected string GetLocalisedString(object localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey.ToString());
-        protected string GetLocalisationText(ILocalization localisation) => localisation?.GetLocalization(WpfSettings.LocalizationLanguage);
+        protected string GetLocalisationText(ILocalisation localisation) => localisation?.GetLocalisation(WpfSettings.LocalizationLanguage);
 
         protected void SetSharedLeftPart(StringBuilder stringBuilder, IVehicle vehicle)
         {

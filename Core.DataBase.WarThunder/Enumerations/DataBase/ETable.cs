@@ -6,7 +6,7 @@
         private const string _ = "_";
         private const string _s = "s";
         private const string _es = "e" + _s;
-        private const string _localizationPrefix = "loc";
+        private const string _localisationPrefix = "loc";
         private const string _objectPrefix = "obj";
 
         private const string _aircraft = "Aircraft";
@@ -30,7 +30,7 @@
         private const string _visual = "Visual";
 
         private const string _vehicleTable = Vehicle + _;
-        private const string _vehicleLocalizationTable = _localizationPrefix + _vehicles + _;
+        private const string _vehicleLocalisationTable = _localisationPrefix + _vehicles + _;
 
         internal const string AircraftTags = _objectPrefix + _aircraft + _tags;
 
@@ -38,10 +38,10 @@
 
         internal const string GroundVehicleTags = _objectPrefix + _ground + _vehicle + _tags;
 
-        internal const string LocalizationVehicleClassName = _vehicleLocalizationTable + "Class" + _name;
-        internal const string LocalizationVehicleFullName = _vehicleLocalizationTable + "Full" + _name;
-        internal const string LocalizationVehicleResearchTreeName = _vehicleLocalizationTable + _research + _tree + _name;
-        internal const string LocalizationVehicleShortName = _vehicleLocalizationTable + "Short" + _name;
+        internal const string LocalisationVehicleClassName = _vehicleLocalisationTable + "Class" + _name;
+        internal const string LocalisationVehicleFullName = _vehicleLocalisationTable + "Full" + _name;
+        internal const string LocalisationVehicleResearchTreeName = _vehicleLocalisationTable + _research + _tree + _name;
+        internal const string LocalisationVehicleShortName = _vehicleLocalisationTable + "Short" + _name;
 
         internal const string Nation = _objectPrefix + "Nations";
 

@@ -16,7 +16,7 @@ namespace Client.Wpf.Extensions
                 EVehicleProfile.Nation => new
                 {
                     vehicle.GaijinId,
-                    Name = vehicle.ResearchTreeName.GetLocalization(language),
+                    Name = vehicle.ResearchTreeName.GetLocalisation(language),
                     Country = localise(vehicle.Country),
                     Branch = localise(vehicle.Branch.AsEnumerationItem),
                     Rank = vehicle.RankAsEnumerationItem,
@@ -36,7 +36,7 @@ namespace Client.Wpf.Extensions
                 EVehicleProfile.NationAndCountry => new
                 {
                     vehicle.GaijinId,
-                    Name = vehicle.ResearchTreeName.GetLocalization(language),
+                    Name = vehicle.ResearchTreeName.GetLocalisation(language),
                     Branch = localise(vehicle.Branch.AsEnumerationItem),
                     Rank = vehicle.RankAsEnumerationItem,
                     Class = localise(vehicle.Class),

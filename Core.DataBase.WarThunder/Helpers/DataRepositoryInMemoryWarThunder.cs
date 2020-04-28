@@ -27,7 +27,7 @@ namespace Core.DataBase.WarThunder.Helpers
         private readonly IList<IVehicleModificationsData> _newVehicleModificationsData;
         private readonly IList<IVehicleGraphicsData> _newVehicleGraphicsData;
         private readonly IList<IVehicleGameModeParameterSetBase> _newVehicleGameModeParameterSets;
-        private readonly IList<ILocalization> _newLocalizationRecords;
+        private readonly IList<ILocalisation> _newLocalizationRecords;
         private readonly IList<IVehicleImages> _newVehicleImages;
 
         private readonly IList<INation> _nations;
@@ -44,7 +44,7 @@ namespace Core.DataBase.WarThunder.Helpers
         private readonly IList<IVehicleModificationsData> _vehicleModificationsData;
         private readonly IList<IVehicleGraphicsData> _vehicleGraphicsData;
         private readonly IList<IVehicleGameModeParameterSetBase> _vehicleGameModeParameterSets;
-        private readonly IList<ILocalization> _localizationRecords;
+        private readonly IList<ILocalisation> _localizationRecords;
         private readonly IList<IVehicleImages> _vehicleImages;
 
         #endregion Fields
@@ -100,7 +100,7 @@ namespace Core.DataBase.WarThunder.Helpers
             _newVehicleModificationsData = new List<IVehicleModificationsData>();
             _newVehicleGraphicsData = new List<IVehicleGraphicsData>();
             _newVehicleGameModeParameterSets = new List<IVehicleGameModeParameterSetBase>();
-            _newLocalizationRecords = new List<ILocalization>();
+            _newLocalizationRecords = new List<ILocalisation>();
             _newVehicleImages = new List<IVehicleImages>();
 
             _nations = new List<INation>();
@@ -117,7 +117,7 @@ namespace Core.DataBase.WarThunder.Helpers
             _vehicleModificationsData = new List<IVehicleModificationsData>();
             _vehicleGraphicsData = new List<IVehicleGraphicsData>();
             _vehicleGameModeParameterSets = new List<IVehicleGameModeParameterSetBase>();
-            _localizationRecords = new List<ILocalization>();
+            _localizationRecords = new List<ILocalisation>();
             _vehicleImages = new List<IVehicleImages>();
         }
 
@@ -144,7 +144,7 @@ namespace Core.DataBase.WarThunder.Helpers
                 if (objectType == typeof(IVehicleModificationsData)) return _newVehicleModificationsData.Cast<T>().ToList();
                 if (objectType == typeof(IVehicleGraphicsData)) return _newVehicleGraphicsData.Cast<T>().ToList();
                 if (objectType == typeof(IVehicleGameModeParameterSetBase)) return _newVehicleGameModeParameterSets.Cast<T>().ToList();
-                if (objectType == typeof(ILocalization)) return _newLocalizationRecords.Cast<T>().ToList();
+                if (objectType == typeof(ILocalisation)) return _newLocalizationRecords.Cast<T>().ToList();
                 if (objectType == typeof(IVehicleImages)) return _newVehicleImages.Cast<T>().ToList();
             }
             return new List<T>();
@@ -168,7 +168,7 @@ namespace Core.DataBase.WarThunder.Helpers
                 else if (newObject is IVehicleModificationsData newVehicleModificationsData) _newVehicleModificationsData.AddIfNotPresent(newVehicleModificationsData);
                 else if (newObject is IVehicleGraphicsData newVehicleGraphicsData) _newVehicleGraphicsData.AddIfNotPresent(newVehicleGraphicsData);
                 else if (newObject is IVehicleGameModeParameterSetBase newVehicleGameModeParameterSet) _newVehicleGameModeParameterSets.AddIfNotPresent(newVehicleGameModeParameterSet);
-                else if (newObject is ILocalization newLocalizationSet) _newLocalizationRecords.AddIfNotPresent(newLocalizationSet);
+                else if (newObject is ILocalisation newLocalizationSet) _newLocalizationRecords.AddIfNotPresent(newLocalizationSet);
                 else if (newObject is IVehicleImages newVehicleImageSet) _newVehicleImages.AddIfNotPresent(newVehicleImageSet);
             }
         }
@@ -191,7 +191,7 @@ namespace Core.DataBase.WarThunder.Helpers
             if (objectType == typeof(IVehicleModificationsData)) return _vehicleModificationsData.Cast<T>();
             if (objectType == typeof(IVehicleGraphicsData)) return _vehicleGraphicsData.Cast<T>();
             if (objectType == typeof(IVehicleGameModeParameterSetBase)) return _vehicleGameModeParameterSets.Cast<T>();
-            if (objectType == typeof(ILocalization)) return _localizationRecords.Cast<T>();
+            if (objectType == typeof(ILocalisation)) return _localizationRecords.Cast<T>();
             if (objectType == typeof(IVehicleImages)) return _vehicleImages.Cast<T>();
 
             return new List<T>();
@@ -239,7 +239,7 @@ namespace Core.DataBase.WarThunder.Helpers
                 else if (@object is IVehicleModificationsData vehicleModificationsData) _newVehicleModificationsData.RemoveSafely(vehicleModificationsData);
                 else if (@object is IVehicleGraphicsData vehicleGraphicsData) _newVehicleGraphicsData.RemoveSafely(vehicleGraphicsData);
                 else if (@object is IVehicleGameModeParameterSetBase vehicleGameModeParameterSet) _newVehicleGameModeParameterSets.RemoveSafely(vehicleGameModeParameterSet);
-                else if (@object is ILocalization localizationSet) _newLocalizationRecords.RemoveSafely(localizationSet);
+                else if (@object is ILocalisation localizationSet) _newLocalizationRecords.RemoveSafely(localizationSet);
                 else if (@object is IVehicleImages vehicleImageSet) _newVehicleImages.RemoveSafely(vehicleImageSet);
             }
         }

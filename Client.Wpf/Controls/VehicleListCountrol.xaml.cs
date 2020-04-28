@@ -138,6 +138,19 @@ namespace Client.Wpf.Controls
                 Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ShowInResearchTree),
                 ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ScrapGeneratedPresets),
                 Tag = vehicle,
+                CommandParameter = _presenter,
+                Command = genericGoToResearchTreeCommand is ISwitchToResearchTreeCommand goToResearchTreeCommand
+                    ? goToResearchTreeCommand.With(vehicle)
+                    : genericGoToResearchTreeCommand,
+            };
+            var goToWikiLinkMenuItem = new MenuItem
+            {
+                IsCheckable = false,
+                StaysOpenOnClick = false,
+                Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GoToWiki),
+                Tag = vehicle,
+                CommandParameter = _presenter,
+                Command = _presenter.GetCommand(ECommandName.GoToWiki),
             };
             var contextMenu = new ContextMenu
             {
@@ -145,13 +158,11 @@ namespace Client.Wpf.Controls
             };
 
             goToResearchTreeMenuItem.ToolTipOpening += OnMenuItemTooltipOpening;
-            goToResearchTreeMenuItem.Click += OnShowResearchTreeClick;
-            goToResearchTreeMenuItem.CommandParameter = _presenter;
-            goToResearchTreeMenuItem.Command = genericGoToResearchTreeCommand is ISwitchToResearchTreeCommand goToResearchTreeCommand
-                ? goToResearchTreeCommand.With(vehicle)
-                : genericGoToResearchTreeCommand;
+            goToResearchTreeMenuItem.Click += OnContextMenuItemClick;
+            goToWikiLinkMenuItem.Click += OnContextMenuItemClick;
 
             contextMenu.Items.Add(goToResearchTreeMenuItem);
+            contextMenu.Items.Add(goToWikiLinkMenuItem);
 
             row.ContextMenu = contextMenu;
             row.MouseDown += OnRowMouseDown;
@@ -192,7 +203,7 @@ namespace Client.Wpf.Controls
             }
         }
 
-        private void OnShowResearchTreeClick(object sender, RoutedEventArgs e)
+        private void OnContextMenuItemClick(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.Tag is IVehicle vehicle)
                 _presenter.ReferencedVehicle = vehicle;

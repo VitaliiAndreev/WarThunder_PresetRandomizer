@@ -5,6 +5,12 @@
     {
         #region Methods: Fluency
 
+        public static bool IsLetterFluently(this char character) =>
+            char.IsLetter(character);
+
+        public static bool IsLetterOrDigitFluently(this char character) =>
+            char.IsLetterOrDigit(character);
+
         /// <summary> Fluently determines whether the source character is a digit. </summary>
         /// <param name="character"> The source character. </param>
         /// <returns></returns>

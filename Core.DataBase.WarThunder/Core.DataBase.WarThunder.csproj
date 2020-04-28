@@ -74,6 +74,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
+    <Compile Include="Enumerations\EGaijinCharacter.cs" />
     <Compile Include="Enumerations\EVehicleBranchTag.cs" />
     <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensions.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
-    <Compile Include="Extensions\ILocalizationExtensions.cs" />
+    <Compile Include="Extensions\ILocalisationExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Helpers\DataRepositoryFactoryWarThunder.cs" />
@@ -138,13 +139,13 @@
     <Compile Include="Objects\Json\VehicleDeserializedFromJsonWpCost.cs" />
     <Compile Include="Objects\Json\VehicleTagsDeserializedFromJson.cs" />
     <Compile Include="Objects\Json\WeaponDeserializedFromJson.cs" />
-    <Compile Include="Objects\Localization\Interfaces\ILocalization.cs" />
-    <Compile Include="Objects\Localization\Localization.cs" />
-    <Compile Include="Objects\Localization\Vehicle\Interfaces\IVehicleLocalization.cs" />
+    <Compile Include="Objects\Localization\Interfaces\ILocalisation.cs" />
+    <Compile Include="Objects\Localization\Localisation.cs" />
+    <Compile Include="Objects\Localization\Vehicle\Interfaces\IVehicleLocalisation.cs" />
     <Compile Include="Objects\Localization\Vehicle\ShortName.cs" />
     <Compile Include="Objects\Localization\Vehicle\FullName.cs" />
     <Compile Include="Objects\Localization\Vehicle\ResearchTreeName.cs" />
-    <Compile Include="Objects\Localization\Vehicle\VehicleLocalization.cs" />
+    <Compile Include="Objects\Localization\Vehicle\VehicleLocalisation.cs" />
     <Compile Include="Objects\Nation.cs" />
     <Compile Include="Objects\NationBranchPair.cs" />
     <Compile Include="Objects\NationCountryPair.cs" />

@@ -5,28 +5,28 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects.Localization.Vehicle
 {
-    /// <summary> A vehicle localization set. </summary>
-    public class VehicleLocalization : Localization, IVehicleLocalization
+    /// <summary> A vehicle localisation set. </summary>
+    public class VehicleLocalisation : Localisation, IVehicleLocalisation
     {
         #region Properties
 
-        /// <summary> The vehicle this localization belongs to. </summary>
+        /// <summary> The vehicle this localisation belongs to. </summary>
         public virtual IVehicle Vehicle { get; protected set; }
 
         #endregion Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected VehicleLocalization()
+        protected VehicleLocalisation()
         {
         }
 
         /// <summary> Creates a new transient object that can be persisted later. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="vehicle"> The vehicle this localization belongs to. </param>
-        /// <param name="localizationRecord"> A collection of localization values read from CSV files. </param>
-        protected VehicleLocalization(IDataRepository dataRepository, IVehicle vehicle, IList<string> localizationRecord)
-            : base(dataRepository, localizationRecord)
+        /// <param name="vehicle"> The vehicle this localisation belongs to. </param>
+        /// <param name="localisationRecord"> A collection of localisation values read from CSV files. </param>
+        protected VehicleLocalisation(IDataRepository dataRepository, IVehicle vehicle, IList<string> localisationRecord)
+            : base(dataRepository, localisationRecord)
         {
             Vehicle = vehicle;
         }

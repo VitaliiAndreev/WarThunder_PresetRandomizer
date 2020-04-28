@@ -266,6 +266,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Commands\Interfaces\ICustomCommand.cs" />
+    <Compile Include="Commands\MainWindow\GoToWikiCommand.cs" />
     <Compile Include="Commands\MainWindow\AboutCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeBattleRatingCommand.cs" />
     <Compile Include="Commands\MainWindow\ChangeLocalizationCommand.cs" />
@@ -398,7 +399,6 @@
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />
-    <Compile Include="Enumerations\EGaijinCharacter.cs" />
     <Compile Include="Enumerations\ESettingsWindowClosureState.cs" />
     <Compile Include="Enumerations\EStyleKey.cs" />
     <Compile Include="Enumerations\EUnlocalisedMessage.cs" />
