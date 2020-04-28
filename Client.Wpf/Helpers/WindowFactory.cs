@@ -1,6 +1,7 @@
 ﻿using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Helpers.Interfaces;
 using Client.Wpf.Presenters;
+using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Strategies;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces;
@@ -62,13 +63,22 @@ namespace Client.Wpf.Helpers
             return window;
         }
 
+        public IGuiLoadingWindow CreateGuiLoadingWindow()
+        {
+            var presenter = new GuiLoadingWindowPresenter();
+            var window = new GuiLoadingWindow(presenter);
+
+            return window;
+        }
+
         /// <summary> Creates an instance of the main window. </summary>
+        /// <param name="guiLoadingWindowPresenter"> An instance of a presenter to communicate with the GUI loading window. </param>
         /// <returns></returns>
-        public IMainWindow CreateMainWindow()
+        public IMainWindow CreateMainWindow(IGuiLoadingWindowPresenter guiLoadingWindowPresenter)
         {
             var strategy = new MainWindowStrategy();
             var presenter = new MainWindowPresenter(strategy);
-            var window = new MainWindow(presenter);
+            var window = new MainWindow(presenter, guiLoadingWindowPresenter);
 
             return window;
         }

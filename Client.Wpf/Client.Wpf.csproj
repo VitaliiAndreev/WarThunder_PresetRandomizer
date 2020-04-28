@@ -250,6 +250,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\GuiLoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LocalizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,7 +427,9 @@
     <Compile Include="Commands\LoadingWindow\InitializeCommand.cs" />
     <Compile Include="IWpfClient.cs" />
     <Compile Include="Presenters\AboutWindowPresenter.cs" />
+    <Compile Include="Presenters\GuiLoadingWindowPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IAboutWindowPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IGuiLoadingWindowPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IMainWindowPresenter.cs" />
     <Compile Include="Presenters\Interfaces\ISettingsWindowPresenter.cs" />
     <Compile Include="Presenters\MainWindowPresenter.cs" />
@@ -441,6 +447,7 @@
     <Compile Include="Windows\Interfaces\Base\IWindow.cs" />
     <Compile Include="Windows\Interfaces\IAboutWindow.cs" />
     <Compile Include="Windows\Interfaces\IBaseWindow.cs" />
+    <Compile Include="Windows\Interfaces\IGuiLoadingWindow.cs" />
     <Compile Include="Windows\Interfaces\ILoadingWindow.cs" />
     <Compile Include="Windows\Interfaces\ILocalizationWindow.cs" />
     <Compile Include="Windows\Interfaces\IMainWindow.cs" />
@@ -450,6 +457,9 @@
     <Compile Include="Presenters\LoadingWindowPresenter.cs" />
     <Compile Include="Strategies\Interfaces\ILoadingWindowStrategy.cs" />
     <Compile Include="Strategies\LoadingWindowStrategy.cs" />
+    <Compile Include="Windows\GuiLoadingWindow.xaml.cs">
+      <DependentUpon>GuiLoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -477,7 +487,7 @@
     <Compile Include="Strategies\LocalizationWindowStrategy.cs" />
     <Compile Include="Strategies\Strategy.cs" />
     <Compile Include="Presenters\Interfaces\ILocalizationWindowPresenter.cs" />
-    <Compile Include="Windows\Interfaces\Base\ILocalizedWindow.cs" />
+    <Compile Include="Windows\Interfaces\Base\ILocalisedWindow.cs" />
     <Compile Include="Windows\Interfaces\Base\IWindowWithPresenter.cs" />
     <Compile Include="Windows\LocalizationWindow.xaml.cs">
       <DependentUpon>LocalizationWindow.xaml</DependentUpon>

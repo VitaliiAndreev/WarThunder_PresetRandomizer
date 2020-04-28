@@ -24,7 +24,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace Client.Wpf.Windows
 {
@@ -32,6 +31,8 @@ namespace Client.Wpf.Windows
     public partial class MainWindow : BaseWindow, IMainWindow
     {
         #region Fields
+
+        private readonly IGuiLoadingWindowPresenter _loadingTracker;
 
         /// <summary> Indicates whether the window is still being initialized. </summary>
         private readonly EInitializationStatus _initializationStatus = EInitializationStatus.NotInitialized;
@@ -56,23 +57,39 @@ namespace Client.Wpf.Windows
 
         /// <summary> Creates a new main window. </summary>
         /// <param name="presenter"> The presenter to attach. </param>
-        public MainWindow(IMainWindowPresenter presenter)
+        /// <param name="guiLoadingWindowPresenter"> An instance of a presenter to communicate with the GUI loading window. </param>
+        public MainWindow(IMainWindowPresenter presenter, IGuiLoadingWindowPresenter guiLoadingWindowPresenter)
             : base(EWpfClientLogCategory.MainWindow, null, presenter)
         {
             _initializationStatus = EInitializationStatus.Initializing;
+            {
+                Log.Trace(ECoreLogMessage.Initialising);
 
-            InitializeDictionaries();
-            InitializeComponent();
-            Localise();
+                _loadingTracker = guiLoadingWindowPresenter;
 
-            InitialiseControls();
-            UpdateControlsBasedOnSettingsAndData();
-            ToggleLongOperationIndicator(false);
+                static string localise(string key) => ApplicationHelpers.LocalisationManager.GetLocalisedString(key);
 
-            Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
+                _loadingTracker.CurrentLoadingStage = localise(ELocalisationKey.CreatingPresetCollections);
+                InitializeDictionaries();
 
-            Log.Debug(ECoreLogMessage.Initialized);
+                _loadingTracker.CurrentLoadingStage = localise(ELocalisationKey.CreatingControls);
+                InitializeComponent();
 
+                _loadingTracker.CurrentLoadingStage = localise(ELocalisationKey.LocalisingControls);
+                Localise();
+
+                _loadingTracker.CurrentLoadingStage = localise(ELocalisationKey.InitialisingControls);
+                InitialiseControls();
+
+                _loadingTracker.CurrentLoadingStage = localise(ELocalisationKey.ApplyingUserConfiguration);
+                UpdateControlsBasedOnSettingsAndData();
+
+                ToggleLongOperationIndicator(false);
+
+                Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
+
+                Log.Debug(ECoreLogMessage.Initialised);
+            }
             _initializationStatus = EInitializationStatus.Initialized;
         }
 
@@ -582,6 +599,8 @@ namespace Client.Wpf.Windows
 
             SetControlTags();
             AttachCommands();
+
+            _loadingTracker.CurrentLoadingStage = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.PopulatingControls);
             PopulateControls();
         }
 
@@ -628,7 +647,8 @@ namespace Client.Wpf.Windows
                 Source = this.GetBitmapSource(WpfSettings.LocalizationLanguage.GetFlagResourceKey()),
             };
 
-            _informationControl.ResearchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds);
+            _loadingTracker.CurrentLoadingStage = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.PopulatingResearchTreeControls);
+            _informationControl.ResearchTreeControl.Populate(Presenter.EnabledVehicleGaijinIds, _loadingTracker);
         }
 
         /// <summary> Updates controls on the window base on saved user settings and loaded data. </summary>
@@ -697,22 +717,6 @@ namespace Client.Wpf.Windows
         }
 
         #endregion Methods: Overrides
-        #region Methods: Rendering
-
-        public static void ProcessUiTasks()
-        {
-            var frame = new DispatcherFrame();
-
-            Dispatcher.CurrentDispatcher.BeginInvoke
-            (
-                DispatcherPriority.Background,
-                new DispatcherOperationCallback(delegate (object parameter) { frame.Continue = false; return null; }),
-                null
-            );
-            Dispatcher.PushFrame(frame);
-        }
-
-        #endregion Methods: Rendering
         #region Methods: Status Bar
 
         public void ToggleLongOperationIndicator(bool show)
@@ -720,7 +724,7 @@ namespace Client.Wpf.Windows
             _statusBarIcon.Visibility = show ? Visibility.Visible : Visibility.Hidden;
             _statusBarMessage.Visibility = show ? Visibility.Visible : Visibility.Hidden;
 
-            ProcessUiTasks();
+            ApplicationHelpers.ProcessUiTasks();
         }
 
         #endregion Methods: Status Bar

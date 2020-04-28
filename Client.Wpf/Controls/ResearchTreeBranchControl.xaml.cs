@@ -3,6 +3,7 @@ using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
@@ -181,7 +182,8 @@ namespace Client.Wpf.Controls
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"> The research tree branch to create cells with. </param>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
-        internal void Populate(ResearchTreeBranch branch, IEnumerable<string> enabledVehicleGaijinIds)
+        /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
+        internal void Populate(ResearchTreeBranch branch, IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
             if (branch is null || IsPopulated)
                 return;
@@ -191,14 +193,24 @@ namespace Client.Wpf.Controls
             Enumerable.Range(EInteger.Number.Zero, _researchTreeBranch.ColumnCount).ToList().ForEach(number => _grid.ColumnDefinitions.Add(new ColumnDefinition()));
             Enumerable.Range(EInteger.Number.Zero, _researchTreeBranch.RowCount).ToList().ForEach(number => _grid.RowDefinitions.Add(new RowDefinition()));
 
+            loadingTracker.RanksPopulated = EInteger.Number.Zero;
+            loadingTracker.RanksToPopulate = _researchTreeBranch.Count;
+
             foreach (var rankKeyValuePair in _researchTreeBranch)
             {
                 var rankKey = rankKeyValuePair.Key;
                 var rank = rankKeyValuePair.Value;
 
+                loadingTracker.CurrentlyPopulatedRank = rankKey.ToString();
+                loadingTracker.RowsPopulated = EInteger.Number.Zero;
+                loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + EInteger.Number.One;
+
                 for (var rowNumber = rank.StartingRowNumber.Value; rowNumber <= rank.MaximumRowNumber; rowNumber++)
                 {
                     var rowIndex = rowNumber - EInteger.Number.One;
+
+                    loadingTracker.ColumnsPopulated = EInteger.Number.Zero;
+                    loadingTracker.ColumnsToPopulate = _researchTreeBranch.ColumnCount;
 
                     for (var columnNumber = EInteger.Number.One; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
                     {
@@ -214,6 +226,8 @@ namespace Client.Wpf.Controls
                             .OrderBy(vehicle => vehicle.ResearchTreeData.FolderIndex)
                         ;
 
+                        loadingTracker.CurrentlyProcessedVehicle = cellVehicles.FirstOrDefault()?.ResearchTreeName?.GetLocalization(WpfSettings.LocalizationLanguage);
+
                         foreach (var vehicle in cellVehicles)
                             cell.AddVehicle(vehicle, vehicle.GaijinId.IsIn(enabledVehicleGaijinIds));
 
@@ -221,8 +235,14 @@ namespace Client.Wpf.Controls
                         AddCell(cell, rank, rowIndex, columnIndex);
 
                         _cells.Add(new Tuple<int, int>(columnIndex, rowIndex), cell);
+
+                        loadingTracker.ColumnsPopulated++;
                     }
+                    loadingTracker.RowsPopulated++;
                 }
+                loadingTracker.CurrentlyProcessedVehicle = string.Empty;
+                loadingTracker.CurrentlyPopulatedRank = string.Empty;
+                loadingTracker.RanksPopulated++;
             }
             InitialiseToggleAllButton();
         }

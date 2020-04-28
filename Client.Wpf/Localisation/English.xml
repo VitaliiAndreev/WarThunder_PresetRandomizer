@@ -21,6 +21,7 @@
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="The application will be restarted. Proceed?"/>
+  <Line key="ApplyingUserConfiguration" value="Applying user configuration..."/>
   <Line key="Arcade" value="Arcade Battles"/>
   <Line key="Argentina" value="Argentina"/>
   <Line key="ArmoredGunboat" value="Armored Gunboat"/>
@@ -52,6 +53,8 @@
   <Line key="Commits" value="commits"/>
   <Line key="ConsoleExclusive" value="Console-exclusive"/>
   <Line key="Country" value="Country"/>
+  <Line key="CreatingControls" value="Creating GUI elements..."/>
+  <Line key="CreatingPresetCollections" value="Creating pre-defined collections..."/>
   <Line key="Cuba" value="Cuba"/>
   <Line key="CzechRepublic" value="Czech Republic"/>
   <Line key="Destroyer" value="Destroyer"/>
@@ -83,6 +86,7 @@
   <Line key="Hydroplane" value="Hydroplane"/>
   <Line key="IncludeColumnHeadersWhenCopyingSelectedRows" value="Include column headers when copying selected rows to clipboard"/>
   <Line key="InitialisationUnderwayConfirmClosure" value="Initialisation is underway. Proceed?"/>
+  <Line key="InitialisingControls" value="Initialising GUI elements..."/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
   <Line key="IsAvailableOnlyOnConsoles" value="Consolee&#xA;Exclusive"/>
@@ -124,15 +128,18 @@
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>
   <Line key="Ok" value="OK"/>
   <Line key="Pack" value="Pack"/>
+  <Line key="LocalisingControls" value="Localising GUI elements..."/>
   <Line key="OpenYouTubePlaylist" value="Open YouTube playlist"/>
   <Line key="OperationUnderwayPleaseWait" value="Operation underway, please wait..."/>
   <Line key="Philippines" value="Philippines"/>
   <Line key="Poland" value="Poland"/>
+  <Line key="PopulatingControls" value="Generating data-driven GUI elements..."/>
+  <Line key="PopulatingResearchTreeControls" value="Generating research trees in GUI..."/>
   <Line key="Portugal" value="Portugal"/>
   <Line key="Premium" value="Premium"/>
   <Line key="Rank" value="Rank"/>
-  <Line key="Ready" value="Ready! Press &quot;No&quot; in the message box."/>
-  <Line key="ReadyWithCountDown" value="Ready! Close the window to proceed or wait for {0} seconds."/>
+  <Line key="Ready" value="Data is ready! Press &quot;No&quot; in the message box."/>
+  <Line key="ReadyWithCountDown" value="Data is ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>

@@ -51,7 +51,7 @@ namespace Client.Wpf.Windows
             _buttonEnglishUsa.Tag = ELanguage.English;
             _buttonRussian.Tag = ELanguage.Russian;
 
-            Log.Debug(ECoreLogMessage.Initialized);
+            Log.Debug(ECoreLogMessage.Initialised);
         }
 
         #endregion Constructors

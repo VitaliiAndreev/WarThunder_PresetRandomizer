@@ -304,6 +304,7 @@
         protected const string _Generator = _Gene + _rat + _or;
         protected const string _Generic = _gene + _r + _i + _c;
         protected const string _given = _g + "iven";
+        protected const string _GUI = _G + _UI;
 
         #endregion G
         #region H

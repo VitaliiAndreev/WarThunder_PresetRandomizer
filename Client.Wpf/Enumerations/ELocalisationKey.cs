@@ -10,6 +10,7 @@
         public const string ApplicationName = nameof(ApplicationName);
         public const string ApplicationNameAbbreviated = nameof(ApplicationNameAbbreviated);
         public const string ApplicationWillBeRestarted = nameof(ApplicationWillBeRestarted);
+        public const string ApplyingUserConfiguration = nameof(ApplyingUserConfiguration);
         public const string Arcade = nameof(Arcade);
         public const string Argentina = nameof(Argentina);
         public const string ArmoredGunboat = nameof(ArmoredGunboat);
@@ -38,6 +39,8 @@
         public const string ClickOnCategoryToOpenList = nameof(ClickOnCategoryToOpenList);
         public const string Commits = nameof(Commits);
         public const string ConsoleExclusive = nameof(ConsoleExclusive);
+        public const string CreatingControls = nameof(CreatingControls);
+        public const string CreatingPresetCollections = nameof(CreatingPresetCollections);
         public const string Cuba = nameof(Cuba);
         public const string CzechRepublic = nameof(CzechRepublic);
         public const string Destroyer = nameof(Destroyer);
@@ -68,6 +71,7 @@
         public const string Hydroplane = nameof(Hydroplane);
         public const string IncludeColumnHeadersWhenCopyingSelectedRows = nameof(IncludeColumnHeadersWhenCopyingSelectedRows);
         public const string InitialisationUnderwayConfirmClosure = nameof(InitialisationUnderwayConfirmClosure);
+        public const string InitialisingControls = nameof(InitialisingControls);
         public const string Interceptor = nameof(Interceptor);
         public const string Iraq = nameof(Iraq);
         public const string Israel = nameof(Israel);
@@ -80,6 +84,7 @@
         public const string LightBomber = nameof(LightBomber);
         public const string LightCruiser = nameof(LightCruiser);
         public const string LightTank = nameof(LightTank);
+        public const string LocalisingControls = nameof(LocalisingControls);
         public const string OpenYouTubePlaylist = nameof(OpenYouTubePlaylist);
         public const string OperationUnderwayPleaseWait = nameof(OperationUnderwayPleaseWait);
         public const string Loading = nameof(Loading);
@@ -104,6 +109,8 @@
         public const string Pack = nameof(Pack);
         public const string Philippines = nameof(Philippines);
         public const string Poland = nameof(Poland);
+        public const string PopulatingControls = nameof(PopulatingControls);
+        public const string PopulatingResearchTreeControls = nameof(PopulatingResearchTreeControls);
         public const string Portugal = nameof(Portugal);
         public const string Premium = nameof(Premium);
         public const string Rank = nameof(Rank);

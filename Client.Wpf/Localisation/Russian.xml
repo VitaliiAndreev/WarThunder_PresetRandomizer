@@ -21,6 +21,7 @@
   <Line key="ApplicationName" value="War Thunder Preset Randomizer"/>
   <Line key="ApplicationNameAbbreviated" value="W.T.P.R."/>
   <Line key="ApplicationWillBeRestarted" value="Приложение будет перезапущено. Продолжить?"/>
+  <Line key="ApplyingUserConfiguration" value="Применяются настройки пользователя..."/>
   <Line key="Arcade" value="Аркадный режим"/>
   <Line key="Argentina" value="Аргентина"/>
   <Line key="ArmoredGunboat" value="Бронекатер"/>
@@ -52,6 +53,8 @@
   <Line key="Commits" value="коммитов"/>
   <Line key="ConsoleExclusive" value="Консольный эксклюзив"/>
   <Line key="Country" value="Страна"/>
+  <Line key="CreatingControls" value="Создаются элементы GUI..."/>
+  <Line key="CreatingPresetCollections" value="Создаются предопределённые коллекции..."/>
   <Line key="Cuba" value="Куба"/>
   <Line key="CzechRepublic" value="Чешская республика"/>
   <Line key="Destroyer" value="Эсминец"/>
@@ -83,6 +86,7 @@
   <Line key="Hydroplane" value="Гидросамолёт"/>
   <Line key="IncludeColumnHeadersWhenCopyingSelectedRows" value="Копировать заголовки колонок при копировании строк в буфер обмена."/>
   <Line key="InitialisationUnderwayConfirmClosure" value="Идёт инициализация. Продолжить?"/>
+  <Line key="InitialisingControls" value="Инициализируются элементы GUI..."/>
   <Line key="Interceptor" value="Перехватчик"/>
   <Line key="Iraq" value="Ирак"/>
   <Line key="IsAvailableOnlyOnConsoles" value="Консольный&#xA;эксклюзив"/>
@@ -124,15 +128,18 @@
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>
   <Line key="Ok" value="ОК"/>
   <Line key="Pack" value="Набор"/>
+  <Line key="LocalisingControls" value="Локализируются элементы GUI..."/>
   <Line key="OpenYouTubePlaylist" value="Открыть плейлист на YouTube (англоязычный)"/>
   <Line key="OperationUnderwayPleaseWait" value="Выполняется. Пожалуйста подождите..."/>
   <Line key="Philippines" value="Филиппины"/>
   <Line key="Poland" value="Польша"/>
+  <Line key="PopulatingControls" value="Генерируются элементы GUI по игровым данным..."/>
+  <Line key="PopulatingResearchTreeControls" value="Генерируются ветки исследований в GUI..."/>
   <Line key="Portugal" value="Португалия"/>
   <Line key="Premium" value="Премиум"/>
   <Line key="Rank" value="Ранг"/>
-  <Line key="Ready" value="Готово! Нажмите &quot;Нет&quot; в диалоговом окне."/>
-  <Line key="ReadyWithCountDown" value="Готово! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
+  <Line key="Ready" value="Данные готовы! Нажмите &quot;Нет&quot; в диалоговом окне."/>
+  <Line key="ReadyWithCountDown" value="Данные готовы! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>

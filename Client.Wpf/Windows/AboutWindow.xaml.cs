@@ -36,7 +36,7 @@ namespace Client.Wpf.Windows
 
             Localise();
 
-            Log.Debug(ECoreLogMessage.Initialized);
+            Log.Debug(ECoreLogMessage.Initialised);
         }
 
         #endregion Constructors

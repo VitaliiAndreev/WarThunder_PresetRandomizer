@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
-using Core.Localization.Enumerations;
 using Core.Objects;
 using Core.Organization.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;

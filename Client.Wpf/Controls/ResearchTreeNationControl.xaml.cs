@@ -2,6 +2,7 @@
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Extensions;
 using Core.Organization.Objects;
 using System.Collections.Generic;
@@ -107,16 +108,29 @@ namespace Client.Wpf.Controls
         /// <summary> Populates tabs with appropriate research trees. </summary>
         /// <param name="researchTree"> The research tree to create cells with. </param>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
-        internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds)
+        /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
+        internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
+            loadingTracker.BranchesPopulated = EInteger.Number.Zero;
+            loadingTracker.BranchesToPopulate = BranchTabs.Count;
+
             foreach (var branchTabKeyValuePair in BranchTabs)
             {
-                if (researchTree.TryGetValue(branchTabKeyValuePair.Key, out var branch))
+                var branch = branchTabKeyValuePair.Key;
+                var tab = branchTabKeyValuePair.Value;
+
+                loadingTracker.CurrentlyPopulatedBranch = ApplicationHelpers.LocalisationManager.GetLocalisedString(branch.ToString());
+
+                if (researchTree.TryGetValue(branch, out var researchTreeBranch))
                 {
-                    _branchControls[branchTabKeyValuePair.Key].Populate(branch, enabledVehicleGaijinIds);
-                    continue;
+                    _branchControls[branch].Populate(researchTreeBranch, enabledVehicleGaijinIds, loadingTracker);
                 }
-                branchTabKeyValuePair.Value.IsEnabled = false;
+                else
+                {
+                    tab.IsEnabled = false;
+                }
+                loadingTracker.CurrentlyPopulatedBranch = string.Empty;
+                loadingTracker.BranchesPopulated++;
             }
         }
 

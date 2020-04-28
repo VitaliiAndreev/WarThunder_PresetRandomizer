@@ -206,24 +206,25 @@
         /// A message with formatting placeholders.
         /// <para> 1: object. </para>
         /// </summary>
-        public static readonly string TryingToInitialize = $"{_Trying} {_to} {_initialise} {{0}}.";
+        public static readonly string TryingToInitialise = $"{_Trying} {_to} {_initialise} {{0}}.";
+        public static readonly string Initialising = $"{_Initialising}.";
         /// <summary>
         /// A message with formatting placeholders.
-        /// <para> 1: object. </para>
+        /// <para> 1: instance. </para>
         /// </summary>
-        public static readonly string Initializing = $"{_Initialising} {{0}}.";
-        /// <summary> For string interpolation see <see cref="ObjectInitialized"/>.</summary>
-        public static readonly string Initialized = $"{_Initialised}.";
+        public static readonly string InitialisingInstance = $"{_Initialising} {{0}}.";
+        /// <summary> For string interpolation see <see cref="InstanceInitialised"/>.</summary>
+        public static readonly string Initialised = $"{_Initialised}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: instance(s). </para>
+        /// </summary>
+        public static readonly string InstanceInitialised = $"{{0}} {_initialised}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: object(s). </para>
         /// </summary>
-        public static readonly string ObjectInitialized = $"{{0}} {_initialised}.";
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: object(s). </para>
-        /// </summary>
-        public static readonly string NotInitializedProperly = $"{{0}} {_not} {_initialised} {_properly}.";
+        public static readonly string NotInitialisedProperly = $"{{0}} {_not} {_initialised} {_properly}.";
         public static readonly string Shown = $"{_Shown}.";
         
         public static readonly string AnErrorHasOccurred = $"{_An} {_error} {_has} {_occured}.";

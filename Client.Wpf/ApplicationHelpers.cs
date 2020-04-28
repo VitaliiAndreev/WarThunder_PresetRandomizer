@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Threading;
 
 namespace Client.Wpf
 {
@@ -97,7 +98,7 @@ namespace Client.Wpf
 
             Log = CreateActiveLogger(EWpfClientLogCategory.ApplicationHelpers);
 
-            Log.Debug(ECoreLogMessage.ObjectInitialized.FormatFluently(EWord.Loggers));
+            Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Loggers));
             _loggersInitialized = true;
         }
 
@@ -113,11 +114,11 @@ namespace Client.Wpf
             if (_helpersInitialized)
                 return;
 
-            Log.Debug(ECoreLogMessage.Initializing.FormatFluently(EWord.Helpers.ToLower()));
+            Log.Debug(ECoreLogMessage.InitialisingInstance.FormatFluently(EWord.Helpers.ToLower()));
 
             InitializeHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
-            Log.Debug(ECoreLogMessage.ObjectInitialized.FormatFluently(EWord.Helpers));
+            Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Helpers));
             _helpersInitialized = true;
         }
 
@@ -183,7 +184,7 @@ namespace Client.Wpf
         {
             try
             {
-                Log.Debug(ECoreLogMessage.TryingToInitialize.FormatFluently(ELocalisationLogCategory.LocalisationManager));
+                Log.Debug(ECoreLogMessage.TryingToInitialise.FormatFluently(ELocalisationLogCategory.LocalisationManager));
                 LocalisationManager = new LocalisationManager(FileReader, WpfSettings.Localization, Loggers);
             }
             catch (FileNotFoundException exception)
@@ -200,5 +201,18 @@ namespace Client.Wpf
         /// <returns></returns>
         public static IActiveLogger CreateActiveLogger(string logCategory) =>
             new ActiveLogger(logCategory, Loggers);
+
+        public static void ProcessUiTasks()
+        {
+            var frame = new DispatcherFrame();
+
+            Dispatcher.CurrentDispatcher.BeginInvoke
+            (
+                DispatcherPriority.Background,
+                new DispatcherOperationCallback(delegate (object parameter) { frame.Continue = false; return null; }),
+                null
+            );
+            Dispatcher.PushFrame(frame);
+        }
     }
 }

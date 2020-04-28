@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Enumerations;
+using System;
 
 namespace Core.Extensions
 {
@@ -14,6 +15,12 @@ namespace Core.Extensions
         /// <returns></returns>
         public static decimal Floor(this decimal number) =>
             Math.Floor(number);
+
+        public static bool IsPositive(this decimal number) =>
+            number > EDecimal.Number.Zero;
+
+        public static bool IsInteger(this decimal number) =>
+            number % EInteger.Number.One == EInteger.Number.Zero;
 
         #endregion Math
 

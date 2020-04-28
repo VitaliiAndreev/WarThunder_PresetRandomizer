@@ -49,7 +49,7 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            Log.Debug(ECoreLogMessage.Initialized);
+            Log.Debug(ECoreLogMessage.Initialised);
         }
 
         #endregion Constructors

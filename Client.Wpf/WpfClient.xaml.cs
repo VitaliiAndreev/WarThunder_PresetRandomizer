@@ -1,7 +1,9 @@
 ﻿using Client.Shared.Enumerations;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
+using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows;
+using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
@@ -15,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -73,6 +76,38 @@ namespace Client.Wpf
         #endregion Constuctors
         #region Methods: Event Handlers
 
+        private IMainWindow CreateMainWindow()
+        {
+            #region Starting GuiLoadingWindow to display progress of creating and initialising MainWindow.
+
+            var guiLoadingWindowPresenter = default(IGuiLoadingWindowPresenter);
+            var guiLoadingWindow = default(IGuiLoadingWindow);
+
+            void createAndShowGuiLoadingWindow()
+            {
+                guiLoadingWindow = ApplicationHelpers.WindowFactory.CreateGuiLoadingWindow();
+                guiLoadingWindowPresenter = guiLoadingWindow.Presenter;
+                guiLoadingWindow.Show();
+                Dispatcher.Run();
+            }
+
+            var guiLoadingFeedbackThread = new Thread(new ThreadStart(createAndShowGuiLoadingWindow));
+
+            guiLoadingFeedbackThread.SetApartmentState(ApartmentState.STA);
+            guiLoadingFeedbackThread.IsBackground = true;
+            guiLoadingFeedbackThread.Start();
+
+            #endregion Starting GuiLoadingWindow to display progress of creating and initialising MainWindow.
+
+            while (guiLoadingWindowPresenter is null) Thread.Sleep(EInteger.Number.One);
+
+            var mainWindow = ApplicationHelpers.WindowFactory.CreateMainWindow(guiLoadingWindowPresenter);
+
+            guiLoadingWindow.CloseSafely();
+
+            return mainWindow;
+        }
+
         /// <summary> Organizes initialization and the overall flow, handles exceptions. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used, launch arguments currently aren't supported. </param>
@@ -111,7 +146,8 @@ namespace Client.Wpf
 
                 ApplicationHelpers.Manager.RemoveOldLogFiles();
                 ApplicationHelpers.WindowFactory.CreateLoadingWindow().ShowDialog();
-                ApplicationHelpers.WindowFactory.CreateMainWindow().ShowDialog();
+
+                CreateMainWindow().ShowDialog();
             }
             catch (Exception exception)
             {

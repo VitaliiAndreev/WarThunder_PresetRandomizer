@@ -5,6 +5,7 @@ using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Util;
 using System.Collections.Generic;
@@ -175,20 +176,31 @@ namespace Client.Wpf.Controls
 
         /// <summary> Populates tabs with appropriate research trees. </summary>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
-        public void Populate(IEnumerable<string> enabledVehicleGaijinIds)
+        /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
+        public void Populate(IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
+            loadingTracker.NationsPopulated = EInteger.Number.Zero;
+            loadingTracker.NationsToPopulate = _nationTabs.Count;
+
             foreach (var nationTabKeyValuePair in _nationTabs)
             {
-                if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nationTabKeyValuePair.Key, out var researchTree))
+                var nation = nationTabKeyValuePair.Key;
+                var tab = nationTabKeyValuePair.Value;
+
+                loadingTracker.CurrentlyPopulatedNation = ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString());
+
+                if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nation, out var researchTree))
                 {
-                    _isEnabledByDefault[nationTabKeyValuePair.Key] = true;
-                    _nationControls[nationTabKeyValuePair.Key].Populate(researchTree, enabledVehicleGaijinIds);
-
-                    continue;
+                    _isEnabledByDefault[nation] = true;
+                    _nationControls[nation].Populate(researchTree, enabledVehicleGaijinIds, loadingTracker);
                 }
-
-                _isEnabledByDefault[nationTabKeyValuePair.Key] = false;
-                nationTabKeyValuePair.Value.IsEnabled = false;
+                else
+                {
+                    _isEnabledByDefault[nation] = false;
+                    tab.IsEnabled = false;
+                }
+                loadingTracker.CurrentlyPopulatedNation = string.Empty;
+                loadingTracker.NationsPopulated++;
             }
         }
 

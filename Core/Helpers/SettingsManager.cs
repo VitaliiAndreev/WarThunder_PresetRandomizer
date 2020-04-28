@@ -229,7 +229,7 @@ namespace Core.Helpers
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitializedProperly.FormatFluently(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
+                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitialisedProperly.FormatFluently(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
         }
     }
 }

@@ -1,0 +1,177 @@
+﻿<windows:BaseWindow
+    x:Class="Client.Wpf.Windows.GuiLoadingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:windows="clr-namespace:Client.Wpf.Windows"
+    mc:Ignorable="d"
+    x:Name="_window"
+    WindowStartupLocation="CenterScreen"
+    Height="250"
+    Width="400"
+    ResizeMode="NoResize"
+    Title="GUI Loading Window">
+    <StackPanel
+        Style="{StaticResource StackPanelMargin10}">
+
+        <TextBlock
+            x:Name="_currentStage"
+            Style="{StaticResource TextBlock12pxCentred}"
+            Margin="0 0 0 10"
+            Text="{Binding CurrentLoadingStage, ElementName=_window}">
+        </TextBlock>
+
+        <Grid
+            Margin="0 0 0 3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="7"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                x:Name="_currentlyPopulatedNation"
+                Style="{StaticResource TextBlock12px}"
+                Text="{Binding CurrentlyPopulatedNation, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock
+                Grid.Column="1"
+                x:Name="_populatedNations"
+                Style="{StaticResource TextBlock12pxCentred}"
+                HorizontalAlignment="Right"
+                Margin="0 0 3 0"
+                Text="{Binding NationsPopulated, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock Text="/"
+                Grid.Column="2"
+                Style="{StaticResource TextBlock12pxCentred}"/>
+
+            <TextBlock
+                Grid.Column="3"
+                x:Name="_nationsToPopulate"
+                Style="{StaticResource TextBlock12px}"
+                HorizontalAlignment="Left"
+                Margin="3 0 0 0"
+                Text="{Binding NationsToPopulate, ElementName=_window}">
+            </TextBlock>
+
+        </Grid>
+
+        <ProgressBar
+            Margin="0 0 0 10"
+            Height="20"
+            Minimum="0"
+            Maximum="{Binding NationsToPopulate, ElementName=_window}"
+            Value="{Binding NationsPopulatedDecimal, ElementName=_window}"/>
+
+        <Grid
+            Margin="0 0 0 3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="7"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                x:Name="_currentlyPopulatedBranch"
+                Style="{StaticResource TextBlock12px}"
+                Text="{Binding CurrentlyPopulatedBranch, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock
+                Grid.Column="1"
+                x:Name="_populatedBranches"
+                Style="{StaticResource TextBlock12pxCentred}"
+                HorizontalAlignment="Right"
+                Margin="0 0 3 0"
+                Text="{Binding BranchesPopulated, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock Text="/"
+                Grid.Column="2"
+                Style="{StaticResource TextBlock12pxCentred}"/>
+
+            <TextBlock
+                Grid.Column="3"
+                x:Name="_branchesToPopulate"
+                Style="{StaticResource TextBlock12px}"
+                HorizontalAlignment="Left"
+                Margin="3 0 0 0"
+                Text="{Binding BranchesToPopulate, ElementName=_window}">
+            </TextBlock>
+
+        </Grid>
+
+        <ProgressBar
+            Margin="0 0 0 10"
+            Height="20"
+            Minimum="0"
+            Maximum="{Binding BranchesToPopulate, ElementName=_window}"
+            Value="{Binding BranchesPopulatedDecimal, ElementName=_window}"/>
+
+        <Grid
+            Margin="0 0 0 3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="7"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                x:Name="_currentlyPopulatedRank"
+                Style="{StaticResource TextBlock12px}"
+                Text="{Binding CurrentlyPopulatedRank, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock
+                Grid.Column="1"
+                x:Name="_populatedRanks"
+                Style="{StaticResource TextBlock12pxCentred}"
+                HorizontalAlignment="Right"
+                Margin="0 0 3 0"
+                Text="{Binding RanksPopulated, ElementName=_window}">
+            </TextBlock>
+
+            <TextBlock Text="/"
+                Grid.Column="2"
+                Style="{StaticResource TextBlock12pxCentred}"/>
+
+            <TextBlock
+                Grid.Column="3"
+                x:Name="_ranksToPopulate"
+                Style="{StaticResource TextBlock12px}"
+                HorizontalAlignment="Left"
+                Margin="3 0 0 0"
+                Text="{Binding RanksToPopulate, ElementName=_window}">
+            </TextBlock>
+
+        </Grid>
+
+        <ProgressBar
+            Margin="0 0 0 10"
+            Height="20"
+            Minimum="0"
+            Maximum="{Binding RanksToPopulate, ElementName=_window}"
+            Value="{Binding RanksPopulatedDecimal, ElementName=_window}"/>
+        
+        <TextBlock
+            x:Name="_currentVehicle"
+            Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"
+            Margin="0 0 0 10"
+            Text="{Binding CurrentlyProcessedVehicle, ElementName=_window}">
+        </TextBlock>
+
+    </StackPanel>
+</windows:BaseWindow>

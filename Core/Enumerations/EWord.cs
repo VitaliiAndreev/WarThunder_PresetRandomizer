@@ -46,6 +46,8 @@
         #endregion F
         #region G
 
+        public const string Gui = _GUI;
+
         #endregion G
         #region H
 

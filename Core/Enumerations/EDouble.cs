@@ -6,6 +6,7 @@
         /// <summary> Pure number constants. </summary>
         public class Number
         {
+            public const double PointOne = 0.1;
             public const double Quarter = 0.25;
             public const double Half = 0.5;
             public const double PointNine = 0.9;
