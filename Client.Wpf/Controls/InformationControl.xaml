@@ -35,7 +35,8 @@
                 x:Name="_statisticsControl"/>
         </TabItem>
 
-        <TabItem IsEnabled="False">
+        <TabItem IsEnabled="False"
+            x:Name="_vehicleInformationTab">
             <TabItem.Header>
                 <TextBlock Text="Vehicle Information"
                     x:Name="_vehicleCardHeader"

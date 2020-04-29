@@ -53,6 +53,10 @@ namespace Client.Wpf.Controls
                 _presenter = presenter;
                 _researchTreeControl.Initialise(_presenter);
 
+                _vehicleInformationTab.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.UnderConstruction);
+
+                ToolTipService.SetShowOnDisabled(_vehicleInformationTab, true);
+
                 _initialised = true;
             }
         }
