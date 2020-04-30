@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Windows.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
 using Core.Organization.Collections;

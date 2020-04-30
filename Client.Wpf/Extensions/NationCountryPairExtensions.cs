@@ -1,5 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Extensions;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using System.Windows;
 using System.Windows.Controls;
 

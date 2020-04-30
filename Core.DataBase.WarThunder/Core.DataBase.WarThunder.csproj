@@ -147,8 +147,8 @@
     <Compile Include="Objects\Localization\Vehicle\ResearchTreeName.cs" />
     <Compile Include="Objects\Localization\Vehicle\VehicleLocalisation.cs" />
     <Compile Include="Objects\Nation.cs" />
-    <Compile Include="Objects\NationBranchPair.cs" />
-    <Compile Include="Objects\NationCountryPair.cs" />
+    <Compile Include="Objects\Connectors\NationBranchPair.cs" />
+    <Compile Include="Objects\Connectors\NationCountryPair.cs" />
     <Compile Include="Objects\PersistentObjectWithIdAndGaijinId.cs" />
     <Compile Include="Objects\PersistentDeserialisedObjectWithId.cs" />
     <Compile Include="Objects\Vehicle.cs" />

@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     xmlns:enumerations="clr-namespace:Core.DataBase.WarThunder.Enumerations;assembly=Core.DataBase.WarThunder"
-    xmlns:objects="clr-namespace:Core.DataBase.WarThunder.Objects;assembly=Core.DataBase.WarThunder"
+    xmlns:objects="clr-namespace:Core.DataBase.WarThunder.Objects.Connectors;assembly=Core.DataBase.WarThunder"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
