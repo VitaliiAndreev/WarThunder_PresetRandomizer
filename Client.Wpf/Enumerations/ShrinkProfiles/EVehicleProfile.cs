@@ -5,5 +5,6 @@
         None,
         Nation,
         NationAndCountry,
+        Country,
     }
 }

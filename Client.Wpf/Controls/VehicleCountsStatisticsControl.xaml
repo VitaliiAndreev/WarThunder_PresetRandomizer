@@ -15,12 +15,33 @@
                 x:Name="_hint"
                 Style="{StaticResource TextBlock12px}"/>
 
-            <TextBlock Text="Vehicles by Nations and Countries"
-                x:Name="_vehiclesByNationsAndCountriesHeader"
-                Style="{StaticResource TextBlockHeader16px}"/>
+            <StackPanel
+                Orientation="Horizontal">
 
-            <Grid
-                x:Name="_vehiclesByNationsAndCountriesGrid"/>
+                <StackPanel
+                    Margin="0 0 40 0">
+
+                    <TextBlock Text="Vehicles by Nations and Countries"
+                        x:Name="_vehiclesByNationsAndCountriesHeader"
+                        Style="{StaticResource TextBlockHeader16px}"/>
+
+                    <Grid
+                        x:Name="_vehiclesByNationsAndCountriesGrid"/>
+
+                </StackPanel>
+
+                <StackPanel>
+
+                    <TextBlock Text="Vehicles by Countries and Nations"
+                        x:Name="_vehiclesByCountriesAndNationsHeader"
+                        Style="{StaticResource TextBlockHeader16px}"/>
+
+                    <Grid
+                        x:Name="_vehiclesByCountriesAndNationsGrid"/>
+
+                </StackPanel>
+                
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer>

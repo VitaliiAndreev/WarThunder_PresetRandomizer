@@ -221,6 +221,15 @@ namespace Client.Wpf.Presenters
 
         public void ToggleLongOperationIndicator(bool show) => Owner.ToggleLongOperationIndicator(show);
 
+        public void PerformLongOperation(Action doOperation)
+        {
+            ToggleLongOperationIndicator(true);
+            {
+                doOperation();
+            }
+            ToggleLongOperationIndicator(false);
+        }
+
         #endregion Methods: Status Bar
         #region Methods: Queries
 

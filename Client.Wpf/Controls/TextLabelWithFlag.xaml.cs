@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleCounterWithFlag.xaml. </summary>
-    public partial class VehicleCountWithFlag : VehicleCount
+    public partial class TextLabelWithFlag : TextLabel
     {
         #region Fields
 
@@ -19,13 +19,13 @@ namespace Client.Wpf.Controls
         #endregion Fields
         #region Constructors
 
-        public VehicleCountWithFlag()
+        public TextLabelWithFlag()
         {
             InitializeComponent();
         }
 
-        public VehicleCountWithFlag(NationCountryPair nationCountryPair, int count, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool useNationFlags = false)
-            : base(count, margin)
+        public TextLabelWithFlag(NationCountryPair nationCountryPair, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool isBold = false, bool useNationFlags = false)
+            : base(text, margin, isBold)
         {
             InitializeComponent();
 
@@ -39,8 +39,8 @@ namespace Client.Wpf.Controls
             MouseDown += mouseDownHandler;
         }
 
-        public VehicleCountWithFlag(ECountry country, int count, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool useNationFlags = false)
-            : this(new NationCountryPair(ENation.None, country), count, margin, mouseDownHandler, useNationFlags)
+        public TextLabelWithFlag(ECountry country, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool isBold = false, bool useNationFlags = false)
+            : this(new NationCountryPair(ENation.None, country), text, margin, mouseDownHandler, isBold, useNationFlags)
         {
             Tag = country;
         }
