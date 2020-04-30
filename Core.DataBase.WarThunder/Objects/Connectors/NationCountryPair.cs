@@ -5,7 +5,7 @@ using Core.Extensions;
 using System;
 using System.Linq;
 
-namespace Core.DataBase.WarThunder.Objects
+namespace Core.DataBase.WarThunder.Objects.Connectors
 {
     /// <summary> A pair representing a nation and a contry that has vehicles in service with that nation. </summary>
     public class NationCountryPair

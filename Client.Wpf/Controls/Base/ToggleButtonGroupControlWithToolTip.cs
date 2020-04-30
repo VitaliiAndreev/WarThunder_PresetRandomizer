@@ -1,4 +1,4 @@
-﻿using Core.DataBase.WarThunder.Objects;
+﻿using Core.DataBase.WarThunder.Objects.Connectors;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Controls.Primitives;
 

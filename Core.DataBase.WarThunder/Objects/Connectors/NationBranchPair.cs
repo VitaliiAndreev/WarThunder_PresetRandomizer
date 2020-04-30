@@ -1,7 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 
-namespace Core.DataBase.WarThunder.Objects
+namespace Core.DataBase.WarThunder.Objects.Connectors
 {
     public class NationBranchPair
     {

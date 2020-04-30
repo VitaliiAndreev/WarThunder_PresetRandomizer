@@ -2,7 +2,7 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.Enumerations;
 using System.Windows;
 using System.Windows.Input;

@@ -2,7 +2,7 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Presenters.Interfaces;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using System.Collections.Generic;

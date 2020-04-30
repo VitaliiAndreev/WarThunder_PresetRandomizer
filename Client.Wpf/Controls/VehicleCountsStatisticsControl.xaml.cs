@@ -2,10 +2,9 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Extensions;
-using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
@@ -78,16 +77,16 @@ namespace Client.Wpf.Controls
                 return;
 
             var nations = typeof(ENation).GetEnumerationItems<ENation>(true);
-            var vehiclesCounts = nations
+            var nationCountryVehiclesCounts = nations
                 .SelectMany(nation => nation.GetNationCountryPairs())
                 .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => new List<IVehicle>())
             ;
 
             foreach (var vehicle in ApplicationHelpers.Manager?.PlayableVehicles?.Values ?? new List<IVehicle>())
-                vehicle.AddInto(vehiclesCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
+                vehicle.AddInto(nationCountryVehiclesCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
 
-            InitialiseVehiclesByNationsAndCountries(vehiclesCounts);
-            InitialiseVehiclesByCountriesAndNations(vehiclesCounts);
+            InitialiseVehiclesByNationsAndCountries(nationCountryVehiclesCounts);
+            InitialiseVehiclesByCountriesAndNations(nationCountryVehiclesCounts);
 
             PopulateVehiclesByNationsAndCountriesControls(nations);
             PopulateVehiclesByCountriesAndNationsControls();

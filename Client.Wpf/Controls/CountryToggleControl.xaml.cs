@@ -3,7 +3,7 @@ using Client.Wpf.Controls.Base.Interfaces;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.DataBase.WarThunder.Objects;
+using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.Organization.Extensions;
 using System.Collections.Generic;
 using System.Linq;
