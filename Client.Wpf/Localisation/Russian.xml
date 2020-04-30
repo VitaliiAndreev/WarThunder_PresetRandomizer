@@ -119,6 +119,7 @@
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
   <Line key="MotorTorpedoGunboat" value="Многоцелевой катер"/>
   <Line key="Name" value="Наименование"/>
+  <Line key="Nation" value="Нация"/>
   <Line key="NavalAircraft" value="Палубный самолёт"/>
   <Line key="NavalFerryBarge" value="Артиллерийская баржа"/>
   <Line key="NaziGermany" value="Нацистская Германия"/>

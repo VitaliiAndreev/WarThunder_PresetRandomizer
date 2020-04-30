@@ -97,6 +97,7 @@
         public const string MotorGunboat = nameof(MotorGunboat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
         public const string MotorTorpedoGunboat = nameof(MotorTorpedoGunboat);
+        public const string Nation = nameof(Nation);
         public const string NavalAircraft = nameof(NavalAircraft);
         public const string NavalFerryBarge = nameof(NavalFerryBarge);
         public const string NaziGermany = nameof(NaziGermany);

@@ -119,6 +119,7 @@
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="MotorTorpedoGunboat" value="Motor Torpedo Gunboat"/>
   <Line key="Name" value="Name"/>
+  <Line key="Nation" value="Nation"/>
   <Line key="NavalAircraft" value="Naval Aircraft"/>
   <Line key="NavalFerryBarge" value="Naval Ferry Barge"/>
   <Line key="NaziGermany" value="Nazi Germany"/>
@@ -144,7 +145,7 @@
   <Line key="Realistic" value="Realistic Battles"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
-  <Line key="RepublicOfSouthAfrica" value="Republic Of South Africa"/>
+  <Line key="RepublicOfSouthAfrica" value="Republic of South Africa"/>
   <Line key="ResearchTrees" value="Research Trees"/>
   <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>

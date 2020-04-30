@@ -212,7 +212,9 @@ namespace Client.Wpf
                 new DispatcherOperationCallback(delegate (object parameter) { frame.Continue = false; return null; }),
                 null
             );
-            Dispatcher.PushFrame(frame);
+
+            try { Dispatcher.PushFrame(frame); }
+            catch { }
         }
     }
 }

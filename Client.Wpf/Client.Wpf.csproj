@@ -142,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextLabelWithFlag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\VehicleCountWithFlag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +302,7 @@
     <Compile Include="Controls\Base\Interfaces\IControlWithSubcontrols.cs" />
     <Compile Include="Controls\Base\Interfaces\IControlWithToggleColumns.cs" />
     <Compile Include="Controls\Base\LocalisedUserControl.cs" />
+    <Compile Include="Controls\Base\TextLabel.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControl.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithResource.cs" />
     <Compile Include="Controls\Base\ToggleButtonGroupControlWithDropCap.cs" />
@@ -322,6 +327,9 @@
     </Compile>
     <Compile Include="Controls\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextLabelWithFlag.xaml.cs">
+      <DependentUpon>TextLabelWithFlag.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VehicleCountWithFlag.xaml.cs">
       <DependentUpon>VehicleCountWithFlag.xaml</DependentUpon>
@@ -413,11 +421,13 @@
     <Compile Include="Extensions\ContextMenuExtensions.cs" />
     <Compile Include="Extensions\DataGridRowExtensions.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\IVehicleExtensions.cs" />
+    <Compile Include="Extensions\NationCountryPairExtensions.cs" />
     <Compile Include="Extensions\ToggleButtonExtensions.cs" />
     <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />

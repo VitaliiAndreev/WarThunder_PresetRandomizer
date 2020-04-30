@@ -28,7 +28,7 @@ namespace Client.Wpf.Controls
             };
 
             _panel.Children.Add(textBlock);
-            _panel.Children.Add(_count);
+            _panel.Children.Add(_label);
         }
 
         #endregion Constructors

@@ -5,6 +5,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
 using Core.Organization.Collections;
 using Core.Organization.Enumerations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
@@ -86,6 +87,8 @@ namespace Client.Wpf.Presenters.Interfaces
         #region Methods: Status Bar
 
         void ToggleLongOperationIndicator(bool show);
+
+        void PerformLongOperation(Action doOperation);
 
         #endregion Methods: Status Bar
         #region Methods: Queries
