@@ -45,7 +45,7 @@ namespace Client.Wpf.Controls
             Margin = margin;
             HorizontalAlignment = horizontalAlignment;
 
-            var image = CreateFlag(tag);
+            var image = CreateFlag(tag, horizontalAlignment);
 
             _panel.Children.Add(image);
 
@@ -59,13 +59,13 @@ namespace Client.Wpf.Controls
                 SetTag(tag);
         }
 
-        private Image CreateFlag<T>(T tag) where T : struct
+        private Image CreateFlag<T>(T tag, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left) where T : struct
         {
             if (tag is ENation nation)
-                return nation.CreateFlag(_flagStyle, default);
+                return nation.CreateFlag(_flagStyle, default, horizontalAlignment);
 
             else if (tag is ECountry country)
-                return country.CreateFlag(_flagStyle, default);
+                return country.CreateFlag(_flagStyle, default, horizontalAlignment);
 
             else
                 throw new NotImplementedException();
