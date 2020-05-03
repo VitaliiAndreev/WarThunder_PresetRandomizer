@@ -27,10 +27,15 @@ namespace Client.Wpf.Controls
 
         private StatisticsControl _statisticsControl;
 
-        private readonly int _categorySideMargin;
-        private readonly Thickness _categoryHeaderMargin;
+        private readonly int _categoryHorizontalMargin;
+        private readonly int _categoryVerticalMargin;
+        private readonly Thickness _categoryColumnHeaderMarginDoubled;
+        private readonly Thickness _categoryRowHeaderMargin;
         private readonly Thickness _categoryMargin;
+        private readonly Thickness _categoryMarginDoubled;
         private readonly Style _categoryTextStyle;
+        private readonly double _flagColumnWidth;
+        private readonly double _countColumnWidth;
 
         #endregion Fields
         #region Constructors
@@ -39,10 +44,15 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _categorySideMargin = EInteger.Number.Five;
-            _categoryHeaderMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categorySideMargin, EInteger.Number.Zero);
-            _categoryMargin = new Thickness(_categorySideMargin, EInteger.Number.Zero, _categorySideMargin, EInteger.Number.Zero);
+            _categoryHorizontalMargin = EInteger.Number.Five;
+            _categoryVerticalMargin = EInteger.Number.Five;
+            _categoryMargin = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
+            _categoryMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
+            _categoryColumnHeaderMarginDoubled = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, _categoryVerticalMargin);
+            _categoryRowHeaderMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
+            _flagColumnWidth = EInteger.Number.TwentyFive;
+            _countColumnWidth = EInteger.Number.Twenty;
         }
 
         #endregion Constructors
@@ -54,6 +64,8 @@ namespace Client.Wpf.Controls
 
             _hint.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ClickOnCategoryToOpenList);
             _vehiclesByNationsAndCountriesHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByNationsAndCountries);
+            _vehiclesByCountriesAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByCountriesAndNations);
+            _vehiclesByBranchesAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByBranchesAndNations);
         }
 
         #endregion Methods: Overrides
@@ -77,25 +89,45 @@ namespace Client.Wpf.Controls
                 return;
 
             var nations = typeof(ENation).GetEnumerationItems<ENation>(true);
-            var nationCountryVehiclesCounts = nations
+            var nationCountryVehicleCounts = nations
                 .SelectMany(nation => nation.GetNationCountryPairs())
                 .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => new List<IVehicle>())
             ;
+            var branches = typeof(EBranch).GetEnumerationItems<EBranch>(true);
+            var nationBranchVehicleCounts = branches
+                .SelectMany(branch => nations.Select(nation => new NationBranchPair(nation, branch)))
+                .ToDictionary(nationBranchPair => nationBranchPair, nationBranchPair => new List<IVehicle>())
+            ;
 
             foreach (var vehicle in ApplicationHelpers.Manager?.PlayableVehicles?.Values ?? new List<IVehicle>())
-                vehicle.AddInto(nationCountryVehiclesCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
+            {
+                vehicle.AddInto(nationCountryVehicleCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
+                vehicle.AddInto(nationBranchVehicleCounts[new NationBranchPair(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem)]);
+            }
+            /*foreach (var nationBranchPair in nationBranchVehicleCounts.Keys.ToList())
+            {
+                if (nationBranchVehicleCounts[nationBranchPair].IsEmpty())
+                    nationBranchVehicleCounts.Remove(nationBranchPair);
+            }*/
 
-            InitialiseVehiclesByNationsAndCountries(nationCountryVehiclesCounts);
-            InitialiseVehiclesByCountriesAndNations(nationCountryVehiclesCounts);
+            InitialiseVehiclesByNationsAndCountries(nationCountryVehicleCounts);
+            InitialiseVehiclesByCountriesAndNations(nationCountryVehicleCounts);
+            InitialiseVehiclesByBranchesAndNations(nationBranchVehicleCounts);
 
             PopulateVehiclesByNationsAndCountriesControls(nations);
             PopulateVehiclesByCountriesAndNationsControls();
+            PopulateVehiclesByBranchesAndCountriesControls(branches, nations);
         }
 
-        private IOrderedEnumerable<IVehicle> Reorder(IEnumerable<IVehicle> vehicles)
+        private IOrderedEnumerable<IVehicle> ReorderByClassRankId(IEnumerable<IVehicle> vehicles)
         {
-            return vehicles
-                .OrderBy(vehicle => vehicle.Class)
+            return ReorderByClassRankId(vehicles.OrderBy(a => default(object)));
+        }
+
+        private IOrderedEnumerable<IVehicle> ReorderByClassRankId(IOrderedEnumerable<IVehicle> reorderedVehicles)
+        {
+            return reorderedVehicles
+                .ThenBy(vehicle => vehicle.Class)
                 .ThenBy(vehicle => vehicle.Subclasses.First)
                 .ThenBy(vehicle => vehicle.Subclasses.Second)
                 .ThenBy(vehicle => vehicle.Rank)
@@ -109,7 +141,7 @@ namespace Client.Wpf.Controls
                 .OrderBy(item => item.Key.Nation)
                 .ThenByDescending(item => item.Value.Count())
                 .ThenBy(item => item.Key.Country)
-                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, Reorder(item.Value)))
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassRankId(item.Value)))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByNationsAndCountries(vehiclesByNationsAndCountries);
@@ -121,26 +153,65 @@ namespace Client.Wpf.Controls
                 .OrderBy(item => item.Key.Country)
                 .ThenByDescending(item => item.Value.Count())
                 .ThenBy(item => item.Key.Nation)
-                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, Reorder(item.Value)))
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassRankId(item.Value)))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByCountriesAndNations(vehiclesByCountriesAndNations);
         }
 
-        private TextBlock CreateTextBlock<T>(string text, T tag, MouseButtonEventHandler mouseDownHandler, bool isBold = false) where T : struct
+        private void InitialiseVehiclesByBranchesAndNations(IDictionary<NationBranchPair, List<IVehicle>> vehiclesCounts)
+        {
+            var vehiclesByBranchesAndNations = vehiclesCounts
+                .Select(item => new KeyValuePair<NationBranchPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassRankId(item.Value)))
+                .ToDictionary(item => item.Key, item => item.Value)
+            ;
+            _statisticsControl?.SetVehiclesByBranchesAndNations(vehiclesByBranchesAndNations);
+        }
+
+        private TextBlock CreateTextBlock<T>
+        (
+            string text,
+            T tag,
+            Thickness margin,
+            MouseButtonEventHandler mouseDownHandler,
+            HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left,
+            TextAlignment textAlignment = TextAlignment.Left,
+            double? width = null,
+            bool isBold = false
+        )
         {
             var textBlock = new TextBlock
             {
                 Style = _categoryTextStyle,
-                Margin = _categoryHeaderMargin,
+                Margin = margin,
+                HorizontalAlignment = horizontalAlignment,
+                TextAlignment = textAlignment,
                 FontWeight = isBold ? FontWeights.Bold : FontWeights.Normal,
                 Text = text,
                 Tag = tag,
             };
 
+            if (width.HasValue)
+                textBlock.Width = width.Value;
+
             textBlock.MouseDown += mouseDownHandler;
 
             return textBlock;
+        }
+
+        private TextBlock CreateTextBlock<T>
+        (
+            int number,
+            T tag,
+            Thickness margin,
+            MouseButtonEventHandler mouseDownHandler,
+            HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left,
+            TextAlignment textAlignment = TextAlignment.Left,
+            double? width = null,
+            bool isBold = false
+        )
+        {
+            return CreateTextBlock(number.ToString(), tag, margin, mouseDownHandler, horizontalAlignment, textAlignment, width, isBold);
         }
 
         private void PopulateVehiclesByNationsAndCountriesControls(IEnumerable<ENation> nations)
@@ -155,20 +226,24 @@ namespace Client.Wpf.Controls
                 (
                     ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()),
                     nation,
+                    _categoryRowHeaderMargin,
                     OnVehiclesByNationsLeftMouseDown,
-                    true
+                    isBold: true
                 );
                 var count = CreateTextBlock
                 (
                     vehiclesByNationsAndCountries.Where(item => item.Key.IsIn(nationKeys)).Sum(item => item.Value.Count()).ToString(),
                     nation,
-                    OnVehiclesByNationsLeftMouseDown
+                    _categoryRowHeaderMargin,
+                    OnVehiclesByNationsLeftMouseDown,
+                    HorizontalAlignment.Right,
+                    isBold: true
                 );
                 var countryIndex = EInteger.Number.Two;
 
                 foreach (var nationKey in nationKeys)
                 {
-                    var countryControl = new VehicleCountWithFlag(nationKey, vehiclesByNationsAndCountries[nationKey].Count(), _categoryMargin, OnVehiclesByNationsLeftMouseDown);
+                    var countryControl = new VehicleCountWithFlag(nationKey, vehiclesByNationsAndCountries[nationKey].Count(), _categoryMargin, OnVehiclesByNationsAndCountriesLeftMouseDown);
 
                     _vehiclesByNationsAndCountriesGrid.Add(countryControl, countryIndex++, nationIndex);
                 }
@@ -186,23 +261,84 @@ namespace Client.Wpf.Controls
             foreach (var country in countries)
             {
                 var countryKeys = vehiclesByCountriesAndNations.Keys.Where(key => key.Country == country);
-                var header = new TextLabelWithFlag(country, ApplicationHelpers.LocalisationManager.GetLocalisedString(country.ToString()), _categoryHeaderMargin, OnVehiclesByCountriesLeftMouseDown, true);
+                var header = new TextLabelWithFlag(country, ApplicationHelpers.LocalisationManager.GetLocalisedString(country.ToString()), _categoryRowHeaderMargin, OnVehiclesByCountriesLeftMouseDown, isBold: true, createTooltip: false);
                 var count = CreateTextBlock
                 (
                     vehiclesByCountriesAndNations.Where(item => item.Key.IsIn(countryKeys)).Sum(item => item.Value.Count()).ToString(),
                     country,
-                    OnVehiclesByCountriesLeftMouseDown
+                    _categoryRowHeaderMargin,
+                    OnVehiclesByCountriesLeftMouseDown,
+                    HorizontalAlignment.Right,
+                    isBold: true
                 );
                 var nationIndex = EInteger.Number.Two;
 
                 foreach (var countryKey in countryKeys)
                 {
-                    var nationControl = new VehicleCountWithFlag(countryKey, vehiclesByCountriesAndNations[countryKey].Count(), _categoryMargin, OnVehiclesByCountriesLeftMouseDown, true);
-
+                    var nationControl = new VehicleCountWithFlag
+                    (
+                        countryKey,
+                        vehiclesByCountriesAndNations[countryKey].Count(),
+                        _categoryMargin,
+                        OnVehiclesByCountriesAndNationsLeftMouseDown,
+                        useNationFlags: true
+                    );
                     _vehiclesByCountriesAndNationsGrid.Add(nationControl, nationIndex++, countryIndex);
                 }
                 _vehiclesByCountriesAndNationsGrid.Add(header, EInteger.Number.Zero, countryIndex);
                 _vehiclesByCountriesAndNationsGrid.Add(count, EInteger.Number.One, countryIndex++);
+            }
+        }
+
+        private void PopulateVehiclesByBranchesAndCountriesControls(IEnumerable<EBranch> branches, IEnumerable<ENation> nations)
+        {
+            var vehicleByBranchesAndCountries = _statisticsControl.VehiclesByBranchesAndNations;
+            var branchIndex = EInteger.Number.One;
+            var nationHeaderIndex = EInteger.Number.Two;
+
+            foreach (var nation in nations)
+            {
+                var nationHeader = new FlagControl(nation, _categoryColumnHeaderMarginDoubled, OnVehiclesByNationsLeftMouseDown, HorizontalAlignment.Right, _flagColumnWidth - EInteger.Number.Two);
+
+                _vehiclesByBranchesAndNationsGrid.Add(nationHeader, nationHeaderIndex++, EInteger.Number.Zero);
+            }
+            foreach (var branch in branches)
+            {
+                var branchKeys = vehicleByBranchesAndCountries.Keys.Where(key => key.Branch == branch);
+                var header = CreateTextBlock(ApplicationHelpers.LocalisationManager.GetLocalisedString(branch.ToString()), branch, _categoryRowHeaderMargin, OnVehiclesByBranchesLeftMouseDown, isBold: true);
+                var count = CreateTextBlock
+                (
+                    vehicleByBranchesAndCountries.Where(item => item.Key.IsIn(branchKeys)).Sum(item => item.Value.Count()).ToString(),
+                    branch,
+                    _categoryRowHeaderMargin,
+                    OnVehiclesByBranchesLeftMouseDown,
+                    HorizontalAlignment.Right,
+                    isBold: true
+                );
+                var nationIndex = EInteger.Number.Two;
+
+                foreach (var branchKey in branchKeys)
+                {
+                    if (vehicleByBranchesAndCountries[branchKey].Any())
+                    {
+                        var nationControl = CreateTextBlock
+                        (
+                            vehicleByBranchesAndCountries[branchKey].Count(),
+                            branchKey,
+                            _categoryMarginDoubled,
+                            OnVehiclesByBranchesAndNationsLeftMouseDown,
+                            HorizontalAlignment.Right,
+                            TextAlignment.Right,
+                            _countColumnWidth
+                        );
+                        _vehiclesByBranchesAndNationsGrid.Add(nationControl, nationIndex++, branchIndex);
+
+                        continue;
+                    }
+                    nationIndex++;
+                }
+                _vehiclesByBranchesAndNationsGrid.Add(header, EInteger.Number.Zero, branchIndex);
+                _vehiclesByBranchesAndNationsGrid.Add(count, EInteger.Number.One, branchIndex++);
             }
         }
 
@@ -235,6 +371,25 @@ namespace Client.Wpf.Controls
         {
             if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
                 return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByNationsAndCountries);
+
+            if (element.Tag is ENation nation)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{nation}",
+                    _statisticsControl.VehiclesByNationsAndCountries.Where(item => item.Key.Nation == nation).SelectMany(item => item.Value),
+                    EVehicleProfile.Nation
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesByNationsAndCountriesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
             
             var listCachePrefix = nameof(_statisticsControl.VehiclesByNationsAndCountries);
 
@@ -248,19 +403,28 @@ namespace Client.Wpf.Controls
                 );
                 eventArguments.Handled = true;
             }
-            else if (element.Tag is ENation nation)
+        }
+
+        private void OnVehiclesByCountriesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByCountriesAndNations);
+
+            if (element.Tag is ECountry country)
             {
                 SwitchVehicleListTo
                 (
-                    $"{listCachePrefix}_{nation}",
-                    _statisticsControl.VehiclesByNationsAndCountries.Where(item => item.Key.Nation == nation).SelectMany(item => item.Value),
-                    EVehicleProfile.Nation
+                    $"{listCachePrefix}_{country}",
+                    _statisticsControl.VehiclesByCountriesAndNations.Where(item => item.Key.Country == country).SelectMany(item => item.Value),
+                    EVehicleProfile.Country
                 );
                 eventArguments.Handled = true;
             }
         }
 
-        private void OnVehiclesByCountriesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        private void OnVehiclesByCountriesAndNationsLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
         {
             if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
                 return;
@@ -284,6 +448,54 @@ namespace Client.Wpf.Controls
                     $"{listCachePrefix}_{country}",
                     _statisticsControl.VehiclesByCountriesAndNations.Where(item => item.Key.Country == country).SelectMany(item => item.Value),
                     EVehicleProfile.Country
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesByBranchesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByBranchesAndNations);
+
+            if (element.Tag is EBranch branch)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{branch}",
+                    _statisticsControl.VehiclesByBranchesAndNations.Where(item => item.Key.Branch == branch).SelectMany(item => item.Value),
+                    EVehicleProfile.Branch
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesByBranchesAndNationsLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByBranchesAndNations);
+
+            if (element.Tag is NationBranchPair nationBranchPair)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{nationBranchPair}",
+                    _statisticsControl.VehiclesByBranchesAndNations[nationBranchPair],
+                    EVehicleProfile.NationAndBranch
+                );
+                eventArguments.Handled = true;
+            }
+            else if (element.Tag is EBranch branch)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{branch}",
+                    _statisticsControl.VehiclesByBranchesAndNations.Where(item => item.Key.Branch == branch).SelectMany(item => item.Value),
+                    EVehicleProfile.Branch
                 );
                 eventArguments.Handled = true;
             }

@@ -10,8 +10,8 @@ namespace Client.Wpf.Controls.Base
         {
         }
 
-        public VehicleCount(int count, Thickness margin)
-            : base(count.ToString(), margin)
+        public VehicleCount(int count, Thickness margin, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left)
+            : base(count.ToString(), margin, horizontalAlignment)
         {
         }
 

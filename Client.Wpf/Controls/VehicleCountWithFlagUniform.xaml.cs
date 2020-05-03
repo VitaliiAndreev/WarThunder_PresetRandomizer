@@ -9,8 +9,8 @@ using System.Windows.Input;
 
 namespace Client.Wpf.Controls
 {
-    /// <summary> Interaction logic for VehicleCounterWithFlag.xaml. </summary>
-    public partial class VehicleCountWithFlag : VehicleCount
+    /// <summary> Interaction logic for VehicleCountWithFlagUniform.xaml. </summary>
+    public partial class VehicleCountWithFlagUniform : VehicleCount
     {
         #region Fields
 
@@ -19,17 +19,19 @@ namespace Client.Wpf.Controls
         #endregion Fields
         #region Constructors
 
-        public VehicleCountWithFlag()
+        public VehicleCountWithFlagUniform()
         {
             InitializeComponent();
         }
 
-        public VehicleCountWithFlag
+        public VehicleCountWithFlagUniform
         (
             NationCountryPair nationCountryPair,
             int count,
             Thickness margin,
             MouseButtonEventHandler mouseDownHandler,
+            double flagColumnWidth,
+            double countColumnWidth,
             HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
             bool useNationFlags = false
         ) : base(count, margin, textHorizontalAlignment)
@@ -37,24 +39,28 @@ namespace Client.Wpf.Controls
             InitializeComponent();
 
             _flagStyle = this.GetStyle(EStyleKey.Image.FlagIcon16px);
+            _flagColumnDefinition.Width = new GridLength(flagColumnWidth, GridUnitType.Pixel);
+            _countColumnDefinition.Width = new GridLength(countColumnWidth, GridUnitType.Pixel);
 
             Tag = nationCountryPair;
 
-            _grid.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags));
-            _grid.Children.Add(_label);
+            _grid.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags), EInteger.Number.Zero, EInteger.Number.Zero);
+            _grid.Add(_label, EInteger.Number.One, EInteger.Number.Zero);
 
             MouseDown += mouseDownHandler;
         }
 
-        public VehicleCountWithFlag
+        public VehicleCountWithFlagUniform
         (
             ECountry country,
             int count,
             Thickness margin,
             MouseButtonEventHandler mouseDownHandler,
+            double flagColumnWidth,
+            double countColumnWidth,
             HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
             bool useNationFlags = false
-        ) : this(new NationCountryPair(ENation.None, country), count, margin, mouseDownHandler, textHorizontalAlignment, useNationFlags)
+        ) : this(new NationCountryPair(ENation.None, country), count, margin, mouseDownHandler, flagColumnWidth, countColumnWidth, textHorizontalAlignment, useNationFlags)
         {
             Tag = country;
         }
