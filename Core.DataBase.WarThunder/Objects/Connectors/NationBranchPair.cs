@@ -21,22 +21,11 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         /// <param name="branch"> The branch. </param>
         public NationBranchPair(ENation nation, EBranch branch)
         {
-            Initialize(nation, branch);
-        }
-
-        #endregion Constructors
-        #region Methods: Initialization
-
-        /// <summary> Initializes the class with the given values. </summary>
-        /// <param name="nation"> The nation. </param>
-        /// <param name="branch"> The branch. </param>
-        private void Initialize(ENation nation, EBranch branch)
-        {
             Nation = nation;
             Branch = branch;
         }
 
-        #endregion Methods: Initialization
+        #endregion Constructors
         #region Methods: Equality Comparison
 
         /// <summary> Determines whether the specified object is equal to the current object. </summary>
