@@ -10,7 +10,7 @@
             public const string Argentina = _prefix + "argentina" + _suffix;
             public const string Australia = _prefix + "australia" + _suffix;
             public const string Belgium = _prefix + "belgium" + _suffix;
-            public const string Britain = _prefix + "britain" + _suffix;
+            public const string GreatBritain = _prefix + "britain" + _suffix;
             public const string Bulgaria = _prefix + "bulgaria" + _suffix;
             public const string Canada = _prefix + "canada_modern" + _suffix;
             public const string China = _prefix + "china" + _suffix;

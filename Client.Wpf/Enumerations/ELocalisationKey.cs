@@ -61,6 +61,7 @@
         public const string GeneratePreset = nameof(GeneratePreset);
         public const string Germany = nameof(Germany);
         public const string GoToWiki = nameof(GoToWiki);
+        public const string GreatBritain = nameof(GreatBritain);
         public const string Greece = nameof(Greece);
         public const string HeavyBoat = nameof(HeavyBoat);
         public const string HeavyCruiser = nameof(HeavyCruiser);

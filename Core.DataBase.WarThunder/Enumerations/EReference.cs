@@ -90,7 +90,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_argentina", ECountry.Argentina },
             { "country_australia", ECountry.Australia },
             { "country_belgium", ECountry.Belgium },
-            { "country_britain", ECountry.Britain },
+            { "country_britain", ECountry.GreatBritain },
             { "country_bulgaria", ECountry.Bulgaria },
             { "country_canada", ECountry.DominionOfCanada },
             { "country_canada_modern", ECountry.Canada },
