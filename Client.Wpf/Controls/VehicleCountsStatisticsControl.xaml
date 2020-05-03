@@ -8,7 +8,8 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="810">
-    <ScrollViewer>
+    <ScrollViewer
+        x:Name="_scroll">
         <StackPanel>
 
             <TextBlock Text="Click on any of the categories to open an associated vehicle list."
