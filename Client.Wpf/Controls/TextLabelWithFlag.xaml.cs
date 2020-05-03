@@ -24,8 +24,17 @@ namespace Client.Wpf.Controls
             InitializeComponent();
         }
 
-        public TextLabelWithFlag(NationCountryPair nationCountryPair, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool isBold = false, bool useNationFlags = false)
-            : base(text, margin, isBold)
+        public TextLabelWithFlag
+        (
+            NationCountryPair nationCountryPair,
+            string text,
+            Thickness margin,
+            MouseButtonEventHandler mouseDownHandler,
+            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
+            bool isBold = false,
+            bool useNationFlags = false,
+            bool createTooltip = true
+        ) : base(text, margin, textHorizontalAlignment, isBold)
         {
             InitializeComponent();
 
@@ -33,14 +42,24 @@ namespace Client.Wpf.Controls
 
             Tag = nationCountryPair;
 
-            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags));
+            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags, createTooltip));
             _panel.Children.Add(_label);
 
             MouseDown += mouseDownHandler;
         }
 
-        public TextLabelWithFlag(ECountry country, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, bool isBold = false, bool useNationFlags = false)
-            : this(new NationCountryPair(ENation.None, country), text, margin, mouseDownHandler, isBold, useNationFlags)
+        public TextLabelWithFlag
+        (
+            ECountry country,
+            string text,
+            Thickness margin,
+            MouseButtonEventHandler mouseDownHandler,
+            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
+            bool isBold = false,
+            bool useNationFlags = false,
+            bool createTooltip = true
+        )
+            : this(new NationCountryPair(ENation.None, country), text, margin, mouseDownHandler, textHorizontalAlignment, isBold, useNationFlags, createTooltip)
         {
             Tag = country;
         }

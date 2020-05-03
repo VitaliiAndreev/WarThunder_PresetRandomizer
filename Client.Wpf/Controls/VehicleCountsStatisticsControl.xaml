@@ -19,14 +19,24 @@
                 Orientation="Horizontal">
 
                 <StackPanel
-                    Margin="0 0 40 0">
+                    Margin="0 0 30 0">
 
                     <TextBlock Text="Vehicles by Nations and Countries"
                         x:Name="_vehiclesByNationsAndCountriesHeader"
                         Style="{StaticResource TextBlockHeader16px}"/>
 
                     <Grid
-                        x:Name="_vehiclesByNationsAndCountriesGrid"/>
+                        x:Name="_vehiclesByNationsAndCountriesGrid"
+                        Margin="0 0 0 10"
+                        HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="Vehicles by Nations and Branches"
+                        x:Name="_vehiclesByBranchesAndNationsHeader"
+                        Style="{StaticResource TextBlockHeader16px}"/>
+
+                    <Grid
+                        x:Name="_vehiclesByBranchesAndNationsGrid"
+                        HorizontalAlignment="Left"/>
 
                 </StackPanel>
 
@@ -37,7 +47,8 @@
                         Style="{StaticResource TextBlockHeader16px}"/>
 
                     <Grid
-                        x:Name="_vehiclesByCountriesAndNationsGrid"/>
+                        x:Name="_vehiclesByCountriesAndNationsGrid"
+                        HorizontalAlignment="Right"/>
 
                 </StackPanel>
                 

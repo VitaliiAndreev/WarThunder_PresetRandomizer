@@ -164,6 +164,8 @@
         public const string VehicleCounts = nameof(VehicleCounts);
         public const string VehicleInformation = nameof(VehicleInformation);
         public const string VehicleList = nameof(VehicleList);
+        public const string VehiclesByBranchesAndNations = nameof(VehiclesByBranchesAndNations);
+        public const string VehiclesByCountriesAndNations = nameof(VehiclesByCountriesAndNations);
         public const string VehiclesByNationsAndCountries = nameof(VehiclesByNationsAndCountries);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);

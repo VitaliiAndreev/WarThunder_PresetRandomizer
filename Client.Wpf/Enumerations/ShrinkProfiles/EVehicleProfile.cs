@@ -6,5 +6,7 @@
         Nation,
         NationAndCountry,
         Country,
+        NationAndBranch,
+        Branch,
     }
 }

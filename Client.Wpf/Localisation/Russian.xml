@@ -190,6 +190,8 @@
   <Line key="VehicleCounts" value="Счёт техники"/>
   <Line key="VehicleInformation" value="Боевая единица"/>
   <Line key="VehicleList" value="Список техники"/>
+  <Line key="VehiclesByBranchesAndNations" value="Техника по веткам и нациям"/>
+  <Line key="VehiclesByCountriesAndNations" value="Техника по странам и нациям"/>
   <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>

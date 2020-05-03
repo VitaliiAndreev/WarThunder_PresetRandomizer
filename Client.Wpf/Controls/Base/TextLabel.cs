@@ -19,12 +19,13 @@ namespace Client.Wpf.Controls.Base
         {
         }
 
-        public TextLabel(string text, Thickness margin, bool isBold = false)
+        public TextLabel(string text, Thickness margin, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left, bool isBold = false)
         {
             _textStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
             _label = new TextBlock
             {
                 Style = _textStyle,
+                HorizontalAlignment = horizontalAlignment,
                 FontWeight = isBold ? FontWeights.Bold : FontWeights.Normal,
                 Text = text,
             };
