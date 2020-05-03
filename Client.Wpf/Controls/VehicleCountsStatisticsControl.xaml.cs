@@ -104,11 +104,6 @@ namespace Client.Wpf.Controls
                 vehicle.AddInto(nationCountryVehicleCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
                 vehicle.AddInto(nationBranchVehicleCounts[new NationBranchPair(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem)]);
             }
-            /*foreach (var nationBranchPair in nationBranchVehicleCounts.Keys.ToList())
-            {
-                if (nationBranchVehicleCounts[nationBranchPair].IsEmpty())
-                    nationBranchVehicleCounts.Remove(nationBranchPair);
-            }*/
 
             InitialiseVehiclesByNationsAndCountries(nationCountryVehicleCounts);
             InitialiseVehiclesByCountriesAndNations(nationCountryVehicleCounts);
