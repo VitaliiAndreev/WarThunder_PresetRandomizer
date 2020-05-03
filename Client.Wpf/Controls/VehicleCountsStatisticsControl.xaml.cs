@@ -9,6 +9,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Criterion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -625,5 +626,19 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Event Handlers
+        #region Methods: Scrolling
+
+        public Tuple<double, double> GetScrollOffset()
+        {
+            return new Tuple<double, double>(_scroll.VerticalOffset, _scroll.HorizontalOffset);
+        }
+
+        public void ScrollTo(double verticalOffset, double horizontalOffset)
+        {
+            _scroll.ScrollToVerticalOffset(verticalOffset);
+            _scroll.ScrollToHorizontalOffset(horizontalOffset);
+        }
+
+        #endregion Methods: Scrolling
     }
 }
