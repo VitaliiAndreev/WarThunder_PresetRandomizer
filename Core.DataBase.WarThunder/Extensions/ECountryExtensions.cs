@@ -11,7 +11,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="country"> The country to check. </param>
         /// <returns></returns>
         public static bool IsValid(this ECountry country) =>
-            country.CastTo<int>() > EInteger.Number.Nine;
+            country.CastTo<int>() > EInteger.Number.NinetyNine;
 
         /// <summary> Returns all nations that have vehicles of the given <paramref name="country"/>. </summary>
         /// <param name="country"> The country to search by. </param>

@@ -28,7 +28,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
             if (strings.Count() != EInteger.Number.Two)
                 throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.FormatFluently(nationCountryString));
 
-            Initialize(strings.First(), strings.Last());
+            Initialise(strings.First(), strings.Last());
         }
 
         /// <summary> Parses given strings into a new instance of a nation-country pair. </summary>
@@ -36,7 +36,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         /// <param name="countryString"> The string to parse a country from. </param>
         public NationCountryPair(string nationString, string countryString)
         {
-            Initialize(nationString, countryString);
+            Initialise(nationString, countryString);
         }
 
         /// <summary> Creates a new nation-country pair. </summary>
@@ -44,37 +44,37 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         /// <param name="country"> The country. </param>
         public NationCountryPair(ENation nation, ECountry country)
         {
-            Initialize(nation, country);
+            Initialise(nation, country);
         }
 
         /// <summary> Creates a new nation-country pair by copying the given. </summary>
         /// <param name="nationCountryPair"> The nation-country pair to copy. </param>
         public NationCountryPair(NationCountryPair nationCountryPair)
         {
-            Initialize(nationCountryPair.Nation, nationCountryPair.Country);
+            Initialise(nationCountryPair.Nation, nationCountryPair.Country);
         }
 
         #endregion Constructors
-        #region Methods: Initialization
+        #region Methods: Initialisation
 
         /// <summary> Initializes the class with the given values. </summary>
         /// <param name="nationString"> The string to parse a nation from. </param>
         /// <param name="countryString"> The string to parse a country from. </param>
-        private void Initialize(string nationString, string countryString)
+        private void Initialise(string nationString, string countryString)
         {
-            Initialize(nationString.ParseEnumeration<ENation>(), countryString.ParseEnumeration<ECountry>());
+            Initialise(nationString.ParseEnumeration<ENation>(), countryString.ParseEnumeration<ECountry>());
         }
 
         /// <summary> Initializes the class with the given values. </summary>
         /// <param name="nation"> The nation. </param>
         /// <param name="country"> The country. </param>
-        private void Initialize(ENation nation, ECountry country)
+        private void Initialise(ENation nation, ECountry country)
         {
             Nation = nation;
             Country = country;
         }
 
-        #endregion Methods: Initialization
+        #endregion Methods: Initialisation
         #region Methods: Equality Comparison
 
         /// <summary> Determines whether the specified object is equal to the current object. </summary>

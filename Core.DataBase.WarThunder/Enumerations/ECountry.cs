@@ -14,7 +14,7 @@
         AllItaly,
         AllFrance,
         AllSweden,
-        Argentina,
+        Argentina = 100,
         Australia,
         Belgium,
         Bulgaria,
