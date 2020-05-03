@@ -254,10 +254,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\flags.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -428,9 +424,6 @@
     </Compile>
     <Compile Include="Controls\VehicleTooltipControl.xaml.cs">
       <DependentUpon>VehicleTooltipControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
