@@ -111,6 +111,25 @@ namespace Client.Wpf.Extensions
                     vehicle.IsSoldOnTheMarket,
                     vehicle.IsAvailableOnlyOnConsoles,
                 },
+                EVehicleProfile.BranchAndCountry => new
+                {
+                    vehicle.GaijinId,
+                    Name = vehicle.ResearchTreeName.GetLocalisation(language),
+                    Nation = localise(vehicle.Nation.AsEnumerationItem),
+                    Rank = vehicle.RankAsEnumerationItem,
+                    Class = localise(vehicle.Class),
+                    Subclass1 = localise(vehicle.Subclasses.First),
+                    Subclass2 = localise(vehicle.Subclasses.Second),
+                    vehicle.IsResearchable,
+                    vehicle.IsSquadronVehicle,
+                    vehicle.IsHiddenUnlessOwned,
+                    vehicle.IsPremium,
+                    vehicle.IsPurchasableForGoldenEagles,
+                    vehicle.GiftedToNewPlayersForSelectingTheirFirstBranch,
+                    vehicle.IsSoldInTheStore,
+                    vehicle.IsSoldOnTheMarket,
+                    vehicle.IsAvailableOnlyOnConsoles,
+                },
                 _ => null
             };
         }

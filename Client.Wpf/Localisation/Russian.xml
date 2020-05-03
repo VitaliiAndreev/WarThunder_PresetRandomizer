@@ -191,6 +191,7 @@
   <Line key="VehicleInformation" value="Боевая единица"/>
   <Line key="VehicleList" value="Список техники"/>
   <Line key="VehiclesByBranchesAndNations" value="Техника по веткам и нациям"/>
+  <Line key="VehiclesByCountriesAndBranches" value="Техника по странам и веткам"/>
   <Line key="VehiclesByCountriesAndNations" value="Техника по странам и нациям"/>
   <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
   <Line key="Wheeled" value="Колёсная техника"/>

@@ -191,6 +191,7 @@
   <Line key="VehicleInformation" value="Vehicle Information"/>
   <Line key="VehicleList" value="Vehicle List"/>
   <Line key="VehiclesByBranchesAndNations" value="Vehicles by Branches and Nations"/>
+  <Line key="VehiclesByCountriesAndBranches" value="Vehicles by Countries and Branches"/>
   <Line key="VehiclesByCountriesAndNations" value="Vehicles by Countries and Nations"/>
   <Line key="VehiclesByNationsAndCountries" value="Vehicles by Nations and Countries"/>
   <Line key="Wheeled" value="Wheeled"/>

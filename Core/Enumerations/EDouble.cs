@@ -11,6 +11,7 @@
             public const double Half = 0.5;
             public const double PointNine = 0.9;
             public const double One = 1.0;
+            public const double Sixteen = 16.0;
         }
     }
 }

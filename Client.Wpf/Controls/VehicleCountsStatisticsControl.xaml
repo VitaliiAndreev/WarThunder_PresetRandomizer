@@ -7,7 +7,7 @@
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     mc:Ignorable="d" 
     d:DesignHeight="450"
-    d:DesignWidth="800">
+    d:DesignWidth="810">
     <ScrollViewer>
         <StackPanel>
 
@@ -20,35 +20,63 @@
 
                 <StackPanel
                     Margin="0 0 30 0">
+                    
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Nations and Countries"
+                                x:Name="_vehiclesByNationsAndCountriesHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByNationsAndCountriesGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
 
-                    <TextBlock Text="Vehicles by Nations and Countries"
-                        x:Name="_vehiclesByNationsAndCountriesHeader"
-                        Style="{StaticResource TextBlockHeader16px}"/>
-
-                    <Grid
-                        x:Name="_vehiclesByNationsAndCountriesGrid"
-                        Margin="0 0 0 10"
-                        HorizontalAlignment="Left"/>
-
-                    <TextBlock Text="Vehicles by Nations and Branches"
-                        x:Name="_vehiclesByBranchesAndNationsHeader"
-                        Style="{StaticResource TextBlockHeader16px}"/>
-
-                    <Grid
-                        x:Name="_vehiclesByBranchesAndNationsGrid"
-                        HorizontalAlignment="Left"/>
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Nations and Branches"
+                                x:Name="_vehiclesByBranchesAndNationsHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByBranchesAndNationsGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
 
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel
+                    Margin="0 0 30 0">
 
-                    <TextBlock Text="Vehicles by Countries and Nations"
-                        x:Name="_vehiclesByCountriesAndNationsHeader"
-                        Style="{StaticResource TextBlockHeader16px}"/>
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Countries and Nations"
+                                x:Name="_vehiclesByCountriesAndNationsHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByCountriesAndNationsGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
 
-                    <Grid
-                        x:Name="_vehiclesByCountriesAndNationsGrid"
-                        HorizontalAlignment="Left"/>
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Countries and Branches"
+                                x:Name="_vehiclesByCountriesAndBranchesHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByCountriesAndBranchesGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
 
                 </StackPanel>
                 
