@@ -24,6 +24,7 @@ namespace Core.Enumerations
             public const int Fourteen = 14;
             public const int Fifteen = 15;
             public const int Sixteen = 16;
+            public const int Seventeen = 17;
             public const int Twenty = 20;
             public const int TwentyOne = 21;
             public const int TwentyThree = 23;

@@ -48,7 +48,7 @@
 
                     <Grid
                         x:Name="_vehiclesByCountriesAndNationsGrid"
-                        HorizontalAlignment="Right"/>
+                        HorizontalAlignment="Left"/>
 
                 </StackPanel>
                 

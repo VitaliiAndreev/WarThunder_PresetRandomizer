@@ -7,9 +7,9 @@ namespace Client.Wpf.Extensions
 {
     public static class ECountryExtensions
     {
-        public static Image CreateFlag(this ECountry country, Style flagStyle, Thickness margin)
+        public static Image CreateFlag(this ECountry country, Style flagStyle, Thickness margin, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left)
         {
-            return new NationCountryPair(ENation.None, country).CreateFlag(flagStyle, margin, false);
+            return new NationCountryPair(ENation.None, country).CreateFlag(flagStyle, margin, false, horizontalAlignment: horizontalAlignment);
         }
     }
 }

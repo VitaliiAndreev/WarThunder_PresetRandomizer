@@ -15,6 +15,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Client.Wpf.Controls
 {
@@ -29,6 +30,7 @@ namespace Client.Wpf.Controls
 
         private readonly int _categoryHorizontalMargin;
         private readonly int _categoryVerticalMargin;
+        private readonly Thickness _categoryColumnHeaderMargin;
         private readonly Thickness _categoryColumnHeaderMarginDoubled;
         private readonly Thickness _categoryRowHeaderMargin;
         private readonly Thickness _categoryMargin;
@@ -48,10 +50,11 @@ namespace Client.Wpf.Controls
             _categoryVerticalMargin = EInteger.Number.Five;
             _categoryMargin = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
             _categoryMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
-            _categoryColumnHeaderMarginDoubled = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, _categoryVerticalMargin);
+            _categoryColumnHeaderMargin = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, _categoryVerticalMargin);
+            _categoryColumnHeaderMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, _categoryVerticalMargin);
             _categoryRowHeaderMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
-            _flagColumnWidth = EInteger.Number.TwentyFive;
+            _flagColumnWidth = EInteger.Number.Seventeen;
             _countColumnWidth = EInteger.Number.Twenty;
         }
 
@@ -110,7 +113,7 @@ namespace Client.Wpf.Controls
             InitialiseVehiclesByBranchesAndNations(nationBranchVehicleCounts);
 
             PopulateVehiclesByNationsAndCountriesControls(nations);
-            PopulateVehiclesByCountriesAndNationsControls();
+            PopulateVehiclesByCountriesAndNationsControls(nations);
             PopulateVehiclesByBranchesAndCountriesControls(branches, nations);
         }
 
@@ -247,11 +250,25 @@ namespace Client.Wpf.Controls
             }
         }
 
-        private void PopulateVehiclesByCountriesAndNationsControls()
+        private void PopulateNationFlagColumnHeaders(IEnumerable<ENation> nations, Grid grid, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Right, double? width = null)
+        {
+            var nationHeaderIndex = EInteger.Number.Two;
+
+            foreach (var nation in nations)
+            {
+                var nationHeader = new FlagControl(nation, _categoryColumnHeaderMarginDoubled, OnVehiclesByNationsLeftMouseDown, horizontalAlignment, width ?? _flagColumnWidth);
+
+                grid.Add(nationHeader, nationHeaderIndex++, EInteger.Number.Zero);
+            }
+        }
+
+        private void PopulateVehiclesByCountriesAndNationsControls(IEnumerable<ENation> nations)
         {
             var vehiclesByCountriesAndNations = _statisticsControl.VehiclesByCountriesAndNations;
             var countries = vehiclesByCountriesAndNations.Keys.Select(nationCountryPair => nationCountryPair.Country).Distinct();
-            var countryIndex = EInteger.Number.Zero;
+            var countryIndex = EInteger.Number.One;
+
+            PopulateNationFlagColumnHeaders(nations, _vehiclesByCountriesAndNationsGrid, HorizontalAlignment.Center, 17);
 
             foreach (var country in countries)
             {
@@ -267,18 +284,31 @@ namespace Client.Wpf.Controls
                     isBold: true
                 );
                 var nationIndex = EInteger.Number.Two;
+                var nationsByCountires = countryKeys.GroupBy(item => item.Country, item => item.Nation).ToDictionary(group => group.Key, group => group.AsEnumerable());
 
-                foreach (var countryKey in countryKeys)
+                foreach (var nation in nations)
                 {
-                    var nationControl = new VehicleCountWithFlag
-                    (
-                        countryKey,
-                        vehiclesByCountriesAndNations[countryKey].Count(),
-                        _categoryMargin,
-                        OnVehiclesByCountriesAndNationsLeftMouseDown,
-                        useNationFlags: true
-                    );
-                    _vehiclesByCountriesAndNationsGrid.Add(nationControl, nationIndex++, countryIndex);
+                    var nationsWithVehicles = nationsByCountires[country];
+                    var border = new Border
+                    {
+                        BorderThickness = new Thickness(EInteger.Number.One, EInteger.Number.One, EInteger.Number.One, EInteger.Number.One),
+                        BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = EDouble.Number.PointOne },
+                    };
+
+                    if (nation.IsIn(nationsWithVehicles))
+                    {
+                        var countryKey = countryKeys.First(item => item.Nation == nation);
+                        var nationControl = new VehicleCountWithFlag
+                        (
+                            countryKey,
+                            vehiclesByCountriesAndNations[countryKey].Count(),
+                            _categoryMargin,
+                            OnVehiclesByCountriesAndNationsLeftMouseDown,
+                            useNationFlags: true
+                        );
+                        border.Child = nationControl;
+                    }
+                    _vehiclesByCountriesAndNationsGrid.Add(border, nationIndex++, countryIndex);
                 }
                 _vehiclesByCountriesAndNationsGrid.Add(header, EInteger.Number.Zero, countryIndex);
                 _vehiclesByCountriesAndNationsGrid.Add(count, EInteger.Number.One, countryIndex++);
@@ -289,14 +319,9 @@ namespace Client.Wpf.Controls
         {
             var vehicleByBranchesAndCountries = _statisticsControl.VehiclesByBranchesAndNations;
             var branchIndex = EInteger.Number.One;
-            var nationHeaderIndex = EInteger.Number.Two;
 
-            foreach (var nation in nations)
-            {
-                var nationHeader = new FlagControl(nation, _categoryColumnHeaderMarginDoubled, OnVehiclesByNationsLeftMouseDown, HorizontalAlignment.Right, _flagColumnWidth - EInteger.Number.Two);
+            PopulateNationFlagColumnHeaders(nations, _vehiclesByBranchesAndNationsGrid);
 
-                _vehiclesByBranchesAndNationsGrid.Add(nationHeader, nationHeaderIndex++, EInteger.Number.Zero);
-            }
             foreach (var branch in branches)
             {
                 var branchKeys = vehicleByBranchesAndCountries.Keys.Where(key => key.Branch == branch);

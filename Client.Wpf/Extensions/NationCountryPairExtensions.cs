@@ -7,13 +7,14 @@ namespace Client.Wpf.Extensions
 {
     public static class NationCountryPairExtensions
     {
-        public static Image CreateFlag(this NationCountryPair nationCountryPair, Style flagStyle, Thickness margin, bool useNationFlags, bool createTooltip = true)
+        public static Image CreateFlag(this NationCountryPair nationCountryPair, Style flagStyle, Thickness margin, bool useNationFlags, bool createTooltip = true, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left)
         {
             var flag = new Image
             {
                 Style = flagStyle,
                 Source = ApplicationHelpers.Manager.GetFlagImageSource(useNationFlags ? nationCountryPair.Nation.GetBaseCountry() : nationCountryPair.Country),
                 Margin = margin,
+                HorizontalAlignment = horizontalAlignment,
             };
 
             if (createTooltip)
