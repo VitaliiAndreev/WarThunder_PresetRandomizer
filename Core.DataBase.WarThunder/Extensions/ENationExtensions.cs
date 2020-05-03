@@ -25,7 +25,7 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.Usa => ECountry.Usa,
                 ENation.Germany => ECountry.NaziGermany,
                 ENation.Ussr => ECountry.Ussr,
-                ENation.Britain => ECountry.Britain,
+                ENation.Britain => ECountry.GreatBritain,
                 ENation.Japan => ECountry.EmpireOfJapan,
                 ENation.China => ECountry.China,
                 ENation.Italy => ECountry.Italy,
