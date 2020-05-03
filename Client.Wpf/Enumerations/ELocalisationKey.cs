@@ -165,6 +165,7 @@
         public const string VehicleInformation = nameof(VehicleInformation);
         public const string VehicleList = nameof(VehicleList);
         public const string VehiclesByBranchesAndNations = nameof(VehiclesByBranchesAndNations);
+        public const string VehiclesByCountriesAndBranches = nameof(VehiclesByCountriesAndBranches);
         public const string VehiclesByCountriesAndNations = nameof(VehiclesByCountriesAndNations);
         public const string VehiclesByNationsAndCountries = nameof(VehiclesByNationsAndCountries);
         public const string Wheeled = nameof(Wheeled);

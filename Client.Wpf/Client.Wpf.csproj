@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\GaijinCharactreIconControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\InformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -324,6 +328,9 @@
     <Compile Include="Controls\Base\VehicleCount.cs" />
     <Compile Include="Controls\FlagControl.xaml.cs">
       <DependentUpon>FlagControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GaijinCharactreIconControl.xaml.cs">
+      <DependentUpon>GaijinCharactreIconControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InformationControl.xaml.cs">
       <DependentUpon>InformationControl.xaml</DependentUpon>
