@@ -26,7 +26,6 @@ namespace Client.Wpf.Controls
         public TextLabelWithGaijinCharacterIcon
         (
             char icon,
-            object iconTag,
             string text,
             Thickness margin,
             MouseButtonEventHandler mouseDownHandler,
@@ -54,7 +53,6 @@ namespace Client.Wpf.Controls
                 TextAlignment = TextAlignment.Center,
                 FontSize = iconFontSize,
                 Text = icon.ToString(),
-                ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()),
             };
 
             _grid.Add(iconControl, EInteger.Number.Zero, EInteger.Number.Zero);

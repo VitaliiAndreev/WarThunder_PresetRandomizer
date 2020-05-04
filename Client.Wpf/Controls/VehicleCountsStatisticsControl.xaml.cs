@@ -299,7 +299,7 @@ namespace Client.Wpf.Controls
                 throw new NotImplementedException();
             }
 
-            return new TextLabelWithGaijinCharacterIcon(icon, iconTag, ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()), margin, leftMouseDownHandler, _gaijinCharacterIconColumnWidth, iconFontSize: iconFontSize)
+            return new TextLabelWithGaijinCharacterIcon(icon, ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()), margin, leftMouseDownHandler, _gaijinCharacterIconColumnWidth, iconFontSize: iconFontSize)
                 .WithTag(controlTag)
             ;
         }
