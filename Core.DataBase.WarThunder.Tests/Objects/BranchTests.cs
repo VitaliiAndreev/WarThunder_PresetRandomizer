@@ -50,7 +50,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), true, Presets.Logger))
             {
-                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.Britain]);
+                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.GreatBritain]);
                 var britishArmy = new Branch(dataRepository, EReference.BranchesFromEnumeration[EBranch.Army], britain);
                 britain.Branches = new List<IBranch> { britishArmy };
 
@@ -74,7 +74,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_Self_ShouldBeTrue()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
             var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
             britain.Branches = new List<IBranch> { britishArmy };
 
@@ -89,7 +89,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_SameNation_ShouldBeTrue()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
 
             var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
             var britishArmyClone = new Branch(Presets.MockDataRepository.Object, britishArmy.Id, britishArmy.GaijinId, britishArmy.Nation);
@@ -106,7 +106,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_DifferentNations_ShouldBeFalse()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
             var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
             britain.Branches = new List<IBranch> { britishArmy };
 

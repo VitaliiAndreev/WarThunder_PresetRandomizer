@@ -51,7 +51,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
                 // act
-                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.Britain]);
+                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.GreatBritain]);
 
                 dataRepository.PersistNewObjects();
 
@@ -72,7 +72,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_Self_ShouldBeTrue()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
             britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
             // act
@@ -86,7 +86,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_SameBranches_ShouldBeTrue()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
             britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
             var britainClone = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId)
@@ -103,7 +103,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         public void IsEquivalentTo_AnotherInstance_DifferentBranches_ShouldBeFalse()
         {
             // arrange
-            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Britain]);
+            var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
             britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
 
             var britainCloneFlawed = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId);
