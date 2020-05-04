@@ -22,6 +22,12 @@ namespace Core.Extensions
         public static bool AllEqual<T>(this IEnumerable<T> collection) =>
             collection.Distinct().Count() == EInteger.Number.One;
 
+        #region As
+
+        public static IOrderedEnumerable<T> AsOrderedEnumerable<T>(this IEnumerable<T> collection) =>
+            collection.OrderBy(item => default(object));
+
+        #endregion As
         #region At()
 
         public static T At<T>(this IEnumerable<T> collection, int position)

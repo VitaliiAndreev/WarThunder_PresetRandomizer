@@ -152,53 +152,13 @@ namespace Client.Wpf.Controls
             PopulateVehiclesByClassesAndNationsControls(classes, nations);
         }
 
-        #region Vehicle List Sorting
-
-        private IOrderedEnumerable<IVehicle> ReorderByClassSubclassRankId(IEnumerable<IVehicle> vehicles)
-        {
-            return ReorderByClassSubclassRankId(vehicles.OrderBy(a => default(object)));
-        }
-
-        private IOrderedEnumerable<IVehicle> ReorderByClassSubclassRankId(IOrderedEnumerable<IVehicle> orderedVehicles)
-        {
-            var topLevelOrderedVehicles = orderedVehicles
-                .ThenBy(vehicle => vehicle.Class)
-            ;
-            return ReorderBySubclassRankId(topLevelOrderedVehicles);
-        }
-
-        private IOrderedEnumerable<IVehicle> ReorderBySubclassRankId(IEnumerable<IVehicle> vehicles)
-        {
-            return ReorderBySubclassRankId(vehicles.OrderBy(a => default(object)));
-        }
-
-        private IOrderedEnumerable<IVehicle> ReorderBySubclassRankId(IOrderedEnumerable<IVehicle> orderedVehicles)
-        {
-            return orderedVehicles
-                .ThenBy(vehicle => vehicle.Subclasses.First)
-                .ThenBy(vehicle => vehicle.Subclasses.Second)
-                .ThenBy(vehicle => vehicle.Rank)
-                .ThenBy(vehicle => vehicle.GaijinId)
-            ;
-        }
-
-        private IOrderedEnumerable<IVehicle> ReorderByNationSubclassRankId(IEnumerable<IVehicle> vehicles)
-        {
-            var reorderedVehicles = vehicles
-                .OrderBy(vehicle => vehicle.Nation.AsEnumerationItem)
-            ;
-            return ReorderBySubclassRankId(reorderedVehicles);
-        }
-
-        #endregion Vehicle List Sorting
-
         private void InitialiseVehiclesByNationsAndCountries(IDictionary<NationCountryPair, List<IVehicle>> vehiclesCounts)
         {
             var vehiclesByNationsAndCountries = vehiclesCounts
                 .OrderBy(item => item.Key.Nation)
                 .ThenByDescending(item => item.Value.Count())
                 .ThenBy(item => item.Key.Country)
-                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassSubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByClassSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByNationsAndCountries(vehiclesByNationsAndCountries);
@@ -209,7 +169,7 @@ namespace Client.Wpf.Controls
             var vehiclesByCountriesAndNations = vehiclesCounts
                 .OrderBy(item => item.Key.Country)
                 .ThenBy(item => item.Key.Nation)
-                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassSubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<NationCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByClassSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByCountriesAndNations(vehiclesByCountriesAndNations);
@@ -218,7 +178,7 @@ namespace Client.Wpf.Controls
         private void InitialiseVehiclesByBranchesAndNations(IDictionary<NationBranchPair, List<IVehicle>> vehiclesCounts)
         {
             var vehiclesByBranchesAndNations = vehiclesCounts
-                .Select(item => new KeyValuePair<NationBranchPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassSubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<NationBranchPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByClassSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByBranchesAndNations(vehiclesByBranchesAndNations);
@@ -227,7 +187,7 @@ namespace Client.Wpf.Controls
         private void InitialiseVehiclesByCountriesAndBranches(IDictionary<BranchCountryPair, List<IVehicle>> vehiclesCounts)
         {
             var vehiclesByCountriesAndBranches = vehiclesCounts
-                .Select(item => new KeyValuePair<BranchCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByClassSubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<BranchCountryPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByClassSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByCountriesAndBranches(vehiclesByCountriesAndBranches);
@@ -236,7 +196,7 @@ namespace Client.Wpf.Controls
         private void InitialiseVehiclesByBranchesAndClasses(IDictionary<BranchClassPair, List<IVehicle>> vehiclesCounts)
         {
             var vehiclesByBranchesAndClasses = vehiclesCounts
-                .Select(item => new KeyValuePair<BranchClassPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderByNationSubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<BranchClassPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByNationSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByBranchesAndClasses(vehiclesByBranchesAndClasses);
@@ -245,7 +205,7 @@ namespace Client.Wpf.Controls
         private void InitialiseVehiclesByClassesAndNations(IDictionary<NationClassPair, List<IVehicle>> vehiclesCounts)
         {
             var vehiclesByClassesAndNations = vehiclesCounts
-                .Select(item => new KeyValuePair<NationClassPair, IOrderedEnumerable<IVehicle>>(item.Key, ReorderBySubclassRankId(item.Value)))
+                .Select(item => new KeyValuePair<NationClassPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderBySubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
             _statisticsControl?.SetVehiclesByClassesAndNations(vehiclesByClassesAndNations);
