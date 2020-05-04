@@ -38,6 +38,7 @@ namespace Client.Wpf.Controls
         private readonly Style _categoryTextStyle;
         private readonly double _flagColumnWidth;
         private readonly double _countColumnWidth;
+        private readonly double _branchIconFontSize;
 
         #endregion Fields
         #region Constructors
@@ -55,6 +56,7 @@ namespace Client.Wpf.Controls
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
             _flagColumnWidth = EInteger.Number.Seventeen;
             _countColumnWidth = EInteger.Number.Twenty;
+            _branchIconFontSize = EInteger.Number.Twenty;
         }
 
         #endregion Constructors
@@ -275,7 +277,7 @@ namespace Client.Wpf.Controls
 
             foreach (var branch in branches)
             {
-                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, doubleMargin ? _categoryMarginDoubled : _categoryMargin, OnVehiclesByBranchesLeftMouseDown, 20);
+                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, doubleMargin ? _categoryMarginDoubled : _categoryMargin, OnVehiclesByBranchesLeftMouseDown, _branchIconFontSize);
 
                 grid.Add(branchHeader, nationHeaderIndex++, EInteger.Number.Zero);
             }

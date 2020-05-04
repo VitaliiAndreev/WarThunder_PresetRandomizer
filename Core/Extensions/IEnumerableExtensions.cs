@@ -12,15 +12,33 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
-        public static bool AllEqual<T>(this IEnumerable<T> collection) =>
-            collection.Distinct().Count() == EInteger.Number.One;
-
         /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="list"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
         /// <param name="collection"> The collection to add into the <paramref name="list"/>. </param>
         /// <param name="list"> The list to which to add items from <paramref name="collection"/> into. </param>
         public static void AddInto<T>(this IEnumerable<T> collection, List<T> list) =>
             list.AddRange(collection);
+
+        public static bool AllEqual<T>(this IEnumerable<T> collection) =>
+            collection.Distinct().Count() == EInteger.Number.One;
+
+        #region At()
+
+        public static T At<T>(this IEnumerable<T> collection, int position)
+        {
+            if (collection.IsEmpty())
+                throw new ArgumentException();
+
+            if (position.IsNegative() || position >= collection.Count())
+                throw new ArgumentOutOfRangeException();
+
+            return collection.Take(position).Last();
+        }
+
+        public static T Second<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.One);
+        public static T Third<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.Two);
+
+        #endregion At()
 
         /// <summary> Returns a dictionary produced from the given collection of key-value pairs. </summary>
         /// <typeparam name="T"> The type of keys. </typeparam>

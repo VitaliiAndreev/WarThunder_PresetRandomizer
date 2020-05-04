@@ -95,10 +95,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             unchecked
             {
-                var hash = 101;
+                var hash = EInteger.Number.PrimesAboveHundred.First();
 
-                hash = hash * 103 + Nation.GetHashCode();
-                hash = hash * 107 + Country.GetHashCode();
+                hash = hash * EInteger.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
+                hash = hash * EInteger.Number.PrimesAboveHundred.Third() + Country.GetHashCode();
 
                 return hash;
             }
