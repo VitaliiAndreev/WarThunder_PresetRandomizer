@@ -170,7 +170,7 @@ namespace Client.Wpf.Controls
                     }
                     else
                     {
-                        vehicleControl = new ResearchTreeCellVehicleControl(_presenter, vehicle, new DisplayExtendedVehicleInformationStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
+                        vehicleControl = new ResearchTreeCellVehicleControl(_presenter, vehicle, new DisplayVehicleInformationStandaloneStrategy(), EVehicleCard.Preset, true) { Margin = new Thickness(0, 0, 5, 0) };
 
                         vehicleControl.MouseEnter += OnMouseEnter;
                         vehicleControl.MouseLeave += OnMouseLeave;

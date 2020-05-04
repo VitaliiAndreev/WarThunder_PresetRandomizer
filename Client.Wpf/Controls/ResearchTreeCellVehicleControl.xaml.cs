@@ -236,7 +236,7 @@ namespace Client.Wpf.Controls
         {
             if (!_tooltipInitialised)
             {
-                _tooltip.Initialise(_presenter, Vehicle, new DisplayExtendedVehicleInformationStrategy());
+                _tooltip.Initialise(_presenter, Vehicle, new DisplayVehicleInformationStandaloneStrategy());
                 _tooltip.UpdateFor(_presenter.CurrentGameMode);
                 _tooltipInitialised = true;
             }

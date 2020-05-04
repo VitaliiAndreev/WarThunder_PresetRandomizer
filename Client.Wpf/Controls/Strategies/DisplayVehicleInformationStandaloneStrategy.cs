@@ -1,18 +1,13 @@
-﻿using Client.Wpf.Enumerations;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using System.Text;
 
 namespace Client.Wpf.Controls.Strategies
 {
     /// <summary> A strategy for generating a formatted string with extended <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </summary>
-    public class DisplayExtendedVehicleInformationStrategy : DisplayVehicleInformationStrategy
+    public class DisplayVehicleInformationStandaloneStrategy : DisplayVehicleInformationStrategy
     {
-        #region Methods: Checks
-
-        public override bool ShowSpaceAfterSpecialIconsAndTags(IVehicle vehicle) => base.ShowSpaceAfterSpecialIconsAndTags(vehicle) || ShowGoldenEagleCost(vehicle);
-
-        #endregion Methods: Checks
         #region Methods: Output
 
         /// <summary> Generates a formatted string with <paramref name="vehicle"/> information for the given <paramref name="gameMode"/>. </summary>
@@ -25,14 +20,12 @@ namespace Client.Wpf.Controls.Strategies
 
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
-            SetSharedLeftPart(stringBuilder, vehicle);
+            SetFirstSharedPart(stringBuilder, gameMode, vehicle);
 
-            if (ShowPackTag(vehicle))
-                append(GetLocalisedString(ELocalisationKey.Pack));
-            else if (ShowGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
+            append($"{ESeparator.SpaceSlashSpace}");
+            append(GetRank(vehicle));
 
-            SetSharedRightPart(stringBuilder, gameMode, vehicle);
+            SetSecondSharedPart(stringBuilder, vehicle);
 
             return stringBuilder.ToString();
         }
