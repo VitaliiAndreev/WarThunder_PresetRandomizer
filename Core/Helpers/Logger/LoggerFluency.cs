@@ -72,6 +72,12 @@ namespace Core.Helpers.Logger
                 logger.LogError(_logCategory, message, exception);
         }
 
+        protected void LogErrorSilently(string message, Exception exception)
+        {
+            foreach (var logger in _loggers)
+                logger.LogErrorSilently(_logCategory, message, exception);
+        }
+
         /// <summary> Creates a log entry of the "Fatal" level for the current <see cref="_logCategory"/>. </summary>
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>

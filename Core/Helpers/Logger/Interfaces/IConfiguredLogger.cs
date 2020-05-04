@@ -41,6 +41,7 @@ namespace Core.Helpers.Logger.Interfaces
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
         void LogError(string category, string message, Exception exception);
+        void LogErrorSilently(string category, string message, Exception exception);
         /// <summary> Creates a log entry of the "Fatal" level. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>

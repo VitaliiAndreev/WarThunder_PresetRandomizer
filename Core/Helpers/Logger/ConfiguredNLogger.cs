@@ -103,6 +103,9 @@ namespace Core.Helpers.Logger
         public void LogError(string category, string message, Exception exception) =>
             CreateLog(LogLevel.Error, category, message, exception);
 
+        public void LogErrorSilently(string category, string message, Exception exception) =>
+            CreateLog(LogLevel.Debug, category, message, exception);
+
         /// <summary> Creates a log entry of the "Fatal" level. </summary>
         /// <param name="category"> The category of the event being logged. </param>
         /// <param name="message"> A message to supplement the log with. </param>

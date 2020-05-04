@@ -9,23 +9,29 @@ using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace WarThunderSimpleUpdateChecker
 {
-    class Application
+    class Application : LoggerFluency
     {
         #region Fields
 
-        private static readonly IConfiguredLogger _logger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
-        private static readonly IFileManager _fileManager = new FileManager(_logger);
-        private static readonly IFileReader _fileReader = new FileReader(_logger);
-        private static readonly IParser _parser = new Parser(_logger);
-        private static readonly IUnpacker _unpacker = new Unpacker(_fileManager, _logger);
-        private static readonly IConverter _converter = new Converter(_logger);
+        private static readonly IConfiguredLogger _fileLogger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter());
+        private static readonly IConfiguredLogger _consoleLogger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
+        private static readonly Application _logger = new Application();
+        private static readonly IFileManager _fileManager = new FileManager(_fileLogger, _consoleLogger);
+        private static readonly IFileReader _fileReader = new FileReader(_fileLogger, _consoleLogger);
+        private static readonly IParser _parser = new Parser(_fileLogger, _consoleLogger);
+        private static readonly IUnpacker _unpacker = new Unpacker(_fileManager, _fileLogger, _consoleLogger);
+        private static readonly IConverter _converter = new Converter(_fileLogger, _consoleLogger);
+        private static readonly TaskFactory _taskFactory = new TaskFactory();
 
         private static string _warThunderPath;
         private static string _warThunderToolsPath;
@@ -37,12 +43,17 @@ namespace WarThunderSimpleUpdateChecker
         private static string OutputFilesPath => Path.Combine(_outputPath, "Files");
 
         #endregion Properties
+        #region Constructors
+
+        private Application() : base(string.Empty, _fileLogger, _consoleLogger) { }
+
+        #endregion Constructors
 
         static void Main(params string[] args)
         {
             if (args.Count() != 3)
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"The app requires 3 arguments: path to War Thunder, path to Klensy's WT Tools, output path.");
+                _logger.LogInfo($"The app requires 3 arguments: path to War Thunder, path to Klensy's WT Tools, output path.");
                 return;
             }
 
@@ -55,21 +66,77 @@ namespace WarThunderSimpleUpdateChecker
 
             InitialiseSettings();
 
-            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath);
-            var yupFile = GetVersionInfoFile(sourceFiles);
+            var versionInfoFile = GetVersionInfoFile(_warThunderPath);
+            var currentVersion = GetVersion(versionInfoFile);
+            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, currentVersion.ToString(EInteger.Number.Three));
+            var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
+
             var binFiles = GetBinFiles(sourceFiles);
             var outputFilesDirectory = new DirectoryInfo(OutputFilesPath);
 
             RemoveFilesFromPreviousPatch(outputFilesDirectory);
-            AppendCurrentClientVersion(yupFile);
 
-            var unpackedDirectories = CopyAndUnpackBinFiles(binFiles, outputFilesDirectory);
+            var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
+            var decompressBlkTasks = new Dictionary<string, Task>();
+            var decompressDdsxTasks = new Dictionary<string, Task>();
+            var outputDirectories = new List<DirectoryInfo>();
 
-            DecompressBlkFiles(unpackedDirectories);
-            DecompressDdsxFiles(unpackedDirectories);
+            while (unpackingTasks.Any())
+            {
+                foreach (var binFile in binFiles)
+                {
+                    var fileName = binFile.Name;
+
+                    if (unpackingTasks.TryGetValue(fileName, out var startedUnpackingTask))
+                    {
+                        if (startedUnpackingTask.IsCompleted)
+                        {
+                            var outputDirectory = startedUnpackingTask.Result;
+
+                            if (decompressBlkTasks.TryGetValue(fileName, out var startedDecompressBlkTask))
+                            {
+                                if (startedDecompressBlkTask.IsCompleted)
+                                {
+                                    if (decompressDdsxTasks.TryGetValue(fileName, out var startedDecompressDdsxTask))
+                                    {
+                                        if (startedDecompressDdsxTask.IsCompleted)
+                                        {
+                                            outputDirectories.Add(outputDirectory);
+
+                                            unpackingTasks.Remove(fileName);
+                                            decompressBlkTasks.Remove(fileName);
+                                            decompressDdsxTasks.Remove(fileName);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        void decomplressDdsx() => DecompressDdsxFiles(outputDirectory);
+
+                                        var decompressDdsxTask = _taskFactory.StartNew(decomplressDdsx);
+
+                                        decompressDdsxTasks.Add(fileName, decompressDdsxTask);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                void decomplressBlk() => DecompressBlkFiles(outputDirectory);
+
+                                var decompressBlkTask = _taskFactory.StartNew(decomplressBlk);
+
+                                decompressBlkTasks.Add(fileName, decompressBlkTask);
+                            }
+                        }
+                    }
+                }
+            }
+
+            currentVersion = GetVersionFromUnpackedFiles(outputDirectories);
+
+            AppendCurrentClientVersion(currentVersion, mostRecentSourceFileWriteDate);
             RemoveCopiedSourceFiles(outputFilesDirectory);
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Procedure complete.");
+            _logger.LogInfo($"Procedure complete.");
         }
 
         #region Methods: Initialisation
@@ -78,17 +145,17 @@ namespace WarThunderSimpleUpdateChecker
         {
             if (!Directory.Exists(_warThunderPath))
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified path to War Thunder doesn't exist.");
+                _logger.LogInfo($"Specified path to War Thunder doesn't exist.");
                 return false;
             }
             if (!Directory.Exists(_warThunderToolsPath))
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified path to Klensy's WT Tools doesn't exist.");
+                _logger.LogInfo($"Specified path to Klensy's WT Tools doesn't exist.");
                 return false;
             }
             if (!Directory.Exists(_warThunderToolsPath))
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Specified output path doesn't exist.");
+                _logger.LogInfo($"Specified output path doesn't exist.");
                 return false;
             }
             return true;
@@ -102,35 +169,61 @@ namespace WarThunderSimpleUpdateChecker
 
         private static void RemoveFilesFromPreviousPatch(DirectoryInfo outputFilesDirectory)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Removing files from the previous patch.");
+            _logger.LogInfo($"Removing files from the previous patch.");
             {
                 _fileManager.EmptyDirectory(outputFilesDirectory.FullName);
             }
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Files removed.");
+            _logger.LogInfo($"Files removed.");
         }
 
         #endregion Methods: Initialisation
         #region Methods: Working with Game Version
 
-        private static FileInfo GetVersionInfoFile(IEnumerable<FileInfo> files)
+        private static FileInfo GetVersionInfoFile(string warThunderPath)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting the current YUP file...");
+            _logger.LogInfo($"Selecting the current YUP file...");
 
-            var yupFile = files.First(file => file.Extension.Contains(EFileExtension.Yup) && !file.Name.Contains("old"));
+            var yupFile = new FileInfo(Directory.GetFiles(warThunderPath, "*.yup", SearchOption.TopDirectoryOnly).First(fullName => !fullName.Contains("old")));
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"{yupFile.Name} found.");
+            _logger.LogInfo($"\"{yupFile.Name}\" found.");
 
             return yupFile;
         }
 
-        private static void AppendCurrentClientVersion(FileInfo yupFile)
+        private static Version GetVersion(FileInfo yupFile)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Reading client version...");
+            _logger.LogInfo($"Reading the client version...");
 
             var currentVersion = _parser.GetClientVersion(_fileReader.Read(yupFile));
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Client is {currentVersion}.");
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Writing version to versions.txt...");
+            _logger.LogInfo($"The client is {currentVersion}.");
+
+            return currentVersion;
+        }
+
+        public static Version GetVersionFromUnpackedFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
+        {
+            _logger.LogInfo($"Reading client versions from unpacked files...");
+
+            var versionFiles = unpackedDirectories
+                .SelectMany(directory => directory.GetFiles("version", SearchOption.AllDirectories))
+            ;
+            var versions = versionFiles
+                .Select(file => File.ReadAllText(file.FullName).Trim())
+                .Select(versionText => new Version(versionText))
+                .Distinct()
+                .OrderBy(version => version)
+            ;
+            var latestVersion = versions.Last();
+
+            _logger.LogInfo($"{versions.Count()} found: {versions.StringJoin(ESeparator.CommaAndSpace)}. The latest one is {latestVersion}...");
+
+            return latestVersion;
+        }
+
+        private static void AppendCurrentClientVersion(Version version, string updateTime)
+        {
+            _logger.LogInfo($"Writing the version number to versions.txt...");
 
             var pathToVersionsLog = Path.Combine(_outputPath, "versions.txt");
 
@@ -138,35 +231,89 @@ namespace WarThunderSimpleUpdateChecker
                 File.Create(pathToVersionsLog).Close();
 
             using (var streamWriter = File.AppendText(pathToVersionsLog))
-                streamWriter.WriteLine($"{yupFile.LastWriteTime.ToShortDateString()} - {currentVersion}");
+                streamWriter.WriteLine($"{updateTime} - {version}");
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Version history appended.");
+            _logger.LogInfo($"Version history appended.");
         }
 
         #endregion Methods: Working with Game Version
         #region Methods: Selecting Files
 
-        private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath)
+        private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath, string cacheDirectorySuffix)
         {
             var uiDirectoryPath = Path.Combine(rootDirectoryPath, "ui");
+            var cacheDirectoriesPath = Settings.CacheLocation;
+            var cacheDirectoriesExist = Directory.Exists(cacheDirectoriesPath);
+            var cacheDirectoryPath = default(string);
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up files in \"{rootDirectoryPath}\" and \"{uiDirectoryPath}\"...");
+            if (cacheDirectoriesExist)
+            {
+                var cacheDirectories = Directory
+                    .GetDirectories(cacheDirectoriesPath, $"binary.{cacheDirectorySuffix}*", SearchOption.TopDirectoryOnly)
+                    .Select(path => new DirectoryInfo(path))
+                    .OrderByDescending(directory => directory.LastWriteTimeUtc);
+
+                if (cacheDirectories.Any())
+                {
+                    if (cacheDirectories.HasSeveral()) throw new AmbiguousMatchException("Several cache directories matching the given version have been found. The developer of this automation app would like to know about this case and resolve the collision.");
+
+                    cacheDirectoryPath = cacheDirectories.First().FullName;
+
+                    _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\", \"{uiDirectoryPath}\", and \"{cacheDirectoryPath}\"...");
+                }
+            }
+            else
+            {
+                _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\" and \"{uiDirectoryPath}\"...");
+            }
 
             var filesInRootDirectory = Directory.GetFiles(rootDirectoryPath);
             var filesInUiDirectory = Directory.GetFiles(uiDirectoryPath);
             var sourceFiles = filesInRootDirectory
                 .Concat(filesInUiDirectory)
                 .Select(filePath => new FileInfo(filePath))
+                .ToList()
             ;
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"{sourceFiles.Count()} found.");
+            if (cacheDirectoriesExist && !string.IsNullOrWhiteSpace(cacheDirectoryPath))
+            {
+                var filesInCache = Directory.GetFiles(cacheDirectoryPath);
+                var cachedSourceFiles = filesInCache.Select(filePath => new FileInfo(filePath)).ToDictionary(file => file.Name);
+
+                for (var fileIndex = EInteger.Number.Zero; fileIndex < sourceFiles.Count(); fileIndex++)
+                {
+                    var sourceFile = sourceFiles[fileIndex];
+                    var sourceFileName = sourceFile.Name;
+
+                    if (cachedSourceFiles.TryGetValue(sourceFileName, out var cachedSourceFile) && cachedSourceFile.LastWriteTimeUtc > sourceFile.LastWriteTimeUtc)
+                    {
+                        sourceFiles[fileIndex] = cachedSourceFile;
+                        cachedSourceFiles.Remove(sourceFileName);
+                    }
+                }
+
+                sourceFiles.AddRange(cachedSourceFiles.Values);
+            }
+
+            _logger.LogInfo($"{sourceFiles.Count()} found.");
 
             return sourceFiles;
         }
 
+        private static string GetLastWriteDate(IEnumerable<FileInfo> files)
+        {
+            _logger.LogInfo($"Selecting the most recent edit...");
+
+            var latestWriteDate = files.Select(file => file.LastWriteTimeUtc).OrderBy(time => time).Last().ToShortDateString();
+
+            _logger.LogInfo($"The latest edit has been done on {latestWriteDate}.");
+
+            return latestWriteDate;
+        }
+
         private static IEnumerable<FileInfo> GetBinFiles(IEnumerable<FileInfo> files)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Selecting BIN files...");
+            _logger.LogInfo($"Selecting BIN files...");
 
             var excludedBinFileNames = new string[]
             {
@@ -176,7 +323,7 @@ namespace WarThunderSimpleUpdateChecker
 
             var binFiles = files.Where(file => file.GetExtensionWithoutPeriod() == EFileExtension.Bin && !file.Name.IsIn(excludedBinFileNames));
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"{binFiles.Count()} found.");
+            _logger.LogInfo($"{binFiles.Count()} found.");
 
             return binFiles;
         }
@@ -184,64 +331,94 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Selecting Files
         #region Methods: Unpacking Files
 
-        private static IEnumerable<DirectoryInfo> CopyAndUnpackBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
+        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
         {
+            var tasks = new Dictionary<string, Task<DirectoryInfo>>();
+
             foreach (var sourceFile in sourceBinFiles)
             {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Unpacking {sourceFile.Name}...");
+                DirectoryInfo unpack()
+                {
+                    _logger.LogInfo($"Unpacking \"{sourceFile.Name}\"...");
 
-                var defaultTempLocation = Settings.TempLocation;
-                Settings.TempLocation = gameFileCopyDirectory.FullName;
+                    var defaultTempLocation = Settings.TempLocation;
+                    Settings.TempLocation = gameFileCopyDirectory.FullName;
 
-                _unpacker.Unpack(sourceFile);
+                    var outputPath = _unpacker.Unpack(sourceFile);
 
-                Settings.TempLocation = defaultTempLocation;
+                    Settings.TempLocation = defaultTempLocation;
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Unpacked.");
+                    _logger.LogInfo($"\"{sourceFile.Name}\" unpacked.");
+
+                    return new DirectoryInfo(outputPath);
+                }
+                var unpackTask = _taskFactory.StartNew(unpack);
+
+                tasks.Add($"{sourceFile.Name}", unpackTask);
             }
-
-            return gameFileCopyDirectory.GetDirectories();
+            return tasks;
         }
 
         #endregion Methods: Unpacking Files
         #region Methods: Decompressing Files
 
-        private static void DecompressBlkFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
+        private static void DecompressBlkFiles(DirectoryInfo unpackedDirectory)
         {
-            foreach (var unpackedDirectory in unpackedDirectories)
-            {
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing BLK files in {unpackedDirectory.Name}...");
+            _logger.LogInfo($"Decompressing BLK files in \"{unpackedDirectory.Name}\"...");
 
-                _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
+            _unpacker.Unpack(unpackedDirectory, ETool.BlkUnpacker);
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
-            }
+            _logger.LogInfo($"BLK files in \"{unpackedDirectory.Name}\" decompressed.");
         }
 
-        private static void DecompressDdsxFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
+        private static void DecompressDdsxFiles(DirectoryInfo unpackedDirectory)
         {
             var ddsxFilter = "*.ddsx";
 
             bool directoryContainsDdsxFiles(DirectoryInfo directrory) => directrory.GetFiles(ddsxFilter, SearchOption.AllDirectories).Any();
 
-            foreach (var unpackedDirectory in unpackedDirectories)
+            if (!directoryContainsDdsxFiles(unpackedDirectory))
+                return;
+
+            _logger.LogInfo($"Decompressing DDSX files and converting to PNG in \"{unpackedDirectory.Name}\"...");
+
+            foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories).Including(unpackedDirectory))
             {
-                if (!directoryContainsDdsxFiles(unpackedDirectory))
+                if (!directoryContainsDdsxFiles(subdirectory))
                     continue;
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressing DDSX files and converting to PNG in {unpackedDirectory.Name}...");
+                var retryAttempts = EInteger.Number.Ten;
+                var retryAttempt = EInteger.Number.One;
 
-                foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories).Including(unpackedDirectory))
+                void Try(Action method)
                 {
-                    if (!directoryContainsDdsxFiles(subdirectory))
-                        continue;
+                    try
+                    {
+                        method();
+                    }
+                    catch (Exception exception)
+                    {
+                        _logger.LogErrorSilently($"Error processing files in \"{subdirectory.FullName}\".", exception);
 
-                    _unpacker.Unpack(subdirectory, ETool.DdsxUnpacker);
-                    _converter.ConvertDdsToPng(subdirectory, SearchOption.AllDirectories);
+                        if (retryAttempt < retryAttempts)
+                        {
+                            retryAttempt++;
+
+                            Thread.Sleep(EInteger.Time.MillisecondsInSecond);
+                            Try(method);
+                        }
+                        else
+                        {
+                            throw new IOException($"After {retryAttempts} attempts {method} couldn't process \"{subdirectory.FullName}\".", exception);
+                        }
+                    }
                 }
 
-                _logger.LogInfo(ECoreLogCategory.Empty, $"Decompressed.");
+                Try(() => _unpacker.Unpack(subdirectory, ETool.DdsxUnpacker));
+                Try(() => _converter.ConvertDdsToPng(subdirectory, SearchOption.AllDirectories));
             }
+
+            _logger.LogInfo($"DDSX files in \"{unpackedDirectory.Name}\" decompressed and converted.");
         }
 
         #endregion Methods: Decompressing Files
@@ -249,7 +426,7 @@ namespace WarThunderSimpleUpdateChecker
 
         private static void RemoveCopiedSourceFiles(DirectoryInfo gameFileCopyDirectory)
         {
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Looking up leftover source files...");
+            _logger.LogInfo($"Looking up leftover source files...");
 
             var unwantedFileExtensions = new string[]
             {
@@ -263,16 +440,16 @@ namespace WarThunderSimpleUpdateChecker
             };
             var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions), SearchOption.AllDirectories).ToList();
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"{unwantedFiles.Count()} found.");
+            _logger.LogInfo($"{unwantedFiles.Count()} found.");
 
             Thread.Sleep(1000);
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Deleting leftover source files...");
+            _logger.LogInfo($"Deleting leftover source files...");
 
             for (var i = 0; i < unwantedFiles.Count(); i++)
                 unwantedFiles[i].Delete();
 
-            _logger.LogInfo(ECoreLogCategory.Empty, $"Deleted.");
+            _logger.LogInfo($"Leftover source files eleted.");
         }
 
         #endregion Methods: Clean-up
