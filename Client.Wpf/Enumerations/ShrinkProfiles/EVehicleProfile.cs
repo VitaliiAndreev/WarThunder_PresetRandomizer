@@ -9,5 +9,6 @@
         NationAndBranch,
         Branch,
         BranchAndCountry,
+        BranchAndClass,
     }
 }

@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\VehicleCountWithGaijinCharacterIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\VehicleCountWithFlagUniform.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -358,6 +362,9 @@
     </Compile>
     <Compile Include="Controls\VehicleCountWithFlag.xaml.cs">
       <DependentUpon>VehicleCountWithFlag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleCountWithGaijinCharacterIcon.xaml.cs">
+      <DependentUpon>VehicleCountWithGaijinCharacterIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VehicleCountWithFlagUniform.xaml.cs">
       <DependentUpon>VehicleCountWithFlagUniform.xaml</DependentUpon>
