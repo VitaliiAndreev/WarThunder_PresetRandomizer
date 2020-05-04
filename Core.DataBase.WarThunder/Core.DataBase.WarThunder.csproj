@@ -95,7 +95,9 @@
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensions.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableOfIVehicleExtensions.cs" />
     <Compile Include="Extensions\ILocalisationExtensions.cs" />
+    <Compile Include="Extensions\IOrderedEnumerableOfIVehicleExtensions.cs" />
     <Compile Include="Extensions\IVehicleGameModeParameterSet.cs" />
     <Compile Include="Helpers\Calculator.cs" />
     <Compile Include="Helpers\DataRepositoryFactoryWarThunder.cs" />
