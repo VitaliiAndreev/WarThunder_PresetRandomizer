@@ -101,6 +101,7 @@
     <Compile Include="Helpers\DataRepositoryFactoryWarThunder.cs" />
     <Compile Include="Helpers\DataRepositoryInMemoryWarThunder.cs" />
     <Compile Include="Helpers\DataRepositorySqliteWarThunder.cs" />
+    <Compile Include="Objects\Connectors\BranchClassPair.cs" />
     <Compile Include="Objects\Connectors\BranchCountryPair.cs" />
     <Compile Include="Objects\GroundVehicleTags.cs" />
     <Compile Include="Objects\Branch.cs" />

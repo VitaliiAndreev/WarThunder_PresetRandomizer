@@ -48,6 +48,19 @@
                             HorizontalAlignment="Left"/>
                     </Expander>
 
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Branches and Classes"
+                                x:Name="_vehiclesByBranchesAndClassesHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByBranchesAndClassesGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
+
                 </StackPanel>
 
                 <StackPanel
