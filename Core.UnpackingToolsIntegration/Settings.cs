@@ -1,5 +1,6 @@
 ﻿using Core.Enumerations;
 using Core.UnpackingToolsIntegration.Attributes;
+using System.IO;
 
 namespace Core.WarThunderExtractionToolsIntegration
 {
@@ -17,13 +18,23 @@ namespace Core.WarThunderExtractionToolsIntegration
         #endregion Constants
         #region Fields
 
+        private static string _warThunderLocation;
+
         private static string _klensysWarThunderToolsLocation;
 
         #endregion Fields
         #region Properties
 
         [RequiredSetting]
-        public static string WarThunderLocation { get; set; }
+        public static string WarThunderLocation
+        {
+            get => _warThunderLocation;
+            set
+            {
+                _warThunderLocation = value;
+                CacheLocation = GetCacheLocation();
+            }
+        }
         [RequiredSetting]
         public static string KlensysWarThunderToolsLocation
         {
@@ -37,8 +48,12 @@ namespace Core.WarThunderExtractionToolsIntegration
 
         public static string TempLocation { get; set; }
 
+        public static string CacheLocation { get; set; }
+
         #endregion Properties
 
-        private static string GetTempLocation() => _klensysWarThunderToolsLocation is null ? null : _klensysWarThunderToolsLocation + @"\_temp";
+        private static string GetTempLocation() => _klensysWarThunderToolsLocation is null ? null : Path.Combine(_klensysWarThunderToolsLocation, "_temp");
+
+        private static string GetCacheLocation() => _warThunderLocation is null ? null : Path.Combine(_warThunderLocation, "cache");
     }
 }
