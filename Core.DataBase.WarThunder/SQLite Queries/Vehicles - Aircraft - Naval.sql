@@ -1,23 +1,12 @@
 select
-	substr(nation.GaijinId, 9) [Nation]
-	,case lower(vehicle.Country)
-		when lower(substr(nation.GaijinId, 9)) then ''
-		else vehicle.Country
-	end [Country]
+	nation.AsEnumerationItem [Nation]
+	,vehicle.Country [Country]
 	,fullName.English [Name]
 	,vehicle.GaijinId [Gaijin ID]
 	,vehicle.Rank [Rank]
 	,vehicle.Class [Class]
-	,case subclass.First
-		when 'None' then ''
-		when vehicle.Class then ''
-		else subclass.First
-	end [Subclass 1]
-	,case subclass.Second
-		when 'None' then ''
-		when subclass.First then ''
-		else subclass.Second
-	end [Subclass 2]
+	,subclass.First [Subclass 1]
+	,subclass.Second [Subclass 2]
 	,vehicle.IsHiddenUnlessOwned [Hidden]
 	,vehicle.IsPremium [Premium]
 	,vehicle.IsPurchasableForGoldenEagles [GE]

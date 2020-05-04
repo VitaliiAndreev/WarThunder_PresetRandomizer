@@ -8,7 +8,7 @@
         Usa,
         Germany,
         Ussr,
-        Britain,
+        GreatBritain,
         Japan,
         China,
         Italy,

@@ -50,7 +50,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
 
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), false, Presets.Logger))
             {
-                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.Britain]);
+                var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.GreatBritain]);
                 var britishArmy = new Branch(dataRepository, EReference.BranchesFromEnumeration[EBranch.Army], britain);
 
                 var wingedBicycle = new Vehicle(dataRepository, "Winged Bycicle")

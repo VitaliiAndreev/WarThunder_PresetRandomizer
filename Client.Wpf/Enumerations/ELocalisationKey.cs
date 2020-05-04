@@ -28,7 +28,6 @@
         public const string Beta = nameof(Beta);
         public const string Boat = nameof(Boat);
         public const string Bomber = nameof(Bomber);
-        public const string Britain = nameof(Britain);
         public const string Bulgaria = nameof(Bulgaria);
         public const string Canada = nameof(Canada);
         public const string Cancel = nameof(Cancel);

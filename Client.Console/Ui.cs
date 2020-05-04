@@ -248,7 +248,7 @@ namespace Client.Console
                 case "uk":
                 case "britain":
                 case "commonwealth":
-                    return ENation.Britain;
+                    return ENation.GreatBritain;
                 case "japan":
                     return ENation.Japan;
                 case "italy":

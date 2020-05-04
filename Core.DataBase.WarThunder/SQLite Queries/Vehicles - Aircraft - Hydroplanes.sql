@@ -1,18 +1,12 @@
 select
-	substr(nation.GaijinId, 9) [Nation]
-	,case lower(vehicle.Country)
-		when lower(substr(nation.GaijinId, 9)) then ''
-		else vehicle.Country
-	end [Country]
+	nation.AsEnumerationItem [Nation]
+	,vehicle.Country [Country]
 	,fullName.English [Name]
 	,vehicle.GaijinId [Gaijin ID]
 	,vehicle.Rank [Rank]
 	,vehicle.Class [Class]
-	,case subclass.First
-		when 'None' then ''
-		when vehicle.Class then ''
-		else subclass.First
-	end [Subclass]
+	,subclass.First [Subclass 1]
+	,subclass.Second [Subclass 2]
 	,vehicle.IsHiddenUnlessOwned [Hidden]
 	,vehicle.IsPremium [Premium]
 	,vehicle.IsPurchasableForGoldenEagles [GE]
@@ -35,4 +29,4 @@ where
 	and vehicle.GaijinId not like '%_tutorial'
 	and vehicle.GaijinId not like 'uk_centaur_aa_mk_%'
 order by
-	[Nation], [Country], [Class], [Subclass], [Name]
+	[Nation], [Country], [Class], [Subclass 1], [Subclass 2], [Name]
