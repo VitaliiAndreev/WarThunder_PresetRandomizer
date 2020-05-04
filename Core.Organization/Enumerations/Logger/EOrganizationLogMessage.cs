@@ -13,6 +13,8 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string ClearingTempDirectory = $"{_Clearing} {_temp} {_folder}.";
         public static readonly string TempDirectoryCleared = $"{_Temp} {_folder} {_cleared}.";
 
+        public static readonly string SeveralCacheDirectoriesFound = $"{_Several} {_cache} {_directories} {_matching} {_the} {_given} {_version} {_have} {_been} {_found}: {{0}}.";
+
         public static readonly string PreparingGameFiles = $"{_Preparing} {_game} {_files}.";
         public static readonly string GameFilesPrepared = $"{_Game} {_files} {_prepared}.";
 
