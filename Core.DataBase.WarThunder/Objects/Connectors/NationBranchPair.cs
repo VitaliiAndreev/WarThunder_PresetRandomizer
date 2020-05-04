@@ -10,10 +10,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         #region Properties
 
         /// <summary> The nation. </summary>
-        public ENation Nation { get; private set; }
+        public ENation Nation { get; }
 
         /// <summary> The branch. </summary>
-        public EBranch Branch { get; private set; }
+        public EBranch Branch { get; }
 
         #endregion Properties
         #region Constructors

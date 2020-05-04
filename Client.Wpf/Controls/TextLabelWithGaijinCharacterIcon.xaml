@@ -8,9 +8,13 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
-    <StackPanel
-        x:Name="_panel"
-        Orientation="Horizontal">
+    <Grid
+        x:Name="_grid">
 
-    </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="_iconColumnDefinition"/>
+            <ColumnDefinition x:Name="_labelColumnDefinition"/>
+        </Grid.ColumnDefinitions>
+
+    </Grid>
 </base:TextLabel>

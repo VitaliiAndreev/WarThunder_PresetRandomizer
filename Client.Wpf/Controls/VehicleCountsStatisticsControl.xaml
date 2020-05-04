@@ -7,7 +7,7 @@
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     mc:Ignorable="d" 
     d:DesignHeight="450"
-    d:DesignWidth="810">
+    d:DesignWidth="910">
     <ScrollViewer
         x:Name="_scroll">
         <StackPanel>
@@ -61,6 +61,19 @@
                             HorizontalAlignment="Left"/>
                     </Expander>
 
+                    <Expander
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Vehicles by Classes and Nations"
+                                x:Name="_vehiclesByClassesAndNationsHeader"
+                                Style="{StaticResource TextBlockHeader16px}"/>
+                        </Expander.Header>
+                        <Grid
+                            x:Name="_vehiclesByClassesAndNationsGrid"
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Left"/>
+                    </Expander>
+
                 </StackPanel>
 
                 <StackPanel
@@ -78,7 +91,7 @@
                             Margin="0 0 0 10"
                             HorizontalAlignment="Left"/>
                     </Expander>
-
+                    
                     <Expander
                         IsExpanded="True">
                         <Expander.Header>
@@ -91,7 +104,7 @@
                             Margin="0 0 0 10"
                             HorizontalAlignment="Left"/>
                     </Expander>
-
+                    
                 </StackPanel>
                 
             </StackPanel>
