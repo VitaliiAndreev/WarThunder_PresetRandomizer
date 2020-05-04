@@ -13,7 +13,7 @@
     MinHeight="755"
     MinWidth="1160"
     Height="755"
-    Width="1478"
+    Width="1508"
     Loaded="OnLoaded"
     Closed="OnClosed">
     <Window.Resources>

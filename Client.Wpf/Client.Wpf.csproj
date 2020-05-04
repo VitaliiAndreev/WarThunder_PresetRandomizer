@@ -418,8 +418,8 @@
     <Compile Include="Controls\ResearchTreeNationControl.xaml.cs">
       <DependentUpon>ResearchTreeNationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Strategies\DisplayBasicVehicleInformationStrategy.cs" />
-    <Compile Include="Controls\Strategies\DisplayExtendedVehicleInformationStrategy.cs" />
+    <Compile Include="Controls\Strategies\DisplayVehicleInformationInResearchTreeStrategy.cs" />
+    <Compile Include="Controls\Strategies\DisplayVehicleInformationStandaloneStrategy.cs" />
     <Compile Include="Controls\Strategies\Interfaces\IDisplayVehicleInformationStrategy.cs" />
     <Compile Include="Controls\UpDownBattleRatingControl.xaml.cs">
       <DependentUpon>UpDownBattleRatingControl.xaml</DependentUpon>

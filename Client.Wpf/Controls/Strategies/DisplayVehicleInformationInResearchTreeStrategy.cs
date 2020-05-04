@@ -1,12 +1,11 @@
-﻿using Client.Wpf.Enumerations;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Text;
 
 namespace Client.Wpf.Controls.Strategies
 {
     /// <summary> A strategy for generating a formatted string with basic <see cref="IVehicle"/> information for the given <see cref="EGameMode"/>. </summary>
-    public class DisplayBasicVehicleInformationStrategy : DisplayVehicleInformationStrategy
+    public class DisplayVehicleInformationInResearchTreeStrategy : DisplayVehicleInformationStrategy
     {
         #region Methods: Output
 
@@ -18,14 +17,8 @@ namespace Client.Wpf.Controls.Strategies
         {
             var stringBuilder = new StringBuilder();
 
-            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
-
-            SetSharedLeftPart(stringBuilder, vehicle);
-
-            if (ShowPackTag(vehicle))
-                append(GetLocalisedString(ELocalisationKey.Pack));
-
-            SetSharedRightPart(stringBuilder, gameMode, vehicle);
+            SetFirstSharedPart(stringBuilder, gameMode, vehicle);
+            SetSecondSharedPart(stringBuilder, vehicle);
 
             return stringBuilder.ToString();
         }

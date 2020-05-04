@@ -32,7 +32,7 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowMarketIcon(IVehicle vehicle) => vehicle.IsSoldOnTheMarket;
 
-        public virtual bool ShowSpaceAfterSpecialIconsAndTags(IVehicle vehicle) => ShowEyeIcon(vehicle) || ShowControllerIcon(vehicle) || ShowMarketIcon(vehicle) || ShowPackTag(vehicle);
+        public virtual bool ShowSpaceAfterSpecialIconsAndTags(IVehicle vehicle) => ShowEyeIcon(vehicle) || ShowControllerIcon(vehicle) || ShowMarketIcon(vehicle) || ShowPackTag(vehicle) || ShowGoldenEagleCost(vehicle);
 
         public bool ShowBinocularsIcon(IVehicle vehicle) => vehicle.GroundVehicleTags?.CanScout ?? false;
 
@@ -56,7 +56,7 @@ namespace Client.Wpf.Controls.Strategies
         protected string GetLocalisedString(object localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey.ToString());
         protected string GetLocalisationText(ILocalisation localisation) => localisation?.GetLocalisation(WpfSettings.LocalizationLanguage);
 
-        protected void SetSharedLeftPart(StringBuilder stringBuilder, IVehicle vehicle)
+        protected void SetFirstSharedPart(StringBuilder stringBuilder, EGameMode gameMode, IVehicle vehicle)
         {
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
@@ -72,11 +72,11 @@ namespace Client.Wpf.Controls.Strategies
                 append(EGaijinCharacter.Controller);
             if (ShowSpaceAfterControllerIcon(vehicle))
                 append(ECharacter.Space);
-        }
 
-        protected void SetSharedRightPart(StringBuilder stringBuilder, EGameMode gameMode, IVehicle vehicle)
-        {
-            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+            if (ShowPackTag(vehicle))
+                append(GetLocalisedString(ELocalisationKey.Pack));
+            else if (ShowGoldenEagleCost(vehicle))
+                append($"{vehicle.EconomyData.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
                 append(EGaijinCharacter.GaijinCoin);
@@ -88,8 +88,12 @@ namespace Client.Wpf.Controls.Strategies
                 append($"{EGaijinCharacter.Binoculars}{ECharacter.Space}");
 
             append(GetBattleRating(gameMode, vehicle));
-            append($"{ESeparator.SpaceSlashSpace}");
-            append(GetRank(vehicle));
+        }
+
+        protected void SetSecondSharedPart(StringBuilder stringBuilder, IVehicle vehicle)
+        {
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
             append($"{ECharacter.Space}");
             append(GetClassIcon(vehicle));
         }

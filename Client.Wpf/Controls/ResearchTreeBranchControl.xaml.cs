@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Client.Wpf.Controls
@@ -179,6 +180,24 @@ namespace Client.Wpf.Controls
             }
         }
 
+        private void PopulateRankHeader(ERank rankKey, ResearchTreeRank rank)
+        {
+            var cellWithBorder = new Border { BorderThickness = new Thickness(EInteger.Number.Zero, EInteger.Number.One, EInteger.Number.Zero, EInteger.Number.One), BorderBrush = new SolidColorBrush(Colors.DarkGray) };
+
+            new TextBlock
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                TextAlignment = TextAlignment.Center,
+                FontWeight = FontWeights.Bold,
+                Text = rankKey.ToString(),
+            }.PutInto(cellWithBorder);
+
+            _grid.Add(cellWithBorder, EInteger.Number.Zero, rank.StartingRowNumber.Value - EInteger.Number.One);
+
+            Grid.SetRowSpan(cellWithBorder, rank.MaximumRowNumber - rank.StartingRowNumber.Value + EInteger.Number.One);
+        }
+
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
         /// <param name="branch"> The research tree branch to create cells with. </param>
         /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
@@ -189,9 +208,6 @@ namespace Client.Wpf.Controls
                 return;
 
             _researchTreeBranch = branch;
-
-            Enumerable.Range(EInteger.Number.Zero, _researchTreeBranch.ColumnCount).ToList().ForEach(number => _grid.ColumnDefinitions.Add(new ColumnDefinition()));
-            Enumerable.Range(EInteger.Number.Zero, _researchTreeBranch.RowCount).ToList().ForEach(number => _grid.RowDefinitions.Add(new RowDefinition()));
 
             loadingTracker.RanksPopulated = EInteger.Number.Zero;
             loadingTracker.RanksToPopulate = _researchTreeBranch.Count;
@@ -205,6 +221,8 @@ namespace Client.Wpf.Controls
                 loadingTracker.RowsPopulated = EInteger.Number.Zero;
                 loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + EInteger.Number.One;
 
+                PopulateRankHeader(rankKey, rank);
+
                 for (var rowNumber = rank.StartingRowNumber.Value; rowNumber <= rank.MaximumRowNumber; rowNumber++)
                 {
                     var rowIndex = rowNumber - EInteger.Number.One;
@@ -215,7 +233,7 @@ namespace Client.Wpf.Controls
                     for (var columnNumber = EInteger.Number.One; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
                     {
                         var rowNumberRelativeToRank = rowNumber - rank.StartingRowNumber.Value + EInteger.Number.One;
-                        var columnIndex = columnNumber - EInteger.Number.One;
+                        var columnIndex = columnNumber;
                         var cell = new ResearchTreeCellControl()
                         {
                             Style = this.GetStyle(_styleKeys[rankKey]),
@@ -244,6 +262,9 @@ namespace Client.Wpf.Controls
                 loadingTracker.CurrentlyPopulatedRank = string.Empty;
                 loadingTracker.RanksPopulated++;
             }
+
+            _grid.ColumnDefinitions.First().Width = new GridLength(EInteger.Number.Thirty, GridUnitType.Pixel);
+
             InitialiseToggleAllButton();
         }
 

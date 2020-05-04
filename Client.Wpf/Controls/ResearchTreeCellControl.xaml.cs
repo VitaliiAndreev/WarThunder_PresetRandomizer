@@ -53,7 +53,7 @@ namespace Client.Wpf.Controls
         /// <param name="isToggled"> The vehicle is toggled on/off by default. </param>
         internal void AddVehicle(IVehicle vehicle, bool isToggled)
         {
-            var vehicleControl = new ResearchTreeCellVehicleControl(_presenter, vehicle, new DisplayBasicVehicleInformationStrategy(), EVehicleCard.ResearchTree, isToggled);
+            var vehicleControl = new ResearchTreeCellVehicleControl(_presenter, vehicle, new DisplayVehicleInformationInResearchTreeStrategy(), EVehicleCard.ResearchTree, isToggled);
 
             _stackPanel.Children.Add(vehicleControl);
             VehicleControls.Add(vehicle.GaijinId, vehicleControl);
