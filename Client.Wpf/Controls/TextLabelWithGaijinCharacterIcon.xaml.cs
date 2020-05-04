@@ -1,8 +1,6 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
-using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.Enumerations;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,36 +23,54 @@ namespace Client.Wpf.Controls
             InitializeComponent();
         }
 
-        public TextLabelWithGaijinCharacterIcon(string gaijinIcon, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left, bool isBold = false)
-            : base(text, margin, textHorizontalAlignment, isBold)
+        public TextLabelWithGaijinCharacterIcon
+        (
+            char icon,
+            object iconTag,
+            string text,
+            Thickness margin,
+            MouseButtonEventHandler mouseDownHandler,
+            double iconColumnWidth,
+            double iconFontSize,
+            double? countColumnWidth = null,
+            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
+            bool isBold = false
+        ) : base(text, margin, textHorizontalAlignment, isBold)
         {
             InitializeComponent();
 
-            _iconStyle = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake16px);
+            _iconStyle = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuakeUncondensed);
+            _iconColumnDefinition.Width = new GridLength(iconColumnWidth, GridUnitType.Pixel);
+            _labelColumnDefinition.Width = countColumnWidth.HasValue
+                ? new GridLength(countColumnWidth.Value, GridUnitType.Pixel)
+                : new GridLength(default, GridUnitType.Auto);
 
-            var icon = new TextBlock
+            var iconControl = new TextBlock
             {
-                Margin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero),
                 Style = _iconStyle,
-                Text = gaijinIcon.ToString(),
+                Margin = new Thickness(EInteger.Number.Zero, -EInteger.Number.Ten, EInteger.Number.Three, -EInteger.Number.Ten),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                TextAlignment = TextAlignment.Center,
+                FontSize = iconFontSize,
+                Text = icon.ToString(),
+                ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()),
             };
 
-            _panel.Children.Add(icon);
-            _panel.Children.Add(_label);
+            _grid.Add(iconControl, EInteger.Number.Zero, EInteger.Number.Zero);
+            _grid.Add(_label, EInteger.Number.One, EInteger.Number.Zero);
 
-            MouseDown += mouseDownHandler;
-        }
-
-        public TextLabelWithGaijinCharacterIcon(char gaijinIcon, string text, Thickness margin, MouseButtonEventHandler mouseDownHandler, HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left, bool isBold = false)
-            : this(gaijinIcon.ToString(), text, margin, mouseDownHandler, textHorizontalAlignment, isBold)
-        {
+            if (!(mouseDownHandler is null))
+                MouseDown += mouseDownHandler;
         }
 
         #endregion Constructors
 
-        public void SetTag<T>(T tag)
+        public TextLabelWithGaijinCharacterIcon WithTag<T>(T tag)
         {
             Tag = tag;
+
+            return this;
         }
     }
 }

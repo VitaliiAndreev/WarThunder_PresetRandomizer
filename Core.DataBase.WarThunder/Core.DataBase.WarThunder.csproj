@@ -103,6 +103,7 @@
     <Compile Include="Helpers\DataRepositorySqliteWarThunder.cs" />
     <Compile Include="Objects\Connectors\BranchClassPair.cs" />
     <Compile Include="Objects\Connectors\BranchCountryPair.cs" />
+    <Compile Include="Objects\Connectors\NationClassPair.cs" />
     <Compile Include="Objects\GroundVehicleTags.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\Interfaces\IGroundVehicleTags.cs" />

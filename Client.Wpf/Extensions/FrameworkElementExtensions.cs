@@ -1,6 +1,7 @@
 ﻿using Core.Enumerations;
 using Core.Extensions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -9,6 +10,8 @@ namespace Client.Wpf.Extensions
     /// <summary> Methods extending the <see cref="FrameworkElement"/> class. </summary>
     public static class FrameworkElementExtensions
     {
+        #region Methods: Getting
+
         public static BitmapSource GetBitmapSource(this FrameworkElement frameworkElement, string resourceKey) =>
             frameworkElement.FindResource(resourceKey) as BitmapSource;
 
@@ -47,6 +50,12 @@ namespace Client.Wpf.Extensions
         public static T GetTag<T>(this FrameworkElement frameworkElement) =>
             frameworkElement.Tag.CastTo<T>();
 
+        #endregion Methods: Getting
+
+        public static void PutInto(this FrameworkElement element, Border borderControl) => borderControl.Child = element;
+
+        #region Methods: Working with Size
+
         /// <summary> Sets the size of the <paramref name="frameworkElement"/> along both axes. </summary>
         /// <param name="frameworkElement"> The framework element whose size to set. </param>
         /// <param name="size"> The new size of <paramref name="frameworkElement"/> along both axes. </param>
@@ -62,5 +71,7 @@ namespace Client.Wpf.Extensions
             frameworkElement.Height = height;
             frameworkElement.Width = width;
         }
+
+        #endregion Methods: Working with Size
     }
 }

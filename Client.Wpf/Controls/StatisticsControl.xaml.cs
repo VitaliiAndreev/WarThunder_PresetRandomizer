@@ -36,6 +36,8 @@ namespace Client.Wpf.Controls
 
         internal IDictionary<BranchClassPair, IOrderedEnumerable<IVehicle>> VehiclesByBranchesAndClasses { get; private set; }
 
+        internal IDictionary<NationClassPair, IOrderedEnumerable<IVehicle>> VehiclesByClassesAndNations { get; private set; }
+
         #endregion Properties
         #region Constructors
 
@@ -90,6 +92,9 @@ namespace Client.Wpf.Controls
 
         internal void SetVehiclesByBranchesAndClasses(IDictionary<BranchClassPair, IOrderedEnumerable<IVehicle>> collection) =>
             VehiclesByBranchesAndClasses = collection;
+
+        internal void SetVehiclesByClassesAndNations(IDictionary<NationClassPair, IOrderedEnumerable<IVehicle>> collection) =>
+            VehiclesByClassesAndNations = collection;
 
         #endregion Methods: Initialisation
         #region Methods: Event Handlers
