@@ -1,5 +1,7 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
+using Core.Extensions;
+using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects.Connectors
 {
@@ -46,10 +48,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             unchecked
             {
-                var hash = 101;
+                var hash = EInteger.Number.PrimesAboveHundred.First();
 
-                hash = hash * 103 + Nation.GetHashCode();
-                hash = hash * 107 + Branch.GetHashCode();
+                hash = hash * EInteger.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
+                hash = hash * EInteger.Number.PrimesAboveHundred.Third() + Branch.GetHashCode();
 
                 return hash;
             }

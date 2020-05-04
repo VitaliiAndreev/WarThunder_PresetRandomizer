@@ -38,7 +38,7 @@
                     <Expander
                         IsExpanded="True">
                         <Expander.Header>
-                            <TextBlock Text="Vehicles by Nations and Branches"
+                            <TextBlock Text="Vehicles by Branches and Nations"
                                 x:Name="_vehiclesByBranchesAndNationsHeader"
                                 Style="{StaticResource TextBlockHeader16px}"/>
                         </Expander.Header>
