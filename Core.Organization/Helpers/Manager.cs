@@ -51,8 +51,9 @@ namespace Core.Organization.Helpers
 
         /// <summary> Whether a new database should be generated. </summary>
         private bool _generateNewDatabase;
+        private Version _gameClientVersion;
         /// <summary> The string representation of the game client version. </summary>
-        private string _gameClientVersion;
+        private string _gameClientVersionString;
         private Version _latestAvailableDatabaseVersion;
 
         /// <summary> An instance of a file manager. </summary>
@@ -194,8 +195,11 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Reads and stores the version of the game client. </summary>
-        public void InitializeGameClientVersion() =>
-            _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current)).ToString();
+        public void InitializeGameClientVersion()
+        {
+            _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current));
+            _gameClientVersionString = _gameClientVersion.ToString();
+        }
 
         /// <summary> Initializes memebers of the <see cref="EReference"/> class. </summary>
         private void InitializeReferences()
@@ -271,7 +275,7 @@ namespace Core.Organization.Helpers
             {
                 if (_generateDatabase && _generateNewDatabase)
                 {
-                    var databaseFileName = $"{_gameClientVersion}{ECharacter.Period}{EFileExtension.SqLite3}";
+                    var databaseFileName = $"{_gameClientVersionString}{ECharacter.Period}{EFileExtension.SqLite3}";
                     var databaseJournalFileName = $"{databaseFileName}-journal";
 
                     _fileManager.DeleteFiles(new string[] { databaseFileName, databaseJournalFileName });
@@ -289,14 +293,14 @@ namespace Core.Organization.Helpers
         /// <summary> Checks for an existing database and initialises the <see cref="_generateNewDatabase"/> field appropriately. </summary>
         private void CheckForExistingDatabase()
         {
-            if (string.IsNullOrWhiteSpace(_gameClientVersion) && _latestAvailableDatabaseVersion is Version)
+            if (string.IsNullOrWhiteSpace(_gameClientVersionString) && _latestAvailableDatabaseVersion is Version)
             {
                 LogWarn(EOrganizationLogMessage.WarThunderVersionNotInitialised);
                 _generateNewDatabase = false;
             }
-            else if (_latestAvailableDatabaseVersion is null || !_gameClientVersion.IsIn(_latestAvailableDatabaseVersion.ToString()))
+            else if (_latestAvailableDatabaseVersion is null || !_gameClientVersionString.IsIn(_latestAvailableDatabaseVersion.ToString()))
             {
-                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersion));
+                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersionString));
                 _generateNewDatabase = true;
             }
             else
@@ -317,7 +321,7 @@ namespace Core.Organization.Helpers
             {
                 var latestAvailableDatabaseVersion = _latestAvailableDatabaseVersion.ToString();
 
-                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _generateDatabase ? (_gameClientVersion ?? latestAvailableDatabaseVersion) : latestAvailableDatabaseVersion, false, Assembly.Load(EAssembly.DataBaseMapping));
+                _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _generateDatabase ? (_gameClientVersionString ?? latestAvailableDatabaseVersion) : latestAvailableDatabaseVersion, false, Assembly.Load(EAssembly.DataBaseMapping));
 
                 LogInfo(EOrganizationLogMessage.DatabaseConnectionEstablished);
             }
@@ -411,6 +415,32 @@ namespace Core.Organization.Helpers
             return new DirectoryInfo(Path.Combine(_unpacker.Unpack(sourceFile), outputSubdirectory));
         }
 
+        internal DirectoryInfo Unpack(FileInfo sourceFile, string outputSubdirectory = "")
+        {
+            return new DirectoryInfo(Path.Combine(_unpacker.Unpack(sourceFile), outputSubdirectory));
+        }
+
+        private DirectoryInfo GetCachesDirectory()
+        {
+            var cacheDirectory = new DirectoryInfo(Settings.CacheLocation);
+
+            if (cacheDirectory.Exists)
+            {
+                var cacheDirectories = cacheDirectory
+                    .GetDirectories($"binary.{_gameClientVersion.ToString(EInteger.Number.Three)}*", SearchOption.TopDirectoryOnly)
+                    .OrderByDescending(directory => directory.LastWriteTimeUtc);
+
+                if (cacheDirectories.Any())
+                {
+                    if (cacheDirectories.HasSeveral())
+                        throw new AmbiguousMatchException(EOrganizationLogMessage.SeveralCacheDirectoriesFound.FormatFluently(cacheDirectories.Select(directory => $"\"{directory.Name}\"").StringJoin(ESeparator.CommaAndSpace)));
+
+                    return cacheDirectories.First();
+                }
+            }
+            return null;
+        }
+
         /// <summary> Unpacks a file with the <paramref name="packedFileName"/> and gets files of the <paramref name="fileType"/> from its contents, doing conversions if necessary. </summary>
         /// <param name="fileType"> The type of files to search for after unpacking. </param>
         /// <param name="packedFileName"> The name of the packed file. </param>
@@ -419,7 +449,19 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         internal IEnumerable<FileInfo> GetFiles(string fileType, string packedFileName, string warThunderSubdirectory = "", string processedSubdirectory = "")
         {
-            var outputDirectory = Unpack(packedFileName, warThunderSubdirectory, processedSubdirectory);
+            var sourceFile = _fileManager.GetFileInfo(Path.Combine(Settings.WarThunderLocation, warThunderSubdirectory), packedFileName);
+            var outputDirectory = default(DirectoryInfo);
+
+            if (fileType == EFileExtension.Blkx)
+            {
+                var cachesDirectory = GetCachesDirectory();
+                
+                if (cachesDirectory is DirectoryInfo && cachesDirectory.GetFiles(packedFileName, SearchOption.TopDirectoryOnly).FirstOrDefault() is FileInfo cachedFile && cachedFile.LastWriteTimeUtc > sourceFile.LastWriteTimeUtc)
+                    outputDirectory = Unpack(cachedFile, processedSubdirectory);
+            }
+
+            if (outputDirectory is null)
+                outputDirectory = Unpack(sourceFile, processedSubdirectory);
 
             return GetFiles(fileType, outputDirectory);
         }
@@ -522,7 +564,7 @@ namespace Core.Organization.Helpers
             if (_generateNewDatabase)
                 LogInfo(EOrganizationLogMessage.CreatingBlankDatabase);
 
-            _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _gameClientVersion, _generateNewDatabase, Assembly.Load(EAssembly.DataBaseMapping));
+            _dataRepository = _dataRepositoryFactory.Create(EDataRepository.SqliteSingleSession, _gameClientVersionString, _generateNewDatabase, Assembly.Load(EAssembly.DataBaseMapping));
 
             if (_generateNewDatabase)
                 LogInfo(EOrganizationLogMessage.BlankDatabaseCreated);

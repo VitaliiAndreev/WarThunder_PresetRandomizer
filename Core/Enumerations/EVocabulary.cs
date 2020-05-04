@@ -207,6 +207,7 @@
         protected const string _details = _d + "etails";
         protected const string _dialog = _d + "ia" + _log;
         protected const string _direct = _di + _rect;
+        protected const string _directories = _direct + _or + _i + _es;
         protected const string _directory = _direct + _ory;
         protected const string _disabled = _d + "isable" + _d;
         protected const string _Disposal = "Disposal";
