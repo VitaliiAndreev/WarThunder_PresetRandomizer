@@ -24,6 +24,9 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for VehicleCountsStatisticsControl.xaml. </summary>
     public partial class VehicleCountsStatisticsControl : LocalisedUserControl
     {
+        private double _savedVerticalScrollOffset = EInteger.Number.Zero;
+        private double _savedHorizontalScrollOffset = EInteger.Number.Zero;
+
         #region Fields
 
         private bool _initialised;
@@ -741,6 +744,17 @@ namespace Client.Wpf.Controls
         #endregion Methods: Control Population
         #region Methods: Event Handlers
 
+        private void OnScrollViewerLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_scroll.VerticalOffset != _savedVerticalScrollOffset || _scroll.HorizontalOffset != _savedHorizontalScrollOffset)
+                RestoreScrollOffset();
+        }
+
+        private void OnScrollViewerUnloaded(object sender, RoutedEventArgs e)
+        {
+            SaveScrollOffset();
+        }
+
         private bool CategoryMouseDownIsHandled(object sender, MouseButtonEventArgs eventArguments, out FrameworkElement senderElement)
         {
             if (eventArguments.LeftButton == MouseButtonState.Pressed)
@@ -1013,15 +1027,16 @@ namespace Client.Wpf.Controls
         #endregion Methods: Event Handlers
         #region Methods: Scrolling
 
-        public Tuple<double, double> GetScrollOffset()
+        internal void SaveScrollOffset()
         {
-            return new Tuple<double, double>(_scroll.VerticalOffset, _scroll.HorizontalOffset);
+            _savedVerticalScrollOffset = _scroll.VerticalOffset;
+            _savedHorizontalScrollOffset = _scroll.HorizontalOffset;
         }
 
-        public void ScrollTo(double verticalOffset, double horizontalOffset)
+        public void RestoreScrollOffset()
         {
-            _scroll.ScrollToVerticalOffset(verticalOffset);
-            _scroll.ScrollToHorizontalOffset(horizontalOffset);
+            _scroll.ScrollToVerticalOffset(_savedVerticalScrollOffset);
+            _scroll.ScrollToHorizontalOffset(_savedHorizontalScrollOffset);
         }
 
         #endregion Methods: Scrolling

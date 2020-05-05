@@ -21,9 +21,6 @@ namespace Client.Wpf.Controls
 
         private IMainWindowPresenter _presenter;
 
-        private double? _vehicleCountControlVerticalScrollOffset;
-        private double? _vehicleCountControlHorizontalScrollOffset;
-
         #endregion Fields
         #region Properties
 
@@ -116,17 +113,6 @@ namespace Client.Wpf.Controls
             {
                 Initialise(_presenter);
 
-                if (e.AddedItems.Contains(_vehicleCountsTab) && _vehicleCountControlVerticalScrollOffset.HasValue && _vehicleCountControlHorizontalScrollOffset.HasValue)
-                {
-                    _vehicleCountsControl.ScrollTo(_vehicleCountControlVerticalScrollOffset.Value, _vehicleCountControlHorizontalScrollOffset.Value);
-                }
-                else if (e.RemovedItems.Contains(_vehicleCountsTab))
-                {
-                    var offset = _vehicleCountsControl.GetScrollOffset();
-
-                    _vehicleCountControlVerticalScrollOffset = offset.Item1;
-                    _vehicleCountControlHorizontalScrollOffset = offset.Item2;
-                }
                 e.Handled = true;
             }
         }
