@@ -3,6 +3,7 @@
     public enum EVehicleProfile
     {
         None,
+        Full,
         Nation,
         NationAndCountry,
         Country,

@@ -9,10 +9,22 @@ namespace Core.DataBase.WarThunder.Extensions
     {
         #region Sorting
 
+        public static IOrderedEnumerable<IVehicle> OrderByNationCountryBranchClassSubclassRankId(this IEnumerable<IVehicle> vehicles)
+        {
+            return vehicles
+                .AsOrderedEnumerable()
+                .ThenByNation()
+                .ThenByCountry()
+                .ThenByBranch()
+                .ThenByClassSubclassRankId()
+            ;
+        }
+
         public static IOrderedEnumerable<IVehicle> OrderByNationSubclassRankId(this IEnumerable<IVehicle> vehicles)
         {
             return vehicles
-                .OrderBy(vehicle => vehicle.Nation.AsEnumerationItem)
+                .AsOrderedEnumerable()
+                .ThenByNation()
                 .ThenBySubclassRankId()
             ;
         }

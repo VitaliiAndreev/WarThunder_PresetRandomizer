@@ -143,5 +143,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         void SetPortrait(byte[] bytes);
 
         #endregion Methods: Initialization
+
+        IEnumerable<EVehicleAvailability> GetAvailabilityCategories();
     }
 }

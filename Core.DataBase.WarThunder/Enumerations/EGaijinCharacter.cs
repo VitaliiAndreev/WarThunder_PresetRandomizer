@@ -31,6 +31,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char LightCruiserPip = '␎';
         public const char LightTankPip = '┪';
         public const char MediumTankPip = '┬';
+        public const char Officer = '╵';
         public const char Premium = '╞';
         public const char Research = '▉';
         public const char RisingSun = '▅';

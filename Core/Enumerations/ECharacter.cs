@@ -15,6 +15,7 @@ namespace Core.Enumerations
         public const char Colon = ':';
         public const char Comma = ',';
         public const char Dollar = '$';
+        public const char DollarFullwidth = '＄';
         public const string Eye = "👁";
         public const char Grave = '`';
         public const char Minus = '-';

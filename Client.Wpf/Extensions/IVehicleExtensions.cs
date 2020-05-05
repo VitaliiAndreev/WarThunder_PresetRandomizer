@@ -13,6 +13,27 @@ namespace Client.Wpf.Extensions
 
             return profile switch
             {
+                EVehicleProfile.Full => new
+                {
+                    vehicle.GaijinId,
+                    Name = vehicle.ResearchTreeName.GetLocalisation(language),
+                    Nation = localise(vehicle.Nation.AsEnumerationItem),
+                    Country = localise(vehicle.Country),
+                    Branch = localise(vehicle.Branch.AsEnumerationItem),
+                    Rank = vehicle.RankAsEnumerationItem,
+                    Class = localise(vehicle.Class),
+                    Subclass1 = localise(vehicle.Subclasses.First),
+                    Subclass2 = localise(vehicle.Subclasses.Second),
+                    vehicle.IsResearchable,
+                    vehicle.IsSquadronVehicle,
+                    vehicle.IsHiddenUnlessOwned,
+                    vehicle.IsPremium,
+                    vehicle.IsPurchasableForGoldenEagles,
+                    vehicle.GiftedToNewPlayersForSelectingTheirFirstBranch,
+                    vehicle.IsSoldInTheStore,
+                    vehicle.IsSoldOnTheMarket,
+                    vehicle.IsAvailableOnlyOnConsoles,
+                },
                 EVehicleProfile.Nation => new
                 {
                     vehicle.GaijinId,

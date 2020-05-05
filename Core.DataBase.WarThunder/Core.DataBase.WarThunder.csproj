@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
     <Compile Include="Enumerations\EGaijinCharacter.cs" />
+    <Compile Include="Enumerations\EVehicleAvailability.cs" />
     <Compile Include="Enumerations\EVehicleBranchTag.cs" />
     <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
+    <Compile Include="Extensions\EVehicleAvailabilityExtensions.cs" />
     <Compile Include="Extensions\EVehicleBranchTagExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensions.cs" />
