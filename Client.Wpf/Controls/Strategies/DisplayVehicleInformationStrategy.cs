@@ -6,6 +6,8 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Client.Wpf.Controls.Strategies
@@ -49,6 +51,8 @@ namespace Client.Wpf.Controls.Strategies
         public bool ShowSilverLionCosts(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.PurchaseCostInSilver.IsPositive();
 
         public bool ShowPremiumIcon(IVehicle vehicle) => vehicle.IsPremium;
+
+        public bool ShowTorpedoBomberTagAsClass(IVehicle vehicle) => vehicle.Branch.AsEnumerationItem == EBranch.Aviation && vehicle.AircraftTags.IsTorpedoBomber;
 
         #endregion Methods: Checks
         #region Methods: Output
@@ -132,6 +136,28 @@ namespace Client.Wpf.Controls.Strategies
 
             if (ShowSecondSubclass(vehicle))
                 append($"{ECharacter.Slash}{ECharacter.Space}{GetLocalisedString(vehicle.Subclasses.Second)}");
+
+            if (ShowTorpedoBomberTagAsClass(vehicle))
+                append($"{ECharacter.Slash}{ECharacter.Space}{GetLocalisedString(EVehicleBranchTag.TorpedoBomber)}");
+
+            return stringBuilder.ToString();
+        }
+
+        public string GetVehicleCardTagRow(IVehicle vehicle)
+        {
+            var stringBuilder = new StringBuilder();
+
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
+            var excludedTags = new List<EVehicleBranchTag> { EVehicleBranchTag.Scout, EVehicleBranchTag.TorpedoBomber };
+            var tagString = vehicle
+                .Tags
+                .Where(tag => !tag.IsDefault() && !tag.IsIn(excludedTags))
+                .Select(tag => GetLocalisedString(tag))
+                .StringJoin(ESeparator.SpaceSlashSpace)
+            ;
+
+            append(tagString);
 
             return stringBuilder.ToString();
         }
