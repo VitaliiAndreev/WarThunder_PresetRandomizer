@@ -24,14 +24,9 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for VehicleCountsStatisticsControl.xaml. </summary>
     public partial class VehicleCountsStatisticsControl : LocalisedUserControl
     {
-        private double _savedVerticalScrollOffset = EInteger.Number.Zero;
-        private double _savedHorizontalScrollOffset = EInteger.Number.Zero;
-
         #region Fields
 
-        private bool _initialised;
-
-        private StatisticsControl _statisticsControl;
+        #region Readonly
 
         private readonly int _categoryHorizontalMargin;
         private readonly int _categoryVerticalMargin;
@@ -57,6 +52,15 @@ namespace Client.Wpf.Controls
 
         private readonly double _availabilityCategoryIconColumnWidth;
         private readonly double _classIconColumnWidth;
+
+        #endregion Readonly
+
+        private bool _initialised;
+
+        private StatisticsControl _statisticsControl;
+
+        private double _savedVerticalScrollOffset = EInteger.Number.Zero;
+        private double _savedHorizontalScrollOffset = EInteger.Number.Zero;
 
         #endregion Fields
         #region Constructors

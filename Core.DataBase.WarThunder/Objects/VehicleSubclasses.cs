@@ -49,15 +49,11 @@ namespace Core.DataBase.WarThunder.Objects
         {
             get
             {
-                var allSubclasses = new HashSet<EVehicleSubclass>();
-
                 if (First.HasValue)
-                    allSubclasses.Add(First.Value);
+                    yield return First.Value;
 
                 if (Second.HasValue)
-                    allSubclasses.Add(Second.Value);
-
-                return allSubclasses.AsEnumerable();
+                    yield return Second.Value;
             }
         }
 

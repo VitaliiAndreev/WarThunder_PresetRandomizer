@@ -14,7 +14,7 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Fields
         #region Properties
 
-        public abstract IEnumerable<EVehicleBranchTag> All { get; protected set; }
+        public abstract IEnumerable<EVehicleBranchTag> All { get; }
 
         #endregion Properties
         #region Indexers

@@ -181,11 +181,11 @@ namespace Core.DataBase.WarThunder.Objects
         {
             get
             {
-                if (Branch.AsEnumerationItem == EBranch.Army)
-                    return GroundVehicleTags.All;
+                if (Branch?.AsEnumerationItem == EBranch.Army)
+                    return GroundVehicleTags?.All;
 
-                else if (Branch.AsEnumerationItem == EBranch.Aviation)
-                    return AircraftTags.All;
+                else if (Branch?.AsEnumerationItem == EBranch.Aviation)
+                    return AircraftTags?.All;
 
                 return new List<EVehicleBranchTag>();
             }
@@ -471,7 +471,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Methods: Overrides
 
-        public IEnumerable<EVehicleAvailability> GetAvailabilityCategories()
+        public virtual IEnumerable<EVehicleAvailability> GetAvailabilityCategories()
         {
             var availabilityCategories = new List<EVehicleAvailability> { EVehicleAvailability.All };
 
