@@ -29,6 +29,13 @@ namespace Core.DataBase.WarThunder.Extensions
             return orderedVehicles
                 .ThenByFirstSubclass()
                 .ThenBySecondSubclass()
+                .ThenByRankId()
+            ;
+        }
+
+        public static IOrderedEnumerable<IVehicle> ThenByRankId(this IOrderedEnumerable<IVehicle> orderedVehicles)
+        {
+            return orderedVehicles
                 .ThenByRank()
                 .ThenByGaijinId()
             ;

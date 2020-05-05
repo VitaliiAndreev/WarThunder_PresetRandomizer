@@ -15,5 +15,7 @@
         NationAndClass,
         Tag,
         NationAndTag,
+        Subclass,
+        NationAndSubclass,
     }
 }

@@ -44,6 +44,13 @@ namespace Core.DataBase.WarThunder.Extensions
                 .ThenBySubclassRankId();
         }
 
+        public static IOrderedEnumerable<IVehicle> OrderByRankId(this IEnumerable<IVehicle> vehicles)
+        {
+            return vehicles
+                .AsOrderedEnumerable()
+                .ThenByRankId();
+        }
+
         #endregion Sorting
     }
 }

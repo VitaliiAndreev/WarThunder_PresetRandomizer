@@ -203,6 +203,7 @@
   <Line key="VehiclesByCountriesAndBranches" value="Техника по странам и веткам"/>
   <Line key="VehiclesByCountriesAndNations" value="Техника по странам и нациям"/>
   <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
+  <Line key="VehiclesBySubclassesAndNations" value="Техника по подклассам и нациям"/>
   <Line key="VehiclesByTagsAndNations" value="Техника по меткам и нациям"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
