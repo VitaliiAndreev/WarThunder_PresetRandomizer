@@ -53,8 +53,12 @@ namespace Client.Wpf.Controls
 
             _fullName.Text = _vehicle.FullName?.GetLocalisation(WpfSettings.LocalizationLanguage) ?? _vehicle.GaijinId;
             _class.Text = _displayStrategy.GetVehicleCardClassRow(_vehicle);
+            _tags.Text = _displayStrategy.GetVehicleCardTagRow(_vehicle);
             _countryRankAndBattleRating.Text = _displayStrategy.GetVehicleCardCountryRow(_vehicle);
             _requirements.Text = _displayStrategy.GetVehicleCardRequirementsRow(_vehicle);
+
+            if (string.IsNullOrWhiteSpace(_tags.Text))
+                _tags.Visibility = Visibility.Collapsed;
         }
 
         private void SetPortrait()

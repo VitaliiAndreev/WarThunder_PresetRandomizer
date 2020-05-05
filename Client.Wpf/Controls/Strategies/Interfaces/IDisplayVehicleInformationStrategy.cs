@@ -40,6 +40,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowPremiumIcon(IVehicle vehicle);
 
+        bool ShowTorpedoBomberTagAsClass(IVehicle vehicle);
+
         #endregion Methods: Checks
         #region Methods: Output
 
@@ -58,6 +60,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
         string GetVehicleInfoBottomRow(EGameMode gameMode, IVehicle vehicle);
 
         string GetVehicleCardClassRow(IVehicle vehicle);
+
+        string GetVehicleCardTagRow(IVehicle vehicle);
 
         string GetVehicleCardCountryRow(IVehicle vehicle);
 

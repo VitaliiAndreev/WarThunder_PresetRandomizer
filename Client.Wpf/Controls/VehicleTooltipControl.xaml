@@ -24,6 +24,10 @@
                     x:Name="_class"
                     Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
+            <TextBlock Text="Tags"
+                    x:Name="_tags"
+                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+
             <WrapPanel HorizontalAlignment="Center">
 
                 <Image
