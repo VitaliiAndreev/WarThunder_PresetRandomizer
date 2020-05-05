@@ -14,7 +14,7 @@ namespace Core.DataBase.WarThunder.Extensions
         public static IOrderedEnumerable<IVehicle> ThenByFirstSubclass(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Subclasses.First);
         public static IOrderedEnumerable<IVehicle> ThenBySecondSubclass(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Subclasses.Second);
         public static IOrderedEnumerable<IVehicle> ThenByRank(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Rank);
-        public static IOrderedEnumerable<IVehicle> ThenByGaijinId(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Rank);
+        public static IOrderedEnumerable<IVehicle> ThenByGaijinId(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.GaijinId);
 
         public static IOrderedEnumerable<IVehicle> ThenByClassSubclassRankId(this IOrderedEnumerable<IVehicle> vehicles)
         {
