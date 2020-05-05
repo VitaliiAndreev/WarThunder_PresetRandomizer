@@ -177,6 +177,21 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
         public virtual ERank RankAsEnumerationItem => Rank.CastTo<ERank>();
 
+        public virtual IEnumerable<EVehicleBranchTag> Tags
+        {
+            get
+            {
+                if (Branch.AsEnumerationItem == EBranch.Army)
+                    return GroundVehicleTags.All;
+
+                else if (Branch.AsEnumerationItem == EBranch.Aviation)
+                    return AircraftTags.All;
+
+                return new List<EVehicleBranchTag>();
+            }
+            protected set { }
+        }
+
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 

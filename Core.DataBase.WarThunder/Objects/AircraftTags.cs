@@ -6,6 +6,7 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
 using Core.Extensions;
 using NHibernate.Mapping.Attributes;
+using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -40,6 +41,21 @@ namespace Core.DataBase.WarThunder.Objects
         public override IVehicle Vehicle { get; protected set; }
 
         #endregion Association Properties
+        #region Non-Persistent Properties
+
+        public override IEnumerable<EVehicleBranchTag> All
+        {
+            get
+            {
+                if (IsUntagged) yield return EVehicleBranchTag.UntaggedAircraft;
+                if (IsNavalAircraft) yield return EVehicleBranchTag.NavalAircraft;
+                if (IsHydroplane) yield return EVehicleBranchTag.Hydroplane;
+                if (IsTorpedoBomber) yield return EVehicleBranchTag.TorpedoBomber;
+            }
+            protected set { }
+        }
+
+        #endregion Non-Persistent Properties
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>

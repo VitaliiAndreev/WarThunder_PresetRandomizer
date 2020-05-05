@@ -13,5 +13,7 @@
         BranchAndClass,
         Class,
         NationAndClass,
+        Tag,
+        NationAndTag,
     }
 }
