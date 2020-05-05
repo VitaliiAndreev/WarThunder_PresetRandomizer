@@ -78,7 +78,6 @@ namespace Client.Wpf.Controls
             _flagColumnWidth = EInteger.Number.Seventeen;
 
             _countColumnWidthForThreeDigits = EInteger.Number.Twenty;
-            _countColumnWidthForFourDigits = EInteger.Number.TwentySeven;
 
             _branchIconFontSize = EInteger.Number.Twenty;
 
