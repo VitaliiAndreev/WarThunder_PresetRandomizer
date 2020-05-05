@@ -177,6 +177,9 @@
   <Line key="Subclass2" value="Подкласс 2"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
   <Line key="Sweden" value="Швеция"/>
+  <Line key="Tag1" value="Метка 1"/>
+  <Line key="Tag2" value="Метка 2"/>
+  <Line key="Tag3" value="Метка 3"/>
   <Line key="TankDestroyer" value="САУ"/>
   <Line key="Thailand" value="Тайланд"/>
   <Line key="Thanks" value="Благодарности"/>

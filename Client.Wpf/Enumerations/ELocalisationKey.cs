@@ -152,6 +152,9 @@
         public const string SubChaser = nameof(SubChaser);
         public const string SwapPrimaryAndFallbackPresets = nameof(SwapPrimaryAndFallbackPresets);
         public const string Sweden = nameof(Sweden);
+        public const string Tag1 = nameof(Tag1);
+        public const string Tag2 = nameof(Tag2);
+        public const string Tag3 = nameof(Tag3);
         public const string TankDestroyer = nameof(TankDestroyer);
         public const string Thailand = nameof(Thailand);
         public const string Thanks = nameof(Thanks);

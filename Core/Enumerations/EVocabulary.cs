@@ -684,6 +684,7 @@
         protected const string _tack = _t + _a + _c + _k;
         protected const string _Tag = _T + _ag;
         protected const string _tag = _t + _ag;
+        protected const string _tagged = _tag + _g + _ed;
         protected const string _tags = _tag + _s;
         protected const string _tan = _t + _an;
         protected const string _tank = _tan + _k;
@@ -741,6 +742,7 @@
         protected const string _Unpacker = _Un + _pack + _er;
         protected const string _Unpacking = _Un + _pack + _ing;
         protected const string _unpacking = _un + _pack + _ing;
+        protected const string _Untagged = _Un + _tagged;
         protected const string _up = "up";
         protected const string _us = "us";
         protected const string _using = _us + _ing;
