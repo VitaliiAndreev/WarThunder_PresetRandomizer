@@ -15,7 +15,7 @@
             <TextBlock Text="Click on any of the categories to open an associated vehicle list."
                 x:Name="_hint"
                 Style="{StaticResource TextBlock12px}"/>
-
+            
             <StackPanel
                 Orientation="Horizontal">
 

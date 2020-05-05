@@ -33,18 +33,25 @@ namespace Client.Wpf.Controls
         private readonly int _categoryHorizontalMargin;
         private readonly int _categoryVerticalMargin;
         private readonly int _internalDividerMarginRightMargin;
+
         private readonly Thickness _internalDividerMargin;
         private readonly Thickness _categoryColumnHeaderMarginDoubled;
         private readonly Thickness _categoryRowHeaderMargin;
         private readonly Thickness _categoryMargin;
         private readonly Thickness _categoryMarginDoubled;
         private readonly Thickness _categoryMarginRightSided;
+
         private readonly Style _categoryTextStyle;
+
         private readonly double _flagColumnWidth;
+
         private readonly double _countColumnWidthForThreeDigits;
+
         private readonly double _branchIconFontSize;
+
         private readonly double _availabilityCategoryIconFontSize;
         private readonly double _classIconFontSize;
+
         private readonly double _availabilityCategoryIconColumnWidth;
         private readonly double _classIconColumnWidth;
 
@@ -58,19 +65,26 @@ namespace Client.Wpf.Controls
             _categoryHorizontalMargin = EInteger.Number.Five;
             _categoryVerticalMargin = EInteger.Number.Five;
             _internalDividerMarginRightMargin = EInteger.Number.Five;
+
             _internalDividerMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _internalDividerMarginRightMargin, EInteger.Number.Zero);
             _categoryColumnHeaderMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, _categoryVerticalMargin);
             _categoryRowHeaderMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
             _categoryMargin = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
             _categoryMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
             _categoryMarginRightSided = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
+
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
+
             _flagColumnWidth = EInteger.Number.Seventeen;
+
             _countColumnWidthForThreeDigits = EInteger.Number.Twenty;
             _countColumnWidthForFourDigits = EInteger.Number.TwentySeven;
+
             _branchIconFontSize = EInteger.Number.Twenty;
+
             _availabilityCategoryIconFontSize = EInteger.Number.Eighteen;
             _availabilityCategoryIconColumnWidth = EInteger.Number.Thirty;
+
             _classIconFontSize = EInteger.Number.Twelve;
             _classIconColumnWidth = EInteger.Number.Twenty;
         }
