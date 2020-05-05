@@ -139,6 +139,9 @@
   <Line key="PopulatingResearchTreeControls" value="Генерируются ветки исследований в GUI..."/>
   <Line key="Portugal" value="Португалия"/>
   <Line key="Premium" value="Премиум"/>
+  <Line key="PurchasableForGoldenEagles" value="Продаётся за золотые орлы (за исключением полковой техники)"/>
+  <Line key="PurchasableInTheStore" value="Продаётся в магазине"/>
+  <Line key="PurchasableOnTheMarket" value="Продаётся на бирже"/>
   <Line key="Rank" value="Ранг"/>
   <Line key="Ready" value="Данные готовы! Нажмите &quot;Нет&quot; в диалоговом окне."/>
   <Line key="ReadyWithCountDown" value="Данные готовы! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
@@ -146,6 +149,8 @@
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
+  <Line key="Researchable" value="Доступно для исследования"/>
+  <Line key="ResearchableInSquadron" value="Доступно для исследования в составе полка (или за золотые орлы)"/>
   <Line key="ResearchTrees" value="Ветки исследований"/>
   <Line key="Reserve" value="Резерв"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>
@@ -189,6 +194,7 @@
   <Line key="VehicleCounts" value="Счёт техники"/>
   <Line key="VehicleInformation" value="Боевая единица"/>
   <Line key="VehicleList" value="Список техники"/>
+  <Line key="VehiclesByAvailability" value="Техника по доступности"/>
   <Line key="VehiclesByBranchesAndClasses" value="Техника по веткам и классам"/>
   <Line key="VehiclesByBranchesAndNations" value="Техника по веткам и нациям"/>
   <Line key="VehiclesByCountriesAndBranches" value="Техника по странам и веткам"/>

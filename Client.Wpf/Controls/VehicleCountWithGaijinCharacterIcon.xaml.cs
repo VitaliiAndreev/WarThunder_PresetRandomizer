@@ -29,18 +29,37 @@ namespace Client.Wpf.Controls
             object iconTag,
             int count,
             Thickness margin,
-            MouseButtonEventHandler mouseDownHandler,
+            MouseButtonEventHandler mouseButtonHandler,
             double iconColumnWidth,
             double countColumnWidth,
             double iconFontSize,
-            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left
+            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
+            bool iconIsBold = false
+        ) : this(icon.ToString(), iconTag, count, margin, mouseButtonHandler, iconColumnWidth, countColumnWidth, iconFontSize, textHorizontalAlignment, iconIsBold)
+        {
+        }
+
+        public VehicleCountWithGaijinCharacterIcon
+        (
+            string icon,
+            object iconTag,
+            int count,
+            Thickness margin,
+            MouseButtonEventHandler mouseButtonHandler,
+            double iconColumnWidth,
+            double? countColumnWidth,
+            double iconFontSize,
+            HorizontalAlignment textHorizontalAlignment = HorizontalAlignment.Left,
+            bool iconIsBold = false
         ) : base(count, margin, textHorizontalAlignment)
         {
             InitializeComponent();
 
             _iconStyle = this.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuakeUncondensed);
             _iconColumnDefinition.Width = new GridLength(iconColumnWidth, GridUnitType.Pixel);
-            _countColumnDefinition.Width = new GridLength(countColumnWidth, GridUnitType.Pixel);
+
+            if (countColumnWidth.HasValue)
+                _countColumnDefinition.Width = new GridLength(countColumnWidth.Value, GridUnitType.Pixel);
 
             var iconControl = new TextBlock
             {
@@ -49,16 +68,17 @@ namespace Client.Wpf.Controls
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 TextAlignment = TextAlignment.Center,
+                FontWeight = iconIsBold ? FontWeights.Bold : FontWeights.Normal,
                 FontSize = iconFontSize,
-                Text = icon.ToString(),
+                Text = icon,
                 ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()),
             };
 
             _grid.Add(iconControl, EInteger.Number.Zero, EInteger.Number.Zero);
             _grid.Add(_label, EInteger.Number.One, EInteger.Number.Zero);
 
-            if (!(mouseDownHandler is null))
-                MouseDown += mouseDownHandler;
+            if (!(mouseButtonHandler is null))
+                MouseDown += mouseButtonHandler;
         }
 
         #endregion Constructors

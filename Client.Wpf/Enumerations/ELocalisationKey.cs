@@ -115,6 +115,9 @@
         public const string PopulatingResearchTreeControls = nameof(PopulatingResearchTreeControls);
         public const string Portugal = nameof(Portugal);
         public const string Premium = nameof(Premium);
+        public const string PurchasableForGoldenEagles = nameof(PurchasableForGoldenEagles);
+        public const string PurchasableInTheStore = nameof(PurchasableInTheStore);
+        public const string PurchasableOnTheMarket = nameof(PurchasableOnTheMarket);
         public const string Rank = nameof(Rank);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
@@ -124,6 +127,8 @@
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);
         public const string RequiredSettingsHaveNotBeenSet = nameof(RequiredSettingsHaveNotBeenSet);
         public const string Requires = nameof(Requires);
+        public const string Researchable = nameof(Researchable);
+        public const string ResearchableInSquadron = nameof(ResearchableInSquadron);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);
@@ -163,6 +168,7 @@
         public const string VehicleCounts = nameof(VehicleCounts);
         public const string VehicleInformation = nameof(VehicleInformation);
         public const string VehicleList = nameof(VehicleList);
+        public const string VehiclesByAvailability = nameof(VehiclesByAvailability);
         public const string VehiclesByBranchesAndClasses = nameof(VehiclesByBranchesAndClasses);
         public const string VehiclesByBranchesAndNations = nameof(VehiclesByBranchesAndNations);
         public const string VehiclesByCountriesAndBranches = nameof(VehiclesByCountriesAndBranches);

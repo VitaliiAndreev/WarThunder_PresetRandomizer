@@ -2,6 +2,7 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Presenters.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -25,6 +26,8 @@ namespace Client.Wpf.Controls
 
         #endregion Fields
         #region Properties
+
+        internal IDictionary<EVehicleAvailability, IOrderedEnumerable<IVehicle>> VehiclesByAvailability { get; private set; }
 
         internal IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> VehiclesByNationsAndCountries { get; private set; }
 
@@ -77,6 +80,9 @@ namespace Client.Wpf.Controls
                 _vehicleListControl.Initialise(_presenter);
             }
         }
+
+        internal void SetVehiclesByAvailability(IDictionary<EVehicleAvailability, IOrderedEnumerable<IVehicle>> collection) =>
+            VehiclesByAvailability = collection;
 
         internal void SetVehiclesByNationsAndCountries(IDictionary<NationCountryPair, IOrderedEnumerable<IVehicle>> collection) =>
             VehiclesByNationsAndCountries = collection;

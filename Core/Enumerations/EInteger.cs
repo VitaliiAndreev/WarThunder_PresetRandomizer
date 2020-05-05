@@ -26,10 +26,12 @@ namespace Core.Enumerations
             public const int Fifteen = 15;
             public const int Sixteen = 16;
             public const int Seventeen = 17;
+            public const int Eighteen = 18;
             public const int Twenty = 20;
             public const int TwentyOne = 21;
             public const int TwentyThree = 23;
             public const int TwentyFive = 25;
+            public const int TwentySeven = 27;
             public const int Thirty = 30;
             public const int NinetyNine = 99;
             public const int Hundred = 100;

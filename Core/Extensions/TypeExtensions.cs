@@ -58,8 +58,9 @@ namespace Core.Extensions
         /// <typeparam name="T"> The enumeration type. </typeparam>
         /// <param name="type"> The enumeration type. </param>
         /// <param name="skipInvalidItems"> Whether to exclude invalid items. </param>
+        /// <param name="skipInvalidItems"> Whether the "All" item is considered valid. </param>
         /// <returns></returns>
-        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool skipInvalidItems = false)
+        public static IEnumerable<T> GetEnumerationItems<T>(this Type type, bool skipInvalidItems = false, bool allItemIsValid = false)
         {
             var genericType = typeof(T);
 
@@ -75,7 +76,12 @@ namespace Core.Extensions
             var enumerationItems = type.GetEnumValues().Cast<T>();
 
             if (skipInvalidItems)
-                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None && !enumerationItem.ToString().StartsWith(EWord.All));
+            {
+                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None);
+
+                if (!allItemIsValid)
+                    enumerationItems = enumerationItems.Where(enumerationItem => !enumerationItem.ToString().StartsWith(EWord.All));
+            }
 
             return enumerationItems;
         }

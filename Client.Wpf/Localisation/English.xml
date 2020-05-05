@@ -139,6 +139,9 @@
   <Line key="PopulatingResearchTreeControls" value="Generating research trees in GUI..."/>
   <Line key="Portugal" value="Portugal"/>
   <Line key="Premium" value="Premium"/>
+  <Line key="PurchasableForGoldenEagles" value="Purchasable for Golden Eagles (except squadron vehicles)"/>
+  <Line key="PurchasableInTheStore" value="Purchasable in the Store"/>
+  <Line key="PurchasableOnTheMarket" value="Purchasable on the Market"/>
   <Line key="Rank" value="Rank"/>
   <Line key="Ready" value="Data is ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Data is ready! Close the window to proceed or wait for {0} seconds."/>
@@ -146,6 +149,8 @@
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic of South Africa"/>
+  <Line key="Researchable" value="Researchable"/>
+  <Line key="ResearchableInSquadron" value="Researchable in Squadrons (can be skipped for Golden Eagles)"/>
   <Line key="ResearchTrees" value="Research Trees"/>
   <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>
@@ -189,6 +194,7 @@
   <Line key="VehicleCounts" value="Vehicle Counts"/>
   <Line key="VehicleInformation" value="Vehicle Information"/>
   <Line key="VehicleList" value="Vehicle List"/>
+  <Line key="VehiclesByAvailability" value="Vehicles by Availability"/>
   <Line key="VehiclesByBranchesAndClasses" value="Vehicles by Branches and Classes"/>
   <Line key="VehiclesByBranchesAndNations" value="Vehicles by Branches and Nations"/>
   <Line key="VehiclesByCountriesAndBranches" value="Vehicles by Countries and Branches"/>

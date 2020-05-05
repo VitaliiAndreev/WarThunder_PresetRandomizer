@@ -216,6 +216,20 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ERank.VII, "VII" },
         };
 
+        public static IDictionary<EVehicleAvailability, string> VehicleAvailabilityIcons { get; } = new Dictionary<EVehicleAvailability, string>
+        {
+            { EVehicleAvailability.None, string.Empty },
+            { EVehicleAvailability.All, EGaijinCharacter.GroundAirSea.ToString() },
+            { EVehicleAvailability.Researchable, EGaijinCharacter.Research.ToString() },
+            { EVehicleAvailability.ResearchableInSquadron, EGaijinCharacter.Officer.ToString() },
+            { EVehicleAvailability.PurchasableForGoldenEagles, EGaijinCharacter.GoldenEagle.ToString() },
+            { EVehicleAvailability.PurchasableInTheStore, ECharacter.DollarFullwidth.ToString() },
+            { EVehicleAvailability.PurchasableOnTheMarket, EGaijinCharacter.GaijinCoin.ToString() },
+            { EVehicleAvailability.Premium, EGaijinCharacter.Premium.ToString() },
+            { EVehicleAvailability.ConsoleExclusive, EGaijinCharacter.Controller.ToString() },
+            { EVehicleAvailability.Hidden, ECharacter.Eye },
+        };
+
         #endregion Properties
         #region Constructors
 

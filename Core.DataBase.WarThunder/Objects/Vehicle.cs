@@ -455,5 +455,36 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Methods: Overrides
+
+        public IEnumerable<EVehicleAvailability> GetAvailabilityCategories()
+        {
+            var availabilityCategories = new List<EVehicleAvailability> { EVehicleAvailability.All };
+
+            if (IsResearchable)
+                availabilityCategories.Add(EVehicleAvailability.Researchable);
+
+            if (IsSquadronVehicle)
+                availabilityCategories.Add(EVehicleAvailability.ResearchableInSquadron);
+
+            if (IsPurchasableForGoldenEagles && !IsSquadronVehicle)
+                availabilityCategories.Add(EVehicleAvailability.PurchasableForGoldenEagles);
+
+            if (IsSoldInTheStore)
+                availabilityCategories.Add(EVehicleAvailability.PurchasableInTheStore);
+
+            if (IsSoldOnTheMarket)
+                availabilityCategories.Add(EVehicleAvailability.PurchasableOnTheMarket);
+
+            if (IsPremium)
+                availabilityCategories.Add(EVehicleAvailability.Premium);
+
+            if (IsAvailableOnlyOnConsoles)
+                availabilityCategories.Add(EVehicleAvailability.ConsoleExclusive);
+
+            if (IsHiddenUnlessOwned)
+                availabilityCategories.Add(EVehicleAvailability.Hidden);
+
+            return availabilityCategories;
+        }
     }
 }
