@@ -106,6 +106,7 @@ namespace Client.Wpf.Controls
             _vehiclesByCountriesAndBranchesHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByCountriesAndBranches);
             _vehiclesByBranchesAndClassesHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByBranchesAndClasses);
             _vehiclesByTagsAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByTagsAndNations);
+            _vehiclesBySubclassesAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesBySubclassesAndNations);
         }
 
         #endregion Methods: Overrides
@@ -156,6 +157,11 @@ namespace Client.Wpf.Controls
                 .SelectMany(nation => classes.Select(vehicleClass => new NationClassPair(nation, vehicleClass)))
                 .ToDictionary(nationClassPair => nationClassPair, nationClassPair => new List<IVehicle>())
             ;
+            var subclasses = typeof(EVehicleSubclass).GetEnumerationItems<EVehicleSubclass>(true);
+            var subclassNationVehicleCounts = nations
+                .SelectMany(nation => subclasses.Select(subclass => new NationSubclassPair(nation, subclass)))
+                .ToDictionary(nationTagPair => nationTagPair, nationTagPair => new List<IVehicle>())
+            ;
             var tags = typeof(EVehicleBranchTag).GetEnumerationItems<EVehicleBranchTag>(true);
             var tagNationVehicleCounts = nations
                 .SelectMany(nation => tags.Select(tag => new NationTagPair(nation, tag)))
@@ -175,6 +181,9 @@ namespace Client.Wpf.Controls
 
                 foreach (var tag in vehicle.Tags)
                     vehicle.AddInto(tagNationVehicleCounts[new NationTagPair(vehicle.Nation.AsEnumerationItem, tag)]);
+
+                foreach (var subclass in vehicle.Subclasses.All)
+                    vehicle.AddInto(subclassNationVehicleCounts[new NationSubclassPair(vehicle.Nation.AsEnumerationItem, subclass)]);
             }
 
             InitialiseVehiclesByAvailability(availabilityVehicleCounts);
@@ -185,6 +194,7 @@ namespace Client.Wpf.Controls
             InitialiseVehiclesByBranchesAndClasses(branchClassVehicleCounts);
             InitialiseVehiclesByClassesAndNations(countryClassVehicleCounts);
             InitialiseVehiclesByTagsAndNations(tagNationVehicleCounts);
+            InitialiseVehiclesBySubclassesAndNations(subclassNationVehicleCounts);
 
             PopulateVehiclesByAvailabilityControls(availabilityCategories);
             PopulateVehiclesByNationsAndCountriesControls(nations);
@@ -194,6 +204,7 @@ namespace Client.Wpf.Controls
             PopulateVehiclesByBranchesAndClassesControls(branches);
             PopulateVehiclesByClassesAndNationsControls(classes, nations);
             PopulateVehiclesByTagsAndNationsControls(tags, nations);
+            PopulateVehiclesBySubclassesAndNationsControls(subclasses, nations);
         }
 
         private void InitialiseVehiclesByAvailability(IDictionary<EVehicleAvailability, List<IVehicle>> vehiclesCounts)
@@ -273,6 +284,15 @@ namespace Client.Wpf.Controls
             _statisticsControl?.SetVehiclesByTagsAndNations(vehiclesByTagsAndNations);
         }
 
+        private void InitialiseVehiclesBySubclassesAndNations(IDictionary<NationSubclassPair, List<IVehicle>> vehiclesCounts)
+        {
+            var vehiclesBySubclassesAndNations = vehiclesCounts
+                .Select(item => new KeyValuePair<NationSubclassPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByRankId()))
+                .ToDictionary(item => item.Key, item => item.Value)
+            ;
+            _statisticsControl?.SetVehiclesBySubclassesAndNations(vehiclesBySubclassesAndNations);
+        }
+
         #endregion Methods: Initialisation
         #region Methods: Control Population
 
@@ -345,18 +365,18 @@ namespace Client.Wpf.Controls
             return CreateNameRowHeader(branch, OnVehiclesByBranchesLeftMouseDown);
         }
 
-        private TextBlock CreateTagNameRowHeader(EVehicleBranchTag tag)
-        {
-            return CreateNameRowHeader(tag, OnVehiclesByTagsLeftMouseDown);
-        }
-
         [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declarations.")]
-        private TextLabelWithGaijinCharacterIcon CreateGaijinCharacterIconAndNameRowHeader<T, U>(T controlTag, U iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler)
+        private TextLabelWithGaijinCharacterIcon CreateGaijinCharacterIconAndNameRowHeader<T, U>(T controlTag, U iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, bool useIconForLocalisation = true)
         {
             var icon = default(char);
             var iconFontSize = default(double);
 
-            if (iconTag is EVehicleClass vehicleClass)
+            if (iconTag is EBranch branch)
+            {
+                icon = EReference.SmallerBranchIcons[branch];
+                iconFontSize = _classIconFontSize;
+            }
+            else if (iconTag is EVehicleClass vehicleClass)
             {
                 icon = EReference.ClassIcons[vehicleClass];
                 iconFontSize = _classIconFontSize;
@@ -366,9 +386,16 @@ namespace Client.Wpf.Controls
                 throw new NotImplementedException();
             }
 
-            return new TextLabelWithGaijinCharacterIcon(icon, ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()), margin, leftMouseDownHandler, _classIconColumnWidth, iconFontSize: iconFontSize)
-                .WithTag(controlTag)
-            ;
+            return new TextLabelWithGaijinCharacterIcon
+            (
+                icon,
+                ApplicationHelpers.LocalisationManager.GetLocalisedString(useIconForLocalisation ? iconTag.ToString() : controlTag.ToString()),
+                margin,
+                leftMouseDownHandler,
+                _classIconColumnWidth,
+                iconFontSize: iconFontSize,
+                isBold: true
+            ).WithTag(controlTag);
         }
 
         private TextBlock CreateVehicleCountHeader<T>(int vehicleCount, T tag, MouseButtonEventHandler leftMouseDownHandler)
@@ -477,16 +504,25 @@ namespace Client.Wpf.Controls
 
         private void PopulateVehicleClassIconAndNameRowHeader(EVehicleClass vehicleClass, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateGaijinCharacterIconAndNameRowHeader(vehicleClass, vehicleClass, _internalDividerMargin, OnVehiclesByClassLeftMouseDown);
-            var count = CreateVehicleCountHeader(vehicleCount, vehicleClass, OnVehiclesByClassLeftMouseDown);
+            var header = CreateGaijinCharacterIconAndNameRowHeader(vehicleClass, vehicleClass, _internalDividerMargin, OnVehiclesByClassesLeftMouseDown);
+            var count = CreateVehicleCountHeader(vehicleCount, vehicleClass, OnVehiclesByClassesLeftMouseDown);
 
             grid.Add(header, EInteger.Number.Zero, rowIndex);
             grid.Add(count, EInteger.Number.One, rowIndex);
         }
 
-        private void PopulateTagNameCountRowHeader(EVehicleBranchTag tag, int vehicleCount, Grid grid, int rowIndex)
+        private void PopulateVehicleClassIconAndSubclassNameCountRowHeader(EVehicleSubclass subclass, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateTagNameRowHeader(tag);
+            var header = CreateGaijinCharacterIconAndNameRowHeader(subclass, subclass.GetVehicleClass(), _internalDividerMargin, OnVehiclesBySubclassesLeftMouseDown, false);
+            var count = CreateVehicleCountHeader(vehicleCount, subclass, OnVehiclesBySubclassesLeftMouseDown);
+
+            grid.Add(header, EInteger.Number.Zero, rowIndex);
+            grid.Add(count, EInteger.Number.One, rowIndex);
+        }
+
+        private void PopulateBranchIconAndTagNameCountRowHeader(EVehicleBranchTag tag, int vehicleCount, Grid grid, int rowIndex)
+        {
+            var header = CreateGaijinCharacterIconAndNameRowHeader(tag, tag.GetBranch(), _internalDividerMargin, OnVehiclesByTagsLeftMouseDown, false);
             var count = CreateVehicleCountHeader(vehicleCount, tag, OnVehiclesByBranchesLeftMouseDown);
 
             grid.Add(header, EInteger.Number.Zero, rowIndex);
@@ -735,7 +771,36 @@ namespace Client.Wpf.Controls
                     }
                     _vehiclesByTagsAndNationsGrid.Add(cellWithBorder, nationIndex++, tagIndex);
                 }
-                PopulateTagNameCountRowHeader(tag, headerVehicleCount, _vehiclesByTagsAndNationsGrid, tagIndex++);
+                PopulateBranchIconAndTagNameCountRowHeader(tag, headerVehicleCount, _vehiclesByTagsAndNationsGrid, tagIndex++);
+            }
+        }
+
+        private void PopulateVehiclesBySubclassesAndNationsControls(IEnumerable<EVehicleSubclass> subclasses, IEnumerable<ENation> nations)
+        {
+            var vehicleBySubclassesAndNations = _statisticsControl.VehiclesBySubclassesAndNations;
+            var subclassIndex = EInteger.Number.One;
+
+            PopulateNationFlagColumnHeaders(nations, _vehiclesBySubclassesAndNationsGrid);
+
+            foreach (var subclass in subclasses)
+            {
+                var subclassKeys = vehicleBySubclassesAndNations.Keys.Where(key => key.Subclass == subclass);
+                var headerVehicleCount = vehicleBySubclassesAndNations.Where(item => item.Key.IsIn(subclassKeys)).Sum(item => item.Value.Count());
+                var nationIndex = EInteger.Number.Two;
+
+                foreach (var subclassKey in subclassKeys)
+                {
+                    var vehicles = vehicleBySubclassesAndNations[subclassKey];
+                    var cellWithBorder = CreateGridCell();
+
+                    if (vehicles.Any())
+                    {
+                        CreateVehicleCount(vehicles.Count(), subclassKey, OnVehiclesBySubclassesAndNationsLeftMouseDown, true)
+                            .PutInto(cellWithBorder);
+                    }
+                    _vehiclesBySubclassesAndNationsGrid.Add(cellWithBorder, nationIndex++, subclassIndex);
+                }
+                PopulateVehicleClassIconAndSubclassNameCountRowHeader(subclass, headerVehicleCount, _vehiclesBySubclassesAndNationsGrid, subclassIndex++);
             }
         }
 
@@ -948,7 +1013,7 @@ namespace Client.Wpf.Controls
             }
         }
 
-        private void OnVehiclesByClassLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        private void OnVehiclesByClassesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
         {
             if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
                 return;
@@ -1019,6 +1084,44 @@ namespace Client.Wpf.Controls
                     $"{listCachePrefix}_{nationTagPair}",
                     _statisticsControl.VehiclesByTagsAndNations[nationTagPair],
                     EVehicleProfile.NationAndTag
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesBySubclassesLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesBySubclassesAndNations);
+
+            if (element.Tag is EVehicleSubclass subclass)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{subclass}",
+                    _statisticsControl.VehiclesBySubclassesAndNations.Where(item => item.Key.Subclass == subclass).SelectMany(item => item.Value),
+                    EVehicleProfile.Subclass
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesBySubclassesAndNationsLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesBySubclassesAndNations);
+
+            if (element.Tag is NationSubclassPair nationSubclassPair)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{nationSubclassPair}",
+                    _statisticsControl.VehiclesBySubclassesAndNations[nationSubclassPair],
+                    EVehicleProfile.NationAndSubclass
                 );
                 eventArguments.Handled = true;
             }

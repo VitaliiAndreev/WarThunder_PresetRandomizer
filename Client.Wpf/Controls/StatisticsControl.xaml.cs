@@ -40,6 +40,8 @@ namespace Client.Wpf.Controls
 
         internal IDictionary<NationTagPair, IOrderedEnumerable<IVehicle>> VehiclesByTagsAndNations { get; private set; }
 
+        internal IDictionary<NationSubclassPair, IOrderedEnumerable<IVehicle>> VehiclesBySubclassesAndNations { get; private set; }
+
         #endregion Properties
         #region Constructors
 
@@ -103,6 +105,9 @@ namespace Client.Wpf.Controls
 
         internal void SetVehiclesByTagsAndNations(IDictionary<NationTagPair, IOrderedEnumerable<IVehicle>> collection) =>
             VehiclesByTagsAndNations = collection;
+
+        internal void SetVehiclesBySubclassesAndNations(IDictionary<NationSubclassPair, IOrderedEnumerable<IVehicle>> collection) =>
+            VehiclesBySubclassesAndNations = collection;
 
         #endregion Methods: Initialisation
         #region Methods: Event Handlers

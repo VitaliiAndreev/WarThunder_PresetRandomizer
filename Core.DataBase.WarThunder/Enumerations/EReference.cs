@@ -175,9 +175,17 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EBranch, char> BranchIcons { get; } = new Dictionary<EBranch, char>
         {
-            { EBranch.Army, EGaijinCharacter.Tank },
-            { EBranch.Aviation, EGaijinCharacter.Fighter },
+            { EBranch.Army, EGaijinCharacter.TankFront },
+            { EBranch.Aviation, EGaijinCharacter.FighterDiagonal },
             { EBranch.Fleet, EGaijinCharacter.Battleship },
+            { EBranch.Helicopters, EGaijinCharacter.AttackHelicopter },
+        };
+
+        public static IDictionary<EBranch, char> SmallerBranchIcons { get; } = new Dictionary<EBranch, char>
+        {
+            { EBranch.Army, EGaijinCharacter.TankFacingLeft },
+            { EBranch.Aviation, EGaijinCharacter.FighterStraight },
+            { EBranch.Fleet, EGaijinCharacter.Anchor },
             { EBranch.Helicopters, EGaijinCharacter.AttackHelicopter },
         };
 

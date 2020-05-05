@@ -4,6 +4,7 @@ namespace Core.DataBase.WarThunder.Enumerations
 {
     public class EGaijinCharacter : ECharacter
     {
+        public const char Anchor = '⋜';
         public const char AttackerPip = '┞';
         public const char AttackHelicopter = '⋡';
         public const char AttackHelicopterPip = '┞';
@@ -18,8 +19,9 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char DestroyerPip = '␌';
         public const char GaijinCoin = '⋬';
         public const char GoldenEagle = '¤';
-        public const char Fighter = '┏';
+        public const char FighterDiagonal = '┏';
         public const char FighterPip = '┤';
+        public const char FighterStraight = '▭';
         public const char FrenchRoundel = '▄';
         public const char FrigatePip = '␌';
         public const char GermanCross = '▀';
@@ -41,7 +43,9 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char SpaceFromCsv = ' ';
         public const char Star = '▂';
         public const char StarInCircle = '▃';
-        public const char Tank = '╤';
+        public const char TankFront = '╤';
+        public const char TankFacingLeft = '╠';
+        public const char TankFacingRight = '▮';
         public const char TankDestroyerPip = '┴';
         public const char UtilityHelicopterPip = '┠';
         public const char Watch = '▩';
