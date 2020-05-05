@@ -21,7 +21,7 @@ namespace Core.DataBase.WarThunder.Extensions
         public static IEnumerable<EVehicleBranchTag> GetVehicleBranchTags(this EBranch branch, bool selectOnlyValidItems = true) =>
             typeof(EVehicleBranchTag)
                 .GetEnumerationItems<EVehicleBranchTag>()
-                .Where(vehicleBranchTag => vehicleBranchTag.GetBranch() == branch && (selectOnlyValidItems ? vehicleBranchTag.IsValid() : true))
+                .Where(vehicleBranchTag => vehicleBranchTag.GetBranch() == branch && (!selectOnlyValidItems || vehicleBranchTag.IsValid()))
             ;
 
         /// <summary> Returns vehicle classes which belong to the branch. </summary>
@@ -31,7 +31,7 @@ namespace Core.DataBase.WarThunder.Extensions
         public static IEnumerable<EVehicleClass> GetVehicleClasses(this EBranch branch, bool selectOnlyValidItems = true) =>
             typeof(EVehicleClass)
                 .GetEnumerationItems<EVehicleClass>()
-                .Where(vehicleClass => vehicleClass.GetBranch() == branch && (selectOnlyValidItems ? vehicleClass.IsValid() : true))
+                .Where(vehicleClass => vehicleClass.GetBranch() == branch && (!selectOnlyValidItems || vehicleClass.IsValid()))
             ;
 
         /// <summary> Returns the enumeration item representing selection of all vehicle types under the given branch. </summary>

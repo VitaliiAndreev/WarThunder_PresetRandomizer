@@ -48,7 +48,7 @@
   <Line key="China" value="China"/>
   <Line key="Class" value="Class"/>
   <Line key="ClickOnCategoryOnVehicleCountsTab" value="Click on any category on the &quot;Vehicle Counts&quot; tab."/>
-  <Line key="ClickOnCategoryToOpenList" value="Click on any of the categories to open an associated vehicle list."/>
+  <Line key="ClickOnCategoryToOpenList" value="Click on any of the categories to open an associated vehicle list. Hover over icons/flags for a clarifying tooltip."/>
   <Line key="Commits" value="commits"/>
   <Line key="ConsoleExclusive" value="Console-exclusive"/>
   <Line key="Country" value="Country"/>

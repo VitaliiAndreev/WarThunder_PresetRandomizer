@@ -48,7 +48,7 @@
   <Line key="China" value="Китай"/>
   <Line key="Class" value="Класс"/>
   <Line key="ClickOnCategoryOnVehicleCountsTab" value="Кликните на любую категорию на вкладке &quot;Счёт техники&quot;."/>
-  <Line key="ClickOnCategoryToOpenList" value="Нажмите на любую из категорий, чтобы перейти на соответствующий список техники."/>
+  <Line key="ClickOnCategoryToOpenList" value="Нажмите на любую из категорий, чтобы перейти на соответствующий список техники. Наведите на иконку/флаг для отображения описания."/>
   <Line key="Commits" value="коммитов"/>
   <Line key="ConsoleExclusive" value="Консольный эксклюзив"/>
   <Line key="Country" value="Страна"/>
