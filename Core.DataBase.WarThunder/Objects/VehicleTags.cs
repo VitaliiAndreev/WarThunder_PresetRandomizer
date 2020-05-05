@@ -12,6 +12,11 @@ namespace Core.DataBase.WarThunder.Objects
         protected readonly IDictionary<EVehicleBranchTag, bool> _index;
 
         #endregion Fields
+        #region Properties
+
+        public abstract IEnumerable<EVehicleBranchTag> All { get; protected set; }
+
+        #endregion Properties
         #region Indexers
 
         public virtual bool this[EVehicleBranchTag tag]

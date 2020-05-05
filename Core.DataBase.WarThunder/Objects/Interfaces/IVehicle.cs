@@ -118,6 +118,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Returns the <see cref="Rank"/> as an item of <see cref="ERank"/>. </summary>
         ERank RankAsEnumerationItem { get; }
 
+        IEnumerable<EVehicleBranchTag> Tags { get; }
+
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
 

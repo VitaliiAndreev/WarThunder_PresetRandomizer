@@ -175,6 +175,7 @@
         public const string VehiclesByCountriesAndBranches = nameof(VehiclesByCountriesAndBranches);
         public const string VehiclesByCountriesAndNations = nameof(VehiclesByCountriesAndNations);
         public const string VehiclesByNationsAndCountries = nameof(VehiclesByNationsAndCountries);
+        public const string VehiclesByTagsAndNations = nameof(VehiclesByTagsAndNations);
         public const string Wheeled = nameof(Wheeled);
         public const string Yugoslavia = nameof(Yugoslavia);
         public const string YummigumForIconSweets2 = nameof(YummigumForIconSweets2);

@@ -200,6 +200,7 @@
   <Line key="VehiclesByCountriesAndBranches" value="Vehicles by Countries and Branches"/>
   <Line key="VehiclesByCountriesAndNations" value="Vehicles by Countries and Nations"/>
   <Line key="VehiclesByNationsAndCountries" value="Vehicles by Nations and Countries"/>
+  <Line key="VehiclesByTagsAndNations" value="Vehicles by Tags and Nations"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>
