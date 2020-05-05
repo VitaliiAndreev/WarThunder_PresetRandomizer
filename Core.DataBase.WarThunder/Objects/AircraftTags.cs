@@ -52,7 +52,6 @@ namespace Core.DataBase.WarThunder.Objects
                 if (IsHydroplane) yield return EVehicleBranchTag.Hydroplane;
                 if (IsTorpedoBomber) yield return EVehicleBranchTag.TorpedoBomber;
             }
-            protected set { }
         }
 
         #endregion Non-Persistent Properties

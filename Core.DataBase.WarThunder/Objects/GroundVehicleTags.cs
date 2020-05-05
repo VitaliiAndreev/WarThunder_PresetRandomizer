@@ -48,7 +48,6 @@ namespace Core.DataBase.WarThunder.Objects
                 if (IsWheeled) yield return EVehicleBranchTag.Wheeled;
                 if (CanScout) yield return EVehicleBranchTag.Scout;
             }
-            protected set { }
         }
         #endregion Non-Persistent Properties
         #region Constructors
