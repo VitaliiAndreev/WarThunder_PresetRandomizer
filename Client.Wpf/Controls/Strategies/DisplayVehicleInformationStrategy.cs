@@ -224,7 +224,7 @@ namespace Client.Wpf.Controls.Strategies
                 append(ECharacter.Space);
 
             if (ShowSquadronGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{/*ESeparator.SpaceMinusSpace*/ECharacter.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{ECharacter.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
         }
