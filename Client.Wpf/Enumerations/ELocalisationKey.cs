@@ -172,7 +172,7 @@
         public const string VehicleCounts = nameof(VehicleCounts);
         public const string VehicleInformation = nameof(VehicleInformation);
         public const string VehicleList = nameof(VehicleList);
-        public const string VehiclesByAvailability = nameof(VehiclesByAvailability);
+        public const string VehiclesByAvailabilityAndNations = nameof(VehiclesByAvailabilityAndNations);
         public const string VehiclesByBranchesAndClasses = nameof(VehiclesByBranchesAndClasses);
         public const string VehiclesByBranchesAndNations = nameof(VehiclesByBranchesAndNations);
         public const string VehiclesByCountriesAndBranches = nameof(VehiclesByCountriesAndBranches);

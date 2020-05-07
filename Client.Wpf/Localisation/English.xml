@@ -197,7 +197,7 @@
   <Line key="VehicleCounts" value="Vehicle Counts"/>
   <Line key="VehicleInformation" value="Vehicle Information"/>
   <Line key="VehicleList" value="Vehicle List"/>
-  <Line key="VehiclesByAvailability" value="Vehicles by Availability"/>
+  <Line key="VehiclesByAvailabilityAndNations" value="Vehicles by Availability and Nations"/>
   <Line key="VehiclesByBranchesAndClasses" value="Vehicles by Branches and Classes"/>
   <Line key="VehiclesByBranchesAndNations" value="Vehicles by Branches and Nations"/>
   <Line key="VehiclesByCountriesAndBranches" value="Vehicles by Countries and Branches"/>

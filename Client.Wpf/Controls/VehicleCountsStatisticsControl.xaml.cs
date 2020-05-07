@@ -37,7 +37,6 @@ namespace Client.Wpf.Controls
         private readonly Thickness _categoryRowHeaderMargin;
         private readonly Thickness _categoryMargin;
         private readonly Thickness _categoryMarginDoubled;
-        private readonly Thickness _categoryMarginRightSided;
 
         private readonly Style _categoryTextStyle;
 
@@ -45,10 +44,10 @@ namespace Client.Wpf.Controls
 
         private readonly double _countColumnWidthForThreeDigits;
 
-        private readonly double _branchIconFontSize;
+        private readonly double _branchIconHeaderFontSize;
 
         private readonly double _availabilityCategoryIconFontSize;
-        private readonly double _classIconFontSize;
+        private readonly double _gaijinCharacterIconFontSize;
 
         private readonly double _availabilityCategoryIconColumnWidth;
         private readonly double _classIconColumnWidth;
@@ -78,7 +77,6 @@ namespace Client.Wpf.Controls
             _categoryRowHeaderMargin = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
             _categoryMargin = new Thickness(_categoryHorizontalMargin, EInteger.Number.Zero, _categoryHorizontalMargin, EInteger.Number.Zero);
             _categoryMarginDoubled = new Thickness(_categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
-            _categoryMarginRightSided = new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, _categoryHorizontalMargin * EInteger.Number.Two, EInteger.Number.Zero);
 
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
 
@@ -86,12 +84,12 @@ namespace Client.Wpf.Controls
 
             _countColumnWidthForThreeDigits = EInteger.Number.Twenty;
 
-            _branchIconFontSize = EInteger.Number.Twenty;
+            _branchIconHeaderFontSize = EInteger.Number.Twenty;
 
-            _availabilityCategoryIconFontSize = EInteger.Number.Eighteen;
+            _availabilityCategoryIconFontSize = EInteger.Number.Twelve;
             _availabilityCategoryIconColumnWidth = EInteger.Number.Thirty;
 
-            _classIconFontSize = EInteger.Number.Twelve;
+            _gaijinCharacterIconFontSize = EInteger.Number.Twelve;
             _classIconColumnWidth = EInteger.Number.Twenty;
         }
 
@@ -103,7 +101,7 @@ namespace Client.Wpf.Controls
             base.Localise();
 
             _hint.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ClickOnCategoryToOpenList);
-            _vehiclesByAvailabilityHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByAvailability);
+            _vehiclesByAvailabilityAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByAvailabilityAndNations);
             _vehiclesByNationsAndCountriesHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByNationsAndCountries);
             _vehiclesByCountriesAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByCountriesAndNations);
             _vehiclesByBranchesAndNationsHeader.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.VehiclesByBranchesAndNations);
@@ -134,10 +132,11 @@ namespace Client.Wpf.Controls
                 return;
 
             var availabilityCategories = typeof(EVehicleAvailability).GetEnumerationItems<EVehicleAvailability>(true, true);
-            var availabilityVehicleCounts = availabilityCategories
-                .ToDictionary(availabilityCategory => availabilityCategory, availabilityCategory => new List<IVehicle>())
-            ;
             var nations = typeof(ENation).GetEnumerationItems<ENation>(true);
+            var availabilityNationVehicleCounts = nations
+                .SelectMany(nation => availabilityCategories.Select(availabilityCategory => new NationAvailablityPair(nation, availabilityCategory)))
+                .ToDictionary(nationAvailabilityPair => nationAvailabilityPair, nationAvailabilityPair => new List<IVehicle>())
+            ;
             var nationCountryVehicleCounts = nations
                 .SelectMany(nation => nation.GetNationCountryPairs())
                 .ToDictionary(nationCountryPair => nationCountryPair, nationCountryPair => new List<IVehicle>())
@@ -175,7 +174,7 @@ namespace Client.Wpf.Controls
             foreach (var vehicle in ApplicationHelpers.Manager?.PlayableVehicles?.Values ?? new List<IVehicle>())
             {
                 foreach (var availabilityCategory in vehicle.GetAvailabilityCategories())
-                    vehicle.AddInto(availabilityVehicleCounts[availabilityCategory]);
+                    vehicle.AddInto(availabilityNationVehicleCounts[new NationAvailablityPair(vehicle.Nation.AsEnumerationItem, availabilityCategory)]);
 
                 vehicle.AddInto(nationCountryVehicleCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
                 vehicle.AddInto(nationBranchVehicleCounts[new NationBranchPair(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem)]);
@@ -190,7 +189,7 @@ namespace Client.Wpf.Controls
                     vehicle.AddInto(subclassNationVehicleCounts[new NationSubclassPair(vehicle.Nation.AsEnumerationItem, subclass)]);
             }
 
-            InitialiseVehiclesByAvailability(availabilityVehicleCounts);
+            InitialiseVehiclesByAvailabilityAndNations(availabilityNationVehicleCounts);
             InitialiseVehiclesByNationsAndCountries(nationCountryVehicleCounts);
             InitialiseVehiclesByCountriesAndNations(nationCountryVehicleCounts);
             InitialiseVehiclesByBranchesAndNations(nationBranchVehicleCounts);
@@ -200,7 +199,7 @@ namespace Client.Wpf.Controls
             InitialiseVehiclesByTagsAndNations(tagNationVehicleCounts);
             InitialiseVehiclesBySubclassesAndNations(subclassNationVehicleCounts);
 
-            PopulateVehiclesByAvailabilityControls(availabilityCategories);
+            PopulateVehiclesByAvailabilityAndNationsControls(availabilityCategories, nations);
             PopulateVehiclesByNationsAndCountriesControls(nations);
             PopulateVehiclesByCountriesAndNationsControls(nations);
             PopulateVehiclesByBranchesAndNationsControls(branches, nations);
@@ -211,13 +210,13 @@ namespace Client.Wpf.Controls
             PopulateVehiclesBySubclassesAndNationsControls(subclasses, nations);
         }
 
-        private void InitialiseVehiclesByAvailability(IDictionary<EVehicleAvailability, List<IVehicle>> vehiclesCounts)
+        private void InitialiseVehiclesByAvailabilityAndNations(IDictionary<NationAvailablityPair, List<IVehicle>> vehiclesCounts)
         {
-            var vehiclesByAvailability = vehiclesCounts
-                .Select(item => new KeyValuePair<EVehicleAvailability, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByNationCountryBranchClassSubclassRankId()))
+            var vehiclesByAvailabilityAndNations = vehiclesCounts
+                .Select(item => new KeyValuePair<NationAvailablityPair, IOrderedEnumerable<IVehicle>>(item.Key, item.Value.OrderByClassSubclassRankId()))
                 .ToDictionary(item => item.Key, item => item.Value)
             ;
-            _statisticsControl?.SetVehiclesByAvailability(vehiclesByAvailability);
+            _statisticsControl?.SetVehiclesByAvailabilityAndNations(vehiclesByAvailabilityAndNations);
         }
 
         private void InitialiseVehiclesByNationsAndCountries(IDictionary<NationCountryPair, List<IVehicle>> vehiclesCounts)
@@ -378,12 +377,12 @@ namespace Client.Wpf.Controls
             if (iconTag is EBranch branch)
             {
                 icon = EReference.SmallerBranchIcons[branch];
-                iconFontSize = _classIconFontSize;
+                iconFontSize = _gaijinCharacterIconFontSize;
             }
             else if (iconTag is EVehicleClass vehicleClass)
             {
                 icon = EReference.ClassIcons[vehicleClass];
-                iconFontSize = _classIconFontSize;
+                iconFontSize = _gaijinCharacterIconFontSize;
             }
             else
             {
@@ -418,7 +417,7 @@ namespace Client.Wpf.Controls
         }
 
         [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declarations.")]
-        private VehicleCountWithGaijinCharacterIcon CreateVehicleCountWithGaijinCharacterIcon<T, U>(T controlTag, U iconTag, int vehicleCount, Thickness margin, MouseButtonEventHandler leftMouseDownHandler)
+        private GaijinCharactreIconControl CreateGaijinCharacterIconRowHeader<T, U>(T controlTag, U iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler)
         {
             var icon = default(string);
             var iconIsBold = default(bool);
@@ -433,8 +432,8 @@ namespace Client.Wpf.Controls
                 iconFontSize = availabilityCategory switch
                 {
                     EVehicleAvailability.All => _availabilityCategoryIconFontSize + EInteger.Number.One,
-                    EVehicleAvailability.Researchable => _availabilityCategoryIconFontSize + EInteger.Number.Four,
-                    EVehicleAvailability.ResearchableInSquadron => _availabilityCategoryIconFontSize + EInteger.Number.Four,
+                    EVehicleAvailability.Researchable => _availabilityCategoryIconFontSize + EInteger.Number.Three,
+                    EVehicleAvailability.ResearchableInSquadron => _availabilityCategoryIconFontSize + EInteger.Number.Three,
                     EVehicleAvailability.PurchasableForGoldenEagles => _availabilityCategoryIconFontSize + EInteger.Number.Two,
                     EVehicleAvailability.Premium => _availabilityCategoryIconFontSize + EInteger.Number.One,
                     _ => _availabilityCategoryIconFontSize
@@ -446,7 +445,32 @@ namespace Client.Wpf.Controls
             {
                 icon = EReference.ClassIcons[vehicleClass].ToString();
                 iconIsBold = false;
-                iconFontSize = _classIconFontSize;
+                iconFontSize = _gaijinCharacterIconFontSize;
+                iconColumnWidth = _classIconColumnWidth;
+                countColumnWidth = _countColumnWidthForThreeDigits;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
+            return new GaijinCharactreIconControl(icon, iconTag, margin, leftMouseDownHandler, iconFontSize, iconIsBold: iconIsBold).WithTag(controlTag);
+        }
+
+        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declarations.")]
+        private VehicleCountWithGaijinCharacterIcon CreateVehicleCountWithGaijinCharacterIcon<T, U>(T controlTag, U iconTag, int vehicleCount, Thickness margin, MouseButtonEventHandler leftMouseDownHandler)
+        {
+            var icon = default(string);
+            var iconIsBold = default(bool);
+            var iconFontSize = default(double);
+            var iconColumnWidth = default(double);
+            var countColumnWidth = default(double?);
+
+            if (iconTag is EVehicleClass vehicleClass)
+            {
+                icon = EReference.ClassIcons[vehicleClass].ToString();
+                iconIsBold = false;
+                iconFontSize = _gaijinCharacterIconFontSize;
                 iconColumnWidth = _classIconColumnWidth;
                 countColumnWidth = _countColumnWidthForThreeDigits;
             }
@@ -479,7 +503,7 @@ namespace Client.Wpf.Controls
 
             foreach (var branch in branches)
             {
-                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, doubleMargin ? _categoryMarginDoubled : _categoryMargin, OnVehiclesByBranchesLeftMouseDown, _branchIconFontSize);
+                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, doubleMargin ? _categoryMarginDoubled : _categoryMargin, OnVehiclesByBranchesLeftMouseDown, _branchIconHeaderFontSize);
 
                 grid.Add(branchHeader, nationHeaderIndex++, EInteger.Number.Zero);
             }
@@ -487,6 +511,15 @@ namespace Client.Wpf.Controls
 
         #endregion Column Headers
         #region Row Headers
+
+        private void PopulateCategoryIconCountRowHeader(EVehicleAvailability category, int vehicleCount, Grid grid, int rowIndex)
+        {
+            var header = CreateGaijinCharacterIconRowHeader(category, category, _internalDividerMargin, OnVehiclesByAvailabilityLeftMouseDown);
+            var count = CreateVehicleCountHeader(vehicleCount, category, OnVehiclesByAvailabilityLeftMouseDown);
+
+            grid.Add(header, EInteger.Number.Zero, rowIndex);
+            grid.Add(count, EInteger.Number.One, rowIndex);
+        }
 
         private void PopulateCountryFlagNameCountRowHeader(ECountry country, int vehicleCount, Grid grid, int rowIndex)
         {
@@ -538,16 +571,32 @@ namespace Client.Wpf.Controls
         #endregion Helpers
         #region Population
 
-        private void PopulateVehiclesByAvailabilityControls(IEnumerable<EVehicleAvailability> availabilityCategories)
+        private void PopulateVehiclesByAvailabilityAndNationsControls(IEnumerable<EVehicleAvailability> availabilityCategories, IEnumerable<ENation> nations)
         {
-            var vehiclesByAvailability = _statisticsControl.VehiclesByAvailability;
-            var categoryIndex = EInteger.Number.Zero;
+            var vehiclesByAvailabilityAndNations = _statisticsControl.VehiclesByAvailabilityAndNations;
+            var categoryIndex = EInteger.Number.One;
+
+            PopulateNationFlagColumnHeaders(nations, _vehiclesByAvailabilityAndNationsGrid);
 
             foreach (var category in availabilityCategories)
             {
-                var categoryControl = CreateVehicleCountWithGaijinCharacterIcon(category, category, vehiclesByAvailability[category].Count(), _categoryMarginRightSided, OnVehiclesByAvailabilityLeftMouseDown);
+                var categoryKeys = vehiclesByAvailabilityAndNations.Keys.Where(item => item.Availability == category);
+                var headerVehicleCount = vehiclesByAvailabilityAndNations.Where(item => item.Key.Availability == category).Sum(item => item.Value.Count());
+                var nationIndex = EInteger.Number.Two;
 
-                _vehiclesByAvailabilityGrid.Add(categoryControl, categoryIndex++, EInteger.Number.Zero);
+                foreach (var categoryKey in categoryKeys)
+                {
+                    var vehicles = vehiclesByAvailabilityAndNations[categoryKey];
+                    var cellWithBorder = CreateGridCell();
+
+                    if (vehicles.Any())
+                    {
+                        CreateVehicleCount(vehicles.Count(), categoryKey, OnVehiclesByAvailabilityAndNationsLeftMouseDown, true)
+                            .PutInto(cellWithBorder);
+                    }
+                    _vehiclesByAvailabilityAndNationsGrid.Add(cellWithBorder, nationIndex++, categoryIndex);
+                }
+                PopulateCategoryIconCountRowHeader(category, headerVehicleCount, _vehiclesByAvailabilityAndNationsGrid, categoryIndex++);
             }
         }
 
@@ -851,14 +900,33 @@ namespace Client.Wpf.Controls
             if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
                 return;
 
-            var listCachePrefix = nameof(_statisticsControl.VehiclesByAvailability);
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByAvailabilityAndNations);
 
             if (element.Tag is EVehicleAvailability availabilityCategory)
             {
                 SwitchVehicleListTo
                 (
                     $"{listCachePrefix}_{availabilityCategory}",
-                    _statisticsControl.VehiclesByAvailability.Where(item => item.Key == availabilityCategory).SelectMany(item => item.Value),
+                    _statisticsControl.VehiclesByAvailabilityAndNations.Where(item => item.Key.Availability == availabilityCategory).SelectMany(item => item.Value),
+                    EVehicleProfile.Full
+                );
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void OnVehiclesByAvailabilityAndNationsLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)
+        {
+            if (CategoryMouseDownIsHandled(sender, eventArguments, out var element))
+                return;
+
+            var listCachePrefix = nameof(_statisticsControl.VehiclesByAvailabilityAndNations);
+
+            if (element.Tag is NationAvailablityPair nationAvailabilityPair)
+            {
+                SwitchVehicleListTo
+                (
+                    $"{listCachePrefix}_{nationAvailabilityPair}",
+                    _statisticsControl.VehiclesByAvailabilityAndNations.Where(item => item.Key == nationAvailabilityPair).SelectMany(item => item.Value),
                     EVehicleProfile.Full
                 );
                 eventArguments.Handled = true;

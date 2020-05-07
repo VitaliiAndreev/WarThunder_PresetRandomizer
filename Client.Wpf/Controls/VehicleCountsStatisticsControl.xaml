@@ -27,12 +27,12 @@
                     <Expander
                         IsExpanded="True">
                         <Expander.Header>
-                            <TextBlock Text="Vehicles by Availability"
-                                x:Name="_vehiclesByAvailabilityHeader"
+                            <TextBlock Text="Vehicles by Availability and Nations"
+                                x:Name="_vehiclesByAvailabilityAndNationsHeader"
                                 Style="{StaticResource TextBlockHeader16px}"/>
                         </Expander.Header>
                         <Grid
-                            x:Name="_vehiclesByAvailabilityGrid"
+                            x:Name="_vehiclesByAvailabilityAndNationsGrid"
                             Margin="0 5 0 10"
                             HorizontalAlignment="Left"/>
                     </Expander>
