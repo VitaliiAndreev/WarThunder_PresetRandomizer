@@ -30,11 +30,14 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && !vehicle.IsSquadronVehicle && vehicle.EconomyData.PurchaseCostInGold.HasValue;
 
-        public bool ShowDiscountedGoldenEagleCost(IVehicle vehicle) => vehicle.IsPurchasableForGoldenEagles && vehicle.EconomyData.DiscountedPurchaseCostInGold.HasValue;
+        public bool ShowSquadronGoldenEagleCost(IVehicle vehicle) =>
+            vehicle.IsPurchasableForGoldenEagles
+            && vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.HasValue
+            && vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue;
 
         public bool ShowMarketIcon(IVehicle vehicle) => vehicle.IsSoldOnTheMarket;
 
-        public virtual bool ShowSpaceAfterSpecialIconsAndTags(IVehicle vehicle) => ShowEyeIcon(vehicle) || ShowControllerIcon(vehicle) || ShowMarketIcon(vehicle) || ShowPackTag(vehicle) || ShowGoldenEagleCost(vehicle);
+        public virtual bool ShowSpaceAfterSpecialIconsAndTags(IVehicle vehicle) => ShowEyeIcon(vehicle) || ShowControllerIcon(vehicle) || ShowMarketIcon(vehicle) || ShowPackTag(vehicle) || ShowGoldenEagleCost(vehicle) || ShowSquadronGoldenEagleCost(vehicle);
 
         public bool ShowBinocularsIcon(IVehicle vehicle) => vehicle.GroundVehicleTags?.CanScout ?? false;
 
@@ -81,6 +84,8 @@ namespace Client.Wpf.Controls.Strategies
                 append(GetLocalisedString(ELocalisationKey.Pack));
             else if (ShowGoldenEagleCost(vehicle))
                 append($"{vehicle.EconomyData.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
+            else if (ShowSquadronGoldenEagleCost(vehicle))
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value}{ECharacter.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value}{EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
                 append(EGaijinCharacter.GaijinCoin);
@@ -210,16 +215,16 @@ namespace Client.Wpf.Controls.Strategies
 
             if (ShowResearchCosts(vehicle))
                 append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
-            if (ShowResearchCosts(vehicle) && (ShowSilverLionCosts(vehicle) || ShowDiscountedGoldenEagleCost(vehicle)))
+            if (ShowResearchCosts(vehicle) && (ShowSilverLionCosts(vehicle) || ShowSquadronGoldenEagleCost(vehicle)))
                 append(ECharacter.Space);
 
             if (ShowSilverLionCosts(vehicle))
                 append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}");
-            if (ShowDiscountedGoldenEagleCost(vehicle))
+            if (ShowSquadronGoldenEagleCost(vehicle))
                 append(ECharacter.Space);
 
-            if (ShowDiscountedGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGold.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
+            if (ShowSquadronGoldenEagleCost(vehicle))
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{/*ESeparator.SpaceMinusSpace*/ECharacter.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
         }

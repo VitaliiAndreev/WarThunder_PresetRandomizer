@@ -32,8 +32,10 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> The price of purchasing the vehicle with Golden Eagles. </summary>
         [Property()] public virtual int? PurchaseCostInGold { get; protected set; }
 
-        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IVehicle.IsSquadronVehicle"/>) after some progress towards its unlocking is made. </summary>
-        [Property()] public virtual int? DiscountedPurchaseCostInGold { get; protected set; }
+        [Property()] public virtual int? PurchaseCostInGoldAsSquadronVehicle { get; protected set; }
+
+        /// <summary> The price of purchasing a squadron-researchable vehicle (see <see cref="IVehicle.IsSquadronVehicle"/>) after most of the progress towards its unlocking is made. </summary>
+        [Property()] public virtual int? DiscountedPurchaseCostInGoldAsSquadronVehicle { get; protected set; }
 
         #region Crew
 

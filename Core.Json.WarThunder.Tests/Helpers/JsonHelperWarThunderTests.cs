@@ -182,7 +182,10 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.UnlockCostInResearch < 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.PurchaseCostInSilver >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.PurchaseCostInGold < 0).Should().BeFalse();
-            vehicles.Any(vehicle => vehicle.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.PurchaseCostInGoldAsSquadronVehicle.HasValue).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.PurchaseCostInGoldAsSquadronVehicle <= 0).Should().BeFalse();
+            vehicles.Any(vehicle => vehicle.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue).Should().BeTrue();
+            vehicles.Any(vehicle => vehicle.DiscountedPurchaseCostInGoldAsSquadronVehicle <= 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.NumberOfSpawnsInEvents is null || vehicle.NumberOfSpawnsInEvents == 3).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.NumberOfSpawnsInArcade <= 0).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.NumberOfSpawnsInRealistic <= 0).Should().BeFalse();

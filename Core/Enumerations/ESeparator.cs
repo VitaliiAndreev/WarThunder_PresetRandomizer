@@ -6,6 +6,7 @@
         public static string CommaAndSpace = $"{ECharacter.Comma}{ECharacter.Space}";
         public static string VerticalBarAndSpace = $"{ECharacter.VerticalBar}{ECharacter.Space}";
         public static string Space = $"{ECharacter.Space}";
+        public static string SpaceMinusSpace = $"{ECharacter.Space}{ECharacter.Minus}{ECharacter.Space}";
         public static string SpaceSlashSpace = $"{ECharacter.Space}{ECharacter.Slash}{ECharacter.Space}";
     }
 }
