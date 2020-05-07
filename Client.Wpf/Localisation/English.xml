@@ -96,6 +96,7 @@
   <Line key="IsPurchasableForGoldenEagles" value="GE"/>
   <Line key="Israel" value="Israel"/>
   <Line key="IsResearchable" value="Research"/>
+  <Line key="IsReserve" value="Reserve"/>
   <Line key="IsSoldInTheStore" value="Store"/>
   <Line key="IsSoldOnTheMarket" value="Market"/>
   <Line key="IsSquadronVehicle" value="Research&#xA;(Squadron)"/>

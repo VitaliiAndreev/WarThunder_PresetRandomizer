@@ -21,6 +21,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         bool IsResearchable { get; }
 
+        bool IsReserve { get; }
+
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         bool IsPurchasableForGoldenEagles { get; }
 

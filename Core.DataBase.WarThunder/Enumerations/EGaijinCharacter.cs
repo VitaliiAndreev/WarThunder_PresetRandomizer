@@ -8,6 +8,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char AttackerPip = '┞';
         public const char AttackHelicopter = '⋡';
         public const char AttackHelicopterPip = '┞';
+        public const char Backup = '╢';
         public const char BargePip = '␋';
         public const char Battleship = '┚';
         public const char Binoculars = '⌂';
