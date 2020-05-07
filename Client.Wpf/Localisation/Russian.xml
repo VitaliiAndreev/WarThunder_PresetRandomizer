@@ -33,6 +33,9 @@
   <Line key="Aviation" value="Авиация"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
   <Line key="BattleRating" value="Боевой рейтинг"/>
+  <Line key="BattleRatingInArcade" value="БР&#xA;А."/>
+  <Line key="BattleRatingInRealistic" value="БР&#xA;Р."/>
+  <Line key="BattleRatingInSimulator" value="БР&#xA;С."/>
   <Line key="BattleRatings" value="Боевые рейтинги"/>
   <Line key="Belgium" value="Бельгия"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>

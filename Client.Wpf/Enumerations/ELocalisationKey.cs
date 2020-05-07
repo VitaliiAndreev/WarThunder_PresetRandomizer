@@ -22,6 +22,9 @@
         public const string Aviation = nameof(Aviation);
         public const string Barge = nameof(Barge);
         public const string BattleRating = nameof(BattleRating);
+        public const string BattleRatingInArcade = nameof(BattleRatingInArcade);
+        public const string BattleRatingInRealistic = nameof(BattleRatingInRealistic);
+        public const string BattleRatingInSimulator = nameof(BattleRatingInSimulator);
         public const string BattleRatings = nameof(BattleRatings);
         public const string Belgium = nameof(Belgium);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
