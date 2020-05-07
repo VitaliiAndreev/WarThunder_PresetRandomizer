@@ -107,6 +107,7 @@
     <Compile Include="Helpers\DataRepositorySqliteWarThunder.cs" />
     <Compile Include="Objects\Connectors\BranchClassPair.cs" />
     <Compile Include="Objects\Connectors\BranchCountryPair.cs" />
+    <Compile Include="Objects\Connectors\NationAvailablityPair.cs" />
     <Compile Include="Objects\Connectors\NationClassPair.cs" />
     <Compile Include="Objects\Connectors\NationSubclassPair.cs" />
     <Compile Include="Objects\Connectors\NationTagPair.cs" />

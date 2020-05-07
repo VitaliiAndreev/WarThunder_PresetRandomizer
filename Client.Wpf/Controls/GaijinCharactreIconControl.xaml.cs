@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Controls.Base;
-using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 using System.Windows;
 using System.Windows.Input;
@@ -16,34 +15,41 @@ namespace Client.Wpf.Controls
             InitializeComponent();
         }
 
-        public GaijinCharactreIconControl(char icon, object tag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null)
+        public GaijinCharactreIconControl(char icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false)
             : this()
         {
-            Initialise(icon.ToString(), tag, margin, leftMouseDownHandler, fontSize);
+            Initialise(icon.ToString(), iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold);
         }
 
-        public GaijinCharactreIconControl(string icon, object tag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null)
+        public GaijinCharactreIconControl(string icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false)
             : this()
         {
-            Initialise(icon, tag, margin, leftMouseDownHandler, fontSize);
+            Initialise(icon, iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold);
         }
 
         #endregion Constructors
         #region Methods: Initialisation
 
-        private void Initialise<T>(string icon, T tag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = EDouble.Number.Sixteen)
+        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = EDouble.Number.Sixteen, bool iconIsBold = false)
         {
+            _icon.FontWeight = iconIsBold ? FontWeights.Bold : FontWeights.Normal;
             _icon.Text = icon;
-            _icon.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(tag.ToString());
+            _icon.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag);
 
             if (fontSize.HasValue)
                 _icon.FontSize = fontSize.Value;
 
-            Tag = tag;
             Margin = margin;
 
             if (!(leftMouseDownHandler is null))
                 MouseDown += leftMouseDownHandler;
+        }
+
+        public GaijinCharactreIconControl WithTag<T>(T controlTag)
+        {
+            Tag = controlTag;
+
+            return this;
         }
 
         #endregion Methods: Initialisation
