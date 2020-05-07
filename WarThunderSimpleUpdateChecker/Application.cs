@@ -131,7 +131,7 @@ namespace WarThunderSimpleUpdateChecker
                 }
             }
 
-            currentVersion = GetVersionFromUnpackedFiles(outputDirectories);
+            currentVersion = SelectFinalVersion(currentVersion, GetVersionFromUnpackedFiles(outputDirectories));
 
             AppendCurrentClientVersion(currentVersion, mostRecentSourceFileWriteDate);
             RemoveCopiedSourceFiles(outputFilesDirectory);
@@ -219,6 +219,21 @@ namespace WarThunderSimpleUpdateChecker
             _logger.LogInfo($"{versions.Count()} found: {versions.StringJoin(ESeparator.CommaAndSpace)}. The latest one is {latestVersion}...");
 
             return latestVersion;
+        }
+
+        public static Version SelectFinalVersion(Version clientVersion, Version dataVersion)
+        {
+            if (dataVersion > clientVersion)
+            {
+                _logger.LogInfo($"Unpacked files have the latest version...");
+                return dataVersion;
+            }
+            else if (dataVersion < clientVersion)
+            {
+                _logger.LogInfo($"The client version is the latest...");
+            }
+
+            return clientVersion;
         }
 
         private static void AppendCurrentClientVersion(Version version, string updateTime)
