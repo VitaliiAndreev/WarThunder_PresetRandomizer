@@ -433,9 +433,10 @@ namespace Client.Wpf.Controls
                 {
                     EVehicleAvailability.All => _availabilityCategoryIconFontSize + EInteger.Number.One,
                     EVehicleAvailability.Researchable => _availabilityCategoryIconFontSize + EInteger.Number.Three,
+                    EVehicleAvailability.Reserve => _availabilityCategoryIconFontSize + EInteger.Number.Three,
                     EVehicleAvailability.ResearchableInSquadron => _availabilityCategoryIconFontSize + EInteger.Number.Three,
                     EVehicleAvailability.PurchasableForGoldenEagles => _availabilityCategoryIconFontSize + EInteger.Number.Two,
-                    EVehicleAvailability.Premium => _availabilityCategoryIconFontSize + EInteger.Number.One,
+                    EVehicleAvailability.Premium => _availabilityCategoryIconFontSize + EInteger.Number.Two,
                     _ => _availabilityCategoryIconFontSize
                 };
                 iconColumnWidth = _availabilityCategoryIconColumnWidth;

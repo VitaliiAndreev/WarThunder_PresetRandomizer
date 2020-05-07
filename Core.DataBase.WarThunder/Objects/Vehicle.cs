@@ -57,6 +57,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true)]
         public virtual bool IsResearchable { get; protected set; }
 
+        [Property(NotNull = true)]
+        public virtual bool IsReserve { get; protected set; }
+
         /// <summary> Indicates whether the vehicle can be unlocked for free with research. </summary>
         [Property(NotNull = true)]
         public virtual bool IsPurchasableForGoldenEagles { get; protected set; }
@@ -385,6 +388,7 @@ namespace Core.DataBase.WarThunder.Objects
                 || deserializedResearchTreeVehicle.IsHiddenUnlessResearched
             ;
             IsResearchable = !EconomyData.PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
+            IsReserve = IsResearchable && EconomyData.PurchaseCostInSilver.IsZero();
             IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
             IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
             IsPurchasableForGoldenEagles =
@@ -477,33 +481,34 @@ namespace Core.DataBase.WarThunder.Objects
 
         public virtual IEnumerable<EVehicleAvailability> GetAvailabilityCategories()
         {
-            var availabilityCategories = new List<EVehicleAvailability> { EVehicleAvailability.All };
+            yield return EVehicleAvailability.All;
 
             if (IsResearchable)
-                availabilityCategories.Add(EVehicleAvailability.Researchable);
+                yield return EVehicleAvailability.Researchable;
+
+            if (IsReserve)
+                yield return EVehicleAvailability.Reserve;
 
             if (IsSquadronVehicle)
-                availabilityCategories.Add(EVehicleAvailability.ResearchableInSquadron);
+                yield return EVehicleAvailability.ResearchableInSquadron;
 
             if (IsPurchasableForGoldenEagles && !IsSquadronVehicle)
-                availabilityCategories.Add(EVehicleAvailability.PurchasableForGoldenEagles);
+                yield return EVehicleAvailability.PurchasableForGoldenEagles;
 
             if (IsSoldInTheStore)
-                availabilityCategories.Add(EVehicleAvailability.PurchasableInTheStore);
+                yield return EVehicleAvailability.PurchasableInTheStore;
 
             if (IsSoldOnTheMarket)
-                availabilityCategories.Add(EVehicleAvailability.PurchasableOnTheMarket);
+                yield return EVehicleAvailability.PurchasableOnTheMarket;
 
             if (IsPremium)
-                availabilityCategories.Add(EVehicleAvailability.Premium);
+                yield return EVehicleAvailability.Premium;
 
             if (IsAvailableOnlyOnConsoles)
-                availabilityCategories.Add(EVehicleAvailability.ConsoleExclusive);
+                yield return EVehicleAvailability.ConsoleExclusive;
 
             if (IsHiddenUnlessOwned)
-                availabilityCategories.Add(EVehicleAvailability.Hidden);
-
-            return availabilityCategories;
+                yield return EVehicleAvailability.Hidden;
         }
     }
 }

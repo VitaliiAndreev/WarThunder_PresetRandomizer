@@ -130,6 +130,7 @@
         public const string Researchable = nameof(Researchable);
         public const string ResearchableInSquadron = nameof(ResearchableInSquadron);
         public const string IsResearchable = nameof(IsResearchable);
+        public const string IsReserve = nameof(IsReserve);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);

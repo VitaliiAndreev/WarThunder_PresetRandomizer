@@ -16,7 +16,7 @@ namespace Client.Wpf.Controls.Strategies
     {
         #region Methods: Checks
 
-        public bool ShowReserveTag(IVehicle vehicle) => vehicle.IsResearchable && vehicle.EconomyData.PurchaseCostInSilver.IsZero();
+        public bool ShowReserveTag(IVehicle vehicle) => vehicle.IsReserve;
 
         public bool ShowStarterGiftTag(IVehicle vehicle) => vehicle.GiftedToNewPlayersForSelectingTheirFirstBranch;
 

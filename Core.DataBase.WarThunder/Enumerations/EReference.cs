@@ -229,6 +229,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleAvailability.None, string.Empty },
             { EVehicleAvailability.All, EGaijinCharacter.GroundAirSea.ToString() },
             { EVehicleAvailability.Researchable, EGaijinCharacter.Research.ToString() },
+            { EVehicleAvailability.Reserve, EGaijinCharacter.Backup.ToString() },
             { EVehicleAvailability.ResearchableInSquadron, EGaijinCharacter.Officer.ToString() },
             { EVehicleAvailability.PurchasableForGoldenEagles, EGaijinCharacter.GoldenEagle.ToString() },
             { EVehicleAvailability.PurchasableInTheStore, ECharacter.DollarFullwidth.ToString() },
