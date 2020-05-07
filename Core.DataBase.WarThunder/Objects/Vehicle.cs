@@ -495,6 +495,9 @@ namespace Core.DataBase.WarThunder.Objects
             if (IsPurchasableForGoldenEagles && !IsSquadronVehicle)
                 yield return EVehicleAvailability.PurchasableForGoldenEagles;
 
+            if (GiftedToNewPlayersForSelectingTheirFirstBranch)
+                yield return EVehicleAvailability.StarterGift;
+
             if (IsSoldInTheStore)
                 yield return EVehicleAvailability.PurchasableInTheStore;
 

@@ -10,6 +10,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         Reserve,
         ResearchableInSquadron,
         PurchasableForGoldenEagles,
+        StarterGift,
         PurchasableInTheStore,
         PurchasableOnTheMarket,
         Premium,

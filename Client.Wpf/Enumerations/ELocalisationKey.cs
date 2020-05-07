@@ -148,6 +148,7 @@
         public const string Spaa = nameof(Spaa);
         public const string Starter = nameof(Starter);
         public const string Statistics = nameof(Statistics);
+        public const string StarterGift = nameof(StarterGift);
         public const string Status = nameof(Status);
         public const string StrikeFighter = nameof(StrikeFighter);
         public const string SubChaser = nameof(SubChaser);

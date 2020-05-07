@@ -170,6 +170,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
   <Line key="Spaa" value="ЗСУ"/>
   <Line key="Starter" value="Подарок"/>
+  <Line key="StarterGift" value="Дарится начинающему игроку при выборе его первой ветки исследования"/>
   <Line key="Statistics" value="Статистика"/>
   <Line key="Status" value="Статус:"/>
   <Line key="StrikeFighter" value="Ударный истребитель"/>
