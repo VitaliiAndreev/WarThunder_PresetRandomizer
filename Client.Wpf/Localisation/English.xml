@@ -170,6 +170,7 @@
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
   <Line key="Spaa" value="SPAA"/>
   <Line key="Starter" value="Starter"/>
+  <Line key="StarterGift" value="Gifted to starting players upon selecting their first research tree"/>
   <Line key="Statistics" value="Statistics"/>
   <Line key="Status" value="Status:"/>
   <Line key="StrikeFighter" value="Strike Fighter"/>

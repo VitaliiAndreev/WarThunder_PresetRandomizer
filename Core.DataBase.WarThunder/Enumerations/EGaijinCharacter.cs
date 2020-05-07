@@ -48,6 +48,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char TankFacingLeft = '╠';
         public const char TankFacingRight = '▮';
         public const char TankDestroyerPip = '┴';
+        public const char Trumpet = '╣';
         public const char UtilityHelicopterPip = '┠';
         public const char Watch = '▩';
         public const char Wrench = '▨';
