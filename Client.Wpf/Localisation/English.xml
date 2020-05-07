@@ -33,6 +33,9 @@
   <Line key="Aviation" value="Aviation"/>
   <Line key="Barge" value="Barge"/>
   <Line key="BattleRating" value="Battle Rating"/>
+  <Line key="BattleRatingInArcade" value="BR&#xA;A."/>
+  <Line key="BattleRatingInRealistic" value="BR&#xA;R."/>
+  <Line key="BattleRatingInSimulator" value="BR&#xA;S."/>
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="Belgium" value="Belgium"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
