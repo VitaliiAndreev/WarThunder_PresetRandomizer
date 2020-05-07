@@ -264,7 +264,7 @@ namespace Core.DataBase.WarThunder.Objects
             WeaponsData = new VehicleWeaponsData(_dataRepository, this, deserializedVehicle);
             GraphicsData = new VehicleGraphicsData(_dataRepository, this, deserializedVehicle);
 
-            IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || EconomyData.DiscountedPurchaseCostInGold.HasValue;
+            IsSquadronVehicle = deserializedVehicle.ResearchUnlockType == "clanVehicle" || EconomyData.PurchaseCostInGoldAsSquadronVehicle.HasValue && EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue;
         }
 
         /// <summary> Initializes battle ratings. It has to be done here because they are absent in JSON data. </summary>
@@ -387,7 +387,11 @@ namespace Core.DataBase.WarThunder.Objects
             IsResearchable = !EconomyData.PurchaseCostInGold.HasValue && !IsHiddenUnlessOwned && string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
             IsSoldOnTheMarket = ResearchTreeData.MarketplaceId.HasValue;
             IsSoldInTheStore = !IsHiddenUnlessOwned && IsPremium && !IsSoldOnTheMarket && !string.IsNullOrWhiteSpace(CategoryOfHiddenVehicles);
-            IsPurchasableForGoldenEagles = !IsHiddenUnlessOwned && !IsSoldOnTheMarket && !IsSoldInTheStore && (IsPremium && EconomyData.PurchaseCostInGold.HasValue || IsSquadronVehicle && EconomyData.DiscountedPurchaseCostInGold.HasValue);
+            IsPurchasableForGoldenEagles =
+                !IsHiddenUnlessOwned
+                && !IsSoldOnTheMarket
+                && !IsSoldInTheStore
+                && (IsPremium && EconomyData.PurchaseCostInGold.HasValue || IsSquadronVehicle && EconomyData.PurchaseCostInGoldAsSquadronVehicle.HasValue && EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue);
         }
 
         /// <summary> Initializes localization association properties. </summary>

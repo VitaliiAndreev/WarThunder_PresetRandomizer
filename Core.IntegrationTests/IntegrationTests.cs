@@ -203,7 +203,10 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.EconomyData.UnlockCostInResearch < 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.PurchaseCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomyData.PurchaseCostInGold < 0).Should().BeFalse();
-                    vehicleCollection.Any(vehicle => vehicle.EconomyData.DiscountedPurchaseCostInGold <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.HasValue).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle <= 0).Should().BeFalse();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.BaseCrewTrainCostInSilver >= 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.AceCrewTrainCostInGold > 0).Should().BeTrue();

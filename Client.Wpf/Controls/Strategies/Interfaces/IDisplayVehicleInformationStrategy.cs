@@ -22,7 +22,7 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         bool ShowGoldenEagleCost(IVehicle vehicle);
 
-        bool ShowDiscountedGoldenEagleCost(IVehicle vehicle);
+        bool ShowSquadronGoldenEagleCost(IVehicle vehicle);
 
         bool ShowMarketIcon(IVehicle vehicle);
 

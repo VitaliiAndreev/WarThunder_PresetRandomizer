@@ -234,8 +234,11 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("costGold")]
         public int? PurchaseCostInGold { get; set; }
 
+        [JsonProperty("openCostGold")]
+        public int? PurchaseCostInGoldAsSquadronVehicle { get; set; }
+
         [JsonProperty("minOpenCostGold")]
-        public int? DiscountedPurchaseCostInGold { get; set; }
+        public int? DiscountedPurchaseCostInGoldAsSquadronVehicle { get; set; }
 
         [JsonProperty("reqAir")]
         public string RequiredVehicleGaijinId { get; set; }
