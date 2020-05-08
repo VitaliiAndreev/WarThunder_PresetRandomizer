@@ -66,16 +66,15 @@ namespace WarThunderSimpleUpdateChecker
 
             InitialiseSettings();
 
-            var versionInfoFile = GetVersionInfoFile(_warThunderPath);
-            var currentVersion = GetVersion(versionInfoFile);
-            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, currentVersion.ToString(EInteger.Number.Three));
-            var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
-
-            var binFiles = GetBinFiles(sourceFiles);
             var outputFilesDirectory = new DirectoryInfo(OutputFilesPath);
 
             RemoveFilesFromPreviousPatch(outputFilesDirectory);
 
+            var versionInfoFile = GetVersionInfoFile(_warThunderPath);
+            var currentVersion = GetVersion(versionInfoFile);
+            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, currentVersion.ToString(EInteger.Number.Three));
+            var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
+            var binFiles = GetBinFiles(sourceFiles);
             var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
             var decompressBlkTasks = new Dictionary<string, Task>();
             var decompressDdsxTasks = new Dictionary<string, Task>();
