@@ -504,7 +504,8 @@ namespace Client.Wpf.Controls
 
             foreach (var branch in branches)
             {
-                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, doubleMargin ? _categoryMarginDoubled : _categoryMargin, OnVehiclesByBranchesLeftMouseDown, _branchIconHeaderFontSize);
+                var margin = doubleMargin ? _categoryMarginDoubled : _categoryMargin;
+                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, margin, OnVehiclesByBranchesLeftMouseDown, _branchIconHeaderFontSize, useStandardVerticalMargin: true).WithTag(branch);
 
                 grid.Add(branchHeader, nationHeaderIndex++, EInteger.Number.Zero);
             }
@@ -928,7 +929,7 @@ namespace Client.Wpf.Controls
                 (
                     $"{listCachePrefix}_{nationAvailabilityPair}",
                     _statisticsControl.VehiclesByAvailabilityAndNations.Where(item => item.Key == nationAvailabilityPair).SelectMany(item => item.Value),
-                    EVehicleProfile.Full
+                    EVehicleProfile.Nation
                 );
                 eventArguments.Handled = true;
             }
