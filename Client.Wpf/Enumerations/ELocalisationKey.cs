@@ -143,6 +143,9 @@
         public const string IsResearchable = nameof(IsResearchable);
         public const string IsReserve = nameof(IsReserve);
         public const string RepairCost = nameof(RepairCost);
+        public const string RepairCostInArcade = nameof(RepairCostInArcade);
+        public const string RepairCostInRealistic = nameof(RepairCostInRealistic);
+        public const string RepairCostInSimulator = nameof(RepairCostInSimulator);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);

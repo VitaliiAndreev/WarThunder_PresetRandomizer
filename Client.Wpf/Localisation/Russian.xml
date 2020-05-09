@@ -160,6 +160,9 @@
   <Line key="RegularCrewTrainingCost" value="Стоимость&#xA;экипажа,&#xA;серебро&#xA;"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepairCost" value="Стоимость ремонта"/>
+  <Line key="RepairCostInArcade" value="Стоимость&#xA;ремонта&#xA;(А.)"/>
+  <Line key="RepairCostInRealistic" value="Стоимость&#xA;ремонта&#xA;(Р.)"/>
+  <Line key="RepairCostInSimulator" value="Стоимость&#xA;ремонта&#xA;(С.)"/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
   <Line key="Researchable" value="Доступно для исследования"/>
