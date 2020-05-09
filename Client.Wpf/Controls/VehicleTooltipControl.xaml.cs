@@ -57,6 +57,19 @@ namespace Client.Wpf.Controls
             _countryRankAndBattleRating.Text = _displayStrategy.GetVehicleCardCountryRow(_vehicle);
             _requirements.Text = _displayStrategy.GetVehicleCardRequirementsRow(_vehicle);
 
+            if (_displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle) is string regularCrewRequirements)
+            {
+                _regularCrewRequirements.Text = regularCrewRequirements;
+            }
+            else
+            {
+                _regularCrewIcon.Visibility = Visibility.Collapsed;
+                _regularCrewRequirements.Visibility = Visibility.Collapsed;
+            }
+
+            _expertCrewRequirements.Text = _displayStrategy.GetVehicleCardExpertCrewRequirements(_vehicle);
+            _aceCrewRequirements.Text = _displayStrategy.GetVehicleCardAceCrewRequirements(_vehicle);
+
             if (string.IsNullOrWhiteSpace(_tags.Text))
                 _tags.Visibility = Visibility.Collapsed;
         }
@@ -87,7 +100,7 @@ namespace Client.Wpf.Controls
                 requiredVehiclePanel.Children.Add(_requiredVehicle);
 
                 _requiredVehicle.Margin = new Thickness(5, 0, 0, 0);
-                _tooltipPanel.Children.Add(requiredVehiclePanel);
+                _tooltipPanel.Children.Insert(_tooltipPanel.Children.IndexOf(_crewTrainingGrid), requiredVehiclePanel);
             }
         }
 

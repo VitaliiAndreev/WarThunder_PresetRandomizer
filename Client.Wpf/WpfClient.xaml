@@ -12,6 +12,10 @@
         <BitmapImage x:Key="ArcadeIcon">pack://application:,,,/Resources/Game Mode Icons/arcade.png</BitmapImage>
         <BitmapImage x:Key="RealisticIcon">pack://application:,,,/Resources/Game Mode Icons/realistic.png</BitmapImage>
         <BitmapImage x:Key="SimulatorIcon">pack://application:,,,/Resources/Game Mode Icons/simulator.png</BitmapImage>
+
+        <BitmapImage x:Key="RegularCrewIcon">pack://application:,,,/Resources/Crew Training Icons/Regular.png</BitmapImage>
+        <BitmapImage x:Key="ExpertCrewIcon">pack://application:,,,/Resources/Crew Training Icons/Expert.png</BitmapImage>
+        <BitmapImage x:Key="AceCrewIcon">pack://application:,,,/Resources/Crew Training Icons/Ace.png</BitmapImage>
         
         <BitmapImage x:Key="PresetIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/inbox_4.png</BitmapImage>
         <BitmapImage x:Key="Delete">pack://application:,,,/Resources/IconSweets 2 by Yummygum/recycle.png</BitmapImage>
@@ -216,6 +220,21 @@
             <Setter Property="Height" Value="23"/>
         </Style>
 
+        <Style TargetType="Image" x:Key="Icon12px" BasedOn="{StaticResource Icon}">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Icon13px" BasedOn="{StaticResource Icon}">
+            <Setter Property="Width" Value="13"/>
+            <Setter Property="Height" Value="13"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Icon14px" BasedOn="{StaticResource Icon}">
+            <Setter Property="Width" Value="14"/>
+            <Setter Property="Height" Value="14"/>
+        </Style>
+
         <Style TargetType="Image" x:Key="Icon32px" BasedOn="{StaticResource Icon}">
             <Setter Property="Width" Value="32"/>
             <Setter Property="Height" Value="32"/>
@@ -378,6 +397,10 @@
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake16pxUncondensed" BasedOn="{StaticResource TextBlockWithSkyQuakeUncondensed}">
             <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuake12px" BasedOn="{StaticResource TextBlockWithSkyQuake}">
+            <Setter Property="FontSize" Value="12"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockWithSkyQuakeHorizontallyCentered" BasedOn="{StaticResource TextBlockWithSkyQuake}">

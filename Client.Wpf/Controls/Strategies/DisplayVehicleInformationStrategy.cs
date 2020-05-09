@@ -229,6 +229,32 @@ namespace Client.Wpf.Controls.Strategies
             return stringBuilder.ToString();
         }
 
+        public string GetVehicleCardRegularCrewRequirements(IVehicle vehicle)
+        {
+            var cost = vehicle.EconomyData.BaseCrewTrainCostInSilver;
+
+            if (cost.IsZero())
+                return null;
+
+            return $"{vehicle.EconomyData.BaseCrewTrainCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}";
+        }
+
+        public string GetVehicleCardExpertCrewRequirements(IVehicle vehicle) =>
+            $"{vehicle.EconomyData.ExpertCrewTrainCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}";
+
+        public string GetVehicleCardAceCrewRequirements(IVehicle vehicle)
+        {
+            var stringBuilder = new StringBuilder();
+
+            void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
+
+            append($"{vehicle.EconomyData.AceCrewTrainCostInResearch.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.Research}");
+            append(ESeparator.SpaceSlashSpace);
+            append($"{vehicle.EconomyData.AceCrewTrainCostInGold.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
+
+            return stringBuilder.ToString();
+        }
+
         #endregion Methods: Output
     }
 }

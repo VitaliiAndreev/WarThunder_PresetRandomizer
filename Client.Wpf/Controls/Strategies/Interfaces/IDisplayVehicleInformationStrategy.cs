@@ -67,6 +67,12 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         string GetVehicleCardRequirementsRow(IVehicle vehicle);
 
+        string GetVehicleCardRegularCrewRequirements(IVehicle vehicle);
+
+        string GetVehicleCardExpertCrewRequirements(IVehicle vehicle);
+
+        string GetVehicleCardAceCrewRequirements(IVehicle vehicle);
+
         #endregion Methods: Output
     }
 }

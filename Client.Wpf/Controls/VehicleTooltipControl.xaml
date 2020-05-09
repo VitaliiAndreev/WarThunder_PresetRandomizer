@@ -51,6 +51,67 @@
                 Style="{StaticResource Image312x200px}"
                 Margin="0 5 0 5"/>
 
+            <Grid
+                Grid.Row="1"
+                x:Name="_crewTrainingGrid"
+                HorizontalAlignment="Center"
+                Margin="0 5 0 0">
+                    
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="22"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                    
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                    
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    x:Name="_regularCrewIcon"
+                    Style="{StaticResource Icon14px}"
+                    Margin="0 0 5 0"
+                    Source="{StaticResource RegularCrewIcon}"/>
+                    
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="_expertCrewIcon"
+                    Style="{StaticResource Icon14px}"
+                    Margin="0 0 5 0"
+                    Source="{StaticResource ExpertCrewIcon}"/>
+                    
+                <Image
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    x:Name="_aceCrewIcon"
+                    Style="{StaticResource Icon14px}"
+                    Margin="0 0 5 0"
+                    Source="{StaticResource AceCrewIcon}"/>
+                    
+                <TextBlock Text="Regular crew training requirements"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    x:Name="_regularCrewRequirements"
+                    Style="{StaticResource TextBlockWithSkyQuake12px}"/>
+                    
+                <TextBlock Text="Expert crew training requirements"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="_expertCrewRequirements"
+                    Style="{StaticResource TextBlockWithSkyQuake12px}"/>
+                    
+                <TextBlock Text="Ace crew training requirements"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    x:Name="_aceCrewRequirements"
+                    Style="{StaticResource TextBlockWithSkyQuake12px}"/>
+                    
+            </Grid>
+            
         </StackPanel>
 
     </StackPanel>
