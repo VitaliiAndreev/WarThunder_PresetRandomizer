@@ -450,7 +450,6 @@
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
-    <Compile Include="Enumerations\ShrinkProfiles\EVehicleProfile.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\ContextMenuExtensions.cs" />
