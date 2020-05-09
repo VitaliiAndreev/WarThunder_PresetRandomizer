@@ -58,6 +58,7 @@
         public const string Finland = nameof(Finland);
         public const string Fleet = nameof(Fleet);
         public const string France = nameof(France);
+        public const string Free = nameof(Free);
         public const string Frigate = nameof(Frigate);
         public const string FrontlineBomber = nameof(FrontlineBomber);
         public const string GaijinEntertainmentForWarThunder = nameof(GaijinEntertainmentForWarThunder);
@@ -141,6 +142,7 @@
         public const string ResearchableInSquadron = nameof(ResearchableInSquadron);
         public const string IsResearchable = nameof(IsResearchable);
         public const string IsReserve = nameof(IsReserve);
+        public const string RepairCost = nameof(RepairCost);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);

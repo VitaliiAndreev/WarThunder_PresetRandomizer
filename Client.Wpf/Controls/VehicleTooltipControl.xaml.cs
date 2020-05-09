@@ -36,6 +36,18 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Constructors
+        #region Methods: Overrides
+
+        public override void Localise()
+        {
+            base.Localise();
+
+            static string localise(string key) => ApplicationHelpers.LocalisationManager.GetLocalisedString(key);
+
+            _repairCostHeader.Text = localise(ELocalisationKey.RepairCost);
+        }
+
+        #endregion Methods: Overrides
         #region Methods: Initialisation
 
         private void SetBackground()
@@ -57,16 +69,7 @@ namespace Client.Wpf.Controls
             _countryRankAndBattleRating.Text = _displayStrategy.GetVehicleCardCountryRow(_vehicle);
             _requirements.Text = _displayStrategy.GetVehicleCardRequirementsRow(_vehicle);
 
-            if (_displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle) is string regularCrewRequirements)
-            {
-                _regularCrewRequirements.Text = regularCrewRequirements;
-            }
-            else
-            {
-                _regularCrewIcon.Visibility = Visibility.Collapsed;
-                _regularCrewRequirements.Visibility = Visibility.Collapsed;
-            }
-
+            _regularCrewRequirements.Text = _displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle);
             _expertCrewRequirements.Text = _displayStrategy.GetVehicleCardExpertCrewRequirements(_vehicle);
             _aceCrewRequirements.Text = _displayStrategy.GetVehicleCardAceCrewRequirements(_vehicle);
 
@@ -100,7 +103,7 @@ namespace Client.Wpf.Controls
                 requiredVehiclePanel.Children.Add(_requiredVehicle);
 
                 _requiredVehicle.Margin = new Thickness(5, 0, 0, 0);
-                _tooltipPanel.Children.Insert(_tooltipPanel.Children.IndexOf(_crewTrainingGrid), requiredVehiclePanel);
+                _tooltipPanel.Children.Insert(_tooltipPanel.Children.IndexOf(_gridBelowPortrait), requiredVehiclePanel);
             }
         }
 
@@ -132,9 +135,12 @@ namespace Client.Wpf.Controls
         {
             if (gameMode != _gameMode)
             {
-                _tooltipBattleRating.Text = _displayStrategy.GetBattleRating(gameMode, _vehicle);
-                _requiredVehicle?.UpdateFor(gameMode);
                 _gameMode = gameMode;
+
+                _tooltipBattleRating.Text = _displayStrategy.GetBattleRating(_gameMode, _vehicle);
+                _repairCost.Text = _displayStrategy.GetVehicleCardRepairCost(_vehicle, gameMode);
+
+                _requiredVehicle?.UpdateFor(_gameMode);
             }
         }
 

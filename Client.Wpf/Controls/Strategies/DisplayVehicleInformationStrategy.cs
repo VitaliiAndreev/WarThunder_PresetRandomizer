@@ -234,9 +234,9 @@ namespace Client.Wpf.Controls.Strategies
             var cost = vehicle.EconomyData.BaseCrewTrainCostInSilver;
 
             if (cost.IsZero())
-                return null;
+                return ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Free);
 
-            return $"{vehicle.EconomyData.BaseCrewTrainCostInSilver.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}";
+            return $"{cost.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}";
         }
 
         public string GetVehicleCardExpertCrewRequirements(IVehicle vehicle) =>
@@ -253,6 +253,16 @@ namespace Client.Wpf.Controls.Strategies
             append($"{vehicle.EconomyData.AceCrewTrainCostInGold.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
+        }
+
+        public string GetVehicleCardRepairCost(IVehicle vehicle, EGameMode gameMode)
+        {
+            var cost = vehicle.EconomyData.RepairCost[gameMode];
+
+            if (!cost.HasValue || cost.Value.IsZero())
+                return ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Free);
+
+            return $"{cost.Value.WithNumberGroupsSeparated()}{ECharacter.Space}{EGaijinCharacter.SilverLion}";
         }
 
         #endregion Methods: Output

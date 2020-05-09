@@ -72,6 +72,7 @@
   <Line key="Finland" value="Финляндия"/>
   <Line key="Fleet" value="Флот"/>
   <Line key="France" value="Франция"/>
+  <Line key="Free" value="Бесплатно"/>
   <Line key="Frigate" value="Фрегат"/>
   <Line key="FrontlineBomber" value="Фронтовой бомбардировщик"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment за War Thunder."/>
@@ -158,6 +159,7 @@
   <Line key="Realistic" value="Реалистичный режим"/>
   <Line key="RegularCrewTrainingCost" value="Стоимость&#xA;экипажа,&#xA;серебро&#xA;"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
+  <Line key="RepairCost" value="Стоимость ремонта"/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>
   <Line key="Researchable" value="Доступно для исследования"/>

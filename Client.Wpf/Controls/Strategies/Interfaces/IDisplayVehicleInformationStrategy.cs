@@ -73,6 +73,8 @@ namespace Client.Wpf.Controls.Strategies.Interfaces
 
         string GetVehicleCardAceCrewRequirements(IVehicle vehicle);
 
+        string GetVehicleCardRepairCost(IVehicle vehicle, EGameMode gameMode);
+
         #endregion Methods: Output
     }
 }
