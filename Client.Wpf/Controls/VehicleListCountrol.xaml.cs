@@ -134,6 +134,8 @@ namespace Client.Wpf.Controls
 
                 _createdTooltips.Add(vehicle, newTooltip);
                 row.ToolTip = newTooltip;
+
+                newTooltip.Localise();
             }
 
             row.SetRowBackground(vehicle);
