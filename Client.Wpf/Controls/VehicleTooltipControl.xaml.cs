@@ -45,6 +45,7 @@ namespace Client.Wpf.Controls
             static string localise(string key) => ApplicationHelpers.LocalisationManager.GetLocalisedString(key);
 
             _repairCostHeader.Text = localise(ELocalisationKey.RepairCost);
+            _researchMultiplierHeader.Text = localise(ELocalisationKey.ResearchGainMultiplier);
         }
 
         #endregion Methods: Overrides
@@ -72,6 +73,7 @@ namespace Client.Wpf.Controls
             _regularCrewRequirements.Text = _displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle);
             _expertCrewRequirements.Text = _displayStrategy.GetVehicleCardExpertCrewRequirements(_vehicle);
             _aceCrewRequirements.Text = _displayStrategy.GetVehicleCardAceCrewRequirements(_vehicle);
+            _researchMultiplier.Text = _vehicle.EconomyData.ResearchGainMultiplier.ToString("0.00");
 
             if (string.IsNullOrWhiteSpace(_tags.Text))
                 _tags.Visibility = Visibility.Collapsed;

@@ -238,7 +238,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.Any(vehicle => vehicle.VisualPremiumRewardMultiplierInArcade <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.VisualPremiumRewardMultiplierInRealistic <= 0m).Should().BeFalse();
             vehicles.Any(vehicle => vehicle.VisualPremiumRewardMultiplierInSimulation <= 0m).Should().BeFalse();
-            vehicles.All(vehicle => vehicle.ResearchRewardMultiplier > 0m).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.ResearchGainMultiplier > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.GroundKillRewardMultiplier > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeArcade > 0m).Should().BeTrue();
             vehicles.All(vehicle => vehicle.BattleTimeRealistic > 0m).Should().BeTrue();

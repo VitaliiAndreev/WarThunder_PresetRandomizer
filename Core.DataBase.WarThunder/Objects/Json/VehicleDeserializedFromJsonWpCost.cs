@@ -174,7 +174,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public decimal VisualRewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("expMul", Required = Required.Always)]
-        public decimal ResearchRewardMultiplier { get; set; }
+        public decimal ResearchGainMultiplier { get; set; }
 
         [JsonProperty("groundKillMul", Required = Required.Always)]
         public decimal GroundKillRewardMultiplier { get; set; }
