@@ -240,6 +240,11 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleAvailability.Hidden, ECharacter.Eye },
         };
 
+        public static IDictionary<ECategory, string> EconomicCategoryIcons { get; } = new Dictionary<ECategory, string>
+        {
+            { ECategory.RepairCost, $"{EGaijinCharacter.Wrench}{EGaijinCharacter.SilverLion}" },
+        };
+
         #endregion Properties
         #region Constructors
 

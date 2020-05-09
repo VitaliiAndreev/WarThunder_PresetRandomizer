@@ -74,7 +74,9 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Attributes\PersistAsDictionaryItemAttribute.cs" />
+    <Compile Include="Enumerations\ECategory.cs" />
     <Compile Include="Enumerations\EGaijinCharacter.cs" />
+    <Compile Include="Enumerations\ERepairCost.cs" />
     <Compile Include="Enumerations\EVehicleAvailability.cs" />
     <Compile Include="Enumerations\EVehicleBranchTag.cs" />
     <Compile Include="Enumerations\EBranch.cs" />
@@ -90,8 +92,10 @@
     <Compile Include="Enumerations\EVehicleSubclass.cs" />
     <Compile Include="Extensions\EBranchExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
+    <Compile Include="Extensions\ECategoryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
+    <Compile Include="Extensions\ERepairCostExtensions.cs" />
     <Compile Include="Extensions\EVehicleAvailabilityExtensions.cs" />
     <Compile Include="Extensions\EVehicleBranchTagExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
