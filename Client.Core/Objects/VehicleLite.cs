@@ -49,6 +49,7 @@ namespace Client.Shared.Objects
         public int RepairCostInArcade { get; }
         public int RepairCostInRealistic { get; }
         public int RepairCostInSimulator { get; }
+        public decimal ResearchGainMultiplierLite { get; }
 
         #endregion Properties
         #region Constructors
@@ -104,6 +105,7 @@ namespace Client.Shared.Objects
             RepairCostInArcade = vehicle.EconomyData.RepairCost.Arcade ?? -EInteger.Number.One;
             RepairCostInRealistic = vehicle.EconomyData.RepairCost.Realistic ?? -EInteger.Number.One;
             RepairCostInSimulator = vehicle.EconomyData.RepairCost.Simulator ?? -EInteger.Number.One;
+            ResearchGainMultiplierLite = vehicle.EconomyData.ResearchGainMultiplier;
         }
 
         #endregion Constructors
