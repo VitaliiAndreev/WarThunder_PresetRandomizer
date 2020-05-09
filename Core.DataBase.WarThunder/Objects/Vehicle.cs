@@ -135,27 +135,21 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleResearchTreeData), PropertyRef = nameof(VehicleResearchTreeData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleResearchTreeData ResearchTreeData { get; protected set; }
         
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleEconomyData), PropertyRef = nameof(VehicleEconomyData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleEconomyData EconomyData { get; protected set; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehiclePerformanceData), PropertyRef = nameof(VehiclePerformanceData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehiclePerformanceData PerformanceData { get; protected set; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleCrewData), PropertyRef = nameof(VehicleCrewData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleCrewData CrewData { get; protected set; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleWeaponsData), PropertyRef = nameof(VehicleWeaponsData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleWeaponsData WeaponsData { get; protected set; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleModificationsData), PropertyRef = nameof(VehicleModificationsData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleModificationsData ModificationsData { get; protected set; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         [OneToOne(ClassType = typeof(VehicleGraphicsData), PropertyRef = nameof(VehicleGraphicsData.Vehicle), Lazy = Laziness.Proxy)]
         public virtual VehicleGraphicsData GraphicsData { get; protected set; }
 

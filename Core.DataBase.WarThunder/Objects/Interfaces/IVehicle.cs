@@ -85,22 +85,16 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleResearchTreeData ResearchTreeData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleEconomyData EconomyData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehiclePerformanceData PerformanceData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleCrewData CrewData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleWeaponsData WeaponsData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleModificationsData ModificationsData { get; }
 
-        /// <summary> A set of information pertaining to the research tree. </summary>
         VehicleGraphicsData GraphicsData { get; }
 
         IVehicleImages Images { get; }
