@@ -66,8 +66,8 @@ namespace Core.DataBase.WarThunder.Objects
         #endregion Repairs
         #region Rewards
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual decimal ResearchRewardMultiplier { get; protected set; }
+        /// <summary> The multiplier applied to earned research points. </summary>
+        [Property()] public virtual decimal ResearchGainMultiplier { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual decimal GroundKillRewardMultiplier { get; protected set; }

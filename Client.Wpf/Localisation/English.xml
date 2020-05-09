@@ -167,6 +167,7 @@
   <Line key="RepublicOfSouthAfrica" value="Republic of South Africa"/>
   <Line key="Researchable" value="Researchable"/>
   <Line key="ResearchableInSquadron" value="Researchable in Squadrons (can be skipped for Golden Eagles)"/>
+  <Line key="ResearchGainMultiplier" value="Research gain multiplier"/>
   <Line key="ResearchTrees" value="Research Trees"/>
   <Line key="Reserve" value="Reserve"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Required settings have not been set yet. Cancelling will shut the application down. Proceed?"/>

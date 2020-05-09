@@ -134,6 +134,7 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Repair cost"
@@ -148,6 +149,21 @@
                         Grid.Column="1"
                         Grid.Row="0"
                         x:Name="_repairCost"
+                        Style="{StaticResource TextBlockWithSkyQuake12px}"
+                        Margin="5 0 0 0"/>
+
+                    <TextBlock Text="Research gain multiplier"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        x:Name="_researchMultiplierHeader"
+                        Style="{StaticResource TextBlockWithSkyQuake12px}"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 5 0"/>
+
+                    <TextBlock Text="?.??"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        x:Name="_researchMultiplier"
                         Style="{StaticResource TextBlockWithSkyQuake12px}"
                         Margin="5 0 0 0"/>
 

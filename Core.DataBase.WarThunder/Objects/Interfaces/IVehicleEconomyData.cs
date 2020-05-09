@@ -51,8 +51,8 @@
         #endregion Repairs
         #region Rewards
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        decimal ResearchRewardMultiplier { get; }
+        /// <summary> The multiplier applied to earned research points. </summary>
+        decimal ResearchGainMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         decimal GroundKillRewardMultiplier { get; }
