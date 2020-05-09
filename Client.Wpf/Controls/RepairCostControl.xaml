@@ -1,0 +1,35 @@
+﻿<base:LocalisedUserControl
+    x:Class="Client.Wpf.Controls.RepairCostControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
+    mc:Ignorable="d" 
+    d:DesignHeight="100"
+    d:DesignWidth="100">
+    <Grid
+        x:Name="_panel"
+        HorizontalAlignment="Right">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition x:Name="_countColumnDefinition"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="▨€"
+            Grid.Column="0"
+            x:Name="_header"
+            Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered}"
+            VerticalAlignment="Center"
+            FontSize="16"/>
+
+        <TextBlock Text="10/17"
+            Grid.Column="1"
+            x:Name="_counter"
+            Margin="2 0 0 0"
+            Style="{StaticResource TextBlockWithSkyQuakeVerticallyCentered}"
+            FontSize="8"/>
+
+    </Grid>
+</base:LocalisedUserControl>

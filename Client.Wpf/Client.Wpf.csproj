@@ -118,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CategoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FlagControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +149,10 @@
     <Page Include="Controls\RandomisationSelectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RepairCostControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\StatisticsControl.xaml">
       <SubType>Designer</SubType>
@@ -330,6 +338,9 @@
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
     <Compile Include="Controls\Base\VehicleCount.cs" />
+    <Compile Include="Controls\CategoryControl.xaml.cs">
+      <DependentUpon>CategoryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FlagControl.xaml.cs">
       <DependentUpon>FlagControl.xaml</DependentUpon>
     </Compile>
@@ -350,6 +361,9 @@
     </Compile>
     <Compile Include="Controls\RandomisationSelectionControl.xaml.cs">
       <DependentUpon>RandomisationSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RepairCostControl.xaml.cs">
+      <DependentUpon>RepairCostControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>

@@ -1,0 +1,30 @@
+﻿<base:LocalisedUserControl
+    x:Class="Client.Wpf.Controls.CategoryControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:base="clr-namespace:Client.Wpf.Controls.Base" xmlns:controls="clr-namespace:Client.Wpf.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="200"
+    d:DesignWidth="202">
+    <Grid
+        x:Name="_grid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <controls:RepairCostControl
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalAlignment="Center"/>
+
+    </Grid>
+</base:LocalisedUserControl>
