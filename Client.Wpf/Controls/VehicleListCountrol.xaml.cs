@@ -1,14 +1,16 @@
-﻿using Client.Wpf.Commands.MainWindow.Interfaces;
+﻿using Client.Shared.Attributes;
+using Client.Shared.LiteObjectProfiles;
+using Client.Wpf.Commands.MainWindow.Interfaces;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +31,11 @@ namespace Client.Wpf.Controls
         private IMainWindowPresenter _presenter;
 
         #endregion Fields
+        #region Properties
+
+        public EVehicleProfile VehicleProfile { get; set; }
+
+        #endregion Properties
         #region Constructors
 
         public VehicleListCountrol()
@@ -72,12 +79,12 @@ namespace Client.Wpf.Controls
             }
         }
 
-        public void SetDataSource(string key, IEnumerable<IVehicle> collection, EVehicleProfile vehicleProfile, ELanguage language)
+        public void SetDataSource(string key, IEnumerable<IVehicle> collection, ELanguage language)
         {
             if (_previousGridSourceKey != key)
             {
                 _previousGridSourceKey = key;
-                _grid.ItemsSource = collection.Select(item => item.AsLite(vehicleProfile, language)).AsParallel().ToList();
+                _grid.ItemsSource = collection.Select(item => item.AsLite(language)).AsParallel().ToList();
             }
         }
 
@@ -104,6 +111,14 @@ namespace Client.Wpf.Controls
 
         private void OnGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs eventArguments)
         {
+            if (eventArguments.PropertyDescriptor is PropertyDescriptor property && property.Attributes.OfType<ShowVehiclePropertyAttribute>().First() is ShowVehiclePropertyAttribute displayAttribute)
+            {
+                if (displayAttribute.ProhibitedProfiles.HasFlag(VehicleProfile))
+                {
+                    eventArguments.Cancel = true;
+                    return;
+                }
+            }
             eventArguments.Column.Header = ApplicationHelpers.LocalisationManager.GetLocalisedString(eventArguments.Column.Header.ToString());
         }
 

@@ -49,12 +49,28 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Enumerations\EClientApplicationName.cs" />
+    <Compile Include="Attributes\ShowVehiclePropertyAttribute.cs" />
+    <Compile Include="Enumerations\LiteObjectProfiles\EVehicleProfile.cs" />
+    <Compile Include="Objects\Interfaces\IVehicleLite.cs" />
+    <Compile Include="Objects\VehicleLite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.DataBase.WarThunder\Core.DataBase.WarThunder.csproj">
+      <Project>{275FF668-2CDD-46C0-9595-6051004181C7}</Project>
+      <Name>Core.DataBase.WarThunder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.DataBase\Core.DataBase.csproj">
+      <Project>{E011A25B-4920-4F8E-8373-58EB9AFE8991}</Project>
+      <Name>Core.DataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
       <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
       <Name>Core.UnpackingToolsIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{2cb4dc66-57b7-4d80-9c43-f3278bf76248}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

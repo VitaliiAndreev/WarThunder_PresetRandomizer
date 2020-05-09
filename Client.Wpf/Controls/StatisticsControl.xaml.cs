@@ -1,8 +1,7 @@
-﻿using Client.Wpf.Controls.Base;
+﻿using Client.Shared.LiteObjectProfiles;
+using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Presenters.Interfaces;
-using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
@@ -124,11 +123,12 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Handlers
 
-        internal void SwitchVehicleListTo(string key, IEnumerable<IVehicle> vehicles, EVehicleProfile shrinkProfile, ELanguage language)
+        internal void SwitchVehicleListTo(string key, IEnumerable<IVehicle> vehicles, EVehicleProfile vehicleProfile, ELanguage language)
         {
             _presenter.ToggleLongOperationIndicator(true);
 
-            _vehicleListControl.SetDataSource(key, vehicles, shrinkProfile, language);
+            _vehicleListControl.VehicleProfile = vehicleProfile;
+            _vehicleListControl.SetDataSource(key, vehicles, language);
             _vehicleListControl.AdjustControlVisibility();
             _vehicleListControl.ResetScrollPosition();
 

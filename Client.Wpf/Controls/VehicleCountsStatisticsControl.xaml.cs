@@ -1,6 +1,6 @@
-﻿using Client.Wpf.Controls.Base;
+﻿using Client.Shared.LiteObjectProfiles;
+using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.ShrinkProfiles;
 using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
@@ -892,9 +892,9 @@ namespace Client.Wpf.Controls
             return true;
         }
 
-        private void SwitchVehicleListTo(string key, IEnumerable<IVehicle> collection, EVehicleProfile shrinkProfile)
+        private void SwitchVehicleListTo(string key, IEnumerable<IVehicle> collection, EVehicleProfile vehicleProfile)
         {
-            _statisticsControl.SwitchVehicleListTo(key, collection, shrinkProfile, WpfSettings.LocalizationLanguage);
+            _statisticsControl.SwitchVehicleListTo(key, collection, vehicleProfile, WpfSettings.LocalizationLanguage);
         }
 
         private void OnVehiclesByAvailabilityLeftMouseDown(object sender, MouseButtonEventArgs eventArguments)

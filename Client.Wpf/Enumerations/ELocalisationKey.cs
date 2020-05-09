@@ -167,6 +167,7 @@
         public const string Ukraine = nameof(Ukraine);
         public const string UnderConstruction = nameof(UnderConstruction);
         public const string UnionOfSouthAfrica = nameof(UnionOfSouthAfrica);
+        public const string UnlockCostInResearch = nameof(UnlockCostInResearch);
         public const string UntaggedAircraft = nameof(UntaggedAircraft);
         public const string UntaggedGroundVehicle = nameof(UntaggedGroundVehicle);
         public const string Usa = nameof(Usa);
