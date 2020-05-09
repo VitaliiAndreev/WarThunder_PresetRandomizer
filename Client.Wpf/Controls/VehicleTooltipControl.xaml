@@ -7,14 +7,16 @@
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     mc:Ignorable="d" 
     d:DesignHeight="450"
-    d:DesignWidth="800">
+    d:DesignWidth="322">
     <StackPanel
         x:Name="_underlay"
-        Margin="-6 -4">
+        Margin="-6 -4"
+            Background="White">
         
         <StackPanel
             x:Name="_tooltipPanel"
-            Margin="12 8">
+            Margin="12 8"
+            HorizontalAlignment="Center">
 
             <TextBlock Text="Full Name"
                 x:Name="_fullName"
@@ -46,7 +48,7 @@
                 x:Name="_requirements"
                 Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
-            <Image
+            <Image Source="{StaticResource BlankVehiclePortrait}"
                 x:Name="_portrait"
                 Style="{StaticResource Image312x200px}"
                 Margin="0 5 0 5"/>

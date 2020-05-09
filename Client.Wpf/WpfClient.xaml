@@ -23,6 +23,8 @@
         <BitmapImage x:Key="YouTubeIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/youtube.png</BitmapImage>
         <BitmapImage x:Key="TeamIcon">pack://application:,,,/Resources/IconSweets 2 by Yummygum/team.png</BitmapImage>
 
+        <BitmapImage x:Key="BlankVehiclePortrait">pack://application:,,,/Resources/Blank Vehicle Portrait.png</BitmapImage>
+
         <BitmapImage x:Key="FlagRussian" UriSource="../Resources/Stripe Flag Set by Benjamin De Cock/RU.png" />
         <BitmapImage x:Key="FlagRussianForDesigner">pack://application:,,,/Resources/Stripe Flag Set by Benjamin De Cock/RU.png</BitmapImage>
 
