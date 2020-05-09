@@ -96,7 +96,7 @@
   <Line key="IsAvailableOnlyOnConsoles" value="Консольный&#xA;эксклюзив"/>
   <Line key="IsHiddenUnlessOwned" value="Скрыто"/>
   <Line key="IsPremium" value="Премиум"/>
-  <Line key="IsPurchasableForGoldenEagles" value="Золотые&#xA;орлы"/>
+  <Line key="IsPurchasableForGoldenEagles" value="За&#xA;золотые&#xA;орлы"/>
   <Line key="Israel" value="Израиль"/>
   <Line key="IsResearchable" value="Исследование"/>
   <Line key="IsReserve" value="Резерв"/>
@@ -119,6 +119,7 @@
   <Line key="LookUp" value="Обзор"/>
   <Line key="MediumTank" value="Средний танк"/>
   <Line key="Minelayer" value="Минный заградитель"/>
+  <Line key="MinimumPurchaseCostInGold" value="Мин.&#xA;стоимость&#xA;покупки&#xA;(золото)"/>
   <Line key="MotorGunboat" value="Артиллерийский катер"/>
   <Line key="MotorTorpedoBoat" value="Торпедный катер"/>
   <Line key="MotorTorpedoGunboat" value="Многоцелевой катер"/>
@@ -146,6 +147,7 @@
   <Line key="PurchasableForGoldenEagles" value="Продаётся за золотые орлы (за исключением полковой техники)"/>
   <Line key="PurchasableInTheStore" value="Продаётся в магазине"/>
   <Line key="PurchasableOnTheMarket" value="Продаётся на бирже"/>
+  <Line key="PurchaseCostInGold" value="Стоимость&#xA;покупки&#xA;(золото)"/>
   <Line key="PurchaseCostInSilver" value="Стоимость&#xA;покупки&#xA;(серебро)"/>
   <Line key="Rank" value="Ранг"/>
   <Line key="Ready" value="Данные готовы! Нажмите &quot;Нет&quot; в диалоговом окне."/>

@@ -97,6 +97,7 @@
         public const string LongRangeBomber = nameof(LongRangeBomber);
         public const string LookUp = nameof(LookUp);
         public const string MediumTank = nameof(MediumTank);
+        public const string MinimumPurchaseCostInGold = nameof(MinimumPurchaseCostInGold);
         public const string MotorGunboat = nameof(MotorGunboat);
         public const string MotorTorpedoBoat = nameof(MotorTorpedoBoat);
         public const string MotorTorpedoGunboat = nameof(MotorTorpedoGunboat);
@@ -121,6 +122,7 @@
         public const string PurchasableForGoldenEagles = nameof(PurchasableForGoldenEagles);
         public const string PurchasableInTheStore = nameof(PurchasableInTheStore);
         public const string PurchasableOnTheMarket = nameof(PurchasableOnTheMarket);
+        public const string PurchaseCostInGold = nameof(PurchaseCostInGold);
         public const string PurchaseCostInSilver = nameof(PurchaseCostInSilver);
         public const string Rank = nameof(Rank);
         public const string Ready = nameof(Ready);
