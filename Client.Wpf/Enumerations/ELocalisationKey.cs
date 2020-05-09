@@ -3,6 +3,8 @@
     /// <summary> Keys of localised strings loaded from localisation files. </summary>
     public class ELocalisationKey
     {
+        public const string AceCrewTrainingCostInGold = nameof(AceCrewTrainingCostInGold);
+        public const string AceCrewTrainingCostInResearch = nameof(AceCrewTrainingCostInResearch);
         public const string All = nameof(All);
         public const string Alpha = nameof(Alpha);
         public const string AntiAirFerry = nameof(AntiAirFerry);
@@ -50,6 +52,7 @@
         public const string DominionOfCanada = nameof(DominionOfCanada);
         public const string EmpireOfJapan = nameof(EmpireOfJapan);
         public const string Error = nameof(Error);
+        public const string ExpertCrewTrainingCost = nameof(ExpertCrewTrainingCost);
         public const string FatalErrorShutdown = nameof(FatalErrorShutdown);
         public const string Fighter = nameof(Fighter);
         public const string Finland = nameof(Finland);
@@ -128,6 +131,7 @@
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);
         public const string Realistic = nameof(Realistic);
+        public const string RegularCrewTrainingCost = nameof(RegularCrewTrainingCost);
         public const string RemovePresets = nameof(RemovePresets);
         public const string RepublicOfChina = nameof(RepublicOfChina);
         public const string RepublicOfSouthAfrica = nameof(RepublicOfSouthAfrica);

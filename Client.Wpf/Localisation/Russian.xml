@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
+  <Line key="AceCrewTrainingCostInGold" value="Стоимость&#xA;экипажа,&#xA;золото&#xA;(ас)"/>
+  <Line key="AceCrewTrainingCostInResearch" value="Стоимость&#xA;экипажа,&#xA;исследование&#xA;(ас)"/>
   <Line key="AirDefenceFighter" value="Истребитель ПВО"/>
   <Line key="All" value="Все"/>
   <Line key="AllAircraft" value="Все"/>
@@ -64,6 +66,7 @@
   <Line key="DominionOfCanada" value="Доминион Британской империи Канада"/>
   <Line key="EmpireOfJapan" value="Японская империя"/>
   <Line key="Error" value="Ошибка"/>
+  <Line key="ExpertCrewTrainingCost" value="Стоимость&#xA;экипажа,&#xA;серебро&#xA;(эксперт)"/>
   <Line key="FatalErrorShutdown" value="Критическая ошибка. Приложение будет закрыто."/>
   <Line key="Fighter" value="Истребитель"/>
   <Line key="Finland" value="Финляндия"/>
@@ -153,6 +156,7 @@
   <Line key="Ready" value="Данные готовы! Нажмите &quot;Нет&quot; в диалоговом окне."/>
   <Line key="ReadyWithCountDown" value="Данные готовы! Закройте окно, чтобы продолжить, или подождите {0} секунд."/>
   <Line key="Realistic" value="Реалистичный режим"/>
+  <Line key="RegularCrewTrainingCost" value="Стоимость&#xA;экипажа,&#xA;серебро&#xA;"/>
   <Line key="RemovePresets" value="Удалить собранные наборы."/>
   <Line key="RepublicOfChina" value="Китайская республика"/>
   <Line key="RepublicOfSouthAfrica" value="Южно-Африканская Республика"/>

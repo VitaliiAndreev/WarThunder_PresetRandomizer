@@ -42,6 +42,10 @@ namespace Client.Shared.Objects
         public bool IsSoldInTheStore { get; }
         public bool IsSoldOnTheMarket { get; }
         public bool IsAvailableOnlyOnConsoles { get; }
+        public int RegularCrewTrainingCost { get; }
+        public int ExpertCrewTrainingCost { get; }
+        public int AceCrewTrainingCostInResearch { get; }
+        public int AceCrewTrainingCostInGold { get; }
 
         #endregion Properties
         #region Constructors
@@ -71,12 +75,12 @@ namespace Client.Shared.Objects
                 && vehicle.EconomyData.UnlockCostInResearch.HasValue
                 && vehicle.EconomyData.UnlockCostInResearch.Value.IsPositive()
                     ? vehicle.EconomyData.UnlockCostInResearch.Value
-                    : -EInteger.Number.One;
+                    : IsReserve ? EInteger.Number.Zero : -EInteger.Number.One;
             PurchaseCostInSilver = (IsResearchable || IsSquadronVehicle)
                 && vehicle.EconomyData is VehicleEconomyData
                 && vehicle.EconomyData.PurchaseCostInSilver.IsPositive()
                     ? vehicle.EconomyData.PurchaseCostInSilver
-                    : -EInteger.Number.One;
+                    : IsReserve ? EInteger.Number.Zero : -EInteger.Number.One;
             IsHiddenUnlessOwned = vehicle.IsHiddenUnlessOwned;
             IsPremium = vehicle.IsPremium;
             IsPurchasableForGoldenEagles = vehicle.IsPurchasableForGoldenEagles;
@@ -90,6 +94,10 @@ namespace Client.Shared.Objects
             IsSoldInTheStore = vehicle.IsSoldInTheStore;
             IsSoldOnTheMarket = vehicle.IsSoldOnTheMarket;
             IsAvailableOnlyOnConsoles = vehicle.IsAvailableOnlyOnConsoles;
+            RegularCrewTrainingCost = vehicle.EconomyData.BaseCrewTrainCostInSilver;
+            ExpertCrewTrainingCost = vehicle.EconomyData.ExpertCrewTrainCostInSilver;
+            AceCrewTrainingCostInResearch = vehicle.EconomyData.AceCrewTrainCostInResearch;
+            AceCrewTrainingCostInGold = vehicle.EconomyData.AceCrewTrainCostInGold;
         }
 
         #endregion Constructors

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
+  <Line key="AceCrewTrainingCostInGold" value="Crew&#xA;Training&#xA;GE Cost&#xA;(ace)"/>
+  <Line key="AceCrewTrainingCostInResearch" value="Crew&#xA;Training&#xA;RP Cost&#xA;(ace)"/>
   <Line key="AirDefenceFighter" value="Air Defence Fighter"/>
   <Line key="All" value="All"/>
   <Line key="AllAircraft" value="All"/>
@@ -64,6 +66,7 @@
   <Line key="DominionOfCanada" value="Dominion of Canada"/>
   <Line key="EmpireOfJapan" value="Empire of Japan"/>
   <Line key="Error" value="Error"/>
+  <Line key="ExpertCrewTrainingCost" value="Crew&#xA;Training&#xA;SL Cost&#xA;(expert)"/>
   <Line key="FatalErrorShutdown" value="A fatal error has occured. The application will be shut down."/>
   <Line key="Fighter" value="Fighter"/>
   <Line key="Finland" value="Finland"/>
@@ -153,6 +156,7 @@
   <Line key="Ready" value="Data is ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Data is ready! Close the window to proceed or wait for {0} seconds."/>
   <Line key="Realistic" value="Realistic Battles"/>
+  <Line key="RegularCrewTrainingCost" value="Crew&#xA;Training&#xA;SL Cost&#xA;(regular)"/>
   <Line key="RemovePresets" value="Remove generated presets."/>
   <Line key="RepublicOfChina" value="Republic of China"/>
   <Line key="RepublicOfSouthAfrica" value="Republic of South Africa"/>
@@ -195,7 +199,7 @@
   <Line key="Ukraine" value="Ukraine"/>
   <Line key="UnderConstruction" value="Under construction."/>
   <Line key="UnionOfSouthAfrica" value="Union of South Africa"/>
-  <Line key="UnlockCostInResearch" value="Research&#xA;Cost"/>
+  <Line key="UnlockCostInResearch" value="RP&#xA;Cost"/>
   <Line key="UntaggedAircraft" value="Untagged Aircraft"/>
   <Line key="UntaggedGroundVehicle" value="Untagged Ground Vehicles"/>
   <Line key="Usa" value="USA"/>
