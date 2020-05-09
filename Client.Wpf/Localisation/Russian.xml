@@ -168,6 +168,7 @@
   <Line key="Researchable" value="Доступно для исследования"/>
   <Line key="ResearchableInSquadron" value="Доступно для исследования в составе полка (или за золотые орлы)"/>
   <Line key="ResearchGainMultiplier" value="Коэффициент исследования"/>
+  <Line key="ResearchGainMultiplierLite" value="Коэффициент&#xA;исследования"/>
   <Line key="ResearchTrees" value="Ветки исследований"/>
   <Line key="Reserve" value="Резерв"/>
   <Line key="RequiredSettingsHaveNotBeenSet" value="Необходимые настройки не указаны. При отмене приложение закроется. Продолжить?"/>

@@ -113,5 +113,8 @@ namespace Client.Shared.Interfaces
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         public int RepairCostInSimulator { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public decimal ResearchGainMultiplierLite { get; }
     }
 }

@@ -147,6 +147,7 @@
         public const string RepairCostInRealistic = nameof(RepairCostInRealistic);
         public const string RepairCostInSimulator = nameof(RepairCostInSimulator);
         public const string ResearchGainMultiplier = nameof(ResearchGainMultiplier);
+        public const string ResearchGainMultiplierLite = nameof(ResearchGainMultiplierLite);
         public const string ResearchTrees = nameof(ResearchTrees);
         public const string Reserve = nameof(Reserve);
         public const string Romania = nameof(Romania);
