@@ -568,6 +568,9 @@
     <Content Include="oo2core_6_win64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Crew Training Icons\Regular.png" />
+    <Resource Include="Resources\Crew Training Icons\Ace.png" />
+    <Resource Include="Resources\Crew Training Icons\Expert.png" />
     <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\EN.png" />
     <Resource Include="Resources\Stripe Flag Set by Benjamin De Cock\GB.png" />
     <Resource Include="Resources\IconSweets 2 by Yummygum\youtube.png" />
