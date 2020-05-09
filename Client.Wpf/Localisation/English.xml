@@ -119,6 +119,7 @@
   <Line key="LookUp" value="Look up"/>
   <Line key="MediumTank" value="Medium Tank"/>
   <Line key="Minelayer" value="Minelayer"/>
+  <Line key="MinimumPurchaseCostInGold" value="Minimum&#xA;Purchase&#xA;Cost&#xA;(GE)"/>
   <Line key="MotorGunboat" value="Motor Gunboat"/>
   <Line key="MotorTorpedoBoat" value="Motor Torpedo Boat"/>
   <Line key="MotorTorpedoGunboat" value="Motor Torpedo Gunboat"/>
@@ -146,6 +147,7 @@
   <Line key="PurchasableForGoldenEagles" value="Purchasable for Golden Eagles (except squadron vehicles)"/>
   <Line key="PurchasableInTheStore" value="Purchasable in the Store"/>
   <Line key="PurchasableOnTheMarket" value="Purchasable on the Market"/>
+  <Line key="PurchaseCostInGold" value="Purchase&#xA;Cost&#xA;(GE)"/>
   <Line key="PurchaseCostInSilver" value="Purchase&#xA;Cost&#xA;(SL)"/>
   <Line key="Rank" value="Rank"/>
   <Line key="Ready" value="Data is ready! Press &quot;No&quot; in the message box."/>

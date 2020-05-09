@@ -16,7 +16,7 @@ namespace Client.Wpf.Extensions
             {
                 var tags = vehicle.Tags.Where(tag => !tag.IsDefault());
 
-                return index < tags.Count() ? localise(tags.ToList()[index]) : null;
+                return index < tags.Count() ? localise(tags.ToList()[index]) : string.Empty;
             }
 
             return new VehicleLite(vehicle, language, localise, getTag);

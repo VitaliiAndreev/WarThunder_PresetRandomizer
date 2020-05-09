@@ -36,6 +36,8 @@ namespace Client.Shared.Objects
         public bool IsHiddenUnlessOwned { get; }
         public bool IsPremium { get; }
         public bool IsPurchasableForGoldenEagles { get; }
+        public int PurchaseCostInGold { get; }
+        public int MinimumPurchaseCostInGold { get; }
         public bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
         public bool IsSoldInTheStore { get; }
         public bool IsSoldOnTheMarket { get; }
@@ -52,9 +54,9 @@ namespace Client.Shared.Objects
             Country = localise(vehicle.Country);
             Branch = localise(vehicle.Branch.AsEnumerationItem);
             Rank = vehicle.RankAsEnumerationItem;
-            BattleRatingInArcade = vehicle.BattleRating.Arcade ?? EDecimal.Number.Zero;
-            BattleRatingInRealistic = vehicle.BattleRating.Realistic ?? EDecimal.Number.Zero;
-            BattleRatingInSimulator = vehicle.BattleRating.Simulator ?? EDecimal.Number.Zero;
+            BattleRatingInArcade = vehicle.BattleRating.Arcade ?? -EDecimal.Number.One;
+            BattleRatingInRealistic = vehicle.BattleRating.Realistic ?? -EDecimal.Number.One;
+            BattleRatingInSimulator = vehicle.BattleRating.Simulator ?? -EDecimal.Number.One;
             Class = localise(vehicle.Class);
             Subclass1 = localise(vehicle.Subclasses.First);
             Subclass2 = localise(vehicle.Subclasses.Second);
@@ -69,15 +71,21 @@ namespace Client.Shared.Objects
                 && vehicle.EconomyData.UnlockCostInResearch.HasValue
                 && vehicle.EconomyData.UnlockCostInResearch.Value.IsPositive()
                     ? vehicle.EconomyData.UnlockCostInResearch.Value
-                    : EInteger.Number.Zero;
+                    : -EInteger.Number.One;
             PurchaseCostInSilver = (IsResearchable || IsSquadronVehicle)
                 && vehicle.EconomyData is VehicleEconomyData
                 && vehicle.EconomyData.PurchaseCostInSilver.IsPositive()
                     ? vehicle.EconomyData.PurchaseCostInSilver
-                    : EInteger.Number.Zero;
+                    : -EInteger.Number.One;
             IsHiddenUnlessOwned = vehicle.IsHiddenUnlessOwned;
             IsPremium = vehicle.IsPremium;
             IsPurchasableForGoldenEagles = vehicle.IsPurchasableForGoldenEagles;
+            PurchaseCostInGold = IsPurchasableForGoldenEagles && (IsPremium && vehicle.EconomyData.PurchaseCostInGold.HasValue || IsSquadronVehicle && vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.HasValue)
+                ? (IsPremium ? vehicle.EconomyData.PurchaseCostInGold.Value : vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value)
+                : -EInteger.Number.One;
+            MinimumPurchaseCostInGold = IsSquadronVehicle && vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.HasValue
+                ? vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value
+                : -EInteger.Number.One;
             GiftedToNewPlayersForSelectingTheirFirstBranch = vehicle.GiftedToNewPlayersForSelectingTheirFirstBranch;
             IsSoldInTheStore = vehicle.IsSoldInTheStore;
             IsSoldOnTheMarket = vehicle.IsSoldOnTheMarket;
