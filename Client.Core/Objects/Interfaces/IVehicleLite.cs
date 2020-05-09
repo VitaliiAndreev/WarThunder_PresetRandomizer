@@ -92,5 +92,17 @@ namespace Client.Shared.Interfaces
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         bool IsAvailableOnlyOnConsoles { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int RegularCrewTrainingCost { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int ExpertCrewTrainingCost { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int AceCrewTrainingCostInResearch { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int AceCrewTrainingCostInGold { get; }
     }
 }
