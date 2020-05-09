@@ -85,6 +85,7 @@ namespace Client.Wpf.Commands.MainWindow
                     if (presenter.GeneratedPresets.IsEmpty())
                     {
                         presenter.ShowNoResults();
+                        presenter.ToggleLongOperationIndicator(false);
                         return;
                     }
 
@@ -94,6 +95,7 @@ namespace Client.Wpf.Commands.MainWindow
                     if (primaryPreset.IsEmpty())
                     {
                         presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
+                        presenter.ToggleLongOperationIndicator(false);
                         return;
                     }
 
