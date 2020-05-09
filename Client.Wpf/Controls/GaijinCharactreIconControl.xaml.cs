@@ -15,26 +15,29 @@ namespace Client.Wpf.Controls
             InitializeComponent();
         }
 
-        public GaijinCharactreIconControl(char icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false)
+        public GaijinCharactreIconControl(char icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false, bool useStandardVerticalMargin = false)
             : this()
         {
-            Initialise(icon.ToString(), iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold);
+            Initialise(icon.ToString(), iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold, useStandardVerticalMargin);
         }
 
-        public GaijinCharactreIconControl(string icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false)
+        public GaijinCharactreIconControl(string icon, object iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = null, bool iconIsBold = false, bool useStandardVerticalMargin = false)
             : this()
         {
-            Initialise(icon, iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold);
+            Initialise(icon, iconTag, margin, leftMouseDownHandler, fontSize, iconIsBold, useStandardVerticalMargin);
         }
 
         #endregion Constructors
         #region Methods: Initialisation
 
-        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = EDouble.Number.Sixteen, bool iconIsBold = false)
+        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = EDouble.Number.Sixteen, bool iconIsBold = false, bool useStandardVerticalMargin = false)
         {
             _icon.FontWeight = iconIsBold ? FontWeights.Bold : FontWeights.Normal;
             _icon.Text = icon;
             _icon.ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag);
+
+            if (useStandardVerticalMargin)
+                _icon.Margin = default;
 
             if (fontSize.HasValue)
                 _icon.FontSize = fontSize.Value;
