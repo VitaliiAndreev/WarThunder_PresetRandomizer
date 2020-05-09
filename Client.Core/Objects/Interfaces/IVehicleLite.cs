@@ -64,6 +64,9 @@ namespace Client.Shared.Interfaces
         int UnlockCostInResearch { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]
+        int PurchaseCostInSilver { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
         bool IsHiddenUnlessOwned { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]

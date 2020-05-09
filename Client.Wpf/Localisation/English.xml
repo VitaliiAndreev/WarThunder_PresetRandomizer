@@ -146,6 +146,7 @@
   <Line key="PurchasableForGoldenEagles" value="Purchasable for Golden Eagles (except squadron vehicles)"/>
   <Line key="PurchasableInTheStore" value="Purchasable in the Store"/>
   <Line key="PurchasableOnTheMarket" value="Purchasable on the Market"/>
+  <Line key="PurchaseCostInSilver" value="Purchase&#xA;Cost&#xA;(SL)"/>
   <Line key="Rank" value="Rank"/>
   <Line key="Ready" value="Data is ready! Press &quot;No&quot; in the message box."/>
   <Line key="ReadyWithCountDown" value="Data is ready! Close the window to proceed or wait for {0} seconds."/>
