@@ -104,5 +104,14 @@ namespace Client.Shared.Interfaces
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         public int AceCrewTrainingCostInGold { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int RepairCostInArcade { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int RepairCostInRealistic { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public int RepairCostInSimulator { get; }
     }
 }
