@@ -121,6 +121,7 @@
         public const string PurchasableForGoldenEagles = nameof(PurchasableForGoldenEagles);
         public const string PurchasableInTheStore = nameof(PurchasableInTheStore);
         public const string PurchasableOnTheMarket = nameof(PurchasableOnTheMarket);
+        public const string PurchaseCostInSilver = nameof(PurchaseCostInSilver);
         public const string Rank = nameof(Rank);
         public const string Ready = nameof(Ready);
         public const string ReadyWithCountDown = nameof(ReadyWithCountDown);

@@ -32,6 +32,7 @@ namespace Client.Shared.Objects
         public bool IsReserve { get; }
         public bool IsSquadronVehicle { get; }
         public int UnlockCostInResearch { get; }
+        public int PurchaseCostInSilver { get; }
         public bool IsHiddenUnlessOwned { get; }
         public bool IsPremium { get; }
         public bool IsPurchasableForGoldenEagles { get; }
@@ -68,6 +69,11 @@ namespace Client.Shared.Objects
                 && vehicle.EconomyData.UnlockCostInResearch.HasValue
                 && vehicle.EconomyData.UnlockCostInResearch.Value.IsPositive()
                     ? vehicle.EconomyData.UnlockCostInResearch.Value
+                    : EInteger.Number.Zero;
+            PurchaseCostInSilver = (IsResearchable || IsSquadronVehicle)
+                && vehicle.EconomyData is VehicleEconomyData
+                && vehicle.EconomyData.PurchaseCostInSilver.IsPositive()
+                    ? vehicle.EconomyData.PurchaseCostInSilver
                     : EInteger.Number.Zero;
             IsHiddenUnlessOwned = vehicle.IsHiddenUnlessOwned;
             IsPremium = vehicle.IsPremium;
