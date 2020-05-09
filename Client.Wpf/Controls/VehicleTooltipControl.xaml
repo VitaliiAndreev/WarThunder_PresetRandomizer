@@ -21,12 +21,12 @@
                 Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
             <TextBlock Text="Class / Subclass"
-                    x:Name="_class"
-                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+                x:Name="_class"
+                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
             <TextBlock Text="Tags"
-                    x:Name="_tags"
-                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+                x:Name="_tags"
+                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
             <WrapPanel HorizontalAlignment="Center">
 
@@ -43,8 +43,8 @@
             </WrapPanel>
 
             <TextBlock Text="Requirements"
-                    x:Name="_requirements"
-                    Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
+                x:Name="_requirements"
+                Style="{StaticResource TextBlockWithSkyQuakeHorizontallyCentered12px}"/>
 
             <Image
                 x:Name="_portrait"
@@ -113,6 +113,6 @@
             </Grid>
             
         </StackPanel>
-
+        
     </StackPanel>
 </base:LocalisedUserControl>
