@@ -144,8 +144,8 @@
   <Line key="OperationUnderwayPleaseWait" value="Выполняется. Пожалуйста подождите..."/>
   <Line key="Philippines" value="Филиппины"/>
   <Line key="Poland" value="Польша"/>
-  <Line key="PopulatingControls" value="Генерируются элементы GUI по игровым данным..."/>
-  <Line key="PopulatingResearchTreeControls" value="Генерируются ветки исследований в GUI..."/>
+  <Line key="PopulatingControls" value="Создаются элементы GUI по игровым данным..."/>
+  <Line key="PopulatingResearchTreeControls" value="Создаются ветки исследований в GUI..."/>
   <Line key="Portugal" value="Португалия"/>
   <Line key="Premium" value="Премиум"/>
   <Line key="PurchasableForGoldenEagles" value="Продаётся за золотые орлы (за исключением полковой техники)"/>
