@@ -158,8 +158,10 @@
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string SelectAllCountries = nameof(SelectAllCountries);
         public const string SelectAllNonResearchableVehicles = nameof(SelectAllNonResearchableVehicles);
+        public const string SelectAllNonResearchableVehiclesInBranch = nameof(SelectAllNonResearchableVehiclesInBranch);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string SelectAllVehicles = nameof(SelectAllVehicles);
+        public const string SelectAllVehiclesInBranch = nameof(SelectAllVehiclesInBranch);
         public const string ShowInResearchTree = nameof(ShowInResearchTree);
         public const string Simulator = nameof(Simulator);
         public const string SoldOnTheMarket = nameof(SoldOnTheMarket);

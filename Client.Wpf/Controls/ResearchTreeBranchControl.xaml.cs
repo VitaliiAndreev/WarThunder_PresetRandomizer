@@ -308,11 +308,11 @@ namespace Client.Wpf.Controls
 
             static string localise(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
 
-            _toggleAllVehiclesButton.Content = localise(ELocalisationKey.All);
-            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllVehicles);
+            _toggleAllVehiclesButtonHeader.Text = localise(ELocalisationKey.All);
+            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllVehiclesInBranch);
 
-            _toggleAllVehiclesButton.Content = localise(ELocalisationKey.AllNonResearchable);
-            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllNonResearchableVehicles);
+            _toggleAllNonResearchableVehiclesButtonHeader.Text = localise(ELocalisationKey.AllNonResearchable);
+            _toggleAllNonResearchableVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllNonResearchableVehiclesInBranch);
         }
 
         #endregion Methods: Overrides
@@ -320,7 +320,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Checks whether all vehicles in the branch are toggled on. </summary>
         /// <returns></returns>
-        private bool AllVehiclesAreToggled(bool onlyNonResearchable = false) =>
+        internal bool AllVehiclesAreToggled(bool onlyNonResearchable = false) =>
             _cellVehicleControls.Values.Where(control => !onlyNonResearchable || !control.Vehicle.IsResearchable).All(vehicleCellControls => vehicleCellControls.IsToggled);
 
         #endregion Methods: Checks
@@ -356,5 +356,7 @@ namespace Client.Wpf.Controls
             if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
                 vehicleCellControl.ApplyIdleStyle();
         }
+
+        internal IEnumerable<ResearchTreeCellVehicleControl> GetVehicleControls() => _cellVehicleControls.Values;
     }
 }
