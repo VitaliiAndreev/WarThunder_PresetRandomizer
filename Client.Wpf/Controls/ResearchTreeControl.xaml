@@ -11,7 +11,8 @@
     d:DesignWidth="800">
     <DockPanel>
 
-        <WrapPanel DockPanel.Dock="Top"
+        <WrapPanel
+            DockPanel.Dock="Top"
             Margin="5">
 
             <ToggleButton
@@ -36,7 +37,8 @@
 
         </WrapPanel>
 
-        <TabControl DockPanel.Dock="Bottom"
+        <TabControl
+            DockPanel.Dock="Bottom"
             x:Name="_tabControl"
             ButtonBase.Click="OnButtonBubbledClick"
             controls:ResearchTreeCellVehicleControl.Click="OnButtonBubbledClick">
