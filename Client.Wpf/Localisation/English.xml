@@ -94,7 +94,7 @@
   <Line key="Hungary" value="Hungary"/>
   <Line key="Hydroplane" value="Hydroplane"/>
   <Line key="IncludeColumnHeadersWhenCopyingSelectedRows" value="Include column headers when copying selected rows to clipboard"/>
-  <Line key="InitialisationUnderwayConfirmClosure" value="Initialisation is underway. Proceed?"/>
+  <Line key="InitialisationUnderwayConfirmClosure" value="Data initialisation is underway. Proceed?"/>
   <Line key="InitialisingControls" value="Initialising GUI elements..."/>
   <Line key="Interceptor" value="Interceptor"/>
   <Line key="Iraq" value="Iraq"/>
