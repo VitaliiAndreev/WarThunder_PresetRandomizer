@@ -96,23 +96,56 @@ namespace Client.Wpf
         public static string EnabledNations
         {
             get => EnabledNationsCollection.StringJoin(Separator);
-            set => EnabledNationsCollection = value
-                .Split(Separator)
-                .Select(nationString => nationString.TryParseEnumeration<ENation>(out var nation) ? nation : ENation.None)
-                .Where(vehicleClass => vehicleClass.IsValid())
-                .ToList()
-            ;
+            set
+            {
+                static string patchString(string @string)
+                {
+                    if (@string == EWord.Britain)
+                        return ENation.GreatBritain.ToString();
+
+                    return @string;
+                }
+
+                EnabledNationsCollection = value
+                  .Split(Separator)
+                  .Select(patchString)
+                  .Select(nationString => nationString.TryParseEnumeration<ENation>(out var nation) ? nation : ENation.None)
+                  .Where(vehicleClass => vehicleClass.IsValid())
+                  .ToList()
+                ;
+            }
         }
 
         [RequiredSetting]
         public static string EnabledCountries
         {
             get => EnabledCountriesCollection.StringJoin(Separator);
-            set => EnabledCountriesCollection = value
-                .Split(Separator)
-                .Select(@string => new NationCountryPair(@string))
-                .Where(nationCountryPair => nationCountryPair.Nation != ENation.None && nationCountryPair.Country != ECountry.None).ToList()
-            ;
+            set
+            {
+                var separator = ECharacter.Underscore;
+
+                string patchString(string @string)
+                {
+                    var valueParts = @string.Split(separator);
+                    var nationPart = valueParts.First();
+                    var countryPart = valueParts.Last();
+
+                    if (nationPart == EWord.Britain)
+                        nationPart = ENation.GreatBritain.ToString();
+
+                    if (countryPart == EWord.Britain)
+                        countryPart = ECountry.GreatBritain.ToString();
+
+                    return $"{nationPart}{separator}{countryPart}";
+                }
+
+                EnabledCountriesCollection = value
+                    .Split(Separator)
+                    .Select(patchString)
+                    .Select(@string => new NationCountryPair(@string))
+                    .Where(nationCountryPair => nationCountryPair.Nation != ENation.None && nationCountryPair.Country != ECountry.None).ToList()
+                ;
+            }
         }
 
         [RequiredSetting]
