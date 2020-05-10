@@ -13,6 +13,7 @@
   <Line key="AllHelicopters" value="Все"/>
   <Line key="AllItaly" value="Все"/>
   <Line key="AllJapan" value="Все"/>
+  <Line key="AllNonResearchable" value="Все недоступные для исследования"/>
   <Line key="AllShips" value="Все"/>
   <Line key="AllSweden" value="Все"/>
   <Line key="AllUsa" value="Все"/>
@@ -179,6 +180,7 @@
   <Line key="ScrapGeneratedPresets" value="Удалите собранные наборы (кнопка с символом переработки на верхней панели)."/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
   <Line key="SelectAllCountries" value="Активирует все страны в группе &quot;{0}&quot;, если хотя бы одна из них деактивирована. Если нет - деактивирует все страны."/>
+  <Line key="SelectAllNonResearchableVehicles" value="Активирует все недоступные для исследования единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="SelectAllVehicleClasses" value="Активирует все классы и подклассы техники в группе &quot;{0}&quot;, если хотя бы один из них деактивирован. Если нет - деактивирует все классы."/>
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="ShowInResearchTree" value="Перейти к ветке исследования"/>

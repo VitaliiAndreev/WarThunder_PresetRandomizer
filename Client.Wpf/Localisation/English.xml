@@ -13,6 +13,7 @@
   <Line key="AllHelicopters" value="All"/>
   <Line key="AllItaly" value="All"/>
   <Line key="AllJapan" value="All"/>
+  <Line key="AllNonResearchable" value="All Non-Researchable"/>
   <Line key="AllShips" value="All"/>
   <Line key="AllSweden" value="All"/>
   <Line key="AllUsa" value="All"/>
@@ -179,6 +180,7 @@
   <Line key="ScrapGeneratedPresets" value="Scrap generated presets (the button with a recycle icon on the top panel)."/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
   <Line key="SelectAllCountries" value="Enables all countries in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
+  <Line key="SelectAllNonResearchableVehicles" value="Enables all non-researchable vehicles in the branch if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehicleClasses" value="Enables all vehicle classes and subclasses in the &quot;{0}&quot; group if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehicles" value="Enables all vehicles in the branch if at least one is disabled. Disables all of them otherwise."/>
   <Line key="ShowInResearchTree" value="Open the research tree"/>

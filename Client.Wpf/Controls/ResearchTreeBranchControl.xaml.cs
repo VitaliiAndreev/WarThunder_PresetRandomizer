@@ -37,8 +37,8 @@ namespace Client.Wpf.Controls
         /// <summary> The research tree branch the control has been populated with. </summary>
         private ResearchTreeBranch _researchTreeBranch;
 
-        /// <summary> Indicates whether the <see cref="_toggleAllVehiclesButton"/>'s state can be altered. </summary>
-        private bool _toggleAllVehiclesButtonIsSuspended;
+        /// <summary> Indicates whether buttons' state can be altered. </summary>
+        private bool _buttonsAreSuspended;
 
         private bool _initialised;
 
@@ -75,32 +75,56 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Event Handlers
 
-        /// <summary> Toggles all vehicles on/off. </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArguments"></param>
-        private void OnToggleAllClick(object sender, EventArgs eventArguments)
+        private void ToggleAllVehicles(ToggleButton toggleButton, bool onlyNonResearchable = false)
         {
-            _toggleAllVehiclesButtonIsSuspended = true;
-
-            if (sender is ToggleButton toggleButton)
+            _buttonsAreSuspended = true;
             {
                 foreach (var vehicleCellControl in _cellVehicleControls.Values)
                 {
                     if (vehicleCellControl.IsToggled != toggleButton.IsChecked)
-                        vehicleCellControl.HandleClick();
-                }
-            }
+                    {
+                        if (onlyNonResearchable && vehicleCellControl.Vehicle.IsResearchable)
+                            continue;
 
-            _toggleAllVehiclesButtonIsSuspended = false;
+                        vehicleCellControl.HandleClick();
+                    }
+                }
+                _toggleAllVehiclesButton.IsChecked = AllVehiclesAreToggled();
+                _toggleAllNonResearchableVehiclesButton.IsChecked = AllVehiclesAreToggled(true);
+            }
+            _buttonsAreSuspended = false;
+        }
+
+        /// <summary> Toggles all vehicles on/off. </summary>
+        /// <param name="sender"> The event sender. <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnToggleAllClick(object sender, EventArgs eventArguments)
+        {
+            if (sender is ToggleButton toggleButton)
+                ToggleAllVehicles(toggleButton);
+        }
+
+        /// <summary> Toggles all non-researchable vehicles on/off. </summary>
+        /// <param name="sender"> The event sender. <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnToggleAllNonResearchableClick(object sender, EventArgs eventArguments)
+        {
+            if (sender is ToggleButton toggleButton)
+                ToggleAllVehicles(toggleButton, true);
         }
 
         /// <summary> Updates the state of the <see cref="_toggleAllVehiclesButton"/> if permitted. </summary>
         /// <param name="sender"></param>
         /// <param name="eventArguments"></param>
-        private void OnClick(object sender, RoutedEventArgs eventArguments)
+        private void OnVehicleClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl && !_toggleAllVehiclesButtonIsSuspended)
+            if (eventArguments.OriginalSource is ResearchTreeCellVehicleControl vehicleControl && !_buttonsAreSuspended)
+            {
                 _toggleAllVehiclesButton.IsChecked = vehicleControl.IsToggled && AllVehiclesAreToggled();
+
+                if (!vehicleControl.Vehicle.IsResearchable)
+                    _toggleAllNonResearchableVehiclesButton.IsChecked = vehicleControl.IsToggled && AllVehiclesAreToggled(true);
+            }
         }
 
         /// <summary> Applies the highlighting style to a <see cref="ResearchTreeCellVehicleControl"/> containing a vehicle required to unlock the one positioned in the <paramref name="sender"/>. </summary>
@@ -137,6 +161,13 @@ namespace Client.Wpf.Controls
                 _presenter = presenter;
                 _initialised = true;
             }
+        }
+
+        /// <summary> Initialises the state of the <see cref="_toggleAllVehiclesButton"/> depending on vehicle selection. </summary>
+        public void InitialiseButtons()
+        {
+            _toggleAllVehiclesButton.IsChecked = AllVehiclesAreToggled();
+            _toggleAllNonResearchableVehiclesButton.IsChecked = AllVehiclesAreToggled(true);
         }
 
         /// <summary> Attaches event handlers to enable highligting vehicles required for unlocking the currenly highlighted one. </summary>
@@ -265,7 +296,7 @@ namespace Client.Wpf.Controls
 
             _grid.ColumnDefinitions.First().Width = new GridLength(EInteger.Number.Thirty, GridUnitType.Pixel);
 
-            InitialiseToggleAllButton();
+            InitialiseButtons();
         }
 
         #endregion Methods: Initialisation
@@ -275,13 +306,24 @@ namespace Client.Wpf.Controls
         {
             base.Localise();
 
-            static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
+            static string localise(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
 
-            _toggleAllVehiclesButton.Content = getLocalisedString(ELocalisationKey.All);
-            _toggleAllVehiclesButton.ToolTip = getLocalisedString(ELocalisationKey.SelectAllVehicles);
+            _toggleAllVehiclesButton.Content = localise(ELocalisationKey.All);
+            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllVehicles);
+
+            _toggleAllVehiclesButton.Content = localise(ELocalisationKey.AllNonResearchable);
+            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllNonResearchableVehicles);
         }
 
         #endregion Methods: Overrides
+        #region Methods: Checks
+
+        /// <summary> Checks whether all vehicles in the branch are toggled on. </summary>
+        /// <returns></returns>
+        private bool AllVehiclesAreToggled(bool onlyNonResearchable = false) =>
+            _cellVehicleControls.Values.Where(control => !onlyNonResearchable || !control.Vehicle.IsResearchable).All(vehicleCellControls => vehicleCellControls.IsToggled);
+
+        #endregion Methods: Checks
 
         /// <summary> Displays vehicle information for the given <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode for which to display the battle rating. </param>
@@ -291,10 +333,6 @@ namespace Client.Wpf.Controls
                 vehicleCell.UpdateFor(gameMode);
         }
 
-        /// <summary> Initialises the state of the <see cref="_toggleAllVehiclesButton"/> depending on vehicle selection. </summary>
-        public void InitialiseToggleAllButton() =>
-            _toggleAllVehiclesButton.IsChecked = AllVehiclesAreToggled();
-
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>
         internal void BringIntoView(IVehicle vehicle)
@@ -302,11 +340,6 @@ namespace Client.Wpf.Controls
             if (_cellVehicleControls.TryGetValue(vehicle.GaijinId, out var vehicleCellControl))
                 Dispatcher.InvokeAsync(() => vehicleCellControl.BringIntoView(), DispatcherPriority.ApplicationIdle);
         }
-
-        /// <summary> Checks whether all vehicles in the branch are toggled on. </summary>
-        /// <returns></returns>
-        private bool AllVehiclesAreToggled() =>
-            _cellVehicleControls.Values.All(vehicleCellControls => vehicleCellControls.IsToggled);
 
         /// <summary> Highlights the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to highlight. </param>

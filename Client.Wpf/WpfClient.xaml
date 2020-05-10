@@ -335,6 +335,10 @@
             <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
         </Style>
 
+        <Style TargetType="ScrollViewer" x:Key="ScrollViewerNoMargin">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
         <!-- t:StackPanel -->
         
         <Style TargetType="StackPanel">
