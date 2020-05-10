@@ -45,7 +45,7 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Properties
         #region Constructors
 
-        private Application() : base(string.Empty, _fileLogger, _consoleLogger) { }
+        private Application() : base("Update Tracker", _fileLogger, _consoleLogger) { }
 
         #endregion Constructors
 
@@ -73,7 +73,6 @@ namespace WarThunderSimpleUpdateChecker
             var versionInfoFile = GetVersionInfoFile(_warThunderPath);
             var currentVersion = GetVersion(versionInfoFile);
             var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, currentVersion.ToString(EInteger.Number.Three));
-            var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
             var binFiles = GetBinFiles(sourceFiles);
             var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
             var decompressBlkTasks = new Dictionary<string, Task>();
@@ -132,10 +131,15 @@ namespace WarThunderSimpleUpdateChecker
 
             currentVersion = SelectFinalVersion(currentVersion, GetVersionFromUnpackedFiles(outputDirectories));
 
+            var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
+
             AppendCurrentClientVersion(currentVersion, mostRecentSourceFileWriteDate);
             RemoveCopiedSourceFiles(outputFilesDirectory);
 
             _logger.LogInfo($"Procedure complete.");
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey(true);
         }
 
         #region Methods: Initialisation
