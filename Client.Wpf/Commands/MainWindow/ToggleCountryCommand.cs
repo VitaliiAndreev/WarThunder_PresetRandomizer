@@ -26,8 +26,10 @@ namespace Client.Wpf.Commands.MainWindow
             base.Execute(parameter);
 
             if (parameter is IMainWindowPresenter presenter)
+            {
                 if (!WpfSettings.EnabledCountriesCollection.SequenceEqual(presenter.EnabledCountries))
                     ApplicationHelpers.SettingsManager.Save(nameof(WpfSettings.EnabledCountries), presenter.EnabledCountries.StringJoin(Settings.Separator));
+            }
         }
     }
 }

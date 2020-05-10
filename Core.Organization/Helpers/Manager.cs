@@ -933,8 +933,11 @@ namespace Core.Organization.Helpers
         {
             var settingProperties = settingsClass.GetProperties(BindingFlags.Public | BindingFlags.Static).Where(property => property.GetCustomAttribute<RequiredSettingAttribute>() is RequiredSettingAttribute);
 
-            foreach (var settingProperty in settingProperties)
-                settingProperty.SetValue(null, _settingsManager.GetSetting(settingProperty.Name));
+            Parallel.ForEach
+            (
+                settingProperties,
+                settingProperty => settingProperty.SetValue(null, _settingsManager.GetSetting(settingProperty.Name))
+            );
         }
 
         /// <summary> Loads settings from the <see cref="_settingsManager"/>. </summary>
