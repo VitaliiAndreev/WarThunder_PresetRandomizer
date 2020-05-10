@@ -9,9 +9,9 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
-    <StackPanel>
+    <DockPanel>
 
-        <WrapPanel
+        <WrapPanel DockPanel.Dock="Top"
             Margin="5">
 
             <ToggleButton
@@ -36,12 +36,12 @@
 
         </WrapPanel>
 
-        <TabControl
+        <TabControl DockPanel.Dock="Bottom"
             x:Name="_tabControl"
             ButtonBase.Click="OnButtonBubbledClick"
             controls:ResearchTreeCellVehicleControl.Click="OnButtonBubbledClick">
 
         </TabControl>
         
-    </StackPanel>
+    </DockPanel>
 </base:LocalisedUserControl>
