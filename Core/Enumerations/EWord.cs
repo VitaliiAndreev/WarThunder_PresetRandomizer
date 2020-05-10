@@ -17,6 +17,7 @@
 
         public static string Battle => _Battle;
         public static string BattleRating => $"{_Battle}{ECharacter.Space}{_Rating}";
+        public static string Britain => _Britain;
 
         #endregion B
         #region C

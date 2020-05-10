@@ -97,6 +97,8 @@
         protected const string _Branch = _B + _ranch;
         protected const string _branch = _b + _ranch;
         protected const string _branches = _branch + _es;
+        protected const string _Brit = _B + _ri + _t;
+        protected const string _Britain = _Brit + _a + _in;
         protected const string _built = _bu + _ilt;
         protected const string _by = _b + "y";
         protected const string _byte = _by + _t + _e;
