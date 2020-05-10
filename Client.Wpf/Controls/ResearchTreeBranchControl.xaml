@@ -11,7 +11,7 @@
     d:DesignWidth="600">
     <ScrollViewer>
         <StackPanel>
-
+            
             <WrapPanel>
                 
                 <ToggleButton
@@ -38,7 +38,7 @@
             
             <StackPanel
                 Style="{StaticResource StackPanelInsideScrollViewer}">
-
+                
                 <Grid
                     Style="{StaticResource ResearchTreeGrid}"
                     x:Name="_grid"
