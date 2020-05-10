@@ -6,6 +6,7 @@
         public const string AceCrewTrainingCostInGold = nameof(AceCrewTrainingCostInGold);
         public const string AceCrewTrainingCostInResearch = nameof(AceCrewTrainingCostInResearch);
         public const string All = nameof(All);
+        public const string AllNonResearchable = nameof(AllNonResearchable);
         public const string Alpha = nameof(Alpha);
         public const string AntiAirFerry = nameof(AntiAirFerry);
         public const string AntiTankMissileCarrier = nameof(AntiTankMissileCarrier);
@@ -156,6 +157,7 @@
         public const string ScrapGeneratedPresets = nameof(ScrapGeneratedPresets);
         public const string SeeLogsForDetails = nameof(SeeLogsForDetails);
         public const string SelectAllCountries = nameof(SelectAllCountries);
+        public const string SelectAllNonResearchableVehicles = nameof(SelectAllNonResearchableVehicles);
         public const string SelectAllVehicleClasses = nameof(SelectAllVehicleClasses);
         public const string SelectAllVehicles = nameof(SelectAllVehicles);
         public const string ShowInResearchTree = nameof(ShowInResearchTree);
