@@ -8,11 +8,13 @@ using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace Client.Wpf.Controls
@@ -58,6 +60,42 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Event Handlers
 
+        private void ToggleAllVehicles(ToggleButton toggleButton, bool onlyNonResearchable = false)
+        {
+            var buttonOriginalState = toggleButton.IsChecked;
+
+            foreach (var vehicleCellControl in GetVehicleControls())
+            {
+                if (vehicleCellControl.IsToggled != buttonOriginalState)
+                {
+                    if (onlyNonResearchable && vehicleCellControl.Vehicle.IsResearchable)
+                        continue;
+
+                    vehicleCellControl.HandleClick();
+                }
+            }
+            _toggleAllVehiclesButton.IsChecked = AllVehiclesAreToggled();
+            _toggleAllNonResearchableVehiclesButton.IsChecked = AllVehiclesAreToggled(true);
+        }
+
+        /// <summary> Toggles all vehicles on/off. </summary>
+        /// <param name="sender"> The event sender. <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnToggleAllClick(object sender, EventArgs eventArguments)
+        {
+            if (sender is ToggleButton toggleButton)
+                ToggleAllVehicles(toggleButton);
+        }
+
+        /// <summary> Toggles all non-researchable vehicles on/off. </summary>
+        /// <param name="sender"> The event sender. <see cref="ToggleButton"/> is expected. </param>
+        /// <param name="eventArguments"> Not used. </param>
+        private void OnToggleAllNonResearchableClick(object sender, EventArgs eventArguments)
+        {
+            if (sender is ToggleButton toggleButton)
+                ToggleAllVehicles(toggleButton, true);
+        }
+
         /// <summary> Maintains branch selection when switching between nations, unless the branch is not implemented in which case selection is reset to the first available branch. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="routedEventArguments"> Event arguments. <see cref="SelectionChangedEventArgs"/> are expected. </param>
@@ -95,15 +133,23 @@ namespace Client.Wpf.Controls
         {
             base.Localise();
 
+            static string localise(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
+
             foreach (var tab in _tabControl.Items.OfType<TabItem>())
             {
                 if (tab.Header is WrapPanel panel && panel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
-                    textBlock.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(tab.Tag.ToString());
+                    textBlock.Text = localise(tab.Tag.ToString());
             }
             foreach (var nationControl in _nationControls.Values)
             {
                 nationControl.Localise();
             }
+
+            _toggleAllVehiclesButtonHeader.Text = localise(ELocalisationKey.All);
+            _toggleAllVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllVehicles);
+
+            _toggleAllNonResearchableVehiclesButtonHeader.Text = localise(ELocalisationKey.AllNonResearchable);
+            _toggleAllNonResearchableVehiclesButton.ToolTip = localise(ELocalisationKey.SelectAllNonResearchableVehicles);
         }
 
         #endregion Methods: Overrides
@@ -122,7 +168,42 @@ namespace Client.Wpf.Controls
             }
         }
 
-        #endregion Methods: Initialisation
+        private void UpdateButtonStates()
+        {
+            _toggleAllVehiclesButton.IsChecked = AllVehiclesAreToggled();
+            _toggleAllNonResearchableVehiclesButton.IsChecked = AllVehiclesAreToggled(true);
+        }
+
+        /// <summary> Populates tabs with appropriate research trees. </summary>
+        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
+        /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
+        public void Populate(IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
+        {
+            loadingTracker.NationsPopulated = EInteger.Number.Zero;
+            loadingTracker.NationsToPopulate = _nationTabs.Count;
+
+            foreach (var nationTabKeyValuePair in _nationTabs)
+            {
+                var nation = nationTabKeyValuePair.Key;
+                var tab = nationTabKeyValuePair.Value;
+
+                loadingTracker.CurrentlyPopulatedNation = ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString());
+
+                if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nation, out var researchTree))
+                {
+                    _isEnabledByDefault[nation] = true;
+                    _nationControls[nation].Populate(researchTree, enabledVehicleGaijinIds, loadingTracker);
+                }
+                else
+                {
+                    _isEnabledByDefault[nation] = false;
+                    tab.IsEnabled = false;
+                }
+                loadingTracker.CurrentlyPopulatedNation = string.Empty;
+                loadingTracker.NationsPopulated++;
+            }
+            UpdateButtonStates();
+        }
 
         /// <summary> Creates a header for a tab control of the given <paramref name="nation"/>. </summary>
         /// <param name="nation"> The nation for whose tab to create a header for. </param>
@@ -174,35 +255,15 @@ namespace Client.Wpf.Controls
             }
         }
 
-        /// <summary> Populates tabs with appropriate research trees. </summary>
-        /// <param name="enabledVehicleGaijinIds"> Gaijin IDs of vehicles enabled by dafault. </param>
-        /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
-        public void Populate(IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
-        {
-            loadingTracker.NationsPopulated = EInteger.Number.Zero;
-            loadingTracker.NationsToPopulate = _nationTabs.Count;
+        #endregion Methods: Initialisation
+        #region Methods: Checks
 
-            foreach (var nationTabKeyValuePair in _nationTabs)
-            {
-                var nation = nationTabKeyValuePair.Key;
-                var tab = nationTabKeyValuePair.Value;
+        /// <summary> Checks whether all vehicles in the nation are toggled on. </summary>
+        /// <returns></returns>
+        internal bool AllVehiclesAreToggled(bool onlyNonResearchable = false) =>
+            _nationControls.Values.All(control => control.AllVehiclesAreToggled(onlyNonResearchable));
 
-                loadingTracker.CurrentlyPopulatedNation = ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString());
-
-                if (ApplicationHelpers.Manager.ResearchTrees.TryGetValue(nation, out var researchTree))
-                {
-                    _isEnabledByDefault[nation] = true;
-                    _nationControls[nation].Populate(researchTree, enabledVehicleGaijinIds, loadingTracker);
-                }
-                else
-                {
-                    _isEnabledByDefault[nation] = false;
-                    tab.IsEnabled = false;
-                }
-                loadingTracker.CurrentlyPopulatedNation = string.Empty;
-                loadingTracker.NationsPopulated++;
-            }
-        }
+        #endregion Methods: Checks
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
@@ -290,5 +351,12 @@ namespace Client.Wpf.Controls
         /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to remove highlight from. </param>
         public void RemoveHighlight(IVehicle vehicle) => GetNationControl(vehicle)?.RemoveHighlight(vehicle);
+
+        private IEnumerable<ResearchTreeCellVehicleControl> GetVehicleControls() => _nationControls.Values.SelectMany(control => control.GetVehicleControls());
+
+        private void OnButtonBubbledClick(object sender, RoutedEventArgs e)
+        {
+            UpdateButtonStates();
+        }
     }
 }

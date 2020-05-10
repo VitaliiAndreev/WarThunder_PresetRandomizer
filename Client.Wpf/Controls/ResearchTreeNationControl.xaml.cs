@@ -18,7 +18,7 @@ namespace Client.Wpf.Controls
         #region Fields
 
         /// <summary> The map of the branch enumeration onto corresponding controls. </summary>
-        private readonly IDictionary<EBranch, ResearchTreeBranchControl> _branchControls;
+        internal readonly IDictionary<EBranch, ResearchTreeBranchControl> _branchControls;
 
         private bool _initialised;
 
@@ -135,6 +135,14 @@ namespace Client.Wpf.Controls
         }
 
         #endregion Methods: Initialisation
+        #region Methods: Checks
+
+        /// <summary> Checks whether all vehicles in the nation are toggled on. </summary>
+        /// <returns></returns>
+        internal bool AllVehiclesAreToggled(bool onlyNonResearchable = false) =>
+            _branchControls.Values.All(control => control.AllVehiclesAreToggled(onlyNonResearchable));
+
+        #endregion Methods: Checks
 
         /// <summary> Gets all empty branches (their tabs should be disabled). </summary>
         /// <returns></returns>
@@ -206,5 +214,7 @@ namespace Client.Wpf.Controls
         /// <summary> Removes the highlight from the specified vehicle in the reseatch tree. </summary>
         /// <param name="vehicle"> The vehicle to remove highlight from. </param>
         internal void RemoveHighlight(IVehicle vehicle) => GetBranchControl(vehicle)?.RemoveHighlight(vehicle);
+
+        internal IEnumerable<ResearchTreeCellVehicleControl> GetVehicleControls() => _branchControls.Values.SelectMany(control => control.GetVehicleControls());
     }
 }
