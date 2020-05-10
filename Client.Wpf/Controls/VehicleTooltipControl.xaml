@@ -10,8 +10,7 @@
     d:DesignWidth="322">
     <StackPanel
         x:Name="_underlay"
-        Margin="-6 -4"
-            Background="White">
+        Margin="-6 -4">
         
         <StackPanel
             x:Name="_tooltipPanel"
