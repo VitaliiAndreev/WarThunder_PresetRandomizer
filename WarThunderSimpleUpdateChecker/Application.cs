@@ -467,7 +467,7 @@ namespace WarThunderSimpleUpdateChecker
             for (var i = 0; i < unwantedFiles.Count(); i++)
                 unwantedFiles[i].Delete();
 
-            _logger.LogInfo($"Leftover source files eleted.");
+            _logger.LogInfo($"Leftover source files deleted.");
         }
 
         #endregion Methods: Clean-up

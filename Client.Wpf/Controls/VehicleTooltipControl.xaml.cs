@@ -75,7 +75,7 @@ namespace Client.Wpf.Controls
             _regularCrewRequirements.Text = _displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle);
             _expertCrewRequirements.Text = _displayStrategy.GetVehicleCardExpertCrewRequirements(_vehicle);
             _aceCrewRequirements.Text = _displayStrategy.GetVehicleCardAceCrewRequirements(_vehicle);
-            _researchMultiplier.Text = _vehicle.EconomyData.ResearchGainMultiplier.ToString("0.00");
+            _researchMultiplier.Text = _vehicle.EconomyData.ResearchGainMultiplier.ToString(EFormat.Multiplier);
 
             if (string.IsNullOrWhiteSpace(_tags.Text))
                 _tags.Visibility = Visibility.Collapsed;

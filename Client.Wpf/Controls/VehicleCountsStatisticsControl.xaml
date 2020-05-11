@@ -14,7 +14,7 @@
         Unloaded="OnScrollViewerUnloaded">
         <StackPanel>
 
-            <TextBlock Text="Click on any of the categories to open an associated vehicle list."
+            <TextBlock Text="Click on any of the categories to open an associated vehicle list. Hover over icons/flags for a clarifying tooltip."
                 x:Name="_hint"
                 Style="{StaticResource TextBlock12px}"/>
             
