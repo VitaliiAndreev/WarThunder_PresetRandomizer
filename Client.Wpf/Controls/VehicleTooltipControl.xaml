@@ -152,7 +152,7 @@
                         Style="{StaticResource TextBlockWithSkyQuake12px}"
                         Margin="5 0 0 0"/>
 
-                    <TextBlock Text="Research gain multiplier"
+                    <TextBlock Text="RP gain"
                         Grid.Column="0"
                         Grid.Row="1"
                         x:Name="_researchMultiplierHeader"
