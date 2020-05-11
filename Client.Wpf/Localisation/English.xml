@@ -186,6 +186,7 @@
   <Line key="SelectAllVehicles" value="Enables all vehicles if at least one is disabled. Disables all of them otherwise."/>
   <Line key="SelectAllVehiclesInBranch" value="Enables all vehicles in the branch if at least one is disabled. Disables all of them otherwise."/>
   <Line key="ShowInResearchTree" value="Open the research tree"/>
+  <Line key="SilverGainMultiplier" value="SL gain"/>
   <Line key="Simulator" value="Simulator Battles"/>
   <Line key="SoldOnTheMarket" value="Sold on the market"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Oops. Something went wrong. No vehicles fit the criteria."/>
