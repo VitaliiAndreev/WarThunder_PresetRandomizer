@@ -6,6 +6,7 @@ using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
+using Core.Enumerations;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -46,6 +47,7 @@ namespace Client.Wpf.Controls
 
             _repairCostHeader.Text = localise(ELocalisationKey.RepairCost);
             _researchMultiplierHeader.Text = localise(ELocalisationKey.ResearchGainMultiplier);
+            _silverMultiplierHeader.Text = localise(ELocalisationKey.SilverGainMultiplier);
         }
 
         #endregion Methods: Overrides
@@ -141,6 +143,9 @@ namespace Client.Wpf.Controls
 
                 _tooltipBattleRating.Text = _displayStrategy.GetBattleRating(_gameMode, _vehicle);
                 _repairCost.Text = _displayStrategy.GetVehicleCardRepairCost(_vehicle, gameMode);
+
+                if (_vehicle.EconomyData.RewardMultiplier[gameMode] is decimal a )
+                    _silverMultiplier.Text = a.ToString(EFormat.Multiplier);
 
                 _requiredVehicle?.UpdateFor(_gameMode);
             }

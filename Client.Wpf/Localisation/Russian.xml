@@ -186,6 +186,7 @@
   <Line key="SelectAllVehicles" value="Активирует все единицы техники, если хотя бы одна из них деактивирована. Если нет - деактивирует все единицы."/>
   <Line key="SelectAllVehiclesInBranch" value="Активирует все единицы техники в ветке, если хотя бы одна единица деактивирована. Если нет - деактивирует все."/>
   <Line key="ShowInResearchTree" value="Перейти к ветке исследования"/>
+  <Line key="SilverGainMultiplier" value="Коэффициент серебра"/>
   <Line key="Simulator" value="Симуляторный режим"/>
   <Line key="SoldOnTheMarket" value="Продаётся на бирже"/>
   <Line key="SomethingWentWrongNoVehiclesFitTheCriteria" value="Ой. Что-то пошло не так. Нет техники, удовлетворяющей критериям."/>
