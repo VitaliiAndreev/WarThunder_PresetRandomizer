@@ -303,9 +303,11 @@ namespace WarThunderSimpleUpdateChecker
                     var sourceFile = sourceFiles[fileIndex];
                     var sourceFileName = sourceFile.Name;
 
-                    if (cachedSourceFiles.TryGetValue(sourceFileName, out var cachedSourceFile) && cachedSourceFile.LastWriteTimeUtc > sourceFile.LastWriteTimeUtc)
+                    if (cachedSourceFiles.TryGetValue(sourceFileName, out var cachedSourceFile))
                     {
-                        sourceFiles[fileIndex] = cachedSourceFile;
+                        if (cachedSourceFile.LastWriteTimeUtc > sourceFile.LastWriteTimeUtc)
+                            sourceFiles[fileIndex] = cachedSourceFile;
+
                         cachedSourceFiles.Remove(sourceFileName);
                     }
                 }
