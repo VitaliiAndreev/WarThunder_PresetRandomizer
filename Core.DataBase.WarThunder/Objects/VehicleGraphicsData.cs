@@ -29,13 +29,13 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        /// <summary> The path to the image file used as an icon. </summary>
         [Property()] public virtual string CustomClassIco { get; protected set; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        /// <summary> The path to the image file used as a banner icon. </summary>
         [Property()] public virtual string BannerImageName { get; protected set; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        /// <summary> The path to the image file used as a portrait. </summary>
         [Property()] public virtual string PortraitName { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>

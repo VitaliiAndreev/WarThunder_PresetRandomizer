@@ -13,14 +13,14 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Association Properties
         #region Persistent Properties
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
+        /// <summary> The path to the image file used as an icon. </summary>
         string CustomClassIco { get; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        string CustomImage { get; }
+        /// <summary> The path to the image file used as a banner icon. </summary>
+        string BannerImageName { get; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        string CustomTooltipImage { get; }
+        /// <summary> The path to the image file used as a portrait. </summary>
+        string PortraitName { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         string CommonWeaponImage { get; }
