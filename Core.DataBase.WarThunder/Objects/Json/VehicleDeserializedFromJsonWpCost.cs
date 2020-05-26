@@ -274,10 +274,10 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public string CustomClassIco { get; set; }
 
         [JsonProperty("customImage")]
-        public string CustomImage { get; set; }
+        public string BannerImageName { get; set; }
 
         [JsonProperty("customTooltipImage")]
-        public string CustomTooltipImage { get; set; }
+        public string PortraitName { get; set; }
 
         [JsonProperty("commonWeaponImage")]
         public string CommonWeaponImage { get; set; }
