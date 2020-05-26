@@ -583,99 +583,27 @@ namespace Core.Organization.Helpers
             LogInfo(EOrganizationLogMessage.DatabaseInitialized);
         }
         
-        private bool AttachVehicleImage(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles, Action<IVehicle, byte[]> setImage)
+        private bool AttachVehicleImage(IVehicle vehicle, IDictionary<string, FileInfo> vehicleIconFiles, Action<IVehicle, byte[]> setImage, EVehicleImage imageType)
         {
-            LogTrace(EOrganizationLogMessage.AttachingImageToVehicle.FormatFluently(vehicle.GaijinId));
+            if (vehicle.IsInternal)
+                return false;
 
-            var vehicleGaijinId = vehicle.GaijinId.ToLower();
-            var footballGaijinIdPart = "_football";
-            var forTutorialGaijinIdPart = "_for_tutorial";
-            var raceGaijinIdPart = "_race";
-            var tutorialGaijinIdPart = "_tutorial";
-            var youTubeCupGaijinIdPart = "_yt_cup";
-            var chinesePrefix = $"{EReference.NationPrefixes[ENation.China]}_";
-            var chineseVehicleNumberSuffix = $"_no";
-            var matchedFileName = new Dictionary<string, string>
-            {
-                { "cn_t_26_no531", "ussr_t_26_1940"},
-                { "cn_type_86", "ussr_bmp_1"},
-            };
+            LogTrace(EOrganizationLogMessage.AttachingImageToVehicle.FormatFluently(vehicle.GaijinId));
 
             bool tryToSetIcon(string gaijinId)
             {
-                if (vehicleIconFiles.TryGetValue(gaijinId, out var iconFile))
+                if (vehicleIconFiles.TryGetValue(gaijinId.ToLower(), out var iconFile))
                 {
                     setImage(vehicle, _fileReader.ReadBytes(iconFile));
                     return true;
                 }
                 return false;
             }
-            bool tryToSetReplacementIcon(string gaijinIdPart)
-            {
-                if (vehicleGaijinId.Contains(gaijinIdPart))
-                {
-                    vehicleGaijinId = vehicleGaijinId.TakeBefore(gaijinIdPart);
-                    return tryToSetIcon(vehicleGaijinId);
-                }
-                return false;
-            }
-            bool tryToSetReplacementIconFromAnotherNation()
-            {
-                var gaijinIdParts = vehicleGaijinId.Split(ECharacter.Underscore);
-                var originalPrefix = gaijinIdParts.FirstOrDefault();
 
-                if (EReference.NationsFromPrefix.TryGetValue(originalPrefix, out var originalNation))
-                {
-                    var gaijinIdWithoutPrefix = gaijinIdParts.Skip(EInteger.Number.One).StringJoin(ECharacter.Underscore);
-
-                    return tryToMatchAnotherPrefix(gaijinIdWithoutPrefix, originalNation);
-                }
-                else
-                {
-                    return tryToMatchAnotherPrefix(vehicleGaijinId);
-                }
-            }
-            bool tryToSetReplacementIconForChineseCapturedVehicles()
-            {
-                if (vehicleGaijinId.Contains(chinesePrefix) && vehicleGaijinId.Contains(chineseVehicleNumberSuffix))
-                {
-                    vehicleGaijinId = vehicleGaijinId.TakeBefore(chineseVehicleNumberSuffix);
-                    return tryToSetIcon(vehicleGaijinId);
-                }
-                return false;
-            }
-            bool tryToSetReplacementIconFromKnownMatches()
-            {
-                return matchedFileName.TryGetValue(vehicleGaijinId, out var replacementGaijinId) && tryToSetIcon(replacementGaijinId);
-            }
-            bool tryToMatchAnotherPrefix(string gaijinIdWithoutPrefix, ENation originalNation = ENation.None)
-            {
-                foreach (var nationPrefix in EReference.NationPrefixes)
-                {
-                    var nation = nationPrefix.Key;
-
-                    if (!nation.IsValid() || nation == originalNation)
-                        continue;
-
-                    var prefix = nationPrefix.Value;
-                    var gaijinIdWithAnotherPrefix = $"{prefix}{ECharacter.Underscore}{gaijinIdWithoutPrefix}";
-
-                    if (tryToSetIcon(gaijinIdWithAnotherPrefix))
-                        return true;
-                }
-                return false;
-            }
-
-            var imageLocated = tryToSetIcon(vehicleGaijinId)
-                || tryToSetReplacementIcon(footballGaijinIdPart)
-                || tryToSetReplacementIcon(forTutorialGaijinIdPart)
-                || tryToSetReplacementIcon(raceGaijinIdPart)
-                || tryToSetReplacementIcon(tutorialGaijinIdPart)
-                || tryToSetReplacementIcon(youTubeCupGaijinIdPart)
-                || tryToSetReplacementIconFromKnownMatches()
-                || tryToSetReplacementIconForChineseCapturedVehicles()
-                || tryToSetReplacementIconFromAnotherNation()
-            ;
+            var inheritedGaijinId = vehicle.GraphicsData.GetInheritedGaijinId(imageType);
+            var imageLocated = string.IsNullOrWhiteSpace(inheritedGaijinId)
+                ? tryToSetIcon(vehicle.GaijinId)
+                : tryToSetIcon(inheritedGaijinId);
 
             if (imageLocated)
                 LogTrace(EOrganizationLogMessage.ImageLocatedAndAttachedToVehicle.FormatFluently(vehicle.GaijinId));
@@ -884,8 +812,8 @@ namespace Core.Organization.Helpers
 
             foreach (var vehicle in vehicles.Values)
             {
-                AttachVehicleImage(vehicle, vehicleIconFiles, (vehicle, bytes) => vehicle.SetIcon(bytes));
-                AttachVehicleImage(vehicle, vehiclePortaitFiles, (vehicle, bytes) => vehicle.SetPortrait(bytes));
+                AttachVehicleImage(vehicle, vehicleIconFiles, (vehicle, bytes) => vehicle.SetIcon(bytes), EVehicleImage.Banner);
+                AttachVehicleImage(vehicle, vehiclePortaitFiles, (vehicle, bytes) => vehicle.SetPortrait(bytes), EVehicleImage.Portrait);
 
                 #region Start Initialisation Tasks
 

@@ -1,4 +1,6 @@
-﻿namespace Core.DataBase.WarThunder.Objects.Interfaces
+﻿using Core.DataBase.WarThunder.Enumerations;
+
+namespace Core.DataBase.WarThunder.Objects.Interfaces
 {
     /// <summary> A set of vehicle information pertaining to graphics. </summary>
     public interface IVehicleGraphicsData : IPersistentDeserialisedObjectWithId
@@ -30,5 +32,7 @@
         int? BulletsIconParam { get; }
 
         #endregion Persistent Properties
+
+        string GetInheritedGaijinId(EVehicleImage imageType);
     }
 }

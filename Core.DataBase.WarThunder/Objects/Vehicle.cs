@@ -192,6 +192,12 @@ namespace Core.DataBase.WarThunder.Objects
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         public virtual VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; protected set; }
 
+        public virtual bool IsInternal
+        {
+            get => GaijinId.Contains("_tutorial");
+            protected set { }
+        }
+
         #endregion Non-Persistent Properties
         #region Constructors
 
