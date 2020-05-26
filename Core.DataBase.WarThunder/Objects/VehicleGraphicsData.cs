@@ -1,9 +1,13 @@
 ﻿using Core.DataBase.Enumerations;
 using Core.DataBase.Helpers.Interfaces;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
+using Core.Enumerations;
+using Core.Extensions;
 using NHibernate.Mapping.Attributes;
+using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects
 {
@@ -29,10 +33,10 @@ namespace Core.DataBase.WarThunder.Objects
         [Property()] public virtual string CustomClassIco { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual string CustomImage { get; protected set; }
+        [Property()] public virtual string BannerImageName { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [Property()] public virtual string CustomTooltipImage { get; protected set; }
+        [Property()] public virtual string PortraitName { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [Property()] public virtual string CommonWeaponImage { get; protected set; }
@@ -72,5 +76,31 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Constructors
+
+        private string GetInheritedGaijinId(string imagePathPropertyValue)
+        {
+            var firstSeparator = ECharacter.NumberSign.ToString();
+            var secondSeparator = ECharacter.Slash.ToString();
+
+            if (imagePathPropertyValue is null || !imagePathPropertyValue.ContainsAny(new string[] { firstSeparator, secondSeparator }))
+                return string.Empty;
+
+            return imagePathPropertyValue
+                .Split(firstSeparator)
+                .Last()
+                .Split(secondSeparator)
+                .Last()
+            ;
+        }
+
+        public virtual string GetInheritedGaijinId(EVehicleImage imageType)
+        {
+            return imageType switch
+            {
+                EVehicleImage.Banner => GetInheritedGaijinId(BannerImageName),
+                EVehicleImage.Portrait => GetInheritedGaijinId(PortraitName),
+                _ => string.Empty,
+            };
+        }
     }
 }

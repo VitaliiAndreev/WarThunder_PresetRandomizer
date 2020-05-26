@@ -108,7 +108,8 @@ namespace Client.Wpf.Helpers
             }
             else
             {
-                LogWarn(EWpfClientLogMessage.ImageByteArrayReadFromVehicleIsNull.FormatFluently(vehicle.GaijinId));
+                if (!vehicle.IsInternal)
+                    LogWarn(EWpfClientLogMessage.ImageByteArrayReadFromVehicleIsNull.FormatFluently(vehicle.GaijinId));
 
                 return null;
             }

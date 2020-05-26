@@ -7,6 +7,7 @@ namespace Core.Enumerations
     {
         public const char Apostrophe = '\'';
         public const char Asterisk = '*';
+        public const char Backslash = '\\';
         public const char BraceLeft = '{';
         public const char BraceRight = '}';
         public const char BracketLeft = '[';
@@ -20,6 +21,7 @@ namespace Core.Enumerations
         public const char Grave = '`';
         public const char Minus = '-';
         public const char NewLine = '\n';
+        public const char NumberSign = '#';
         public const char QuotationMark = '"';
         public const char ParenthesisLeft = '(';
         public const char ParenthesisRight = ')';

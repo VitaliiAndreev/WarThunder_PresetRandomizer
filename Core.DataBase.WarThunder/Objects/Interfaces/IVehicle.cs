@@ -119,6 +119,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> Values used for matchmaking (falling into a ± 1.0 battle rating bracket). </summary>
         VehicleGameModeParameterSet.String.BattleRating BattleRatingFormatted { get; }
 
+        bool IsInternal { get; }
+
         #endregion Non-Persistent Properties
         #region Methods: Initialization
 
