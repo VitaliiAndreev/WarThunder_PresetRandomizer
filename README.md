@@ -37,9 +37,9 @@ Releases come packaged with BAT files that run the app in different modes using 
 
 New releases are shipped ready-to-go. The previous release should be deleted prior to extracting release files.
 
-If you want to keep user preferences from the previous release, and copy *Client.Wpf.Settings.xml* from the previous release to the folder with the new release. Applicable settings would be carried over, use the backup (*Client.Wpf.Settings.xml.bak*) to restore individual settings in case of possible conflicts. The user is notified when issues are resolved, after which a restart is required to continue.
+If you want to keep user preferences from the previous release, copy *Client.Wpf.Settings.xml* from the previous release to the folder with the new release. Applicable settings would be carried over on the first start. Use the backup (*Client.Wpf.Settings.xml.bak*) to restore individual settings in case of possible conflicts. The user is notified when issues are resolved, after which a restart is required to continue.
 
-You also can copy over any SQLite databases generated with the previous version of the client, but compatibility with newer versions of the app is not guaranteed.
+You can also copy over any SQLite databases generated with the previous version of the client, but compatibility with newer versions of the app is not guaranteed.
 
 ### Randomisation criteria
 
