@@ -13,7 +13,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         #endregion Association Properties
         #region Persistent Properties
 
-        /// <summary> The path to the image file used as an icon. </summary>
+        /// <summary> The path to the image file used as an icon. Can have either no extension (corresponds to PNG) or SVG. </summary>
         string CustomClassIco { get; }
 
         /// <summary> The path to the image file used as a banner icon. </summary>
