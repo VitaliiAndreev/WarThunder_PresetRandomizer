@@ -29,7 +29,7 @@ namespace Core.DataBase.WarThunder.Objects
         [Id(Column = EColumn.Id, TypeType = typeof(long), Name = nameof(Id), Generator = EIdGenerator.HiLo)]
         public override long Id { get; protected set; }
 
-        /// <summary> The path to the image file used as an icon. </summary>
+        /// <summary> The path to the image file used as an icon. Can have either no extension (corresponds to PNG) or SVG. </summary>
         [Property()] public virtual string CustomClassIco { get; protected set; }
 
         /// <summary> The path to the image file used as a banner icon. </summary>
