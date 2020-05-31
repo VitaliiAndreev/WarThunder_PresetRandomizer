@@ -76,10 +76,10 @@ namespace Client.Shared.Interfaces
         bool IsPurchasableForGoldenEagles { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]
-        int PurchaseCostInGold { get; }
+        int MinimumPurchaseCostInGold { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]
-        int MinimumPurchaseCostInGold { get; }
+        int PurchaseCostInGold { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
