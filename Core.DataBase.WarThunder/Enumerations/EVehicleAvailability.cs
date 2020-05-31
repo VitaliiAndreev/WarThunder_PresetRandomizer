@@ -6,8 +6,8 @@ namespace Core.DataBase.WarThunder.Enumerations
     {
         None,
         All,
-        Researchable,
         Reserve,
+        Researchable,
         ResearchableInSquadron,
         PurchasableForGoldenEagles,
         StarterGift,
