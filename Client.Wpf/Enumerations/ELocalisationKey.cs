@@ -64,6 +64,7 @@
         public const string FrontlineBomber = nameof(FrontlineBomber);
         public const string GaijinEntertainmentForWarThunder = nameof(GaijinEntertainmentForWarThunder);
         public const string GaijinId = nameof(GaijinId);
+        public const string GaijinIdLite = nameof(GaijinIdLite);
         public const string Gdr = nameof(Gdr);
         public const string GeneratePreset = nameof(GeneratePreset);
         public const string Germany = nameof(Germany);
