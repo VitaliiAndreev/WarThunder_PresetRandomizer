@@ -36,8 +36,8 @@ namespace Client.Shared.Objects
         public bool IsHiddenUnlessOwned { get; }
         public bool IsPremium { get; }
         public bool IsPurchasableForGoldenEagles { get; }
-        public int PurchaseCostInGold { get; }
         public int MinimumPurchaseCostInGold { get; }
+        public int PurchaseCostInGold { get; }
         public bool GiftedToNewPlayersForSelectingTheirFirstBranch { get; }
         public bool IsSoldInTheStore { get; }
         public bool IsSoldOnTheMarket { get; }
