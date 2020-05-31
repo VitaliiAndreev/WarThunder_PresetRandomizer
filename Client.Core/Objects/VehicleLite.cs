@@ -13,7 +13,7 @@ namespace Client.Shared.Objects
     {
         #region Properties
 
-        public string GaijinId { get; }
+        public string GaijinIdLite { get; }
         public string Name { get; }
         public string Nation { get; }
         public string Country { get; }
@@ -56,7 +56,7 @@ namespace Client.Shared.Objects
 
         public VehicleLite(IVehicle vehicle, ELanguage language, Func<object, string> localise, Func<int, string> getTag)
         {
-            GaijinId = vehicle.GaijinId;
+            GaijinIdLite = vehicle.GaijinId;
             Name = vehicle.ResearchTreeName.GetLocalisation(language);
             Nation = localise(vehicle.Nation.AsEnumerationItem);
             Country = localise(vehicle.Country);

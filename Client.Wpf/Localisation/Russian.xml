@@ -78,6 +78,7 @@
   <Line key="FrontlineBomber" value="Фронтовой бомбардировщик"/>
   <Line key="GaijinEntertainmentForWarThunder" value="Gaijin Entertainment за War Thunder."/>
   <Line key="GaijinId" value="Идентификатор"/>
+  <Line key="GaijinIdLite" value="Идентификатор"/>
   <Line key="Gdr" value="ГДР"/>
   <Line key="GeneratePreset" value="Случайный набор"/>
   <Line key="Germany" value="Германия"/>
