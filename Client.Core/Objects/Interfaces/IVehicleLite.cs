@@ -7,7 +7,7 @@ namespace Client.Shared.Interfaces
     public interface IVehicleLite
     {
         [ShowVehicleProperty(EVehicleProfile.None)]
-        string GaijinId { get; }
+        string GaijinIdLite { get; }
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         string Name { get; }
