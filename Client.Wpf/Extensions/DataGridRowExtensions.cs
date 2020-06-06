@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Shared.Interfaces;
+using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Client.Wpf.Extensions
 
         public static bool TryGetVehicle(this DataGridRow row, out IVehicle vehicle)
         {
-            var gaijinId = row.GetFieldValue(nameof(IPersistentObjectWithIdAndGaijinId.GaijinId))?.ToString() ?? string.Empty;
+            var gaijinId = row.GetFieldValue(nameof(IVehicleLite.GaijinIdLite))?.ToString() ?? string.Empty;
 
             return ApplicationHelpers.Manager.PlayableVehicles.TryGetValue(gaijinId, out vehicle);
         }

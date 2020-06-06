@@ -150,15 +150,15 @@ namespace Core.DataBase.WarThunder.Objects.Json
         public int AverageAwardInSimulation { get; set; }
 
         [JsonProperty("rewardMulArcade", Required = Required.Always)]
-        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.RewardMultiplier), EGameMode.Arcade)]
+        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.SilverGainMultiplier), EGameMode.Arcade)]
         public decimal RewardMultiplierInArcade { get; set; }
 
         [JsonProperty("rewardMulHistorical", Required = Required.Always)]
-        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.RewardMultiplier), EGameMode.Realistic)]
+        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.SilverGainMultiplier), EGameMode.Realistic)]
         public decimal RewardMultiplierInRealistic { get; set; }
 
         [JsonProperty("rewardMulSimulation", Required = Required.Always)]
-        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.RewardMultiplier), EGameMode.Simulator)]
+        [PersistAsDictionaryItem(nameof(IVehicleEconomyData.SilverGainMultiplier), EGameMode.Simulator)]
         public decimal RewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("rewardMulVisualArcade", Required = Required.Always)]

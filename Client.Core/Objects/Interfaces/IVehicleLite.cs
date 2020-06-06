@@ -116,5 +116,14 @@ namespace Client.Shared.Interfaces
 
         [ShowVehicleProperty(EVehicleProfile.None)]
         public decimal ResearchGainMultiplierLite { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public decimal SilverGainMultiplierInArcade { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public decimal SilverGainMultiplierInRealistic { get; }
+
+        [ShowVehicleProperty(EVehicleProfile.None)]
+        public decimal SilverGainMultiplierInSimulator { get; }
     }
 }

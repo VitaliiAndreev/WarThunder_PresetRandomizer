@@ -144,7 +144,7 @@ namespace Client.Wpf.Controls
                 _tooltipBattleRating.Text = _displayStrategy.GetBattleRating(_gameMode, _vehicle);
                 _repairCost.Text = _displayStrategy.GetVehicleCardRepairCost(_vehicle, gameMode);
 
-                if (_vehicle.EconomyData.RewardMultiplier[gameMode] is decimal a )
+                if (_vehicle.EconomyData.SilverGainMultiplier[gameMode] is decimal a )
                     _silverMultiplier.Text = a.ToString(EFormat.Multiplier);
 
                 _requiredVehicle?.UpdateFor(_gameMode);

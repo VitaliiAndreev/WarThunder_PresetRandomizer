@@ -116,9 +116,9 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.AverageReward), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.AverageReward.Entity), Lazy = Laziness.Proxy)]
         public virtual VehicleGameModeParameterSet.Integer.AverageReward AverageReward { get; protected set; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.RewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.RewardMultiplier.Entity), Lazy = Laziness.Proxy)]
-        public virtual VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; protected set; }
+        /// <summary> Silver Lion gain multiplier. </summary>
+        [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.SilverGainMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.SilverGainMultiplier.Entity), Lazy = Laziness.Proxy)]
+        public virtual VehicleGameModeParameterSet.Decimal.SilverGainMultiplier SilverGainMultiplier { get; protected set; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier), PropertyRef = nameof(VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier.Entity), Lazy = Laziness.Proxy)]
@@ -175,7 +175,7 @@ namespace Core.DataBase.WarThunder.Objects
             RepairCost = new VehicleGameModeParameterSet.Integer.RepairCost(_dataRepository, this);
             RepairTimeWithCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithCrew(_dataRepository, this);
             RepairTimeWithoutCrew = new VehicleGameModeParameterSet.Decimal.RepairTimeWithoutCrew(_dataRepository, this);
-            RewardMultiplier = new VehicleGameModeParameterSet.Decimal.RewardMultiplier(_dataRepository, this);
+            SilverGainMultiplier = new VehicleGameModeParameterSet.Decimal.SilverGainMultiplier(_dataRepository, this);
             VisualPremiumRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualPremiumRewardMultiplier(_dataRepository, this);
             VisualRewardMultiplier = new VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier(_dataRepository, this);
         }
@@ -205,7 +205,7 @@ namespace Core.DataBase.WarThunder.Objects
                 { nameof(RepairCost), RepairCost },
                 { nameof(RepairTimeWithCrew), RepairTimeWithCrew },
                 { nameof(RepairTimeWithoutCrew), RepairTimeWithoutCrew },
-                { nameof(RewardMultiplier), RewardMultiplier },
+                { nameof(SilverGainMultiplier), SilverGainMultiplier },
                 { nameof(VisualPremiumRewardMultiplier), VisualPremiumRewardMultiplier },
                 { nameof(VisualRewardMultiplier), VisualRewardMultiplier },
             };
@@ -229,7 +229,7 @@ namespace Core.DataBase.WarThunder.Objects
                 RepairCost,
                 RepairTimeWithCrew,
                 RepairTimeWithoutCrew,
-                RewardMultiplier,
+                SilverGainMultiplier,
                 VisualPremiumRewardMultiplier,
                 VisualRewardMultiplier,
             };

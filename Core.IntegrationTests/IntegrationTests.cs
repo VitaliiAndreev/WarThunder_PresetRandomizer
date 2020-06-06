@@ -222,7 +222,7 @@ namespace Core.IntegrationTests
                     vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Arcade > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Realistic > 0).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.AverageReward.Simulator >= 0).Should().BeTrue();
-                    vehicleCollection.All(vehicle => vehicle.EconomyData.RewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.EconomyData.SilverGainMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.VisualRewardMultiplier.AsDictionary().All(keyValuePair => keyValuePair.Value is null || keyValuePair.Value > 0m)).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.EconomyData.VisualPremiumRewardMultiplier.Arcade <= 0m || vehicle.EconomyData.VisualPremiumRewardMultiplier.Realistic <= 0m || vehicle.EconomyData.VisualPremiumRewardMultiplier.Simulator <= 0m).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.EconomyData.ResearchGainMultiplier > 0m).Should().BeTrue();
