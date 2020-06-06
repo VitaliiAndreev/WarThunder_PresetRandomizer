@@ -30,7 +30,7 @@ namespace Core.Organization.Tests.Helpers
         #region Internal Methods
 
         [TestInitialize]
-        public void Initialize()
+        public void Initialise()
         {
             _randomizer = new CustomRandomiser(Presets.Logger);
             _vehicleSelector = new VehicleSelector(_randomizer, Presets.Logger);
