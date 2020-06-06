@@ -426,6 +426,13 @@ namespace Core.Organization.Helpers
 
             if (cacheDirectory.Exists)
             {
+                if (_gameClientVersion is null)
+                {
+                    LogWarn(ECoreLogMessage.MemberNotInitialisedProperly.FormatFluently(nameof(_gameClientVersion)));
+
+                    return null;
+                }
+
                 var cacheDirectories = cacheDirectory
                     .GetDirectories($"binary.{_gameClientVersion.ToString(EInteger.Number.Three)}*", SearchOption.TopDirectoryOnly)
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
