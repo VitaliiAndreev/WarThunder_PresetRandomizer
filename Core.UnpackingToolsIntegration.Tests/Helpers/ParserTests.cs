@@ -29,7 +29,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         #region Internal Methods
 
         [TestInitialize]
-        public void Initialize()
+        public void Initialise()
         {
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new WarThunderFileReader(Presets.Logger);

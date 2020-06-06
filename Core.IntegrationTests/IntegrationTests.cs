@@ -64,7 +64,7 @@ namespace Core.IntegrationTests
         }
 
         [TestInitialize]
-        public void Initialize()
+        public void Initialise()
         {
             _fileManager = new WarThunderFileManager(Presets.Logger);
             _fileReader = new WarThunderFileReader(Presets.Logger);
