@@ -54,6 +54,7 @@
 
         public static string Helper => _Helper;
         public static string Helpers => _Helpers;
+        public static string Html => _HTML;
 
         #endregion H
         #region I
