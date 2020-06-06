@@ -220,13 +220,25 @@
         /// <para> 1: instance(s). </para>
         /// </summary>
         public static readonly string InstanceInitialised = $"{{0}} {_initialised}.";
+
+        #region Not Initialised Properly
+
+        private static readonly string _notInitialisedProperly = $" {_not} {_initialised} {_properly}.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: object(s). </para>
         /// </summary>
-        public static readonly string NotInitialisedProperly = $"{{0}} {_not} {_initialised} {_properly}.";
-        public static readonly string Shown = $"{_Shown}.";
+        public static readonly string NotInitialisedProperly = $"{{0}}{_notInitialisedProperly}";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: class member. </para>
+        /// </summary>
+        public static readonly string MemberNotInitialisedProperly = $"\"{{0}}\"{_notInitialisedProperly}";
+
+        #endregion Not Initialised Properly
         
+        public static readonly string Shown = $"{_Shown}.";
+
         public static readonly string AnErrorHasOccurred = $"{_An} {_error} {_has} {_occured}.";
         public static readonly string FatalErrorShutdown = $"{AnErrorHasOccurred} {_The} {_application} {_will} {_be} {_shut} {_down}.";
         public static readonly string SeeLogsForDetails = $"{_See} {_the} {_latest} {_file} {_in} {_the} \"{_Logs}\" {_folder} {_for} {_details}.";
