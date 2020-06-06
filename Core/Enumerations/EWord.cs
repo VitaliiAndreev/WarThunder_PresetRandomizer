@@ -127,6 +127,7 @@
         #region T
 
         public static string Tests => _Tests;
+        public static string ThunderSkill => _ThunderSkill;
 
         #endregion T
         #region U

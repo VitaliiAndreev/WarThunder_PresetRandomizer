@@ -44,7 +44,10 @@ namespace Core.Extensions
         }
 
         public static T Second<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.One);
+        public static T SecondLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - EInteger.Number.Two);
+
         public static T Third<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.Two);
+        public static T ThirdLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - EInteger.Number.Three);
 
         #endregion At()
 
