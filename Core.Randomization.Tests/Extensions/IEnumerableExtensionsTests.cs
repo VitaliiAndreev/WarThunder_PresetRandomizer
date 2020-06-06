@@ -19,7 +19,7 @@ namespace Core.Randomization.Tests.Extensions
         #region Internal Methods
 
         [TestInitialize]
-        public void Initialize()
+        public void Initialise()
         {
             _randomizer = new CustomRandomiser(Presets.Logger);
         }
