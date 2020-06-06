@@ -46,6 +46,25 @@ namespace Core.WarThunderExtractionToolsIntegration
             }
         }
 
+        #region ThunderSkill
+
+        [RequiredSetting]
+        public static string ThunderSkillUrl { get; set; }
+
+        [RequiredSetting]
+        public static string ThunderSkillGroundVehicleStatisticsXPath { get; set; }
+
+        [RequiredSetting]
+        public static string ThunderSkillHelicopterStatisticsXPath { get; set; }
+
+        [RequiredSetting]
+        public static string ThunderSkillPlaneStatisticsXPath { get; set; }
+
+        [RequiredSetting]
+        public static string ThunderSkillNavalVehicleStatisticsXPath { get; set; }
+
+        #endregion ThunderSkill
+
         public static string TempLocation { get; set; }
 
         public static string CacheLocation { get; set; }
