@@ -393,6 +393,7 @@
 
         protected const string _Key = _K + _ey;
         protected const string _key = _k + _ey;
+        protected const string _kill = _k + _ill;
 
         #endregion K
         #region L
@@ -648,6 +649,7 @@
         protected const string _shut = _s + "hut";
         protected const string _Shutting = _S + "hutt" + _ing;
         protected const string _sign = _s + "ign";
+        protected const string _Skill = _S + _kill;
         protected const string _skipped = _s + "kipp" + _ed;
         protected const string _slots = _s + _lot + _s;
         protected const string _sorting = _s + "ort" + _ing;
@@ -709,6 +711,7 @@
         protected const string _thing = _thin + _g;
         protected const string _tho = _th + _o;
         protected const string _Thunder = _T + _hun + _der;
+        protected const string _ThunderSkill = _Thunder + _Skill;
         protected const string _to = _t + _o;
         protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";
