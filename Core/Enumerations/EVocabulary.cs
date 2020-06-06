@@ -312,6 +312,7 @@
         #endregion G
         #region H
 
+        private const string _H = "H";
         private const string _h = "h";
 
         protected const string _has = _h + _as;
@@ -326,6 +327,7 @@
         protected const string _hip = _hi + _p;
         protected const string _horizontal = _h + "orizontal";
         protected const string _how = _h + _ow;
+        protected const string _HTML = _H + _T + _M + _L;
         protected const string _hun = _h + _un;
 
         #endregion H
@@ -395,6 +397,7 @@
         #endregion K
         #region L
 
+        private const string _L = "L";
         private const string _l = "l";
         private const string _ll = _l + _l;
         private const string _lo = _l + _o;
