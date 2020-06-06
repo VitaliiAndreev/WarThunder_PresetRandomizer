@@ -35,10 +35,12 @@ namespace Core.Extensions
             if (collection.IsEmpty())
                 throw new ArgumentException();
 
-            if (position.IsNegative() || position >= collection.Count())
+            var index = position + EInteger.Number.One;
+
+            if (position.IsNegative() || index >= collection.Count())
                 throw new ArgumentOutOfRangeException();
 
-            return collection.Take(position).Last();
+            return collection.Take(index).Last();
         }
 
         public static T Second<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.One);
