@@ -165,6 +165,9 @@
         public const string SelectAllVehiclesInBranch = nameof(SelectAllVehiclesInBranch);
         public const string ShowInResearchTree = nameof(ShowInResearchTree);
         public const string SilverGainMultiplier = nameof(SilverGainMultiplier);
+        public const string SilverGainMultiplierInArcade = nameof(SilverGainMultiplierInArcade);
+        public const string SilverGainMultiplierInRealistic = nameof(SilverGainMultiplierInRealistic);
+        public const string SilverGainMultiplierInSimulator = nameof(SilverGainMultiplierInSimulator);
         public const string Simulator = nameof(Simulator);
         public const string SoldOnTheMarket = nameof(SoldOnTheMarket);
         public const string SomethingWentWrongNoVehiclesFitTheCriteria = nameof(SomethingWentWrongNoVehiclesFitTheCriteria);

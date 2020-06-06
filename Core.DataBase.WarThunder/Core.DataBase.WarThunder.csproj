@@ -174,7 +174,7 @@
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\BattleTime.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualPremiumRewardMultiplier.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\VisualRewardMultiplier.cs" />
-    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RewardMultiplier.cs" />
+    <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\SilverGainMultiplier.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithoutCrew.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Decimal\RepairTimeWithCrew.cs" />
     <Compile Include="Objects\VehicleGameModeParameterSets\Integer\AverageReward.cs" />
