@@ -127,6 +127,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_ukraine", ECountry.Ukraine },
             { "country_usa", ECountry.Usa },
             { "country_ussr", ECountry.Ussr },
+            { "country_vietnam", ECountry.Vietnam },
             { "country_yugoslavia", ECountry.Yugoslavia },
         };
 

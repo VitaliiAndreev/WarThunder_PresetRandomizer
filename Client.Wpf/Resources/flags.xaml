@@ -66,6 +66,16 @@
     </GeometryDrawing>
   </DrawingGroup>
   <DrawingImage x:Key="country_bulgariaDrawingImage" Drawing="{StaticResource country_bulgariaDrawingGroup}" />
+  <Geometry x:Key="country_vietnamGeometry">F0 M100,100z M0,0z M62.543,67.024L49.921,57.768 37.253,66.96 42.153,52.096 29.5,42.969 45.151,42.99 50,28.076 54.77,42.983 70.421,42.993 57.721,52.136z</Geometry>
+  <DrawingGroup x:Key="country_vietnamDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+    <GeometryDrawing Brush="#FFDA251D">
+      <GeometryDrawing.Geometry>
+        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,16,100,68" />
+      </GeometryDrawing.Geometry>
+    </GeometryDrawing>
+    <GeometryDrawing Brush="#FFFFFF00" Geometry="{StaticResource country_vietnamGeometry}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="country_vietnamDrawingImage" Drawing="{StaticResource country_vietnamDrawingGroup}" />
   <DrawingGroup x:Key="country_germany_modernDrawingGroup" ClipGeometry="M0,0 V100 H100 V0 H0 Z">
     <GeometryDrawing Brush="#FF000000">
       <GeometryDrawing.Geometry>

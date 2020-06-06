@@ -47,6 +47,7 @@
             public const string UnionOfSouthAfrica = _prefix + "south_africa" + _suffix;
             public const string Usa = _prefix + "usa" + _suffix;
             public const string Ussr = _prefix + "ussr" + _suffix;
+            public const string Vietnam = _prefix + "vietnam" + _suffix;
             public const string Yugoslavia = _prefix + "yugoslavia" + _suffix;
         }
     }

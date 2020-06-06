@@ -54,6 +54,7 @@
         UnionOfSouthAfrica,
         Usa,
         Ussr,
+        Vietnam,
         Yugoslavia,
     }
 }
