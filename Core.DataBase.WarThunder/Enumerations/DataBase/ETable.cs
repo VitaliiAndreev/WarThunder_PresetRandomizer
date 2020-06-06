@@ -14,6 +14,7 @@
         private const string _branch = "Branch";
         private const string _data = "Data";
         private const string _crew = "Crew";
+        private const string _gain = "Gain";
         private const string _ground = "Ground";
         private const string _images = "Images";
         private const string _multiplier = "Multiplier";
@@ -21,6 +22,7 @@
         private const string _repair = "Repair";
         private const string _research = "Research";
         private const string _reward = "Reward";
+        private const string _silver = "Silver";
         private const string _subclass = "Subclass";
         private const string _tags = "Tags";
         private const string _time = "Time";
@@ -62,7 +64,7 @@
         internal const string VehicleRepairTimeWithCrew = _vehicleTable + _repair + _time + "With" + _crew;
         internal const string VehicleRepairTimeWithoutCrew = _vehicleTable + _repair + _time + "Without" + _crew;
         internal const string VehicleResearchTreeData = _vehicleTable + _research + _tree + _data;
-        internal const string VehicleRewardMultiplier = _vehicleTable + _reward + _multiplier;
+        internal const string VehicleSilverGainMultiplier = _vehicleTable + _silver + _gain + _multiplier;
         internal const string VehicleSubclass = _vehicleTable + _subclass;
         internal const string VehicleVisualPremiumRewardMultiplier = _vehicleTable + _visual + "Premium" + _reward + _multiplier;
         internal const string VehicleVisualRewardMultiplier = _vehicleTable + _visual + _reward + _multiplier;

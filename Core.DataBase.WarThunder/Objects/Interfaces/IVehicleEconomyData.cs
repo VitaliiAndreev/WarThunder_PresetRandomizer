@@ -94,8 +94,8 @@
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         VehicleGameModeParameterSet.Integer.AverageReward AverageReward { get; }
 
-        /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
-        VehicleGameModeParameterSet.Decimal.RewardMultiplier RewardMultiplier { get; }
+        /// <summary> Silver Lion gain multiplier. </summary>
+        VehicleGameModeParameterSet.Decimal.SilverGainMultiplier SilverGainMultiplier { get; }
 
         /// <summary> [THERE IS NO FULL UNDERSTANDING OF THIS PROPERTY] </summary>
         VehicleGameModeParameterSet.Decimal.VisualRewardMultiplier VisualRewardMultiplier { get; }

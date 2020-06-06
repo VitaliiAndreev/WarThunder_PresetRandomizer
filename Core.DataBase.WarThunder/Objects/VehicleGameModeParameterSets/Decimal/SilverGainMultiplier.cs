@@ -10,8 +10,8 @@ using NHibernate.Mapping.Attributes;
 namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
 {
     /// <summary> A set of nullable decimal parameters that vary depending on the game mode. </summary>
-    [Class(Table = ETable.VehicleRewardMultiplier)]
-    public class RewardMultiplier: VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<decimal?>
+    [Class(Table = ETable.VehicleSilverGainMultiplier)]
+    public class SilverGainMultiplier: VehicleGameModeParameterSetBase, IVehicleGameModeParameterSet<decimal?>
     {
         #region Fields
 
@@ -106,24 +106,15 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         #region Constructors
 
         /// <summary> This constructor is used by NHibernate to instantiate an entity read from a database. </summary>
-        protected RewardMultiplier()
+        protected SilverGainMultiplier()
         {
         }
 
         /// <summary> Creates a new set of values. </summary>
         /// <param name="dataRepository"> A data repository to persist the object with. </param>
         /// <param name="economyData"> The entity the set belongs to. </param>
-        public RewardMultiplier(IDataRepository dataRepository, IVehicleEconomyData economyData)
+        public SilverGainMultiplier(IDataRepository dataRepository, IVehicleEconomyData economyData)
             : this(dataRepository, economyData, null, null, null, null)
-        {
-        }
-
-        /// <summary> Creates a new set of values. </summary>
-        /// <param name="dataRepository"> A data repository to persist the object with. </param>
-        /// <param name="id"> The set's ID. </param>
-        /// <param name="economyData"> The entity the set belongs to. </param>
-        public RewardMultiplier(IDataRepository dataRepository, long id, IVehicleEconomyData economyData)
-            : this(dataRepository, id, economyData, null, null, null, null)
         {
         }
 
@@ -134,7 +125,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
         /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
         /// <param name="valueInEvent"> The value in Event Battles. </param>
-        public RewardMultiplier(IDataRepository dataRepository, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
+        public SilverGainMultiplier(IDataRepository dataRepository, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
             : this(dataRepository, -1L, economyData, valueInArcade, valueInRealistic, valueInSimulator, valueInEvent)
         {
         }
@@ -147,7 +138,7 @@ namespace Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.Decimal
         /// <param name="valueInRealistic"> The value in Realistic Battles. </param>
         /// <param name="valueInSimulator"> The value in Simulator Battles. </param>
         /// <param name="valueInEvent"> The value in Event Battles. </param>
-        public RewardMultiplier(IDataRepository dataRepository, long id, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
+        public SilverGainMultiplier(IDataRepository dataRepository, long id, IVehicleEconomyData economyData, decimal? valueInArcade, decimal? valueInRealistic, decimal? valueInSimulator, decimal? valueInEvent)
             : base(dataRepository, id)
         {
             Entity = economyData;
