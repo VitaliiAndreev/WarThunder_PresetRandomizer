@@ -19,6 +19,7 @@ using Core.Randomization.Helpers;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.WarThunderExtractionToolsIntegration;
+using Core.Web.WarThunder.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,8 +59,9 @@ namespace Client.Console
                 var randomiser = new CustomRandomiser(loggers);
                 var vehicleSelector = new VehicleSelector(randomiser, loggers);
                 var presetGenerator = new PresetGenerator(randomiser, vehicleSelector, loggers);
+                var thunderSkillParser = new ThunderSkillParser(loggers);
 
-                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomiser, vehicleSelector, presetGenerator, true, false, false, loggers))
+                using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomiser, vehicleSelector, presetGenerator, thunderSkillParser, true, false, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
                     manager.InitializeGameClientVersion();

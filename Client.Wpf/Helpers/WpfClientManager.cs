@@ -13,6 +13,7 @@ using Core.Organization.Helpers;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
+using Core.Web.WarThunder.Helpers.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -52,11 +53,30 @@ namespace Client.Wpf.Helpers
             IRandomiser randomizer,
             IVehicleSelector vehicleSelector,
             IPresetGenerator presetGenerator,
+            IThunderSkillParser thunderSkillParser,
             bool generateDatabase,
             bool readOnlyJson,
             bool readPreviouslyUnpackedJson,
             params IConfiguredLogger[] loggers
-        ) : base(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomizer, vehicleSelector, presetGenerator, generateDatabase, readOnlyJson, readPreviouslyUnpackedJson, loggers)
+        ) : base
+            (
+                fileManager,
+                fileReader,
+                settingsManager,
+                parser,
+                unpacker,
+                converter,
+                jsonHelper,
+                csvDeserializer,
+                dataRepositoryFactory,
+                randomizer,
+                vehicleSelector,
+                presetGenerator,
+                thunderSkillParser,
+                generateDatabase,
+                readOnlyJson,
+                readPreviouslyUnpackedJson,
+                loggers)
         {
             _flagImageSources = new Dictionary<ECountry, ImageSource>();
             _vehicleIconBitmapSources = new ConcurrentDictionary<string, BitmapSource>();

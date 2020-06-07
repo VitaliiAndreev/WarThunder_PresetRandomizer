@@ -687,6 +687,14 @@
       <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
       <Name>Core.UnpackingToolsIntegration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Web.WarThunder\Core.Web.WarThunder.csproj">
+      <Project>{5E835CC9-9CC8-4C28-852C-51AE37D73F42}</Project>
+      <Name>Core.Web.WarThunder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Web\Core.Web.csproj">
+      <Project>{B9DC0F0C-16A1-4040-B95D-67ED719B0676}</Project>
+      <Name>Core.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2CB4DC66-57B7-4D80-9C43-F3278BF76248}</Project>
       <Name>Core</Name>

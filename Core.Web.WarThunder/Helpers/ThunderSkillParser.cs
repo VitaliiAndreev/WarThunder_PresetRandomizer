@@ -4,6 +4,7 @@ using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
+using Core.WarThunderExtractionToolsIntegration;
 using Core.Web.Extensions;
 using Core.Web.Helpers;
 using Core.Web.WarThunder.Enumerations;
@@ -32,22 +33,15 @@ namespace Core.Web.WarThunder.Helpers
         #endregion Fields
         #region Constructors
 
-        public ThunderSkillParser
-        (
-            string thunderSkillVehicleStatisticsUrl,
-            string armyTableXPath,
-            string helicopterTableXPath,
-            string aircraftTableXPath,
-            string fleetTableXPath,
-            params IConfiguredLogger[] loggers
-        ) : base(loggers)
+        public ThunderSkillParser(params IConfiguredLogger[] loggers)
+            : base(loggers)
         {
-            _thunderSkillVehicleStatisticsUrl = thunderSkillVehicleStatisticsUrl;
+            _thunderSkillVehicleStatisticsUrl = Settings.ThunderSkillUrl;
 
-            _armyTableXPath = armyTableXPath;
-            _helicopterTableXPath = helicopterTableXPath;
-            _aircraftTableXPath = aircraftTableXPath;
-            _fleetTableXPath = fleetTableXPath;
+            _armyTableXPath = Settings.ThunderSkillArmyStatisticsXPath;
+            _helicopterTableXPath = Settings.ThunderSkillHelicopterStatisticsXPath;
+            _aircraftTableXPath = Settings.ThunderSkillAircraftStatisticsXPath;
+            _fleetTableXPath = Settings.ThunderSkillFleetStatisticsXPath;
 
             _mainHtmlNode = GetHtmlDocumentNode(_thunderSkillVehicleStatisticsUrl);
 
