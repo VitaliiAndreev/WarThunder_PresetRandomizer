@@ -52,16 +52,16 @@ namespace Core.WarThunderExtractionToolsIntegration
         public static string ThunderSkillUrl { get; set; }
 
         [RequiredSetting]
-        public static string ThunderSkillGroundVehicleStatisticsXPath { get; set; }
+        public static string ThunderSkillArmyStatisticsXPath { get; set; }
 
         [RequiredSetting]
         public static string ThunderSkillHelicopterStatisticsXPath { get; set; }
 
         [RequiredSetting]
-        public static string ThunderSkillPlaneStatisticsXPath { get; set; }
+        public static string ThunderSkillAircraftStatisticsXPath { get; set; }
 
         [RequiredSetting]
-        public static string ThunderSkillNavalVehicleStatisticsXPath { get; set; }
+        public static string ThunderSkillFleetStatisticsXPath { get; set; }
 
         #endregion ThunderSkill
 

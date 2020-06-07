@@ -23,6 +23,9 @@ using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using Core.Web.WarThunder.Helpers;
+using Core.Web.WarThunder.Helpers.Interfaces;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,6 +49,7 @@ namespace Client.Wpf
         private static IRandomiser _randomizer;
         private static IVehicleSelector _vehicleSelector;
         private static IPresetGenerator _presetGenerator;
+        private static IThunderSkillParser _thunderSkillParser;
 
         /// <summary> Indicates whether loggers have been initialized. </summary>
         private static bool _loggersInitialized;
@@ -153,6 +157,7 @@ namespace Client.Wpf
             _randomizer = new CustomRandomiserWithNormalisation(Loggers);
             _vehicleSelector = new VehicleSelector(_randomizer, Loggers);
             _presetGenerator = new PresetGenerator(_randomizer, _vehicleSelector, Loggers);
+            _thunderSkillParser = new ThunderSkillParser(Loggers);
 
             Manager = new WpfClientManager
             (
@@ -168,6 +173,7 @@ namespace Client.Wpf
                 _randomizer,
                 _vehicleSelector,
                 _presetGenerator,
+                _thunderSkillParser,
                 generateDatabase,
                 readOnlyJson,
                 readPreviouslyUnpackedJson,
