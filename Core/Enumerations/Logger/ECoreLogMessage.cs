@@ -150,7 +150,7 @@
         public static readonly string CreatingStreamReader = $"{_Creating} {_a} {_stream} {_reader} {_from} \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
-        /// <para> 1: directory path / file name / etc. </para>
+        /// <para> 1: directory path / file name / web page / etc. </para>
         /// </summary>
         public static readonly string Reading = $"{_Reading} \"{{0}}\".";
         public static readonly string StreamReaderCreated = $"{_Stream} {_reader} {_created}.";
