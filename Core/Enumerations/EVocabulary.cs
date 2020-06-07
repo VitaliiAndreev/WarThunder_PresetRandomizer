@@ -43,6 +43,8 @@
         protected const string _aft = _a + _f + _t;
         protected const string _after = _aft + _er;
         protected const string _age = _ag + _e;
+        protected const string _Aggregating = _A + _g + _g + _re + _g + _at + _ing;
+        protected const string _aggregating = _ag + _g + _re + _g + _at + _ing;
         protected const string _air = _a + _i + _r;
         protected const string _aircraft = _air + _craft;
         protected const string _All = _A + _ll;
@@ -281,7 +283,9 @@
         protected const string _filter = _f + _ilt + _er;
         protected const string _filtered = _filter + _ed;
         protected const string _Filtering = _F + _ilt + _er + _ing;
+        protected const string _Finish = _F + _in + _ish;
         protected const string _finish = _f + _in + _ish;
+        protected const string _Finished = _Finish + _ed;
         protected const string _folder = _f + _old + _er;
         protected const string _for = _f + _or;
         protected const string _format = _for + _mat;
@@ -612,6 +616,7 @@
 
         private const string _S = "S";
         private const string _se = _s + _e;
+        private const string _st = _s + _t;
 
         protected const string _s = "s";
         protected const string _ss = _s + _s;
@@ -665,6 +670,8 @@
         protected const string _Started = _S + _tart + _ed;
         protected const string _Starter = _S + _tart + _er;
         protected const string _starts = _s + _tart + _s;
+        protected const string _stat = _st + _at;
+        protected const string _statistics = _stat + _is + _tic + _s;
         protected const string _Stream = _S + _tre + _am;
         protected const string _stream = _s + _tre + _am;
         protected const string _string = _s + "tr" + _ing;
@@ -712,6 +719,7 @@
         protected const string _tho = _th + _o;
         protected const string _Thunder = _T + _hun + _der;
         protected const string _ThunderSkill = _Thunder + _Skill;
+        protected const string _tic = _t + _ic;
         protected const string _to = _t + _o;
         protected const string _token = _to + "ken";
         protected const string _tool = _to + "ol";
@@ -753,6 +761,7 @@
         protected const string _Untagged = _Un + _tagged;
         protected const string _up = "up";
         protected const string _us = "us";
+        protected const string _usage = _us + _age;
         protected const string _using = _us + _ing;
 
         #endregion U

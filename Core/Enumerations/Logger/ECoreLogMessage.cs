@@ -156,6 +156,11 @@
         public static readonly string StreamReaderCreated = $"{_Stream} {_reader} {_created}.";
         /// <summary> 
         /// A message with formatting placeholders.
+        /// <para> 1: directory path / file name / web page / etc. </para>
+        /// </summary>
+        public static readonly string FinishedReading = $"{_Finished} {_reading} \"{{0}}\".";
+        /// <summary> 
+        /// A message with formatting placeholders.
         /// <para> 1: character count. </para>
         /// </summary>
         public static readonly string ReadCharacters = $"{_Read} {{0}} {_characters}.";

@@ -122,10 +122,11 @@ namespace Core.Extensions
         /// <typeparam name="T"> The type of dictionary keys. </typeparam>
         /// <param name="dictionary"> The dictionary to increment a value of. </param>
         /// <param name="key"> The key whose value to increment in the <paramref name="dictionary"/>. </param>
-        public static void Increment<T>(this IDictionary<T, int> dictionary, T key)
+        /// <param name="incrementValue"> The value by which to inrement. </param>
+        public static void Increment<T>(this IDictionary<T, int> dictionary, T key, int incrementValue = 1)
         {
             if (dictionary.ContainsKey(key))
-                dictionary[key]++;
+                dictionary[key] += incrementValue;
             else
                 dictionary.Add(key, EInteger.Number.One);
         }
