@@ -1,6 +1,6 @@
-﻿using Client.Wpf.Controls.Base;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;

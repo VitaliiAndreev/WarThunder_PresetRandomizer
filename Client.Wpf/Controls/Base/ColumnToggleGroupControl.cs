@@ -1,5 +1,5 @@
-﻿using Client.Wpf.Controls.Base.Interfaces;
-using Client.Wpf.Extensions;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Controls.Base.Interfaces;
 using Core.Extensions;
 using System;
 using System.Collections.Generic;

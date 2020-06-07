@@ -1,8 +1,8 @@
 ﻿using Client.Shared.Interfaces;
+using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Extensions
@@ -21,17 +21,6 @@ namespace Client.Wpf.Extensions
 
         #endregion Methods: Editing
         #region Methods: Reading
-
-        public static object GetFieldValue(this DataGridRow row, string fieldName)
-        {
-            return row
-                .Item
-                .GetType()
-                .GetProperties()
-                .FirstOrDefault(property => property.Name == fieldName)
-                ?.GetValue(row.Item)
-            ;
-        }
 
         public static bool TryGetVehicle(this DataGridRow row, out IVehicle vehicle)
         {

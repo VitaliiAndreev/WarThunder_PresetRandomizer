@@ -1,6 +1,6 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
-using Client.Wpf.Extensions;
 using Client.Wpf.Helpers.Interfaces;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Helpers.Interfaces;

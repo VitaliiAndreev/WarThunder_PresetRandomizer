@@ -1,6 +1,6 @@
-﻿using Client.Wpf.Controls.Base;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using Core.Enumerations;
 using System.Windows;
 using System.Windows.Controls;

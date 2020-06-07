@@ -1,6 +1,5 @@
-﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
-using System;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Enumerations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;

@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Enumerations;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Enumerations;
 using Core.Enumerations;
 using System.Linq;
 using System.Windows;
