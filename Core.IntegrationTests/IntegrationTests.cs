@@ -22,6 +22,7 @@ using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using Core.Web.WarThunder.Helpers.Interfaces;
 using FluentAssertions;
 using FluentNHibernate.Conventions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -98,6 +99,7 @@ namespace Core.IntegrationTests
                 new Mock<IRandomiser>().Object,
                 new Mock<IVehicleSelector>().Object,
                 new Mock<IPresetGenerator>().Object,
+                new Mock<IThunderSkillParser>().Object,
                 true,
                 false,
                 false,

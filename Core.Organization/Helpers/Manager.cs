@@ -25,6 +25,7 @@ using Core.UnpackingToolsIntegration.Attributes;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
+using Core.Web.WarThunder.Helpers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -79,6 +80,7 @@ namespace Core.Organization.Helpers
         protected readonly IVehicleSelector _vehicleSelector;
         /// <summary> An instance of a vehicle selector. </summary>
         protected readonly IPresetGenerator _presetGenerator;
+        protected readonly IThunderSkillParser _thunderSkillParser;
 
         /// <summary> An instance of a data repository. </summary>
         protected IDataRepository _dataRepository;
@@ -119,6 +121,7 @@ namespace Core.Organization.Helpers
             IRandomiser randomizer,
             IVehicleSelector vehicleSelector,
             IPresetGenerator presetGenerator,
+            IThunderSkillParser thunderSkillParser,
             bool generateDatabase,
             bool readOnlyJson,
             bool readPreviouslyUnpackedJson,
@@ -155,6 +158,7 @@ namespace Core.Organization.Helpers
             _randomizer = randomizer;
             _vehicleSelector = vehicleSelector;
             _presetGenerator = presetGenerator;
+            _thunderSkillParser = thunderSkillParser;
 
             _cache = new List<IPersistentObject>();
             PlayableVehicles = new Dictionary<string, IVehicle>();
