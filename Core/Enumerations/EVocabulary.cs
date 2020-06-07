@@ -279,8 +279,8 @@
         protected const string _factory = _f + _act + _or + _y;
         protected const string _Failed = _F + _ail + _ed;
         protected const string _fault = _fa + _ult;
-        protected const string _File = _F + "ile";
-        protected const string _file = _f + "ile";
+        protected const string _File = _F + _i + _le;
+        protected const string _file = _f + _i + _le;
         protected const string _files = _file + _s;
         protected const string _filter = _f + _ilt + _er;
         protected const string _filtered = _filter + _ed;
