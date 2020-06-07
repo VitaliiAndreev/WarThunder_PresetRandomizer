@@ -1,7 +1,7 @@
 ﻿using Client.Shared.LiteObjectProfiles;
+using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Connectors;

@@ -464,21 +464,14 @@
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
-    <Compile Include="Extensions\BitmapExtensions.cs" />
-    <Compile Include="Extensions\ByteArrayExtensions.cs" />
-    <Compile Include="Extensions\ContextMenuExtensions.cs" />
     <Compile Include="Extensions\DataGridRowExtensions.cs" />
-    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
-    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
-    <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\IVehicleExtensions.cs" />
     <Compile Include="Extensions\NationCountryPairExtensions.cs" />
     <Compile Include="Extensions\ToggleButtonExtensions.cs" />
-    <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IWindowFactory.cs" />
     <Compile Include="Helpers\Interfaces\IWpfClientSettingsManager.cs" />
     <Compile Include="Helpers\WindowFactory.cs" />
@@ -646,6 +639,10 @@
     <ProjectReference Include="..\Client.Core\Client.Shared.csproj">
       <Project>{9BB2F032-3858-45D6-8072-33826F04D207}</Project>
       <Name>Client.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Client.Wpf.Core\Client.Shared.Wpf.csproj">
+      <Project>{99a6c512-3581-479a-a68e-f896ff383107}</Project>
+      <Name>Client.Shared.Wpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.Csv.WarThunder\Core.Csv.WarThunder.csproj">
       <Project>{235EA7F8-7061-4401-B359-1DC545445D89}</Project>

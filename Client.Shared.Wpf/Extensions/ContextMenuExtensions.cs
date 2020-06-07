@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Client.Wpf.Extensions
+namespace Client.Shared.Wpf.Extensions
 {
     /// <summary> Methods extending the <see cref="ContextMenu"/> class. </summary>
     public static class ContextMenuExtensions

@@ -1,11 +1,11 @@
-﻿using Client.Wpf.Enumerations.Logger;
+﻿using Client.Shared.Wpf.Enumerations.Logger;
 using Core.Enumerations;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Client.Wpf.Extensions
+namespace Client.Shared.Wpf.Extensions
 {
     /// <summary> Methods extending the <see cref="UIElement"/> class. </summary>
     public static class UiElementExtensions
@@ -20,10 +20,10 @@ namespace Client.Wpf.Extensions
                 uiElement.AddToGrid(grid, horizontal);
 
             else if (panel is StackPanel && horizontal)
-                throw new ArgumentException(EWpfClientLogMessage.StackPanelCantBeHorizontal);
+                throw new ArgumentException(EWpfCoreLogMessage.StackPanelCantBeHorizontal);
 
             else if (panel is WrapPanel && !horizontal)
-                throw new ArgumentException(EWpfClientLogMessage.WrapPanelCantBeVertical);
+                throw new ArgumentException(EWpfCoreLogMessage.WrapPanelCantBeVertical);
 
             else
                 panel.Children.Add(uiElement);

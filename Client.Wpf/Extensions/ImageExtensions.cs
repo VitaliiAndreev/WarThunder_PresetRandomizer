@@ -1,4 +1,5 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Client.Shared.Wpf.Extensions;
+using Core.DataBase.WarThunder.Enumerations;
 using System.Windows;
 using System.Windows.Controls;
 

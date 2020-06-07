@@ -1,17 +1,18 @@
-﻿using System.Drawing.Imaging;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace Client.Wpf.Extensions
+namespace Client.Shared.Wpf.Extensions
 {
-    public static class ByteArrayExtensions
+    public static class BitmapExtensions
     {
-        public static BitmapSource ToBitmapSource(this byte[] bytes)
+        public static BitmapSource ToBitmapSource(this Bitmap bitmap, ImageFormat format)
         {
-            if (bytes is null) return null;
-
-            using (var memoryStream = new MemoryStream(bytes))
+            using (var memoryStream = new MemoryStream())
             {
+                bitmap.Save(memoryStream, format);
+
                 memoryStream.Position = 0;
 
                 var bitmapimage = new BitmapImage();
