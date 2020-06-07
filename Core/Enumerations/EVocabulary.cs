@@ -45,6 +45,7 @@
         protected const string _age = _ag + _e;
         protected const string _Aggregating = _A + _g + _g + _re + _g + _at + _ing;
         protected const string _aggregating = _ag + _g + _re + _g + _at + _ing;
+        protected const string _ail = _a + _i +_l;
         protected const string _air = _a + _i + _r;
         protected const string _aircraft = _air + _craft;
         protected const string _All = _A + _ll;
@@ -276,6 +277,7 @@
 
         protected const string _Factory = _F + _act + _or + _y;
         protected const string _factory = _f + _act + _or + _y;
+        protected const string _Failed = _F + _ail + _ed;
         protected const string _fault = _fa + _ult;
         protected const string _File = _F + "ile";
         protected const string _file = _f + "ile";
