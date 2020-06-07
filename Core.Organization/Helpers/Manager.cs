@@ -77,7 +77,6 @@ namespace Core.Organization.Helpers
         /// <summary> The cache of persistent objects. </summary>
         protected readonly List<IPersistentObject> _cache;
         /// <summary> Counts of usage of vehicles with given <see cref="IVehicle.EconomicRank"/>s on each game mode. </summary>
-        protected readonly IDictionary<EGameMode, IDictionary<int, int>> _economicRankUsage;
 
         #endregion Fields
         #region Properties
@@ -87,6 +86,8 @@ namespace Core.Organization.Helpers
 
         /// <summary> Playable vehicles loaded into memory. </summary>
         public IDictionary<string, IVehicle> PlayableVehicles { get; }
+
+        public IDictionary<EGameMode, IDictionary<EBranch, IDictionary<int, int>>> EconomicRankUsage { get; }
 
         #endregion Properties
         #region Delegates
@@ -153,13 +154,21 @@ namespace Core.Organization.Helpers
             _thunderSkillParser = thunderSkillParser;
 
             _cache = new List<IPersistentObject>();
-            _economicRankUsage = new Dictionary<EGameMode, IDictionary<int, int>>
-            {
-                { EGameMode.Arcade, new Dictionary<int, int>()},
-                { EGameMode.Realistic, new Dictionary<int, int>()},
-                { EGameMode.Simulator, new Dictionary<int, int>()},
-            };
+
             PlayableVehicles = new Dictionary<string, IVehicle>();
+
+            static IDictionary<EBranch, IDictionary<int, int>> createDictionary() =>
+                typeof(EBranch)
+                    .GetEnumerationItems<EBranch>(true)
+                    .ToDictionary(branch => branch, branch => default(IDictionary<int, int>))
+                ;
+
+            EconomicRankUsage = new Dictionary<EGameMode, IDictionary<EBranch, IDictionary<int, int>>>
+            {
+                { EGameMode.Arcade, createDictionary()},
+                { EGameMode.Realistic, createDictionary()},
+                { EGameMode.Simulator, createDictionary()},
+            };
 
             _settingsManager = settingsManager;
             _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
@@ -231,6 +240,20 @@ namespace Core.Organization.Helpers
             }
         }
 
+        private void InitialiseEconomicRankUsageDictionaries()
+        {
+            static IDictionary<int, int> createDictionary() =>
+                Enumerable
+                    .Range(EInteger.Number.Zero, EReference.MaximumEconomicRank + EInteger.Number.One)
+                    .ToDictionary(number => number, number => EInteger.Number.Zero);
+
+            foreach (var branchDictionary in EconomicRankUsage.Values)
+            {
+                foreach (var branch in branchDictionary.Keys.ToList())
+                    branchDictionary[branch] = createDictionary();
+            }
+        }
+
         /// <summary> Initialises research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
         private void InitialiseResearchTrees()
         {
@@ -284,14 +307,16 @@ namespace Core.Organization.Helpers
 
                 if (branchVehicleUsage.TryGetValue(vehicle.GaijinId, out var usageCounts))
                 {
+                    void increment(EGameMode gameMode, int key, int value) => EconomicRankUsage[gameMode][vehicle.Branch.AsEnumerationItem].Increment(key, value);
+
                     if (vehicle.EconomicRank.Arcade.HasValue)
-                        _economicRankUsage[EGameMode.Arcade].Increment(vehicle.EconomicRank.Arcade.Value, usageCounts.ArcadeCount);
+                        increment(EGameMode.Arcade, vehicle.EconomicRank.Arcade.Value, usageCounts.ArcadeCount);
 
                     if (vehicle.EconomicRank.Realistic.HasValue)
-                        _economicRankUsage[EGameMode.Realistic].Increment(vehicle.EconomicRank.Realistic.Value, usageCounts.RealisticCount);
+                        increment(EGameMode.Realistic, vehicle.EconomicRank.Realistic.Value, usageCounts.RealisticCount);
 
                     if (vehicle.EconomicRank.Simulator.HasValue)
-                        _economicRankUsage[EGameMode.Simulator].Increment(vehicle.EconomicRank.Simulator.Value, usageCounts.SimulatorCount);
+                        increment(EGameMode.Simulator, vehicle.EconomicRank.Simulator.Value, usageCounts.SimulatorCount);
                 }
             }
 
@@ -437,6 +462,7 @@ namespace Core.Organization.Helpers
 
             InitialiseReferences();
             InitialiseResearchTrees();
+            InitialiseEconomicRankUsageDictionaries();
             InitialiseEconomicRankUsageStatistics();
         }
 

@@ -11,7 +11,7 @@
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
     MinHeight="755"
-    MinWidth="1160"
+    MinWidth="1415"
     Height="755"
     Width="1508"
     Loaded="OnLoaded"

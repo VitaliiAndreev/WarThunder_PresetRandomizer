@@ -25,6 +25,7 @@ namespace Core.Enumerations
         public const char QuotationMark = '"';
         public const char ParenthesisLeft = '(';
         public const char ParenthesisRight = ')';
+        public const char Percent = '%';
         public const char Period = '.';
         public const char Plus = '+';
         public const char Slash = '/';

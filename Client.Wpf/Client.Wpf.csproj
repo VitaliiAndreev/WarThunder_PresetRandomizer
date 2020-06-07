@@ -118,6 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\BattleRatingUsageColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BattleRatingUsageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CategoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -338,6 +346,12 @@
     <Compile Include="Controls\Base\UpDownControl.cs" />
     <Compile Include="Controls\Base\UpDownIntegerControl.cs" />
     <Compile Include="Controls\Base\VehicleCount.cs" />
+    <Compile Include="Controls\BattleRatingUsageColumn.xaml.cs">
+      <DependentUpon>BattleRatingUsageColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BattleRatingUsageControl.xaml.cs">
+      <DependentUpon>BattleRatingUsageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CategoryControl.xaml.cs">
       <DependentUpon>CategoryControl.xaml</DependentUpon>
     </Compile>

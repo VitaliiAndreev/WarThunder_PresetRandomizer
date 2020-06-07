@@ -26,6 +26,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Preset panels on the control. </summary>
         private readonly IDictionary<EPreset, WrapPanel> _presetPanels;
+        private readonly IDictionary<EPreset, Grid> _usageStatisticsGrids;
 
         private readonly IDictionary<string, ResearchTreeCellVehicleControl> _vehicleCards;
 
@@ -48,6 +49,11 @@ namespace Client.Wpf.Controls
             {
                 { EPreset.Primary, _primaryPresetPanel },
                 { EPreset.Fallback, _fallbackPresetPanel },
+            };
+            _usageStatisticsGrids = new Dictionary<EPreset, Grid>
+            {
+                { EPreset.Primary, _primaryPresetUsageStatisticsGrid },
+                { EPreset.Fallback, _fallbackPresetUsageStatisticsGrid },
             };
             _vehicleCards = new Dictionary<string, ResearchTreeCellVehicleControl>();
         }
@@ -144,6 +150,9 @@ namespace Client.Wpf.Controls
             _primaryPresetPanel.Children.Clear();
             _fallbackPresetPanel.Children.Clear();
 
+            _primaryPresetUsageStatisticsGrid.Children.Clear();
+            _fallbackPresetUsageStatisticsGrid.Children.Clear();
+
             _currentPresetNationFlag.Source = null;
             _currentPresetInfoTextBlock.Text = string.Empty;
 
@@ -157,10 +166,12 @@ namespace Client.Wpf.Controls
         {
             foreach (var presetKeyValuePair in presets)
             {
-                if (!_presetPanels.TryGetValue(presetKeyValuePair.Key, out var presetPanel))
+                if (!_presetPanels.TryGetValue(presetKeyValuePair.Key, out var presetPanel) || !_usageStatisticsGrids.TryGetValue(presetKeyValuePair.Key, out var usageStatisticsGrid))
                     continue;
 
-                foreach (var vehicle in presetKeyValuePair.Value)
+                var preset = presetKeyValuePair.Value;
+
+                foreach (var vehicle in preset)
                 {
                     var vehicleControl = default(ResearchTreeCellVehicleControl);
 
@@ -180,6 +191,8 @@ namespace Client.Wpf.Controls
                     }
                     presetPanel.Children.Add(vehicleControl);
                 }
+
+                usageStatisticsGrid.Children.Add(new BattleRatingUsageControl().Reset().Populate(preset));
             }
 
             var primaryPreset = presets[EPreset.Primary];
@@ -222,13 +235,17 @@ namespace Client.Wpf.Controls
         /// <param name="preset"> The preset to display. </param>
         public void DisplayPreset(EPreset preset)
         {
-            if (!_presetPanels.TryGetValue(preset, out var presetPanel))
+            if (!_presetPanels.TryGetValue(preset, out var presetPanel) || !_usageStatisticsGrids.TryGetValue(preset, out var usageStatisticsGrid))
                 return;
 
             presetPanel.Visibility = Visibility.Visible;
+            usageStatisticsGrid.Visibility = Visibility.Visible;
 
             foreach (var otherPresetPanel in _presetPanels.Values.Except(presetPanel))
                 otherPresetPanel.Visibility = Visibility.Hidden;
+
+            foreach (var otherusageStatisticsGrid in _usageStatisticsGrids.Values.Except(usageStatisticsGrid))
+                otherusageStatisticsGrid.Visibility = Visibility.Hidden;
         }
     }
 }

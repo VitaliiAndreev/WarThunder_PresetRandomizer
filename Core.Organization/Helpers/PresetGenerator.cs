@@ -609,12 +609,17 @@ namespace Core.Organization.Helpers
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 
-            void addPreset(EPreset presetType) =>
+            void addPreset(EPreset presetType)
+            {
+                var vehicles = GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount, gameMode, presetType == EPreset.Primary ? mainVehicle : null);
+                var economicRank = vehicles.Any() ? vehicles.Max(vehicle => vehicle.EconomicRank.AsDictionary()[gameMode].Value) : int.MinValue;
+
                 presets.Add
                 (
                     presetType,
-                    new Preset(nation, mainBranch, formattedBattleRating, GetRandomVehiclesForPreset(vehiclesByBranchesAndBattleRatings, presetComposition, crewSlotAmount, gameMode, presetType == EPreset.Primary ? mainVehicle : null))
+                    new Preset(gameMode, nation, mainBranch, economicRank, formattedBattleRating, vehicles)
                 );
+            };
 
             addPreset(EPreset.Primary);
             addPreset(EPreset.Fallback);
@@ -696,7 +701,7 @@ namespace Core.Organization.Helpers
             var validEconomicRanks = GetEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
 
             if (validEconomicRanks is null)
-                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(nation, mainBranch, string.Empty, new List<IVehicle>()) } };
+                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(gameMode, nation, mainBranch, EInteger.Number.Zero, string.Empty, new List<IVehicle>()) } };
 
             var economicRank = _randomiser.GetRandom(validEconomicRanks);
             var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);
