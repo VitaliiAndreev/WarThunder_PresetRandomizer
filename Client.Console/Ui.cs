@@ -64,7 +64,7 @@ namespace Client.Console
                 using (var manager = new Manager(fileManager, fileReader, settingsManager, parser, unpacker, converter, jsonHelper, csvDeserializer, dataRepositoryFactory, randomiser, vehicleSelector, presetGenerator, thunderSkillParser, true, false, false, loggers))
                 {
                     manager.RemoveOldLogFiles();
-                    manager.InitializeGameClientVersion();
+                    manager.InitialiseGameClientVersion();
 
                     while (!settingsManager.WarThunderLocationIsValid())
                     {
