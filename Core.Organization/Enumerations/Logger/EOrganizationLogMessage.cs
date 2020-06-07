@@ -88,6 +88,9 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string InitializingResearchTrees = InitialisingInstance.FormatFluently($"{_research} {_trees}");
         public static readonly string ResearchTreesInitialized = InstanceInitialised.FormatFluently($"{_Research} {_trees}");
 
+        public static readonly string AggregatingVehicleUsageStatistics = $"{_Aggregating} {_vehicle} {_usage} {_statistics}.";
+        public static readonly string FinishedAggregatingVehicleUsageStatistics = $"{_Finished} {_aggregating} {_vehicle} {_usage} {_statistics}.";
+
         public static readonly string DummyNationSelected = $"{_Dummy} {_nation} {_selected}.";
         /// <summary>
         /// A message with formatting placeholders.

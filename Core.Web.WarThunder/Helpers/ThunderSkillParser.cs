@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.Enumerations;
 using Core.Enumerations.Logger;
 using Core.Extensions;
@@ -7,7 +6,6 @@ using Core.Helpers.Logger.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using Core.Web.Extensions;
 using Core.Web.Helpers;
-using Core.Web.WarThunder.Enumerations;
 using Core.Web.WarThunder.Enumerations.Logger;
 using Core.Web.WarThunder.Helpers.Interfaces;
 using Core.Web.WarThunder.Objects;
@@ -21,12 +19,10 @@ namespace Core.Web.WarThunder.Helpers
     {
         #region Fields
 
-        private readonly string _thunderSkillVehicleStatisticsUrl;
-
-        private readonly string _armyTableXPath;
-        private readonly string _helicopterTableXPath;
-        private readonly string _aircraftTableXPath;
-        private readonly string _fleetTableXPath;
+        private string _armyTableXPath;
+        private string _helicopterTableXPath;
+        private string _aircraftTableXPath;
+        private string _fleetTableXPath;
 
         private HtmlNode _mainHtmlNode;
 
@@ -36,13 +32,6 @@ namespace Core.Web.WarThunder.Helpers
         public ThunderSkillParser(params IConfiguredLogger[] loggers)
             : base(loggers)
         {
-            _thunderSkillVehicleStatisticsUrl = Settings.ThunderSkillUrl;
-
-            _armyTableXPath = Settings.ThunderSkillArmyStatisticsXPath;
-            _helicopterTableXPath = Settings.ThunderSkillHelicopterStatisticsXPath;
-            _aircraftTableXPath = Settings.ThunderSkillAircraftStatisticsXPath;
-            _fleetTableXPath = Settings.ThunderSkillFleetStatisticsXPath;
-
             SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
             LogDebug(ECoreLogMessage.Created.FormatFluently(EWebWarThunderLogCategory.ThunderSkillParser));
         }
@@ -51,7 +40,18 @@ namespace Core.Web.WarThunder.Helpers
 
         public void Load()
         {
-            _mainHtmlNode = GetHtmlDocumentNode(_thunderSkillVehicleStatisticsUrl);
+            _armyTableXPath = Settings.ThunderSkillArmyStatisticsXPath;
+            _helicopterTableXPath = Settings.ThunderSkillHelicopterStatisticsXPath;
+            _aircraftTableXPath = Settings.ThunderSkillAircraftStatisticsXPath;
+            _fleetTableXPath = Settings.ThunderSkillFleetStatisticsXPath;
+
+            var url = Settings.ThunderSkillUrl;
+
+            LogInfo(ECoreLogMessage.Reading.FormatFluently(url));
+            {
+                _mainHtmlNode = GetHtmlDocumentNode(url);
+            }
+            LogInfo(ECoreLogMessage.FinishedReading.FormatFluently(url));
         }
 
         public IDictionary<string, VehicleUsage> GetVehicleUsage(EBranch branch)

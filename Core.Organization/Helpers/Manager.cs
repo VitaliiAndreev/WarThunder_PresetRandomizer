@@ -26,6 +26,7 @@ using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using Core.Web.WarThunder.Helpers.Interfaces;
+using Core.Web.WarThunder.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -75,6 +76,8 @@ namespace Core.Organization.Helpers
         protected IDataRepository _dataRepository;
         /// <summary> The cache of persistent objects. </summary>
         protected readonly List<IPersistentObject> _cache;
+        /// <summary> Counts of usage of vehicles with given <see cref="IVehicle.EconomicRank"/>s on each game mode. </summary>
+        protected readonly IDictionary<EGameMode, IDictionary<int, int>> _economicRankUsage;
 
         #endregion Fields
         #region Properties
@@ -150,6 +153,12 @@ namespace Core.Organization.Helpers
             _thunderSkillParser = thunderSkillParser;
 
             _cache = new List<IPersistentObject>();
+            _economicRankUsage = new Dictionary<EGameMode, IDictionary<int, int>>
+            {
+                { EGameMode.Arcade, new Dictionary<int, int>()},
+                { EGameMode.Realistic, new Dictionary<int, int>()},
+                { EGameMode.Simulator, new Dictionary<int, int>()},
+            };
             PlayableVehicles = new Dictionary<string, IVehicle>();
 
             _settingsManager = settingsManager;
@@ -255,6 +264,38 @@ namespace Core.Organization.Helpers
                 branch.InitializeProperties(columnCount);
 
             LogInfo(EOrganizationLogMessage.ResearchTreesInitialized);
+        }
+
+        private void InitialiseEconomicRankUsageStatistics()
+        {
+            LogInfo(EOrganizationLogMessage.AggregatingVehicleUsageStatistics);
+
+            var vehicleUsage = new Dictionary<EBranch, IDictionary<string, VehicleUsage>>
+            {
+                { EBranch.Army, _thunderSkillParser.GetVehicleUsage(EBranch.Army) },
+                { EBranch.Helicopters, _thunderSkillParser.GetVehicleUsage(EBranch.Helicopters) },
+                { EBranch.Aviation, _thunderSkillParser.GetVehicleUsage(EBranch.Aviation) },
+                { EBranch.Fleet, _thunderSkillParser.GetVehicleUsage(EBranch.Fleet) },
+            };
+
+            foreach (var vehicle in PlayableVehicles.Values)
+            {
+                var branchVehicleUsage = vehicleUsage[vehicle.Branch.AsEnumerationItem];
+
+                if (branchVehicleUsage.TryGetValue(vehicle.GaijinId, out var usageCounts))
+                {
+                    if (vehicle.EconomicRank.Arcade.HasValue)
+                        _economicRankUsage[EGameMode.Arcade].Increment(vehicle.EconomicRank.Arcade.Value, usageCounts.ArcadeCount);
+
+                    if (vehicle.EconomicRank.Realistic.HasValue)
+                        _economicRankUsage[EGameMode.Realistic].Increment(vehicle.EconomicRank.Realistic.Value, usageCounts.RealisticCount);
+
+                    if (vehicle.EconomicRank.Simulator.HasValue)
+                        _economicRankUsage[EGameMode.Simulator].Increment(vehicle.EconomicRank.Simulator.Value, usageCounts.SimulatorCount);
+                }
+            }
+
+            LogInfo(EOrganizationLogMessage.FinishedAggregatingVehicleUsageStatistics);
         }
 
         /// <summary> Tries to unpack game files, convert them into JSON, deserialise it into objects, and persist them into the database. </summary>
@@ -369,8 +410,10 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
-        public void CacheData()
+        public async void CacheData()
         {
+            var thunderSkillLoadVehicleUsageStatisticsTask = Task.Factory.StartNew(() => _thunderSkillParser.Load());
+
             InitialiseDataRepository();
 
             LogInfo(EOrganizationLogMessage.CachingObjects);
@@ -390,8 +433,11 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
+            await thunderSkillLoadVehicleUsageStatisticsTask;
+
             InitialiseReferences();
             InitialiseResearchTrees();
+            InitialiseEconomicRankUsageStatistics();
         }
 
         internal IEnumerable<FileInfo> GetFilesWithoutProcessing(string fileType, string sourceFileName, string processedSubdirectory = "")
