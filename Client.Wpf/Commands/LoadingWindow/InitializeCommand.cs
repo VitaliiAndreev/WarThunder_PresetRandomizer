@@ -25,7 +25,7 @@ namespace Client.Wpf.Commands.LoadingWindow
             if (parameter is ILoadingWindowPresenter presenter)
             {
                 if (!ApplicationHelpers.SettingsManager.IgnoreWarThunderPath)
-                    ApplicationHelpers.Manager.InitializeGameClientVersion();
+                    ApplicationHelpers.Manager.InitialiseGameClientVersion();
 
                 ApplicationHelpers.Manager.CacheData();
 

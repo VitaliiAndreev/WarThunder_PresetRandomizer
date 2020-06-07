@@ -162,7 +162,7 @@ namespace Core.Organization.Helpers
         }
 
         #endregion Constructors
-        #region Methods: Initialization
+        #region Methods: Initialisation
 
         private EStartup GetStartupConfiguration(bool generateDatabase, bool readJson, bool readUnpackedJson)
         {
@@ -188,14 +188,14 @@ namespace Core.Organization.Helpers
         }
 
         /// <summary> Reads and stores the version of the game client. </summary>
-        public void InitializeGameClientVersion()
+        public void InitialiseGameClientVersion()
         {
             _gameClientVersion = _parser.GetClientVersion(_fileReader.ReadInstallData(EClientVersion.Current));
             _gameClientVersionString = _gameClientVersion.ToString();
         }
 
-        /// <summary> Initializes memebers of the <see cref="EReference"/> class. </summary>
-        private void InitializeReferences()
+        /// <summary> Initialises memebers of the <see cref="EReference"/> class. </summary>
+        private void InitialiseReferences()
         {
             var vehicles = _cache.OfType<IVehicle>();
             var nationCountryCombinations = vehicles.Select(vehicle => new { Nation = vehicle.Nation.AsEnumerationItem, vehicle.Country }).Distinct();
@@ -222,8 +222,8 @@ namespace Core.Organization.Helpers
             }
         }
 
-        /// <summary> Initializes research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
-        private void InitializeResearchTrees()
+        /// <summary> Initialises research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
+        private void InitialiseResearchTrees()
         {
             LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
 
@@ -390,8 +390,8 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
-            InitializeReferences();
-            InitializeResearchTrees();
+            InitialiseReferences();
+            InitialiseResearchTrees();
         }
 
         internal IEnumerable<FileInfo> GetFilesWithoutProcessing(string fileType, string sourceFileName, string processedSubdirectory = "")
@@ -852,7 +852,7 @@ namespace Core.Organization.Helpers
             LogDebug(EOrganizationLogMessage.VehicleImagesProcessed);
         }
 
-        #endregion Methods: Initialization
+        #endregion Methods: Initialisation
         #region Methods: Settings
 
         /// <summary> Loads settings from the <see cref="_settingsManager"/> into the given settings class. </summary>
