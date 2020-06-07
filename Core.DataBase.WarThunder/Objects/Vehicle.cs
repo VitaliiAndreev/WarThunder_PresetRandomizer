@@ -115,7 +115,7 @@ namespace Core.DataBase.WarThunder.Objects
         [OneToOne(ClassType = typeof(VehicleSubclasses), PropertyRef = nameof(VehicleSubclasses.Vehicle), Lazy = Laziness.Proxy)]
         public virtual IVehicleSubclasses Subclasses { get; protected internal set; }
 
-        /// <summary> [OBSOLETE, NOW INTERNAL VALUES] The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
+        /// <summary> The vehicle's economic rank (the predecessor of the <see cref="BattleRating"/>). The battle rating is being calculated from this. Economic ranks start at 0 and go up with a step of 1. </summary>
         [OneToOne(ClassType = typeof(VehicleGameModeParameterSet.Integer.EconomicRank), PropertyRef = nameof(VehicleGameModeParameterSet.Integer.EconomicRank.Entity), Lazy = Laziness.Proxy)]
         public virtual VehicleGameModeParameterSet.Integer.EconomicRank EconomicRank { get; protected set; }
 

@@ -189,6 +189,7 @@ namespace Client.Wpf.Controls
 
                         _vehicleCards.Add(vehicle.GaijinId, vehicleControl);
                     }
+
                     presetPanel.Children.Add(vehicleControl);
                 }
 

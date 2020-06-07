@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Core.Enumerations
+﻿namespace Core.Enumerations
 {
     /// <summary> Characters. </summary>
     public class ECharacter
