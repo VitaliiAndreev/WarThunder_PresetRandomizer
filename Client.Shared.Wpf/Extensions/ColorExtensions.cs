@@ -10,10 +10,13 @@ namespace Client.Shared.Wpf.Extensions
     {
         #region Methods: From()
 
-        public static Color From(this Color color, byte allColors) => color.From(allColors, allColors, allColors);
+        public static Color From(this Color color, byte allColors) => color.From(byte.MaxValue, allColors, allColors, allColors);
 
-        public static Color From(this Color color, byte red, byte green, byte blue)
+        public static Color From(this Color color, byte red, byte green, byte blue) => color.From(byte.MaxValue, red, green, blue);
+
+        public static Color From(this Color color, byte alpha, byte red, byte green, byte blue)
         {
+            color.A = alpha;
             color.R = red;
             color.G = green;
             color.B = blue;
