@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\Logger\EWebLogMessage.cs" />
     <Compile Include="Enumerations\Logger\EWebLogCategory.cs" />
     <Compile Include="Extensions\HtmlNodeExtensions.cs" />
     <Compile Include="Helpers\HtmlParser.cs" />
