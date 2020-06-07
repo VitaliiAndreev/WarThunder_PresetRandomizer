@@ -20,6 +20,8 @@ namespace Core.Organization.Helpers.Interfaces
         /// <summary> Playable vehicles loaded into memory. </summary>
         IDictionary<string, IVehicle> PlayableVehicles { get; }
 
+        IDictionary<EGameMode, IDictionary<EBranch, IDictionary<int, int>>> EconomicRankUsage { get; }
+
         #endregion Properties
         #region Methods: Initialization
 
