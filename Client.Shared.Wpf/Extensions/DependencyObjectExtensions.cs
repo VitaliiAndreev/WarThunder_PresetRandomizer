@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Client.Wpf.Extensions
+namespace Client.Shared.Wpf.Extensions
 {
     /// <summary> Methods extending the <see cref="DependencyObject"/> class. </summary>
     public static class DependencyObjectExtensions

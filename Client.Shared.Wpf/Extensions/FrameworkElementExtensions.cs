@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Client.Wpf.Extensions
+namespace Client.Shared.Wpf.Extensions
 {
     /// <summary> Methods extending the <see cref="FrameworkElement"/> class. </summary>
     public static class FrameworkElementExtensions

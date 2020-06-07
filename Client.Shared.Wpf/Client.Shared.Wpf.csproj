@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BB2F032-3858-45D6-8072-33826F04D207}</ProjectGuid>
+    <ProjectGuid>{99A6C512-3581-479A-A68E-F896FF383107}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client.Shared</RootNamespace>
-    <AssemblyName>Client.Shared</AssemblyName>
+    <RootNamespace>Client.Shared.Wpf</RootNamespace>
+    <AssemblyName>Client.Shared.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,51 +30,40 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Core\Properties\VersionInfo.cs">
-      <Link>Properties\VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="Enumerations\EClientApplicationName.cs" />
-    <Compile Include="Attributes\ShowVehiclePropertyAttribute.cs" />
-    <Compile Include="Enumerations\LiteObjectProfiles\EVehicleProfile.cs" />
-    <Compile Include="Objects\Interfaces\IVehicleLite.cs" />
-    <Compile Include="Objects\VehicleLite.cs" />
+    <Compile Include="Enumerations\Logger\EWpfCoreLogMessage.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="Extensions\ContextMenuExtensions.cs" />
+    <Compile Include="Extensions\DataGridRowExtensions.cs" />
+    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\GridExtensions.cs" />
+    <Compile Include="Extensions\UiElementExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.DataBase.WarThunder\Core.DataBase.WarThunder.csproj">
-      <Project>{275FF668-2CDD-46C0-9595-6051004181C7}</Project>
-      <Name>Core.DataBase.WarThunder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.DataBase\Core.DataBase.csproj">
-      <Project>{E011A25B-4920-4F8E-8373-58EB9AFE8991}</Project>
-      <Name>Core.DataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.UnpackingToolsIntegration\Core.UnpackingToolsIntegration.csproj">
-      <Project>{FC4D7BAD-D02F-4417-8E99-7B1E9B255F08}</Project>
-      <Name>Core.UnpackingToolsIntegration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{2cb4dc66-57b7-4d80-9c43-f3278bf76248}</Project>
+      <Project>{2CB4DC66-57B7-4D80-9C43-F3278BF76248}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using Client.Wpf.Commands.Interfaces;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Controls;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Base.Interfaces;

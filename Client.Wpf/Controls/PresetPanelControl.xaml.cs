@@ -1,8 +1,8 @@
-﻿using Client.Wpf.Commands.Interfaces;
+﻿using Client.Shared.Wpf.Extensions;
+using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;

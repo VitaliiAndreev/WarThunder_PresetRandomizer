@@ -1,5 +1,6 @@
 ﻿using Client.Shared.Attributes;
 using Client.Shared.LiteObjectProfiles;
+using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Commands.MainWindow.Interfaces;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
