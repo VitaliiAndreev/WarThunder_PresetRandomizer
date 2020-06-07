@@ -28,7 +28,7 @@ namespace Core.Web.WarThunder.Helpers
         private readonly string _aircraftTableXPath;
         private readonly string _fleetTableXPath;
 
-        private readonly HtmlNode _mainHtmlNode;
+        private HtmlNode _mainHtmlNode;
 
         #endregion Fields
         #region Constructors
@@ -43,13 +43,16 @@ namespace Core.Web.WarThunder.Helpers
             _aircraftTableXPath = Settings.ThunderSkillAircraftStatisticsXPath;
             _fleetTableXPath = Settings.ThunderSkillFleetStatisticsXPath;
 
-            _mainHtmlNode = GetHtmlDocumentNode(_thunderSkillVehicleStatisticsUrl);
-
             SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
             LogDebug(ECoreLogMessage.Created.FormatFluently(EWebWarThunderLogCategory.ThunderSkillParser));
         }
 
         #endregion Constructors
+
+        public void Load()
+        {
+            _mainHtmlNode = GetHtmlDocumentNode(_thunderSkillVehicleStatisticsUrl);
+        }
 
         public IDictionary<string, VehicleUsage> GetVehicleUsage(EBranch branch)
         {
