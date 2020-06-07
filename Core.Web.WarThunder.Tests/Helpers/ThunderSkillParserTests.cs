@@ -29,6 +29,8 @@ namespace Core.Web.WarThunder.Tests.Helpers
             // arrange
             var parser = new ThunderSkillParser(Presets.Logger);
 
+            parser.Load();
+
             // act
             var armyUsageRecords = parser.GetVehicleUsage(EBranch.Army);
             var helicopterUsageRecords = parser.GetVehicleUsage(EBranch.Helicopters);
