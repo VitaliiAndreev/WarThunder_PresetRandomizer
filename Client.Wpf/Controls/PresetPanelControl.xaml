@@ -4,15 +4,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Client.Wpf.Controls"
     xmlns:base="clr-namespace:Client.Wpf.Controls.Base"
     mc:Ignorable="d"
     d:DesignHeight="95"
-    d:DesignWidth="865">
+    d:DesignWidth="1170">
     <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="840"/>
+            <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel>
@@ -77,6 +79,25 @@
             Style="{StaticResource Preset}"
             Visibility="Hidden">
         </WrapPanel>
+
+        <Grid
+            Grid.Column="2"
+            x:Name="_primaryPresetUsageStatisticsGrid">
+
+            <controls:BattleRatingUsageControl
+                x:Name="_primaryPresetUsageControl"/>
+
+        </Grid>
+
+        <Grid
+            Grid.Column="2"
+            x:Name="_fallbackPresetUsageStatisticsGrid"
+            Visibility="Hidden">
+
+            <controls:BattleRatingUsageControl
+                x:Name="_fallbackPresetUsageControl"/>
+            
+        </Grid>
 
     </Grid>
 </base:LocalisedUserControl>
