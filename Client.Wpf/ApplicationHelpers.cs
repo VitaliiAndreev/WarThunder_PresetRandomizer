@@ -52,9 +52,9 @@ namespace Client.Wpf
         private static IThunderSkillParser _thunderSkillParser;
 
         /// <summary> Indicates whether loggers have been initialized. </summary>
-        private static bool _loggersInitialized;
+        private static bool _loggersInitialised;
         /// <summary> Indicates whether helpers have been initialized. </summary>
-        private static bool _helpersInitialized;
+        private static bool _helpersInitialised;
 
         #endregion Fields
         #region Properties
@@ -77,17 +77,17 @@ namespace Client.Wpf
         /// <summary> The static constructor is used for setting default values. </summary>
         static ApplicationHelpers()
         {
-            _helpersInitialized = false;
-            _loggersInitialized = false;
+            _helpersInitialised = false;
+            _loggersInitialised = false;
         }
 
         #endregion Constructors
         #region Methods: Initialization
 
         /// <summary> Initializes NLog-based loggers. Repeated initialization is being skipped. </summary>
-        public static void InitializeLoggers()
+        public static void InitialiseLoggers()
         {
-            if (_loggersInitialized) return;
+            if (_loggersInitialised) return;
 
             var fileLogger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter(), ESubdirectory.Logs, true);
 
@@ -103,34 +103,34 @@ namespace Client.Wpf
             Log = CreateActiveLogger(EWpfClientLogCategory.ApplicationHelpers);
 
             Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Loggers));
-            _loggersInitialized = true;
+            _loggersInitialised = true;
         }
 
-        /// <summary> Initializes fields and properties. Repeated initialization is being skipped. </summary>
+        /// <summary> Initialises fields and properties. Repeated initialisation is being skipped. </summary>
         /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
         /// <param name="readOnlyJson"> Whether to generate the database. </param>
         /// <param name="readPreviouslyUnpackedJson"> Whether to extract game files. </param>
-        public static void Initialize(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
+        public static void Initialise(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
         {
-            if (!_loggersInitialized)
-                InitializeLoggers();
+            if (!_loggersInitialised)
+                InitialiseLoggers();
 
-            if (_helpersInitialized)
+            if (_helpersInitialised)
                 return;
 
             Log.Debug(ECoreLogMessage.InitialisingInstance.FormatFluently(EWord.Helpers.ToLower()));
 
-            InitializeHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
+            InitialiseHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
             Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Helpers));
-            _helpersInitialized = true;
+            _helpersInitialised = true;
         }
 
-        /// <summary> Initializes helpers. </summary>
+        /// <summary> Initialises helpers. </summary>
         /// <param name="generateDatabase"> Whether to read data from JSON instead of the database. </param>
         /// <param name="readOnlyJson"> Whether to generate the database. </param>
         /// <param name="readPreviouslyUnpackedJson"> Whether to extract game files. </param>
-        private static void InitializeHelpers(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
+        private static void InitialiseHelpers(bool generateDatabase, bool readOnlyJson, bool readPreviouslyUnpackedJson)
         {
             var settingsTypes = new List<Type>
             {
@@ -179,14 +179,14 @@ namespace Client.Wpf
                 readPreviouslyUnpackedJson,
                 Loggers
             );
-            InitializeLocalizationManager();
+            InitialiseLocalisationManager();
         }
 
         /// <summary>
-        /// Initializes the <see cref="LocalisationManager"/>.
-        /// If the language stored in the <see cref="EWpfClientFile.Settings"/> file doesn't have a matching localization file, the language selection window is shown.
+        /// Initialises the <see cref="LocalisationManager"/>.
+        /// If the language stored in the <see cref="EWpfClientFile.Settings"/> file doesn't have a matching localisation file, the language selection window is shown.
         /// </summary>
-        private static void InitializeLocalizationManager()
+        private static void InitialiseLocalisationManager()
         {
             try
             {
@@ -196,7 +196,7 @@ namespace Client.Wpf
             catch (FileNotFoundException exception)
             {
                 Log.Info(exception.Message);
-                WindowFactory.CreateLocalizationWindow().ShowDialog();
+                WindowFactory.CreateLocalisationWindow().ShowDialog();
             }
         }
 

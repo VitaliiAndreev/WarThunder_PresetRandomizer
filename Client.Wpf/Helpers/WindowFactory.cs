@@ -31,7 +31,7 @@ namespace Client.Wpf.Helpers
         /// <param name="parentWindow"> The window that owns the new instance. </param>
         /// <param name="restartAfterSelection"> Whether the application is to be restarted after selecting a language. </param>
         /// <returns></returns>
-        public ILocalizationWindow CreateLocalizationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false)
+        public ILocalizationWindow CreateLocalisationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false)
         {
             var strategy = new LocalizationWindowStrategy();
             var presenter = new LocalizationWindowPresenter(strategy);
