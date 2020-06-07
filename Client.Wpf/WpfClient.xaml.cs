@@ -120,14 +120,14 @@ namespace Client.Wpf
 
                 Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-                ApplicationHelpers.InitializeLoggers();
+                ApplicationHelpers.InitialiseLoggers();
 
                 Log = ApplicationHelpers.CreateActiveLogger(EWpfClientLogCategory.WpfClient);
                 Log.Info(ECoreLogMessage.Started);
 
                 try
                 {
-                    ApplicationHelpers.Initialize(_generateDatabase, _readOnlyJson, _readPreviouslyUnpackedJson);
+                    ApplicationHelpers.Initialise(_generateDatabase, _readOnlyJson, _readPreviouslyUnpackedJson);
                 }
                 catch (SettingsFileRegeneratedException)
                 {

@@ -25,7 +25,7 @@ namespace Client.Wpf.Commands.MainWindow
             base.Execute(parameter);
 
             if (parameter is IMainWindowPresenter presenter)
-                ApplicationHelpers.WindowFactory.CreateLocalizationWindow(presenter.Owner, true).ShowDialog();
+                ApplicationHelpers.WindowFactory.CreateLocalisationWindow(presenter.Owner, true).ShowDialog();
         }
     }
 }

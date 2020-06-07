@@ -46,39 +46,28 @@ namespace Core.Organization.Helpers
         private readonly bool _readOnlyJson;
         /// <summary> Whether to extract game files. </summary>
         private readonly bool _readPreviouslyUnpackedJson;
+
         private readonly EStartup _startupConfiguration;
+
         /// <summary> Parts of Gaijin IDs of vehicles excluded from display. </summary>
         private readonly IEnumerable<string> _excludedGaijinIdParts;
 
-        /// <summary> Whether a new database should be generated. </summary>
         private bool _generateNewDatabase;
         private Version _gameClientVersion;
-        /// <summary> The string representation of the game client version. </summary>
         private string _gameClientVersionString;
         private Version _latestAvailableDatabaseVersion;
 
-        /// <summary> An instance of a file manager. </summary>
         protected readonly IWarThunderFileManager _fileManager;
-        /// <summary> An instance of a file reader. </summary>
         protected readonly IWarThunderFileReader _fileReader;
-        /// <summary> An instance of a settings manager. </summary>
         protected readonly IWarThunderSettingsManager _settingsManager;
-        /// <summary> An instance of a parser. </summary>
         protected readonly IParser _parser;
-        /// <summary> An instance of an unpacker. </summary>
         protected readonly IUnpacker _unpacker;
-        /// <summary> An instance of a converter. </summary>
         protected readonly IConverter _converter;
-        /// <summary> An instance of a JSON helper. </summary>
         protected readonly IWarThunderJsonHelper _jsonHelper;
-        /// <summary> An instance of a CSV deserializer. </summary>
         protected readonly ICsvDeserializer _csvDeserializer;
         protected readonly IDataRepositoryFactory _dataRepositoryFactory;
-        /// <summary> An instance of a randomizer. </summary>
         protected readonly IRandomiser _randomizer;
-        /// <summary> An instance of a vehicle selector. </summary>
         protected readonly IVehicleSelector _vehicleSelector;
-        /// <summary> An instance of a vehicle selector. </summary>
         protected readonly IPresetGenerator _presetGenerator;
         protected readonly IThunderSkillParser _thunderSkillParser;
 

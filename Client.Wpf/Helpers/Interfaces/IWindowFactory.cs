@@ -6,11 +6,11 @@ namespace Client.Wpf.Helpers.Interfaces
     /// <summary> A class for instantiating windows. </summary>
     public interface IWindowFactory
     {
-        /// <summary> Creates an instance of the localization window. </summary>
+        /// <summary> Creates an instance of the localisation window. </summary>
         /// <param name="parentWindow"> The window that owns the new instance. </param>
         /// <param name="restartAfterSelection"> Whether the application is to be restarted after selecting a language. </param>
         /// <returns></returns>
-        ILocalizationWindow CreateLocalizationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false);
+        ILocalizationWindow CreateLocalisationWindow(IBaseWindow parentWindow = null, bool restartAfterSelection = false);
 
         /// <summary> Creates an instance of the settings window. </summary>
         /// <param name="parentWindow"> The window that owns the new instance. </param>
