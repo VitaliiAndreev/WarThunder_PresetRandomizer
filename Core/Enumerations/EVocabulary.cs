@@ -721,8 +721,8 @@
         protected const string _ThunderSkill = _Thunder + _Skill;
         protected const string _tic = _t + _ic;
         protected const string _to = _t + _o;
-        protected const string _token = _to + "ken";
-        protected const string _tool = _to + "ol";
+        protected const string _token = _to + _k + _en;
+        protected const string _tool = _to + _o + _l;
         protected const string _tools = _tool + _s;
         protected const string _tree = _t + "ree";
         protected const string _trees = _tree + _s;
