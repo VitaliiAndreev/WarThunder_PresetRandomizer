@@ -188,6 +188,7 @@
         public const string TankDestroyer = nameof(TankDestroyer);
         public const string Thailand = nameof(Thailand);
         public const string Thanks = nameof(Thanks);
+        public const string ThunderSkillForData = nameof(ThunderSkillForData);
         public const string TorpedoBomber = nameof(TorpedoBomber);
         public const string Ukraine = nameof(Ukraine);
         public const string UnderConstruction = nameof(UnderConstruction);
