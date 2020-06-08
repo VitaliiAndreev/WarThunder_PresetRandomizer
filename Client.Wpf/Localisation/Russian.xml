@@ -40,6 +40,8 @@
   <Line key="BattleRatingInRealistic" value="БР&#xA;Р."/>
   <Line key="BattleRatingInSimulator" value="БР&#xA;С."/>
   <Line key="BattleRatings" value="Боевые рейтинги"/>
+  <Line key="BattleRatingSaturation" value="Насыщение БР"/>
+  <Line key="BattleRatingSaturationTooltip" value="Статистика использования техники на боевых рейтингах вокруг текущего набора.&#xA;Даёт приблизительное представление вероятности боя против других БР.&#xA;Дата читается с сайта ThunderSkill при запуске приложения."/>
   <Line key="Belgium" value="Бельгия"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>
   <Line key="Beta" value="Бета"/>

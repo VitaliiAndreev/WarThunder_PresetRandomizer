@@ -1,5 +1,6 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
+using Client.Wpf.Enumerations;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Enumerations;
 using Core.Extensions;
@@ -108,6 +109,18 @@ namespace Client.Wpf.Controls
                 }
                 _grid.Add(column, columnIndex++);
             }
+            return this;
+        }
+
+        new public BattleRatingUsageControl Localise()
+        {
+            base.Localise();
+
+            static string getLocalisedString(string localisationKey) => ApplicationHelpers.LocalisationManager.GetLocalisedString(localisationKey);
+
+            _header.Text = getLocalisedString(ELocalisationKey.BattleRatingSaturation);
+            _control.ToolTip = getLocalisedString(ELocalisationKey.BattleRatingSaturationTooltip);
+
             return this;
         }
 
