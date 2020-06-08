@@ -193,7 +193,7 @@ namespace Client.Wpf.Controls
                     presetPanel.Children.Add(vehicleControl);
                 }
 
-                usageStatisticsGrid.Children.Add(new BattleRatingUsageControl().Reset().Populate(preset));
+                usageStatisticsGrid.Children.Add(new BattleRatingUsageControl().Reset().Populate(preset).Localise());
             }
 
             var primaryPreset = presets[EPreset.Primary];
