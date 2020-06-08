@@ -27,11 +27,18 @@ namespace Core.Web.WarThunder.Helpers
         private HtmlNode _mainHtmlNode;
 
         #endregion Fields
+        #region Properties
+
+        public bool IsLoaded { get; private set; }
+
+        #endregion Properties
         #region Constructors
 
         public ThunderSkillParser(params IConfiguredLogger[] loggers)
             : base(loggers)
         {
+            IsLoaded = false;
+
             SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
             LogDebug(ECoreLogMessage.Created.FormatFluently(EWebWarThunderLogCategory.ThunderSkillParser));
         }
@@ -52,10 +59,15 @@ namespace Core.Web.WarThunder.Helpers
                 _mainHtmlNode = GetHtmlDocumentNode(url);
             }
             LogDebug(ECoreLogMessage.FinishedReading.FormatFluently(url));
+
+            IsLoaded = true;
         }
 
         public IDictionary<string, VehicleUsage> GetVehicleUsage(EBranch branch)
         {
+            if (!IsLoaded)
+                return new Dictionary<string, VehicleUsage>();
+
             switch (branch)
             {
                 case EBranch.Army:

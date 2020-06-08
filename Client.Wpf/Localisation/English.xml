@@ -138,6 +138,7 @@
   <Line key="NaziGermany" value="Nazi Germany"/>
   <Line key="Netherlands" value="Netherlands"/>
   <Line key="NewZealand" value="New Zealand"/>
+  <Line key="NoData" value="NO DATA"/>
   <Line key="NorthKorea" value="North Korea"/>
   <Line key="Norway" value="Norway"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="No vehicles are available within specified parameters for {0} of {1}."/>

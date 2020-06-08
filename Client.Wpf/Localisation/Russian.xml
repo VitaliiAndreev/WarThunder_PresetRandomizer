@@ -138,6 +138,7 @@
   <Line key="NaziGermany" value="Нацистская Германия"/>
   <Line key="Netherlands" value="Нидерланды"/>
   <Line key="NewZealand" value="Новая Зеландия"/>
+  <Line key="NoData" value="НЕТ ДАННЫХ"/>
   <Line key="NorthKorea" value="Северная Корея"/>
   <Line key="Norway" value="Норвегия"/>
   <Line key="NoVehiclesAvailableWithinSpecifiedParameters" value="Нет техники &quot;{0}&quot; из &quot;{1}&quot;, удовлетворяющей выбранным параметрам."/>

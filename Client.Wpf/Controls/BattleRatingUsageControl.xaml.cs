@@ -8,6 +8,8 @@ using Core.Organization.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Client.Wpf.Controls
@@ -59,6 +61,22 @@ namespace Client.Wpf.Controls
 
         public BattleRatingUsageControl Populate(Preset preset)
         {
+            if (!ApplicationHelpers.Manager.ShowThunderSkillData)
+            {
+                var textBlock = new TextBlock
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    TextAlignment = TextAlignment.Center,
+                    FontSize = EInteger.Number.Sixteen,
+                    Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.NoData),
+                };
+
+                _grid.Add(textBlock);
+
+                return this;
+            }
+
             var usageCounts = new Dictionary<int, int>();
 
             for (var economicRank = preset.EconomicRank - _economicRankForkSize; economicRank <= preset.EconomicRank + _economicRankForkSize; economicRank++)

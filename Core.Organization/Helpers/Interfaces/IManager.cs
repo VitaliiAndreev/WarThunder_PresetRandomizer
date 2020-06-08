@@ -14,6 +14,8 @@ namespace Core.Organization.Helpers.Interfaces
     {
         #region Properties
 
+        bool ShowThunderSkillData { get; }
+
         /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
         IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
