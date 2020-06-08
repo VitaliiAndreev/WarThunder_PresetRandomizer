@@ -9,7 +9,17 @@
     d:DesignHeight="95"
     d:DesignWidth="230">
     <Grid
-        x:Name="_grid">
+        x:Name="_control">
+        
+        <TextBlock Text="BR Saturation"
+            x:Name="_header"
+            HorizontalAlignment="Center"
+            FontSize="16"/>
+        
+        <Grid
+            x:Name="_grid">
+            
+        </Grid>
         
     </Grid>
 </base:LocalisedUserControl>

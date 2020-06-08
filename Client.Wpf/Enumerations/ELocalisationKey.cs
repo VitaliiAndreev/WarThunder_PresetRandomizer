@@ -29,6 +29,8 @@
         public const string BattleRatingInRealistic = nameof(BattleRatingInRealistic);
         public const string BattleRatingInSimulator = nameof(BattleRatingInSimulator);
         public const string BattleRatings = nameof(BattleRatings);
+        public const string BattleRatingSaturation = nameof(BattleRatingSaturation);
+        public const string BattleRatingSaturationTooltip = nameof(BattleRatingSaturationTooltip);
         public const string Belgium = nameof(Belgium);
         public const string BenjaminDeCockForStripeFlagSet = nameof(BenjaminDeCockForStripeFlagSet);
         public const string Beta = nameof(Beta);
