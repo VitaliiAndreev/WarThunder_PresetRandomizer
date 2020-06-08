@@ -67,6 +67,7 @@ namespace Client.Wpf.Windows
             _thanks.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Thanks);
             _gaijin.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GaijinEntertainmentForWarThunder);
             _klensy.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.KlensyForWtTools);
+            _thunderSkill.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ThunderSkillForData);
             _benjaminDeCock.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.BenjaminDeCockForStripeFlagSet);
             _yummigum.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.YummigumForIconSweets2);
         }
