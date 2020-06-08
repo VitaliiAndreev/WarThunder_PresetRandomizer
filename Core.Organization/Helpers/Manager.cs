@@ -434,10 +434,23 @@ namespace Core.Organization.Helpers
                 InitialiseDatabaseBasedDataRepository();
         }
 
+        private Task LoadThunderSkillVehicleUsageStatistics()
+        {
+            void loadThunderSkillVehicleUsageStatistics()
+            {
+                LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
+                {
+                    _thunderSkillParser.Load();
+                }
+                LogInfo(EOrganizationLogMessage.FinishedReadingVehicleUsageStatisticsFromThunderSkill);
+            };
+            return Task.Factory.StartNew(loadThunderSkillVehicleUsageStatistics);
+        }
+
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
         public async void CacheData()
         {
-            var thunderSkillLoadVehicleUsageStatisticsTask = Task.Factory.StartNew(() => _thunderSkillParser.Load());
+            var loadThunderSkillVehicleUsageStatisticsTask = LoadThunderSkillVehicleUsageStatistics();
 
             InitialiseDataRepository();
 
@@ -458,7 +471,7 @@ namespace Core.Organization.Helpers
 
             LogInfo(EOrganizationLogMessage.CachingComplete);
 
-            await thunderSkillLoadVehicleUsageStatisticsTask;
+            await loadThunderSkillVehicleUsageStatisticsTask;
 
             InitialiseReferences();
             InitialiseResearchTrees();
