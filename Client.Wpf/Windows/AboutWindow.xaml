@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:Client.Wpf.Windows"
     mc:Ignorable="d"
     Title="About Window"
-    Height="205"
-    Width="310"
+    Height="230"
+    Width="450"
     Loaded="OnLoaded"
     Closed="OnClosed"
     WindowStartupLocation="CenterScreen"
@@ -19,7 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="105"/>
+            <RowDefinition Height="125"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="X.X.X (X)."
@@ -45,6 +45,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Gaijin Entertainment for War Thunder."
@@ -57,13 +58,18 @@
                     x:Name="_klensy"
                     Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
 
-                <TextBlock Text="Benjamin De Cock for the Stripe Flag Set."
+                <TextBlock Text="ThunderSkill dev team for vehicle usage data."
                     Grid.Row="2"
+                    x:Name="_thunderSkill"
+                    Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
+
+                <TextBlock Text="Benjamin De Cock for the Stripe Flag Set."
+                    Grid.Row="3"
                     x:Name="_benjaminDeCock"
                     Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
 
                 <TextBlock Text="Yummigum for IconSweets 2."
-                    Grid.Row="3"
+                    Grid.Row="4"
                     x:Name="_yummigum"
                     Style="{StaticResource PaddedBottomCenteredHorizontally}"/>
 
