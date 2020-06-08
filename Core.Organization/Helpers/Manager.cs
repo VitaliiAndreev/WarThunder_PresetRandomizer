@@ -81,6 +81,8 @@ namespace Core.Organization.Helpers
         #endregion Fields
         #region Properties
 
+        public bool ShowThunderSkillData { get; private set; }
+
         /// <summary> Research trees. This collection needs to be filled up after caching vehicles up from the database by calling <see cref="CacheData"/>. </summary>
         public IDictionary<ENation, ResearchTree> ResearchTrees { get; }
 
@@ -174,6 +176,7 @@ namespace Core.Organization.Helpers
             _settingsManager.Initialise(_startupConfiguration.IsIn(new List<EStartup> { EStartup.ReadDatabase, EStartup.ReadUnpackedJson }));
             LoadSettings();
 
+            ShowThunderSkillData = true;
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
             LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.Manager));
@@ -291,6 +294,9 @@ namespace Core.Organization.Helpers
 
         private void InitialiseEconomicRankUsageStatistics()
         {
+            if (!_thunderSkillParser.IsLoaded)
+                return;
+
             LogInfo(EOrganizationLogMessage.AggregatingVehicleUsageStatistics);
 
             var vehicleUsage = new Dictionary<EBranch, IDictionary<string, VehicleUsage>>
@@ -300,6 +306,15 @@ namespace Core.Organization.Helpers
                 { EBranch.Aviation, _thunderSkillParser.GetVehicleUsage(EBranch.Aviation) },
                 { EBranch.Fleet, _thunderSkillParser.GetVehicleUsage(EBranch.Fleet) },
             };
+
+            if (vehicleUsage.All(branchStatistics => branchStatistics.Value.IsEmpty()))
+            {
+                ShowThunderSkillData = false;
+
+                LogWarn(EOrganizationLogMessage.NoUsefulStatisticsHaveBeenFound);
+
+                return;
+            }
 
             foreach (var vehicle in PlayableVehicles.Values)
             {
@@ -438,11 +453,20 @@ namespace Core.Organization.Helpers
         {
             void loadThunderSkillVehicleUsageStatistics()
             {
-                LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
+                try
                 {
-                    _thunderSkillParser.Load();
+                    LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
+                    {
+                        _thunderSkillParser.Load();
+                    }
+                    LogInfo(EOrganizationLogMessage.FinishedReadingVehicleUsageStatisticsFromThunderSkill);
                 }
-                LogInfo(EOrganizationLogMessage.FinishedReadingVehicleUsageStatisticsFromThunderSkill);
+                catch
+                {
+                    LogWarn(EOrganizationLogMessage.FailedToReadVehicleUsageStatisticsFromThunderSkill);
+
+                    ShowThunderSkillData = false;
+                }
             };
             return Task.Factory.StartNew(loadThunderSkillVehicleUsageStatistics);
         }

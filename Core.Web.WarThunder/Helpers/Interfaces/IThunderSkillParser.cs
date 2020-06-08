@@ -6,6 +6,8 @@ namespace Core.Web.WarThunder.Helpers.Interfaces
 {
     public interface IThunderSkillParser
     {
+        bool IsLoaded { get; }
+
         void Load();
         IDictionary<string, VehicleUsage> GetVehicleUsage(EBranch branch);
     }

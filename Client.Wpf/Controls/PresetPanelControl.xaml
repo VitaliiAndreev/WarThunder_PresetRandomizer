@@ -82,10 +82,8 @@
 
         <Grid
             Grid.Column="2"
-            x:Name="_primaryPresetUsageStatisticsGrid">
-
-            <controls:BattleRatingUsageControl
-                x:Name="_primaryPresetUsageControl"/>
+            x:Name="_primaryPresetUsageStatisticsGrid"
+            Visibility="Hidden">
 
         </Grid>
 
@@ -93,9 +91,6 @@
             Grid.Column="2"
             x:Name="_fallbackPresetUsageStatisticsGrid"
             Visibility="Hidden">
-
-            <controls:BattleRatingUsageControl
-                x:Name="_fallbackPresetUsageControl"/>
             
         </Grid>
 

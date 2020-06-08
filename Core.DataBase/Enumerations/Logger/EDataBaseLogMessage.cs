@@ -120,8 +120,8 @@ namespace Core.DataBase.Enumerations.Logger
         public static readonly string CreatingSessionFactory = $"{_Creating} {_a} {_sessionFactory} {_forDatabaseUsingAssembly}.";
         public static readonly string SessionFactoryCreated = $"{_Session} {_factory} {_created}.";
 
-        public static readonly string WritingMappingAttributes = $"{_Serializing} {_assembly} {_to} {_read} {_ormMappingFromAttributes} {_and} {_write} {_intoConfiguration}.";
-        public static readonly string MappingAttributesWritten = $"{_ormMappingFromAttributes} {_written} {_from} {_serialized} {_assembly} {_intoConfiguration}.";
+        public static readonly string WritingMappingAttributes = $"{_Serialising} {_assembly} {_to} {_read} {_ormMappingFromAttributes} {_and} {_write} {_intoConfiguration}.";
+        public static readonly string MappingAttributesWritten = $"{_ormMappingFromAttributes} {_written} {_from} {_serialised} {_assembly} {_intoConfiguration}.";
 
         public static readonly string CreatingSchema = $"{_Creating} {_a} {_database} {_schema}.";
         public static readonly string DataBaseFileFound = $"{_DatabaseFile} {_found}.";

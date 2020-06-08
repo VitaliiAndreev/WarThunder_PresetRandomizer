@@ -15,7 +15,7 @@ namespace Core.Web.Helpers
     {
         #region Constants
 
-        private const int _retryDelay = EInteger.Time.MillisecondsInSecond;
+        private static readonly int _retryDelay = EInteger.Time.MillisecondsInSecond * EInteger.Number.Five;
 
         #endregion Constants
         #region Constructors
