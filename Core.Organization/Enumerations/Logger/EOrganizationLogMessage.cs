@@ -88,6 +88,10 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string InitializingResearchTrees = InitialisingInstance.FormatFluently($"{_research} {_trees}");
         public static readonly string ResearchTreesInitialized = InstanceInitialised.FormatFluently($"{_Research} {_trees}");
 
+        private static readonly string _vehicleUsageStatisticsFromThunderSkill = $" {_vehicle} {_usage} {_statistics} {_from} {_ThunderSkill}.";
+        public static readonly string ReadingVehicleUsageStatisticsFromThunderSkill = $"{_Reading}{_vehicleUsageStatisticsFromThunderSkill}";
+        public static readonly string FinishedReadingVehicleUsageStatisticsFromThunderSkill = $"{_Finished} {_reading}{_vehicleUsageStatisticsFromThunderSkill}";
+
         public static readonly string AggregatingVehicleUsageStatistics = $"{_Aggregating} {_vehicle} {_usage} {_statistics}.";
         public static readonly string FinishedAggregatingVehicleUsageStatistics = $"{_Finished} {_aggregating} {_vehicle} {_usage} {_statistics}.";
 
