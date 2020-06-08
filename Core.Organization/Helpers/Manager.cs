@@ -257,7 +257,7 @@ namespace Core.Organization.Helpers
         /// <summary> Initialises research trees from cached vehicles. Obviously, should be called after <see cref="CacheData"/>. </summary>
         private void InitialiseResearchTrees()
         {
-            LogInfo(EOrganizationLogMessage.InitializingResearchTrees);
+            LogInfo(EOrganizationLogMessage.InitialisingResearchTrees);
 
             var columnCount = default(int);
 
@@ -661,7 +661,7 @@ namespace Core.Organization.Helpers
         /// <summary> Initialises the database with the <see cref="_dataRepository"/>. </summary>
         private void InitialiseDatabase()
         {
-            LogInfo(EOrganizationLogMessage.InitializingDatabase);
+            LogInfo(EOrganizationLogMessage.InitialisingDatabase);
 
             _dataRepository.PersistNewObjects();
 
