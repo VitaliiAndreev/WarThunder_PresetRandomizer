@@ -79,13 +79,13 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string BlankDatabaseCreated = $"{_Blank} {_database} {_created}.";
         public static readonly string DatabaseConnectionEstablished = $"{_Database} {_connection} {_established}.";
 
-        public static readonly string InitializingDatabase = $"{_Initialising} {_database}.";
+        public static readonly string InitialisingDatabase = $"{_Initialising} {_database}.";
         public static readonly string DatabaseInitialized = $"{_Database} {_initialised}.";
 
         public static readonly string CachingObjects = $"{_Caching} {_objects}.";
         public static readonly string CachingComplete = $"{_Caching} {_complete}.";
 
-        public static readonly string InitializingResearchTrees = InitialisingInstance.FormatFluently($"{_research} {_trees}");
+        public static readonly string InitialisingResearchTrees = InitialisingInstance.FormatFluently($"{_research} {_trees}");
         public static readonly string ResearchTreesInitialized = InstanceInitialised.FormatFluently($"{_Research} {_trees}");
 
         private static readonly string _vehicleUsageStatisticsFromThunderSkill = $" {_vehicle} {_usage} {_statistics} {_from} {_ThunderSkill}.";
