@@ -116,6 +116,7 @@
         public const string Netherlands = nameof(Netherlands);
         public const string NewZealand = nameof(NewZealand);
         public const string NightFighter = nameof(NightFighter);
+        public const string NoData = nameof(NoData);
         public const string NorthKorea = nameof(NorthKorea);
         public const string Norway = nameof(Norway);
         public const string NoVehiclesAvailableWithinSpecifiedParameters = nameof(NoVehiclesAvailableWithinSpecifiedParameters);

@@ -41,7 +41,7 @@ namespace Core.Json.Enumerations.Logger
 
         public static readonly string JsonStringEmpty = $"{_The} {_jsonString} {_is} {_empty}.";
         public static readonly string ErrorDeserializingJsonText = $"{_Error} {_deserialising} {_JSON} {_text}.";
-        public static readonly string MustBeJsonContainerToStandardize = $"{_Must} {_be} {_a} {_JSON} {_container} {_to} {_be} {_standardized}.";
+        public static readonly string MustBeJsonContainerToStandardize = $"{_Must} {_be} {_a} {_JSON} {_container} {_to} {_be} {_standardised}.";
 
         #endregion JSON Helper
     }
