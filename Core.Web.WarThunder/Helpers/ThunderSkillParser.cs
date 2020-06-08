@@ -47,11 +47,11 @@ namespace Core.Web.WarThunder.Helpers
 
             var url = Settings.ThunderSkillUrl;
 
-            LogInfo(ECoreLogMessage.Reading.FormatFluently(url));
+            LogDebug(ECoreLogMessage.Reading.FormatFluently(url));
             {
                 _mainHtmlNode = GetHtmlDocumentNode(url);
             }
-            LogInfo(ECoreLogMessage.FinishedReading.FormatFluently(url));
+            LogDebug(ECoreLogMessage.FinishedReading.FormatFluently(url));
         }
 
         public IDictionary<string, VehicleUsage> GetVehicleUsage(EBranch branch)
