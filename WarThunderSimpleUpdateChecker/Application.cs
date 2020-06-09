@@ -72,62 +72,11 @@ namespace WarThunderSimpleUpdateChecker
 
             var versionInfoFile = GetVersionInfoFile(_warThunderPath);
             var currentVersion = GetVersion(versionInfoFile);
-            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, currentVersion.ToString(EInteger.Number.Three));
+            var sourceFilesInCache = GetFilesFromCacheDirectories(currentVersion.ToString(EInteger.Number.Three));
+            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, sourceFilesInCache);
             var binFiles = GetBinFiles(sourceFiles);
             var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
-            var decompressBlkTasks = new Dictionary<string, Task>();
-            var decompressDdsxTasks = new Dictionary<string, Task>();
-            var outputDirectories = new List<DirectoryInfo>();
-
-            while (unpackingTasks.Any())
-            {
-                foreach (var binFile in binFiles)
-                {
-                    var fileName = binFile.Name;
-
-                    if (unpackingTasks.TryGetValue(fileName, out var startedUnpackingTask))
-                    {
-                        if (startedUnpackingTask.IsCompleted)
-                        {
-                            var outputDirectory = startedUnpackingTask.Result;
-
-                            if (decompressBlkTasks.TryGetValue(fileName, out var startedDecompressBlkTask))
-                            {
-                                if (startedDecompressBlkTask.IsCompleted)
-                                {
-                                    if (decompressDdsxTasks.TryGetValue(fileName, out var startedDecompressDdsxTask))
-                                    {
-                                        if (startedDecompressDdsxTask.IsCompleted)
-                                        {
-                                            outputDirectories.Add(outputDirectory);
-
-                                            unpackingTasks.Remove(fileName);
-                                            decompressBlkTasks.Remove(fileName);
-                                            decompressDdsxTasks.Remove(fileName);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        void decomplressDdsx() => DecompressDdsxFiles(outputDirectory);
-
-                                        var decompressDdsxTask = _taskFactory.StartNew(decomplressDdsx);
-
-                                        decompressDdsxTasks.Add(fileName, decompressDdsxTask);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                void decomplressBlk() => DecompressBlkFiles(outputDirectory);
-
-                                var decompressBlkTask = _taskFactory.StartNew(decomplressBlk);
-
-                                decompressBlkTasks.Add(fileName, decompressBlkTask);
-                            }
-                        }
-                    }
-                }
-            }
+            var outputDirectories = DecompressFiles(binFiles, unpackingTasks);
 
             currentVersion = SelectFinalVersion(currentVersion, GetVersionFromUnpackedFiles(outputDirectories));
 
@@ -257,33 +206,45 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Working with Game Version
         #region Methods: Selecting Files
 
-        private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath, string cacheDirectorySuffix)
+        private static IDictionary<string, FileInfo> GetFilesFromCacheDirectories(string cacheDirectorySuffix)
         {
-            var uiDirectoryPath = Path.Combine(rootDirectoryPath, "ui");
             var cacheDirectoriesPath = Settings.CacheLocation;
             var cacheDirectoriesExist = Directory.Exists(cacheDirectoriesPath);
             var cacheDirectoryPath = default(string);
 
             if (cacheDirectoriesExist)
             {
+                _logger.LogInfo($"Looking up files in \"{cacheDirectoryPath}\"...");
+
                 var cacheDirectories = Directory
                     .GetDirectories(cacheDirectoriesPath, $"binary.{cacheDirectorySuffix}*", SearchOption.TopDirectoryOnly)
                     .Select(path => new DirectoryInfo(path))
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
-                if (cacheDirectories.Any())
-                {
-                    if (cacheDirectories.HasSeveral()) throw new AmbiguousMatchException("Several cache directories matching the given version have been found. The developer of this automation app would like to know about this case and resolve the collision.");
+                if (cacheDirectories.HasSeveral()) throw new AmbiguousMatchException("Several cache directories matching the given version have been found. The developer of this automation app would like to know about this case and resolve the collision.");
 
-                    cacheDirectoryPath = cacheDirectories.First().FullName;
+                cacheDirectoryPath = cacheDirectories.First().FullName;
 
-                    _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\", \"{uiDirectoryPath}\", and \"{cacheDirectoryPath}\"...");
-                }
+                var filesInCache = Directory
+                    .GetFiles(cacheDirectoryPath)
+                    .Select(filePath => new FileInfo(filePath))
+                    .ToDictionary(file => file.Name);
+
+                _logger.LogInfo($"{filesInCache.Count()} found.");
+
+                return filesInCache;
             }
-            else
-            {
-                _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\" and \"{uiDirectoryPath}\"...");
-            }
+
+            _logger.LogInfo($"No files found in the cache.");
+
+            return new Dictionary<string, FileInfo>();
+        }
+
+        private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath, IDictionary<string, FileInfo> sourceFilesInCache)
+        {
+            var uiDirectoryPath = Path.Combine(rootDirectoryPath, "ui");
+
+            _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\" and \"{uiDirectoryPath}\"...");
 
             var filesInRootDirectory = Directory.GetFiles(rootDirectoryPath);
             var filesInUiDirectory = Directory.GetFiles(uiDirectoryPath);
@@ -293,26 +254,23 @@ namespace WarThunderSimpleUpdateChecker
                 .ToList()
             ;
 
-            if (cacheDirectoriesExist && !string.IsNullOrWhiteSpace(cacheDirectoryPath))
+            if (sourceFilesInCache.Any())
             {
-                var filesInCache = Directory.GetFiles(cacheDirectoryPath);
-                var cachedSourceFiles = filesInCache.Select(filePath => new FileInfo(filePath)).ToDictionary(file => file.Name);
-
                 for (var fileIndex = EInteger.Number.Zero; fileIndex < sourceFiles.Count(); fileIndex++)
                 {
                     var sourceFile = sourceFiles[fileIndex];
                     var sourceFileName = sourceFile.Name;
 
-                    if (cachedSourceFiles.TryGetValue(sourceFileName, out var cachedSourceFile))
+                    if (sourceFilesInCache.TryGetValue(sourceFileName, out var cachedSourceFile))
                     {
                         if (cachedSourceFile.LastWriteTimeUtc > sourceFile.LastWriteTimeUtc)
                             sourceFiles[fileIndex] = cachedSourceFile;
 
-                        cachedSourceFiles.Remove(sourceFileName);
+                        sourceFilesInCache.Remove(sourceFileName);
                     }
                 }
 
-                sourceFiles.AddRange(cachedSourceFiles.Values);
+                sourceFiles.AddRange(sourceFilesInCache.Values);
             }
 
             _logger.LogInfo($"{sourceFiles.Count()} found.");
@@ -381,6 +339,65 @@ namespace WarThunderSimpleUpdateChecker
 
         #endregion Methods: Unpacking Files
         #region Methods: Decompressing Files
+
+        private static IEnumerable<DirectoryInfo> DecompressFiles(IEnumerable<FileInfo> binFiles, IDictionary<string, Task<DirectoryInfo>> unpackingTasks)
+        {
+            var decompressBlkTasks = new Dictionary<string, Task>();
+            var decompressDdsxTasks = new Dictionary<string, Task>();
+            var outputDirectories = new List<DirectoryInfo>();
+
+            while (unpackingTasks.Any())
+            {
+                foreach (var binFile in binFiles)
+                {
+                    var fileName = binFile.Name;
+
+                    if (unpackingTasks.TryGetValue(fileName, out var startedUnpackingTask))
+                    {
+                        if (startedUnpackingTask.IsCompleted)
+                        {
+                            var outputDirectory = startedUnpackingTask.Result;
+
+                            if (decompressBlkTasks.TryGetValue(fileName, out var startedDecompressBlkTask))
+                            {
+                                if (startedDecompressBlkTask.IsCompleted)
+                                {
+                                    if (decompressDdsxTasks.TryGetValue(fileName, out var startedDecompressDdsxTask))
+                                    {
+                                        if (startedDecompressDdsxTask.IsCompleted)
+                                        {
+                                            outputDirectories.Add(outputDirectory);
+
+                                            unpackingTasks.Remove(fileName);
+                                            decompressBlkTasks.Remove(fileName);
+                                            decompressDdsxTasks.Remove(fileName);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        void decomplressDdsx() => DecompressDdsxFiles(outputDirectory);
+
+                                        var decompressDdsxTask = _taskFactory.StartNew(decomplressDdsx);
+
+                                        decompressDdsxTasks.Add(fileName, decompressDdsxTask);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                void decomplressBlk() => DecompressBlkFiles(outputDirectory);
+
+                                var decompressBlkTask = _taskFactory.StartNew(decomplressBlk);
+
+                                decompressBlkTasks.Add(fileName, decompressBlkTask);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return outputDirectories;
+        }
 
         private static void DecompressBlkFiles(DirectoryInfo unpackedDirectory)
         {
