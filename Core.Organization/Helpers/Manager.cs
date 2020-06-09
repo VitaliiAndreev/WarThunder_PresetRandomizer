@@ -449,26 +449,35 @@ namespace Core.Organization.Helpers
                 InitialiseDatabaseBasedDataRepository();
         }
 
-        private Task LoadThunderSkillVehicleUsageStatistics()
+        private async Task LoadThunderSkillVehicleUsageStatistics()
         {
-            void loadThunderSkillVehicleUsageStatistics()
+            try
             {
-                try
+                LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
                 {
-                    LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
-                    {
-                        _thunderSkillParser.Load();
-                    }
-                    LogInfo(EOrganizationLogMessage.FinishedReadingVehicleUsageStatisticsFromThunderSkill);
-                }
-                catch
-                {
-                    LogWarn(EOrganizationLogMessage.FailedToReadVehicleUsageStatisticsFromThunderSkill);
+                    var task = Task.Factory.StartNew(() => _thunderSkillParser.Load());
+                    var timeout = EInteger.Time.MillisecondsInSecond * EInteger.Number.Thirty;
 
-                    ShowThunderSkillData = false;
+                    if (await Task.WhenAny(task, Task.Delay(timeout)) == task)
+                    {
+                        await task;
+
+                        LogInfo(EOrganizationLogMessage.FinishedReadingVehicleUsageStatisticsFromThunderSkill);
+                        return;
+                    }
+                    else
+                    {
+                        throw new TimeoutException();
+                    }
+                        
                 }
-            };
-            return Task.Factory.StartNew(loadThunderSkillVehicleUsageStatistics);
+            }
+            catch (Exception exception)
+            {
+                LogWarn(EOrganizationLogMessage.FailedToReadVehicleUsageStatisticsFromThunderSkill.FormatFluently(exception));
+
+                ShowThunderSkillData = false;
+            }
         }
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>

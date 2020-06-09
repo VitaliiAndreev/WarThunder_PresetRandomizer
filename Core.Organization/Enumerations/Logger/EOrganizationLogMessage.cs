@@ -91,7 +91,11 @@ namespace Core.Organization.Enumerations.Logger
         private static readonly string _vehicleUsageStatisticsFromThunderSkill = $" {_vehicle} {_usage} {_statistics} {_from} {_ThunderSkill}.";
         public static readonly string ReadingVehicleUsageStatisticsFromThunderSkill = $"{_Reading}{_vehicleUsageStatisticsFromThunderSkill}";
         public static readonly string FinishedReadingVehicleUsageStatisticsFromThunderSkill = $"{_Finished} {_reading}{_vehicleUsageStatisticsFromThunderSkill}";
-        public static readonly string FailedToReadVehicleUsageStatisticsFromThunderSkill = $"{_Failed} {_to} {_read}{_vehicleUsageStatisticsFromThunderSkill}{_See} {_logs} {_for} {_details}.";
+        /// <summary>
+        /// A message with formatting placeholders.
+        /// <para> 1: error message. </para>
+        /// </summary>
+        public static readonly string FailedToReadVehicleUsageStatisticsFromThunderSkill = $"{_Failed} {_to} {_read}{_vehicleUsageStatisticsFromThunderSkill}: {{0}}";
 
         public static readonly string AggregatingVehicleUsageStatistics = $"{_Aggregating} {_vehicle} {_usage} {_statistics}.";
         public static readonly string FinishedAggregatingVehicleUsageStatistics = $"{_Finished} {_aggregating} {_vehicle} {_usage} {_statistics}.";
