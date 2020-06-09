@@ -17,7 +17,7 @@
   <IncludeHeadersOnRowCopy>False</IncludeHeadersOnRowCopy>
   <ThunderSkillUrl>http://thunderskill.com/en/vehicles</ThunderSkillUrl>
   <ThunderSkillArmyStatisticsXPath>/html/body/div[3]/main/div[3]/table/tbody</ThunderSkillArmyStatisticsXPath>
-  <ThunderSkillHelicopterStatisticsXPath></ThunderSkillHelicopterStatisticsXPath>
+  <ThunderSkillHelicopterStatisticsXPath>/html/body/div[3]/main/div[5]/table/tbody</ThunderSkillHelicopterStatisticsXPath>
   <ThunderSkillAircraftStatisticsXPath>/html/body/div[3]/main/div[2]/table/tbody</ThunderSkillAircraftStatisticsXPath>
   <ThunderSkillFleetStatisticsXPath>/html/body/div[3]/main/div[4]/table/tbody</ThunderSkillFleetStatisticsXPath>
 </Settings>
