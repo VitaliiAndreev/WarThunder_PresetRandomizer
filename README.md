@@ -85,6 +85,6 @@ The following algorithms can be chosen from:
 
 ### Bonuses
 
-Releases come packaged with a tool that automates calls to Klensy's WT Tools for an one-button solution of unpacking available game data and cleaning up afterward. That's how [JSON File Changes](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges) and [JSON File Changes (Dev)](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient) repositories are maintained. The tool requires three startup arguments: the path to War Thunder, the path to Klensy's WT Tools, and the output path. There are example BAT files in the package that show how to call it.
+Releases come packaged with a tool that automates calls to Klensy's WT Tools for an one-button solution of unpacking available game data and cleaning up afterward. That's how [JSON File Changes](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges) and [JSON File Changes (Dev)](https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient) repositories are maintained. The tool requires three startup arguments: the path to War Thunder, the path to Klensy's WT Tools, and the output path. There are example BAT files in the package that show how to call it. See "Argument Reference.txt" for optional arguments.
 
 Another bonuses are utility LINQPad scripts for querying JSON, code generation, etc, as well as SQLite queries (see *Application modes*) that should work even if some tweaks might be required.
