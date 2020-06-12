@@ -11,11 +11,13 @@ using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using WarThunderSimpleUpdateChecker.Enumerations;
 
 namespace WarThunderSimpleUpdateChecker
 {
@@ -36,11 +38,14 @@ namespace WarThunderSimpleUpdateChecker
         private static string _warThunderPath;
         private static string _warThunderToolsPath;
         private static string _outputPath;
+        private static bool _proceedOnNewVersions;
 
         #endregion Fields
         #region Properties
 
         private static string OutputFilesPath => Path.Combine(_outputPath, "Files");
+        private static string TempPath => Path.Combine(_warThunderToolsPath, "Temp");
+        private static string VersionLogPath => Path.Combine(_outputPath, "versions.txt");
 
         #endregion Properties
         #region Constructors
@@ -51,34 +56,56 @@ namespace WarThunderSimpleUpdateChecker
 
         static void Main(params string[] args)
         {
-            if (args.Count() != 3)
+            if (args.Count() < 3)
             {
-                _logger.LogInfo($"The app requires 3 arguments: path to War Thunder, path to Klensy's WT Tools, output path.");
+                _logger.LogInfo($"The first 3 arguments must be: path to War Thunder, path to Klensy's WT Tools, output path. Use \"-new\" to skip unpacking if the current version is the same as the previous one.");
                 return;
             }
 
             _warThunderPath = args[0];
             _warThunderToolsPath = args[1];
             _outputPath = args[2];
+            _proceedOnNewVersions = args.Contains("-new");
 
             if (!PathsAreValid())
+            {
+                PromptUserToConfirmExit();
                 return;
+            }
 
             InitialiseSettings();
+            RemoveFilesFromDirectory(TempPath);
+
+            var versionInfoFile = GetVersionInfoFile(_warThunderPath);
+
+            var previousVersion = GetPreviousVersion();
+            var currentClientVersion = GetVersion(versionInfoFile);
+            var currentDataVersion = GetVersion(_warThunderPath, Data.FromRoot);
+            var cachePath = GetCachePath(currentClientVersion);
+            var currentCachedDataVersion = GetVersion(cachePath, Data.FromCache);
+            var currentVersion = SelectFinalVersion(currentClientVersion, currentDataVersion, currentCachedDataVersion);
+
+            if (previousVersion == currentVersion)
+            {
+                _logger.LogInfo($"The version number hasn't changed since the last unpacking session.");
+
+                if (_proceedOnNewVersions)
+                {
+                    PromptUserToConfirmExit();
+                    return;
+                }
+            }
 
             var outputFilesDirectory = new DirectoryInfo(OutputFilesPath);
 
-            RemoveFilesFromPreviousPatch(outputFilesDirectory);
+            RemoveFilesFromDirectory(outputFilesDirectory);
 
-            var versionInfoFile = GetVersionInfoFile(_warThunderPath);
-            var currentVersion = GetVersion(versionInfoFile);
-            var sourceFilesInCache = GetFilesFromCacheDirectories(currentVersion.ToString(EInteger.Number.Three));
+            var sourceFilesInCache = GetFilesFromCacheDirectory(cachePath);
             var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, sourceFilesInCache);
             var binFiles = GetBinFiles(sourceFiles);
             var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
-            var outputDirectories = DecompressFiles(binFiles, unpackingTasks);
 
-            currentVersion = SelectFinalVersion(currentVersion, GetVersionFromUnpackedFiles(outputDirectories));
+            DecompressFiles(binFiles, unpackingTasks);
 
             var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
 
@@ -87,8 +114,7 @@ namespace WarThunderSimpleUpdateChecker
 
             _logger.LogInfo($"Procedure complete.");
 
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey(true);
+            PromptUserToConfirmExit();
         }
 
         #region Methods: Initialisation
@@ -119,11 +145,58 @@ namespace WarThunderSimpleUpdateChecker
             Settings.KlensysWarThunderToolsLocation = _warThunderToolsPath;
         }
 
-        private static void RemoveFilesFromPreviousPatch(DirectoryInfo outputFilesDirectory)
+        private static void RemoveFilesFromDirectory(DirectoryInfo directory)
         {
-            _logger.LogInfo($"Removing files from the previous patch.");
+            RemoveFilesFromDirectory(directory.FullName);
+        }
+
+        private static Version GetPreviousVersion()
+        {
+            if (!string.IsNullOrWhiteSpace(VersionLogPath))
             {
-                _fileManager.EmptyDirectory(outputFilesDirectory.FullName);
+                if (!File.Exists(VersionLogPath))
+                {
+                    _logger.LogInfo($"\"{VersionLogPath}\" doesn't exist.");
+                    return null;
+                }
+
+                _logger.LogInfo($"Reading \"{VersionLogPath}\"...");
+
+                var text = File.ReadAllText(VersionLogPath).Trim();
+
+                if (text.IsEmpty())
+                {
+                    _logger.LogInfo($"\"{VersionLogPath}\" is empty.");
+                    return null;
+                }
+
+                try
+                {
+                    _logger.LogInfo($"Reading the previous version number...");
+
+                    var lines = text.Split(ECharacter.NewLine, StringSplitOptions.RemoveEmptyEntries);
+                    var versionText = lines.Last().Split(ECharacter.Minus).Last().Trim();
+                    var version = new Version(versionText);
+
+                    _logger.LogInfo($"The previous version is {version}.");
+
+                    return version;
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogInfo($"Failed to parse \"{VersionLogPath}\": {exception}");
+
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        private static void RemoveFilesFromDirectory(string path)
+        {
+            _logger.LogInfo($"Removing files from the \"{path}\".");
+            {
+                _fileManager.EmptyDirectory(path);
             }
             _logger.LogInfo($"Files removed.");
         }
@@ -153,6 +226,28 @@ namespace WarThunderSimpleUpdateChecker
             return currentVersion;
         }
 
+        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declarations.")]
+        private static Version GetVersion(string path, Data source)
+        {
+            var tempDirectory = new DirectoryInfo(TempPath);
+            var sourceFiles = GetFilesFrom(path, source);
+            var version = default(Version);
+
+            if (sourceFiles.Any())
+            {
+                var binFiles = GetBinFiles(sourceFiles.Values);
+                var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, tempDirectory);
+
+                Task.WaitAll(unpackingTasks.Values.ToArray());
+
+                version = GetVersionFromUnpackedFiles(new DirectoryInfo[] { tempDirectory });
+            }
+
+            RemoveFilesFromDirectory(TempPath);
+
+            return version;
+        }
+
         public static Version GetVersionFromUnpackedFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
         {
             _logger.LogInfo($"Reading client versions from unpacked files...");
@@ -173,31 +268,26 @@ namespace WarThunderSimpleUpdateChecker
             return latestVersion;
         }
 
-        public static Version SelectFinalVersion(Version clientVersion, Version dataVersion)
+        public static Version SelectFinalVersion(Version clientVersion, Version dataVersion, Version cachedDataVersion)
         {
-            if (dataVersion > clientVersion)
-            {
-                _logger.LogInfo($"Unpacked files have the latest version...");
-                return dataVersion;
-            }
-            else if (dataVersion < clientVersion)
-            {
-                _logger.LogInfo($"The client version is the latest...");
-            }
+            _logger.LogInfo($"Selecting the latest version from: client - {clientVersion} / root - {dataVersion} / cache - {cachedDataVersion}.");
 
-            return clientVersion;
+            var versions = new Version[] { clientVersion, dataVersion, cachedDataVersion }.Distinct();
+            var latestVersion = versions.Max();
+
+            _logger.LogInfo($"The latest version is {latestVersion}.");
+
+            return latestVersion;
         }
 
         private static void AppendCurrentClientVersion(Version version, string updateTime)
         {
             _logger.LogInfo($"Writing the version number to versions.txt...");
 
-            var pathToVersionsLog = Path.Combine(_outputPath, "versions.txt");
+            if (!File.Exists(VersionLogPath))
+                File.Create(VersionLogPath).Close();
 
-            if (!File.Exists(pathToVersionsLog))
-                File.Create(pathToVersionsLog).Close();
-
-            using (var streamWriter = File.AppendText(pathToVersionsLog))
+            using (var streamWriter = File.AppendText(VersionLogPath))
                 streamWriter.WriteLine($"{updateTime} - {version}");
 
             _logger.LogInfo($"Version history appended.");
@@ -206,24 +296,50 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Working with Game Version
         #region Methods: Selecting Files
 
-        private static IDictionary<string, FileInfo> GetFilesFromCacheDirectories(string cacheDirectorySuffix)
+        private static IDictionary<string, FileInfo> GetFilesFrom(string path, Data source)
         {
+            return source switch
+            {
+                Data.FromRoot => GetFilesFromRootDirectory(path),
+                Data.FromCache => GetFilesFromCacheDirectory(path),
+                _ => new Dictionary<string, FileInfo>(),
+            };
+        }
+
+        private static string GetCachePath(Version clientVersion)
+        {
+            _logger.LogInfo($"Looking up the cache directory.");
+
             var cacheDirectoriesPath = Settings.CacheLocation;
             var cacheDirectoriesExist = Directory.Exists(cacheDirectoriesPath);
             var cacheDirectoryPath = default(string);
 
             if (cacheDirectoriesExist)
             {
-                _logger.LogInfo($"Looking up files in \"{cacheDirectoryPath}\"...");
-
                 var cacheDirectories = Directory
-                    .GetDirectories(cacheDirectoriesPath, $"binary.{cacheDirectorySuffix}*", SearchOption.TopDirectoryOnly)
+                    .GetDirectories(cacheDirectoriesPath, $"binary.{clientVersion.ToString(EInteger.Number.Three)}*", SearchOption.TopDirectoryOnly)
                     .Select(path => new DirectoryInfo(path))
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
                 if (cacheDirectories.HasSeveral()) throw new AmbiguousMatchException("Several cache directories matching the given version have been found. The developer of this automation app would like to know about this case and resolve the collision.");
 
                 cacheDirectoryPath = cacheDirectories.First().FullName;
+
+                _logger.LogInfo($"The cache is at \"{cacheDirectoryPath}\".");
+
+                return cacheDirectoryPath;
+            }
+
+            _logger.LogInfo($"No cache directories found.");
+
+            return null;
+        }
+
+        private static IDictionary<string, FileInfo> GetFilesFromCacheDirectory(string cacheDirectoryPath)
+        {
+            if (!string.IsNullOrWhiteSpace(cacheDirectoryPath))
+            {
+                _logger.LogInfo($"Looking up files in \"{cacheDirectoryPath}\"...");
 
                 var filesInCache = Directory
                     .GetFiles(cacheDirectoryPath)
@@ -238,6 +354,24 @@ namespace WarThunderSimpleUpdateChecker
             _logger.LogInfo($"No files found in the cache.");
 
             return new Dictionary<string, FileInfo>();
+        }
+
+        private static IDictionary<string, FileInfo> GetFilesFromRootDirectory(string rootDirectoryPath)
+        {
+            var uiDirectoryPath = Path.Combine(rootDirectoryPath, "ui");
+
+            _logger.LogInfo($"Looking up files in \"{rootDirectoryPath}\"...");
+
+            var filesInRootDirectory = Directory.GetFiles(rootDirectoryPath);
+            var filesInUiDirectory = Directory.GetFiles(uiDirectoryPath);
+            var sourceFiles = filesInRootDirectory
+                .Concat(filesInUiDirectory)
+                .ToDictionary(filePath => filePath, filePath => new FileInfo(filePath))
+            ;
+
+            _logger.LogInfo($"{sourceFiles.Count()} found.");
+
+            return sourceFiles;
         }
 
         private static IEnumerable<FileInfo> GetFilesFromGameDirectories(string rootDirectoryPath, IDictionary<string, FileInfo> sourceFilesInCache)
@@ -309,30 +443,35 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Selecting Files
         #region Methods: Unpacking Files
 
-        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> sourceBinFiles, DirectoryInfo gameFileCopyDirectory)
+        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, DirectoryInfo gameFileCopyDirectory)
+        {
+            return StartCopyingAndUnpackingBinFiles(binFiles, gameFileCopyDirectory.FullName);
+        }
+
+        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, string path)
         {
             var tasks = new Dictionary<string, Task<DirectoryInfo>>();
 
-            foreach (var sourceFile in sourceBinFiles)
+            foreach (var binFile in binFiles)
             {
                 DirectoryInfo unpack()
                 {
-                    _logger.LogInfo($"Unpacking \"{sourceFile.Name}\"...");
+                    _logger.LogInfo($"Unpacking \"{binFile.Name}\"...");
 
                     var defaultTempLocation = Settings.TempLocation;
-                    Settings.TempLocation = gameFileCopyDirectory.FullName;
+                    Settings.TempLocation = path;
 
-                    var outputPath = _unpacker.Unpack(sourceFile);
+                    var outputPath = _unpacker.Unpack(binFile);
 
                     Settings.TempLocation = defaultTempLocation;
 
-                    _logger.LogInfo($"\"{sourceFile.Name}\" unpacked.");
+                    _logger.LogInfo($"\"{binFile.Name}\" unpacked.");
 
                     return new DirectoryInfo(outputPath);
                 }
                 var unpackTask = _taskFactory.StartNew(unpack);
 
-                tasks.Add($"{sourceFile.Name}", unpackTask);
+                tasks.Add($"{binFile.Name}", unpackTask);
             }
             return tasks;
         }
@@ -490,5 +629,11 @@ namespace WarThunderSimpleUpdateChecker
         }
 
         #endregion Methods: Clean-up
+
+        private static void PromptUserToConfirmExit()
+        {
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey(true);
+        }
     }
 }
