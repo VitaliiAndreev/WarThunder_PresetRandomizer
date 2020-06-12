@@ -39,6 +39,7 @@ namespace WarThunderSimpleUpdateChecker
         private static string _warThunderToolsPath;
         private static string _outputPath;
         private static bool _proceedOnNewVersions;
+        private static bool _excludeGuiFiles;
         private static bool _disablePrompts;
 
         #endregion Fields
@@ -67,6 +68,7 @@ namespace WarThunderSimpleUpdateChecker
             _warThunderToolsPath = args[1];
             _outputPath = args[2];
             _proceedOnNewVersions = args.Contains("-new");
+            _excludeGuiFiles = args.Contains("-nofrontend");
             _disablePrompts = args.Contains("-noprompt");
 
             if (!PathsAreValid())
@@ -429,11 +431,18 @@ namespace WarThunderSimpleUpdateChecker
         {
             _logger.LogInfo($"Selecting BIN files...");
 
-            var excludedBinFileNames = new string[]
+            var excludedBinFileNames = new List<string>();
+
+            if (_excludeGuiFiles)
             {
-                EFile.WarThunder.GuiParameters,
-                EFile.WarThunder.WebUiParameters,
-            };
+                var guiBinFileNames = new string[]
+                {
+                    EFile.WarThunder.GuiParameters,
+                    EFile.WarThunder.WebUiParameters,
+                };
+
+                excludedBinFileNames.AddRange(guiBinFileNames);
+            }
 
             var binFiles = files.Where(file => file.GetExtensionWithoutPeriod() == EFileExtension.Bin && !file.Name.IsIn(excludedBinFileNames));
 
@@ -606,16 +615,26 @@ namespace WarThunderSimpleUpdateChecker
         {
             _logger.LogInfo($"Looking up leftover source files...");
 
-            var unwantedFileExtensions = new string[]
+            var unwantedFileExtensions = new List<string>
             {
                 EFileExtension.Bin,
                 EFileExtension.Blk,
-                EFileExtension.Css,
-                EFileExtension.Html,
-                EFileExtension.Js,
-                EFileExtension.Nut,
-                EFileExtension.Tpl,
             };
+
+            if (_excludeGuiFiles)
+            {
+                var frontendFileExtensions = new string[]
+                {
+                    EFileExtension.Css,
+                    EFileExtension.Html,
+                    EFileExtension.Js,
+                    EFileExtension.Nut,
+                    EFileExtension.Tpl,
+                };
+
+                unwantedFileExtensions.AddRange(frontendFileExtensions);
+            }
+
             var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions), SearchOption.AllDirectories).ToList();
 
             _logger.LogInfo($"{unwantedFiles.Count()} found.");
