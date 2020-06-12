@@ -1,0 +1,8 @@
+﻿Required arguments (each in quotation marks), in that order:
+> path to War Thunder,
+> path to Klensy's WT Tools,
+> output path,
+
+Optional arguments (as is):
+> -new: if the previous version (in Versions.txt) is the same as the current one (of the client and read from root and cached data), unpacking is aborted.
+> -noprompt: no user confirmation prompts are shown at the end before closing the window, i.e. the app closes as soon as it's done.
