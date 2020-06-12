@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="Argument Reference.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Update Files %28Dev%29.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
