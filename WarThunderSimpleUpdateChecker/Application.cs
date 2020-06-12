@@ -39,6 +39,7 @@ namespace WarThunderSimpleUpdateChecker
         private static string _warThunderToolsPath;
         private static string _outputPath;
         private static bool _proceedOnNewVersions;
+        private static bool _disablePrompts;
 
         #endregion Fields
         #region Properties
@@ -66,6 +67,7 @@ namespace WarThunderSimpleUpdateChecker
             _warThunderToolsPath = args[1];
             _outputPath = args[2];
             _proceedOnNewVersions = args.Contains("-new");
+            _disablePrompts = args.Contains("-noprompt");
 
             if (!PathsAreValid())
             {
@@ -632,6 +634,9 @@ namespace WarThunderSimpleUpdateChecker
 
         private static void PromptUserToConfirmExit()
         {
+            if (_disablePrompts)
+                return;
+
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey(true);
         }
