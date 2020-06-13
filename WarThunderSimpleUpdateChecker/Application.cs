@@ -38,6 +38,7 @@ namespace WarThunderSimpleUpdateChecker
         private static string _warThunderPath;
         private static string _warThunderToolsPath;
         private static string _outputPath;
+        private static string _fileListPath;
         private static bool _proceedOnNewVersions;
         private static bool _excludeGuiFiles;
         private static bool _disablePrompts;
@@ -64,9 +65,14 @@ namespace WarThunderSimpleUpdateChecker
                 return;
             }
 
+            var fileListPathArgumentMarker = "-files=";
+
             _warThunderPath = args[0];
             _warThunderToolsPath = args[1];
             _outputPath = args[2];
+            _fileListPath = args.Where(argument => argument.StartsWith(fileListPathArgumentMarker)).FirstOrDefault() is string fileListPathArgument
+                ? fileListPathArgument.Substring(fileListPathArgumentMarker.Count())
+                : string.Empty;
             _proceedOnNewVersions = args.Contains("-new");
             _excludeGuiFiles = args.Contains("-nofrontend");
             _disablePrompts = args.Contains("-noprompt");
@@ -105,8 +111,8 @@ namespace WarThunderSimpleUpdateChecker
             RemoveFilesFromDirectory(outputFilesDirectory);
 
             var sourceFilesInCache = GetFilesFromCacheDirectory(cachePath);
-            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, sourceFilesInCache);
-            var binFiles = GetBinFiles(sourceFiles);
+            var sourceFiles = GetFilesFromGameDirectories(_warThunderPath, sourceFilesInCache).ToList();
+            var binFiles = GetBinFiles(sourceFiles).ToList();
             var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, outputFilesDirectory);
 
             DecompressFiles(binFiles, unpackingTasks);
@@ -114,7 +120,10 @@ namespace WarThunderSimpleUpdateChecker
             var mostRecentSourceFileWriteDate = GetLastWriteDate(sourceFiles);
 
             AppendCurrentClientVersion(currentVersion, mostRecentSourceFileWriteDate);
-            RemoveCopiedSourceFiles(outputFilesDirectory);
+            
+            var fileFilter = ApplyFileFilter(outputFilesDirectory).ToList();
+
+            RemoveCopiedSourceFiles(outputFilesDirectory, fileFilter);
 
             _logger.LogInfo($"Procedure complete.");
 
@@ -138,6 +147,11 @@ namespace WarThunderSimpleUpdateChecker
             if (!Directory.Exists(_warThunderToolsPath))
             {
                 _logger.LogInfo($"Specified output path doesn't exist.");
+                return false;
+            }
+            if (!File.Exists(_fileListPath))
+            {
+                _logger.LogInfo($"Specified file list path doesn't exist.");
                 return false;
             }
             return true;
@@ -617,7 +631,40 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Decompressing Files
         #region Methods: Clean-up
 
-        private static void RemoveCopiedSourceFiles(DirectoryInfo gameFileCopyDirectory)
+        private static IEnumerable<string> ApplyFileFilter(DirectoryInfo gameFileCopyDirectory)
+        {
+            var fileNames = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(_fileListPath) && File.Exists(_fileListPath))
+            {
+                _logger.LogInfo($"Reading the file name list to be filtered in...");
+
+                fileNames.AddRange(File.ReadAllLines(_fileListPath));
+
+                _logger.LogInfo($"{fileNames.Count()} found.");
+                _logger.LogInfo($"Looking up filtered out files...");
+
+                var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !file.Name.IsIn(fileNames), SearchOption.AllDirectories).ToList();
+
+                _logger.LogInfo($"{unwantedFiles.Count()} found.");
+
+                if (unwantedFiles.Any())
+                {
+                    Thread.Sleep(1000);
+
+                    _logger.LogInfo($"Deleting filtered out files...");
+
+                    for (var i = 0; i < unwantedFiles.Count(); i++)
+                        unwantedFiles[i].Delete();
+
+                    _logger.LogInfo($"Filtered out files deleted.");
+                }
+            }
+
+            return fileNames;
+        }
+
+        private static void RemoveCopiedSourceFiles(DirectoryInfo gameFileCopyDirectory, IEnumerable<string> fileNames)
         {
             _logger.LogInfo($"Looking up leftover source files...");
 
@@ -641,7 +688,10 @@ namespace WarThunderSimpleUpdateChecker
                 unwantedFileExtensions.AddRange(frontendFileExtensions);
             }
 
-            var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions), SearchOption.AllDirectories).ToList();
+            var unwantedFiles = gameFileCopyDirectory
+                .GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions) && !file.Name.IsIn(fileNames), SearchOption.AllDirectories)
+                .ToList()
+            ;
 
             _logger.LogInfo($"{unwantedFiles.Count()} found.");
 
