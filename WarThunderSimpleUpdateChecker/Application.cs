@@ -152,7 +152,7 @@ namespace WarThunderSimpleUpdateChecker
             if (!File.Exists(_fileListPath))
             {
                 _logger.LogInfo($"Specified file list path doesn't exist.");
-                return false;
+                _fileListPath = string.Empty;
             }
             return true;
         }
@@ -637,11 +637,15 @@ namespace WarThunderSimpleUpdateChecker
 
             if (!string.IsNullOrWhiteSpace(_fileListPath) && File.Exists(_fileListPath))
             {
-                _logger.LogInfo($"Reading the file name list to be filtered in...");
+                _logger.LogInfo($"Reading the file name list to be filtered in (\"{_fileListPath}\")...");
 
                 fileNames.AddRange(File.ReadAllLines(_fileListPath));
 
                 _logger.LogInfo($"{fileNames.Count()} found.");
+
+                if (fileNames.IsEmpty())
+                    return fileNames;
+
                 _logger.LogInfo($"Looking up filtered out files...");
 
                 var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !file.Name.IsIn(fileNames), SearchOption.AllDirectories).ToList();
