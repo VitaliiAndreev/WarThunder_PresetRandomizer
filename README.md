@@ -6,7 +6,10 @@ There's a YouTube playlist for related information: https://www.youtube.com/play
 
 ### Requirements
 
-In order to work **WTPR** requires an up-to-date version of the **War Thunder** client available at [Gaijin's website](https://warthunder.com/en) or [Steam](https://store.steampowered.com/app/236390/War_Thunder/), and a release of [Klensy](https://github.com/klensy/wt-tools/commits?author=klensy)'s **[WT Tools](https://github.com/klensy/wt-tools)**. Paths to both are inquired at the start of **WTPR**. Additionally, one might need to install a runtime version of [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+- **War Thunder** client available at [Gaijin's website](https://warthunder.com/en) or [Steam](https://store.steampowered.com/app/236390/War_Thunder/). **WTPR** will ask for the path.
+- A release of [Klensy](https://github.com/klensy/wt-tools/commits?author=klensy)'s **[WT Tools](https://github.com/klensy/wt-tools)**. **WTPR** will ask for the path.
+- The runtime version of [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+- **oo2core_6_win64.dll** (comes with **WTPR**) needs to be copied to the folder with WT Tools.
 
 ### Application modes
 
