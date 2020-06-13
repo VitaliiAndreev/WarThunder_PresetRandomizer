@@ -160,7 +160,7 @@ namespace WarThunderSimpleUpdateChecker
             {
                 if (!File.Exists(VersionLogPath))
                 {
-                    _logger.LogInfo($"\"{VersionLogPath}\" doesn't exist.");
+                    _logger.LogInfo($"\"{VersionLogPath}\" doesn't exist. No previous version is detected.");
                     return null;
                 }
 
@@ -240,7 +240,7 @@ namespace WarThunderSimpleUpdateChecker
             if (sourceFiles.Any())
             {
                 var binFiles = GetBinFiles(sourceFiles.Values);
-                var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, tempDirectory);
+                var unpackingTasks = StartCopyingAndUnpackingBinFiles(binFiles, tempDirectory, true);
 
                 Task.WaitAll(unpackingTasks.Values.ToArray());
 
@@ -254,7 +254,7 @@ namespace WarThunderSimpleUpdateChecker
 
         public static Version GetVersionFromUnpackedFiles(IEnumerable<DirectoryInfo> unpackedDirectories)
         {
-            _logger.LogInfo($"Reading client versions from unpacked files...");
+            _logger.LogInfo($"Reading versions from unpacked files...");
 
             var versionFiles = unpackedDirectories
                 .SelectMany(directory => directory.GetFiles("version", SearchOption.AllDirectories))
@@ -454,12 +454,12 @@ namespace WarThunderSimpleUpdateChecker
         #endregion Methods: Selecting Files
         #region Methods: Unpacking Files
 
-        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, DirectoryInfo gameFileCopyDirectory)
+        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, DirectoryInfo gameFileCopyDirectory, bool hideFileLogs = false)
         {
-            return StartCopyingAndUnpackingBinFiles(binFiles, gameFileCopyDirectory.FullName);
+            return StartCopyingAndUnpackingBinFiles(binFiles, gameFileCopyDirectory.FullName, hideFileLogs);
         }
 
-        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, string path)
+        private static IDictionary<string, Task<DirectoryInfo>> StartCopyingAndUnpackingBinFiles(IEnumerable<FileInfo> binFiles, string path, bool hideFileLogs = false)
         {
             var tasks = new Dictionary<string, Task<DirectoryInfo>>();
 
@@ -467,7 +467,10 @@ namespace WarThunderSimpleUpdateChecker
             {
                 DirectoryInfo unpack()
                 {
-                    _logger.LogInfo($"Unpacking \"{binFile.Name}\"...");
+                    if (hideFileLogs)
+                        _logger.LogDebug($"Unpacking \"{binFile.Name}\"...");
+                    else
+                        _logger.LogInfo($"Unpacking \"{binFile.Name}\"...");
 
                     var defaultTempLocation = Settings.TempLocation;
                     Settings.TempLocation = path;
@@ -476,7 +479,10 @@ namespace WarThunderSimpleUpdateChecker
 
                     Settings.TempLocation = defaultTempLocation;
 
-                    _logger.LogInfo($"\"{binFile.Name}\" unpacked.");
+                    if (hideFileLogs)
+                        _logger.LogDebug($"\"{binFile.Name}\" unpacked.");
+                    else
+                        _logger.LogInfo($"\"{binFile.Name}\" unpacked.");
 
                     return new DirectoryInfo(outputPath);
                 }
