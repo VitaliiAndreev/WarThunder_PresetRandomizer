@@ -639,14 +639,17 @@ namespace WarThunderSimpleUpdateChecker
 
             _logger.LogInfo($"{unwantedFiles.Count()} found.");
 
-            Thread.Sleep(1000);
+            if (unwantedFiles.Any())
+            {
+                Thread.Sleep(1000);
 
-            _logger.LogInfo($"Deleting leftover source files...");
+                _logger.LogInfo($"Deleting leftover source files...");
 
-            for (var i = 0; i < unwantedFiles.Count(); i++)
-                unwantedFiles[i].Delete();
+                for (var i = 0; i < unwantedFiles.Count(); i++)
+                    unwantedFiles[i].Delete();
 
-            _logger.LogInfo($"Leftover source files deleted.");
+                _logger.LogInfo($"Leftover source files deleted.");
+            }
         }
 
         #endregion Methods: Clean-up
