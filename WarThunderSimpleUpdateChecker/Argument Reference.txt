@@ -6,4 +6,5 @@
 Optional arguments (as is):
 > -new: if the previous version (in Versions.txt) is the same as the current one (of the client and read from root and cached data), unpacking is aborted.
 > -nofrontend: gui.vromfs.bin and webUi.vromfs.bin files are not unpacked; CSS, HTML, JS, NUT, TPL files are not included in the output.
+> -files="...": the path to a file list - a text file with file names separated by line breaks - to be included in the output. All other files would be deleted. It is possible to include source files normally removed as a part of clean-up.
 > -noprompt: no user confirmation prompts are shown at the end before closing the window, i.e. the app closes as soon as it's done.
