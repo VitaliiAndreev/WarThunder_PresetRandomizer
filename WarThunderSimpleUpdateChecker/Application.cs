@@ -149,7 +149,7 @@ namespace WarThunderSimpleUpdateChecker
                 _logger.LogInfo($"Specified output path doesn't exist.");
                 return false;
             }
-            if (!File.Exists(_fileListPath))
+            if (!string.IsNullOrWhiteSpace(_fileListPath) && !File.Exists(_fileListPath))
             {
                 _logger.LogInfo($"Specified file list path doesn't exist.");
                 _fileListPath = string.Empty;

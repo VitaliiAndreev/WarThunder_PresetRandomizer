@@ -1,1 +1,1 @@
-WarThunderSimpleUpdateChecker.exe "D:\Games\War Thunder (Dev)" "F:\Software\Klensy's WT Tools" "D:\Code\Source\_Repositories\WarThunderJsonFileChangesDevClient"
+WarThunderSimpleUpdateChecker.exe "D:\Games\War Thunder (Dev)" "F:\Software\Klensy's WT Tools" "D:\Code\Source\_Repositories\WarThunderJsonFileChangesDevClient" -nofrontend -new
