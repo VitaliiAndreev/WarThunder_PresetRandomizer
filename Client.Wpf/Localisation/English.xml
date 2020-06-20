@@ -67,6 +67,7 @@
   <Line key="Destroyer" value="Destroyer"/>
   <Line key="DiveBomber" value="Dive Bomber"/>
   <Line key="DominionOfCanada" value="Dominion of Canada"/>
+  <Line key="Egypt" value="Egypt"/>
   <Line key="EmpireOfJapan" value="Empire of Japan"/>
   <Line key="Error" value="Error"/>
   <Line key="ExpertCrewTrainingCost" value="Crew&#xA;Training&#xA;SL Cost&#xA;(expert)"/>
@@ -216,6 +217,7 @@
   <Line key="Thanks" value="Thanks"/>
   <Line key="ThunderSkillForData" value="ThunderSkill dev team for vehicle usage data."/>
   <Line key="TorpedoBomber" value="Torpedo Bomber"/>
+  <Line key="Turkey" value="Turkey"/>
   <Line key="Ukraine" value="Ukraine"/>
   <Line key="UnderConstruction" value="Under construction."/>
   <Line key="UnionOfSouthAfrica" value="Union of South Africa"/>

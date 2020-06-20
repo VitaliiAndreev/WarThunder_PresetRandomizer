@@ -17,6 +17,7 @@
             public const string Cuba = _prefix + "cuba" + _suffix;
             public const string CzechRepublic = "lang_czech" + _suffix;
             public const string DominionOfCanada = _prefix + "canada" + _suffix;
+            public const string Egypt = _prefix + "egypt" + _suffix;
             public const string EmpireOfJapan = _prefix + "japan" + _suffix;
             public const string Finland = _prefix + "finland" + _suffix;
             public const string France = _prefix + "france" + _suffix;
@@ -43,6 +44,7 @@
             public const string Russia = _prefix + "russia" + _suffix;
             public const string Sweden = _prefix + "sweden" + _suffix;
             public const string Thailand = _prefix + "thailand" + _suffix;
+            public const string Turkey = _prefix + "turkey" + _suffix;
             public const string Ukraine = _prefix + "ukraine" + _suffix;
             public const string UnionOfSouthAfrica = _prefix + "south_africa" + _suffix;
             public const string Usa = _prefix + "usa" + _suffix;
