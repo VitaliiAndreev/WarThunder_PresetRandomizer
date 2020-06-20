@@ -53,6 +53,7 @@
         public const string Destroyer = nameof(Destroyer);
         public const string DiveBomber = nameof(DiveBomber);
         public const string DominionOfCanada = nameof(DominionOfCanada);
+        public const string Egypt = nameof(Egypt);
         public const string EmpireOfJapan = nameof(EmpireOfJapan);
         public const string Error = nameof(Error);
         public const string ExpertCrewTrainingCost = nameof(ExpertCrewTrainingCost);
@@ -191,6 +192,7 @@
         public const string Thanks = nameof(Thanks);
         public const string ThunderSkillForData = nameof(ThunderSkillForData);
         public const string TorpedoBomber = nameof(TorpedoBomber);
+        public const string Turkey = nameof(Turkey);
         public const string Ukraine = nameof(Ukraine);
         public const string UnderConstruction = nameof(UnderConstruction);
         public const string UnionOfSouthAfrica = nameof(UnionOfSouthAfrica);
