@@ -67,6 +67,7 @@
   <Line key="Destroyer" value="Эсминец"/>
   <Line key="DiveBomber" value="Пикирующий бомбардировщик"/>
   <Line key="DominionOfCanada" value="Доминион Британской империи Канада"/>
+  <Line key="Egypt" value="Египет"/>
   <Line key="EmpireOfJapan" value="Японская империя"/>
   <Line key="Error" value="Ошибка"/>
   <Line key="ExpertCrewTrainingCost" value="Стоимость&#xA;экипажа,&#xA;серебро&#xA;(эксперт)"/>
@@ -216,6 +217,7 @@
   <Line key="Thanks" value="Благодарности"/>
   <Line key="ThunderSkillForData" value="Команде ThunderSkill за данные по использованию техники."/>
   <Line key="TorpedoBomber" value="Торпедоносец"/>
+  <Line key="Turkey" value="Турция"/>
   <Line key="Ukraine" value="Украина"/>
   <Line key="UnderConstruction" value="Ведутся работы."/>
   <Line key="UnionOfSouthAfrica" value="Южно-Африканский Союз"/>
