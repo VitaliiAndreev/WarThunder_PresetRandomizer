@@ -21,7 +21,7 @@ namespace Core.Helpers
         public FileManager(params IConfiguredLogger[] loggers)
             : base(ECoreLogCategory.FileManager, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.FileManager));
+            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.FileManager));
         }
 
         #endregion Constructors
@@ -48,29 +48,29 @@ namespace Core.Helpers
 
             if (!file.Exists)
             {
-                LogDebug(ECoreLogMessage.DoesNotExist_CopyingAborted.FormatFluently(file.FullName));
+                LogDebug(ECoreLogMessage.DoesNotExist_CopyingAborted.Format(file.FullName));
                 return;
             }
             else if (!destinationDirectory.Exists)
             {
                 if (createDirectories)
                 {
-                    LogDebug(ECoreLogMessage.Creating_InQuotes.FormatFluently(destinationDirectory.FullName));
+                    LogDebug(ECoreLogMessage.Creating_InQuotes.Format(destinationDirectory.FullName));
 
                     destinationDirectory.Create();
 
-                    LogDebug(ECoreLogMessage.Created_InQuotes.FormatFluently(destinationDirectory.FullName));
+                    LogDebug(ECoreLogMessage.Created_InQuotes.Format(destinationDirectory.FullName));
                 }
                 else
                 {
-                    LogDebug(ECoreLogMessage.DoesNotExist_CopyingSomethingAborted.ResetFormattingPlaceholders().FormatFluently(destinationDirectory.FullName, file.FullName));
+                    LogDebug(ECoreLogMessage.DoesNotExist_CopyingSomethingAborted.ResetFormattingPlaceholders().Format(destinationDirectory.FullName, file.FullName));
                     return;
                 }
             }
 
             // Copying proper.
 
-            LogDebug(ECoreLogMessage.Copying.ResetFormattingPlaceholders().FormatFluently(file.FullName, destinationDirectory.FullName));
+            LogDebug(ECoreLogMessage.Copying.ResetFormattingPlaceholders().Format(file.FullName, destinationDirectory.FullName));
 
             var filePath = Path.Combine(destinationDirectory.FullName, file.Name);
 
@@ -78,14 +78,14 @@ namespace Core.Helpers
             {
                 if (!overwrite)
                 {
-                    LogDebug(ECoreLogMessage.AlreadyExists_CopyingSkipped.FormatFluently(file.Name));
+                    LogDebug(ECoreLogMessage.AlreadyExists_CopyingSkipped.Format(file.Name));
                     return;
                 }
                 LogDebug(ECoreLogMessage.Overwriting);
             }
             file.CopyTo(filePath, overwrite);
 
-            LogDebug(ECoreLogMessage.Copied.FormatFluently(file.FullName));
+            LogDebug(ECoreLogMessage.Copied.Format(file.FullName));
         }
 
         /// <summary> Creates a backup copy of the given file, with its name appended with ".bak". </summary>
@@ -105,7 +105,7 @@ namespace Core.Helpers
         /// <param name="file"> The file to delete. </param>
         public void DeleteFileSafely(FileInfo file)
         {
-            LogTrace(ECoreLogMessage.Deleting.FormatFluently(file.Name));
+            LogTrace(ECoreLogMessage.Deleting.Format(file.Name));
 
             try
             {
@@ -114,7 +114,7 @@ namespace Core.Helpers
                 if (file.Exists)
                     file.Delete();
                 else
-                    LogTrace(ECoreLogMessage.DoesNotExist_NoNeedToDelete.FormatFluently(file.Name));
+                    LogTrace(ECoreLogMessage.DoesNotExist_NoNeedToDelete.Format(file.Name));
             }
             catch (Exception exception)
             {
@@ -136,7 +136,7 @@ namespace Core.Helpers
         /// <param name="files"> A collection of file information. </param>
         private void DeleteFiles(IEnumerable<FileInfo> files)
         {
-            LogDebug(ECoreLogMessage.DeletingFiles.FormatFluently(files.Count()));
+            LogDebug(ECoreLogMessage.DeletingFiles.Format(files.Count()));
 
             foreach (var file in files)
                 DeleteFileSafely(file);
@@ -168,18 +168,18 @@ namespace Core.Helpers
 
             if (!rootDirectory.Exists)
             {
-                LogDebug(ECoreLogMessage.DirectoryDoesNotExist_DeletingAborted.FormatFluently(rootDirectory.FullName));
+                LogDebug(ECoreLogMessage.DirectoryDoesNotExist_DeletingAborted.Format(rootDirectory.FullName));
                 return;
             }
 
             // Reading all file information.
 
-            LogDebug(ECoreLogMessage.SelectingAllFilesFromDirectory.FormatFluently(rootDirectory.FullName));
+            LogDebug(ECoreLogMessage.SelectingAllFilesFromDirectory.Format(rootDirectory.FullName));
 
             var files = rootDirectory.GetFiles();
             if (files.IsEmpty())
             {
-                LogDebug(ECoreLogMessage.DirectoryIsEmpty.FormatFluently(rootDirectory.FullName));
+                LogDebug(ECoreLogMessage.DirectoryIsEmpty.Format(rootDirectory.FullName));
 
                 if (includeNested)
                     DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
@@ -191,7 +191,7 @@ namespace Core.Helpers
 
             if (fileExtensions?.Any() ?? false)
             {
-                LogDebug(ECoreLogMessage.FilteringFilesFromSelection.FormatFluently(fileExtensions.StringJoin(", ")));
+                LogDebug(ECoreLogMessage.FilteringFilesFromSelection.Format(fileExtensions.StringJoin(", ")));
                 files = files
                     .Where
                     (
@@ -211,7 +211,7 @@ namespace Core.Helpers
 
             // Deleting files.
 
-            LogDebug(ECoreLogMessage.SelectedFileCount.FormatFluently(files.Count()));
+            LogDebug(ECoreLogMessage.SelectedFileCount.Format(files.Count()));
             DeleteFiles(files);
 
             if (includeNested)
@@ -236,7 +236,7 @@ namespace Core.Helpers
                 return;
             }
 
-            LogDebug(ECoreLogMessage.SubdirectoriesFound.FormatFluently(subdirectories.Count()));
+            LogDebug(ECoreLogMessage.SubdirectoriesFound.Format(subdirectories.Count()));
 
             for (var i = 0; i < subdirectories.Count(); i++)
             {
@@ -254,11 +254,11 @@ namespace Core.Helpers
         /// <param name="path"> The path to a directory. </param>
         public void EmptyDirectory(string path)
         {
-            LogDebug(ECoreLogMessage.EmptyingDirectory.FormatFluently(path));
+            LogDebug(ECoreLogMessage.EmptyingDirectory.Format(path));
 
             DeleteFiles(path, true, true);
 
-            LogDebug(ECoreLogMessage.DirectoryEmptied.FormatFluently(path));
+            LogDebug(ECoreLogMessage.DirectoryEmptied.Format(path));
         }
 
         /// <summary> Deletes an empty directory. It does not check whether the directory is empty or not. </summary>
@@ -267,15 +267,15 @@ namespace Core.Helpers
         {
             if (Directory.Exists(path))
             {
-                LogDebug(ECoreLogMessage.DeletingEmptyDirectory.FormatFluently(path));
+                LogDebug(ECoreLogMessage.DeletingEmptyDirectory.Format(path));
 
                 Directory.Delete(path);
 
-                LogDebug(ECoreLogMessage.Deleted.FormatFluently(path));
+                LogDebug(ECoreLogMessage.Deleted.Format(path));
             }
             else
             {
-                LogDebug(ECoreLogMessage.DoesNotExist_NoNeedToDelete.FormatFluently(path));
+                LogDebug(ECoreLogMessage.DoesNotExist_NoNeedToDelete.Format(path));
             }
         }
 

@@ -39,7 +39,7 @@ namespace Core.DataBase.Helpers
                 }
                 default:
                 {
-                    throw new ArgumentException(EDatabaseLogMessage.DataRepositoryTypeNotSupported.FormatFluently(repositoryType));
+                    throw new ArgumentException(EDatabaseLogMessage.DataRepositoryTypeNotSupported.Format(repositoryType));
                 }
             }
         }

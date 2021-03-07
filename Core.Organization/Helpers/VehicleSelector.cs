@@ -34,7 +34,7 @@ namespace Core.Organization.Helpers
         {
             _randomiser = randomiser;
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.VehicleSelector));
+            LogDebug(ECoreLogMessage.Created.Format(EOrganizationLogCategory.VehicleSelector));
         }
 
         #endregion Constructors

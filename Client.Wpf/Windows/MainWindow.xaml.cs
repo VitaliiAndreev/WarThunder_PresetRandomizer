@@ -246,7 +246,7 @@ namespace Client.Wpf.Windows
                     toggleColumn.Toggle(new NationCountryPair(nation, nation.GetAllCountriesItem()).CastTo<U>(), toggleAllOn);
 
                 else
-                    throw new NotImplementedException(EWpfClientLogMessage.TagTypeNotSupportedYet.FormatFluently(toggleButtonTagType.ToStringLikeCode()));
+                    throw new NotImplementedException(EWpfClientLogMessage.TagTypeNotSupportedYet.Format(toggleButtonTagType.ToStringLikeCode()));
             }
         }
 

@@ -222,7 +222,7 @@ namespace Core.DataBase.WarThunder.Objects
                     }
                     default:
                     {
-                        throw new NotImplementedException(EDatabaseWarThunderLogMessage.NeedMoreSubclassSlots.FormatFluently(Vehicle.GaijinId));
+                        throw new NotImplementedException(EDatabaseWarThunderLogMessage.NeedMoreSubclassSlots.Format(Vehicle.GaijinId));
                     }
                 }
             }

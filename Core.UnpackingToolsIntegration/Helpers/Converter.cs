@@ -20,7 +20,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Converter(params IConfiguredLogger[] loggers)
             : base(EUnpackingToolsIntegrationLogCategory.Converter, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EUnpackingToolsIntegrationLogCategory.Converter));
+            LogDebug(ECoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Converter));
         }
 
         #endregion Constructors

@@ -30,7 +30,7 @@ namespace Core.Csv.WarThunder.Helpers
         public CsvDeserializer(params IConfiguredLogger[] loggers)
             : base(ECsvLogCategory.CsvDeserializer, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECsvLogCategory.CsvDeserializer));
+            LogDebug(ECoreLogMessage.Created.Format(ECsvLogCategory.CsvDeserializer));
         }
 
         #endregion Constructors

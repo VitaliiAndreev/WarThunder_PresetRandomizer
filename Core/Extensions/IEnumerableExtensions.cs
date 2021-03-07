@@ -171,7 +171,7 @@ namespace Core.Extensions
             var type = typeof(T);
 
             if (!type.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.Name));
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.Name));
 
             if (type.GetEnumerationItems<T>().Count() != tests.Count())
                 throw new NotImplementedException(cancellationMessage);

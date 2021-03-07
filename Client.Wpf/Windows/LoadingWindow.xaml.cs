@@ -102,7 +102,7 @@ namespace Client.Wpf.Windows
 
             if (!closeImmediately)
             {
-                _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ReadyWithCountDown).FormatFluently(secondsBeforeAutoClosure);
+                _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ReadyWithCountDown).Format(secondsBeforeAutoClosure);
 
                 await Task.Delay(secondsBeforeAutoClosure * EInteger.Time.MillisecondsInSecond);
             }

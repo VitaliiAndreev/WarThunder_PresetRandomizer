@@ -88,7 +88,7 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         public virtual IEnumerable<T> Query<T>(Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
-            LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).FormatFluently(typeof(T).Name));
+            LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).Format(typeof(T).Name));
             var cachedQuery = default(IEnumerable<T>);
 
             lock (_lock)
@@ -98,7 +98,7 @@ namespace Core.DataBase.Helpers
                 if (!(filter is null))
                 {
                     query = filter(query);
-                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.Format(query.Expression.ToString()));
                 }
 
                 cachedQuery = query.ToList();
@@ -107,10 +107,10 @@ namespace Core.DataBase.Helpers
             foreach (var instance in cachedQuery)
             {
                 InitializeNonPersistentFields(instance);
-                LogTrace(EDatabaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
+                LogTrace(EDatabaseLogMessage.InstantiatedFromQuery.Format(instance.ToString()));
             }
 
-            LogDebug(EDatabaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            LogDebug(EDatabaseLogMessage.QueryReturnedObjects.Format(cachedQuery.Count()));
             return cachedQuery;
         }
 
@@ -174,7 +174,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDatabaseLogMessage.TheInMemoryDataRepository));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheInMemoryDataRepository));
 
             if (IsClosed)
             {

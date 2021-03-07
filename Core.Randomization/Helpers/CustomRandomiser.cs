@@ -30,7 +30,7 @@ namespace Core.Randomization.Helpers
         {
             _generator = new Random();
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ERandomizerLogCategory.Randomiser));
+            LogDebug(ECoreLogMessage.Created.Format(ERandomizerLogCategory.Randomiser));
         }
 
         #endregion Constructors
@@ -56,7 +56,7 @@ namespace Core.Randomization.Helpers
                     var defaultEnumerationItem = itemType.GetEnumerationItems<T>().FirstOrDefault(item => item.ToString() == EWord.None);
 
                     if (defaultEnumerationItem is null)
-                        throw new Exception(ECoreLogMessage.EnumerationHasNoDefaultItem.FormatFluently(itemType.ToStringLikeCode()));
+                        throw new Exception(ECoreLogMessage.EnumerationHasNoDefaultItem.Format(itemType.ToStringLikeCode()));
 
                     return defaultEnumerationItem;
                 }

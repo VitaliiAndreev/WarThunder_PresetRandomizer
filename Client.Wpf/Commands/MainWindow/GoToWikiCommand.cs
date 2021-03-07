@@ -27,7 +27,7 @@ namespace Client.Wpf.Commands.MainWindow
             if (parameter is IMainWindowPresenter presenter && presenter.ReferencedVehicle is IVehicle vehicle)
             {
                 var language = WpfSettings.LocalizationLanguage;
-                var link = EApplicationData.LinkToOfficialWikiSearch.FormatFluently
+                var link = EApplicationData.LinkToOfficialWikiSearch.Format
                 (
                     GetDomain(language),
                     GetVehicleName(vehicle, language)

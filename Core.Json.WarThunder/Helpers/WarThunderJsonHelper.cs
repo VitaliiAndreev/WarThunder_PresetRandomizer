@@ -278,7 +278,7 @@ namespace Core.Json.Helpers
                 else if (jsonProperty.Value is JObject jsonObject)
                     branch.Columns.Add(DeserializeResearchTreeColumn(jsonObject, EInteger.Number.One));
                 else
-                    throw new JsonDeserializationException(EJsonWarThunderLogMessage.BranchIsEmpty.FormatFluently(branch.GaijinId));
+                    throw new JsonDeserializationException(EJsonWarThunderLogMessage.BranchIsEmpty.Format(branch.GaijinId));
 
                 branches.Add(branch);
             }

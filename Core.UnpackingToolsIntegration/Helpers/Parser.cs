@@ -22,7 +22,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Parser(params IConfiguredLogger[] loggers)
             : base(EUnpackingToolsIntegrationLogCategory.Parser, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EUnpackingToolsIntegrationLogCategory.Parser));
+            LogDebug(ECoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Parser));
         }
 
         #endregion Constructors
@@ -81,7 +81,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 throw;
             }
 
-            LogDebug(EUnpackingToolsIntegrationLogMessage.ClientVersionIs.FormatFluently(version.ToString(4)));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.ClientVersionIs.Format(version.ToString(4)));
             return version;
         }
     }

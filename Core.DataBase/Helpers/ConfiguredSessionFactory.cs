@@ -69,7 +69,7 @@ namespace Core.DataBase.Helpers
 
             LogDebug
             (
-                EDatabaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().FormatFluently
+                EDatabaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().Format
                 (
                     DataBaseFileName,
                     _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont.ToLower()} ",
@@ -144,7 +144,7 @@ namespace Core.DataBase.Helpers
             }
 
             new SchemaExport(configuration).Create(false, true);
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EWord.Schema));
+            LogDebug(ECoreLogMessage.Created.Format(EWord.Schema));
         }
 
         #endregion Methods: Creation and Configuration
@@ -169,7 +169,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDatabaseLogMessage.TheSessionFactoryFor.FormatFluently(DataBaseFileName)));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheSessionFactoryFor.Format(DataBaseFileName)));
 
             if (_disposed)
             {
@@ -181,7 +181,7 @@ namespace Core.DataBase.Helpers
             {
                 if (_sessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.FormatFluently(EDatabaseLogMessage.TheSessionFactory));
+                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.Format(EDatabaseLogMessage.TheSessionFactory));
                     return;
                 }
 

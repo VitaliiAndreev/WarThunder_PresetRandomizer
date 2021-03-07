@@ -68,12 +68,12 @@ namespace Client.Console
 
                     while (!settingsManager.WarThunderLocationIsValid())
                     {
-                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.WarThunder));
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.Format(EApplicationName.WarThunder));
                         settingsManager.Save(nameof(Settings.WarThunderLocation), System.Console.ReadLine());
                     }
                     while (!settingsManager.KlensysWarThunderToolLocationIsValid())
                     {
-                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.FormatFluently(EApplicationName.KlensysWarThunderTools));
+                        System.Console.Write(EConsoleUiLogMessage.SelectValidLocation.Format(EApplicationName.KlensysWarThunderTools));
                         settingsManager.Save(nameof(Settings.KlensysWarThunderToolsLocation), System.Console.ReadLine());
                     }
                     System.Console.WriteLine();

@@ -62,7 +62,7 @@ namespace Core.Helpers.Logger
         /// <summary> Logs intantiation of this logger. It is done here so that the event of intantiation could be logged by any logger. </summary>
         /// <param name="logger"> The logger to log with. </param>
         public void LogInstantiation(IConfiguredLogger logger) =>
-            logger.LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.FormatFluently(_logger.Name));
+            logger.LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.Format(_logger.Name));
 
         /// <summary> A wrapper around <see cref="ILoggerBase.Log(LogLevel, string, Exception)"/> that forms a customized message string before logging it. </summary>
         /// <param name="level"> A log level. </param>
@@ -70,7 +70,7 @@ namespace Core.Helpers.Logger
         /// <param name="message"> A message to supplement the log with. </param>
         /// <param name="exception"> An exception whose data to log. </param>
         private void CreateLog(LogLevel level, string category, string message, Exception exception = null) =>
-            _logger.Log(level, _messageFormat.FormatFluently(category, message, exception == null ? null : ExceptionFormatter.GetFormattedException(exception)));
+            _logger.Log(level, _messageFormat.Format(category, message, exception == null ? null : ExceptionFormatter.GetFormattedException(exception)));
 
         /// <summary> Creates a log entry of the "Trace" level. </summary>
         /// <param name="category"> The category of the event being logged. </param>

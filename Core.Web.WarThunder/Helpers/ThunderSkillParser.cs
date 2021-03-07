@@ -40,7 +40,7 @@ namespace Core.Web.WarThunder.Helpers
             IsLoaded = false;
 
             SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EWebWarThunderLogCategory.ThunderSkillParser));
+            LogDebug(ECoreLogMessage.Created.Format(EWebWarThunderLogCategory.ThunderSkillParser));
         }
 
         #endregion Constructors
@@ -54,11 +54,11 @@ namespace Core.Web.WarThunder.Helpers
 
             var url = Settings.ThunderSkillUrl;
 
-            LogDebug(ECoreLogMessage.Reading.FormatFluently(url));
+            LogDebug(ECoreLogMessage.Reading.Format(url));
             {
                 _mainHtmlNode = GetHtmlDocumentNode(url);
             }
-            LogDebug(ECoreLogMessage.FinishedReading.FormatFluently(url));
+            LogDebug(ECoreLogMessage.FinishedReading.Format(url));
 
             IsLoaded = true;
         }

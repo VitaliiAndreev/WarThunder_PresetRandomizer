@@ -56,7 +56,7 @@ namespace Core.DataBase.Helpers
         {
             LogDebug
             (
-                EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().FormatFluently
+                EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().Format
                 (
                     $"{dataBaseFileName}.{EFileExtension.SqLite3}",
                     overwriteExistingDataBase ? string.Empty : $"{EWord.Dont.ToLower()} ",
@@ -102,7 +102,7 @@ namespace Core.DataBase.Helpers
         /// <returns></returns>
         protected IEnumerable<T> Query<T>(ISession session, Func<IQueryable<T>, IQueryable<T>> filter = null) where T : IPersistentObject
         {
-            LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).FormatFluently(typeof(T).Name));
+            LogDebug((filter is null ? EDatabaseLogMessage.QueryingAllObjects : EDatabaseLogMessage.QueryingObjectsWithFilter).Format(typeof(T).Name));
 
             var cachedQuery = default(IEnumerable<T>);
 
@@ -113,7 +113,7 @@ namespace Core.DataBase.Helpers
                 if (!(filter is null))
                 {
                     query = filter(query);
-                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.FormatFluently(query.Expression.ToString()));
+                    LogDebug(EDatabaseLogMessage.FilteredQueryIs.Format(query.Expression.ToString()));
                 }
 
                 cachedQuery = query.ToList();
@@ -122,10 +122,10 @@ namespace Core.DataBase.Helpers
             foreach (var instance in cachedQuery)
             {
                 InitializeNonPersistentFields(instance);
-                LogTrace(EDatabaseLogMessage.InstantiatedFromQuery.FormatFluently(instance.ToString()));
+                LogTrace(EDatabaseLogMessage.InstantiatedFromQuery.Format(instance.ToString()));
             }
 
-            LogDebug(EDatabaseLogMessage.QueryReturnedObjects.FormatFluently(cachedQuery.Count()));
+            LogDebug(EDatabaseLogMessage.QueryReturnedObjects.Format(cachedQuery.Count()));
             return cachedQuery;
         }
 
@@ -166,7 +166,7 @@ namespace Core.DataBase.Helpers
         /// <param name="instance"> The object instance to create/update. </param>
         protected void CommitChanges(ISession session, IPersistentObject instance)
         {
-            LogDebug(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
+            LogDebug(EDatabaseLogMessage.CommittingChangesTo.Format(instance.ToString()));
 
             lock (_lock)
             {
@@ -200,7 +200,7 @@ namespace Core.DataBase.Helpers
         {
             var newObjects = NewObjects.ToList();
 
-            LogDebug(EDatabaseLogMessage.PersistingNewObjects.FormatFluently(newObjects.Count()));
+            LogDebug(EDatabaseLogMessage.PersistingNewObjects.Format(newObjects.Count()));
 
             lock (_lock)
             {
@@ -208,7 +208,7 @@ namespace Core.DataBase.Helpers
                 {
                     foreach (var instance in newObjects)
                     {
-                        LogTrace(EDatabaseLogMessage.CommittingChangesTo.FormatFluently(instance.ToString()));
+                        LogTrace(EDatabaseLogMessage.CommittingChangesTo.Format(instance.ToString()));
                         session.Save(instance);
                     }
                     transaction.Commit();
@@ -264,7 +264,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.FormatFluently(EDatabaseLogMessage.TheDataRepositoryFor.FormatFluently(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
+            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheDataRepositoryFor.Format(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
 
             if (IsClosed)
             {

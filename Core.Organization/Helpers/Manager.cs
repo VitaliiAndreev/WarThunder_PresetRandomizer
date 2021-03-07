@@ -179,7 +179,7 @@ namespace Core.Organization.Helpers
             ShowThunderSkillData = true;
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.Manager));
+            LogDebug(ECoreLogMessage.Created.Format(EOrganizationLogCategory.Manager));
         }
 
         #endregion Constructors
@@ -374,7 +374,7 @@ namespace Core.Organization.Helpers
             }
             else if (_latestAvailableDatabaseVersion is null || !_gameClientVersionString.IsIn(_latestAvailableDatabaseVersion.ToString()))
             {
-                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.FormatFluently(_gameClientVersionString));
+                LogInfo(EOrganizationLogMessage.NotFoundDatabaseFor.Format(_gameClientVersionString));
                 _generateNewDatabase = true;
             }
             else
@@ -411,7 +411,7 @@ namespace Core.Organization.Helpers
                 _latestAvailableDatabaseVersion = availableDatabaseVersions.Max();
 
                 if (databaseIsUsed)
-                    LogInfo(EOrganizationLogMessage.FoundDatabaseFor.FormatFluently(_latestAvailableDatabaseVersion));
+                    LogInfo(EOrganizationLogMessage.FoundDatabaseFor.Format(_latestAvailableDatabaseVersion));
 
                 if (!_generateDatabase)
                     _generateNewDatabase = false;
@@ -479,7 +479,7 @@ namespace Core.Organization.Helpers
             }
             catch (Exception exception)
             {
-                LogWarn(EOrganizationLogMessage.FailedToReadVehicleUsageStatisticsFromThunderSkill.FormatFluently(exception));
+                LogWarn(EOrganizationLogMessage.FailedToReadVehicleUsageStatisticsFromThunderSkill.Format(exception));
 
                 ShowThunderSkillData = false;
             }
@@ -545,7 +545,7 @@ namespace Core.Organization.Helpers
             {
                 if (_gameClientVersion is null)
                 {
-                    LogWarn(ECoreLogMessage.MemberNotInitialisedProperly.FormatFluently(nameof(_gameClientVersion)));
+                    LogWarn(ECoreLogMessage.MemberNotInitialisedProperly.Format(nameof(_gameClientVersion)));
 
                     return null;
                 }
@@ -557,7 +557,7 @@ namespace Core.Organization.Helpers
                 if (cacheDirectories.Any())
                 {
                     if (cacheDirectories.HasSeveral())
-                        throw new AmbiguousMatchException(EOrganizationLogMessage.SeveralCacheDirectoriesFound.FormatFluently(cacheDirectories.Select(directory => $"\"{directory.Name}\"").StringJoin(ESeparator.CommaAndSpace)));
+                        throw new AmbiguousMatchException(EOrganizationLogMessage.SeveralCacheDirectoriesFound.Format(cacheDirectories.Select(directory => $"\"{directory.Name}\"").StringJoin(ESeparator.CommaAndSpace)));
 
                     return cacheDirectories.First();
                 }
@@ -712,7 +712,7 @@ namespace Core.Organization.Helpers
             if (vehicle.IsInternal)
                 return false;
 
-            LogTrace(EOrganizationLogMessage.AttachingImageToVehicle.FormatFluently(vehicle.GaijinId));
+            LogTrace(EOrganizationLogMessage.AttachingImageToVehicle.Format(vehicle.GaijinId));
 
             bool tryToSetIcon(string gaijinId)
             {
@@ -730,9 +730,9 @@ namespace Core.Organization.Helpers
                 : tryToSetIcon(inheritedGaijinId);
 
             if (imageLocated)
-                LogTrace(EOrganizationLogMessage.ImageLocatedAndAttachedToVehicle.FormatFluently(vehicle.GaijinId));
+                LogTrace(EOrganizationLogMessage.ImageLocatedAndAttachedToVehicle.Format(vehicle.GaijinId));
             else
-                LogWarn(EOrganizationLogMessage.ImageNotFoundForVehicle.FormatFluently(vehicle.GaijinId));
+                LogWarn(EOrganizationLogMessage.ImageNotFoundForVehicle.Format(vehicle.GaijinId));
 
             return imageLocated;
         }

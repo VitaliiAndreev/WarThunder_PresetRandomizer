@@ -229,7 +229,7 @@ namespace Client.Wpf.Controls
             DisplayText
             (
                 ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.NoVehiclesAvailableWithinSpecifiedParameters)
-                    .FormatFluently(ApplicationHelpers.LocalisationManager.GetLocalisedString(mainBranch.ToString()), ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()))
+                    .Format(ApplicationHelpers.LocalisationManager.GetLocalisedString(mainBranch.ToString()), ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()))
             );
 
         /// <summary> Displays the specified preset. </summary>
