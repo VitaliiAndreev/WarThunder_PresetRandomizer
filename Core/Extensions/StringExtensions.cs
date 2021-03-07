@@ -62,7 +62,7 @@ namespace Core.Extensions
         /// <param name="sourceString"> A source string. </param>
         /// <param name="arguments"> An array of objects whose string representations to insert into the source string. </param>
         /// <returns></returns>
-        public static string FormatFluently(this string sourceString, params object[] arguments) =>
+        public static string Format(this string sourceString, params object[] arguments) =>
             string.Format(sourceString, arguments);
 
         #region Parsing
@@ -96,7 +96,7 @@ namespace Core.Extensions
             }
             else
             {
-                throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T)));
+                throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T)));
             }
         }
 

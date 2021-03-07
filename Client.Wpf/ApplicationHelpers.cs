@@ -102,7 +102,7 @@ namespace Client.Wpf
 
             Log = CreateActiveLogger(EWpfClientLogCategory.ApplicationHelpers);
 
-            Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Loggers));
+            Log.Debug(ECoreLogMessage.InstanceInitialised.Format(EWord.Loggers));
             _loggersInitialised = true;
         }
 
@@ -118,11 +118,11 @@ namespace Client.Wpf
             if (_helpersInitialised)
                 return;
 
-            Log.Debug(ECoreLogMessage.InitialisingInstance.FormatFluently(EWord.Helpers.ToLower()));
+            Log.Debug(ECoreLogMessage.InitialisingInstance.Format(EWord.Helpers.ToLower()));
 
             InitialiseHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
-            Log.Debug(ECoreLogMessage.InstanceInitialised.FormatFluently(EWord.Helpers));
+            Log.Debug(ECoreLogMessage.InstanceInitialised.Format(EWord.Helpers));
             _helpersInitialised = true;
         }
 
@@ -190,7 +190,7 @@ namespace Client.Wpf
         {
             try
             {
-                Log.Debug(ECoreLogMessage.TryingToInitialise.FormatFluently(ELocalisationLogCategory.LocalisationManager));
+                Log.Debug(ECoreLogMessage.TryingToInitialise.Format(ELocalisationLogCategory.LocalisationManager));
                 LocalisationManager = new LocalisationManager(FileReader, WpfSettings.Localization, Loggers);
             }
             catch (FileNotFoundException exception)

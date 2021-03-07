@@ -63,7 +63,7 @@ namespace Client.Wpf.Windows
 
             Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationNameAbbreviated);
 
-            _version.Text = _version.Text.FormatFluently(ApplicationHelpers.LocalisationManager.GetLocalisedString(EApplicationData.DevelopmentStageLocalizationKey));
+            _version.Text = _version.Text.Format(ApplicationHelpers.LocalisationManager.GetLocalisedString(EApplicationData.DevelopmentStageLocalizationKey));
             _thanks.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Thanks);
             _gaijin.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.GaijinEntertainmentForWarThunder);
             _klensy.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.KlensyForWtTools);

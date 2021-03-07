@@ -23,7 +23,7 @@ namespace Core.Web.Helpers
         public HtmlParser(params IConfiguredLogger[] loggers)
             : base(EWebLogCategory.HtmlParser, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EWebLogCategory.HtmlParser));
+            LogDebug(ECoreLogMessage.Created.Format(EWebLogCategory.HtmlParser));
         }
 
         #endregion Constructors
@@ -31,7 +31,7 @@ namespace Core.Web.Helpers
         public HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = EInteger.Number.One, Exception internalException = null)
         {
             if (retryAttempts.IsZero())
-                throw new TimeoutException(EWebLogMessage.FailedToRead.FormatFluently(url), internalException);
+                throw new TimeoutException(EWebLogMessage.FailedToRead.Format(url), internalException);
 
             try
             {

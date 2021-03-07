@@ -29,7 +29,7 @@ namespace Core.Helpers.Logger
 
             var lines = new List<string>()
             {
-                $"{ECharacter.NewLine}{_formattedExceptionMessage.FormatFluently(exception.GetType(), exception.Message.Flatten())}",
+                $"{ECharacter.NewLine}{_formattedExceptionMessage.Format(exception.GetType(), exception.Message.Flatten())}",
                 GetFormattedStackTrace(exception),
                 GetFormattedInnerExceptions(exception),
             };
@@ -50,7 +50,7 @@ namespace Core.Helpers.Logger
 
             while (innerException != null)
             {
-                lines.Add(_formattedExceptionMessage.FormatFluently(innerException.GetType(), innerException.Message.Flatten()));
+                lines.Add(_formattedExceptionMessage.Format(innerException.GetType(), innerException.Message.Flatten()));
                 lines.Add(GetFormattedStackTrace(innerException));
 
                 innerException = innerException.InnerException;

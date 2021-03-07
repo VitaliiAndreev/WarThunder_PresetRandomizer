@@ -118,10 +118,10 @@ namespace Client.Wpf.Windows
             Title = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationName);
 
             _warThunderLocationControl.Localize();
-            _warThunderLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).FormatFluently(EApplicationName.WarThunder);
+            _warThunderLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).Format(EApplicationName.WarThunder);
 
             _klensysWarThunderToolsLocationControl.Localize();
-            _klensysWarThunderToolsLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).FormatFluently(EApplicationName.KlensysWarThunderTools);
+            _klensysWarThunderToolsLocationControl.LabelText = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Location).Format(EApplicationName.KlensysWarThunderTools);
 
             _cancelButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Cancel);
             _okButton.Content = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Ok);

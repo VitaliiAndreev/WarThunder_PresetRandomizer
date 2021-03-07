@@ -57,7 +57,7 @@ namespace Core.Organization.Helpers
             _randomiser = randomiser;
             _vehicleSelector = vehicleSelector;
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EOrganizationLogCategory.PresetGenerator));
+            LogDebug(ECoreLogMessage.Created.Format(EOrganizationLogCategory.PresetGenerator));
         }
 
         #endregion Constructors
@@ -79,7 +79,7 @@ namespace Core.Organization.Helpers
             if (filteredVehicles is null || filteredVehicles.IsEmpty())
             {
                 if (!suppressLogging)
-                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validItems.StringJoin(ESeparator.CommaAndSpace)));
+                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validItems.StringJoin(ESeparator.CommaAndSpace)));
 
                 return null;
             }
@@ -232,7 +232,7 @@ namespace Core.Organization.Helpers
                     .StringJoin(ESeparator.VerticalBarAndSpace)
                 ;
 
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(parameterString));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(parameterString));
                 return null;
             }
 
@@ -254,11 +254,11 @@ namespace Core.Organization.Helpers
         {
             var mainBranch = _randomiser.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)), ERandomisationStep.MainBranchWhenSelectingByCategories);
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(mainBranch));
+            LogDebug(ECoreLogMessage.Selected.Format(mainBranch));
 
             if (mainBranch == EBranch.None)
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(availableBranches.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableBranches.StringJoin(ESeparator.CommaAndSpace)));
                 return EBranch.None;
             }
             return mainBranch;
@@ -275,14 +275,14 @@ namespace Core.Organization.Helpers
 
             if (nationSpecificationsWithValidBranches.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.FormatFluently(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(ESeparator.CommaAndSpace), mainBranch));
+                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.Format(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(ESeparator.CommaAndSpace), mainBranch));
                 return null;
             }
 
             var nationSpecification = _randomiser.GetRandom(nationSpecificationsWithValidBranches.Where(nationSpecification => nationSpecification.Nation.IsIn(availableNations)));
 
             if (nationSpecification is null)
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(availableNations.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableNations.StringJoin(ESeparator.CommaAndSpace)));
 
             return nationSpecification;
         }
@@ -294,7 +294,7 @@ namespace Core.Organization.Helpers
         {
             var nation = nationSpecification.Nation;
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(nation));
+            LogDebug(ECoreLogMessage.Selected.Format(nation));
 
             return nation;
         }
@@ -311,7 +311,7 @@ namespace Core.Organization.Helpers
 
             if (validBranches.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.FormatFluently(validBranches.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validBranches.StringJoin(ESeparator.CommaAndSpace)));
                 return null;
             }
             return validBranches;
@@ -333,7 +333,7 @@ namespace Core.Organization.Helpers
                 var minimumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Min());
                 var maximumBattleRating = getFormattedBattleRating(enabledEconomicRanks.Max());
 
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings.FormatFluently(minimumBattleRating, maximumBattleRating, mainBranch, nation));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableForSelectedBattleRatings.Format(minimumBattleRating, maximumBattleRating, mainBranch, nation));
                 return null;
             }
             return validEconomicRanks;
@@ -347,7 +347,7 @@ namespace Core.Organization.Helpers
         {
             var battleRating = Calculator.GetBattleRating(economicRank);
 
-            LogDebug(ECoreLogMessage.Selected.FormatFluently(getFormattedBattleRating(economicRank)));
+            LogDebug(ECoreLogMessage.Selected.Format(getFormattedBattleRating(economicRank)));
 
             return battleRating;
         }
@@ -800,7 +800,7 @@ namespace Core.Organization.Helpers
 
             if (!(mainVehicle.EconomicRank.AsDictionary()[gameMode] is int economicRank))
             {
-                LogWarn(EOrganizationLogMessage.NoEconomiRankSetForVehicleInGameMode.FormatFluently(mainVehicle.GaijinId));
+                LogWarn(EOrganizationLogMessage.NoEconomiRankSetForVehicleInGameMode.Format(mainVehicle.GaijinId));
                 return null;
             }
             var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);

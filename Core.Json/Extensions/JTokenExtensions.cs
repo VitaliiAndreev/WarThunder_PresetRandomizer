@@ -35,10 +35,10 @@ namespace Core.Json.Extensions
         public static T GetAsValueOf<T>(this JToken jsonToken)
         {
             if (!(jsonToken is JValue jsonValue))
-                throw new ArgumentException(EJsonLogMessage.JsonTokenDoesntContainJasonValue.FormatFluently(jsonToken.ToString()));
+                throw new ArgumentException(EJsonLogMessage.JsonTokenDoesntContainJasonValue.Format(jsonToken.ToString()));
 
             if (!(jsonValue is T value))
-                throw new ArgumentException(EJsonLogMessage.JsonValueCouldNotBeConverted.FormatFluently(jsonValue.ToString(), typeof(T).Name));
+                throw new ArgumentException(EJsonLogMessage.JsonValueCouldNotBeConverted.Format(jsonValue.ToString(), typeof(T).Name));
 
             return value;
         }

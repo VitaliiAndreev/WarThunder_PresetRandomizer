@@ -60,7 +60,7 @@ namespace Core.Helpers
             SettingsFileStatus = ESettingsFileStatus.Pending;
             Initialize();
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.SettingsManager));
+            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.SettingsManager));
         }
 
         #endregion Constructors
@@ -78,11 +78,11 @@ namespace Core.Helpers
         {
             if (!_settingsFile.Exists)
             {
-                LogInfo(ECoreLogMessage.SettingsFileNotFound_CreatingNewOne.FormatFluently(_settingsFile.Name));
+                LogInfo(ECoreLogMessage.SettingsFileNotFound_CreatingNewOne.Format(_settingsFile.Name));
 
                 GenerateSettingsFile();
 
-                LogInfo(ECoreLogMessage.Created.FormatFluently(EWord.File));
+                LogInfo(ECoreLogMessage.Created.Format(EWord.File));
                 SettingsFileStatus = ESettingsFileStatus.NotFoundAndGenerated;
             }
             _settings.ReplaceBy(GetSettingsFromFile());
@@ -212,10 +212,10 @@ namespace Core.Helpers
             var document = ReadFile();
             var rootElement = document.DocumentElement;
 
-            var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.FormatFluently(settingName));
+            var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.Format(settingName));
 
             if (oldNode is null)
-                throw new XmlException(ECoreLogMessage.XmlNodeNotFound.FormatFluently(settingName));
+                throw new XmlException(ECoreLogMessage.XmlNodeNotFound.Format(settingName));
 
             oldNode.InnerText = newValue;
 
@@ -229,7 +229,7 @@ namespace Core.Helpers
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitialisedProperly.FormatFluently(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
+                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitialisedProperly.Format(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
         }
     }
 }

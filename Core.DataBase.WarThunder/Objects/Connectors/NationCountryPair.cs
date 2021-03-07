@@ -26,7 +26,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
             var strings = nationCountryString.Split(ECharacter.Underscore, StringSplitOptions.RemoveEmptyEntries);
 
             if (strings.Count() != EInteger.Number.Two)
-                throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.FormatFluently(nationCountryString));
+                throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.Format(nationCountryString));
 
             Initialise(strings.First(), strings.Last());
         }

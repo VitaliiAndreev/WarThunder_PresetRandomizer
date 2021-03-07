@@ -65,13 +65,13 @@ namespace Core.Extensions
             var genericType = typeof(T);
 
             if (!genericType.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(genericType.ToStringLikeCode()));
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(genericType.ToStringLikeCode()));
 
             if (!type.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.ToStringLikeCode()));
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
 
             if (genericType != type)
-                throw new ArgumentException(ECoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.FormatFluently(genericType, type));
+                throw new ArgumentException(ECoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.Format(genericType, type));
 
             var enumerationItems = type.GetEnumValues().Cast<T>();
 

@@ -24,7 +24,7 @@ namespace Core.Json.Helpers
         public JsonHelper(params IConfiguredLogger[] loggers)
             : base(EJsonLogCategory.JsonHelper, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(EJsonLogCategory.JsonHelper));
+            LogDebug(ECoreLogMessage.Created.Format(EJsonLogCategory.JsonHelper));
         }
 
         #endregion Constructors
@@ -68,7 +68,7 @@ namespace Core.Json.Helpers
         /// <returns></returns>
         public T DeserializeObject<T>(string jsonText, bool suppressStandardization = false)
         {
-            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoObject.ResetFormattingPlaceholders().Format(jsonText.Count(), typeof(T).Name));
             var deserializedInstance = default(T);
 
             try
@@ -94,7 +94,7 @@ namespace Core.Json.Helpers
         /// <returns> A collection of object instances. </returns>
         public virtual IDictionary<string, T> DeserializeDictionary<T>(string jsonText)
         {
-            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().FormatFluently(jsonText.Count(), typeof(T).Name));
+            LogDebug(EJsonLogMessage.TryingToDeserializeJsonStringIntoCollection.ResetFormattingPlaceholders().Format(jsonText.Count(), typeof(T).Name));
             var deserializedInstances = new Dictionary<string, T>();
 
             try
@@ -119,7 +119,7 @@ namespace Core.Json.Helpers
                 LogAndRethrow(exception);
             }
 
-            LogDebug(EJsonLogMessage.InstancesDeserialized.FormatFluently(deserializedInstances.Count()));
+            LogDebug(EJsonLogMessage.InstancesDeserialized.Format(deserializedInstances.Count()));
             return deserializedInstances;
         }
 

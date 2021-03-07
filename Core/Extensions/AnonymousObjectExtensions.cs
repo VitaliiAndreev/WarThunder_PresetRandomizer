@@ -14,7 +14,7 @@ namespace Core.Extensions
         public static TObject Set<TObject, TProperty>(this TObject instance, MemberInfo property, TProperty newValue) where TObject : class
         {
             var backingFieldNames = _backingFieldFormats
-                .Select(format => format.FormatFluently(property.Name))
+                .Select(format => format.Format(property.Name))
                 .ToList()
             ;
             var backingField = typeof(TObject)

@@ -43,7 +43,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
             : base(ECoreLogCategory.Unpacker, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ECoreLogCategory.Unpacker));
+            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.Unpacker));
 
             _fileManager = fileManager;
             _toolFileNames = new Dictionary<string, string>
@@ -102,14 +102,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             if (_toolFileNames.TryGetValue(fileExtension.ToLower().Skip(EInteger.Number.One).StringJoin(), out var toolFileName))
             {
-                LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.FormatFluently(toolFileName));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.Format(toolFileName));
                 return toolFileName;
             }
             else
             {
                 LogErrorAndThrow<FileExtensionNotSupportedException>
                 (
-                    EUnpackingToolsIntegrationLogMessage.FileExtensionNotSupportedByUnpackingTools.FormatFluently(fileExtension),
+                    EUnpackingToolsIntegrationLogMessage.FileExtensionNotSupportedByUnpackingTools.Format(fileExtension),
                     EUnpackingToolsIntegrationLogMessage.ErrorMatchingUnpakingToolToFileExtension
                 );
                 return null;
@@ -142,7 +142,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 }
                 default:
                 {
-                    throw new NotImplementedException(EUnpackingToolsIntegrationLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.FormatFluently(file.Extension));
+                    throw new NotImplementedException(EUnpackingToolsIntegrationLogMessage.OutputPathGenerationForFileExtensionNotYetImplemented.Format(file.Extension));
                 }
             }
             return outputPath;
@@ -158,7 +158,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             // Preparing temp files.
 
-            LogDebug(EUnpackingToolsIntegrationLogMessage.PreparingToUnpack.FormatFluently(sourceFile.FullName));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.PreparingToUnpack.Format(sourceFile.FullName));
 
             _fileManager.CopyFile(sourceFile.FullName, Settings.TempLocation, overwrite, true);
 
@@ -167,14 +167,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             // Unpacking proper.
 
-            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.FormatFluently(tempFile.Name));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.Format(tempFile.Name));
 
             try
             {
                 RunShellCommand(toolFile.FullName, tempFile.FullName);
                 var outputPath = GetOutputPath(tempFile);
 
-                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.FormatFluently(tempFile.Name));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.Format(tempFile.Name));
                 return outputPath;
             }
             catch (Exception exception)
@@ -189,12 +189,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="toolName"> The name of the unpacking tool to use. </param>
         public void Unpack(DirectoryInfo sourceDirectory, string toolName)
         {
-            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.FormatFluently(sourceDirectory.FullName));
+            LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacking.Format(sourceDirectory.FullName));
 
             try
             {
                 RunShellCommand(GetToolFileInfo(toolName).FullName, sourceDirectory.FullName);
-                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.FormatFluently(sourceDirectory.Name));
+                LogDebug(EUnpackingToolsIntegrationLogMessage.Unpacked.Format(sourceDirectory.Name));
             }
             catch (Exception exception)
             {

@@ -55,11 +55,11 @@ namespace Core.Extensions
                 if (enumerationValueType == typeof(int))
                     return source.CastTo<int>() > EInteger.Number.Zero;
                 else
-                    throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(enumerationValueType.ToStringLikeCode()));
+                    throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(enumerationValueType.ToStringLikeCode()));
             }
             else
             {
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.FormatFluently(type.ToStringLikeCode()));
+                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
             }
         }
 
@@ -75,7 +75,7 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer + 1).CastTo<T>(),
-                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T).FullName)),
+                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
             };
         }
 
@@ -88,7 +88,7 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer - 1).CastTo<T>(),
-                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.FormatFluently(typeof(T).FullName)),
+                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
             };
         }
 

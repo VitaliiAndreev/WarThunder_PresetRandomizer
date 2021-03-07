@@ -42,7 +42,7 @@ namespace Core.DataBase.Objects
         #endregion Constructors
         #region Methods: Initialization
 
-        protected void LogCreation() => LogTrace(ECoreLogMessage.Created.FormatFluently(ToString()));
+        protected void LogCreation() => LogTrace(ECoreLogMessage.Created.Format(ToString()));
 
         /// <summary> Sets the <see cref="_logCategory"/> for the object. </summary>
         protected void SetLogCategory() => _logCategory = GetType().ToStringLikeCode();
@@ -218,7 +218,7 @@ namespace Core.DataBase.Objects
         /// <summary> Commit changes to the current persistent object (persist if the object is transient) using the <see cref="IDataRepository"/> provided with the object's constructor. </summary>
         public virtual void CommitChanges()
         {
-            LogDebug(EDatabaseLogMessage.PreparingToCommitChangesTo.FormatFluently(ToString()));
+            LogDebug(EDatabaseLogMessage.PreparingToCommitChangesTo.Format(ToString()));
 
             if (_dataRepository.IsClosed)
             {

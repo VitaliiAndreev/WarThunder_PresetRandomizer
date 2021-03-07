@@ -37,11 +37,11 @@ namespace Core.Localization.Helpers
             var localizationFile = new FileInfo(Path.Combine(EWord.Localisation, $"{localizationFileName}{ECharacter.Period}{EFileExtension.Xml}"));
 
             if (!localizationFile.Exists)
-                throw new FileNotFoundException(ECoreLogMessage.NotFound.FormatFluently(localizationFile.FullName));
+                throw new FileNotFoundException(ECoreLogMessage.NotFound.Format(localizationFile.FullName));
 
             _localisation = LoadLocalisation(localizationFile);
 
-            LogDebug(ECoreLogMessage.Created.FormatFluently(ELocalisationLogCategory.LocalisationManager));
+            LogDebug(ECoreLogMessage.Created.Format(ELocalisationLogCategory.LocalisationManager));
         }
 
         #endregion Constructors
@@ -77,7 +77,7 @@ namespace Core.Localization.Helpers
                 return _localisation[key];
 
             if (!suppressWarnings)
-                LogWarn(ELocalisationLogMessage.LocalisationKeyNotFound.FormatFluently(key));
+                LogWarn(ELocalisationLogMessage.LocalisationKeyNotFound.Format(key));
 
             return key;
         }
