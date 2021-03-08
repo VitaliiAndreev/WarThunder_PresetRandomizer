@@ -17,7 +17,6 @@ namespace Core.Organization.Helpers
         #region Fields
 
         private readonly IDictionary<BranchSet, IDictionary<EBranch, int>> _mainBranchOccurrences;
-
         private readonly IDictionary<BranchSet, IDictionary<EBranch, int>> _mainBranchWeights;
 
         #endregion Fields

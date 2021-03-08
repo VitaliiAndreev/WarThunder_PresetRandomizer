@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Core.DataBase.WarThunder.Enumerations
+﻿namespace Core.DataBase.WarThunder.Enumerations
 {
     public enum EBranch
     {
