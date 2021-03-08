@@ -12,7 +12,6 @@
             public const string Austria = _prefix + "austria" + _suffix;
             public const string Bangladesh = _prefix + "bangladesh" + _suffix;
             public const string Belgium = _prefix + "belgium" + _suffix;
-            public const string GreatBritain = _prefix + "britain" + _suffix;
             public const string BritishEmpire = _prefix + "britain_empire_navy" + _suffix;
             public const string Bulgaria = _prefix + "bulgaria" + _suffix;
             public const string Canada = _prefix + "canada_modern" + _suffix;
@@ -27,11 +26,12 @@
             public const string Gdr = _prefix + "gdr" + _suffix;
             public const string GermanEmpire = _prefix + "germany_empire_navy" + _suffix;
             public const string Germany = _prefix + "germany_modern" + _suffix;
+            public const string GreatBritain = _prefix + "britain" + _suffix;
             public const string Greece = _prefix + "greece" + _suffix;
             public const string Hungary = _prefix + "hungary" + _suffix;
             public const string Iraq = _prefix + "iraq" + _suffix;
             public const string Israel = _prefix + "israel" + _suffix;
-            public const string Italy = _prefix + "italy" + _suffix;
+            public const string Italy = _prefix + "italy_modern" + _suffix;
             public const string Japan = _prefix + "japan_modern" + _suffix;
             public const string KingdomOfItaly = _prefix + "italy_kingdom" + _suffix;
             public const string NaziGermany = _prefix + "germany" + _suffix;

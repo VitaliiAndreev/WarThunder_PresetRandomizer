@@ -241,7 +241,7 @@ namespace Core.DataBase.WarThunder.Objects
         }
 
         #endregion Constructors
-        #region Methods: Initialization
+        #region Methods: Initialisation
 
         /// <summary> Initializes game mode parameter sets. </summary>
         public virtual void InitializeGameModeParameterSets()
@@ -285,7 +285,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> Initializes the <see cref="Class"/> based on <paramref name="deserializedTags"/>. Order of conditions is important because vehicles may have overlapping tags. </summary>
         /// <param name="deserializedTags"> An instance of deserialized vehicle tags. </param>
-        private void InitializeClass(VehicleTagsDeserializedFromJson deserializedTags)
+        private void InitialiseClass(VehicleTagsDeserializedFromJson deserializedTags)
         {
             if (deserializedTags.IsLightTank)
                 Class = EVehicleClass.LightTank;
@@ -363,7 +363,7 @@ namespace Core.DataBase.WarThunder.Objects
 
             if (deserializedVehicleData.Tags is VehicleTagsDeserializedFromJson tags)
             {
-                InitializeClass(tags);
+                InitialiseClass(tags);
 
                 Subclasses = new VehicleSubclasses(_dataRepository, this, tags);
                 Branch = Class.GetBranch();
@@ -456,7 +456,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         #endregion Methods: Initialization Helpers
 
-        #endregion Methods: Initialization
+        #endregion Methods: Initialisation
         #region Methods: Overrides
 
         /// <summary> Returns all persistent objects nested in the instance. This method requires overriding implementation to function. </summary>
