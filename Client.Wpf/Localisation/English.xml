@@ -32,8 +32,10 @@
   <Line key="Attacker" value="Attacker"/>
   <Line key="AttackHelicopter" value="Attack Helicopter"/>
   <Line key="Australia" value="Australia"/>
+  <Line key="Austria" value="Austria"/>
   <Line key="AvailableInStorePacks" value="Available in store packs"/>
   <Line key="Aviation" value="Aviation"/>
+  <Line key="Bangladesh" value="Bangladesh"/>
   <Line key="Barge" value="Barge"/>
   <Line key="BattleRating" value="Battle Rating"/>
   <Line key="BattleRatingInArcade" value="BR&#xA;A."/>
@@ -49,6 +51,7 @@
   <Line key="Boat" value="Boat"/>
   <Line key="Bomber" value="Bomber"/>
   <Line key="Branch" value="Branch"/>
+  <Line key="BritishEmpire" value="British Empire"/>
   <Line key="Bulgaria" value="Bulgaria"/>
   <Line key="Canada" value="Canada"/>
   <Line key="Cancel" value="Cancel"/>
@@ -86,6 +89,7 @@
   <Line key="GaijinIdLite" value="Gaijin&#xA;ID"/>
   <Line key="Gdr" value="GDR"/>
   <Line key="GeneratePreset" value="Generate a preset"/>
+  <Line key="GermanEmpire" value="German Empire"/>
   <Line key="Germany" value="Germany"/>
   <Line key="GiftedToNewPlayersForSelectingTheirFirstBranch" value="Gifted&#xA;to New&#xA;Players"/>
   <Line key="GoToWiki" value="Open the wiki"/>
@@ -183,6 +187,7 @@
   <Line key="Requires" value="Requires"/>
   <Line key="Romania" value="Romania"/>
   <Line key="Russia" value="Russia"/>
+  <Line key="RussianEmpire" value="Russian Empire"/>
   <Line key="Scout" value="Scout"/>
   <Line key="ScrapGeneratedPresets" value="Scrap generated presets (the button with a recycle icon on the top panel)."/>
   <Line key="SeeLogsForDetails" value="See the latest file in the &quot;Logs&quot; folder for details."/>
@@ -211,6 +216,7 @@
   <Line key="Subclass2" value="Subclass 2"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Swap primary and fallback presets."/>
   <Line key="Sweden" value="Sweden"/>
+  <Line key="Syria" value="Syria"/>
   <Line key="Tag1" value="Tag 1"/>
   <Line key="Tag2" value="Tag 2"/>
   <Line key="Tag3" value="Tag 3"/>
@@ -242,6 +248,7 @@
   <Line key="VehiclesByNationsAndCountries" value="Vehicles by Nations and Countries"/>
   <Line key="VehiclesBySubclassesAndNations" value="Vehicles by Subclasses and Nations"/>
   <Line key="VehiclesByTagsAndNations" value="Vehicles by Tags and Nations"/>
+  <Line key="Vietnam" value="Vietnam"/>
   <Line key="Wheeled" value="Wheeled"/>
   <Line key="Yugoslavia" value="Yugoslavia"/>
   <Line key="YummigumForIconSweets2" value="Yummigum for &quot;IconSweets 2&quot;."/>

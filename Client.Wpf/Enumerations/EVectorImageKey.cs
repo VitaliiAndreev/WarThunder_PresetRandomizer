@@ -9,8 +9,11 @@
 
             public const string Argentina = _prefix + "argentina" + _suffix;
             public const string Australia = _prefix + "australia" + _suffix;
+            public const string Austria = _prefix + "austria" + _suffix;
+            public const string Bangladesh = _prefix + "bangladesh" + _suffix;
             public const string Belgium = _prefix + "belgium" + _suffix;
             public const string GreatBritain = _prefix + "britain" + _suffix;
+            public const string BritishEmpire = _prefix + "britain_empire_navy" + _suffix;
             public const string Bulgaria = _prefix + "bulgaria" + _suffix;
             public const string Canada = _prefix + "canada_modern" + _suffix;
             public const string China = _prefix + "china" + _suffix;
@@ -22,6 +25,7 @@
             public const string Finland = _prefix + "finland" + _suffix;
             public const string France = _prefix + "france" + _suffix;
             public const string Gdr = _prefix + "gdr" + _suffix;
+            public const string GermanEmpire = _prefix + "germany_empire_navy" + _suffix;
             public const string Germany = _prefix + "germany_modern" + _suffix;
             public const string Greece = _prefix + "greece" + _suffix;
             public const string Hungary = _prefix + "hungary" + _suffix;
@@ -42,7 +46,9 @@
             public const string RepublicOfSouthAfrica = _prefix + "south_africa_modern" + _suffix;
             public const string Romania = _prefix + "romania" + _suffix;
             public const string Russia = _prefix + "russia" + _suffix;
+            public const string RussianEmpire = _prefix + "russia_empire_navy" + _suffix;
             public const string Sweden = _prefix + "sweden" + _suffix;
+            public const string Syria = _prefix + "syria" + _suffix;
             public const string Thailand = _prefix + "thailand" + _suffix;
             public const string Turkey = _prefix + "turkey" + _suffix;
             public const string Ukraine = _prefix + "ukraine" + _suffix;
