@@ -311,7 +311,9 @@ namespace Core.Json.Helpers
             {
                 var columnIndex = columns.Count() + EInteger.Number.One;
                 var column = DeserializeResearchTreeColumn(jsonToken, columnIndex);
-                columns.Add(column);
+
+                if (column.Cells.Any())
+                    columns.Add(column);
             }
             return columns;
         }
