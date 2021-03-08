@@ -54,11 +54,18 @@ namespace Core.Web.WarThunder.Helpers
 
             var url = Settings.ThunderSkillUrl;
 
-            LogDebug(ECoreLogMessage.Reading.Format(url));
+            if (string.IsNullOrWhiteSpace(url))
             {
-                _mainHtmlNode = GetHtmlDocumentNode(url);
+                LogWarn("ThunderSkill (TS) URL is empty. Makes sure to copy TS related settings from the default \"Client.Wpf.Settings.xml\".");
             }
-            LogDebug(ECoreLogMessage.FinishedReading.Format(url));
+            else
+            {
+                LogDebug(ECoreLogMessage.Reading.Format(url));
+                {
+                    _mainHtmlNode = GetHtmlDocumentNode(url);
+                }
+                LogDebug(ECoreLogMessage.FinishedReading.Format(url));
+            }
 
             IsLoaded = true;
         }
@@ -90,7 +97,7 @@ namespace Core.Web.WarThunder.Helpers
             if (string.IsNullOrWhiteSpace(tableXPath))
                 return vehicleUsageRecords;
 
-            var table = _mainHtmlNode.SelectSingleNode(tableXPath);
+            var table = _mainHtmlNode?.SelectSingleNode(tableXPath);
 
             if (table is HtmlNode)
             {

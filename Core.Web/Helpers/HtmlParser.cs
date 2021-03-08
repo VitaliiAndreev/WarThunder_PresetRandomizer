@@ -33,6 +33,9 @@ namespace Core.Web.Helpers
             if (retryAttempts.IsZero())
                 throw new TimeoutException(EWebLogMessage.FailedToRead.Format(url), internalException);
 
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException($"\"{nameof(url)}\" is null or empty.");
+
             try
             {
                 return new HtmlWeb()
