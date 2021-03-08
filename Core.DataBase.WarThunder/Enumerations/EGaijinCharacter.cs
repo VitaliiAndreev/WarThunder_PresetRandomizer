@@ -29,6 +29,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char FrenchRoundel = '▄';
         public const char FrigatePip = '␌';
         public const char GermanCross = '▀';
+        public const char Globe = '╫';
         public const char GroundAirSea = '⌉';
         public const char HeavyBoatPip = '␊';
         public const char HeavyCruiserPip = '␏';
