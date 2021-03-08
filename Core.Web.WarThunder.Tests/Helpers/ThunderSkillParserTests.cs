@@ -35,7 +35,7 @@ namespace Core.Web.WarThunder.Tests.Helpers
             var armyUsageRecords = parser.GetVehicleUsage(EBranch.Army);
             var helicopterUsageRecords = parser.GetVehicleUsage(EBranch.Helicopters);
             var aircraftUsageRecords = parser.GetVehicleUsage(EBranch.Aviation);
-            var fleetUsageRecords = parser.GetVehicleUsage(EBranch.Fleet);
+            var fleetUsageRecords = parser.GetVehicleUsage(EBranch.AllFleet);
 
             // assert
             armyUsageRecords.Should().NotBeEmpty();

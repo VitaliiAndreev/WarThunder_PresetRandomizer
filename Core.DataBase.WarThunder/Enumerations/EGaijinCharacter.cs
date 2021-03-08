@@ -12,6 +12,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char BargePip = '␋';
         public const char Battleship = '┚';
         public const char Binoculars = '⌂';
+        public const char Boat = '⋛';
         public const char BoatPip = '␉';
         public const char BomberPip = '┠';
         public const char BritishRoundel = '▄';
@@ -36,6 +37,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char MediumTankPip = '┬';
         public const char Officer = '╵';
         public const char Premium = '╞';
+        public const char Propeller = '⋞';
         public const char Research = '▉';
         public const char RisingSun = '▅';
         public const char SandClock = '▫';

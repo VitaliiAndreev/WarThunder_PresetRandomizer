@@ -158,38 +158,40 @@ namespace Core.DataBase.WarThunder.Enumerations
         public static IDictionary<ECountry, IEnumerable<ENation>> NationsByCountry { get; }
 
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
-        public static IDictionary<EBranch, string> BranchesFromEnumeration { get; } = new Dictionary<EBranch, string>
+        public static IDictionary<EVehicleCategory, string> CategoriesFromEnumeration { get; } = new Dictionary<EVehicleCategory, string>
         {
-            { EBranch.Army, "tank" },
-            { EBranch.Aviation, "aircraft" },
-            { EBranch.Fleet, "ship" },
-            { EBranch.Helicopters, "helicopter" },
+            { EVehicleCategory.Army, "tank" },
+            { EVehicleCategory.Aviation, "aircraft" },
+            { EVehicleCategory.Fleet, "ship" },
+            { EVehicleCategory.Helicopters, "helicopter" },
         };
 
         /// <summary> The map of the military branch enumeration onto corresponding database values. </summary>
-        public static IDictionary<string, EBranch> BranchesFromString { get; } = new Dictionary<string, EBranch>
+        public static IDictionary<string, EVehicleCategory> CategoriesFromString { get; } = new Dictionary<string, EVehicleCategory>
         {
-            { "tank", EBranch.Army },
-            { "aircraft", EBranch.Aviation },
-            { "ship", EBranch.Fleet },
-            { "helicopter", EBranch.Helicopters },
+            { "tank", EVehicleCategory.Army },
+            { "aircraft", EVehicleCategory.Aviation },
+            { "ship", EVehicleCategory.Fleet },
+            { "helicopter", EVehicleCategory.Helicopters },
         };
 
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EBranch, char> BranchIcons { get; } = new Dictionary<EBranch, char>
         {
             { EBranch.Army, EGaijinCharacter.TankFront },
-            { EBranch.Aviation, EGaijinCharacter.FighterDiagonal },
-            { EBranch.Fleet, EGaijinCharacter.Battleship },
             { EBranch.Helicopters, EGaijinCharacter.AttackHelicopter },
+            { EBranch.Aviation, EGaijinCharacter.FighterDiagonal },
+            { EBranch.BluewaterFleet, EGaijinCharacter.Battleship },
+            { EBranch.CoastalFleet, EGaijinCharacter.Boat },
         };
 
         public static IDictionary<EBranch, char> SmallerBranchIcons { get; } = new Dictionary<EBranch, char>
         {
             { EBranch.Army, EGaijinCharacter.TankFacingLeft },
             { EBranch.Aviation, EGaijinCharacter.FighterStraight },
-            { EBranch.Fleet, EGaijinCharacter.Anchor },
             { EBranch.Helicopters, EGaijinCharacter.AttackHelicopter },
+            { EBranch.BluewaterFleet, EGaijinCharacter.Anchor },
+            { EBranch.CoastalFleet, EGaijinCharacter.Propeller },
         };
 
         /// <summary> Vehicle branch special character icons. </summary>

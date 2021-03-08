@@ -139,6 +139,7 @@
         protected const string _can = _c + _an;
         protected const string _cant = _can + "'" + _t;
         protected const string _cancelled = _can + _cell + _ed;
+        protected const string _cast = _c + _as + _t;
         protected const string _cat = _c + _at;
         protected const string _cell = _c + _el + _l;
         protected const string _cept = _c + _e + _p + _t;
@@ -287,6 +288,7 @@
         protected const string _empty = _e + _m + _p + _t + _y;
         protected const string _Emptying = _E + _m + _p + _t + _y + _ing;
         protected const string _enabled = _e + _n + _able + _d;
+        protected const string _Enum = _E + _n + _um;
         protected const string _enumeration = _e + _n + _um + _be + _r + _at + _ion;
         protected const string _Error = _E + _r + _r + _or;
         protected const string _error = _e + _r + _r + _or;
@@ -855,6 +857,7 @@
         protected const string _unpacking = _un + _pack + _ing;
         protected const string _Untagged = _Un + _tagged;
         protected const string _up = _u + _p;
+        protected const string _upcast = _up + _cast;
         protected const string _urn = _u + _r + _n;
         protected const string _us = _u + _s;
         protected const string _usage = _us + _age;

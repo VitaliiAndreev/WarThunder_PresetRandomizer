@@ -187,8 +187,8 @@ namespace Core.IntegrationTests
                     // association
                     vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Nation?.GaijinId)).Should().BeTrue();
                     vehicleCollection.All(vehicle => vehicle.Nation?.AsEnumerationItem.IsValid() ?? false).Should().BeTrue();
-                    vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Branch?.GaijinId)).Should().BeTrue();
-                    vehicleCollection.All(vehicle => vehicle.Branch?.AsEnumerationItem.IsValid() ?? false).Should().BeTrue();
+                    vehicleCollection.All(vehicle => !string.IsNullOrWhiteSpace(vehicle.Category?.GaijinId)).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.Category?.AsEnumerationItem.IsValid() ?? false).Should().BeTrue();
 
                     // crew
                     vehicleCollection.Any(vehicle => vehicle.CrewData is null).Should().BeFalse();
@@ -293,8 +293,8 @@ namespace Core.IntegrationTests
                     vehiclesWithResearchTreeData.Any(vehicle => !string.IsNullOrEmpty(vehicle.ResearchTreeData.HideCondition)).Should().BeTrue();
                     vehiclesWithResearchTreeData.Any(vehicle => vehicle.ResearchTreeData.MarketplaceId.HasValue).Should().BeTrue();
 
-                    vehicleCollection.Any(vehicle => vehicle.Branch.AsEnumerationItem == EBranch.Aviation && vehicle.AircraftTags.IsHydroplane).Should().BeTrue();
-                    vehicleCollection.Any(vehicle => vehicle.Branch.AsEnumerationItem == EBranch.Army && vehicle.GroundVehicleTags.CanScout).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.Branch == EBranch.Aviation && vehicle.AircraftTags.IsHydroplane).Should().BeTrue();
+                    vehicleCollection.Any(vehicle => vehicle.Branch == EBranch.Army && vehicle.GroundVehicleTags.CanScout).Should().BeTrue();
                 }
 
                 var vehiclesBeforePersistence = _jsonHelper.DeserializeList<Vehicle>(dataRepository, wpCostJsonText).ToDictionary(vehicle => vehicle.GaijinId, vehicle => vehicle as IVehicle);

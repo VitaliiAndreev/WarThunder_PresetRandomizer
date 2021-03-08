@@ -47,7 +47,7 @@ namespace Core.Organization.Collections
             MainBranch = mainBranch;
             EconomicRank = economicRank;
             BattleRating = battleRating;
-            Branches = this.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
+            Branches = this.Select(vehicle => vehicle.Branch).Distinct();
         }
 
         #endregion Constructors

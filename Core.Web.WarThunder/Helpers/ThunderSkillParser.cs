@@ -76,7 +76,7 @@ namespace Core.Web.WarThunder.Helpers
                     return GetVehicleUsage(_helicopterTableXPath);
                 case EBranch.Aviation:
                     return GetVehicleUsage(_aircraftTableXPath);
-                case EBranch.Fleet:
+                case EBranch.AllFleet:
                     return GetVehicleUsage(_fleetTableXPath);
                 default:
                     return new Dictionary<string, VehicleUsage>();

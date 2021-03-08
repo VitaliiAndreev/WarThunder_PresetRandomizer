@@ -49,6 +49,9 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, TypeType = typeof(EnumStringType<ECountry>))]
         public virtual ECountry Country { get; protected set; }
 
+        [Property(NotNull = true, TypeType = typeof(EnumStringType<EBranch>))]
+        public virtual EBranch Branch { get; protected set; }
+
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
         [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleClass>))]
         public virtual EVehicleClass Class { get; protected internal set; }
@@ -109,7 +112,7 @@ namespace Core.DataBase.WarThunder.Objects
 
         /// <summary> The vehicle's branch. </summary>
         [ManyToOne(0, Column = ETable.Branch + "_" + EColumn.Id, ClassType = typeof(Branch), NotNull = true, Lazy = Laziness.Proxy)]
-        [Key(1)] public virtual IBranch Branch { get; protected internal set; }
+        [Key(1)] public virtual IBranch Category { get; protected internal set; }
 
         /// <summary> The vehicle's subclasses. </summary>
         [OneToOne(ClassType = typeof(VehicleSubclasses), PropertyRef = nameof(VehicleSubclasses.Vehicle), Lazy = Laziness.Proxy)]
@@ -178,10 +181,10 @@ namespace Core.DataBase.WarThunder.Objects
         {
             get
             {
-                if (Branch?.AsEnumerationItem == EBranch.Army)
+                if (Category?.AsEnumerationItem == EVehicleCategory.Army)
                     return GroundVehicleTags?.All;
 
-                else if (Branch?.AsEnumerationItem == EBranch.Aviation)
+                else if (Category?.AsEnumerationItem == EVehicleCategory.Aviation)
                     return AircraftTags?.All;
 
                 return new List<EVehicleBranchTag>();
@@ -353,7 +356,7 @@ namespace Core.DataBase.WarThunder.Objects
 
             lock (_dataRepository.TransactionalLock)
             {
-                Branch = _dataRepository.GetNewObjects<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
+                Category = _dataRepository.GetNewObjects<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
                 ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
                 ?? new Branch(_dataRepository, branchIdAppended, Nation);
             }
@@ -363,12 +366,17 @@ namespace Core.DataBase.WarThunder.Objects
                 InitializeClass(tags);
 
                 Subclasses = new VehicleSubclasses(_dataRepository, this, tags);
-                
-                if (Branch.AsEnumerationItem == EBranch.Aviation)
+                Branch = Class.GetBranch();
+
+                if (Category.AsEnumerationItem == EVehicleCategory.Aviation)
                     AircraftTags = new AircraftTags(_dataRepository, this, tags);
 
-                if (Branch.AsEnumerationItem == EBranch.Army)
+                if (Category.AsEnumerationItem == EVehicleCategory.Army)
                     GroundVehicleTags = new GroundVehicleTags(_dataRepository, this, tags, PerformanceData);
+            }
+            else
+            {
+                LogWarn($"Missing a unit tags entry for {GaijinId}.");
             }
         }
 
@@ -458,7 +466,7 @@ namespace Core.DataBase.WarThunder.Objects
             var nestedObjects = new List<IPersistentObject>()
             {
                 Nation,
-                Branch,
+                Category,
                 Subclasses,
                 AircraftTags,
                 GroundVehicleTags,

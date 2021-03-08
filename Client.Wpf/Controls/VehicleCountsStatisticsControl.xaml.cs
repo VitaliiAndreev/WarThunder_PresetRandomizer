@@ -177,9 +177,9 @@ namespace Client.Wpf.Controls
                     vehicle.AddInto(availabilityNationVehicleCounts[new NationAvailablityPair(vehicle.Nation.AsEnumerationItem, availabilityCategory)]);
 
                 vehicle.AddInto(nationCountryVehicleCounts[new NationCountryPair(vehicle.Nation.AsEnumerationItem, vehicle.Country)]);
-                vehicle.AddInto(nationBranchVehicleCounts[new NationBranchPair(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem)]);
-                vehicle.AddInto(countryBranchVehicleCounts[new BranchCountryPair(vehicle.Branch.AsEnumerationItem, vehicle.Country)]);
-                vehicle.AddInto(branchClassVehicleCounts[new BranchClassPair(vehicle.Branch.AsEnumerationItem, vehicle.Class)]);
+                vehicle.AddInto(nationBranchVehicleCounts[new NationBranchPair(vehicle.Nation.AsEnumerationItem, vehicle.Branch)]);
+                vehicle.AddInto(countryBranchVehicleCounts[new BranchCountryPair(vehicle.Branch, vehicle.Country)]);
+                vehicle.AddInto(branchClassVehicleCounts[new BranchClassPair(vehicle.Branch, vehicle.Class)]);
                 vehicle.AddInto(countryClassVehicleCounts[new NationClassPair(vehicle.Nation.AsEnumerationItem, vehicle.Class)]);
 
                 foreach (var tag in vehicle.Tags)

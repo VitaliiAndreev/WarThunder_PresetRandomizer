@@ -45,6 +45,7 @@
   <Line key="Belgium" value="Belgium"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
   <Line key="Beta" value="Beta"/>
+  <Line key="BluewaterFleet" value="Bluewater Fleet"/>
   <Line key="Boat" value="Boat"/>
   <Line key="Bomber" value="Bomber"/>
   <Line key="Branch" value="Branch"/>
@@ -57,6 +58,7 @@
   <Line key="Class" value="Class"/>
   <Line key="ClickOnCategoryOnVehicleCountsTab" value="Click on any category on the &quot;Vehicle Counts&quot; tab."/>
   <Line key="ClickOnCategoryToOpenList" value="Click on any of the categories to open an associated vehicle list. Hover over icons/flags for a clarifying tooltip."/>
+  <Line key="CoastalFleet" value="Coastal Fleet"/>
   <Line key="Commits" value="commits"/>
   <Line key="ConsoleExclusive" value="Console-exclusive"/>
   <Line key="Country" value="Country"/>

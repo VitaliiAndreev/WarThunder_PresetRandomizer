@@ -6,19 +6,23 @@
         None = -1,
         All = 0,
 
-        AllGroundVehicles = 1,
-        UntaggedGroundVehicle = 11,
-        Wheeled = 12,
-        Scout = 13,
+        AllGroundVehicles = 100,
+        UntaggedGroundVehicle = 101,
+        Wheeled = 102,
+        Scout = 103,
 
-        AllHelicopters = 2,
+        AllHelicopters = 200,
 
-        AllAircraft = 3,
-        UntaggedAircraft = 31,
-        NavalAircraft = 32,
-        Hydroplane = 33,
-        TorpedoBomber = 34,
+        AllAircraft = 300,
+        UntaggedAircraft = 301,
+        NavalAircraft = 302,
+        Hydroplane = 303,
+        TorpedoBomber = 304,
 
-        AllShips = 4,
+        AllFleet = 400,
+
+        AllBluewaterFleet = 410,
+
+        AllCoastalFleet = 420,
     }
 }

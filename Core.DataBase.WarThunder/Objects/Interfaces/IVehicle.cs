@@ -15,6 +15,8 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         /// <summary> The vehicle's country of origin (not the nation in whose research tree the vehicles is in). </summary>
         ECountry Country { get; }
 
+        EBranch Branch { get; }
+
         /// <summary> The vehicle's broadly defined class with a distict icon. </summary>
         EVehicleClass Class { get; }
 
@@ -65,7 +67,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
         INation Nation { get; }
 
         /// <summary> The vehicle's branch. </summary>
-        IBranch Branch { get; }
+        IBranch Category { get; }
 
         /// <summary> The vehicle's subclass. </summary>
         IVehicleSubclasses Subclasses { get; }

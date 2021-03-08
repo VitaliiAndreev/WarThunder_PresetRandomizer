@@ -46,14 +46,18 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleClass.Attacker.GetBranch().Should().Be(EBranch.Aviation),
                 () => EVehicleClass.Bomber.GetBranch().Should().Be(EBranch.Aviation),
 
-                () => EVehicleClass.AllShips.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.Boat.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.HeavyBoat.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.Barge.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.Frigate.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.Destroyer.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.LightCruiser.GetBranch().Should().Be(EBranch.Fleet),
-                () => EVehicleClass.HeavyCruiser.GetBranch().Should().Be(EBranch.Fleet),
+                () => EVehicleClass.AllFleet.GetBranch().Should().Be(EBranch.AllFleet),
+                () => EVehicleClass.AllBluewaterFleet.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.Destroyer.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.LightCruiser.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.HeavyCruiser.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.Battlecruiser.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.Battleship.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleClass.AllCoastalFleet.GetBranch().Should().Be(EBranch.CoastalFleet),
+                () => EVehicleClass.Boat.GetBranch().Should().Be(EBranch.CoastalFleet),
+                () => EVehicleClass.HeavyBoat.GetBranch().Should().Be(EBranch.CoastalFleet),
+                () => EVehicleClass.Barge.GetBranch().Should().Be(EBranch.CoastalFleet),
+                () => EVehicleClass.Frigate.GetBranch().Should().Be(EBranch.CoastalFleet),
             };
 
             DoTests(tests);
@@ -114,7 +118,14 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                     }
                 ),
 
-                () => EVehicleClass.AllShips.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.AllFleet.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.AllBluewaterFleet.GetVehicleSubclasses().Should().BeEmpty(),
+                () => EVehicleClass.Destroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.LightCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.HeavyCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Battlecruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.Battleship.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
+                () => EVehicleClass.AllCoastalFleet.GetVehicleSubclasses().Should().BeEmpty(),
                 () => EVehicleClass.Boat.GetVehicleSubclasses().Should().BeEquivalentTo
                 (
                     new List<EVehicleSubclass>
@@ -149,9 +160,6 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                         EVehicleSubclass.Frigate,
                     }
                 ),
-                () => EVehicleClass.Destroyer.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
-                () => EVehicleClass.LightCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
-                () => EVehicleClass.HeavyCruiser.GetVehicleSubclasses().Should().BeEquivalentTo(new List<EVehicleSubclass>()),
             };
 
             DoTests(tests);
@@ -184,14 +192,18 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleClass.Attacker.IsValid().Should().BeTrue(),
                 () => EVehicleClass.Bomber.IsValid().Should().BeTrue(),
 
-                () => EVehicleClass.AllShips.IsValid().Should().BeFalse(),
+                () => EVehicleClass.AllFleet.IsValid().Should().BeFalse(),
+                () => EVehicleClass.AllBluewaterFleet.IsValid().Should().BeFalse(),
+                () => EVehicleClass.Destroyer.IsValid().Should().BeTrue(),
+                () => EVehicleClass.LightCruiser.IsValid().Should().BeTrue(),
+                () => EVehicleClass.HeavyCruiser.IsValid().Should().BeTrue(),
+                () => EVehicleClass.Battlecruiser.IsValid().Should().BeTrue(),
+                () => EVehicleClass.Battleship.IsValid().Should().BeTrue(),
+                () => EVehicleClass.AllCoastalFleet.IsValid().Should().BeFalse(),
                 () => EVehicleClass.Boat.IsValid().Should().BeTrue(),
                 () => EVehicleClass.HeavyBoat.IsValid().Should().BeTrue(),
                 () => EVehicleClass.Barge.IsValid().Should().BeTrue(),
                 () => EVehicleClass.Frigate.IsValid().Should().BeTrue(),
-                () => EVehicleClass.Destroyer.IsValid().Should().BeTrue(),
-                () => EVehicleClass.LightCruiser.IsValid().Should().BeTrue(),
-                () => EVehicleClass.HeavyCruiser.IsValid().Should().BeTrue(),
             };
 
             DoTests(tests);

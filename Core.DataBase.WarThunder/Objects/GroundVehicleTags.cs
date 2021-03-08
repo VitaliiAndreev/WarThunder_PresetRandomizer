@@ -76,7 +76,7 @@ namespace Core.DataBase.WarThunder.Objects
         public GroundVehicleTags(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags, VehiclePerformanceData vehiclePerformanceData)
             : base(dataRepository, id, vehicle)
         {
-            InitialiseProperties(deserializedTags, vehiclePerformanceData, Vehicle.Branch.AsEnumerationItem);
+            InitialiseProperties(deserializedTags, vehiclePerformanceData, Vehicle.Branch);
             LogCreation();
         }
 

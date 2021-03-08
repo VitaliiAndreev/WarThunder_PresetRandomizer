@@ -79,7 +79,7 @@ namespace Core.DataBase.WarThunder.Objects
         public AircraftTags(IDataRepository dataRepository, long id, IVehicle vehicle, VehicleTagsDeserializedFromJson deserializedTags)
             : base(dataRepository, id, vehicle)
         {
-            InitialiseProperties(deserializedTags, Vehicle.Branch.AsEnumerationItem);
+            InitialiseProperties(deserializedTags, Vehicle.Branch);
             LogCreation();
         }
 

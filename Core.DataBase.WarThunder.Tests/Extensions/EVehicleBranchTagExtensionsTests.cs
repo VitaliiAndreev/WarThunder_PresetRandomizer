@@ -43,7 +43,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleBranchTag.Hydroplane.GetBranch().Should().Be(EBranch.Aviation),
                 () => EVehicleBranchTag.TorpedoBomber.GetBranch().Should().Be(EBranch.Aviation),
 
-                () => EVehicleBranchTag.AllShips.GetBranch().Should().Be(EBranch.Fleet),
+                () => EVehicleBranchTag.AllFleet.GetBranch().Should().Be(EBranch.AllFleet),
+                () => EVehicleBranchTag.AllBluewaterFleet.GetBranch().Should().Be(EBranch.BluewaterFleet),
+                () => EVehicleBranchTag.AllCoastalFleet.GetBranch().Should().Be(EBranch.CoastalFleet),
             };
 
             DoTests(tests);
@@ -73,7 +75,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleBranchTag.Hydroplane.IsValid().Should().BeTrue(),
                 () => EVehicleBranchTag.TorpedoBomber.IsValid().Should().BeTrue(),
 
-                () => EVehicleBranchTag.AllShips.IsValid().Should().BeFalse(),
+                () => EVehicleBranchTag.AllFleet.IsValid().Should().BeFalse(),
+                () => EVehicleBranchTag.AllBluewaterFleet.IsValid().Should().BeFalse(),
+                () => EVehicleBranchTag.AllCoastalFleet.IsValid().Should().BeFalse(),
             };
 
             DoTests(tests);

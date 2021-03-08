@@ -73,7 +73,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         {
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain) };
 
             // act
             var isEquivalent = britain.IsEquivalentTo(britain, 2, _ignoredPropertyNames);
@@ -87,7 +87,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         {
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain) };
 
             var britainClone = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId)
             { Branches = new List<IBranch> { britain.Branches.First() } };
@@ -104,10 +104,10 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         {
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain) };
+            britain.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain) };
 
             var britainCloneFlawed = new Nation(Presets.MockDataRepository.Object, britain.Id, britain.GaijinId);
-            britainCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Aviation], britainCloneFlawed) };
+            britainCloneFlawed.Branches = new List<IBranch> { new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Aviation], britainCloneFlawed) };
 
             // act
             var isEquivalent = britain.IsEquivalentTo(britainCloneFlawed, 2, _ignoredPropertyNames);

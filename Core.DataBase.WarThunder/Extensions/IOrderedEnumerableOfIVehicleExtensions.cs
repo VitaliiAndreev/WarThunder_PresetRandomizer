@@ -9,7 +9,7 @@ namespace Core.DataBase.WarThunder.Extensions
 
         public static IOrderedEnumerable<IVehicle> ThenByNation(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Nation.AsEnumerationItem);
         public static IOrderedEnumerable<IVehicle> ThenByCountry(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Country);
-        public static IOrderedEnumerable<IVehicle> ThenByBranch(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Branch.AsEnumerationItem);
+        public static IOrderedEnumerable<IVehicle> ThenByBranch(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Category.AsEnumerationItem);
         public static IOrderedEnumerable<IVehicle> ThenByClass(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Class);
         public static IOrderedEnumerable<IVehicle> ThenByFirstSubclass(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Subclasses.First);
         public static IOrderedEnumerable<IVehicle> ThenBySecondSubclass(this IOrderedEnumerable<IVehicle> vehicles) => vehicles.ThenBy(vehicle => vehicle.Subclasses.Second);

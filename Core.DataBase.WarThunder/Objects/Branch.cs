@@ -26,8 +26,8 @@ namespace Core.DataBase.WarThunder.Objects
         [Property(NotNull = true, Unique = true)]
         public override string GaijinId { get; protected set; }
 
-        [Property(NotNull = true, TypeType = typeof(EnumStringType<EBranch>))]
-        public virtual EBranch AsEnumerationItem { get; protected set; }
+        [Property(NotNull = true, TypeType = typeof(EnumStringType<EVehicleCategory>))]
+        public virtual EVehicleCategory AsEnumerationItem { get; protected set; }
 
         #endregion Persistent Properties
         #region Association Properties
@@ -68,7 +68,7 @@ namespace Core.DataBase.WarThunder.Objects
         public Branch(IDataRepository dataRepository, long id, string gaijinId, INation nation)
             : base(dataRepository, id, gaijinId)
         {
-            AsEnumerationItem = EReference.BranchesFromString[GaijinId.Split(ECharacter.Underscore).Last()];
+            AsEnumerationItem = EReference.CategoriesFromString[GaijinId.Split(ECharacter.Underscore).Last()];
             Nation = nation;
 
             LogCreation();

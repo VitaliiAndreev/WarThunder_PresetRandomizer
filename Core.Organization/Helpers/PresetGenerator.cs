@@ -193,7 +193,7 @@ namespace Core.Organization.Helpers
         /// <param name="vehicles"> Vehicles to filter. </param>
         /// <returns></returns>
         private IEnumerable<IVehicle> FilterVehiclesByBranches(IEnumerable<EBranch> validBranches, IEnumerable<IVehicle> vehicles) =>
-            FilterVehicles(vehicles, validBranches, vehicle => vehicle.Branch.AsEnumerationItem);
+            FilterVehicles(vehicles, validBranches, vehicle => vehicle.Branch);
 
         /// <summary> Filters <paramref name="vehicles"/> with <paramref name="validNations"/>. </summary>
         /// <param name="validNations"> Vehicle classes enabled via GUI and actually available. </param>
@@ -364,6 +364,7 @@ namespace Core.Organization.Helpers
 
             void setAll(EBranch branch) => presetComposition.Add(branch, crewSlotAmount);
             void setQuarter(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.25)));
+            void setOneThird(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount / 3.0)));
             void setTwoThirds(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 2.0 / 3.0)));
             void setThreeQuarters(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.75)));
             void setHalf(EBranch branch) => presetComposition.Add(branch, Convert.ToInt32(Math.Ceiling(crewSlotAmount * 0.5)));
@@ -408,7 +409,7 @@ namespace Core.Organization.Helpers
             {
                 setAll(mainBranch);
             }
-            else if (mainBranch == EBranch.Fleet)
+            else if (mainBranch.GetVehicleCategory() == EVehicleCategory.Fleet)
             {
                 if (gameMode == EGameMode.Simulator)
                     return presetComposition;
@@ -419,8 +420,9 @@ namespace Core.Organization.Helpers
                 }
                 else
                 {
-                    setTwoThirds(EBranch.Fleet);
-                    setRemaining(EBranch.Aviation, EBranch.Fleet);
+                    setOneThird(EBranch.BluewaterFleet);
+                    setOneThird(EBranch.CoastalFleet);
+                    setRemaining(EBranch.Aviation, EBranch.BluewaterFleet, EBranch.CoastalFleet);
                 }
             }
             return presetComposition;
@@ -444,14 +446,14 @@ namespace Core.Organization.Helpers
             if
             (
                 mainVehicle is IVehicle
-                && presetComposition.ContainsKey(mainVehicle.Branch.AsEnumerationItem)
-                && vehiclesByBranchesAndBattleRatings.TryGetValue(mainVehicle.Branch.AsEnumerationItem, out var vehiclesByBattleRating)
+                && presetComposition.ContainsKey(mainVehicle.Branch)
+                && vehiclesByBranchesAndBattleRatings.TryGetValue(mainVehicle.Branch, out var vehiclesByBattleRating)
                 && mainVehicle.BattleRating.AsDictionary()[gameMode] is decimal battleRating
                 && vehiclesByBattleRating.ContainsKey(battleRating)
             )
             {
                 randomVehicles.Add(mainVehicle);
-                presetComposition[mainVehicle.Branch.AsEnumerationItem]--;
+                presetComposition[mainVehicle.Branch]--;
                 vehiclesByBattleRating[battleRating].Remove(mainVehicle);
             }
         }
@@ -483,7 +485,7 @@ namespace Core.Organization.Helpers
 
             return presetComposition
                 .Keys
-                .SelectMany(branch => randomVehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch))
+                .SelectMany(branch => randomVehicles.Where(vehicle => vehicle.Branch == branch))
                 .ToList()
             ;
         }
@@ -605,7 +607,7 @@ namespace Core.Organization.Helpers
             (
                 presetComposition
                     .Keys
-                    .Select(branch => new { Branch = branch, Vehicles = vehicles.Where(vehicle => vehicle.Branch.AsEnumerationItem == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
+                    .Select(branch => new { Branch = branch, Vehicles = vehicles.Where(vehicle => vehicle.Branch == branch).OrderByHighestBattleRating(_vehicleSelector, gameMode, battleRatingBracket) })
                     .ToDictionary(item => item.Branch, item => new VehiclesByBattleRating(item.Vehicles))
             );
 
@@ -637,7 +639,7 @@ namespace Core.Organization.Helpers
 
             #region Main branch selection.
 
-            var availableBranches = filteredVehicles.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var availableBranches = filteredVehicles.Select(vehicle => vehicle.Branch).Distinct().ToList();
             var mainBranch = SelectMainBranch(specification, availableBranches);
 
             if (mainBranch == EBranch.None)
@@ -670,7 +672,7 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Branch selection.
 
-            var vehiclesByBranches = vehiclesWithNationFilter.GroupBy(vehicle => vehicle.Branch.AsEnumerationItem).ToDictionary(group => group.Key, group => group.AsEnumerable());
+            var vehiclesByBranches = vehiclesWithNationFilter.GroupBy(vehicle => vehicle.Branch).ToDictionary(group => group.Key, group => group.AsEnumerable());
             var validBranches = GetValidBranches(vehiclesByBranches);
 
             if (validBranches is null)
@@ -687,7 +689,7 @@ namespace Core.Organization.Helpers
             #region Battle rating selection.
 
             var economicRanksWithVehicles = vehiclesForPreset
-                .Where(vehicle => vehicle.Branch.AsEnumerationItem == mainBranch)
+                .Where(vehicle => vehicle.Branch == mainBranch)
                 .Where(vehicle => vehicle.EconomicRank[gameMode].HasValue)
                 .Select(vehicle => vehicle.EconomicRank[gameMode].Value)
                 .Distinct()
@@ -723,7 +725,7 @@ namespace Core.Organization.Helpers
 
             #region Filtering by branches.
 
-            var availableBranches = vehiclesWithClassFilter.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var availableBranches = vehiclesWithClassFilter.Select(vehicle => vehicle.Branch).Distinct().ToList();
             var validBranches = availableBranches.Intersect(specification.BranchSpecifications.Keys).ToList();
             var vehiclesWithBranchFilter = FilterVehiclesByBranches(validBranches, vehiclesWithClassFilter);
 
@@ -779,9 +781,9 @@ namespace Core.Organization.Helpers
 
             var mainVehicle = _randomiser.GetRandom(vehiclesWithEconomocRankFilter);
             var selectedNation = mainVehicle.Nation.AsEnumerationItem;
-            var branch = mainVehicle.Branch.AsEnumerationItem;
+            var branch = mainVehicle.Branch;
             var availableSupplementaryVehicles = vehiclesWithEconomocRankFilter.Where(vehicle => vehicle.Nation.AsEnumerationItem == selectedNation).Except(mainVehicle).AsParallel().ToList();
-            var branchesAvailableForPresetComposition = availableSupplementaryVehicles.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct().ToList();
+            var branchesAvailableForPresetComposition = availableSupplementaryVehicles.Select(vehicle => vehicle.Branch).Distinct().ToList();
             var crewSlotAmount = specification.NationSpecifications[selectedNation].CrewSlots;
             var presetComposition = GetPresetComposition(gameMode, branchesAvailableForPresetComposition, crewSlotAmount, branch);
 

@@ -30,6 +30,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.None.GetVehicleClass().Should().Be(EVehicleClass.None),
                 () => EVehicleSubclass.All.GetVehicleClass().Should().Be(EVehicleClass.All),
 
+                () => EVehicleSubclass.AllGroundVehicles.GetVehicleClass().Should().Be(EVehicleClass.AllGroundVehicles),
+
                 () => EVehicleSubclass.AllLightTanks.GetVehicleClass().Should().Be(EVehicleClass.LightTank),
 
                 () => EVehicleSubclass.AllMediumTanks.GetVehicleClass().Should().Be(EVehicleClass.MediumTank),
@@ -42,9 +44,13 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
 
                 () => EVehicleSubclass.AllSpaas.GetVehicleClass().Should().Be(EVehicleClass.Spaa),
 
+                () => EVehicleSubclass.AllHelicopters.GetVehicleClass().Should().Be(EVehicleClass.AllHelicopters),
+
                 () => EVehicleSubclass.AllAttackHelicopters.GetVehicleClass().Should().Be(EVehicleClass.AttackHelicopter),
 
                 () => EVehicleSubclass.AllUtilityHelicopters.GetVehicleClass().Should().Be(EVehicleClass.UtilityHelicopter),
+
+                () => EVehicleSubclass.AllAircraft.GetVehicleClass().Should().Be(EVehicleClass.AllAircraft),
 
                 () => EVehicleSubclass.AllFighters.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
                 () => EVehicleSubclass.Fighter.GetVehicleClass().Should().Be(EVehicleClass.Fighter),
@@ -62,6 +68,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.FrontlineBomber.GetVehicleClass().Should().Be(EVehicleClass.Bomber),
                 () => EVehicleSubclass.LongRangeBomber.GetVehicleClass().Should().Be(EVehicleClass.Bomber),
                 () => EVehicleSubclass.JetBomber.GetVehicleClass().Should().Be(EVehicleClass.Bomber),
+
+                () => EVehicleSubclass.AllFleet.GetVehicleClass().Should().Be(EVehicleClass.AllFleet),
+                () => EVehicleSubclass.AllBluewaterFleet.GetVehicleClass().Should().Be(EVehicleClass.AllBluewaterFleet),
+                () => EVehicleSubclass.AllCoastalFleet.GetVehicleClass().Should().Be(EVehicleClass.AllCoastalFleet),
 
                 () => EVehicleSubclass.AllBoats.GetVehicleClass().Should().Be(EVehicleClass.Boat),
                 () => EVehicleSubclass.MotorGunboat.GetVehicleClass().Should().Be(EVehicleClass.Boat),
@@ -86,6 +96,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.AllLightCruisers.GetVehicleClass().Should().Be(EVehicleClass.LightCruiser),
 
                 () => EVehicleSubclass.AllHeavyCruisers.GetVehicleClass().Should().Be(EVehicleClass.HeavyCruiser),
+
+                () => EVehicleSubclass.AllBattlecruisers.GetVehicleClass().Should().Be(EVehicleClass.Battlecruiser),
+
+                () => EVehicleSubclass.AllBattleships.GetVehicleClass().Should().Be(EVehicleClass.Battleship),
             };
 
             DoTests(tests);
@@ -102,6 +116,8 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.None.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.All.IsValid().Should().BeFalse(),
 
+                () => EVehicleSubclass.AllGroundVehicles.IsValid().Should().BeFalse(),
+
                 () => EVehicleSubclass.AllLightTanks.IsValid().Should().BeFalse(),
 
                 () => EVehicleSubclass.AllMediumTanks.IsValid().Should().BeFalse(),
@@ -114,9 +130,13 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
 
                 () => EVehicleSubclass.AllSpaas.IsValid().Should().BeFalse(),
 
+                () => EVehicleSubclass.AllHelicopters.IsValid().Should().BeFalse(),
+
                 () => EVehicleSubclass.AllAttackHelicopters.IsValid().Should().BeFalse(),
 
                 () => EVehicleSubclass.AllUtilityHelicopters.IsValid().Should().BeFalse(),
+
+                () => EVehicleSubclass.AllAircraft.IsValid().Should().BeFalse(),
 
                 () => EVehicleSubclass.AllFighters.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.Fighter.IsValid().Should().BeTrue(),
@@ -134,6 +154,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.FrontlineBomber.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.LongRangeBomber.IsValid().Should().BeTrue(),
                 () => EVehicleSubclass.JetBomber.IsValid().Should().BeTrue(),
+
+                () => EVehicleSubclass.AllFleet.IsValid().Should().BeFalse(),
+                () => EVehicleSubclass.AllBluewaterFleet.IsValid().Should().BeFalse(),
+                () => EVehicleSubclass.AllCoastalFleet.IsValid().Should().BeFalse(),
 
                 () => EVehicleSubclass.AllBoats.IsValid().Should().BeFalse(),
                 () => EVehicleSubclass.MotorGunboat.IsValid().Should().BeTrue(),
@@ -158,6 +182,10 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EVehicleSubclass.AllLightCruisers.IsValid().Should().BeFalse(),
 
                 () => EVehicleSubclass.AllHeavyCruisers.IsValid().Should().BeFalse(),
+
+                () => EVehicleSubclass.AllBattlecruisers.IsValid().Should().BeFalse(),
+
+                () => EVehicleSubclass.AllBattleships.IsValid().Should().BeFalse(),
             };
 
             DoTests(tests);

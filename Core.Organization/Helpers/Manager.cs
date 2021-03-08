@@ -270,7 +270,7 @@ namespace Core.Organization.Helpers
                     continue;
 
                 var nation = vehicle.Nation.AsEnumerationItem;
-                var branch = vehicle.Branch.AsEnumerationItem;
+                var branch = vehicle.Branch;
                 var rank = vehicle.Rank.CastTo<ERank>();
                 var columnNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.First();
                 var rowNumber = vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last();
@@ -304,7 +304,7 @@ namespace Core.Organization.Helpers
                 { EBranch.Army, _thunderSkillParser.GetVehicleUsage(EBranch.Army) },
                 { EBranch.Helicopters, _thunderSkillParser.GetVehicleUsage(EBranch.Helicopters) },
                 { EBranch.Aviation, _thunderSkillParser.GetVehicleUsage(EBranch.Aviation) },
-                { EBranch.Fleet, _thunderSkillParser.GetVehicleUsage(EBranch.Fleet) },
+                { EBranch.AllFleet, _thunderSkillParser.GetVehicleUsage(EBranch.AllFleet) },
             };
 
             if (vehicleUsage.All(branchStatistics => branchStatistics.Value.IsEmpty()))
@@ -318,11 +318,13 @@ namespace Core.Organization.Helpers
 
             foreach (var vehicle in PlayableVehicles.Values)
             {
-                var branchVehicleUsage = vehicleUsage[vehicle.Branch.AsEnumerationItem];
+                var branch = vehicle.Category.AsEnumerationItem == EVehicleCategory.Fleet ? EBranch.AllFleet : vehicle.Branch;
+
+                var branchVehicleUsage = vehicleUsage[branch];
 
                 if (branchVehicleUsage.TryGetValue(vehicle.GaijinId, out var usageCounts))
                 {
-                    void increment(EGameMode gameMode, int key, int value) => EconomicRankUsage[gameMode][vehicle.Branch.AsEnumerationItem].Increment(key, value);
+                    void increment(EGameMode gameMode, int key, int value) => EconomicRankUsage[gameMode][vehicle.Branch].Increment(key, value);
 
                     if (vehicle.EconomicRank.Arcade.HasValue)
                         increment(EGameMode.Arcade, vehicle.EconomicRank.Arcade.Value, usageCounts.ArcadeCount);

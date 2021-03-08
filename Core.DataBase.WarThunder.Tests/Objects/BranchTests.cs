@@ -51,7 +51,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             using (var dataRepository = new DataRepositorySqliteWarThunder(fileName, true, Assembly.Load(EAssembly.WarThunderMappingAssembly), true, Presets.Logger))
             {
                 var britain = new Nation(dataRepository, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-                var britishArmy = new Branch(dataRepository, EReference.BranchesFromEnumeration[EBranch.Army], britain);
+                var britishArmy = new Branch(dataRepository, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain);
                 britain.Branches = new List<IBranch> { britishArmy };
 
                 // act
@@ -75,7 +75,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         {
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
+            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain);
             britain.Branches = new List<IBranch> { britishArmy };
 
             // act
@@ -91,7 +91,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
 
-            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
+            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain);
             var britishArmyClone = new Branch(Presets.MockDataRepository.Object, britishArmy.Id, britishArmy.GaijinId, britishArmy.Nation);
             britain.Branches = new List<IBranch> { britishArmy, britishArmyClone };
 
@@ -107,7 +107,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         {
             // arrange
             var britain = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.GreatBritain]);
-            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.BranchesFromEnumeration[EBranch.Army], britain);
+            var britishArmy = new Branch(Presets.MockDataRepository.Object, EReference.CategoriesFromEnumeration[EVehicleCategory.Army], britain);
             britain.Branches = new List<IBranch> { britishArmy };
 
             var germany = new Nation(Presets.MockDataRepository.Object, EReference.NationsFromEnumeration[ENation.Germany]);

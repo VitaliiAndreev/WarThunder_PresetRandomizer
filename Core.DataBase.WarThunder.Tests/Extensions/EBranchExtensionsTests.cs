@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Tests.Extensions
 {
-    /// <summary> See <see cref="EBranchExtensions"/>. </summary>
+    /// <summary> See <see cref="EVehicleCategoryExtensions"/>. </summary>
     [TestClass]
     public class EBranchExtensionsTests
     {
@@ -32,7 +32,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllGroundVehicles),
                 () => EBranch.Helicopters.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllHelicopters),
                 () => EBranch.Aviation.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllAircraft),
-                () => EBranch.Fleet.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllShips),
+                () => EBranch.AllFleet.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllFleet),
+                () => EBranch.BluewaterFleet.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllBluewaterFleet),
+                () => EBranch.CoastalFleet.GetAllVehicleClassesItem().Should().Be(EVehicleClass.AllCoastalFleet),
             };
 
             DoTests(tests);
@@ -51,7 +53,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllGroundVehicles, EVehicleBranchTag.UntaggedGroundVehicle, EVehicleBranchTag.Wheeled, EVehicleBranchTag.Scout, }),
                 () => EBranch.Helicopters.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllHelicopters, }),
                 () => EBranch.Aviation.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllAircraft, EVehicleBranchTag.UntaggedAircraft, EVehicleBranchTag.NavalAircraft, EVehicleBranchTag.Hydroplane, EVehicleBranchTag.TorpedoBomber }),
-                () => EBranch.Fleet.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllShips }),
+                () => EBranch.AllFleet.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllFleet }),
+                () => EBranch.BluewaterFleet.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllBluewaterFleet }),
+                () => EBranch.CoastalFleet.GetVehicleBranchTags(false).Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.AllCoastalFleet }),
             };
             var testsForOnlyValid = new List<Action>
             {
@@ -60,7 +64,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.UntaggedGroundVehicle, EVehicleBranchTag.Wheeled, EVehicleBranchTag.Scout }),
                 () => EBranch.Helicopters.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
                 () => EBranch.Aviation.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { EVehicleBranchTag.UntaggedAircraft, EVehicleBranchTag.NavalAircraft, EVehicleBranchTag.Hydroplane, EVehicleBranchTag.TorpedoBomber }),
-                () => EBranch.Fleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
+                () => EBranch.AllFleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
+                () => EBranch.BluewaterFleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
+                () => EBranch.CoastalFleet.GetVehicleBranchTags().Should().BeEquivalentTo(new List<EVehicleBranchTag> { }),
             };
 
             DoTests(tests);
@@ -80,7 +86,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllGroundVehicles, EVehicleClass.LightTank, EVehicleClass.MediumTank, EVehicleClass.HeavyTank, EVehicleClass.TankDestroyer, EVehicleClass.Spaa }),
                 () => EBranch.Helicopters.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllHelicopters, EVehicleClass.AttackHelicopter, EVehicleClass.UtilityHelicopter }),
                 () => EBranch.Aviation.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllAircraft, EVehicleClass.Fighter, EVehicleClass.Attacker, EVehicleClass.Bomber }),
-                () => EBranch.Fleet.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllShips, EVehicleClass.Boat, EVehicleClass.HeavyBoat, EVehicleClass.Barge, EVehicleClass.Destroyer, EVehicleClass.LightCruiser, EVehicleClass.HeavyCruiser, EVehicleClass.Frigate }),
+                () => EBranch.AllFleet.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllFleet }),
+                () => EBranch.BluewaterFleet.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllBluewaterFleet, EVehicleClass.Destroyer, EVehicleClass.LightCruiser, EVehicleClass.HeavyCruiser, EVehicleClass.Battlecruiser, EVehicleClass.Battleship }),
+                () => EBranch.CoastalFleet.GetVehicleClasses(false).Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AllCoastalFleet, EVehicleClass.Boat, EVehicleClass.HeavyBoat, EVehicleClass.Barge, EVehicleClass.Frigate }),
             };
             var testsForOnlyValid = new List<Action>
             {
@@ -89,7 +97,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.LightTank, EVehicleClass.MediumTank, EVehicleClass.HeavyTank, EVehicleClass.TankDestroyer, EVehicleClass.Spaa }),
                 () => EBranch.Helicopters.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.AttackHelicopter, EVehicleClass.UtilityHelicopter }),
                 () => EBranch.Aviation.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.Fighter, EVehicleClass.Attacker, EVehicleClass.Bomber }),
-                () => EBranch.Fleet.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.Boat, EVehicleClass.HeavyBoat, EVehicleClass.Barge, EVehicleClass.Destroyer, EVehicleClass.LightCruiser, EVehicleClass.HeavyCruiser, EVehicleClass.Frigate }),
+                () => EBranch.AllFleet.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { }),
+                () => EBranch.BluewaterFleet.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.Destroyer, EVehicleClass.LightCruiser, EVehicleClass.HeavyCruiser, EVehicleClass.Battlecruiser, EVehicleClass.Battleship }),
+                () => EBranch.CoastalFleet.GetVehicleClasses().Should().BeEquivalentTo(new List<EVehicleClass> { EVehicleClass.Boat, EVehicleClass.HeavyBoat, EVehicleClass.Barge, EVehicleClass.Frigate }),
             };
 
             DoTests(tests);
@@ -109,7 +119,9 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
                 () => EBranch.Army.IsValid().Should().BeTrue(),
                 () => EBranch.Helicopters.IsValid().Should().BeTrue(),
                 () => EBranch.Aviation.IsValid().Should().BeTrue(),
-                () => EBranch.Fleet.IsValid().Should().BeTrue(),
+                () => EBranch.AllFleet.IsValid().Should().BeFalse(),
+                () => EBranch.BluewaterFleet.IsValid().Should().BeTrue(),
+                () => EBranch.CoastalFleet.IsValid().Should().BeTrue(),
             };
 
             DoTests(tests);

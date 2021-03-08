@@ -10,19 +10,12 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="vehicleClass"> The vehicle class to check. </param>
         /// <returns></returns>
         public static bool IsValid(this EVehicleSubclass vehicleSubclass) =>
-            vehicleSubclass.CastTo<int>() > EInteger.Number.NinetyNine;
+            vehicleSubclass.CastTo<int>() > EInteger.Number.NinetyNine && !vehicleSubclass.ToString().StartsWith(EWord.All);
 
         /// <summary> Returns the vehicle class to which the subclass belongs to. </summary>
         /// <param name="vehicleSubclass"> The vehicle subclass whose class to get. </param>
         /// <returns></returns>
-        public static EVehicleClass GetVehicleClass(this EVehicleSubclass vehicleSubclass)
-        {
-            var vehicleSubclassEnumerationValue = vehicleSubclass.CastTo<int>();
-
-            if (vehicleSubclass.IsValid())
-                return vehicleSubclassEnumerationValue.Do(value => value / EInteger.Number.Ten).CastTo<EVehicleClass>();
-            else
-                return vehicleSubclassEnumerationValue.CastTo<EVehicleClass>();
-        }
+        public static EVehicleClass GetVehicleClass(this EVehicleSubclass vehicleSubclass) =>
+            vehicleSubclass.Upcast<EVehicleSubclass, EVehicleClass>();
     }
 }

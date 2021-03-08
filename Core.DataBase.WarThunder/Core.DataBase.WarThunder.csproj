@@ -77,9 +77,10 @@
     <Compile Include="Enumerations\ECategory.cs" />
     <Compile Include="Enumerations\EGaijinCharacter.cs" />
     <Compile Include="Enumerations\ERepairCost.cs" />
+    <Compile Include="Enumerations\EBranch.cs" />
     <Compile Include="Enumerations\EVehicleAvailability.cs" />
     <Compile Include="Enumerations\EVehicleBranchTag.cs" />
-    <Compile Include="Enumerations\EBranch.cs" />
+    <Compile Include="Enumerations\EVehicleCategory.cs" />
     <Compile Include="Enumerations\DataBase\EColumn.cs" />
     <Compile Include="Enumerations\DataBase\ETable.cs" />
     <Compile Include="Enumerations\ECountry.cs" />
@@ -91,12 +92,13 @@
     <Compile Include="Enumerations\EVehicleImage.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseWarThunderLogMessage.cs" />
     <Compile Include="Enumerations\EVehicleSubclass.cs" />
-    <Compile Include="Extensions\EBranchExtensions.cs" />
+    <Compile Include="Extensions\EVehicleCategoryExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ECategoryExtensions.cs" />
     <Compile Include="Extensions\ENationExtensions.cs" />
     <Compile Include="Extensions\ERankExtensions.cs" />
     <Compile Include="Extensions\ERepairCostExtensions.cs" />
+    <Compile Include="Extensions\EBranchExtensions.cs" />
     <Compile Include="Extensions\EVehicleAvailabilityExtensions.cs" />
     <Compile Include="Extensions\EVehicleBranchTagExtensions.cs" />
     <Compile Include="Extensions\EVehicleClassExtensions.cs" />
