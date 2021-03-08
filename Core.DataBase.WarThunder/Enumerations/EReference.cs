@@ -153,7 +153,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.China, EGaijinCharacter.CommunistStars },
             { ENation.Italy, EGaijinCharacter.ItalianRoundel },
             { ENation.France, EGaijinCharacter.FrenchRoundel },
-            { ENation.Sweden, EGaijinCharacter.GroundAirSea },
+            { ENation.Sweden, EGaijinCharacter.Globe },
         };
 
         /// <summary> The map of the country enumeration onto corresponding resource keys. </summary>
