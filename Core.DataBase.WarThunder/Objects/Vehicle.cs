@@ -332,11 +332,20 @@ namespace Core.DataBase.WarThunder.Objects
             else if (deserializedTags.IsHeavyCruiser)
                 Class = EVehicleClass.HeavyCruiser;
 
-            else if (deserializedTags.IsFrigate)
-                Class = EVehicleClass.Frigate;
+            else if (deserializedTags.IsHeavyCruiser)
+                Class = EVehicleClass.HeavyCruiser;
+
+            else if (deserializedTags.IsBattlecruiser)
+                Class = EVehicleClass.Battlecruiser;
+
+            else if (deserializedTags.IsBattleship)
+                Class = EVehicleClass.Battleship;
 
             else if (deserializedTags.IsBoat)
                 Class = EVehicleClass.Boat;
+
+            else if (deserializedTags.IsFrigate)
+                Class = EVehicleClass.Frigate;
 
             else
                 Class = EVehicleClass.None;

@@ -37,6 +37,7 @@
   <Line key="Aviation" value="Aviation"/>
   <Line key="Bangladesh" value="Bangladesh"/>
   <Line key="Barge" value="Barge"/>
+  <Line key="Battlecruiser" value="Battlecruiser"/>
   <Line key="BattleRating" value="Battle Rating"/>
   <Line key="BattleRatingInArcade" value="BR&#xA;A."/>
   <Line key="BattleRatingInRealistic" value="BR&#xA;R."/>
@@ -44,6 +45,7 @@
   <Line key="BattleRatings" value="Battle Ratings"/>
   <Line key="BattleRatingSaturation" value="BR Saturation"/>
   <Line key="BattleRatingSaturationTooltip" value="Statistics of vehicle use on battle ratings related to the current preset.&#xA;It gives a rough idea of how likely the preset is to be matched against other BRs.&#xA;Data is pulled from the ThunderSkill site when the app starts."/>
+  <Line key="Battleship" value="Battleship"/>
   <Line key="Belgium" value="Belgium"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock for the &quot;Stripe Flag Set&quot;."/>
   <Line key="Beta" value="Beta"/>
