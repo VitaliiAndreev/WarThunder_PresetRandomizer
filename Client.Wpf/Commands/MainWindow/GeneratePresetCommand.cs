@@ -36,6 +36,8 @@ namespace Client.Wpf.Commands.MainWindow
             return presenter.EnabledBranches.Any() && presenter.EnabledNations.Any() && presenter.EnabledRanks.Any() && presenter.EnabledVehicleGaijinIds.Any();
         }
 
+        private bool doingOwnerInit;
+
         /// <summary> Defines the method to be called when the command is invoked. </summary>
         /// <param name="parameter"> Data used by the command. An <see cref="IMainWindowPresenter"/> is expected. </param>
         public override void Execute(object parameter)
@@ -45,70 +47,79 @@ namespace Client.Wpf.Commands.MainWindow
             if (parameter is IMainWindowPresenter presenter)
             {
                 presenter.ToggleLongOperationIndicator(true);
-                presenter.Owner.BeginInit();
+
+                if (!this.doingOwnerInit)
                 {
-                    presenter.ExecuteCommand(ECommandName.DeletePresets);
-
-                    var gameMode = presenter.CurrentGameMode;
-                    var emptyBranches = presenter.GetEmptyBranches();
-                    var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
-                    var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
-                    var nationSpecifications = presenter
-                        .EnabledNations
-                        .ToDictionary
-                        (
-                            nation => nation,
-                            nation => new NationSpecification
-                            (
-                                nation,
-                                presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
-                                presenter.EnabledBranches.Except(emptyBranches[nation]),
-                                EInteger.Number.Ten
-                            )
-                        );
-                    var specification = new Specification
-                    (
-                        presenter.Randomisation,
-                        gameMode,
-                        nationSpecifications,
-                        branchSpecifications,
-                        presenter.EnabledVehicleBranchTags,
-                        presenter.EnabledVehicleSubclasses,
-                        presenter.EnabledRanks,
-                        presenter.EnabledEconomicRankIntervals,
-                        presenter.EnabledVehicleGaijinIds
-                    );
-
-                    presenter.GeneratedPresets.Clear();
-                    presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
-
-                    if (presenter.GeneratedPresets.IsEmpty())
-                    {
-                        presenter.ShowNoResults();
-                        presenter.ToggleLongOperationIndicator(false);
-                        return;
-                    }
-
-                    var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
-                    var selectedNation = primaryPreset.Nation;
-
-                    if (primaryPreset.IsEmpty())
-                    {
-                        presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
-                        presenter.ToggleLongOperationIndicator(false);
-                        return;
-                    }
-
-                    var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch.AsEnumerationItem).Distinct();
-                    var firstVehicle = primaryPreset.First();
-
-                    presenter.LoadPresets();
-                    presenter.DisplayPreset(EPreset.Primary);
-                    presenter.EnableOnly(selectedNation, selectedBranches);
-                    presenter.FocusResearchTree(selectedNation, selectedBranches.First());
-                    presenter.BringIntoView(firstVehicle);
+                    this.doingOwnerInit = true;
+                    presenter.Owner.BeginInit();
                 }
-                presenter.Owner.EndInit();
+
+                presenter.ExecuteCommand(ECommandName.DeletePresets);
+
+                var gameMode = presenter.CurrentGameMode;
+                var emptyBranches = presenter.GetEmptyBranches();
+                var vehicleClasses = presenter.EnabledVehicleClassesByBranches;
+                var branchSpecifications = presenter.EnabledBranches.ToDictionary(branch => branch, branch => new BranchSpecification(branch, vehicleClasses[branch]));
+                var nationSpecifications = presenter
+                    .EnabledNations
+                    .ToDictionary
+                    (
+                        nation => nation,
+                        nation => new NationSpecification
+                        (
+                            nation,
+                            presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
+                            presenter.EnabledBranches.Except(emptyBranches[nation]),
+                            EInteger.Number.Ten
+                        )
+                    );
+                var specification = new Specification
+                (
+                    presenter.Randomisation,
+                    gameMode,
+                    nationSpecifications,
+                    branchSpecifications,
+                    presenter.EnabledVehicleBranchTags,
+                    presenter.EnabledVehicleSubclasses,
+                    presenter.EnabledRanks,
+                    presenter.EnabledEconomicRankIntervals,
+                    presenter.EnabledVehicleGaijinIds
+                );
+
+                presenter.GeneratedPresets.Clear();
+                presenter.GeneratedPresets.AddRange(ApplicationHelpers.Manager.GeneratePrimaryAndFallbackPresets(specification));
+
+                if (presenter.GeneratedPresets.IsEmpty())
+                {
+                    presenter.ShowNoResults();
+                    presenter.ToggleLongOperationIndicator(false);
+                    return;
+                }
+
+                var primaryPreset = presenter.GeneratedPresets[EPreset.Primary];
+                var selectedNation = primaryPreset.Nation;
+
+                if (primaryPreset.IsEmpty())
+                {
+                    presenter.ShowNoVehicles(primaryPreset.Nation, primaryPreset.MainBranch);
+                    presenter.ToggleLongOperationIndicator(false);
+                    return;
+                }
+
+                var selectedBranches = primaryPreset.Select(vehicle => vehicle.Branch).Distinct();
+                var firstVehicle = primaryPreset.First();
+
+                presenter.LoadPresets();
+                presenter.DisplayPreset(EPreset.Primary);
+                presenter.EnableOnly(selectedNation, selectedBranches);
+                presenter.FocusResearchTree(selectedNation, selectedBranches.First());
+                presenter.BringIntoView(firstVehicle);
+
+                if (this.doingOwnerInit)
+                {
+                    presenter.Owner.EndInit();
+                    this.doingOwnerInit = false;
+                }
 
                 presenter.ToggleLongOperationIndicator(false);
                 presenter.RaiseSwitchToResearchTreeCommandCanExecuteChanged();
