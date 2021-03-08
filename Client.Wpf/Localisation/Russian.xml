@@ -37,6 +37,7 @@
   <Line key="Aviation" value="Авиация"/>
   <Line key="Bangladesh" value="Бангладеш"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
+  <Line key="Battlecruiser" value="Линейный крейсер"/>
   <Line key="BattleRating" value="Боевой рейтинг"/>
   <Line key="BattleRatingInArcade" value="БР&#xA;А."/>
   <Line key="BattleRatingInRealistic" value="БР&#xA;Р."/>
@@ -44,6 +45,7 @@
   <Line key="BattleRatings" value="Боевые рейтинги"/>
   <Line key="BattleRatingSaturation" value="Насыщение БР"/>
   <Line key="BattleRatingSaturationTooltip" value="Статистика использования техники на боевых рейтингах вокруг текущего набора.&#xA;Даёт приблизительное представление вероятности боя против других БР.&#xA;Дата читается с сайта ThunderSkill при запуске приложения."/>
+  <Line key="Battleship" value="Линкор"/>
   <Line key="Belgium" value="Бельгия"/>
   <Line key="BenjaminDeCockForStripeFlagSet" value="Benjamin De Cock за &quot;Stripe Flag Set&quot;."/>
   <Line key="Beta" value="Бета"/>

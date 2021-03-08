@@ -223,6 +223,8 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleClass.Destroyer, EGaijinCharacter.DestroyerPip },
             { EVehicleClass.LightCruiser, EGaijinCharacter.LightCruiserPip },
             { EVehicleClass.HeavyCruiser, EGaijinCharacter.HeavyCruiserPip },
+            { EVehicleClass.Battlecruiser, EGaijinCharacter.BattlecruiserPip },
+            { EVehicleClass.Battleship, EGaijinCharacter.BattleshipPip },
         };
 
         /// <summary> String representations of ranks. </summary>

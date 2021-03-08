@@ -245,32 +245,21 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("max_ratio")]
         public bool HasMaximumRatio { get; set; }
 
-        [JsonProperty("type_armored_boat")]
-        public bool IsArmoredBoat { get; set; }
+        #region Fleet
 
-        [JsonProperty("type_heavy_boat")]
-        public bool IsHeavyBoat { get; set; }
+        #region Bluewater
 
-        [JsonProperty("boat")]
-        public bool IsBoat_ { get; set; }
+        [JsonProperty("type_battlecruiser")]
+        public bool IsBattlecruiser { get; set; }
 
-        [JsonProperty("type_boat")]
-        public bool IsBoat { get; set; }
+        [JsonProperty("type_battleship")]
+        public bool IsBattleship { get; set; }
 
-        [JsonProperty("type_torpedo_boat")]
-        public bool IsTorpedoBoat { get; set; }
+        [JsonProperty("type_cruiser")]
+        public bool IsCruiser { get; set; }
 
-        [JsonProperty("type_gun_boat")]
-        public bool IsGunBoat { get; set; }
-
-        [JsonProperty("type_naval_ferry_barge")]
-        public bool IsFerry { get; set; }
-
-        [JsonProperty("type_barge")]
-        public bool IsBarge { get; set; }
-
-        [JsonProperty("type_torpedo_gun_boat")]
-        public bool IsTorpedoGunBoat { get; set; }
+        [JsonProperty("cruiser")]
+        public bool IsCruiser_ { get; set; }
 
         [JsonProperty("type_destroyer")]
         public bool IsDestroyer { get; set; }
@@ -278,23 +267,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("destroyer")]
         public bool IsDestroyer_ { get; set; }
 
-        [JsonProperty("type_minelayer")]
-        public bool IsMinelayer { get; set; }
-
-        [JsonProperty("type_naval_aa_ferry")]
-        public bool IsAaFerry { get; set; }
-
-        [JsonProperty("type_submarine_chaser")]
-        public bool IsSubmarineChaser { get; set; }
-
-        [JsonProperty("type_cruiser")]
-        public bool IsCruiser { get; set; }
-
         [JsonProperty("type_heavy_cruiser")]
         public bool IsHeavyCruiser { get; set; }
-
-        [JsonProperty("type_frigate")]
-        public bool IsFrigate { get; set; }
 
         [JsonProperty("type_light_cruiser")]
         public bool IsLightCruiser { get; set; }
@@ -302,10 +276,53 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("light_cruiser")]
         public bool IsLightCruiser_ { get; set; }
 
+        #endregion Bluewater
+        #region Coastal
+
+        [JsonProperty("type_naval_aa_ferry")]
+        public bool IsAaFerry { get; set; }
+
+        [JsonProperty("type_armored_boat")]
+        public bool IsArmoredBoat { get; set; }
+
+        [JsonProperty("type_barge")]
+        public bool IsBarge { get; set; }
+
+        [JsonProperty("type_boat")]
+        public bool IsBoat { get; set; }
+
+        [JsonProperty("boat")]
+        public bool IsBoat_ { get; set; }
+
+        [JsonProperty("type_naval_ferry_barge")]
+        public bool IsFerry { get; set; }
+
+        [JsonProperty("type_frigate")]
+        public bool IsFrigate { get; set; }
+
+        [JsonProperty("type_gun_boat")]
+        public bool IsGunBoat { get; set; }
+
+        [JsonProperty("type_heavy_boat")]
+        public bool IsHeavyBoat { get; set; }
+
         [JsonProperty("type_heavy_gun_boat")]
         public bool IsHeavyGunBoat { get; set; }
 
-        [JsonProperty("cruiser")]
-        public bool IsCruiser_ { get; set; }
+        [JsonProperty("type_minelayer")]
+        public bool IsMinelayer { get; set; }
+
+        [JsonProperty("type_submarine_chaser")]
+        public bool IsSubmarineChaser { get; set; }
+
+        [JsonProperty("type_torpedo_boat")]
+        public bool IsTorpedoBoat { get; set; }
+
+        [JsonProperty("type_torpedo_gun_boat")]
+        public bool IsTorpedoGunBoat { get; set; }
+
+        #endregion Coastal
+
+        #endregion Fleet
     }
 }
