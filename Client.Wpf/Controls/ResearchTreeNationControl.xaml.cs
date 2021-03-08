@@ -44,21 +44,24 @@ namespace Client.Wpf.Controls
             _armyTab.Tag = EBranch.Army;
             _helicoptersTab.Tag = EBranch.Helicopters;
             _aviationTab.Tag = EBranch.Aviation;
-            _fleetTab.Tag = EBranch.Fleet;
+            _shipTab.Tag = EBranch.BluewaterFleet;
+            _boatTab.Tag = EBranch.CoastalFleet;
 
             BranchTabs = new Dictionary<EBranch, TabItem>
             {
                 { EBranch.Army, _armyTab },
                 { EBranch.Helicopters, _helicoptersTab },
                 { EBranch.Aviation, _aviationTab },
-                { EBranch.Fleet, _fleetTab },
+                { EBranch.BluewaterFleet, _shipTab },
+                { EBranch.CoastalFleet, _boatTab },
             };
             _branchControls = new Dictionary<EBranch, ResearchTreeBranchControl>
             {
                 { EBranch.Army, _armyBranch },
                 { EBranch.Helicopters, _helicoptersBranch },
                 { EBranch.Aviation, _aviationBranch },
-                { EBranch.Fleet, _fleetBranch },
+                { EBranch.BluewaterFleet, _shipBranch },
+                { EBranch.CoastalFleet, _boatBranch },
             };
         }
 
@@ -83,7 +86,8 @@ namespace Client.Wpf.Controls
             localiseTabHeader(_armyTab);
             localiseTabHeader(_helicoptersTab);
             localiseTabHeader(_aviationTab);
-            localiseTabHeader(_fleetTab);
+            localiseTabHeader(_shipTab);
+            localiseTabHeader(_boatTab);
 
             foreach (var control in _branchControls.Values)
                 control.Localise();
@@ -201,7 +205,7 @@ namespace Client.Wpf.Controls
         /// <param name="vehicle"> The vehicle whose research tree branch control to look for. </param>
         /// <returns></returns>
         private ResearchTreeBranchControl GetBranchControl(IVehicle vehicle) =>
-            _branchControls.TryGetValue(vehicle.Branch.AsEnumerationItem, out var branchControl) ? branchControl : null;
+            _branchControls.TryGetValue(vehicle.Branch, out var branchControl) ? branchControl : null;
 
         /// <summary> Scrolls the research tree to bring the specified vehicle into view. </summary>
         /// <param name="vehicle"> The vehicle to bring into view. </param>

@@ -339,7 +339,7 @@ namespace Client.Wpf.Controls
         public void BringIntoView(IVehicle vehicle, bool changeTabs = false)
         {
             if (changeTabs)
-                FocusResearchTree(vehicle.Nation.AsEnumerationItem, vehicle.Branch.AsEnumerationItem);
+                FocusResearchTree(vehicle.Nation.AsEnumerationItem, vehicle.Branch);
 
             GetNationControl(vehicle)?.BringIntoView(vehicle);
         }

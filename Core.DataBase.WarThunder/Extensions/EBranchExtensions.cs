@@ -1,43 +1,53 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.Enumerations;
 using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Extensions
 {
-    /// <summary> Methods extending the <see cref="EBranch"/> enumeration. </summary>
     public static class EBranchExtensions
     {
-        /// <summary> Checks whether the branch is valid. </summary>
-        /// <param name="branch"> The branch to check. </param>
-        /// <returns></returns>
         public static bool IsValid(this EBranch branch) =>
-            branch.EnumerationItemValueIsPositive();
+            branch.CastTo<int>() > EInteger.Number.Nine && !branch.ToString().StartsWith(EWord.All);
 
-        /// <summary> Returns vehicle branch tags which belong to the branch. </summary>
-        /// <param name="branch"> The branch whose vehicle branch tags to get. </param>
-        /// <param name="selectOnlyValidItems"> Whether to select only valid items. </param>
-        /// <returns></returns>
-        public static IEnumerable<EVehicleBranchTag> GetVehicleBranchTags(this EBranch branch, bool selectOnlyValidItems = true) =>
-            typeof(EVehicleBranchTag)
-                .GetEnumerationItems<EVehicleBranchTag>()
-                .Where(vehicleBranchTag => vehicleBranchTag.GetBranch() == branch && (!selectOnlyValidItems || vehicleBranchTag.IsValid()))
-            ;
+        public static int GetSingleDigitCode(this EBranch branch)
+        {
+            return branch switch
+            {
+                EBranch.Army => 1,
+                EBranch.Helicopters => 2,
+                EBranch.Aviation => 3,
+                EBranch.BluewaterFleet => 4,
+                EBranch.CoastalFleet => 5,
+                _ => -1,
+            };
+        }
 
-        /// <summary> Returns vehicle classes which belong to the branch. </summary>
-        /// <param name="branch"> The branch whose vehicle classes to get. </param>
-        /// <param name="selectOnlyValidItems"> Whether to select only valid items. </param>
-        /// <returns></returns>
+        public static EBranch FromSingleDigitCode(this int code)
+        {
+            return code switch
+            {
+                1 => EBranch.Army,
+                2 => EBranch.Helicopters,
+                3 => EBranch.Aviation,
+                4 => EBranch.BluewaterFleet,
+                5 => EBranch.CoastalFleet,
+                _ => EBranch.None,
+            };
+        }
+
+        public static EVehicleCategory GetVehicleCategory(this EBranch branch) =>
+            branch.Upcast<EBranch, EVehicleCategory>();
+
         public static IEnumerable<EVehicleClass> GetVehicleClasses(this EBranch branch, bool selectOnlyValidItems = true) =>
             typeof(EVehicleClass)
                 .GetEnumerationItems<EVehicleClass>()
-                .Where(vehicleClass => vehicleClass.GetBranch() == branch && (!selectOnlyValidItems || vehicleClass.IsValid()))
-            ;
+                .Where(vehicleClass => EVehicleClassExtensions.GetBranch(vehicleClass) == branch && (!selectOnlyValidItems || vehicleClass.IsValid()));
 
-        /// <summary> Returns the enumeration item representing selection of all vehicle types under the given branch. </summary>
-        /// <param name="branch"> The branch whose vehicle classes to get. </param>
-        /// <returns></returns>
         public static EVehicleClass GetAllVehicleClassesItem(this EBranch branch) =>
-            branch.CastTo<int>().CastTo<EVehicleClass>();
+            branch != EBranch.None
+                ? branch.Downcast<EBranch, EVehicleClass>()
+                : EVehicleClass.None;
     }
 }

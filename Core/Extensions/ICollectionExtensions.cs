@@ -5,6 +5,12 @@ namespace Core.Extensions
     /// <summary> Methods extending the <see cref="ICollection{T}"/> interface. </summary>
     public static class ICollectionExtensions
     {
+        public static void AddRange<T>(this ICollection<T> sourceCollection, IEnumerable<T> elementsToAdd)
+        {
+            foreach (var element in elementsToAdd)
+                sourceCollection.Add(element);
+        }
+
         /// <summary> Creates a shallow copy, i.e. a new collection with same contents. </summary>
         /// <typeparam name="T"> A type of collection elements. </typeparam>
         /// <param name="sourceCollection"> The collection to copy. </param>

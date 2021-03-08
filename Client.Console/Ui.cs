@@ -210,10 +210,11 @@ namespace Client.Console
                 case "s":
                 case "ship":
                 case "ships":
+                    return EBranch.BluewaterFleet;
                 case "b":
                 case "boat":
                 case "boats":
-                    return EBranch.Fleet;
+                    return EBranch.CoastalFleet;
                 case "h":
                 case "heli":
                 case "helicopter":

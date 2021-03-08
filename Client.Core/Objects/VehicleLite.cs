@@ -63,7 +63,7 @@ namespace Client.Shared.Objects
             Name = vehicle.ResearchTreeName.GetLocalisation(language);
             Nation = localise(vehicle.Nation.AsEnumerationItem);
             Country = localise(vehicle.Country);
-            Branch = localise(vehicle.Branch.AsEnumerationItem);
+            Branch = localise(vehicle.Category.AsEnumerationItem);
             Rank = vehicle.RankAsEnumerationItem;
             BattleRatingInArcade = vehicle.BattleRating.Arcade ?? -EDecimal.Number.One;
             BattleRatingInRealistic = vehicle.BattleRating.Realistic ?? -EDecimal.Number.One;

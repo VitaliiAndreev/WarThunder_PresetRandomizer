@@ -12,61 +12,77 @@ namespace Core.DataBase.WarThunder.Enumerations
         None = -1,
         All = 0,
 
-        AllLightTanks = 10,
+        AllGroundVehicles = 1000,
 
-        AllMediumTanks = 11,
+        AllLightTanks = 1010,
 
-        AllHeavyTanks = 12,
+        AllMediumTanks = 1020,
 
-        AllTankDestroyers = 13,
-        TankDestroyer = 131,
-        AntiTankMissileCarrier = 132,
+        AllHeavyTanks = 1030,
 
-        AllSpaas = 14,
+        AllTankDestroyers = 1040,
+        TankDestroyer = 1041,
+        AntiTankMissileCarrier = 1042,
 
-        AllAttackHelicopters = 20,
+        AllSpaas = 1050,
 
-        AllUtilityHelicopters = 21,
+        AllHelicopters = 2000,
 
-        AllFighters = 30,
-        Fighter = 301,
-        Interceptor = 302,
-        AirDefenceFighter = 303,
-        StrikeFighter = 304,
-        JetFighter = 305,
+        AllAttackHelicopters = 2010,
 
-        AllAttackers = 31,
+        AllUtilityHelicopters = 2020,
 
-        AllBombers = 32,
-        LightBomber = 321,
-        DiveBomber = 322,
-        Bomber = 323,
-        FrontlineBomber = 324,
-        LongRangeBomber = 325,
-        JetBomber = 326,
+        AllAircraft = 3000,
 
-        AllBoats = 40,
-        MotorGunboat = 401,
-        MotorTorpedoBoat = 402,
-        Minelayer = 403,
+        AllFighters = 3010,
+        Fighter = 3011,
+        Interceptor = 3012,
+        AirDefenceFighter = 3013,
+        StrikeFighter = 3014,
+        JetFighter = 3015,
 
-        AllHeavyBoats = 41,
-        ArmoredGunboat = 411,
-        MotorTorpedoGunboat = 412,
-        SubChaser = 413,
+        AllAttackers = 3020,
 
-        AllBarges = 42,
-        AntiAirFerry = 421,
-        NavalFerryBarge = 422,
+        AllBombers = 3030,
+        LightBomber = 3031,
+        DiveBomber = 3032,
+        Bomber = 3033,
+        FrontlineBomber = 3034,
+        LongRangeBomber = 3035,
+        JetBomber = 3036,
 
-        AllFrigates = 43,
-        HeavyGunboat = 431,
-        Frigate = 432,
+        AllFleet = 4000,
 
-        AllDestroyers = 44,
+        AllBluewaterFleet = 4100,
 
-        AllLightCruisers = 45,
+        AllDestroyers = 4110,
 
-        AllHeavyCruisers = 46,
+        AllLightCruisers = 4120,
+
+        AllHeavyCruisers = 4130,
+
+        AllBattlecruisers = 4140,
+
+        AllBattleships = 4150,
+
+        AllCoastalFleet = 4200,
+
+        AllBoats = 4210,
+        MotorGunboat = 4211,
+        MotorTorpedoBoat = 4212,
+        Minelayer = 4213,
+
+        AllHeavyBoats = 4220,
+        ArmoredGunboat = 4221,
+        MotorTorpedoGunboat = 4222,
+        SubChaser = 4223,
+
+        AllBarges = 4230,
+        AntiAirFerry = 4231,
+        NavalFerryBarge = 4232,
+
+        AllFrigates = 4240,
+        HeavyGunboat = 4241,
+        Frigate = 4242,
     }
 }

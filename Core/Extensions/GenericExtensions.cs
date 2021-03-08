@@ -40,29 +40,6 @@ namespace Core.Extensions
         public static bool IsKeyIn<T, U>(this T source, IDictionary<T, U> collection) =>
             collection.ContainsKey(source);
 
-        /// <summary> Fluently checks whether the value of the given enumeration item is positive. </summary>
-        /// <typeparam name="T"> The enumeration type of the <paramref name="source"/>. </typeparam>
-        /// <param name="source"> The enumeration item to check. </param>
-        /// <returns></returns>
-        public static bool EnumerationItemValueIsPositive<T>(this T source) where T : struct
-        {
-            var type = typeof(T);
-
-            if (type.IsEnum)
-            {
-                var enumerationValueType = type.GetEnumUnderlyingType();
-
-                if (enumerationValueType == typeof(int))
-                    return source.CastTo<int>() > EInteger.Number.Zero;
-                else
-                    throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(enumerationValueType.ToStringLikeCode()));
-            }
-            else
-            {
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
-            }
-        }
-
         #endregion Methods: Fluency
         #region Methods: Increment() / Decrement()
 

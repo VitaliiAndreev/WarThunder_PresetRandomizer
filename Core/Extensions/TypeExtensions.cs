@@ -54,6 +54,38 @@ namespace Core.Extensions
             return typeName;
         }
 
+        #region Methods: For Enums
+
+        public static bool ValidateAsEnum(this Type type, bool @throw = true)
+        {
+            if (!type.IsEnum)
+                return new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+
+            return true;
+        }
+
+        public static bool ValidateAsEnum<T>(this Type type, bool @throw = true) where T : struct
+        {
+            try
+            {
+                var isEnum = type.ValidateAsEnum(@throw);
+
+                if (isEnum)
+                {
+                    var enumerationValueType = type.GetEnumUnderlyingType();
+
+                    if (enumerationValueType != typeof(T))
+                        return new ArgumentException(ECoreLogMessage.EnumValueMustBe.Format(enumerationValueType.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+                }
+
+                return false;
+            }
+            catch (Exception exception)
+            {
+                return exception.ThrowOrReturnFalse(@throw);
+            }
+        }
+
         /// <summary> Fluently gets enumeration items of the given type (the generic type and the type parameters have to match), optionally skipping the "None" item. </summary>
         /// <typeparam name="T"> The enumeration type. </typeparam>
         /// <param name="type"> The enumeration type. </param>
@@ -85,5 +117,7 @@ namespace Core.Extensions
 
             return enumerationItems;
         }
+
+        #endregion Methods: For Enums
     }
 }

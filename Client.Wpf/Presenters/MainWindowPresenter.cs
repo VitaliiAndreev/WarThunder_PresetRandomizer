@@ -324,7 +324,7 @@ namespace Client.Wpf.Presenters
             {
                 if (canBeBroughtIntoView) break;
 
-                canBeBroughtIntoView = preset.Any(vehicle => vehicle.Nation == focusedVehicle.Nation && vehicle.Branch.AsEnumerationItem == focusedVehicle.Branch.AsEnumerationItem);
+                canBeBroughtIntoView = preset.Any(vehicle => vehicle.Nation == focusedVehicle.Nation && vehicle.Category.AsEnumerationItem == focusedVehicle.Category.AsEnumerationItem);
             }
             return canBeBroughtIntoView;
         }

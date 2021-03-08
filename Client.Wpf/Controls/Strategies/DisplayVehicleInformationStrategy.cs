@@ -55,7 +55,7 @@ namespace Client.Wpf.Controls.Strategies
 
         public bool ShowPremiumIcon(IVehicle vehicle) => vehicle.IsPremium;
 
-        public bool ShowTorpedoBomberTagAsClass(IVehicle vehicle) => vehicle.Branch.AsEnumerationItem == EBranch.Aviation && vehicle.AircraftTags.IsTorpedoBomber;
+        public bool ShowTorpedoBomberTagAsClass(IVehicle vehicle) => vehicle.Branch == EBranch.Aviation && vehicle.AircraftTags.IsTorpedoBomber;
 
         #endregion Methods: Checks
         #region Methods: Output

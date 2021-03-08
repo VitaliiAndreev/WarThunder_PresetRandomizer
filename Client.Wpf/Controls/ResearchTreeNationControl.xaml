@@ -49,15 +49,27 @@
         </TabItem>
 
         <TabItem
-            x:Name="_fleetTab">
+            x:Name="_shipTab">
             <TabItem.Header>
                 <WrapPanel>
                     <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">┚</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Fleet</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Bluewater Fleet</TextBlock>
                 </WrapPanel>
             </TabItem.Header>
             <local:ResearchTreeBranchControl
-                x:Name="_fleetBranch"/>
+                x:Name="_shipBranch"/>
+        </TabItem>
+
+        <TabItem
+            x:Name="_boatTab">
+            <TabItem.Header>
+                <WrapPanel>
+                    <TextBlock Style="{StaticResource TabHeaderPrefixWithSkyQuake}">⋛</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockFontSize16WithLeftMargin}">Coastal Fleet</TextBlock>
+                </WrapPanel>
+            </TabItem.Header>
+            <local:ResearchTreeBranchControl
+                x:Name="_boatBranch"/>
         </TabItem>
 
     </TabControl>

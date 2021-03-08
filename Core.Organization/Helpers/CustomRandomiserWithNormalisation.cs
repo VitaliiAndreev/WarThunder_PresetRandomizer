@@ -1,4 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
+using Core.DataBase.WarThunder.Extensions;
 using Core.Enumerations;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
@@ -38,7 +39,7 @@ namespace Core.Organization.Helpers
         {
             if (typeof(T) == typeof(EBranch) && randomisationStep == ERandomisationStep.MainBranchWhenSelectingByCategories)
             {
-                var branches = items.OfType<EBranch>();
+                var branches = items.OfType<EBranch>().ToList();
                 var branchSet = new BranchSet(branches);
 
                 AddIfMissing(branchSet, branches);
@@ -48,7 +49,7 @@ namespace Core.Organization.Helpers
 
                 if (mainBranchOccurrences.Values.AllEqual())
                 {
-                    selectedBranch = base.GetRandomCore(items, randomisationStep).CastTo<EBranch>();
+                    selectedBranch = base.GetRandomCore(branches, randomisationStep).CastTo<EBranch>();
                 }
                 else
                 {
@@ -117,14 +118,18 @@ namespace Core.Organization.Helpers
             var scaleStringBuilder = new StringBuilder();
 
             foreach (var branch in branches)
-                scaleStringBuilder.Append(string.Empty.PadLeft(_mainBranchWeights[branchSet][branch], branch.CastTo<int>().ToString().First()));
+            {
+                var weight = _mainBranchWeights[branchSet][branch];
+                var branchCode = branch.GetSingleDigitCode();
+                var paddedString = string.Empty.PadLeft(weight, branchCode.ToString().First());
+
+                scaleStringBuilder.Append(paddedString);
+            }
 
             var scaleString = scaleStringBuilder.ToString();
+            var selectedBranchCode = int.Parse(scaleString[_generator.Next(scaleString.Count())].ToString());
 
-            return int
-                .Parse(scaleString[_generator.Next(scaleString.Count())].ToString())
-                .CastTo<EBranch>()
-            ;
+            return EBranchExtensions.FromSingleDigitCode(selectedBranchCode);
         }
     }
 }

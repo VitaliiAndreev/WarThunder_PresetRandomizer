@@ -13,20 +13,13 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="vehicleClass"> The vehicle class to check. </param>
         /// <returns></returns>
         public static bool IsValid(this EVehicleClass vehicleClass) =>
-            vehicleClass.CastTo<int>() > EInteger.Number.Nine;
+            vehicleClass.CastTo<int>() > EInteger.Number.NinetyNine && !vehicleClass.ToString().StartsWith(EWord.All);
 
         /// <summary> Returns the vehicle branch to which the class belongs to. </summary>
         /// <param name="vehicleClass"> The vehicle class whose branch to get. </param>
         /// <returns></returns>
-        public static EBranch GetBranch(this EVehicleClass vehicleClass)
-        {
-            var vehicleClassEnumerationValue = vehicleClass.CastTo<int>();
-
-            if (vehicleClass.IsValid())
-                return vehicleClassEnumerationValue.Do(value => value / EInteger.Number.Ten).CastTo<EBranch>();
-            else
-                return vehicleClassEnumerationValue.CastTo<EBranch>();
-        }
+        public static EBranch GetBranch(this EVehicleClass vehicleClass) =>
+            vehicleClass.Upcast<EVehicleClass, EBranch>();
 
         /// <summary> Returns vehicle classes which belong to the branch. </summary>
         /// <param name="vehicleClass"> The branch whose vehicle classes to get. </param>
@@ -38,7 +31,7 @@ namespace Core.DataBase.WarThunder.Extensions
             {
                 return typeof(EVehicleSubclass)
                     .GetEnumerationItems<EVehicleSubclass>()
-                    .Where(vehicleSubclass => vehicleSubclass.GetVehicleClass() == vehicleClass && (selectOnlyValidItems ? vehicleSubclass.IsValid() : true))
+                    .Where(vehicleSubclass => vehicleSubclass.GetVehicleClass() == vehicleClass && (!selectOnlyValidItems || vehicleSubclass.IsValid()))
                 ;
             }
             return new List<EVehicleSubclass>();

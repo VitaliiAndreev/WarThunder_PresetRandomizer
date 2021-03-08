@@ -11,9 +11,9 @@
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
     MinHeight="755"
-    MinWidth="1415"
+    MinWidth="1440"
     Height="755"
-    Width="1508"
+    Width="1533"
     Loaded="OnLoaded"
     Closed="OnClosed">
     <Window.Resources>
@@ -28,7 +28,7 @@
         <Grid>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="212"/>
+                <ColumnDefinition Width="227"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 

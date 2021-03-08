@@ -12,12 +12,12 @@ namespace Core.Extensions
     {
         #region Methods: Fluency
 
-        /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="list"/>. </summary>
+        /// <summary> Adds the elements of the <paramref name="collection"/> to the end of the specified <paramref name="targetCollection"/>. </summary>
         /// <typeparam name="T"> The type of collection items. </typeparam>
-        /// <param name="collection"> The collection to add into the <paramref name="list"/>. </param>
-        /// <param name="list"> The list to which to add items from <paramref name="collection"/> into. </param>
-        public static void AddInto<T>(this IEnumerable<T> collection, List<T> list) =>
-            list.AddRange(collection);
+        /// <param name="collection"> The collection to add into the <paramref name="targetCollection"/>. </param>
+        /// <param name="targetCollection"> The collection to which to add items from <paramref name="collection"/> into. </param>
+        public static void AddInto<T>(this IEnumerable<T> collection, ICollection<T> targetCollection) =>
+            targetCollection.AddRange(collection);
 
         public static bool AllEqual<T>(this IEnumerable<T> collection) =>
             collection.Distinct().Count() == EInteger.Number.One;

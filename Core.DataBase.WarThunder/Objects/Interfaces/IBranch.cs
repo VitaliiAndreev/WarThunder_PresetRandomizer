@@ -8,7 +8,7 @@ namespace Core.DataBase.WarThunder.Objects.Interfaces
     {
         #region Persistent Properties
 
-        EBranch AsEnumerationItem { get; }
+        EVehicleCategory AsEnumerationItem { get; }
 
         #endregion Persistent Properties
         #region Association Properties

@@ -772,7 +772,7 @@ namespace Client.Wpf.Windows
             {
                 var enabled = branch.IsIn(validBranches);
 
-                if (branch == EBranch.Fleet)
+                if (branch.GetVehicleCategory() == EVehicleCategory.Fleet)
                     AdjustFleetAvailability(Presenter.CurrentGameMode, validBranches);
                 else
                     AdjustBranchToggleAvailability(branch, enabled);
@@ -805,8 +805,13 @@ namespace Client.Wpf.Windows
         /// <summary> Enables or disables the fleet toggle depending on the specified <paramref name="gameMode"/>. </summary>
         /// <param name="gameMode"> The game mode to adjust for. </param>
         /// <param name="validBranches"> A collection of valid branches. </param>
-        private void AdjustFleetAvailability(EGameMode gameMode, IEnumerable<EBranch> validBranches = null) =>
-            AdjustBranchToggleAvailability(EBranch.Fleet, gameMode != EGameMode.Simulator && EBranch.Fleet.IsIn(validBranches is null ? Presenter.GetValidBraches() : validBranches));
+        private void AdjustFleetAvailability(EGameMode gameMode, IEnumerable<EBranch> validBranches = null)
+        {
+            void adjustAvailability(EBranch branch) => AdjustBranchToggleAvailability(branch, gameMode != EGameMode.Simulator && branch.IsIn(validBranches is null ? Presenter.GetValidBraches() : validBranches));
+
+            adjustAvailability(EBranch.BluewaterFleet);
+            adjustAvailability(EBranch.CoastalFleet);
+        }
 
         #endregion Methods: Adjusting Branch Toggle Availability
 
