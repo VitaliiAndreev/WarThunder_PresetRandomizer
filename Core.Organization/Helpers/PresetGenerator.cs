@@ -648,7 +648,7 @@ namespace Core.Organization.Helpers
             #endregion ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #region Nation selection.
 
-            var availableNations = filteredVehicles.Select(vehicle => vehicle.Nation.AsEnumerationItem).Distinct().ToList();
+            var availableNations = filteredVehicles.Where(vehicle => vehicle.Branch == mainBranch).Select(vehicle => vehicle.Nation.AsEnumerationItem).Distinct().ToList();
             var nationSpecification = SelectNationSpecification(specification, mainBranch, availableNations);
 
             if (nationSpecification is null)
