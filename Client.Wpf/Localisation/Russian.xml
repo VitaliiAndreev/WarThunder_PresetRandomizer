@@ -32,8 +32,10 @@
   <Line key="Attacker" value="Штурмовик"/>
   <Line key="AttackHelicopter" value="Ударный вертолёт"/>
   <Line key="Australia" value="Австралия"/>
+  <Line key="Austria" value="Австрия"/>
   <Line key="AvailableInStorePacks" value="Продаётся в магазине"/>
   <Line key="Aviation" value="Авиация"/>
+  <Line key="Bangladesh" value="Бангладеш"/>
   <Line key="Barge" value="Баржа / Плавбатарея"/>
   <Line key="BattleRating" value="Боевой рейтинг"/>
   <Line key="BattleRatingInArcade" value="БР&#xA;А."/>
@@ -49,6 +51,7 @@
   <Line key="Boat" value="Катер"/>
   <Line key="Bomber" value="Бомбардировщик"/>
   <Line key="Branch" value="Ветка"/>
+  <Line key="BritishEmpire" value="Британская империя"/>
   <Line key="Bulgaria" value="Болгария"/>
   <Line key="Canada" value="Канада"/>
   <Line key="Cancel" value="Отмена"/>
@@ -86,6 +89,7 @@
   <Line key="GaijinIdLite" value="Идентификатор"/>
   <Line key="Gdr" value="ГДР"/>
   <Line key="GeneratePreset" value="Случайный набор"/>
+  <Line key="GermanEmpire" value="Германская империя"/>
   <Line key="Germany" value="Германия"/>
   <Line key="GiftedToNewPlayersForSelectingTheirFirstBranch" value="Подарок&#xA;новым&#xA;игрокам"/>
   <Line key="GoToWiki" value="Перейти на вики"/>
@@ -183,6 +187,7 @@
   <Line key="Requires" value="Открывается после"/>
   <Line key="Romania" value="Румыния"/>
   <Line key="Russia" value="Россия"/>
+  <Line key="RussianEmpire" value="Российская империя"/>
   <Line key="Scout" value="Разведчик"/>
   <Line key="ScrapGeneratedPresets" value="Удалите собранные наборы (кнопка с символом переработки на верхней панели)."/>
   <Line key="SeeLogsForDetails" value="Для подробностей смотрите последний файл в папке &quot;Logs&quot;."/>
@@ -211,6 +216,7 @@
   <Line key="Subclass2" value="Подкласс 2"/>
   <Line key="SwapPrimaryAndFallbackPresets" value="Переключиться между основным и запасным набором."/>
   <Line key="Sweden" value="Швеция"/>
+  <Line key="Syria" value="Сирия"/>
   <Line key="Tag1" value="Метка 1"/>
   <Line key="Tag2" value="Метка 2"/>
   <Line key="Tag3" value="Метка 3"/>
@@ -242,6 +248,7 @@
   <Line key="VehiclesByNationsAndCountries" value="Техника по нациям и странам"/>
   <Line key="VehiclesBySubclassesAndNations" value="Техника по подклассам и нациям"/>
   <Line key="VehiclesByTagsAndNations" value="Техника по меткам и нациям"/>
+  <Line key="Vietnam" value="Вьетнам"/>
   <Line key="Wheeled" value="Колёсная техника"/>
   <Line key="Yugoslavia" value="Югославия"/>
   <Line key="YummigumForIconSweets2" value="Yummigum за &quot;IconSweets 2&quot;."/>
