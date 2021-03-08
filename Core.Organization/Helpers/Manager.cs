@@ -453,11 +453,6 @@ namespace Core.Organization.Helpers
 
         private async Task LoadThunderSkillVehicleUsageStatistics()
         {
-            ShowThunderSkillData = false;
-
-            return;
-#pragma warning disable CS0162 // Unreachable code detected
-            // ThunderSkill reading is disabled until a way to pass CloudFlare checks is implemented.
             try
             {
                 LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
@@ -485,7 +480,6 @@ namespace Core.Organization.Helpers
 
                 ShowThunderSkillData = false;
             }
-#pragma warning restore CS0162 // Unreachable code detected
         }
 
         /// <summary> Fills the <see cref="_cache"/> up. </summary>
