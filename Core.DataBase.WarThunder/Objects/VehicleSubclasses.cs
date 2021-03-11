@@ -117,13 +117,20 @@ namespace Core.DataBase.WarThunder.Objects
                         deserializedTags.IsFighter
                             && !deserializedTags.IsInterceptor
                             && !deserializedTags.IsAirDefenceFighter
-                            && !deserializedTags.IsStrikeFighter
                             && !deserializedTags.IsJetFighter
                     },
                     { EVehicleSubclass.Interceptor, deserializedTags.IsInterceptor },
                     { EVehicleSubclass.AirDefenceFighter, deserializedTags.IsAirDefenceFighter },
-                    { EVehicleSubclass.StrikeFighter, deserializedTags.IsStrikeFighter },
                     { EVehicleSubclass.JetFighter, deserializedTags.IsJetFighter },
+                };
+
+                return selectSubclasses(subclassDictionary);
+            }
+            else if (vehicleClass == EVehicleClass.Attacker)
+            {
+                var subclassDictionary = new Dictionary<EVehicleSubclass, bool>
+                {
+                    { EVehicleSubclass.StrikeAircraft, deserializedTags.IsStrikeAircraft },
                 };
 
                 return selectSubclasses(subclassDictionary);
