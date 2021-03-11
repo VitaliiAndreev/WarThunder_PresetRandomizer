@@ -21,5 +21,3 @@ void Main()
 		.Select(code => (char)int.Parse(code))
 		.Dump();
 }
-
-// Define other methods and classes here
