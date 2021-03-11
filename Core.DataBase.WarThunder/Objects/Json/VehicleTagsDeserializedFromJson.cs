@@ -77,8 +77,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("country_japan")]
         public bool IsJapanese { get; set; }
 
-        [JsonProperty("type_strike_fighter")]
-        public bool IsStrikeFighter { get; set; }
+        [JsonProperty("type_strike_aircraft")]
+        public bool IsStrikeAircraft { get; set; }
 
         [JsonProperty("carrier_take_off")]
         public bool CanTakeOffFromCarrier { get; set; }

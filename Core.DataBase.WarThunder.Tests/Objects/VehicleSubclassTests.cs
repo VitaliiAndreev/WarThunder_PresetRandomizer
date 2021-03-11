@@ -62,7 +62,7 @@ namespace Core.DataBase.WarThunder.Tests.Objects
             {
                 IsInterceptor = true,
                 IsAirDefenceFighter = true,
-                IsStrikeFighter = true,
+                IsJetFighter = true,
             };
 
             // act
@@ -168,19 +168,19 @@ namespace Core.DataBase.WarThunder.Tests.Objects
         }
 
         [TestMethod]
-        public void Constructor_Fighter_StrikeFighter_Returns_StrikeFighter()
+        public void Constructor_Attacker_StrikeAircraft_Returns_StrikeAircraft()
         {
             // arrange
             var mockVehicle = new Mock<IVehicle>();
             mockVehicle.Setup(vehicle => vehicle.GaijinId).Returns(nameof(mockVehicle));
-            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Fighter);
+            mockVehicle.Setup(vehicle => vehicle.Class).Returns(EVehicleClass.Attacker);
 
             var vehicleTags = new VehicleTagsDeserializedFromJson
             {
-                IsFighter = true,
-                IsStrikeFighter = true,
+                IsAttacker = true,
+                IsStrikeAircraft = true,
             };
-            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.StrikeFighter };
+            var subclasses = new List<EVehicleSubclass> { EVehicleSubclass.StrikeAircraft };
             var subclass = new VehicleSubclasses(Presets.MockDataRepository.Object, mockVehicle.Object, vehicleTags);
 
             // act

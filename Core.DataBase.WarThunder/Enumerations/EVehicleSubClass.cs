@@ -38,10 +38,10 @@ namespace Core.DataBase.WarThunder.Enumerations
         Fighter = 3011,
         Interceptor = 3012,
         AirDefenceFighter = 3013,
-        StrikeFighter = 3014,
-        JetFighter = 3015,
+        JetFighter = 3014,
 
         AllAttackers = 3020,
+        StrikeAircraft = 3021,
 
         AllBombers = 3030,
         LightBomber = 3031,
