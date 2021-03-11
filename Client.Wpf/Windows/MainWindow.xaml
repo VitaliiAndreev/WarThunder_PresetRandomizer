@@ -10,9 +10,9 @@
     Title="Main Window"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
-    MinHeight="765"
+    MinHeight="775"
     MinWidth="1440"
-    Height="765"
+    Height="775"
     Width="1533"
     Loaded="OnLoaded"
     Closed="OnClosed">
