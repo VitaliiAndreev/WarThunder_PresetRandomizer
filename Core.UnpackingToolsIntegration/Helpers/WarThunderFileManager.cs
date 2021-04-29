@@ -61,25 +61,44 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         public bool LocationIsValid(string path, Type constantType)
         {
-            if (string.IsNullOrWhiteSpace(path) || Path.GetInvalidPathChars().ToList().Intersect(path).Any() || !Path.IsPathRooted(path))
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                LogWarn($"The argument \"{nameof(path)}\" is empty: \"{path}\"");
                 return false;
+            }
+            if (Path.GetInvalidPathChars().ToList().Intersect(path) is IEnumerable<char> invalidCharacters && invalidCharacters.Any())
+            {
+                LogWarn($"The argument \"{nameof(path)}\" contains invalid characters: \"{invalidCharacters.StringJoin(", ")}\"");
+                return false;
+            }
+            if (!Path.IsPathRooted(path))
+            {
+                LogWarn($"The argument \"{nameof(path)}\" is not absolute: \"{path}\"");
+                return false;
+            }
             
             var directory = new DirectoryInfo(path);
             
             if (!directory.Exists)
+            {
+                LogWarn($"The argument \"{nameof(path)}\" points to a folder that doesn't exist.");
                 return false;
+            }
 
-            var files = directory.GetFiles().Select(file => file.Name);
-            var requiredFiles = constantType
+            var filePaths = directory.GetFiles().Select(file => file.Name);
+            var requiredFilePaths = constantType
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
                 .Where(field => field.IsLiteral && !field.IsInitOnly)
                 .Select(constant => constant.GetRawConstantValue().ToString())
             ;
 
-            foreach (var requiredFile in requiredFiles)
+            foreach (var requiredFilePath in requiredFilePaths)
             {
-                if (!requiredFile.IsIn(files))
+                if (!requiredFilePath.IsIn(filePaths))
+                {
+                    LogWarn($"The file \"{requiredFilePath}\" is missing from \"{path}\".");
                     return false;
+                }
             }
             return true;
         }
