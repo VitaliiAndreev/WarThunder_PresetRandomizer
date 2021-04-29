@@ -28,7 +28,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("train3Cost_exp", Required = Required.Always)]
         public int AceCrewTrainCostInResearch { get; set; }
 
-        [JsonProperty("crewTotalCount", Required = Required.Always)]
+        [JsonProperty("crewTotalCount")]
         public int CrewCount { get; set; }
 
         [JsonProperty("gunnersCount", Required = Required.Always)]
