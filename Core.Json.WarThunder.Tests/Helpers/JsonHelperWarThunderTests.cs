@@ -172,7 +172,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             vehicles.All(vehicle => vehicle.ExpertCrewTrainCostInSilver > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AceCrewTrainCostInGold > 0).Should().BeTrue();
             vehicles.All(vehicle => vehicle.AceCrewTrainCostInResearch > 0).Should().BeTrue();
-            vehicles.All(vehicle => vehicle.CrewCount > 0).Should().BeTrue();
+            vehicles.All(vehicle => vehicle.CrewCount >= 0).Should().BeTrue();
             vehicles.Any(vehicle => vehicle.MinumumCrewCountToOperate <= 0).Should().BeFalse();
             vehicles.All(vehicle => vehicle.GunnersCount >= 0).Should().BeTrue();
             /// general

@@ -193,7 +193,7 @@ namespace Core.IntegrationTests
                     // crew
                     vehicleCollection.Any(vehicle => vehicle.CrewData is null).Should().BeFalse();
 
-                    vehicleCollection.All(vehicle => vehicle.CrewData.CrewCount > 0).Should().BeTrue();
+                    vehicleCollection.All(vehicle => vehicle.CrewData.CrewCount >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.CrewData.MinumumCrewCountToOperate <= 0).Should().BeFalse();
                     vehicleCollection.All(vehicle => vehicle.CrewData.GunnersCount >= 0).Should().BeTrue();
                     vehicleCollection.Any(vehicle => vehicle.CrewData.MaximumFireExtinguishingTime <= 0).Should().BeFalse();
