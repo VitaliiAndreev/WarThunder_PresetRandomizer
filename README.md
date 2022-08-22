@@ -7,7 +7,7 @@ There's a YouTube playlist for related information: https://www.youtube.com/play
 ### Requirements
 
 - **War Thunder** client available at [Gaijin's website](https://warthunder.com/en) or [Steam](https://store.steampowered.com/app/236390/War_Thunder/). **WTPR** will ask for the path.
-- A release of [Klensy](https://github.com/klensy/wt-tools/commits?author=klensy)'s **[WT Tools](https://github.com/klensy/wt-tools)**. **WTPR** will ask for the path.
+- A release of [Kotiq](https://github.com/kotiq)'s fork of **[WT Tools](https://github.com/kotiq/wt-tools)**. **WTPR** will ask for the path.
 - The runtime version of [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
 - **oo2core_6_win64.dll** (comes with **WTPR**) needs to be copied to the folder with WT Tools.
 
