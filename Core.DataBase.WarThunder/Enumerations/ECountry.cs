@@ -14,6 +14,7 @@
         AllItaly,
         AllFrance,
         AllSweden,
+        AllIsrael,
         Argentina = 100,
         Australia,
         Austria,

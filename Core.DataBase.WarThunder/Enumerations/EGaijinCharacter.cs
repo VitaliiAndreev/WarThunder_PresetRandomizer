@@ -20,6 +20,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         public const char BritishRoundel = '▄';
         public const char CommunistStars = '␗';
         public const char Controller = '≟';
+        public const char StarOfDavid = '';
         public const char DestroyerPip = '␌';
         public const char GaijinCoin = '⋬';
         public const char GoldenEagle = '¤';
