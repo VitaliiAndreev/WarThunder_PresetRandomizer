@@ -132,6 +132,7 @@ namespace Core.Organization.Helpers
                 "_football",
                 "germ_panzerkampflaufer_565_r",
                 "germ_panzerkampflaufer_565_r_2",
+                "_killstreak",
                 "po-2_nw",
                 "_race",
                 "sdi_",
