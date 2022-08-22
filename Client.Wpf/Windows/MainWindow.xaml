@@ -13,7 +13,7 @@
     MinHeight="790"
     MinWidth="1440"
     Height="790"
-    Width="1533"
+    Width="1538"
     Loaded="OnLoaded"
     Closed="OnClosed">
     <Window.Resources>
@@ -28,7 +28,7 @@
         <Grid>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="227"/>
+                <ColumnDefinition Width="232"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 

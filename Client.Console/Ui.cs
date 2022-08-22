@@ -260,6 +260,8 @@ namespace Client.Console
                     return ENation.France;
                 case "sweden":
                     return ENation.Sweden;
+                case "israel":
+                    return ENation.Israel;
                 default:
                     return ENation.None;
             }
