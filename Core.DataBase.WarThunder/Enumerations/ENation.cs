@@ -14,5 +14,6 @@
         Italy,
         France,
         Sweden,
+        Israel,
     }
 }

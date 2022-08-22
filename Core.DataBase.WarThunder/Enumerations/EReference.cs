@@ -37,6 +37,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.Italy, "country_italy" },
             { ENation.France, "country_france" },
             { ENation.Sweden, "country_sweden" },
+            { ENation.Israel, "country_israel" },
         };
 
         /// <summary> The map of the nation enumeration onto corresponding database values. </summary>
@@ -52,6 +53,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { "country_italy", ENation.Italy },
             { "country_france", ENation.France },
             { "country_sweden", ENation.Sweden },
+            { "country_israel", ENation.Israel },
         };
 
         /// <summary> Nations indexed by string prefixes. </summary>
@@ -154,6 +156,7 @@ namespace Core.DataBase.WarThunder.Enumerations
             { ENation.Italy, EGaijinCharacter.ItalianRoundel },
             { ENation.France, EGaijinCharacter.FrenchRoundel },
             { ENation.Sweden, EGaijinCharacter.Globe },
+            { ENation.Israel, EGaijinCharacter.StarOfDavid },
         };
 
         /// <summary> The map of the country enumeration onto corresponding resource keys. </summary>

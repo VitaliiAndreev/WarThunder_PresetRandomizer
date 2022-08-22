@@ -31,6 +31,7 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.Italy => ECountry.Italy,
                 ENation.France => ECountry.France,
                 ENation.Sweden => ECountry.Sweden,
+                ENation.Israel => ECountry.Israel,
                 _ => ECountry.None,
             };
 
@@ -68,6 +69,7 @@ namespace Core.DataBase.WarThunder.Extensions
                 ENation.Italy => ECountry.AllItaly,
                 ENation.France => ECountry.AllFrance,
                 ENation.Sweden => ECountry.AllSweden,
+                ENation.Israel => ECountry.AllIsrael,
                 _ => ECountry.None,
             };
     }
