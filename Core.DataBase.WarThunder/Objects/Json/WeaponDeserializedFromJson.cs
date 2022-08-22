@@ -7,8 +7,8 @@ namespace Core.DataBase.WarThunder.Objects.Json
     [JsonObject()]
     public class WeaponDeserializedFromJson : DeserializedFromJsonWithOwner<VehicleDeserializedFromJsonWpCost>
     {
-        [JsonProperty("value", Required = Required.Always)]
-        public int PurchaseCostInSilver { get; set; }
+        [JsonProperty("value")]
+        public int? PurchaseCostInSilver { get; set; }
     
         [JsonProperty("validIfBought")]
         public bool RequiresModificationPurchase { get; set; }
@@ -37,7 +37,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("rocketDistanceFuse")]
         public bool HasDistanceFuse { get; set; }
 
-        [JsonProperty("image", Required = Required.Always)]
+        [JsonProperty("image")]
         public string Image { get; set; }
 
         [JsonProperty("weaponmask")]

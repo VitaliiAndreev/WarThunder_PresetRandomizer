@@ -31,7 +31,7 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [JsonProperty("crewTotalCount")]
         public int CrewCount { get; set; }
 
-        [JsonProperty("gunnersCount", Required = Required.Always)]
+        [JsonProperty("gunnersCount")]
         public int GunnersCount { get; set; }
 
         #endregion Crew
@@ -161,23 +161,23 @@ namespace Core.DataBase.WarThunder.Objects.Json
         [PersistAsDictionaryItem(nameof(IVehicleEconomyData.SilverGainMultiplier), EGameMode.Simulator)]
         public decimal RewardMultiplierInSimulation { get; set; }
 
-        [JsonProperty("rewardMulVisualArcade", Required = Required.Always)]
+        [JsonProperty("rewardMulVisualArcade")]
         [PersistAsDictionaryItem(nameof(IVehicleEconomyData.VisualRewardMultiplier), EGameMode.Arcade)]
-        public decimal VisualRewardMultiplierInArcade { get; set; }
+        public decimal? VisualRewardMultiplierInArcade { get; set; }
 
-        [JsonProperty("rewardMulVisualHistorical", Required = Required.Always)]
+        [JsonProperty("rewardMulVisualHistorical")]
         [PersistAsDictionaryItem(nameof(IVehicleEconomyData.VisualRewardMultiplier), EGameMode.Realistic)]
-        public decimal VisualRewardMultiplierInRealistic { get; set; }
+        public decimal? VisualRewardMultiplierInRealistic { get; set; }
 
-        [JsonProperty("rewardMulVisualSimulation", Required = Required.Always)]
+        [JsonProperty("rewardMulVisualSimulation")]
         [PersistAsDictionaryItem(nameof(IVehicleEconomyData.VisualRewardMultiplier), EGameMode.Simulator)]
-        public decimal VisualRewardMultiplierInSimulation { get; set; }
+        public decimal? VisualRewardMultiplierInSimulation { get; set; }
 
         [JsonProperty("expMul", Required = Required.Always)]
         public decimal ResearchGainMultiplier { get; set; }
 
-        [JsonProperty("groundKillMul", Required = Required.Always)]
-        public decimal GroundKillRewardMultiplier { get; set; }
+        [JsonProperty("groundKillMul")]
+        public decimal? GroundKillRewardMultiplier { get; set; }
 
         [JsonProperty("battleTimeArcade", Required = Required.Always)]
         [PersistAsDictionaryItem(nameof(IVehicleEconomyData.BattleTime), EGameMode.Arcade)]
