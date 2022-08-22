@@ -254,7 +254,16 @@ namespace Core.Json.Helpers
             var duplicatePropertyNames = GetPotentiallyDuplicatePropertyNames(entities);
 
             foreach (var keyValuePair in entities)
-                standardizedJsonObjects.Add(keyValuePair.Key, StandardizeTokenIntoObject(keyValuePair.Value, duplicatePropertyNames));
+            {
+                if (keyValuePair.Value is JObject jObject)
+                {
+                    standardizedJsonObjects.Add(keyValuePair.Key, StandardizeTokenIntoObject(jObject, duplicatePropertyNames));
+                }
+                else
+                {
+                    // TODO: Log unexpected entities.
+                }
+            }
 
             return standardizedJsonObjects;
         }
