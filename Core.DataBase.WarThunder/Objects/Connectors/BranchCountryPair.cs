@@ -48,6 +48,6 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         #endregion Methods: Equality Comparison
 
-        public override string ToString() => $"{Branch}{Character.Underscore}{Country}";
+        public override string ToString() => $"{Branch}_{Country}";
     }
 }

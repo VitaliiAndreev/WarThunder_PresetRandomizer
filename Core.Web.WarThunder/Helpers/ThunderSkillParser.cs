@@ -108,7 +108,7 @@ namespace Core.Web.WarThunder.Helpers
                         .GetChildNodes("a")
                         .First()
                         .GetAttributeValue("href", string.Empty)
-                        .Split(Character.Slash)
+                        .Split('/')
                         .Last()
                     ;
 

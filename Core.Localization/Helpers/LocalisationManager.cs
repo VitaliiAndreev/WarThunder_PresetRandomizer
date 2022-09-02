@@ -32,7 +32,7 @@ namespace Core.Localization.Helpers
         {
             _fileReader = fileReader;
 
-            var localizationFile = new FileInfo(Path.Combine(Word.Localisation, $"{localizationFileName}{Character.Period}{FileExtension.Xml}"));
+            var localizationFile = new FileInfo(Path.Combine(Word.Localisation, $"{localizationFileName}.{FileExtension.Xml}"));
 
             if (!localizationFile.Exists)
                 throw new FileNotFoundException($"\"{localizationFile.FullName}\" not found.");

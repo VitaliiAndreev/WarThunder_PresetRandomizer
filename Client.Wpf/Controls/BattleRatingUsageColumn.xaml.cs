@@ -26,7 +26,7 @@ namespace Client.Wpf.Controls
             var percentage = Math.Round(ratio * Integer.Number.Hundred, Integer.Number.Zero);
 
             _battleRatingLabel.Text = Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
-            _percentageLabel.Text = $"{percentage}{Character.Percent}";
+            _percentageLabel.Text = $"{percentage}%";
 
             _filledBarDefinition.Height = new GridLength(percentage, GridUnitType.Star);
             _notFilledBarDefinition.Height = new GridLength(Integer.Number.Hundred - percentage, GridUnitType.Star);

@@ -127,7 +127,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
 
             _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
 
-            return outputDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Blkx}", SearchOption.AllDirectories);
+            return outputDirectory.GetFiles($"*.{FileExtension.Blkx}", SearchOption.AllDirectories);
         }
 
         private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)

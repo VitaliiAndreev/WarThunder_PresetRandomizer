@@ -1,5 +1,4 @@
-﻿using Core;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +17,7 @@ namespace Client.Wpf.Enumerations
         static EApplicationData()
         {
             var productVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
-            var versionParts = productVersion.Split(Character.Space);
+            var versionParts = productVersion.Split(' ');
 
             Version = new Version(versionParts.First());
             DevelopmentStageLocalizationKey = versionParts.Last();

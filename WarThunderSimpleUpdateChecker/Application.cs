@@ -191,8 +191,8 @@ namespace WarThunderSimpleUpdateChecker
                 {
                     _logger.LogInfo($"Reading the previous version number...");
 
-                    var lines = text.Split(Character.NewLine, StringSplitOptions.RemoveEmptyEntries);
-                    var versionText = lines.Last().Split(Character.Minus).Last().Trim();
+                    var lines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                    var versionText = lines.Last().Split('-').Last().Trim();
                     var version = new Version(versionText);
 
                     _logger.LogInfo($"The previous version is {version}.");

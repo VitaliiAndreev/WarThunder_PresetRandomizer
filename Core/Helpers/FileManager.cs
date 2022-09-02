@@ -89,7 +89,7 @@ namespace Core.Helpers
         /// <summary> Creates a backup copy of the given file, with its name appended with ".bak". </summary>
         /// <param name="file"> The file to back up. </param>
         public void BackUpFile(FileInfo file) =>
-            file.CopyTo(Path.Combine(file.DirectoryName, $"{file.Name}{Character.Period}{FileExtension.Bak}"), true);
+            file.CopyTo(Path.Combine(file.DirectoryName, $"{file.Name}.{FileExtension.Bak}"), true);
 
         #endregion Methods: Copying
         #region Methods: Deletion

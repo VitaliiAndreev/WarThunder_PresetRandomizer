@@ -70,7 +70,7 @@ namespace Core.Localization.Tests.Helpers
   <{Word.Line} {Word.Key.ToLower()}=""{key}"" {Word.Value.ToLower()}=""{value}""/>
 </{Word.Localisation}>";
 
-            var filePath = $@"{_localizationDirectory}\{fileName}{Character.Period}{FileExtension.Xml}";
+            var filePath = $@"{_localizationDirectory}\{fileName}.{FileExtension.Xml}";
             File.Create(filePath).Close();
 
             using (var streamWriter = new StreamWriter(filePath))

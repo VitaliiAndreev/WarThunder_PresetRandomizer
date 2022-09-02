@@ -156,12 +156,12 @@ namespace Core.Extensions
             source
                 .Split
                 (
-                    new char[] { Character.CarriageReturn, Character.NewLine },
+                    new char[] { '\r', '\n' },
                     StringSplitOptions.RemoveEmptyEntries
                 )
                 .Where(line => !line.All(character => character.IsWhiteSpaceFluently() || character.IsPunctuationFluently()))
                 .Select(line => line.Trim())
-                .StringJoin(Character.Space)
+                .StringJoin(' ')
             ;
 
         /// <summary>
@@ -174,14 +174,14 @@ namespace Core.Extensions
         public static string ResetFormattingPlaceholders(this string source)
         {
             var substrings = source
-                .Split(new char[] { Character.BraceLeft }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new char[] { '{' }, StringSplitOptions.RemoveEmptyEntries)
                 .ToList()
             ;
 
             var firstSubstring = substrings.First();
             var substringsWithoutFirst = substrings
                 .Skip(1)
-                .Select(substring => substring.Skip(substring.IndexOf(Character.BraceRight) + 1).StringJoin())
+                .Select(substring => substring.Skip(substring.IndexOf('}') + 1).StringJoin())
             ;
 
             substrings = new string[] { firstSubstring }
@@ -193,7 +193,7 @@ namespace Core.Extensions
             for (var i = 0; i < substrings.Count; i++)
             {
                 stringBuilder.Append(substrings[i]);
-                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{Character.BraceLeft}{i}{Character.BraceRight}");
+                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{{{i}}}");
             }
 
             return stringBuilder.ToString();

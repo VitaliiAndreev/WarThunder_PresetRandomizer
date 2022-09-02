@@ -47,7 +47,7 @@ namespace Core.Tests.Helpers
         public void SettingsFileNotFound_GeneratesFile()
         {
             // arrange
-            var settingsFile = new FileInfo($"Carramba{Character.Period}{FileExtension.Xml}");
+            var settingsFile = new FileInfo($"Carramba.{FileExtension.Xml}");
 
             if (settingsFile.Exists)
                 settingsFile.Delete();

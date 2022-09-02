@@ -27,14 +27,14 @@ namespace Core.Helpers.Logger
 
             var lines = new List<string>()
             {
-                $"{Character.NewLine}{_formattedExceptionMessage.Format(exception.GetType(), exception.Message.Flatten())}",
+                $"\n{_formattedExceptionMessage.Format(exception.GetType(), exception.Message.Flatten())}",
                 GetFormattedStackTrace(exception),
                 GetFormattedInnerExceptions(exception),
             };
 
             return lines
                 .Where(line => line.Any())
-                .StringJoin(Character.NewLine)
+                .StringJoin('\n')
             ;
         }
 
@@ -56,7 +56,7 @@ namespace Core.Helpers.Logger
 
             return lines
                 .Where(line => line.Any())
-                .StringJoin(Character.NewLine)
+                .StringJoin('\n')
             ;
         }
 
@@ -68,12 +68,12 @@ namespace Core.Helpers.Logger
             if (exception.StackTrace is null) return string.Empty;
 
             var lines = new List<string>();
-            var stackFrames = exception.StackTrace.Split(Character.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var stackFrames = exception.StackTrace.Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var stackFrame in stackFrames)
                 lines.Add(stackFrame.Replace("   ", $"\t\t\t"));
 
-            return lines.StringJoin(Character.NewLine);
+            return lines.StringJoin('\n');
         }
 
         #endregion Methods

@@ -97,7 +97,7 @@ namespace Core.Csv.WarThunder.Helpers
                     var fullNameRecordIndex = indeces.Item1;
                     var shortNameRecordIndex = indeces.Item2;
 
-                    static IList<string> standardiseSpaces(IList<string> record) => record.Select(line => line.Replace(EGaijinCharacter.SpaceFromCsv, Character.Space)).ToList();
+                    static IList<string> standardiseSpaces(IList<string> record) => record.Select(line => line.Replace(EGaijinCharacter.SpaceFromCsv, ' ')).ToList();
 
                     var shopNameRecord = standardiseSpaces(record);
                     var fullNameRecord = standardiseSpaces(sortedCsvRecords[fullNameRecordIndex]);

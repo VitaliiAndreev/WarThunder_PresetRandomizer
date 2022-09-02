@@ -122,7 +122,7 @@ namespace Client.Wpf
             get => EnabledCountriesCollection.StringJoin(Separator);
             set
             {
-                var separator = Character.Underscore;
+                var separator = '_';
 
                 string patchString(string @string)
                 {
@@ -171,7 +171,7 @@ namespace Client.Wpf
                     substring =>
                     {
                         var economicRanks = substring
-                            .Split(Character.Minus)
+                            .Split('-')
                             .Select(economicRankString => int.Parse(economicRankString))
                         ;
                         return new Interval<int>(true, economicRanks.First(), economicRanks.Last(), true);

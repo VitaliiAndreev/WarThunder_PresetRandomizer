@@ -34,7 +34,7 @@ namespace Core.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{(LeftBounded ? Character.BracketLeft : Character.ParenthesisLeft)} {LeftItem}; {RightItem} {(RightBounded ? Character.BracketRight : Character.ParenthesisRight)}";
+        public override string ToString() => $"{(LeftBounded ? '[' : '(')} {LeftItem}; {RightItem} {(RightBounded ? ']' : ')')}";
 
         /// <summary> Determines whether the specified object is equal to the current object. </summary>
         /// <param name="obj"> The object to compare with the current object. </param>

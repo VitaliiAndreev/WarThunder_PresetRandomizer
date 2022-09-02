@@ -145,7 +145,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Nation special character icons. </summary>
         public static IDictionary<ENation, char> NationIcons { get; } = new Dictionary<ENation, char>
         {
-            { ENation.None, Character.Space },
+            { ENation.None, ' ' },
             { ENation.Usa, EGaijinCharacter.StarInCircle },
             { ENation.Germany, EGaijinCharacter.GermanCross },
             { ENation.Ussr, EGaijinCharacter.Star },
@@ -207,7 +207,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EVehicleClass, char> ClassIcons { get; } = new Dictionary<EVehicleClass, char>
         {
-            { EVehicleClass.None, Character.Space },
+            { EVehicleClass.None, ' ' },
             { EVehicleClass.LightTank, EGaijinCharacter.LightTankPip },
             { EVehicleClass.MediumTank, EGaijinCharacter.MediumTankPip },
             { EVehicleClass.HeavyTank, EGaijinCharacter.HeavyTankPip },

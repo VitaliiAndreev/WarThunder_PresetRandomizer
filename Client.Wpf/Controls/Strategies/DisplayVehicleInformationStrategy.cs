@@ -68,9 +68,9 @@ namespace Client.Wpf.Controls.Strategies
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
             if (ShowStarterGiftTag(vehicle))
-                append($"{GetLocalisedString(ELocalisationKey.Starter)}{Character.Space}");
+                append($"{GetLocalisedString(ELocalisationKey.Starter)} ");
             else if (ShowReserveTag(vehicle))
-                append($"{GetLocalisedString(ELocalisationKey.Reserve)}{Character.Space}");
+                append($"{GetLocalisedString(ELocalisationKey.Reserve)} ");
 
             if (ShowEyeIcon(vehicle))
                 append(Character.Eye);
@@ -78,23 +78,23 @@ namespace Client.Wpf.Controls.Strategies
             if (ShowControllerIcon(vehicle))
                 append(EGaijinCharacter.Controller);
             if (ShowSpaceAfterControllerIcon(vehicle))
-                append(Character.Space);
+                append(' ');
 
             if (ShowPackTag(vehicle))
                 append(GetLocalisedString(ELocalisationKey.Pack));
             else if (ShowGoldenEagleCost(vehicle))
                 append($"{vehicle.EconomyData.PurchaseCostInGold.Value}{EGaijinCharacter.GoldenEagle}");
             else if (ShowSquadronGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value}{Character.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value}-{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value}{EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
                 append(EGaijinCharacter.GaijinCoin);
 
             if (ShowSpaceAfterSpecialIconsAndTags(vehicle))
-                append(Character.Space);
+                append(' ');
 
             if (ShowBinocularsIcon(vehicle))
-                append($"{EGaijinCharacter.Binoculars}{Character.Space}");
+                append($"{EGaijinCharacter.Binoculars} ");
 
             append(GetBattleRating(gameMode, vehicle));
         }
@@ -103,7 +103,7 @@ namespace Client.Wpf.Controls.Strategies
         {
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
-            append($"{Character.Space}");
+            append(' ');
             append(GetClassIcon(vehicle));
         }
 
@@ -134,16 +134,16 @@ namespace Client.Wpf.Controls.Strategies
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
             if (ShowBinocularsIcon(vehicle))
-                append($"{EGaijinCharacter.Binoculars}{Character.Space}");
+                append($"{EGaijinCharacter.Binoculars} ");
 
-            append($"{GetClassIcon(vehicle)}{Character.Space}");
-            append($"{GetClass(vehicle)}{Character.Space}");
+            append($"{GetClassIcon(vehicle)} ");
+            append($"{GetClass(vehicle)} ");
 
             if (ShowSecondSubclass(vehicle))
-                append($"{Character.Slash}{Character.Space}{GetLocalisedString(vehicle.Subclasses.Second)}");
+                append($"/ {GetLocalisedString(vehicle.Subclasses.Second)}");
 
             if (ShowTorpedoBomberTagAsClass(vehicle))
-                append($"{Character.Slash}{Character.Space}{GetLocalisedString(EVehicleBranchTag.TorpedoBomber)}");
+                append($"/ {GetLocalisedString(EVehicleBranchTag.TorpedoBomber)}");
 
             return stringBuilder.ToString();
         }
@@ -175,9 +175,9 @@ namespace Client.Wpf.Controls.Strategies
 
             append($"{GetLocalisedString(vehicle.Country)}");
             append($"{Separator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(ELocalisationKey.Rank)}{Character.Colon}{Character.Space}{vehicle.RankAsEnumerationItem}");
+            append($"{GetLocalisedString(ELocalisationKey.Rank)}: {vehicle.RankAsEnumerationItem}");
             append($"{Separator.SpaceSlashSpace}");
-            append($"{GetLocalisedString(ELocalisationKey.BattleRating)}{Character.Colon}{Character.Space}");
+            append($"{GetLocalisedString(ELocalisationKey.BattleRating)}: ");
 
             return stringBuilder.ToString();
         }
@@ -195,18 +195,18 @@ namespace Client.Wpf.Controls.Strategies
                 append($"{GetLocalisedString(ELocalisationKey.Starter)}{Separator.SpaceSlashSpace}");
 
             if (ShowGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.PurchaseCostInGold.Value.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.PurchaseCostInGold.Value.WithNumberGroupsSeparated()} {EGaijinCharacter.GoldenEagle}");
 
             if (ShowMarketIcon(vehicle))
-                append($"{EGaijinCharacter.GaijinCoin}{Character.Space}{GetLocalisedString(ELocalisationKey.SoldOnTheMarket)}");
+                append($"{EGaijinCharacter.GaijinCoin} {GetLocalisedString(ELocalisationKey.SoldOnTheMarket)}");
 
             if (ShowEyeIcon(vehicle))
-                append($"{Character.Eye}{Character.Space}{GetLocalisedString(ELocalisationKey.Hidden)}");
+                append($"{Character.Eye} {GetLocalisedString(ELocalisationKey.Hidden)}");
             if (ShowEyeIcon(vehicle) && ShowControllerIcon(vehicle))
                 append(Separator.SpaceSlashSpace);
 
             if (ShowControllerIcon(vehicle))
-                append($"{EGaijinCharacter.Controller}{Character.Space}{GetLocalisedString(ELocalisationKey.ConsoleExclusive)}");
+                append($"{EGaijinCharacter.Controller} {GetLocalisedString(ELocalisationKey.ConsoleExclusive)}");
             if (ShowControllerIcon(vehicle) && ShowPackTag(vehicle))
                 append(Separator.SpaceSlashSpace);
 
@@ -214,17 +214,17 @@ namespace Client.Wpf.Controls.Strategies
                 append(GetLocalisedString(ELocalisationKey.AvailableInStorePacks));
 
             if (ShowResearchCosts(vehicle))
-                append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.Research}");
+                append($"{vehicle.EconomyData.UnlockCostInResearch.Value.WithNumberGroupsSeparated()} {EGaijinCharacter.Research}");
             if (ShowResearchCosts(vehicle) && (ShowSilverLionCosts(vehicle) || ShowSquadronGoldenEagleCost(vehicle)))
-                append(Character.Space);
+                append(' ');
 
             if (ShowSilverLionCosts(vehicle))
-                append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.SilverLion}");
+                append($"{vehicle.EconomyData.PurchaseCostInSilver.WithNumberGroupsSeparated()} {EGaijinCharacter.SilverLion}");
             if (ShowSquadronGoldenEagleCost(vehicle))
-                append(Character.Space);
+                append(' ');
 
             if (ShowSquadronGoldenEagleCost(vehicle))
-                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{Character.Minus}{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.GoldenEagle}");
+                append($"{vehicle.EconomyData.DiscountedPurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()}-{vehicle.EconomyData.PurchaseCostInGoldAsSquadronVehicle.Value.WithNumberGroupsSeparated()} {EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
         }
@@ -236,11 +236,11 @@ namespace Client.Wpf.Controls.Strategies
             if (cost.IsZero())
                 return ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Free);
 
-            return $"{cost.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.SilverLion}";
+            return $"{cost.WithNumberGroupsSeparated()} {EGaijinCharacter.SilverLion}";
         }
 
         public string GetVehicleCardExpertCrewRequirements(IVehicle vehicle) =>
-            $"{vehicle.EconomyData.ExpertCrewTrainCostInSilver.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.SilverLion}";
+            $"{vehicle.EconomyData.ExpertCrewTrainCostInSilver.WithNumberGroupsSeparated()} {EGaijinCharacter.SilverLion}";
 
         public string GetVehicleCardAceCrewRequirements(IVehicle vehicle)
         {
@@ -248,9 +248,9 @@ namespace Client.Wpf.Controls.Strategies
 
             void append(object stringOrCharacter) => stringBuilder.Append(stringOrCharacter);
 
-            append($"{vehicle.EconomyData.AceCrewTrainCostInResearch.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.Research}");
+            append($"{vehicle.EconomyData.AceCrewTrainCostInResearch.WithNumberGroupsSeparated()} {EGaijinCharacter.Research}");
             append(Separator.SpaceSlashSpace);
-            append($"{vehicle.EconomyData.AceCrewTrainCostInGold.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.GoldenEagle}");
+            append($"{vehicle.EconomyData.AceCrewTrainCostInGold.WithNumberGroupsSeparated()} {EGaijinCharacter.GoldenEagle}");
 
             return stringBuilder.ToString();
         }
@@ -262,7 +262,7 @@ namespace Client.Wpf.Controls.Strategies
             if (!cost.HasValue || cost.Value.IsZero())
                 return ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.Free);
 
-            return $"{cost.Value.WithNumberGroupsSeparated()}{Character.Space}{EGaijinCharacter.SilverLion}";
+            return $"{cost.Value.WithNumberGroupsSeparated()} {EGaijinCharacter.SilverLion}";
         }
 
         #endregion Methods: Output

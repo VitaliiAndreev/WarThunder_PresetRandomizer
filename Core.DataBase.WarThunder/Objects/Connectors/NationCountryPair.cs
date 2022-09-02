@@ -22,7 +22,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         public NationCountryPair(string nationCountryString)
         {
-            var strings = nationCountryString.Split(Character.Underscore, StringSplitOptions.RemoveEmptyEntries);
+            var strings = nationCountryString.Split('_', StringSplitOptions.RemoveEmptyEntries);
 
             if (strings.Count() != Integer.Number.Two)
                 throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.Format(nationCountryString));
@@ -104,9 +104,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         }
 
         #endregion Methods: Equality Comparison
-
-        /// <summary> Returns a string that represents the instance. </summary>
-        /// <returns></returns>
-        public override string ToString() => $"{Nation}{Character.Underscore}{Country}";
+        
+        public override string ToString() => $"{Nation}_{Country}";
     }
 }

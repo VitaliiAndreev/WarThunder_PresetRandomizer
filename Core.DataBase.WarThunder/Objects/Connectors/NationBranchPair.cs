@@ -57,9 +57,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         }
 
         #endregion Methods: Equality Comparison
-
-        /// <summary> Returns a string that represents the instance. </summary>
-        /// <returns></returns>
-        public override string ToString() => $"{Nation}{Character.Underscore}{Branch}";
+        
+        public override string ToString() => $"{Nation}_{Branch}";
     }
 }

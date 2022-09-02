@@ -354,7 +354,7 @@ namespace Core.Organization.Helpers
             {
                 if (_generateDatabase && _generateNewDatabase)
                 {
-                    var databaseFileName = $"{_gameClientVersionString}{Character.Period}{FileExtension.SqLite3}";
+                    var databaseFileName = $"{_gameClientVersionString}.{FileExtension.SqLite3}";
                     var databaseJournalFileName = $"{databaseFileName}-journal";
 
                     _fileManager.DeleteFiles(new string[] { databaseFileName, databaseJournalFileName });
@@ -521,7 +521,7 @@ namespace Core.Organization.Helpers
         {
             var outputDirectory = new DirectoryInfo(Path.Combine(Settings.TempLocation, $"{sourceFileName}_u", processedSubdirectory));
 
-            return outputDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{fileType}", SearchOption.AllDirectories);
+            return outputDirectory.GetFiles($"*.{fileType}", SearchOption.AllDirectories);
         }
 
         internal DirectoryInfo Unpack(string packedFileName, string warThunderSubdirectory = "", string outputSubdirectory = "")
@@ -608,7 +608,7 @@ namespace Core.Organization.Helpers
                 }
             }
 
-            return processedDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{fileType}", SearchOption.AllDirectories);
+            return processedDirectory.GetFiles($"*.{fileType}", SearchOption.AllDirectories);
         }
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns BLK files it contains converted into BLKX files. </summary>
@@ -658,7 +658,7 @@ namespace Core.Organization.Helpers
             };
 
             IEnumerable<FileInfo> getPortraitFiles(string subdirectory) => readAlreadyUnpackedFiles
-                ? new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory)).GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Png}", SearchOption.AllDirectories)
+                ? new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory)).GetFiles($"*.{FileExtension.Png}", SearchOption.AllDirectories)
                 : GetFiles(FileExtension.Png, outputDirectory, subdirectory);
 
             foreach (var processedSubdirectory in processedSubdirectories)
@@ -679,7 +679,7 @@ namespace Core.Organization.Helpers
         /// <param name="unpackedFileName"> The name of the CSV file to read. </param>
         /// <returns></returns>
         internal IList<IList<string>> GetCsvRecords(IEnumerable<FileInfo> csvFiles, string unpackedFileName) =>
-            _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), Character.Semicolon);
+            _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), ';');
 
         /// <summary> Creates the database for the current War Thunder client version. It starts out blank and needs to be filled up. </summary>
         private void CreateBlankDataBase()

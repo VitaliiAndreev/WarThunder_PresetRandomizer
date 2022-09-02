@@ -16,7 +16,7 @@
         #region B
 
         public static string Battle => _Battle;
-        public static string BattleRating => $"{_Battle}{Character.Space}{_Rating}";
+        public static string BattleRating => $"{_Battle} {_Rating}";
         public static string Britain => _Britain;
 
         #endregion B

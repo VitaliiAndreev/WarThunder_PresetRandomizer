@@ -1,5 +1,4 @@
 ﻿using Core.Extensions;
-using Core.Helpers;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
@@ -26,7 +25,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
         public void ConvertDdsToPng(DirectoryInfo directory, SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            foreach (var file in directory.GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Dds}", searchOption))
+            foreach (var file in directory.GetFiles($"*.{FileExtension.Dds}", searchOption))
             {
                 Func<DdsImage> readFile = () => new DdsImage(file.FullName);
 

@@ -43,7 +43,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 if (match is null)
                     throw new YupFileParsingException(EUnpackingToolsIntegrationLogMessage.VersionNotFoundInSourceString);
 
-                var matchStrings = match.Value.Split(Character.Colon);
+                var matchStrings = match.Value.Split(':');
 
                 var versionParameterNumberString = matchStrings.First().Where(character => character.IsDigitFluently()).StringJoin();
                 var versionParameterNumber = int.Parse(versionParameterNumberString);

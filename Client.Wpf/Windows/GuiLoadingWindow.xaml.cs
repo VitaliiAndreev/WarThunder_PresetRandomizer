@@ -25,7 +25,7 @@ namespace Client.Wpf.Windows
             nameof(CurrentLoadingStage),
             typeof(string),
             typeof(GuiLoadingWindow),
-            new UIPropertyMetadata($"{Character.Period}{Character.Period}{Character.Period}")
+            new UIPropertyMetadata($"...")
         );
 
         public string CurrentLoadingStage

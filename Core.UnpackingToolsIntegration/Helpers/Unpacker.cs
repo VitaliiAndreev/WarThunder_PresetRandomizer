@@ -1,5 +1,4 @@
 ﻿using Core.Extensions;
-using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
@@ -122,7 +121,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             var outputPath = $@"{file.Directory}\{file.Name}";
 
-            switch (file.Extension.Split(Character.Period).Last().ToLower())
+            switch (file.Extension.Split('.').Last().ToLower())
             {
                 case FileExtension.Bin:
                 {

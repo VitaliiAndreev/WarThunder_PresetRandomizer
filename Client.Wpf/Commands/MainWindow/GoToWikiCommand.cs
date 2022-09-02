@@ -49,15 +49,15 @@ namespace Client.Wpf.Commands.MainWindow
 
         private string GetVehicleName(IVehicle vehicle, Language language)
         {
-            var nameParts = vehicle.ResearchTreeName.GetLocalisation(language).Split(Character.Space).ToList();
+            var nameParts = vehicle.ResearchTreeName.GetLocalisation(language).Split(' ').ToList();
             var firstNamePart = nameParts.First();
 
             if (!firstNamePart.First().IsLetterOrDigitFluently())
             {
                 nameParts[Integer.Number.Zero] = firstNamePart.Substring(Integer.Number.One);
-                nameParts.Add($"{Character.ParenthesisLeft}{ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)}{Character.ParenthesisRight}");
+                nameParts.Add($"({ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)})");
             }
-            return nameParts.StringJoin(Character.Plus);
+            return nameParts.StringJoin('+');
         }
     }
 }

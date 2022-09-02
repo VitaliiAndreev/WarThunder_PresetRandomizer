@@ -16,7 +16,7 @@ namespace Core.Tests.Extensions
         {
             // arrange
             var sourceString = "whatsitsface.gif";
-            var searchedCharacter = Character.Comma;
+            var searchedCharacter = ',';
 
             // act
             var containsCharacter = sourceString.Contains(searchedCharacter);
@@ -30,7 +30,7 @@ namespace Core.Tests.Extensions
         {
             // arrange
             var sourceString = "whatsitsface.gif";
-            var searchedCharacter = Character.Period;
+            var searchedCharacter = '.';
 
             // act
             var containsCharacter = sourceString.Contains(searchedCharacter);
