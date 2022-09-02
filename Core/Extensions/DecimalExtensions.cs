@@ -16,7 +16,7 @@ namespace Core.Extensions
             Math.Floor(number);
 
         public static bool IsPositive(this decimal number) =>
-            number > Decimal.Number.Zero;
+            number > 0m;
 
         public static bool IsInteger(this decimal number) =>
             number % Integer.Number.One == Integer.Number.Zero;

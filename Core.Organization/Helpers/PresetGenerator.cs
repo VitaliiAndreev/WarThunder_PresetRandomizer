@@ -30,7 +30,7 @@ namespace Core.Organization.Helpers
         /// The maximum difference in battle rating from the battle rating selected by user.
         /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
         /// </summary>
-        private const decimal _maximumBattleRatingDifference = Decimal.Number.Three;
+        private const decimal _maximumBattleRatingDifference = 3m;
 
         #endregion Constants
         #region Fields
