@@ -24,8 +24,8 @@ namespace WarThunderSimpleUpdateChecker
     {
         #region Fields
 
-        private static readonly IConfiguredLogger _fileLogger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter());
-        private static readonly IConfiguredLogger _consoleLogger = new ConfiguredNLogger(LoggerName.ConsoleLogger, new ExceptionFormatter());
+        private static readonly IConfiguredLogger _fileLogger = new ConfiguredNLogger(NLogLoggerName.FileLogger, new ExceptionFormatter());
+        private static readonly IConfiguredLogger _consoleLogger = new ConfiguredNLogger(NLogLoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly Application _logger = new Application();
         private static readonly IFileManager _fileManager = new FileManager(_fileLogger, _consoleLogger);
         private static readonly IFileReader _fileReader = new FileReader(_fileLogger, _consoleLogger);

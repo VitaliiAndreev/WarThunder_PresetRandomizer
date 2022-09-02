@@ -84,9 +84,9 @@ namespace Client.Wpf
         {
             if (_loggersInitialised) return;
 
-            var fileLogger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs, true);
+            var fileLogger = new ConfiguredNLogger(NLogLoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs, true);
 
-            var wpfLogger = new ConfiguredNLogger(LoggerName.WpfLogger, new ExceptionFormatter());
+            var wpfLogger = new ConfiguredNLogger(NLogLoggerName.WpfLogger, new ExceptionFormatter());
             wpfLogger.LogInstantiation(fileLogger);
 
             Loggers = new IConfiguredLogger[]

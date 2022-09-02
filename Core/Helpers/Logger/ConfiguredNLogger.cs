@@ -32,7 +32,7 @@ namespace Core.Helpers.Logger
         /// <param name="loggerName"> The name of the logger. </param>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
         /// <param name="logCreation"> Whether to immediately log its creation. </param>
-        public ConfiguredNLogger(LoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logCreation = false)
+        public ConfiguredNLogger(NLogLoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logCreation = false)
         {
             ExceptionFormatter = exceptionFormatter;
 
@@ -41,14 +41,14 @@ namespace Core.Helpers.Logger
 
             var nlogConfigurationVariables = LogManager.Configuration.Variables;
 
-            if (loggerName == LoggerName.FileLogger)
+            if (loggerName == NLogLoggerName.FileLogger)
             {
-                nlogConfigurationVariables[VariableName.FileName] = @$"{(string.IsNullOrWhiteSpace(subdirectory) ? "Logs" : subdirectory)}\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
-                nlogConfigurationVariables[VariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
+                nlogConfigurationVariables[NLogVariableName.FileName] = @$"{(string.IsNullOrWhiteSpace(subdirectory) ? "Logs" : subdirectory)}\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
+                nlogConfigurationVariables[NLogVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
             }
-            else if (loggerName == LoggerName.ConsoleLogger)
+            else if (loggerName == NLogLoggerName.ConsoleLogger)
             {
-                nlogConfigurationVariables[VariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
+                nlogConfigurationVariables[NLogVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
             }
 
             if (logCreation)

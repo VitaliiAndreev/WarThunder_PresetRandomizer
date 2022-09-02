@@ -45,7 +45,7 @@ namespace Core.Tests
         {
             if (UseLiveLogging)
             {
-                Logger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter());
+                Logger = new ConfiguredNLogger(NLogLoggerName.FileLogger, new ExceptionFormatter());
             }
             else
             {

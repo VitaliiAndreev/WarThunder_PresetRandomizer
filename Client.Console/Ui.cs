@@ -43,8 +43,8 @@ namespace Client.Console
             {
                 var loggers = new IConfiguredLogger[]
                 {
-                    new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs),
-                    new ConfiguredNLogger(LoggerName.ConsoleLogger, new ExceptionFormatter()),
+                    new ConfiguredNLogger(NLogLoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs),
+                    new ConfiguredNLogger(NLogLoggerName.ConsoleLogger, new ExceptionFormatter()),
                 };
                 var fileManager = new WarThunderFileManager(loggers);
                 var fileReader = new WarThunderFileReader(loggers);

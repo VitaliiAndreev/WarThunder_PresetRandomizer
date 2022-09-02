@@ -1,6 +1,5 @@
 ﻿namespace Core
 {
-    /// <summary> Characters. </summary>
     public class Character
     {
         public const char Apostrophe = '\'';

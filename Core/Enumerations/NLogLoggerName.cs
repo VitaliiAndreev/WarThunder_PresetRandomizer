@@ -1,7 +1,7 @@
 ﻿namespace Core
 {
-    /// <summary> Enumerates NLog logger names that correspond to rule names set up. </summary>
-    public enum LoggerName
+    /// <summary> Enumerates NLog logger names that correspond to rule names. </summary>
+    public enum NLogLoggerName
     {
         ConsoleLogger,
         FileLogger,
