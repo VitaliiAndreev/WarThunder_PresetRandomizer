@@ -467,6 +467,7 @@
     <Compile Include="Controls\VehicleTooltipControl.xaml.cs">
       <DependentUpon>VehicleTooltipControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />

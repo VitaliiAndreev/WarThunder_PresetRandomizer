@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\Character.cs" />
-    <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Enumerations\Domain.cs" />
     <Compile Include="Enumerations\Double.cs" />
     <Compile Include="Enumerations\FileExtension.cs" />

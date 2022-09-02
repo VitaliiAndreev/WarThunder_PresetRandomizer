@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.Extensions;
+﻿using Core.Extensions;
 using System;
 using System.Windows.Controls;
 

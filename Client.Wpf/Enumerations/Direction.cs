@@ -1,6 +1,5 @@
-﻿namespace Core
+﻿namespace Client.Wpf
 {
-    /// <summary> Directions. </summary>
     public enum Direction
     {
         None,
