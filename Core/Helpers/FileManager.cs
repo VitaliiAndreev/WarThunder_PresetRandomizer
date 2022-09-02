@@ -244,7 +244,7 @@ namespace Core.Helpers
                 DeleteFiles(subdirectory.FullName, fileExtensions, true, deleteEmptyDirectories);
 
                 if (deleteEmptyDirectories)
-                    DeleteEmptyDirectory(subdirectory.FullName);
+                    Directory.Delete(subdirectory.FullName, recursive: true);
             }
         }
 
@@ -269,7 +269,7 @@ namespace Core.Helpers
             {
                 LogDebug(ECoreLogMessage.DeletingEmptyDirectory.Format(path));
 
-                Directory.Delete(path, true);
+                Directory.Delete(path, recursive: true);
 
                 LogDebug(ECoreLogMessage.Deleted.Format(path));
             }
