@@ -18,13 +18,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Double = Core.Double;
 
 namespace Client.Wpf.Controls
 {
     /// <summary> Interaction logic for VehicleCountsStatisticsControl.xaml. </summary>
     public partial class VehicleCountsStatisticsControl : LocalisedUserControl
     {
+        private const double gridCellBorderOpacity = 0.1;
+
         #region Fields
 
         #region Readonly
@@ -309,7 +310,7 @@ namespace Client.Wpf.Controls
             return new Border
             {
                 BorderThickness = new Thickness(Integer.Number.One, Integer.Number.One, Integer.Number.One, Integer.Number.One),
-                BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = Double.Number.PointOne },
+                BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = gridCellBorderOpacity },
             };
         }
 

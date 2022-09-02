@@ -2,7 +2,7 @@
 {
     public static class Domain
     {
-        public static string Com = "com";
-        public static string Ru = "ru";
+        public const string Com = "com";
+        public const string Ru = "ru";
     }
 }

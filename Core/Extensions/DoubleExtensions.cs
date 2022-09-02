@@ -2,6 +2,6 @@
 {
     public static class DoubleExtensions
     {
-        public static bool IsPositive(this double value) => value > Double.Number.Zero;
+        public static bool IsPositive(this double value) => value > 0.0;
     }
 }

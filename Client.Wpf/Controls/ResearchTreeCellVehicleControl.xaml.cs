@@ -4,7 +4,6 @@ using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -18,6 +17,10 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for ResearchTreeCellVehicleControl.xaml. </summary>
     public partial class ResearchTreeCellVehicleControl : UserControl
     {
+        private const double controlOpacityWhenOff = 0.25;
+        private const double controlOpacityWhenOn = 1.0;
+        private const double vehicleIconOpacity = 0.9;
+
         #region Fields
 
         private readonly IMainWindowPresenter _presenter;
@@ -170,7 +173,7 @@ namespace Client.Wpf.Controls
                     Stretch = Stretch.Uniform,
                     AlignmentX = AlignmentX.Left,
                     AlignmentY = AlignmentY.Center,
-                    Opacity = Double.Number.PointNine,
+                    Opacity = vehicleIconOpacity,
                 };
             }
 
@@ -231,7 +234,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Updates the control's opacity according to its <see cref="IsToggled"/> state. </summary>
         private void UpdateOpacity() =>
-            _border.Opacity = IsToggled ? Double.Number.One : Double.Number.Quarter;
+            _border.Opacity = IsToggled ? controlOpacityWhenOn : controlOpacityWhenOff;
 
         private void OnTooltipOpening(object sender, ToolTipEventArgs e)
         {

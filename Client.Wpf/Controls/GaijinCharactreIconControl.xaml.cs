@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Controls.Base;
-using Core;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,6 +7,8 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for GaijinCharactreIconControl.xaml. </summary>
     public partial class GaijinCharactreIconControl : LocalisedUserControl
     {
+        private const double defaultFontSize = 16.0;
+
         #region Constructors
 
         public GaijinCharactreIconControl()
@@ -30,7 +31,14 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Initialisation
 
-        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = Double.Number.Sixteen, bool iconIsBold = false, bool useStandardVerticalMargin = false)
+        private void Initialise<T>(
+            string icon, 
+            T iconTag, 
+            Thickness margin, 
+            MouseButtonEventHandler leftMouseDownHandler, 
+            double? fontSize = defaultFontSize, 
+            bool iconIsBold = false, 
+            bool useStandardVerticalMargin = false)
         {
             _icon.FontWeight = iconIsBold ? FontWeights.Bold : FontWeights.Normal;
             _icon.Text = icon;
