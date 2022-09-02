@@ -33,32 +33,32 @@ namespace Client.Wpf.Commands.MainWindow
                     GetVehicleName(vehicle, language)
                 );
 
-                Process.Start(link);
+                System.Diagnostics.Process.Start(link);
                 presenter.ReferencedVehicle = null;
             }
         }
 
-        private string GetDomain(ELanguage language)
+        private string GetDomain(Language language)
         {
             return language switch
             {
-                ELanguage.English => EDomain.Com,
-                ELanguage.Russian => EDomain.Ru,
-                _ => EDomain.Com,
+                Language.English => Domain.Com,
+                Language.Russian => Domain.Ru,
+                _ => Domain.Com,
             };
         }
 
-        private string GetVehicleName(IVehicle vehicle, ELanguage language)
+        private string GetVehicleName(IVehicle vehicle, Language language)
         {
-            var nameParts = vehicle.ResearchTreeName.GetLocalisation(language).Split(ECharacter.Space).ToList();
+            var nameParts = vehicle.ResearchTreeName.GetLocalisation(language).Split(Character.Space).ToList();
             var firstNamePart = nameParts.First();
 
             if (!firstNamePart.First().IsLetterOrDigitFluently())
             {
-                nameParts[EInteger.Number.Zero] = firstNamePart.Substring(EInteger.Number.One);
-                nameParts.Add($"{ECharacter.ParenthesisLeft}{ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)}{ECharacter.ParenthesisRight}");
+                nameParts[Integer.Number.Zero] = firstNamePart.Substring(Integer.Number.One);
+                nameParts.Add($"{Character.ParenthesisLeft}{ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)}{Character.ParenthesisRight}");
             }
-            return nameParts.StringJoin(ECharacter.Plus);
+            return nameParts.StringJoin(Character.Plus);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            Log.Debug(ECoreLogMessage.Initialised);
+            Log.Debug(CoreLogMessage.Initialised);
         }
 
         #endregion Constructors
@@ -60,7 +60,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private async void OnLoaded(object sender, RoutedEventArgs eventArguments)
         {
-            Log.Debug(ECoreLogMessage.Shown);
+            Log.Debug(CoreLogMessage.Shown);
 
             var prepareDataTask = new Task(PrepareData);
             Action prepareDataAsynchronously = () => prepareDataTask.Start();
@@ -74,7 +74,7 @@ namespace Client.Wpf.Windows
             // To work around the not functional await a delay is implemented.
             while (prepareDataTask.Status != TaskStatus.RanToCompletion)
             {
-                await Task.Delay(EInteger.Time.MillisecondsInSecond / EInteger.Number.Hundred);
+                await Task.Delay(Integer.Time.MillisecondsInSecond / Integer.Number.Hundred);
 
                 if (_asynchronousException is Exception)
                     throw _asynchronousException;
@@ -97,14 +97,14 @@ namespace Client.Wpf.Windows
                 closeImmediately = true;
 
                 while (_messageBoxIsUp)
-                    await Task.Delay(EInteger.Time.MillisecondsInSecond / EInteger.Number.Four);
+                    await Task.Delay(Integer.Time.MillisecondsInSecond / Integer.Number.Four);
             }
 
             if (!closeImmediately)
             {
                 _status.Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ReadyWithCountDown).Format(secondsBeforeAutoClosure);
 
-                await Task.Delay(secondsBeforeAutoClosure * EInteger.Time.MillisecondsInSecond);
+                await Task.Delay(secondsBeforeAutoClosure * Integer.Time.MillisecondsInSecond);
             }
 
             Close();
@@ -129,7 +129,7 @@ namespace Client.Wpf.Windows
                 exit = true;
             }
 
-            Log.Debug(ECoreLogMessage.Closed);
+            Log.Debug(CoreLogMessage.Closed);
 
             if (exit)
                 Environment.Exit(0);

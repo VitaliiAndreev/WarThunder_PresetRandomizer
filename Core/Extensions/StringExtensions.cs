@@ -96,7 +96,7 @@ namespace Core.Extensions
             }
             else
             {
-                throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T)));
+                throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T)));
             }
         }
 
@@ -158,12 +158,12 @@ namespace Core.Extensions
             source
                 .Split
                 (
-                    new char[] { ECharacter.CarriageReturn, ECharacter.NewLine },
+                    new char[] { Character.CarriageReturn, Character.NewLine },
                     StringSplitOptions.RemoveEmptyEntries
                 )
                 .Where(line => !line.All(character => character.IsWhiteSpaceFluently() || character.IsPunctuationFluently()))
                 .Select(line => line.Trim())
-                .StringJoin(ECharacter.Space)
+                .StringJoin(Character.Space)
             ;
 
         /// <summary>
@@ -176,14 +176,14 @@ namespace Core.Extensions
         public static string ResetFormattingPlaceholders(this string source)
         {
             var substrings = source
-                .Split(new char[] { ECharacter.BraceLeft }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new char[] { Character.BraceLeft }, StringSplitOptions.RemoveEmptyEntries)
                 .ToList()
             ;
 
             var firstSubstring = substrings.First();
             var substringsWithoutFirst = substrings
                 .Skip(1)
-                .Select(substring => substring.Skip(substring.IndexOf(ECharacter.BraceRight) + 1).StringJoin())
+                .Select(substring => substring.Skip(substring.IndexOf(Character.BraceRight) + 1).StringJoin())
             ;
 
             substrings = new string[] { firstSubstring }
@@ -195,7 +195,7 @@ namespace Core.Extensions
             for (var i = 0; i < substrings.Count; i++)
             {
                 stringBuilder.Append(substrings[i]);
-                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{ECharacter.BraceLeft}{i}{ECharacter.BraceRight}");
+                stringBuilder.Append(i == substrings.Count - 1? string.Empty : $"{Character.BraceLeft}{i}{Character.BraceRight}");
             }
 
             return stringBuilder.ToString();

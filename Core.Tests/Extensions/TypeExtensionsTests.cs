@@ -73,7 +73,7 @@ namespace Core.Tests.Extensions
         public void GetEnumerationItems_GenericIsNotEnum_Throws()
         {
             // arrange, act
-            Action getEnumerationItems = () => typeof(EDirection).GetEnumerationItems<int>();
+            Action getEnumerationItems = () => typeof(Direction).GetEnumerationItems<int>();
 
             // assert
             getEnumerationItems.Should().Throw<ArgumentException>();
@@ -83,7 +83,7 @@ namespace Core.Tests.Extensions
         public void GetEnumerationItems_ParameterIsNotEnum_Throws()
         {
             // arrange, act
-            Action getEnumerationItems = () => typeof(int).GetEnumerationItems<EDirection>();
+            Action getEnumerationItems = () => typeof(int).GetEnumerationItems<Direction>();
 
             // assert
             getEnumerationItems.Should().Throw<ArgumentException>();
@@ -93,7 +93,7 @@ namespace Core.Tests.Extensions
         public void GetEnumerationItems_EnumsMismatch_Throws()
         {
             // arrange, act
-            Action getEnumerationItems = () => typeof(EDirection).GetEnumerationItems<EInitializationStatus>();
+            Action getEnumerationItems = () => typeof(Direction).GetEnumerationItems<InitializationStatus>();
 
             // assert
             getEnumerationItems.Should().Throw<ArgumentException>();
@@ -103,11 +103,11 @@ namespace Core.Tests.Extensions
         public void GetEnumerationItems_SkipNone_ReturnsItemsWithoutNone()
         {
             // arrange
-            var type = typeof(EDirection);
-            var expectedEnumerationItems = Enum.GetValues(type).Cast<EDirection>().Except(EDirection.None);
+            var type = typeof(Direction);
+            var expectedEnumerationItems = Enum.GetValues(type).Cast<Direction>().Except(Direction.None);
             
             // act
-            var actualEnumerationItems = type.GetEnumerationItems<EDirection>(true);
+            var actualEnumerationItems = type.GetEnumerationItems<Direction>(true);
 
             // assert
             actualEnumerationItems.Should().BeEquivalentTo(expectedEnumerationItems);
@@ -117,11 +117,11 @@ namespace Core.Tests.Extensions
         public void GetEnumerationItems_ReturnsAllItems()
         {
             // arrange
-            var type = typeof(EDirection);
-            var expectedEnumerationItems = Enum.GetValues(type).Cast<EDirection>();
+            var type = typeof(Direction);
+            var expectedEnumerationItems = Enum.GetValues(type).Cast<Direction>();
 
             // act
-            var actualEnumerationItems = type.GetEnumerationItems<EDirection>();
+            var actualEnumerationItems = type.GetEnumerationItems<Direction>();
 
             // assert
             actualEnumerationItems.Should().BeEquivalentTo(expectedEnumerationItems);

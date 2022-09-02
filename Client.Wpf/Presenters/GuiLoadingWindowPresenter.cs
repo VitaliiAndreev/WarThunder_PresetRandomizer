@@ -21,12 +21,12 @@ namespace Client.Wpf.Presenters
 
         public int NationsToPopulate
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.NationsToPopulate; }).CastTo<int>() ?? EInteger.Number.One;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.NationsToPopulate; }).CastTo<int>() ?? Integer.Number.One;
             set => Owner?.Invoke(DispatcherPriority.Send, () => { Owner.NationsToPopulate = value; });
         }
         public int NationsPopulated
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.NationsPopulated; }).CastTo<int>() ?? EInteger.Number.Zero;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.NationsPopulated; }).CastTo<int>() ?? Integer.Number.Zero;
             set => Owner?.Invoke
                 (
                     DispatcherPriority.Send, () =>
@@ -44,12 +44,12 @@ namespace Client.Wpf.Presenters
 
         public int BranchesToPopulate
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.BranchesToPopulate; }).CastTo<int>() ?? EInteger.Number.One;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.BranchesToPopulate; }).CastTo<int>() ?? Integer.Number.One;
             set => Owner?.Invoke(DispatcherPriority.Send, () => { Owner.BranchesToPopulate = value; });
         }
         public int BranchesPopulated
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.BranchesPopulated; }).CastTo<int>() ?? EInteger.Number.Zero;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.BranchesPopulated; }).CastTo<int>() ?? Integer.Number.Zero;
             set => Owner?.Invoke
                 (
                     DispatcherPriority.Send,
@@ -69,12 +69,12 @@ namespace Client.Wpf.Presenters
 
         public int RanksToPopulate
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RanksToPopulate; }).CastTo<int>() ?? EInteger.Number.One;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RanksToPopulate; }).CastTo<int>() ?? Integer.Number.One;
             set => Owner?.Invoke(DispatcherPriority.Send, () => { Owner.RanksToPopulate = value; });
         }
         public int RanksPopulated
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RanksPopulated; }).CastTo<int>() ?? EInteger.Number.Zero;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RanksPopulated; }).CastTo<int>() ?? Integer.Number.Zero;
             set => Owner?.Invoke
                 (
                     DispatcherPriority.Send,
@@ -101,12 +101,12 @@ namespace Client.Wpf.Presenters
 
         public int RowsToPopulate
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RowsToPopulate; }).CastTo<int>() ?? EInteger.Number.One;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RowsToPopulate; }).CastTo<int>() ?? Integer.Number.One;
             set => Owner?.Invoke(DispatcherPriority.Send, () => { Owner.RowsToPopulate = value; });
         }
         public int RowsPopulated
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RowsPopulated; }).CastTo<int>() ?? EInteger.Number.Zero;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.RowsPopulated; }).CastTo<int>() ?? Integer.Number.Zero;
             set => Owner?.Invoke
                 (
                     DispatcherPriority.Send,
@@ -124,12 +124,12 @@ namespace Client.Wpf.Presenters
 
         public int ColumnsToPopulate
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.ColumnsToPopulate; }).CastTo<int>() ?? EInteger.Number.One;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.ColumnsToPopulate; }).CastTo<int>() ?? Integer.Number.One;
             set => Owner?.Invoke(DispatcherPriority.Send, () => { Owner.ColumnsToPopulate = value; });
         }
         public int ColumnsPopulated
         {
-            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.ColumnsPopulated; }).CastTo<int>() ?? EInteger.Number.Zero;
+            get => Owner?.Invoke(DispatcherPriority.Send, () => { return Owner.ColumnsPopulated; }).CastTo<int>() ?? Integer.Number.Zero;
             set => Owner?.Invoke
                 (
                     DispatcherPriority.Send,

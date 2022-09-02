@@ -19,9 +19,9 @@ namespace Core.Helpers
         /// <summary> Creates a new file reader. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public FileReader(params IConfiguredLogger[] loggers)
-            : base(ECoreLogCategory.FileReader, loggers)
+            : base(CoreLogCategory.FileReader, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.FileReader));
+            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.FileReader));
         }
 
         #endregion Constructors
@@ -42,17 +42,17 @@ namespace Core.Helpers
             {
                 LogErrorAndThrow<FileNotFoundException>
                 (
-                    ECoreLogMessage.NotFound.Format(file.FullName),
-                    ECoreLogMessage.ErrorReadingFile
+                    CoreLogMessage.NotFound.Format(file.FullName),
+                    CoreLogMessage.ErrorReadingFile
                 );
                 return null;
             }
 
-            LogDebug(ECoreLogMessage.CreatingStreamReader.Format(file.FullName));
+            LogDebug(CoreLogMessage.CreatingStreamReader.Format(file.FullName));
 
             var streamReader = new StreamReader(file.FullName);
 
-            LogDebug(ECoreLogMessage.StreamReaderCreated);
+            LogDebug(CoreLogMessage.StreamReaderCreated);
 
             return streamReader;
         }
@@ -73,12 +73,12 @@ namespace Core.Helpers
         {
             var fileContents = default(string);
 
-            LogDebug(ECoreLogMessage.Reading.Format(file.FullName));
+            LogDebug(CoreLogMessage.Reading.Format(file.FullName));
 
             using (var textReader = CreateTextReader(file.FullName))
                 fileContents = textReader.ReadToEnd();
 
-            LogDebug(ECoreLogMessage.ReadCharacters.Format(fileContents.Count()));
+            LogDebug(CoreLogMessage.ReadCharacters.Format(fileContents.Count()));
 
             return fileContents;
         }
@@ -114,14 +114,14 @@ namespace Core.Helpers
 
         public byte[] ReadBytes(FileInfo file)
         {
-            LogTrace(ECoreLogMessage.ReadingBytesFromFile.Format(file.FullName));
+            LogTrace(CoreLogMessage.ReadingBytesFromFile.Format(file.FullName));
 
             var bytes = File.ReadAllBytes(file.FullName);
 
             if (bytes is null)
-                LogWarn(ECoreLogMessage.ErrorReadingBytesFromFile.Format(file.FullName));
+                LogWarn(CoreLogMessage.ErrorReadingBytesFromFile.Format(file.FullName));
             else
-                LogTrace(ECoreLogMessage.ReadBytesFromFile.Format(bytes.Count(), file.FullName));
+                LogTrace(CoreLogMessage.ReadBytesFromFile.Format(bytes.Count(), file.FullName));
 
             return bytes;
         }

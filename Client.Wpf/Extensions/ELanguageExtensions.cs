@@ -3,18 +3,18 @@ using Core.Enumerations;
 
 namespace Client.Wpf.Extensions
 {
-    /// <summary> Methods extending the <see cref="ELanguage"/> enumeration. </summary>
+    /// <summary> Methods extending the <see cref="Language"/> enumeration. </summary>
     public static class ELanguageExtensions
     {
         /// <summary> Returns the resource key for the flag of the country with the specified language. </summary>
         /// <param name="language"> The language to get a flag resource key for. </param>
         /// <returns></returns>
-        public static string GetFlagResourceKey(this ELanguage language)
+        public static string GetFlagResourceKey(this Language language)
         {
             return language switch
             {
-                ELanguage.English => EBitmapImageKey.FlagUsa,
-                ELanguage.Russian => EBitmapImageKey.FlagRussian,
+                Language.English => EBitmapImageKey.FlagUsa,
+                Language.Russian => EBitmapImageKey.FlagRussian,
                 _ => null,
             };
         }

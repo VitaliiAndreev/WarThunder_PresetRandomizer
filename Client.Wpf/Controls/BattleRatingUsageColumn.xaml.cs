@@ -23,13 +23,13 @@ namespace Client.Wpf.Controls
 
         public void SetRatio(int economicRank, double ratio)
         {
-            var percentage = Math.Round(ratio * EInteger.Number.Hundred, EInteger.Number.Zero);
+            var percentage = Math.Round(ratio * Integer.Number.Hundred, Integer.Number.Zero);
 
             _battleRatingLabel.Text = Calculator.GetBattleRating(economicRank).ToString(BattleRating.Format);
-            _percentageLabel.Text = $"{percentage}{ECharacter.Percent}";
+            _percentageLabel.Text = $"{percentage}{Character.Percent}";
 
             _filledBarDefinition.Height = new GridLength(percentage, GridUnitType.Star);
-            _notFilledBarDefinition.Height = new GridLength(EInteger.Number.Hundred - percentage, GridUnitType.Star);
+            _notFilledBarDefinition.Height = new GridLength(Integer.Number.Hundred - percentage, GridUnitType.Star);
         }
 
         public void SetColor(byte red, byte green, byte blue)

@@ -41,10 +41,10 @@ namespace Core.Organization.Objects
         public override int GetHashCode()
         {
             var branchesIncluded = Branches.OrderBy(branch => branch).ToList();
-            var primes = EInteger.Number.PrimesAboveHundred.ToList();
-            var hashCode = EInteger.Number.One;
+            var primes = Integer.Number.PrimesAboveHundred.ToList();
+            var hashCode = Integer.Number.One;
 
-            for (var index = EInteger.Number.Zero; index < Branches.Count(); index++)
+            for (var index = Integer.Number.Zero; index < Branches.Count(); index++)
             {
                 var prime = primes[index];
                 var branch = branchesIncluded[index];

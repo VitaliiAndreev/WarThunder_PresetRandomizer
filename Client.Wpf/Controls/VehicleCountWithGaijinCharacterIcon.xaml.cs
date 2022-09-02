@@ -64,7 +64,7 @@ namespace Client.Wpf.Controls
             var iconControl = new TextBlock
             {
                 Style = _iconStyle,
-                Margin = new Thickness(EInteger.Number.Zero, -EInteger.Number.Ten, EInteger.Number.Three, -EInteger.Number.Ten),
+                Margin = new Thickness(Integer.Number.Zero, -Integer.Number.Ten, Integer.Number.Three, -Integer.Number.Ten),
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 TextAlignment = TextAlignment.Center,
@@ -74,8 +74,8 @@ namespace Client.Wpf.Controls
                 ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()),
             };
 
-            _grid.Add(iconControl, EInteger.Number.Zero, EInteger.Number.Zero);
-            _grid.Add(_label, EInteger.Number.One, EInteger.Number.Zero);
+            _grid.Add(iconControl, Integer.Number.Zero, Integer.Number.Zero);
+            _grid.Add(_label, Integer.Number.One, Integer.Number.Zero);
 
             if (!(mouseButtonHandler is null))
                 MouseDown += mouseButtonHandler;

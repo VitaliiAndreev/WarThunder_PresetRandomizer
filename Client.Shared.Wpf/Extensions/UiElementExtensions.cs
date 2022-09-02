@@ -40,14 +40,14 @@ namespace Client.Shared.Wpf.Extensions
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
                 grid.Children.Add(uiElement);
 
-                Grid.SetColumn(uiElement, grid.ColumnDefinitions.Count() - EInteger.Number.One);
+                Grid.SetColumn(uiElement, grid.ColumnDefinitions.Count() - Integer.Number.One);
             }
             else
             {
                 grid.RowDefinitions.Add(new RowDefinition());
                 grid.Children.Add(uiElement);
 
-                Grid.SetRow(uiElement, grid.RowDefinitions.Count() - EInteger.Number.One);
+                Grid.SetRow(uiElement, grid.RowDefinitions.Count() - Integer.Number.One);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Client.Shared.Wpf.Extensions
 
             if (columnIndex.HasValue)
             {
-                for (var newColumnIndex = grid.ColumnDefinitions.Count() - EInteger.Number.One; newColumnIndex < columnIndex; newColumnIndex++)
+                for (var newColumnIndex = grid.ColumnDefinitions.Count() - Integer.Number.One; newColumnIndex < columnIndex; newColumnIndex++)
                     grid.ColumnDefinitions.Add(new ColumnDefinition());
 
                 Grid.SetColumn(element, columnIndex.Value);
@@ -22,7 +22,7 @@ namespace Client.Shared.Wpf.Extensions
 
             if (rowIndex.HasValue)
             {
-                for (var newRowIndex = grid.RowDefinitions.Count() - EInteger.Number.One; newRowIndex < rowIndex; newRowIndex++)
+                for (var newRowIndex = grid.RowDefinitions.Count() - Integer.Number.One; newRowIndex < rowIndex; newRowIndex++)
                     grid.RowDefinitions.Add(new RowDefinition());
 
                 Grid.SetRow(element, rowIndex.Value);

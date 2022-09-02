@@ -24,11 +24,11 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string PreparingGameImageFiles = $"{_Preparing} {_game} {_image} {_files}.";
         public static readonly string GameImageFilesPrepared = $"{_Game} {_image} {_files} {_prepared}.";
 
-        public static readonly string PreparingBlkxFiles = $"{_Preparing} {EFileExtension.Blkx.ToUpper()} {_files}.";
-        public static readonly string BlkxFilesPrepared = $"{EFileExtension.Blkx.ToUpper()} {_files} {_prepared}.";
+        public static readonly string PreparingBlkxFiles = $"{_Preparing} {FileExtension.Blkx.ToUpper()} {_files}.";
+        public static readonly string BlkxFilesPrepared = $"{FileExtension.Blkx.ToUpper()} {_files} {_prepared}.";
 
-        public static readonly string PreparingCsvFiles = $"{_Preparing} {EFileExtension.Csv.ToUpper()} {_files}.";
-        public static readonly string CsvFilesPrepared = $"{EFileExtension.Csv.ToUpper()} {_files} {_prepared}.";
+        public static readonly string PreparingCsvFiles = $"{_Preparing} {FileExtension.Csv.ToUpper()} {_files}.";
+        public static readonly string CsvFilesPrepared = $"{FileExtension.Csv.ToUpper()} {_files} {_prepared}.";
 
         public static readonly string PreparingVehicleIcons = $"{_Preparing} {_vehicle} {_icons} {_files}.";
         public static readonly string VehicleIconsPrepared = $"{_Vehicle} {_icons} {_prepared}.";

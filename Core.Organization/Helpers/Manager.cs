@@ -184,7 +184,7 @@ namespace Core.Organization.Helpers
             ShowThunderSkillData = true;
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
-            LogDebug(ECoreLogMessage.Created.Format(EOrganizationLogCategory.Manager));
+            LogDebug(CoreLogMessage.Created.Format(EOrganizationLogCategory.Manager));
         }
 
         #endregion Constructors
@@ -252,8 +252,8 @@ namespace Core.Organization.Helpers
         {
             static IDictionary<int, int> createDictionary() =>
                 Enumerable
-                    .Range(EInteger.Number.Zero, EReference.MaximumEconomicRank + EInteger.Number.One)
-                    .ToDictionary(number => number, number => EInteger.Number.Zero);
+                    .Range(Integer.Number.Zero, EReference.MaximumEconomicRank + Integer.Number.One)
+                    .ToDictionary(number => number, number => Integer.Number.Zero);
 
             foreach (var branchDictionary in EconomicRankUsage.Values)
             {
@@ -356,7 +356,7 @@ namespace Core.Organization.Helpers
             {
                 if (_generateDatabase && _generateNewDatabase)
                 {
-                    var databaseFileName = $"{_gameClientVersionString}{ECharacter.Period}{EFileExtension.SqLite3}";
+                    var databaseFileName = $"{_gameClientVersionString}{Character.Period}{FileExtension.SqLite3}";
                     var databaseJournalFileName = $"{databaseFileName}-journal";
 
                     _fileManager.DeleteFiles(new string[] { databaseFileName, databaseJournalFileName });
@@ -463,7 +463,7 @@ namespace Core.Organization.Helpers
                 LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
                 {
                     var task = Task.Factory.StartNew(() => _thunderSkillParser.Load());
-                    var timeout = EInteger.Time.MillisecondsInSecond * EInteger.Number.Thirty;
+                    var timeout = Integer.Time.MillisecondsInSecond * Integer.Number.Thirty;
 
                     if (await Task.WhenAny(task, Task.Delay(timeout)) == task)
                     {
@@ -523,7 +523,7 @@ namespace Core.Organization.Helpers
         {
             var outputDirectory = new DirectoryInfo(Path.Combine(Settings.TempLocation, $"{sourceFileName}_u", processedSubdirectory));
 
-            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
+            return outputDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{fileType}", SearchOption.AllDirectories);
         }
 
         internal DirectoryInfo Unpack(string packedFileName, string warThunderSubdirectory = "", string outputSubdirectory = "")
@@ -546,19 +546,19 @@ namespace Core.Organization.Helpers
             {
                 if (_gameClientVersion is null)
                 {
-                    LogWarn(ECoreLogMessage.MemberNotInitialisedProperly.Format(nameof(_gameClientVersion)));
+                    LogWarn(CoreLogMessage.MemberNotInitialisedProperly.Format(nameof(_gameClientVersion)));
 
                     return null;
                 }
 
                 var cacheDirectories = cacheDirectory
-                    .GetDirectories($"binary.{_gameClientVersion.ToString(EInteger.Number.Three)}*", SearchOption.TopDirectoryOnly)
+                    .GetDirectories($"binary.{_gameClientVersion.ToString(Integer.Number.Three)}*", SearchOption.TopDirectoryOnly)
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
                 if (cacheDirectories.Any())
                 {
                     if (cacheDirectories.HasSeveral())
-                        throw new AmbiguousMatchException(EOrganizationLogMessage.SeveralCacheDirectoriesFound.Format(cacheDirectories.Select(directory => $"\"{directory.Name}\"").StringJoin(ESeparator.CommaAndSpace)));
+                        throw new AmbiguousMatchException(EOrganizationLogMessage.SeveralCacheDirectoriesFound.Format(cacheDirectories.Select(directory => $"\"{directory.Name}\"").StringJoin(Separator.CommaAndSpace)));
 
                     return cacheDirectories.First();
                 }
@@ -577,7 +577,7 @@ namespace Core.Organization.Helpers
             var sourceFile = _fileManager.GetFileInfo(Path.Combine(Settings.WarThunderLocation, warThunderSubdirectory), packedFileName);
             var outputDirectory = default(DirectoryInfo);
 
-            if (fileType == EFileExtension.Blkx)
+            if (fileType == FileExtension.Blkx)
             {
                 var cachesDirectory = GetCachesDirectory();
                 
@@ -597,12 +597,12 @@ namespace Core.Organization.Helpers
 
             switch (fileType)
             {
-                case EFileExtension.Blkx:
+                case FileExtension.Blkx:
                 {
                     _unpacker.Unpack(processedDirectory, ETool.BlkUnpacker);
                     break;
                 }
-                case EFileExtension.Png:
+                case FileExtension.Png:
                 {
                     _unpacker.Unpack(processedDirectory, ETool.DdsxUnpacker);
                     _converter.ConvertDdsToPng(processedDirectory, SearchOption.AllDirectories);
@@ -610,7 +610,7 @@ namespace Core.Organization.Helpers
                 }
             }
 
-            return processedDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{fileType}", SearchOption.AllDirectories);
+            return processedDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{fileType}", SearchOption.AllDirectories);
         }
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns BLK files it contains converted into BLKX files. </summary>
@@ -619,8 +619,8 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         internal IEnumerable<FileInfo> GetBlkxFiles(string sourceFileName, bool readAlreadyUnpackedFiles) =>
             readAlreadyUnpackedFiles
-                ? GetFilesWithoutProcessing(EFileExtension.Blkx, sourceFileName)
-                : GetFiles(EFileExtension.Blkx, sourceFileName);
+                ? GetFilesWithoutProcessing(FileExtension.Blkx, sourceFileName)
+                : GetFiles(FileExtension.Blkx, sourceFileName);
 
         /// <summary> Unpacks a file with the speficied name as a BIN file and returns CSV files it contains. </summary>
         /// <param name="sourceFileName"> The BIN file to unpack. </param>
@@ -628,8 +628,8 @@ namespace Core.Organization.Helpers
         /// <returns></returns>
         internal IEnumerable<FileInfo> GetCsvFiles(string sourceFileName, bool readAlreadyUnpackedFiles) =>
             readAlreadyUnpackedFiles
-                ? GetFilesWithoutProcessing(EFileExtension.Csv, sourceFileName)
-                : GetFiles(EFileExtension.Csv, sourceFileName);
+                ? GetFilesWithoutProcessing(FileExtension.Csv, sourceFileName)
+                : GetFiles(FileExtension.Csv, sourceFileName);
 
         /// <summary> Gets vehicle icon PNG files contained in the <paramref name="sourceFileName"/>. </summary>
         /// <param name="sourceFileName"> The BIN file to unpack. </param>
@@ -640,8 +640,8 @@ namespace Core.Organization.Helpers
             var processedSubdirectory = EDirectory.WarThunder.Archive.AtlasesWromfsBin.UnitIcons;
 
             return readAlreadyUnpackedFiles
-                ? GetFilesWithoutProcessing(EFileExtension.Png, sourceFileName, processedSubdirectory)
-                : GetFiles(EFileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, processedSubdirectory);
+                ? GetFilesWithoutProcessing(FileExtension.Png, sourceFileName, processedSubdirectory)
+                : GetFiles(FileExtension.Png, sourceFileName, EDirectory.WarThunder.Subdirectory.Ui, processedSubdirectory);
         }
 
         internal IEnumerable<FileInfo> GetVehiclePortraits(bool readAlreadyUnpackedFiles)
@@ -660,8 +660,8 @@ namespace Core.Organization.Helpers
             };
 
             IEnumerable<FileInfo> getPortraitFiles(string subdirectory) => readAlreadyUnpackedFiles
-                ? new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory)).GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Png}", SearchOption.AllDirectories)
-                : GetFiles(EFileExtension.Png, outputDirectory, subdirectory);
+                ? new DirectoryInfo(Path.Combine(outputDirectory.FullName, subdirectory)).GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Png}", SearchOption.AllDirectories)
+                : GetFiles(FileExtension.Png, outputDirectory, subdirectory);
 
             foreach (var processedSubdirectory in processedSubdirectories)
                 vehiclePortraitFiles.AddRange(getPortraitFiles(processedSubdirectory));
@@ -681,7 +681,7 @@ namespace Core.Organization.Helpers
         /// <param name="unpackedFileName"> The name of the CSV file to read. </param>
         /// <returns></returns>
         internal IList<IList<string>> GetCsvRecords(IEnumerable<FileInfo> csvFiles, string unpackedFileName) =>
-            _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), ECharacter.Semicolon);
+            _fileReader.ReadCsv(csvFiles.First(file => file.Name.Contains(unpackedFileName)), Character.Semicolon);
 
         /// <summary> Creates the database for the current War Thunder client version. It starts out blank and needs to be filled up. </summary>
         private void CreateBlankDataBase()
@@ -1008,8 +1008,8 @@ namespace Core.Organization.Helpers
         public void RemoveOldLogFiles() =>
             _fileManager.DeleteOldFiles
             (
-                Path.Combine(Directory.GetCurrentDirectory(), ESubdirectory.Logs),
-                DateTime.Now.AddDays(-EInteger.Number.Seven)
+                Path.Combine(Directory.GetCurrentDirectory(), Subdirectory.Logs),
+                DateTime.Now.AddDays(-Integer.Number.Seven)
             );
 
         /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>

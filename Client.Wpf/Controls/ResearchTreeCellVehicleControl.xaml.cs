@@ -170,7 +170,7 @@ namespace Client.Wpf.Controls
                     Stretch = Stretch.Uniform,
                     AlignmentX = AlignmentX.Left,
                     AlignmentY = AlignmentY.Center,
-                    Opacity = EDouble.Number.PointNine,
+                    Opacity = Double.Number.PointNine,
                 };
             }
 
@@ -231,7 +231,7 @@ namespace Client.Wpf.Controls
 
         /// <summary> Updates the control's opacity according to its <see cref="IsToggled"/> state. </summary>
         private void UpdateOpacity() =>
-            _border.Opacity = IsToggled ? EDouble.Number.One : EDouble.Number.Quarter;
+            _border.Opacity = IsToggled ? Double.Number.One : Double.Number.Quarter;
 
         private void OnTooltipOpening(object sender, ToolTipEventArgs e)
         {

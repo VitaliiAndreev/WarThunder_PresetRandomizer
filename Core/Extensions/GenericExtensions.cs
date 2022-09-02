@@ -52,7 +52,7 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer + 1).CastTo<T>(),
-                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
+                _ => throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
             };
         }
 
@@ -65,7 +65,7 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer - 1).CastTo<T>(),
-                _ => throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
+                _ => throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
             };
         }
 

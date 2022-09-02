@@ -3,8 +3,8 @@ using Core.Enumerations.Logger;
 
 namespace Core.Randomization.Enumerations.Logger
 {
-    public class ERandomizerLogCategory : ECoreLogCategory
+    public class ERandomizerLogCategory : CoreLogCategory
     {
-        public static string Randomiser = EWord.Randomiser;
+        public static string Randomiser = Word.Randomiser;
     }
 }

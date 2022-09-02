@@ -25,7 +25,7 @@ namespace Core.DataBase.WarThunder.Extensions
             if (currentRank.IsIn(invalidRanks))
                 return ERank.None;
 
-            return currentRank - EInteger.Number.One;
+            return currentRank - Integer.Number.One;
         }
 
         /// <summary> Returns the first available rank enumeration item prior to the <paramref name="currentRank"/>. </summary>

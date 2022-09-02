@@ -1,6 +1,6 @@
 ﻿namespace Core.Enumerations
 {
-    public static class EDecimal
+    public static class Decimal
     {
         public static class Number
         {

@@ -174,11 +174,11 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheInMemoryDataRepository));
+            LogDebug(CoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheInMemoryDataRepository));
 
             if (IsClosed)
             {
-                LogDebug(ECoreLogMessage.AlreadyDisposed);
+                LogDebug(CoreLogMessage.AlreadyDisposed);
                 return;
             }
 
@@ -187,7 +187,7 @@ namespace Core.DataBase.Helpers
             }
 
             IsClosed = true;
-            LogDebug(ECoreLogMessage.SuccessfullyDisposed);
+            LogDebug(CoreLogMessage.SuccessfullyDisposed);
         }
 
         #endregion Methods: IDisposeable Members

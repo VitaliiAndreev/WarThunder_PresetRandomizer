@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Relative subdirectory paths. </summary>
-    public class ESubdirectory
+    public class Subdirectory
     {
         public const string Logs = "Logs";
     }

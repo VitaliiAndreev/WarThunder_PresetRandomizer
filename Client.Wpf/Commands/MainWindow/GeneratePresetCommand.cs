@@ -70,7 +70,7 @@ namespace Client.Wpf.Commands.MainWindow
                             nation,
                             presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
                             presenter.EnabledBranches.Except(emptyBranches[nation]),
-                            EInteger.Number.Ten
+                            Integer.Number.Ten
                         )
                     );
                 var specification = new Specification

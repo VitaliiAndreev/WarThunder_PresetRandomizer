@@ -14,7 +14,7 @@ namespace Core.Extensions
         {
             var integers = new List<int>();
 
-            for (var integer = interval.LeftBounded ? interval.LeftItem : interval.LeftItem + EInteger.Number.One; integer <= (interval.RightBounded ? interval.RightItem : interval.RightItem - EInteger.Number.One); integer++)
+            for (var integer = interval.LeftBounded ? interval.LeftItem : interval.LeftItem + Integer.Number.One; integer <= (interval.RightBounded ? interval.RightItem : interval.RightItem - Integer.Number.One); integer++)
                 integers.Add(integer);
 
             return integers;

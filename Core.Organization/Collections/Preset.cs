@@ -54,6 +54,6 @@ namespace Core.Organization.Collections
 
         /// <summary> Returns the string representation of the collection. </summary>
         /// <returns></returns>
-        public override string ToString() => $"Vehicle preset {(this.Any() ? $"for {this.First().Nation.AsEnumerationItem}" + ECharacter.Space : string.Empty)}with {this.Count()} vehicles.";
+        public override string ToString() => $"Vehicle preset {(this.Any() ? $"for {this.First().Nation.AsEnumerationItem}" + Character.Space : string.Empty)}with {this.Count()} vehicles.";
     }
 }

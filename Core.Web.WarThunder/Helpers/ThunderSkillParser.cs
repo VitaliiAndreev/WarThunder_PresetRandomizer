@@ -40,7 +40,7 @@ namespace Core.Web.WarThunder.Helpers
             IsLoaded = false;
 
             SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
-            LogDebug(ECoreLogMessage.Created.Format(EWebWarThunderLogCategory.ThunderSkillParser));
+            LogDebug(CoreLogMessage.Created.Format(EWebWarThunderLogCategory.ThunderSkillParser));
         }
 
         #endregion Constructors
@@ -60,11 +60,11 @@ namespace Core.Web.WarThunder.Helpers
             }
             else
             {
-                LogDebug(ECoreLogMessage.Reading.Format(url));
+                LogDebug(CoreLogMessage.Reading.Format(url));
                 {
                     _mainHtmlNode = GetHtmlDocumentNode(url);
                 }
-                LogDebug(ECoreLogMessage.FinishedReading.Format(url));
+                LogDebug(CoreLogMessage.FinishedReading.Format(url));
             }
 
             IsLoaded = true;
@@ -111,7 +111,7 @@ namespace Core.Web.WarThunder.Helpers
                         .GetChildNodes("a")
                         .First()
                         .GetAttributeValue("href", string.Empty)
-                        .Split(ECharacter.Slash)
+                        .Split(Character.Slash)
                         .Last()
                     ;
 

@@ -71,7 +71,7 @@ namespace Client.Wpf.Windows
             _cancelButton.CommandParameter = Presenter;
             _cancelButton.Command = Presenter.GetCommand(ECommandName.Cancel);
 
-            Log.Debug(ECoreLogMessage.Initialised);
+            Log.Debug(CoreLogMessage.Initialised);
         }
 
         #endregion Constructors
@@ -81,7 +81,7 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(ECoreLogMessage.Shown);
+            Log.Debug(CoreLogMessage.Shown);
 
         /// <summary> Checks whether the OK button can be enabled. </summary>
         /// <param name="sender"> Not used. </param>
@@ -129,6 +129,6 @@ namespace Client.Wpf.Windows
 
         /// <summary> Logs closing of the window. </summary>
         public void LogClosure() =>
-            Log.Debug(ECoreLogMessage.Closed);
+            Log.Debug(CoreLogMessage.Closed);
     }
 }

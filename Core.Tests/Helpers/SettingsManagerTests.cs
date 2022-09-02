@@ -36,7 +36,7 @@ namespace Core.Tests.Helpers
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
 
             _fileManager.DeleteFileSafely(_settingsFile);
@@ -50,7 +50,7 @@ namespace Core.Tests.Helpers
         public void SettingsFileNotFound_GeneratesFile()
         {
             // arrange
-            var settingsFile = new FileInfo($"Carramba{ECharacter.Period}{EFileExtension.Xml}");
+            var settingsFile = new FileInfo($"Carramba{Character.Period}{FileExtension.Xml}");
 
             if (settingsFile.Exists)
                 settingsFile.Delete();

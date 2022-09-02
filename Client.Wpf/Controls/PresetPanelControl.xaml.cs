@@ -95,7 +95,7 @@ namespace Client.Wpf.Controls
         #region Methods: Event Raisers
 
         private MouseEventArgs GetMouseEventArgs(RoutedEvent routedEvent, ResearchTreeCellVehicleControl vehicleControl) =>
-            new MouseEventArgs(Mouse.PrimaryDevice, EInteger.Number.Zero) { RoutedEvent = routedEvent, Source = vehicleControl };
+            new MouseEventArgs(Mouse.PrimaryDevice, Integer.Number.Zero) { RoutedEvent = routedEvent, Source = vehicleControl };
 
         /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for the given vehicle control. </summary>
         /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>

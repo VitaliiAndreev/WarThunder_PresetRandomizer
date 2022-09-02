@@ -48,10 +48,10 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            _buttonEnglishUsa.Tag = ELanguage.English;
-            _buttonRussian.Tag = ELanguage.Russian;
+            this._buttonEnglishUsa.Tag = Core.Enumerations.Language.English;
+            this._buttonRussian.Tag = Core.Enumerations.Language.Russian;
 
-            Log.Debug(ECoreLogMessage.Initialised);
+            Log.Debug(CoreLogMessage.Initialised);
         }
 
         #endregion Constructors
@@ -61,7 +61,7 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(ECoreLogMessage.Shown);
+            Log.Debug(CoreLogMessage.Shown);
 
         /// <summary> Select US English as the localization language. </summary>
         /// <param name="sender"> Not used. </param>
@@ -69,7 +69,7 @@ namespace Client.Wpf.Windows
         private void OnClick(object sender, RoutedEventArgs eventArguments)
         {
             if (eventArguments.OriginalSource is Button button)
-                SelectLocalization(button.GetTag<ELanguage>());
+                SelectLocalization(button.GetTag<Language>());
         }
 
         /// <summary> Logs closing of the window and shuts the application down if no localization is selected (in case of the first launch). </summary>
@@ -77,7 +77,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs eventArguments)
         {
-            Log.Debug(ECoreLogMessage.Closed);
+            Log.Debug(CoreLogMessage.Closed);
 
             if (string.IsNullOrWhiteSpace(Presenter.Language) && string.IsNullOrWhiteSpace(WpfSettings.Localization))
                 Environment.Exit(0);
@@ -97,7 +97,7 @@ namespace Client.Wpf.Windows
 
         /// <summary> Selects the given language for localization and restarts the application if it's not the first start. </summary>
         /// <param name="language"> The language to select for localization. </param>
-        private void SelectLocalization(ELanguage language)
+        private void SelectLocalization(Language language)
         {
             if (Presenter.Language == language.ToString())
             {
@@ -113,9 +113,9 @@ namespace Client.Wpf.Windows
 
             if (_restartAfterSelection)
             {
-                Process.Start(Application.ResourceAssembly.Location, WpfClient.StartupArguments);
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, WpfClient.StartupArguments);
 
-                Log.Debug(ECoreLogMessage.Closed);
+                Log.Debug(CoreLogMessage.Closed);
                 Environment.Exit(0);
             }
             else

@@ -20,7 +20,7 @@ namespace Core.Extensions
             targetCollection.AddRange(collection);
 
         public static bool AllEqual<T>(this IEnumerable<T> collection) =>
-            collection.Distinct().Count() == EInteger.Number.One;
+            collection.Distinct().Count() == Integer.Number.One;
 
         #region As
 
@@ -35,7 +35,7 @@ namespace Core.Extensions
             if (collection.IsEmpty())
                 throw new ArgumentException();
 
-            var amountToTake = position + EInteger.Number.One;
+            var amountToTake = position + Integer.Number.One;
 
             if (position.IsNegative() || amountToTake > collection.Count())
                 throw new ArgumentOutOfRangeException();
@@ -43,11 +43,11 @@ namespace Core.Extensions
             return collection.Take(amountToTake).Last();
         }
 
-        public static T Second<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.One);
-        public static T SecondLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - EInteger.Number.Two);
+        public static T Second<T>(this IEnumerable<T> collection) => collection.At(Integer.Number.One);
+        public static T SecondLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - Integer.Number.Two);
 
-        public static T Third<T>(this IEnumerable<T> collection) => collection.At(EInteger.Number.Two);
-        public static T ThirdLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - EInteger.Number.Three);
+        public static T Third<T>(this IEnumerable<T> collection) => collection.At(Integer.Number.Two);
+        public static T ThirdLast<T>(this IEnumerable<T> collection) => collection.At(collection.Count() - Integer.Number.Three);
 
         #endregion At()
 
@@ -84,7 +84,7 @@ namespace Core.Extensions
         /// <param name="collection"> A source collection. </param>
         /// <returns></returns>
         public static bool HasSingle<T>(this IEnumerable<T> collection) =>
-            collection.Count() == EInteger.Number.One;
+            collection.Count() == Integer.Number.One;
 
         /// <summary> Fluently checks whether a collection contains more than one item. </summary>
         /// <typeparam name="T"> A generic type. </typeparam>
@@ -94,9 +94,9 @@ namespace Core.Extensions
         public static bool HasSeveral<T>(this IEnumerable<T> collection, Func<T, bool> predicate = null)
         {
             if (predicate is null)
-                return collection.Count() > EInteger.Number.One;
+                return collection.Count() > Integer.Number.One;
             else
-                return collection.Count(predicate) > EInteger.Number.One;
+                return collection.Count(predicate) > Integer.Number.One;
         }
 
         #endregion IsEmpty(), HasSingle(), HasMany()
@@ -171,7 +171,7 @@ namespace Core.Extensions
             var type = typeof(T);
 
             if (!type.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.Name));
+                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.Name));
 
             if (type.GetEnumerationItems<T>().Count() != tests.Count())
                 throw new NotImplementedException(cancellationMessage);

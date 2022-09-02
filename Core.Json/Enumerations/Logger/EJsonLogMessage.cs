@@ -3,7 +3,7 @@
 namespace Core.Json.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Json"/>" assembly. </summary>
-    public class EJsonLogMessage : ECoreLogMessage
+    public class EJsonLogMessage : CoreLogMessage
     {
         #region Extension Methods
 

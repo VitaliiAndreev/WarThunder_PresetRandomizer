@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Enumerates NLog logger names that correspond to rule names set up. </summary>
-    public enum ELoggerName
+    public enum LoggerName
     {
         ConsoleLogger,
         FileLogger,

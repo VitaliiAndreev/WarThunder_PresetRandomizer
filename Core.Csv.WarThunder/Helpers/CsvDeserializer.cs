@@ -30,17 +30,17 @@ namespace Core.Csv.WarThunder.Helpers
         public CsvDeserializer(params IConfiguredLogger[] loggers)
             : base(ECsvLogCategory.CsvDeserializer, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(ECsvLogCategory.CsvDeserializer));
+            LogDebug(CoreLogMessage.Created.Format(ECsvLogCategory.CsvDeserializer));
         }
 
         #endregion Constructors
 
         private Tuple<int, int> GetLocalisationIndeces(IList<IList<string>> localisationRecords, int index, string gaijinId)
         {
-            var fullNameRecordIndex = -EInteger.Number.One;
-            var shortNameRecordIndex = -EInteger.Number.One;
+            var fullNameRecordIndex = -Integer.Number.One;
+            var shortNameRecordIndex = -Integer.Number.One;
 
-            for (var lineIndex = index - EInteger.Number.One; !lineIndex.IsNegative(); lineIndex -= EInteger.Number.One)
+            for (var lineIndex = index - Integer.Number.One; !lineIndex.IsNegative(); lineIndex -= Integer.Number.One)
             {
                 var currentRecord = localisationRecords[lineIndex];
                 var recordId = currentRecord.First();
@@ -80,14 +80,14 @@ namespace Core.Csv.WarThunder.Helpers
             };
 
             var sortedCsvRecords = csvRecords
-                .Skip(EInteger.Number.One)
+                .Skip(Integer.Number.One)
                 .Where(record => !record.First().ContainsAny(gaijinIdPartsToSkip))
                 .AsParallel()
                 .ToList()
                 .OrderBy(record => record.First())
                 .ToList();
 
-            for (var lineIndex = EInteger.Number.One; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
+            for (var lineIndex = Integer.Number.One; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
             {
                 var record = sortedCsvRecords[lineIndex];
                 var recordGaijinId = record.First();
@@ -100,7 +100,7 @@ namespace Core.Csv.WarThunder.Helpers
                     var fullNameRecordIndex = indeces.Item1;
                     var shortNameRecordIndex = indeces.Item2;
 
-                    static IList<string> standardiseSpaces(IList<string> record) => record.Select(line => line.Replace(EGaijinCharacter.SpaceFromCsv, ECharacter.Space)).ToList();
+                    static IList<string> standardiseSpaces(IList<string> record) => record.Select(line => line.Replace(EGaijinCharacter.SpaceFromCsv, Character.Space)).ToList();
 
                     var shopNameRecord = standardiseSpaces(record);
                     var fullNameRecord = standardiseSpaces(sortedCsvRecords[fullNameRecordIndex]);

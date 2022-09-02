@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Names of XML variables. </summary>
-    public class EVariableName
+    public class VariableName
     {
         public const string ConsoleLayout = "layoutConsole";
         public const string FileLayout = "layoutFile";

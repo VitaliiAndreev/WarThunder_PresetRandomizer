@@ -68,7 +68,7 @@ namespace Core.DataBase.WarThunder.Objects
         public Branch(IDataRepository dataRepository, long id, string gaijinId, INation nation)
             : base(dataRepository, id, gaijinId)
         {
-            AsEnumerationItem = EReference.CategoriesFromString[GaijinId.Split(ECharacter.Underscore).Last()];
+            AsEnumerationItem = EReference.CategoriesFromString[GaijinId.Split(Character.Underscore).Last()];
             Nation = nation;
 
             LogCreation();

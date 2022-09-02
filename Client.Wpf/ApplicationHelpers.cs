@@ -89,9 +89,9 @@ namespace Client.Wpf
         {
             if (_loggersInitialised) return;
 
-            var fileLogger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter(), ESubdirectory.Logs, true);
+            var fileLogger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs, true);
 
-            var wpfLogger = new ConfiguredNLogger(ELoggerName.WpfLogger, new ExceptionFormatter());
+            var wpfLogger = new ConfiguredNLogger(LoggerName.WpfLogger, new ExceptionFormatter());
             wpfLogger.LogInstantiation(fileLogger);
 
             Loggers = new IConfiguredLogger[]
@@ -102,7 +102,7 @@ namespace Client.Wpf
 
             Log = CreateActiveLogger(EWpfClientLogCategory.ApplicationHelpers);
 
-            Log.Debug(ECoreLogMessage.InstanceInitialised.Format(EWord.Loggers));
+            Log.Debug(CoreLogMessage.InstanceInitialised.Format(Word.Loggers));
             _loggersInitialised = true;
         }
 
@@ -118,11 +118,11 @@ namespace Client.Wpf
             if (_helpersInitialised)
                 return;
 
-            Log.Debug(ECoreLogMessage.InitialisingInstance.Format(EWord.Helpers.ToLower()));
+            Log.Debug(CoreLogMessage.InitialisingInstance.Format(Word.Helpers.ToLower()));
 
             InitialiseHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
-            Log.Debug(ECoreLogMessage.InstanceInitialised.Format(EWord.Helpers));
+            Log.Debug(CoreLogMessage.InstanceInitialised.Format(Word.Helpers));
             _helpersInitialised = true;
         }
 
@@ -190,7 +190,7 @@ namespace Client.Wpf
         {
             try
             {
-                Log.Debug(ECoreLogMessage.TryingToInitialise.Format(ELocalisationLogCategory.LocalisationManager));
+                Log.Debug(CoreLogMessage.TryingToInitialise.Format(ELocalisationLogCategory.LocalisationManager));
                 LocalisationManager = new LocalisationManager(FileReader, WpfSettings.Localization, Loggers);
             }
             catch (FileNotFoundException exception)

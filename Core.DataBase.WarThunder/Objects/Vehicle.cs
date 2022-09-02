@@ -361,12 +361,12 @@ namespace Core.DataBase.WarThunder.Objects
                 Country = Nation.AsEnumerationItem.GetBaseCountry();
 
             // From (example) "country_usa" only "usa" is taken and is used as a prefix for (example) "aircraft", so that Gaijin ID becomes (example) "usa_aircraft" that is unique in the scope of the table of branches.
-            var branchIdAppended = $"{Nation.GaijinId.Split(ECharacter.Underscore).Last()}{ECharacter.Underscore}{deserializedVehicleData.BranchGaijinId}";
+            var branchIdAppended = $"{Nation.GaijinId.Split(Character.Underscore).Last()}{Character.Underscore}{deserializedVehicleData.BranchGaijinId}";
 
             lock (_dataRepository.TransactionalLock)
             {
                 Category = _dataRepository.GetNewObjects<IBranch>().FirstOrDefault(notPersistedBranch => notPersistedBranch.GaijinId == branchIdAppended)
-                ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(ECharacter.Underscore).Last() + ECharacter.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
+                ?? _dataRepository.Query<IBranch>(query => query.Where(branch => Nation.GaijinId.Split(Character.Underscore).Last() + Character.Underscore + branch.GaijinId == branchIdAppended)).FirstOrDefault()
                 ?? new Branch(_dataRepository, branchIdAppended, Nation);
             }
 

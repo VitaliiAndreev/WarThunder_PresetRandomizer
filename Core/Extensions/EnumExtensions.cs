@@ -19,9 +19,9 @@ namespace Core.Extensions
             var enumerationValueType = type.GetEnumUnderlyingType();
 
             if (enumerationValueType == typeof(int))
-                return source.CastTo<int>() > EInteger.Number.Zero;
+                return source.CastTo<int>() > Integer.Number.Zero;
             else
-                throw new NotImplementedException(ECoreLogMessage.ExplicitImplementationRequiredForType.Format(enumerationValueType.ToStringLikeCode()));
+                throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(enumerationValueType.ToStringLikeCode()));
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Core.Extensions
             }
             catch (Exception exception)
             {
-                throw new ArgumentException(ECoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
+                throw new ArgumentException(CoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Core.Extensions
             }
             catch (Exception exception)
             {
-                throw new ArgumentException(ECoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
+                throw new ArgumentException(CoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
             }
         }
     }

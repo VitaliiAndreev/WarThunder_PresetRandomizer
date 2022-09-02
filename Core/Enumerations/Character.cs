@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Characters. </summary>
-    public class ECharacter
+    public class Character
     {
         public const char Apostrophe = '\'';
         public const char Asterisk = '*';

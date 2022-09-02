@@ -123,7 +123,7 @@ namespace Client.Wpf.Controls
 
         #endregion Methods: Event Handlers
 
-        internal void SwitchVehicleListTo(string key, IEnumerable<IVehicle> vehicles, EVehicleProfile vehicleProfile, ELanguage language)
+        internal void SwitchVehicleListTo(string key, IEnumerable<IVehicle> vehicles, EVehicleProfile vehicleProfile, Language language)
         {
             _presenter.ToggleLongOperationIndicator(true);
 

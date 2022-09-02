@@ -44,8 +44,8 @@ namespace Client.Console
             {
                 var loggers = new IConfiguredLogger[]
                 {
-                    new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter(), ESubdirectory.Logs),
-                    new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter()),
+                    new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter(), Subdirectory.Logs),
+                    new ConfiguredNLogger(LoggerName.ConsoleLogger, new ExceptionFormatter()),
                 };
                 var fileManager = new WarThunderFileManager(loggers);
                 var fileReader = new WarThunderFileReader(loggers);
@@ -108,7 +108,7 @@ namespace Client.Console
             }
             catch
             {
-                System.Console.Write($"\n{ECoreLogMessage.AnErrorHasOccurred} {EConsoleUiLogMessage.PressAnyKeyToExit} ");
+                System.Console.Write($"\n{CoreLogMessage.AnErrorHasOccurred} {EConsoleUiLogMessage.PressAnyKeyToExit} ");
                 System.Console.ReadKey(true);
                 Environment.Exit(0);
             }
@@ -129,7 +129,7 @@ namespace Client.Console
         /// <returns></returns>
         private static Specification ParseSpecification(string specificationInput, IEnumerable<string> enabledVehicleGaijinIds)
         {
-            var parameters = specificationInput.Split(ESeparator.Space);
+            var parameters = specificationInput.Split(Separator.Space);
 
             if (parameters.Count() != 4)
             {
@@ -169,7 +169,7 @@ namespace Client.Console
             (
                 ERandomisation.VehicleBased,
                 gamemode,
-                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, EReference.CountriesByNation[nation], new List<EBranch> { branch }, EInteger.Number.Ten) } },
+                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, EReference.CountriesByNation[nation], new List<EBranch> { branch }, Integer.Number.Ten) } },
                 new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, vehicleClasses) } },
                 branch.GetVehicleBranchTags(),
                 vehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses()),

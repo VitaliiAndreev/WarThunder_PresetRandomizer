@@ -48,10 +48,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             unchecked
             {
-                var hash = EInteger.Number.PrimesAboveHundred.First();
+                var hash = Integer.Number.PrimesAboveHundred.First();
 
-                hash = hash * EInteger.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
-                hash = hash * EInteger.Number.PrimesAboveHundred.Third() + Branch.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Branch.GetHashCode();
 
                 return hash;
             }
@@ -61,6 +61,6 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{Nation}{ECharacter.Underscore}{Branch}";
+        public override string ToString() => $"{Nation}{Character.Underscore}{Branch}";
     }
 }

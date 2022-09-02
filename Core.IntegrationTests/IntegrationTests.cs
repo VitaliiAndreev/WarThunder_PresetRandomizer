@@ -119,7 +119,7 @@ namespace Core.IntegrationTests
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.IntegrationTests, ECoreLogMessage.CleanUpAfterIntegrationTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.IntegrationTests, CoreLogMessage.CleanUpAfterIntegrationTestStartsHere);
             Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
 
@@ -243,9 +243,9 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.GraphicsData.WeaponMask < 0).Should().BeFalse();
 
                     // localization
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(EInteger.Number.Thousand);
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(EInteger.Number.Thousand);
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(EInteger.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(Integer.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(Integer.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(Integer.Number.Thousand);
 
                     // modifications
                     vehicleCollection.Any(vehicle => vehicle.ModificationsData is null).Should().BeFalse();

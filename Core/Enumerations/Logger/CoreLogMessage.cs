@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
-    public class ECoreLogMessage : EVocabulary
+    public class CoreLogMessage : Vocabulary
     {
         #region Dispose()
 

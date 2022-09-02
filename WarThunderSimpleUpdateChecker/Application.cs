@@ -25,8 +25,8 @@ namespace WarThunderSimpleUpdateChecker
     {
         #region Fields
 
-        private static readonly IConfiguredLogger _fileLogger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter());
-        private static readonly IConfiguredLogger _consoleLogger = new ConfiguredNLogger(ELoggerName.ConsoleLogger, new ExceptionFormatter());
+        private static readonly IConfiguredLogger _fileLogger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter());
+        private static readonly IConfiguredLogger _consoleLogger = new ConfiguredNLogger(LoggerName.ConsoleLogger, new ExceptionFormatter());
         private static readonly Application _logger = new Application();
         private static readonly IFileManager _fileManager = new FileManager(_fileLogger, _consoleLogger);
         private static readonly IFileReader _fileReader = new FileReader(_fileLogger, _consoleLogger);
@@ -192,8 +192,8 @@ namespace WarThunderSimpleUpdateChecker
                 {
                     _logger.LogInfo($"Reading the previous version number...");
 
-                    var lines = text.Split(ECharacter.NewLine, StringSplitOptions.RemoveEmptyEntries);
-                    var versionText = lines.Last().Split(ECharacter.Minus).Last().Trim();
+                    var lines = text.Split(Character.NewLine, StringSplitOptions.RemoveEmptyEntries);
+                    var versionText = lines.Last().Split(Character.Minus).Last().Trim();
                     var version = new Version(versionText);
 
                     _logger.LogInfo($"The previous version is {version}.");
@@ -281,7 +281,7 @@ namespace WarThunderSimpleUpdateChecker
             ;
             var latestVersion = versions.Last();
 
-            _logger.LogInfo($"{versions.Count()} found: {versions.StringJoin(ESeparator.CommaAndSpace)}. The latest one is {latestVersion}...");
+            _logger.LogInfo($"{versions.Count()} found: {versions.StringJoin(Separator.CommaAndSpace)}. The latest one is {latestVersion}...");
 
             return latestVersion;
         }
@@ -335,7 +335,7 @@ namespace WarThunderSimpleUpdateChecker
             if (cacheDirectoriesExist)
             {
                 var cacheDirectories = Directory
-                    .GetDirectories(cacheDirectoriesPath, $"binary.{clientVersion.ToString(EInteger.Number.Three)}*", SearchOption.TopDirectoryOnly)
+                    .GetDirectories(cacheDirectoriesPath, $"binary.{clientVersion.ToString(Integer.Number.Three)}*", SearchOption.TopDirectoryOnly)
                     .Select(path => new DirectoryInfo(path))
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
@@ -408,7 +408,7 @@ namespace WarThunderSimpleUpdateChecker
 
             if (sourceFilesInCache.Any())
             {
-                for (var fileIndex = EInteger.Number.Zero; fileIndex < sourceFiles.Count(); fileIndex++)
+                for (var fileIndex = Integer.Number.Zero; fileIndex < sourceFiles.Count(); fileIndex++)
                 {
                     var sourceFile = sourceFiles[fileIndex];
                     var sourceFileName = sourceFile.Name;
@@ -458,7 +458,7 @@ namespace WarThunderSimpleUpdateChecker
                 excludedBinFileNames.AddRange(guiBinFileNames);
             }
 
-            var binFiles = files.Where(file => file.GetExtensionWithoutPeriod() == EFileExtension.Bin && !file.Name.IsIn(excludedBinFileNames));
+            var binFiles = files.Where(file => file.GetExtensionWithoutPeriod() == FileExtension.Bin && !file.Name.IsIn(excludedBinFileNames));
 
             _logger.LogInfo($"{binFiles.Count()} found.");
 
@@ -594,8 +594,8 @@ namespace WarThunderSimpleUpdateChecker
                 if (!directoryContainsDdsxFiles(subdirectory))
                     continue;
 
-                var retryAttempts = EInteger.Number.Ten;
-                var retryAttempt = EInteger.Number.One;
+                var retryAttempts = Integer.Number.Ten;
+                var retryAttempt = Integer.Number.One;
 
                 void Try(Action method)
                 {
@@ -611,7 +611,7 @@ namespace WarThunderSimpleUpdateChecker
                         {
                             retryAttempt++;
 
-                            Thread.Sleep(EInteger.Time.MillisecondsInSecond);
+                            Thread.Sleep(Integer.Time.MillisecondsInSecond);
                             Try(method);
                         }
                         else
@@ -674,19 +674,19 @@ namespace WarThunderSimpleUpdateChecker
 
             var unwantedFileExtensions = new List<string>
             {
-                EFileExtension.Bin,
-                EFileExtension.Blk,
+                FileExtension.Bin,
+                FileExtension.Blk,
             };
 
             if (_excludeGuiFiles)
             {
                 var frontendFileExtensions = new string[]
                 {
-                    EFileExtension.Css,
-                    EFileExtension.Html,
-                    EFileExtension.Js,
-                    EFileExtension.Nut,
-                    EFileExtension.Tpl,
+                    FileExtension.Css,
+                    FileExtension.Html,
+                    FileExtension.Js,
+                    FileExtension.Nut,
+                    FileExtension.Tpl,
                 };
 
                 unwantedFileExtensions.AddRange(frontendFileExtensions);

@@ -3,7 +3,7 @@
 namespace Core.Enumerations
 {
     /// <summary> Possible statuses of the settings file attached to an <see cref="ISettingsManager"/>. </summary>
-    public enum ESettingsFileStatus
+    public enum SettingsFileStatus
     {
         Pending,
         NotFoundAndGenerated,

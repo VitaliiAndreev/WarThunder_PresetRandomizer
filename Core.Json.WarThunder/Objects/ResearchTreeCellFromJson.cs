@@ -68,7 +68,7 @@ namespace Core.Json.WarThunder.Objects
         {
             void SetVehicleRowWithinRank(ResearchTreeVehicleFromJson vehicle)
             {
-                if (vehicle.CellCoordinatesWithinRank.Count() < EInteger.Number.Two)
+                if (vehicle.CellCoordinatesWithinRank.Count() < Integer.Number.Two)
                     vehicle.CellCoordinatesWithinRank.Add(_rowWithinRank);
             }
 
@@ -78,7 +78,7 @@ namespace Core.Json.WarThunder.Objects
                 return;
             }
 
-            for (var vehicleIndex = EInteger.Number.Zero; vehicleIndex < Vehicles.Count; vehicleIndex++)
+            for (var vehicleIndex = Integer.Number.Zero; vehicleIndex < Vehicles.Count; vehicleIndex++)
             {
                 var vehicle = Vehicles[vehicleIndex];
                 vehicle.FolderIndex = vehicleIndex;
@@ -90,7 +90,7 @@ namespace Core.Json.WarThunder.Objects
         /// <param name="previousCells"> Previous cells in the research tree column. </param>
         public void SetRowWithinRank(IEnumerable<ResearchTreeCellFromJson> previousCells)
         {
-            void setOne() => RowWithinRank = EInteger.Number.One;
+            void setOne() => RowWithinRank = Integer.Number.One;
 
             if (previousCells.Any())
             {
@@ -102,15 +102,15 @@ namespace Core.Json.WarThunder.Objects
                 }
                 else if (lastCell.Rank == Rank)
                 {
-                    RowWithinRank = lastCell.RowWithinRank + EInteger.Number.One;
+                    RowWithinRank = lastCell.RowWithinRank + Integer.Number.One;
                 }
                 else
                 {
                     var previousCellsOfSameRank = previousCells.Where(cell => cell.Rank == Rank);
 
                     RowWithinRank = previousCellsOfSameRank.Any()
-                        ? previousCellsOfSameRank.Max(cell => cell.RowWithinRank) + EInteger.Number.One
-                        : EInteger.Number.One;
+                        ? previousCellsOfSameRank.Max(cell => cell.RowWithinRank) + Integer.Number.One
+                        : Integer.Number.One;
                 }
             }
             else

@@ -80,7 +80,7 @@ namespace Client.Wpf.Controls
             }
         }
 
-        public void SetDataSource(string key, IEnumerable<IVehicle> collection, ELanguage language)
+        public void SetDataSource(string key, IEnumerable<IVehicle> collection, Language language)
         {
             if (_previousGridSourceKey != key)
             {
@@ -93,7 +93,7 @@ namespace Client.Wpf.Controls
         {
             if (_grid.ItemsSource is null || _grid.ItemsSource.IsEmpty())
             {
-                _panel.Children.Insert(EInteger.Number.Zero, _hint);
+                _panel.Children.Insert(Integer.Number.Zero, _hint);
                 _grid.Visibility
                     = _includeHeadersOnCopyPanel.Visibility
                     = Visibility.Hidden;

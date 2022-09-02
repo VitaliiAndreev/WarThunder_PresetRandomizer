@@ -34,7 +34,7 @@ namespace Core.Tests.Extensions
             // arrange
             var start = byte.MinValue;
             var end = byte.MaxValue;
-            var stepCount = EInteger.Number.Zero;
+            var stepCount = Integer.Number.Zero;
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -49,7 +49,7 @@ namespace Core.Tests.Extensions
             // arrange
             var start = byte.MinValue;
             var end = start;
-            var stepCount = EInteger.Number.Hundred;
+            var stepCount = Integer.Number.Hundred;
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -63,10 +63,10 @@ namespace Core.Tests.Extensions
         public void InterpolateTo_0To5_4Steps_ShouldBe1234()
         {
             // arrange
-            var start = Convert.ToByte(EInteger.Number.Zero);
-            var end = Convert.ToByte(EInteger.Number.Five);
-            var stepCount = EInteger.Number.Four;
-            var expectedSteps = new List<byte> { EInteger.Number.One, EInteger.Number.Two, EInteger.Number.Three, EInteger.Number.Four };
+            var start = Convert.ToByte(Integer.Number.Zero);
+            var end = Convert.ToByte(Integer.Number.Five);
+            var stepCount = Integer.Number.Four;
+            var expectedSteps = new List<byte> { Integer.Number.One, Integer.Number.Two, Integer.Number.Three, Integer.Number.Four };
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -80,10 +80,10 @@ namespace Core.Tests.Extensions
         public void InterpolateTo_5To0_4Steps_ShouldBe4321()
         {
             // arrange
-            var start = Convert.ToByte(EInteger.Number.Five);
-            var end = Convert.ToByte(EInteger.Number.Zero);
-            var stepCount = EInteger.Number.Four;
-            var expectedSteps = new List<byte> { EInteger.Number.Four, EInteger.Number.Three, EInteger.Number.Two, EInteger.Number.One };
+            var start = Convert.ToByte(Integer.Number.Five);
+            var end = Convert.ToByte(Integer.Number.Zero);
+            var stepCount = Integer.Number.Four;
+            var expectedSteps = new List<byte> { Integer.Number.Four, Integer.Number.Three, Integer.Number.Two, Integer.Number.One };
 
             // act
             var steps = start.InterpolateTo(end, stepCount);

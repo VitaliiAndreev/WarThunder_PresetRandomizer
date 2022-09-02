@@ -45,7 +45,7 @@ namespace Client.Wpf
         #region Constants
 
         /// <summary> The default <see cref="TextBlock.FontSize"/>.</summary>
-        public const int DefaultFontSize = EInteger.Number.Sixteen;
+        public const int DefaultFontSize = Integer.Number.Sixteen;
 
         #endregion Constants
         #region Properties
@@ -99,7 +99,7 @@ namespace Client.Wpf
 
             #endregion Starting GuiLoadingWindow to display progress of creating and initialising MainWindow.
 
-            while (guiLoadingWindowPresenter is null) Thread.Sleep(EInteger.Number.One);
+            while (guiLoadingWindowPresenter is null) Thread.Sleep(Integer.Number.One);
 
             var mainWindow = ApplicationHelpers.WindowFactory.CreateMainWindow(guiLoadingWindowPresenter);
 
@@ -123,7 +123,7 @@ namespace Client.Wpf
                 ApplicationHelpers.InitialiseLoggers();
 
                 Log = ApplicationHelpers.CreateActiveLogger(EWpfClientLogCategory.WpfClient);
-                Log.Info(ECoreLogMessage.Started);
+                Log.Info(CoreLogMessage.Started);
 
                 try
                 {
@@ -151,7 +151,7 @@ namespace Client.Wpf
             }
             catch (Exception exception)
             {
-                Log?.Fatal(ECoreLogMessage.AnErrorHasOccurred, exception);
+                Log?.Fatal(CoreLogMessage.AnErrorHasOccurred, exception);
                 ShowErrorMessage(exception);
                 Environment.Exit(1);
             }
@@ -169,7 +169,7 @@ namespace Client.Wpf
         /// <param name="newStandardStartupArguments"> Startup arguments following the new standard. </param>
         private string[] AdaptStartupArguments(string[] newStandardStartupArguments)
         {
-            StartupArguments = newStandardStartupArguments.StringJoin(ESeparator.Space);
+            StartupArguments = newStandardStartupArguments.StringJoin(Core.Enumerations.Separator.Space);
 
             var tip = "consult BAT files titled \"Mode 1\" through \"Mode 5\" for examples, or just execute those files directly";
             var oldStandardStartupArguments = new List<string>(); // -r and -w, i.e. read from and write to JSON, respectively, are considered on by default.
@@ -268,8 +268,8 @@ namespace Client.Wpf
             }
             else
             {
-                title = EWord.Error;
-                message = $"{ECoreLogMessage.FatalErrorShutdown}\n{getInstruction(ECoreLogMessage.SeeLogsForDetails)}";
+                title = Word.Error;
+                message = $"{CoreLogMessage.FatalErrorShutdown}\n{getInstruction(CoreLogMessage.SeeLogsForDetails)}";
             }
 
             MessageBox.Show(Current.Windows.OfType<BaseWindow>().LastOrDefault(), message, title, MessageBoxButton.OK, MessageBoxImage.Error);

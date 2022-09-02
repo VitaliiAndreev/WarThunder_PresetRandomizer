@@ -26,8 +26,8 @@ namespace Client.Wpf
         [RequiredSetting]
         public static string Localization
         {
-            get => LocalizationLanguage == ELanguage.None ? null : LocalizationLanguage.ToString();
-            set => LocalizationLanguage = !string.IsNullOrWhiteSpace(value) && value.TryParseEnumeration<ELanguage>(out var language) ? language : ELanguage.None;
+            get => LocalizationLanguage == Language.None ? null : LocalizationLanguage.ToString();
+            set => LocalizationLanguage = !string.IsNullOrWhiteSpace(value) && value.TryParseEnumeration<Language>(out var language) ? language : Language.None;
         }
 
         [RequiredSetting]
@@ -100,7 +100,7 @@ namespace Client.Wpf
             {
                 static string patchString(string @string)
                 {
-                    if (@string == EWord.Britain)
+                    if (@string == Word.Britain)
                         return ENation.GreatBritain.ToString();
 
                     return @string;
@@ -122,7 +122,7 @@ namespace Client.Wpf
             get => EnabledCountriesCollection.StringJoin(Separator);
             set
             {
-                var separator = ECharacter.Underscore;
+                var separator = Character.Underscore;
 
                 string patchString(string @string)
                 {
@@ -130,10 +130,10 @@ namespace Client.Wpf
                     var nationPart = valueParts.First();
                     var countryPart = valueParts.Last();
 
-                    if (nationPart == EWord.Britain)
+                    if (nationPart == Word.Britain)
                         nationPart = ENation.GreatBritain.ToString();
 
-                    if (countryPart == EWord.Britain)
+                    if (countryPart == Word.Britain)
                         countryPart = ECountry.GreatBritain.ToString();
 
                     return $"{nationPart}{separator}{countryPart}";
@@ -171,7 +171,7 @@ namespace Client.Wpf
                     substring =>
                     {
                         var economicRanks = substring
-                            .Split(ECharacter.Minus)
+                            .Split(Character.Minus)
                             .Select(economicRankString => int.Parse(economicRankString))
                         ;
                         return new Interval<int>(true, economicRanks.First(), economicRanks.Last(), true);
@@ -208,7 +208,7 @@ namespace Client.Wpf
         /// The currently selected localization language.
         /// <para> The value of this property is not being saved to <see cref="EWpfClientFile.Settings"/> file. For that refer to <see cref="Localization"/> instead. </para>
         /// </summary>
-        public static ELanguage LocalizationLanguage { get; private set; }
+        public static Language LocalizationLanguage { get; private set; }
 
         /// <summary>
         /// The currently selected randomisation method.

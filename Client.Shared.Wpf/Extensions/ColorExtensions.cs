@@ -29,14 +29,14 @@ namespace Client.Shared.Wpf.Extensions
         public static IEnumerable<Color> InterpolateTo(this Color startColor, Color endColor, int stepCount)
         {
             if (startColor == endColor)
-                return Enumerable.Range(EInteger.Number.Zero, stepCount).Select(number => startColor);
+                return Enumerable.Range(Integer.Number.Zero, stepCount).Select(number => startColor);
 
             var colors = new List<Color>();
             var rSteps = startColor.R.InterpolateTo(endColor.R, stepCount);
             var gSteps = startColor.G.InterpolateTo(endColor.G, stepCount);
             var bSteps = startColor.B.InterpolateTo(endColor.B, stepCount);
 
-            for (var stepNumber = EInteger.Number.Zero; stepNumber < stepCount; stepNumber++)
+            for (var stepNumber = Integer.Number.Zero; stepNumber < stepCount; stepNumber++)
             {
                 var stepColor = new Color().From
                 (

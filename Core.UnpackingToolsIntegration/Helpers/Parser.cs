@@ -22,7 +22,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Parser(params IConfiguredLogger[] loggers)
             : base(EUnpackingToolsIntegrationLogCategory.Parser, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Parser));
+            LogDebug(CoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Parser));
         }
 
         #endregion Constructors
@@ -39,13 +39,13 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                var regularExpression = new Regex("(version" + ERegularExpression.AtLeastOneNumber + ":" + ERegularExpression.VersionFull + ":yup_version)");
+                var regularExpression = new Regex("(version" + RegularExpression.AtLeastOneNumber + ":" + RegularExpression.VersionFull + ":yup_version)");
                 var match = regularExpression.Match(rawFileContents);
 
                 if (match is null)
                     throw new YupFileParsingException(EUnpackingToolsIntegrationLogMessage.VersionNotFoundInSourceString);
 
-                var matchStrings = match.Value.Split(ECharacter.Colon);
+                var matchStrings = match.Value.Split(Character.Colon);
 
                 var versionParameterNumberString = matchStrings.First().Where(character => character.IsDigitFluently()).StringJoin();
                 var versionParameterNumber = int.Parse(versionParameterNumberString);

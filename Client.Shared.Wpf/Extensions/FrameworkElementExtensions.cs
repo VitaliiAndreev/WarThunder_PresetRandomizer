@@ -21,7 +21,7 @@ namespace Client.Shared.Wpf.Extensions
 
             var target = default(T);
 
-            for (var childIndex = EInteger.Number.Zero; childIndex < VisualTreeHelper.GetChildrenCount(parent); childIndex++)
+            for (var childIndex = Integer.Number.Zero; childIndex < VisualTreeHelper.GetChildrenCount(parent); childIndex++)
             {
                 var child = VisualTreeHelper.GetChild(parent, childIndex) as FrameworkElement;
 

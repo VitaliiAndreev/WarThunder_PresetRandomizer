@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Directions. </summary>
-    public enum EDirection
+    public enum Direction
     {
         None,
         Up,

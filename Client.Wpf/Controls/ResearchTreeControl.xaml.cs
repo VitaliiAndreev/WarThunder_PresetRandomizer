@@ -179,7 +179,7 @@ namespace Client.Wpf.Controls
         /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
         public void Populate(IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
-            loadingTracker.NationsPopulated = EInteger.Number.Zero;
+            loadingTracker.NationsPopulated = Integer.Number.Zero;
             loadingTracker.NationsToPopulate = _nationTabs.Count;
 
             foreach (var nationTabKeyValuePair in _nationTabs)

@@ -17,9 +17,9 @@ namespace Client.Wpf.Controls
             set
             {
                 _dropCap.FontSize = value;
-                _otherText.FontSize = value > EInteger.Number.Five
-                    ? value - EInteger.Number.Five
-                    : EInteger.Number.One;
+                _otherText.FontSize = value > Integer.Number.Five
+                    ? value - Integer.Number.Five
+                    : Integer.Number.One;
             }
         }
 
@@ -29,8 +29,8 @@ namespace Client.Wpf.Controls
             get => $"{_dropCap.Text}{_otherText.Text}";
             set
             {
-                _dropCap.Text = value.Take(EInteger.Number.One).StringJoin();
-                _otherText.Text = value.Skip(EInteger.Number.One).StringJoin();
+                _dropCap.Text = value.Take(Integer.Number.One).StringJoin();
+                _otherText.Text = value.Skip(Integer.Number.One).StringJoin();
             }
         }
 

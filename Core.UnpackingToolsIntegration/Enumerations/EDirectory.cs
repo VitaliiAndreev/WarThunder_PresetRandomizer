@@ -2,7 +2,7 @@
 
 namespace Core.UnpackingToolsIntegration.Enumerations
 {
-    public class EDirectory : EVocabulary
+    public class EDirectory : Vocabulary
     {
         public class WarThunder
         {

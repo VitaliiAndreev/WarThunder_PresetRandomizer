@@ -3,7 +3,7 @@
 namespace Core.Localization.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
-    public class ELocalisationLogMessage : ECoreLogMessage
+    public class ELocalisationLogMessage : CoreLogMessage
     {
         /// <summary> 
         /// A message with formatting placeholders.

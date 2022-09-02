@@ -19,7 +19,7 @@ namespace Core.Helpers
         #region Constants
 
         /// <summary> A template for settings expressions. </summary>
-        protected const string _settingsExpressionTemplate = ECharacterString.Slash + "Settings" + ECharacterString.Slash + "{0}";
+        protected const string _settingsExpressionTemplate = CharacterString.Slash + "Settings" + CharacterString.Slash + "{0}";
 
         #endregion Constants
         #region Fields
@@ -39,7 +39,7 @@ namespace Core.Helpers
         #region Properties
 
         /// <summary> The status of the settings file after initialization. </summary>
-        public ESettingsFileStatus SettingsFileStatus { get; private set; }
+        public SettingsFileStatus SettingsFileStatus { get; private set; }
 
         #endregion Properties
         #region Constructors
@@ -50,17 +50,17 @@ namespace Core.Helpers
         /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public SettingsManager(IFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)
-            : base(ECoreLogCategory.SettingsManager, loggers)
+            : base(CoreLogCategory.SettingsManager, loggers)
         {
             _fileManager = fileManager;
             _requiredSettingNames = requiredSettingNames;
             _settingsFile = new FileInfo(settingsFileName);
             _settings = new Dictionary<string, string>();
 
-            SettingsFileStatus = ESettingsFileStatus.Pending;
+            SettingsFileStatus = SettingsFileStatus.Pending;
             Initialize();
 
-            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.SettingsManager));
+            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.SettingsManager));
         }
 
         #endregion Constructors
@@ -78,12 +78,12 @@ namespace Core.Helpers
         {
             if (!_settingsFile.Exists)
             {
-                LogInfo(ECoreLogMessage.SettingsFileNotFound_CreatingNewOne.Format(_settingsFile.Name));
+                LogInfo(CoreLogMessage.SettingsFileNotFound_CreatingNewOne.Format(_settingsFile.Name));
 
                 GenerateSettingsFile();
 
-                LogInfo(ECoreLogMessage.Created.Format(EWord.File));
-                SettingsFileStatus = ESettingsFileStatus.NotFoundAndGenerated;
+                LogInfo(CoreLogMessage.Created.Format(Word.File));
+                SettingsFileStatus = SettingsFileStatus.NotFoundAndGenerated;
             }
             _settings.ReplaceBy(GetSettingsFromFile());
         }
@@ -119,18 +119,18 @@ namespace Core.Helpers
                     _settings.Add(missingSettingName, settingValue);
                     _settings.Remove(unrecognizedSettingName);
 
-                    SettingsFileStatus = ESettingsFileStatus.FoundAndAutomaticallyUpdated;
+                    SettingsFileStatus = SettingsFileStatus.FoundAndAutomaticallyUpdated;
                 }
                 else
                 {
-                    SettingsFileStatus = ESettingsFileStatus.FoundAndNeedsManualUpdate;
+                    SettingsFileStatus = SettingsFileStatus.FoundAndNeedsManualUpdate;
 
                     throw new SettingsFileRegeneratedException();
                 }
             }
             else
             {
-                SettingsFileStatus = ESettingsFileStatus.FoundAndUpToDate;
+                SettingsFileStatus = SettingsFileStatus.FoundAndUpToDate;
             }
         }
 
@@ -142,7 +142,7 @@ namespace Core.Helpers
 
             using var xmlTextWriter = new XmlTextWriter(_settingsFile.FullName, Encoding.UTF8);
             {
-                xmlTextWriter.WriteStartElement(EWord.Settings);
+                xmlTextWriter.WriteStartElement(Word.Settings);
                 {
                     foreach (var requiredSetting in _requiredSettingNames)
                     {
@@ -166,7 +166,7 @@ namespace Core.Helpers
             var nodes = xmlDocument
                 .ChildNodes
                 .OfType<XmlNode>()
-                .FirstOrDefault(node => node.Name == EWord.Settings)
+                .FirstOrDefault(node => node.Name == Word.Settings)
                 .ChildNodes
                 .OfType<XmlNode>()
             ;
@@ -215,7 +215,7 @@ namespace Core.Helpers
             var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.Format(settingName));
 
             if (oldNode is null)
-                throw new XmlException(ECoreLogMessage.XmlNodeNotFound.Format(settingName));
+                throw new XmlException(CoreLogMessage.XmlNodeNotFound.Format(settingName));
 
             oldNode.InnerText = newValue;
 
@@ -229,7 +229,7 @@ namespace Core.Helpers
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(ECoreLogMessage.NotInitialisedProperly.Format(ECoreLogCategory.SettingsManager), ECoreLogMessage.SettingsCacheIsEmpty);
+                LogErrorAndThrow<NotInitializedException>(CoreLogMessage.NotInitialisedProperly.Format(CoreLogCategory.SettingsManager), CoreLogMessage.SettingsCacheIsEmpty);
         }
     }
 }

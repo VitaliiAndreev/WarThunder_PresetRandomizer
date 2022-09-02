@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Constants. </summary>
-    public class EConstants
+    public class Constants
     {
         public const string ObjectClassName = "Object";
     }

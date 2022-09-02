@@ -22,7 +22,7 @@ namespace Client.Wpf.Controls.Strategies
 
             SetFirstSharedPart(stringBuilder, gameMode, vehicle);
 
-            append($"{ESeparator.SpaceSlashSpace}");
+            append($"{Separator.SpaceSlashSpace}");
             append(GetRank(vehicle));
 
             SetSecondSharedPart(stringBuilder, vehicle);

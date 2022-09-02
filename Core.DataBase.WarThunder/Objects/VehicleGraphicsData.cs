@@ -79,8 +79,8 @@ namespace Core.DataBase.WarThunder.Objects
 
         private string GetInheritedGaijinId(string imagePathPropertyValue)
         {
-            var firstSeparator = ECharacter.NumberSign.ToString();
-            var secondSeparator = ECharacter.Slash.ToString();
+            var firstSeparator = Character.NumberSign.ToString();
+            var secondSeparator = Character.Slash.ToString();
 
             if (imagePathPropertyValue is null || !imagePathPropertyValue.ContainsAny(new string[] { firstSeparator, secondSeparator }))
                 return string.Empty;

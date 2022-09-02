@@ -43,7 +43,7 @@ namespace Client.Wpf.Controls
 
             Tag = nationCountryPair;
 
-            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags, createTooltip));
+            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(Integer.Number.Zero, Integer.Number.Zero, Integer.Number.Five, Integer.Number.Zero), useNationFlags, createTooltip));
             _panel.Children.Add(_label);
 
             MouseDown += mouseDownHandler;

@@ -285,7 +285,7 @@ namespace Core.Json.Helpers
                 if (jsonProperty.Value is JArray jsonArray)
                     branch.Columns.AddRange(DeserializeResearchTreeColumns(jsonArray));
                 else if (jsonProperty.Value is JObject jsonObject)
-                    branch.Columns.Add(DeserializeResearchTreeColumn(jsonObject, EInteger.Number.One));
+                    branch.Columns.Add(DeserializeResearchTreeColumn(jsonObject, Integer.Number.One));
                 else
                     throw new JsonDeserializationException(EJsonWarThunderLogMessage.BranchIsEmpty.Format(branch.GaijinId));
 
@@ -318,7 +318,7 @@ namespace Core.Json.Helpers
 
             foreach (var jsonToken in jsonArrayOfResearchTreeColumns)
             {
-                var columnIndex = columns.Count() + EInteger.Number.One;
+                var columnIndex = columns.Count() + Integer.Number.One;
                 var column = DeserializeResearchTreeColumn(jsonToken, columnIndex);
 
                 if (column.Cells.Any())

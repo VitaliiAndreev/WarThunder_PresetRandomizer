@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Statuses of initialization. </summary>
-    public enum EInitializationStatus
+    public enum InitializationStatus
     {
         NotInitialized,
         Initializing,

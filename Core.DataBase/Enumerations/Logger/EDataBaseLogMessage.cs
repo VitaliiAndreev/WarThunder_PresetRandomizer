@@ -3,7 +3,7 @@
 namespace Core.DataBase.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="DataBase"/>" assembly. </summary>
-    public class EDatabaseLogMessage : ECoreLogMessage
+    public class EDatabaseLogMessage : CoreLogMessage
     {
         #region DataRepository
 

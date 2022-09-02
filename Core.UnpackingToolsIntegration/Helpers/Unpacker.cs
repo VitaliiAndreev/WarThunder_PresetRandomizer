@@ -41,19 +41,19 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="fileManager"> An instance of a file manager. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
-            : base(ECoreLogCategory.Unpacker, loggers)
+            : base(CoreLogCategory.Unpacker, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(ECoreLogCategory.Unpacker));
+            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.Unpacker));
 
             _fileManager = fileManager;
             _toolFileNames = new Dictionary<string, string>
             {
-                { EFileExtension.Blk, ETool.BlkUnpacker },
-                { EFileExtension.Clog, ETool.ClogUnpacker },
-                { EFileExtension.Ddsx, ETool.DdsxUnpacker },
-                { EFileExtension.Dxp, ETool.DxpUnpacker },
-                { EFileExtension.Bin, ETool.VromfsBinUnpacker },
-                { EFileExtension.Wrpl, ETool.WrplUnpacker },
+                { FileExtension.Blk, ETool.BlkUnpacker },
+                { FileExtension.Clog, ETool.ClogUnpacker },
+                { FileExtension.Ddsx, ETool.DdsxUnpacker },
+                { FileExtension.Dxp, ETool.DxpUnpacker },
+                { FileExtension.Bin, ETool.VromfsBinUnpacker },
+                { FileExtension.Wrpl, ETool.WrplUnpacker },
             };
         }
 
@@ -76,9 +76,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="toolPath"> The path to the tool file. </param>
         /// <param name="argumentFilePath"> The path to the argument directory. </param>
         /// <returns></returns>
-        private Process RunShellCommand(string toolPath, string argument)
+        private System.Diagnostics.Process RunShellCommand(string toolPath, string argument)
         {
-            var process = Process.Start(new ProcessStartInfo(toolPath, $"\"{argument}\""));
+            var process = System.Diagnostics.Process.Start(new ProcessStartInfo(toolPath, $"\"{argument}\""));
 
             process.WaitForExit();
 
@@ -100,7 +100,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         private string GetToolFileNameByFileExtension(string fileExtension)
         {
-            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Skip(EInteger.Number.One).StringJoin(), out var toolFileName))
+            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Skip(Integer.Number.One).StringJoin(), out var toolFileName))
             {
                 LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.Format(toolFileName));
                 return toolFileName;
@@ -123,21 +123,21 @@ namespace Core.UnpackingToolsIntegration.Helpers
         {
             var outputPath = $@"{file.Directory}\{file.Name}";
 
-            switch (file.Extension.Split(ECharacter.Period).Last().ToLower())
+            switch (file.Extension.Split(Character.Period).Last().ToLower())
             {
-                case EFileExtension.Bin:
+                case FileExtension.Bin:
                 {
                     outputPath = $"{outputPath}{_outputDirectorySuffix}";
                     break;
                 }
-                case EFileExtension.Blk:
+                case FileExtension.Blk:
                 {
                     outputPath = $"{outputPath}{_outputFileSuffix}";
                     break;
                 }
-                case EFileExtension.Ddsx:
+                case FileExtension.Ddsx:
                 {
-                    outputPath = $@"{file.Directory}\{file.GetNameWithoutExtension()}.{EFileExtension.Dds}";
+                    outputPath = $@"{file.Directory}\{file.GetNameWithoutExtension()}.{FileExtension.Dds}";
                     break;
                 }
                 default:

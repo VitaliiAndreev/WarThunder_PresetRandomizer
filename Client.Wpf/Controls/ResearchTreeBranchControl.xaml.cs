@@ -193,7 +193,7 @@ namespace Client.Wpf.Controls
         /// <param name="columnIndex"> The index of the current column. </param>
         private void AddCell(ResearchTreeCellControl cell, ResearchTreeRank rank, int rowIndex, int columnIndex)
         {
-            var rowNumber = rowIndex + EInteger.Number.One;
+            var rowNumber = rowIndex + Integer.Number.One;
 
             if (rowNumber == rank.MaximumRowNumber)
             {
@@ -213,7 +213,7 @@ namespace Client.Wpf.Controls
 
         private void PopulateRankHeader(ERank rankKey, ResearchTreeRank rank)
         {
-            var cellWithBorder = new Border { BorderThickness = new Thickness(EInteger.Number.Zero, EInteger.Number.One, EInteger.Number.Zero, EInteger.Number.One), BorderBrush = new SolidColorBrush(Colors.DarkGray) };
+            var cellWithBorder = new Border { BorderThickness = new Thickness(Integer.Number.Zero, Integer.Number.One, Integer.Number.Zero, Integer.Number.One), BorderBrush = new SolidColorBrush(Colors.DarkGray) };
 
             new TextBlock
             {
@@ -224,9 +224,9 @@ namespace Client.Wpf.Controls
                 Text = rankKey.ToString(),
             }.PutInto(cellWithBorder);
 
-            _grid.Add(cellWithBorder, EInteger.Number.Zero, rank.StartingRowNumber.Value - EInteger.Number.One);
+            _grid.Add(cellWithBorder, Integer.Number.Zero, rank.StartingRowNumber.Value - Integer.Number.One);
 
-            Grid.SetRowSpan(cellWithBorder, rank.MaximumRowNumber - rank.StartingRowNumber.Value + EInteger.Number.One);
+            Grid.SetRowSpan(cellWithBorder, rank.MaximumRowNumber - rank.StartingRowNumber.Value + Integer.Number.One);
         }
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
@@ -240,7 +240,7 @@ namespace Client.Wpf.Controls
 
             _researchTreeBranch = branch;
 
-            loadingTracker.RanksPopulated = EInteger.Number.Zero;
+            loadingTracker.RanksPopulated = Integer.Number.Zero;
             loadingTracker.RanksToPopulate = _researchTreeBranch.Count;
 
             foreach (var rankKeyValuePair in _researchTreeBranch)
@@ -249,21 +249,21 @@ namespace Client.Wpf.Controls
                 var rank = rankKeyValuePair.Value;
 
                 loadingTracker.CurrentlyPopulatedRank = rankKey.ToString();
-                loadingTracker.RowsPopulated = EInteger.Number.Zero;
-                loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + EInteger.Number.One;
+                loadingTracker.RowsPopulated = Integer.Number.Zero;
+                loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + Integer.Number.One;
 
                 PopulateRankHeader(rankKey, rank);
 
                 for (var rowNumber = rank.StartingRowNumber.Value; rowNumber <= rank.MaximumRowNumber; rowNumber++)
                 {
-                    var rowIndex = rowNumber - EInteger.Number.One;
+                    var rowIndex = rowNumber - Integer.Number.One;
 
-                    loadingTracker.ColumnsPopulated = EInteger.Number.Zero;
+                    loadingTracker.ColumnsPopulated = Integer.Number.Zero;
                     loadingTracker.ColumnsToPopulate = _researchTreeBranch.ColumnCount;
 
-                    for (var columnNumber = EInteger.Number.One; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
+                    for (var columnNumber = Integer.Number.One; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
                     {
-                        var rowNumberRelativeToRank = rowNumber - rank.StartingRowNumber.Value + EInteger.Number.One;
+                        var rowNumberRelativeToRank = rowNumber - rank.StartingRowNumber.Value + Integer.Number.One;
                         var columnIndex = columnNumber;
                         var cell = new ResearchTreeCellControl()
                         {
@@ -294,7 +294,7 @@ namespace Client.Wpf.Controls
                 loadingTracker.RanksPopulated++;
             }
 
-            _grid.ColumnDefinitions.First().Width = new GridLength(EInteger.Number.Thirty, GridUnitType.Pixel);
+            _grid.ColumnDefinitions.First().Width = new GridLength(Integer.Number.Thirty, GridUnitType.Pixel);
 
             InitialiseButtons();
         }

@@ -33,7 +33,7 @@ namespace Core.Organization.Objects
             RowCount = Values.Max(vehicle => vehicle.ResearchTreeData.CellCoordinatesWithinRank.Last());
             
             PremiumColumnNumbers = Enumerable
-                .Range(EInteger.Number.One, MaximumColumnNumber)
+                .Range(Integer.Number.One, MaximumColumnNumber)
                 .Where(columnNumber => GetVehiclesInColumn(columnNumber).Any(vehicle => !vehicle.IsResearchable))
             ;
         }
@@ -53,7 +53,7 @@ namespace Core.Organization.Objects
                 return new List<IVehicle> { vehicle };
 
             var vehicles = new List<IVehicle>();
-            var folderIndex = EInteger.Number.Zero;
+            var folderIndex = Integer.Number.Zero;
 
             while (TryGetValue(new ResearchTreeCoordinatesWithinRank(columnNumber, rowNumber, folderIndex++), out var folderVehicle))
                 vehicles.Add(folderVehicle);

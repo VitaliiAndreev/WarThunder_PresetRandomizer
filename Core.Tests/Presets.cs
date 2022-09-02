@@ -47,7 +47,7 @@ namespace Core.Tests
         {
             if (UseLiveLogging)
             {
-                Logger = new ConfiguredNLogger(ELoggerName.FileLogger, new ExceptionFormatter());
+                Logger = new ConfiguredNLogger(LoggerName.FileLogger, new ExceptionFormatter());
             }
             else
             {
@@ -102,7 +102,7 @@ namespace Core.Tests
         private static void DeleteDataBaseFiles()
         {
             var fileManager = new FileManager(Logger);
-            fileManager.DeleteFiles(Directory.GetCurrentDirectory(), EFileExtension.SqLite3);
+            fileManager.DeleteFiles(Directory.GetCurrentDirectory(), FileExtension.SqLite3);
         }
 
         /// <summary> Deletes "log" files. </summary>
@@ -111,7 +111,7 @@ namespace Core.Tests
             if (UseLiveLogging && CleanUpLogs)
             {
                 var fileManager = new FileManager(Logger);
-                fileManager.DeleteFiles($"{Directory.GetCurrentDirectory()}\\Logs", EFileExtension.Log);
+                fileManager.DeleteFiles($"{Directory.GetCurrentDirectory()}\\Logs", FileExtension.Log);
             }
         }
 

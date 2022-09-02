@@ -31,13 +31,13 @@ namespace Core.Organization.Objects
 
             if (!previousRankKey.IsValid())
             {
-                rank.StartingRowNumber = EInteger.Number.One;
+                rank.StartingRowNumber = Integer.Number.One;
                 rank.MaximumRowNumber = rank.RowCount;
                 return;
             }
 
             var previousRank = this[previousRankKey];
-            rank.StartingRowNumber = (previousRank.StartingRowNumber ?? EInteger.Number.One) + previousRank.RowCount;
+            rank.StartingRowNumber = (previousRank.StartingRowNumber ?? Integer.Number.One) + previousRank.RowCount;
             rank.MaximumRowNumber = previousRank.MaximumRowNumber + rank.RowCount;
         }
 

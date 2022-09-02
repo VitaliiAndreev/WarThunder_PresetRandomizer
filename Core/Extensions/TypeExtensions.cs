@@ -48,8 +48,8 @@ namespace Core.Extensions
         {
             var typeName = type.Name;
 
-            if (typeName.Contains(ECharacter.Grave))
-                return $"{typeName.Split(ECharacter.Grave).First()}<{type.GetGenericArguments().Select(subType => subType.ToStringLikeCode()).StringJoin(", ")}>";
+            if (typeName.Contains(Character.Grave))
+                return $"{typeName.Split(Character.Grave).First()}<{type.GetGenericArguments().Select(subType => subType.ToStringLikeCode()).StringJoin(", ")}>";
 
             return typeName;
         }
@@ -59,7 +59,7 @@ namespace Core.Extensions
         public static bool ValidateAsEnum(this Type type, bool @throw = true)
         {
             if (!type.IsEnum)
-                return new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+                return new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
 
             return true;
         }
@@ -75,7 +75,7 @@ namespace Core.Extensions
                     var enumerationValueType = type.GetEnumUnderlyingType();
 
                     if (enumerationValueType != typeof(T))
-                        return new ArgumentException(ECoreLogMessage.EnumValueMustBe.Format(enumerationValueType.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+                        return new ArgumentException(CoreLogMessage.EnumValueMustBe.Format(enumerationValueType.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
                 }
 
                 return false;
@@ -97,22 +97,22 @@ namespace Core.Extensions
             var genericType = typeof(T);
 
             if (!genericType.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(genericType.ToStringLikeCode()));
+                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(genericType.ToStringLikeCode()));
 
             if (!type.IsEnum)
-                throw new ArgumentException(ECoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
+                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
 
             if (genericType != type)
-                throw new ArgumentException(ECoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.Format(genericType, type));
+                throw new ArgumentException(CoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.Format(genericType, type));
 
             var enumerationItems = type.GetEnumValues().Cast<T>();
 
             if (skipInvalidItems)
             {
-                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EWord.None);
+                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != Word.None);
 
                 if (!allItemIsValid)
-                    enumerationItems = enumerationItems.Where(enumerationItem => !enumerationItem.ToString().StartsWith(EWord.All));
+                    enumerationItems = enumerationItems.Where(enumerationItem => !enumerationItem.ToString().StartsWith(Word.All));
             }
 
             return enumerationItems;

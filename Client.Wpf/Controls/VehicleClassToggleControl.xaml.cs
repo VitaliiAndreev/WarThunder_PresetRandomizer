@@ -17,9 +17,9 @@ namespace Client.Wpf.Controls
     {
         #region Constants
 
-        private const double _vehicleClassIconFontSize = EInteger.Number.Eight;
-        private const double _buttonLeftColumnWidth = EInteger.Number.Thirteen;
-        private const double _buttonRightColumnWidth = EInteger.Number.Fifteen;
+        private const double _vehicleClassIconFontSize = Integer.Number.Eight;
+        private const double _buttonLeftColumnWidth = Integer.Number.Thirteen;
+        private const double _buttonRightColumnWidth = Integer.Number.Fifteen;
 
         #endregion Constants
         #region Fields

@@ -141,12 +141,12 @@ namespace Client.Wpf.Controls.Base
 
             if (tagType.IsEnum)
             {
-                var enumerationItem = typeof(T).GetEnumValues().OfType<T>().FirstOrDefault(item => item.ToString() == EWord.All);
+                var enumerationItem = typeof(T).GetEnumValues().OfType<T>().FirstOrDefault(item => item.ToString() == Word.All);
                 _toggleAllButton = CreateToggleButton(panel, enumerationItem, enumerationItem.ToString(), styleKey, horizontal);
             }
             else
             {
-                _toggleAllButton = CreateToggleButton(panel, default, EWord.All, styleKey, horizontal);
+                _toggleAllButton = CreateToggleButton(panel, default, Word.All, styleKey, horizontal);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Client.Wpf.Controls.Base
         /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
         protected virtual void CreateToggleAllButton(Panel panel, T enumerationItem, string styleKey, bool horizontal)
         {
-            _toggleAllButton = CreateToggleButton(panel, enumerationItem, typeof(T).IsEnum ? enumerationItem.ToString() : EWord.All, $"{styleKey}{EWord.All}", horizontal);
+            _toggleAllButton = CreateToggleButton(panel, enumerationItem, typeof(T).IsEnum ? enumerationItem.ToString() : Word.All, $"{styleKey}{Word.All}", horizontal);
         }
 
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with <paramref name="characterIcons"/>. </summary>
@@ -182,7 +182,7 @@ namespace Client.Wpf.Controls.Base
         public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> displayStrings, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
         {
             if (createToggleAllButton)
-                CreateToggleAllButton(panel, $"{styleKey}{EWord.All}", horizontal);
+                CreateToggleAllButton(panel, $"{styleKey}{Word.All}", horizontal);
 
             foreach (var enumerationItem in enumerationItems)
             {

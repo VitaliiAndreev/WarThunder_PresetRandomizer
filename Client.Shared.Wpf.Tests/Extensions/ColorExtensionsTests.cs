@@ -50,7 +50,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             // arrange
             var blackOriginal = new Color().From(0);
             var blackClone = new Color().From(0);
-            var stepCount = EInteger.Number.Ten;
+            var stepCount = Integer.Number.Ten;
 
             // act
             var colors = blackOriginal.InterpolateTo(blackClone, stepCount);
@@ -66,7 +66,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             // arrange
             var black = new Color().From(0);
             var white = new Color().From(255);
-            var stepCount = EInteger.Number.Two;
+            var stepCount = Integer.Number.Two;
             var expectedFirstStep = Convert.ToByte(85);
             var expectedSecondStep = Convert.ToByte(170);
             var expectedColors = new List<Color> { new Color().From(expectedFirstStep), new Color().From(expectedSecondStep) };
@@ -84,7 +84,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             // arrange
             var black = new Color().From(0);
             var white = new Color().From(255);
-            var stepCount = EInteger.Number.Two;
+            var stepCount = Integer.Number.Two;
             var expectedFirstStep = Convert.ToByte(170);
             var expectedSecondStep = Convert.ToByte(85);
             var expectedColors = new List<Color> { new Color().From(expectedFirstStep), new Color().From(expectedSecondStep) };
@@ -102,7 +102,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             // arrange
             var red = new Color().From(255, 0, 0);
             var green = new Color().From(0, 255, 0);
-            var stepCount = EInteger.Number.Two;
+            var stepCount = Integer.Number.Two;
             var expectedFirstStep = Convert.ToByte(85);
             var expectedSecondStep = Convert.ToByte(170);
             var expectedColors = new List<Color>

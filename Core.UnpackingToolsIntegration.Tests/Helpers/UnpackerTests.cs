@@ -47,7 +47,7 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
 
@@ -76,14 +76,14 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
             // arrange
             var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.WarThunder.WorldWarParameters);
             var binOutputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-            var blkFile = binOutputDirectory.GetDirectories().First().GetDirectories().First().GetFiles(file => file.Extension.ToLower().Contains(EFileExtension.Blk)).First();
+            var blkFile = binOutputDirectory.GetDirectories().First().GetDirectories().First().GetFiles(file => file.Extension.ToLower().Contains(FileExtension.Blk)).First();
 
             // act
             var blkxOutput = new FileInfo(_unpacker.Unpack(blkFile));
 
             // assert
             blkxOutput.Exists.Should().BeTrue();
-            blkxOutput.Extension.ToLower().Should().Contain(EFileExtension.Blkx);
+            blkxOutput.Extension.ToLower().Should().Contain(FileExtension.Blkx);
         }
 
         [TestMethod]

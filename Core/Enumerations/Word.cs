@@ -4,7 +4,7 @@
     /// Constants storing usable English words.
     /// <para> Suffix "_L" means "lower case". </para>
     /// </summary>
-    public class EWord : EVocabulary
+    public class Word : Vocabulary
     {
         #region A
 
@@ -16,7 +16,7 @@
         #region B
 
         public static string Battle => _Battle;
-        public static string BattleRating => $"{_Battle}{ECharacter.Space}{_Rating}";
+        public static string BattleRating => $"{_Battle}{Character.Space}{_Rating}";
         public static string Britain => _Britain;
 
         #endregion B
@@ -98,7 +98,7 @@
 
         public static string Pack => _Pack;
         public static string Parser => _Parser;
-        public static string PresetGenerator => _Preset + ESeparator.Space + _Generator;
+        public static string PresetGenerator => _Preset + Separator.Space + _Generator;
         public static string Proxy => _Proxy;
 
         #endregion P
@@ -140,7 +140,7 @@
         #region V
 
         public static string Value => _Value;
-        public static string VehicleSelector => _Vehicle + ESeparator.Space + _Selector;
+        public static string VehicleSelector => _Vehicle + Separator.Space + _Selector;
 
         #endregion V
         #region W

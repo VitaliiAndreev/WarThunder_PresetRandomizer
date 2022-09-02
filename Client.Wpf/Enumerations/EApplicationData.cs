@@ -18,7 +18,7 @@ namespace Client.Wpf.Enumerations
         static EApplicationData()
         {
             var productVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
-            var versionParts = productVersion.Split(ECharacter.Space);
+            var versionParts = productVersion.Split(Character.Space);
 
             Version = new Version(versionParts.First());
             DevelopmentStageLocalizationKey = versionParts.Last();

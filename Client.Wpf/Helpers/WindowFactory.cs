@@ -22,7 +22,7 @@ namespace Client.Wpf.Helpers
         public WindowFactory(params IConfiguredLogger[] loggers)
             : base(EWpfClientLogCategory.WindowFactory, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(EWpfClientLogCategory.WindowFactory));
+            LogDebug(CoreLogMessage.Created.Format(EWpfClientLogCategory.WindowFactory));
         }
 
         #endregion Constructors

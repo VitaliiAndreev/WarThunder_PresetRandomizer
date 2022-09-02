@@ -40,12 +40,12 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 EmptyDirectory(tempDirectory.FullName);
         }
 
-        /// <summary> Gets all <see cref="EFileExtension.SqLite3"/> database files for specific game versions. </summary>
+        /// <summary> Gets all <see cref="FileExtension.SqLite3"/> database files for specific game versions. </summary>
         /// <returns></returns>
         private IEnumerable<FileInfo> GetWarThunderDatabaseFiles() =>
             new DirectoryInfo(Directory.GetCurrentDirectory()).GetWarThunderDatabaseFiles();
 
-        /// <summary> Gets names of all <see cref="EFileExtension.SqLite3"/> database files for specific game versions. </summary>
+        /// <summary> Gets names of all <see cref="FileExtension.SqLite3"/> database files for specific game versions. </summary>
         /// <returns></returns>
         public IEnumerable<string> GetWarThunderDatabaseFileNames() =>
             GetWarThunderDatabaseFiles().Select(file => file.Name);

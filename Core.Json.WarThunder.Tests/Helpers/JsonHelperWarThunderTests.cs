@@ -74,7 +74,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
 
@@ -130,7 +130,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
 
             _unpacker.Unpack(outputDirectory, ETool.BlkUnpacker);
 
-            return outputDirectory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Blkx}", SearchOption.AllDirectories);
+            return outputDirectory.GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Blkx}", SearchOption.AllDirectories);
         }
 
         private string GetJsonText(IEnumerable<FileInfo> blkxFiles, string unpackedFileName)
@@ -288,7 +288,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var researchTrees = _jsonHelper.DeserializeResearchTrees(jsonText);
 
             // assert
-            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - EInteger.Number.Two);
+            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - Integer.Number.Two);
             foreach (var tree in researchTrees)
             {
                 tree.Branches.Any().Should().BeTrue();
@@ -298,13 +298,13 @@ namespace Core.Json.WarThunder.Tests.Helpers
                     foreach (var column in branch.Columns)
                     {
                         column.Cells.Any().Should().BeTrue();
-                        column.Cells.All(cell => cell.Rank > EInteger.Number.Zero).Should().BeTrue();
-                        column.Cells.All(cell => cell.RowWithinRank > EInteger.Number.Zero).Should().BeTrue();
+                        column.Cells.All(cell => cell.Rank > Integer.Number.Zero).Should().BeTrue();
+                        column.Cells.All(cell => cell.RowWithinRank > Integer.Number.Zero).Should().BeTrue();
                         column.Cells.All(cell => cell.Vehicles.Any()).Should().BeTrue();
 
                         foreach (var cell in column.Cells)
                         {
-                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == EInteger.Number.Two).Should().BeTrue();
+                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == Integer.Number.Two).Should().BeTrue();
                             cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.First().IsIn(new Interval<int>(true, 1, 7, true))).Should().BeTrue();
                         }
                     }

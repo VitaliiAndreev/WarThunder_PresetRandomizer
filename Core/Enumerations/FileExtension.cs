@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> File extensions. </summary>
-    public class EFileExtension
+    public class FileExtension
     {
         public const string Bak = "bak";
         public const string Bin = "bin";

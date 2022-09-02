@@ -34,14 +34,14 @@ namespace Core.Localization.Helpers
         {
             _fileReader = fileReader;
 
-            var localizationFile = new FileInfo(Path.Combine(EWord.Localisation, $"{localizationFileName}{ECharacter.Period}{EFileExtension.Xml}"));
+            var localizationFile = new FileInfo(Path.Combine(Word.Localisation, $"{localizationFileName}{Character.Period}{FileExtension.Xml}"));
 
             if (!localizationFile.Exists)
-                throw new FileNotFoundException(ECoreLogMessage.NotFound.Format(localizationFile.FullName));
+                throw new FileNotFoundException(CoreLogMessage.NotFound.Format(localizationFile.FullName));
 
             _localisation = LoadLocalisation(localizationFile);
 
-            LogDebug(ECoreLogMessage.Created.Format(ELocalisationLogCategory.LocalisationManager));
+            LogDebug(CoreLogMessage.Created.Format(ELocalisationLogCategory.LocalisationManager));
         }
 
         #endregion Constructors
@@ -55,11 +55,11 @@ namespace Core.Localization.Helpers
 
             return XElement
                 .Parse(fileContents)
-                .Elements(EWord.Line)
+                .Elements(Word.Line)
                 .ToDictionary
                 (
-                    element => (string)element.Attribute(EWord.Key.ToLower()),
-                    element => (string)element.Attribute(EWord.Value.ToLower())
+                    element => (string)element.Attribute(Word.Key.ToLower()),
+                    element => (string)element.Attribute(Word.Value.ToLower())
                 )
             ;
         }

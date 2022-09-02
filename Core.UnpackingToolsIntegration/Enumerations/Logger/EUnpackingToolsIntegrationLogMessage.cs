@@ -3,7 +3,7 @@
 namespace UnpackingToolsIntegration.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="UnpackingToolsIntegration"/>" assembly. </summary>
-    public class EUnpackingToolsIntegrationLogMessage : ECoreLogMessage
+    public class EUnpackingToolsIntegrationLogMessage : CoreLogMessage
     {
         #region Parser
 

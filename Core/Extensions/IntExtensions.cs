@@ -12,19 +12,19 @@ namespace Core.Extensions
         /// <param name="value"> The number to check. </param>
         /// <returns></returns>
         public static bool IsNegative(this int value) =>
-            value < EInteger.Number.Zero;
+            value < Integer.Number.Zero;
 
         /// <summary> Checks whether the number is positive. </summary>
         /// <param name="value"> The number to check. </param>
         /// <returns></returns>
         public static bool IsPositive(this int value) =>
-            value > EInteger.Number.Zero;
+            value > Integer.Number.Zero;
 
         /// <summary> Checks whether the number is zero. </summary>
         /// <param name="value"> The number to check. </param>
         /// <returns></returns>
         public static bool IsZero(this int value) =>
-            value == EInteger.Number.Zero;
+            value == Integer.Number.Zero;
 
         #endregion Fluency
         #region Formatting
@@ -43,9 +43,9 @@ namespace Core.Extensions
         {
             var bitCount = default(int);
 
-            while (value != EInteger.Number.Zero)
+            while (value != Integer.Number.Zero)
             {
-                value &= (value - EInteger.Number.One);
+                value &= (value - Integer.Number.One);
                 bitCount++;
             }
             return bitCount;

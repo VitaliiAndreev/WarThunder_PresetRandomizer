@@ -4,7 +4,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
 {
     public class EFile
     {
-        private const string _vromfsBin = ECharacterString.Period + Vromfs + ECharacterString.Period + EFileExtension.Bin;
+        private const string _vromfsBin = CharacterString.Period + Vromfs + CharacterString.Period + FileExtension.Bin;
 
         internal const string Vromfs = "vromfs";
         internal const string warthunder = "warthunder";
@@ -15,8 +15,8 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         /// </summary>
         public class WarThunder
         {
-            private const string _exe = ECharacterString.Period + EFileExtension.Exe;
-            private const string _yup = ECharacterString.Period + EFileExtension.Yup;
+            private const string _exe = CharacterString.Period + FileExtension.Exe;
+            private const string _yup = CharacterString.Period + FileExtension.Yup;
 
             public const string CoreParameters = "aces" + _vromfsBin;
             public const string GuiParameters = "gui" + _vromfsBin;
@@ -38,7 +38,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         }
         public class CharVromfs
         {
-            private const string _blkx = ECharacterString.Period + EFileExtension.Blkx;
+            private const string _blkx = CharacterString.Period + FileExtension.Blkx;
 
             public const string AdditionalVehicleData = "unittags" + _blkx;
             public const string GeneralVehicleData = "wpcost" + _blkx;
@@ -47,7 +47,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
         }
         public class LangVromfs
         {
-            private const string _csv = ECharacterString.Period + EFileExtension.Csv;
+            private const string _csv = CharacterString.Period + FileExtension.Csv;
 
             public const string Units = "units" + _csv;
         }

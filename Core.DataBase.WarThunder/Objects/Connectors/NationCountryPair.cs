@@ -23,9 +23,9 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         public NationCountryPair(string nationCountryString)
         {
-            var strings = nationCountryString.Split(ECharacter.Underscore, StringSplitOptions.RemoveEmptyEntries);
+            var strings = nationCountryString.Split(Character.Underscore, StringSplitOptions.RemoveEmptyEntries);
 
-            if (strings.Count() != EInteger.Number.Two)
+            if (strings.Count() != Integer.Number.Two)
                 throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.Format(nationCountryString));
 
             Initialise(strings.First(), strings.Last());
@@ -95,10 +95,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             unchecked
             {
-                var hash = EInteger.Number.PrimesAboveHundred.First();
+                var hash = Integer.Number.PrimesAboveHundred.First();
 
-                hash = hash * EInteger.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
-                hash = hash * EInteger.Number.PrimesAboveHundred.Third() + Country.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Country.GetHashCode();
 
                 return hash;
             }
@@ -108,6 +108,6 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{Nation}{ECharacter.Underscore}{Country}";
+        public override string ToString() => $"{Nation}{Character.Underscore}{Country}";
     }
 }

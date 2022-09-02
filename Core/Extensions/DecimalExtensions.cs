@@ -17,10 +17,10 @@ namespace Core.Extensions
             Math.Floor(number);
 
         public static bool IsPositive(this decimal number) =>
-            number > EDecimal.Number.Zero;
+number > Enumerations.Decimal.Number.Zero;
 
         public static bool IsInteger(this decimal number) =>
-            number % EInteger.Number.One == EInteger.Number.Zero;
+            number % Integer.Number.One == Integer.Number.Zero;
 
         #endregion Math
 

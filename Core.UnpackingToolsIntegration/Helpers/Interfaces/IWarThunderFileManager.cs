@@ -12,7 +12,7 @@ namespace Core.UnpackingToolsIntegration.Helpers.Interfaces
         /// <summary> Removes all directories and files in <see cref="Settings.TempLocation"/>. </summary>
         void CleanUpTempDirectory();
 
-        /// <summary> Gets names of all <see cref="EFileExtension.SqLite3"/> database files for specific game versions. </summary>
+        /// <summary> Gets names of all <see cref="FileExtension.SqLite3"/> database files for specific game versions. </summary>
         /// <returns></returns>
         IEnumerable<string> GetWarThunderDatabaseFileNames();
 

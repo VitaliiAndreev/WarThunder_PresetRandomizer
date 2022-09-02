@@ -8,7 +8,7 @@ namespace Core.Helpers.Interfaces
         #region Properties
 
         /// <summary> The status of the settings file after initialization. </summary>
-        ESettingsFileStatus SettingsFileStatus { get; }
+        SettingsFileStatus SettingsFileStatus { get; }
 
         #endregion Properties
         #region Methods

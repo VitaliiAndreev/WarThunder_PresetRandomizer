@@ -38,10 +38,10 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             unchecked
             {
-                var hash = EInteger.Number.PrimesAboveHundred.First();
+                var hash = Integer.Number.PrimesAboveHundred.First();
 
-                hash = hash * EInteger.Number.PrimesAboveHundred.Second() + Branch.GetHashCode();
-                hash = hash * EInteger.Number.PrimesAboveHundred.Third() + Class.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Branch.GetHashCode();
+                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Class.GetHashCode();
 
                 return hash;
             }
@@ -49,6 +49,6 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
 
         #endregion Methods: Equality Comparison
 
-        public override string ToString() => $"{Branch}{ECharacter.Underscore}{Class}";
+        public override string ToString() => $"{Branch}{Character.Underscore}{Class}";
     }
 }

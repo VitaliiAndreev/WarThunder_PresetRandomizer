@@ -3,7 +3,7 @@
 namespace Core.Enumerations
 {
     /// <summary> Integer constants. </summary>
-    public class EInteger
+    public class Integer
     {
         /// <summary> Pure number constants. </summary>
         public class Number

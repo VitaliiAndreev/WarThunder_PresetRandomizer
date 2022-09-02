@@ -3,10 +3,10 @@ using Core.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
 {
-    public class EOrganizationLogCategory : ECoreLogCategory
+    public class EOrganizationLogCategory : CoreLogCategory
     {
-        public static string Manager = EWord.Manager;
-        public static string PresetGenerator = EWord.PresetGenerator;
-        public static string VehicleSelector = EWord.VehicleSelector;
+        public static string Manager = Word.Manager;
+        public static string PresetGenerator = Word.PresetGenerator;
+        public static string VehicleSelector = Word.VehicleSelector;
     }
 }

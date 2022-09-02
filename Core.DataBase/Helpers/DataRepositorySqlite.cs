@@ -58,8 +58,8 @@ namespace Core.DataBase.Helpers
             (
                 EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().Format
                 (
-                    $"{dataBaseFileName}.{EFileExtension.SqLite3}",
-                    overwriteExistingDataBase ? string.Empty : $"{EWord.Dont.ToLower()} ",
+                    $"{dataBaseFileName}.{FileExtension.SqLite3}",
+                    overwriteExistingDataBase ? string.Empty : $"{Word.Dont.ToLower()} ",
                     assemblyWithMapping
                 )
             );
@@ -67,7 +67,7 @@ namespace Core.DataBase.Helpers
             _lock = new object();
             TransactionalLock = new object();
 
-            SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{EFileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
+            SessionFactory = new ConfiguredSessionFactory($"{dataBaseFileName}.{FileExtension.SqLite3}", overwriteExistingDataBase, assemblyWithMapping, loggers);
             _newObjects = new List<IPersistentObject>();
 
             if (singleSession)
@@ -264,17 +264,17 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheDataRepositoryFor.Format(SessionFactory?.DataBaseFileName ?? EWord.NULL)));
+            LogDebug(CoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheDataRepositoryFor.Format(SessionFactory?.DataBaseFileName ?? Word.NULL)));
 
             if (IsClosed)
             {
-                LogDebug(ECoreLogMessage.AlreadyDisposed);
+                LogDebug(CoreLogMessage.AlreadyDisposed);
                 return;
             }
 
             if (disposing)
             {
-                LogDebug(ECoreLogMessage.Disposing);
+                LogDebug(CoreLogMessage.Disposing);
 
                 if (!(_session is null))
                 {
@@ -288,7 +288,7 @@ namespace Core.DataBase.Helpers
             }
 
             IsClosed = true;
-            LogDebug(ECoreLogMessage.SuccessfullyDisposed);
+            LogDebug(CoreLogMessage.SuccessfullyDisposed);
         }
 
         #endregion Methods: IDisposeable Members

@@ -42,7 +42,7 @@ namespace Core.DataBase.Objects
         #endregion Constructors
         #region Methods: Initialization
 
-        protected void LogCreation() => LogTrace(ECoreLogMessage.Created.Format(ToString()));
+        protected void LogCreation() => LogTrace(CoreLogMessage.Created.Format(ToString()));
 
         /// <summary> Sets the <see cref="_logCategory"/> for the object. </summary>
         protected void SetLogCategory() => _logCategory = GetType().ToStringLikeCode();
@@ -145,7 +145,7 @@ namespace Core.DataBase.Objects
             var thisType = thisValue.GetType();
             var comparedType = comparedValue.GetType();
 
-            if (!thisType.ToString().Contains(EWord.Proxy) && !comparedType.ToString().Contains(EWord.Proxy) && thisType != comparedType)
+            if (!thisType.ToString().Contains(Word.Proxy) && !comparedType.ToString().Contains(Word.Proxy) && thisType != comparedType)
                 return false;
 
             var includeNestedObjects = recursionLevel.IsPositive();

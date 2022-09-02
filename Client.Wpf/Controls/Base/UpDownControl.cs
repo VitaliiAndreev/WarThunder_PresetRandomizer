@@ -57,12 +57,12 @@ namespace Client.Wpf.Controls.Base
 
         /// <summary> Adjusts the <see cref="Value"/>. </summary>
         /// <param name="direction"> The direction in which to adjust. </param>
-        protected void AdjustValue(EDirection direction)
+        protected void AdjustValue(Direction direction)
         {
-            if (direction == EDirection.Up && Value.CompareTo(MaximumValue).IsNegative())
+            if (direction == Direction.Up && Value.CompareTo(MaximumValue).IsNegative())
                 Value = Value.Increment();
 
-            else if (direction == EDirection.Down && Value.CompareTo(MinimumValue).IsPositive())
+            else if (direction == Direction.Down && Value.CompareTo(MinimumValue).IsPositive())
                 Value = Value.Decrement();
         }
     }

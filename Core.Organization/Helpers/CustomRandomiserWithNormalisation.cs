@@ -63,7 +63,7 @@ namespace Core.Organization.Helpers
                     ResetMainBranchWeights(branchSet, branches);
                 }
 
-                mainBranchOccurrences[selectedBranch] += EInteger.Number.One;
+                mainBranchOccurrences[selectedBranch] += Integer.Number.One;
 
                 return selectedBranch.CastTo<T>();
             }
@@ -82,7 +82,7 @@ namespace Core.Organization.Helpers
                 var internalDictionary = new Dictionary<EBranch, int>();
 
                 foreach (var branch in branches)
-                    internalDictionary.Add(branch, EInteger.Number.Zero);
+                    internalDictionary.Add(branch, Integer.Number.Zero);
 
                 _mainBranchOccurrences.Add(branchSet, internalDictionary);
             }
@@ -92,7 +92,7 @@ namespace Core.Organization.Helpers
                 var internalDictionary = new Dictionary<EBranch, int>();
 
                 foreach (var branch in branches)
-                    internalDictionary.Add(branch, EInteger.Number.One);
+                    internalDictionary.Add(branch, Integer.Number.One);
 
                 _mainBranchWeights.Add(branchSet, internalDictionary);
             }
@@ -103,7 +103,7 @@ namespace Core.Organization.Helpers
             var mainBranchWeights = _mainBranchWeights[branchSet];
 
             foreach (var branch in branches)
-                mainBranchWeights[branch] = EInteger.Number.One;
+                mainBranchWeights[branch] = Integer.Number.One;
         }
 
         private void IncreaseMainBranchWeights(BranchSet branchSet, IEnumerable<EBranch> branches, int increment)

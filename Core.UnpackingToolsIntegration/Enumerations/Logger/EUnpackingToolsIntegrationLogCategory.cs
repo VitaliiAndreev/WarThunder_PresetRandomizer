@@ -1,9 +1,9 @@
 ﻿namespace Core.Enumerations.Logger
 {
     /// <summary> Categories of events provided to a logger. </summary>
-    public class EUnpackingToolsIntegrationLogCategory : ECoreLogCategory
+    public class EUnpackingToolsIntegrationLogCategory : CoreLogCategory
     {
-        public static string Converter = EWord.Converter;
-        public static string Parser = EWord.Parser;
+        public static string Converter = Word.Converter;
+        public static string Parser = Word.Parser;
     }
 }

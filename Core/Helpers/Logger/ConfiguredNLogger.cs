@@ -33,7 +33,7 @@ namespace Core.Helpers.Logger
         /// <param name="loggerName"> The name of the logger. </param>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
         /// <param name="logCreation"> Whether to immediately log its creation. </param>
-        public ConfiguredNLogger(ELoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logCreation = false)
+        public ConfiguredNLogger(LoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logCreation = false)
         {
             ExceptionFormatter = exceptionFormatter;
 
@@ -42,14 +42,14 @@ namespace Core.Helpers.Logger
 
             var nlogConfigurationVariables = LogManager.Configuration.Variables;
 
-            if (loggerName == ELoggerName.FileLogger)
+            if (loggerName == LoggerName.FileLogger)
             {
-                nlogConfigurationVariables[EVariableName.FileName] = @$"{(string.IsNullOrWhiteSpace(subdirectory) ? "Logs" : subdirectory)}\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
-                nlogConfigurationVariables[EVariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
+                nlogConfigurationVariables[VariableName.FileName] = @$"{(string.IsNullOrWhiteSpace(subdirectory) ? "Logs" : subdirectory)}\Log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".log";
+                nlogConfigurationVariables[VariableName.FileLayout] = "${longdate:format=yyyy/MM/dd_HH:mm:ss} ${level:upperCase=true} / ${message}";
             }
-            else if (loggerName == ELoggerName.ConsoleLogger)
+            else if (loggerName == LoggerName.ConsoleLogger)
             {
-                nlogConfigurationVariables[EVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
+                nlogConfigurationVariables[VariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
             }
 
             if (logCreation)
@@ -62,7 +62,7 @@ namespace Core.Helpers.Logger
         /// <summary> Logs intantiation of this logger. It is done here so that the event of intantiation could be logged by any logger. </summary>
         /// <param name="logger"> The logger to log with. </param>
         public void LogInstantiation(IConfiguredLogger logger) =>
-            logger.LogDebug(ECoreLogCategory.Logger, ECoreLogMessage.Created.Format(_logger.Name));
+            logger.LogDebug(CoreLogCategory.Logger, CoreLogMessage.Created.Format(_logger.Name));
 
         /// <summary> A wrapper around <see cref="ILoggerBase.Log(LogLevel, string, Exception)"/> that forms a customized message string before logging it. </summary>
         /// <param name="level"> A log level. </param>

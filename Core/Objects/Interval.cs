@@ -35,7 +35,7 @@ namespace Core.Objects
 
         /// <summary> Returns a string that represents the instance. </summary>
         /// <returns></returns>
-        public override string ToString() => $"{(LeftBounded ? ECharacter.BracketLeft : ECharacter.ParenthesisLeft)} {LeftItem}; {RightItem} {(RightBounded ? ECharacter.BracketRight : ECharacter.ParenthesisRight)}";
+        public override string ToString() => $"{(LeftBounded ? Character.BracketLeft : Character.ParenthesisLeft)} {LeftItem}; {RightItem} {(RightBounded ? Character.BracketRight : Character.ParenthesisRight)}";
 
         /// <summary> Determines whether the specified object is equal to the current object. </summary>
         /// <param name="obj"> The object to compare with the current object. </param>
@@ -46,8 +46,8 @@ namespace Core.Objects
                 return false;
 
             return LeftBounded == otherInterval.LeftBounded
-                && LeftItem.CompareTo(otherInterval.LeftItem) == EInteger.Number.Zero
-                && RightItem.CompareTo(otherInterval.RightItem) == EInteger.Number.Zero
+                && LeftItem.CompareTo(otherInterval.LeftItem) == Integer.Number.Zero
+                && RightItem.CompareTo(otherInterval.RightItem) == Integer.Number.Zero
                 && RightBounded == otherInterval.RightBounded;
         }
 

@@ -39,7 +39,7 @@ namespace Client.Wpf.Extensions
 
             var iconTextBlock = new TextBlock { Style = button.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
 
-            newGrid.Add(iconTextBlock, EInteger.Number.Zero);
+            newGrid.Add(iconTextBlock, Integer.Number.Zero);
 
             button.Content = newGrid;
 
@@ -76,13 +76,13 @@ namespace Client.Wpf.Extensions
                     var lastTextBlock = grid.Children.OfType<TextBlock>().Last();
 
                     grid.Children.Remove(lastTextBlock);
-                    grid.Add(newTextBlock, EInteger.Number.One);
+                    grid.Add(newTextBlock, Integer.Number.One);
                 }
                 else
                 {
                     button
                         .ReplaceContentWithGrid(leftColumnWidth, rightColumnWidth)
-                        .Add(newTextBlock, EInteger.Number.One)
+                        .Add(newTextBlock, Integer.Number.One)
                     ;
                 }
             }

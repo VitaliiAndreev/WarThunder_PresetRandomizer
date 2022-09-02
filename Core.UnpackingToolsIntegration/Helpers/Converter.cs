@@ -20,14 +20,14 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Converter(params IConfiguredLogger[] loggers)
             : base(EUnpackingToolsIntegrationLogCategory.Converter, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Converter));
+            LogDebug(CoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Converter));
         }
 
         #endregion Constructors
 
         public void ConvertDdsToPng(DirectoryInfo directory, SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            foreach (var file in directory.GetFiles($"{ECharacter.Asterisk}{ECharacter.Period}{EFileExtension.Dds}", searchOption))
+            foreach (var file in directory.GetFiles($"{Character.Asterisk}{Character.Period}{FileExtension.Dds}", searchOption))
             {
                 Func<DdsImage> readFile = () => new DdsImage(file.FullName);
 
@@ -39,7 +39,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
                 if (readFile.TryExecuting(out var ddsImage, out var exception))
                 {
-                    ddsImage.Save(Path.Combine(file.DirectoryName, $"{file.GetNameWithoutExtension()}.{EFileExtension.Png}"));
+                    ddsImage.Save(Path.Combine(file.DirectoryName, $"{file.GetNameWithoutExtension()}.{FileExtension.Png}"));
                 }
                 else if (!(exception is ArgumentException argumentException) || !exception.Message.ContainsAny(ignoredReadErrorParts))
                 {

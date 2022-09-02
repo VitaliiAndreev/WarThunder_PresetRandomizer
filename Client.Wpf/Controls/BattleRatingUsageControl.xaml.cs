@@ -18,7 +18,7 @@ namespace Client.Wpf.Controls
     {
         #region Constants
 
-        private const int _economicRankForkSize = EInteger.Number.Three;
+        private const int _economicRankForkSize = Integer.Number.Three;
 
         private static readonly Color _downtierColor = new Color().From(0, 255, 0);
         private static readonly Color _sameTierColor = new Color().From(255, 255, 0);
@@ -36,18 +36,18 @@ namespace Client.Wpf.Controls
         {
             _colors = new Dictionary<int, Color>
             {
-                { EInteger.Number.Zero, _sameTierColor }
+                { Integer.Number.Zero, _sameTierColor }
             };
 
             var downtierColors = _sameTierColor.InterpolateTo(_downtierColor, _economicRankForkSize);
             var uptierColors = _sameTierColor.InterpolateTo(_uptierColor, _economicRankForkSize);
 
-            static Color getColor(IEnumerable<Color> colors, int index) => colors.At(index - EInteger.Number.One);
+            static Color getColor(IEnumerable<Color> colors, int index) => colors.At(index - Integer.Number.One);
 
-            for (var downtierEconomicRank = -EInteger.Number.One; downtierEconomicRank >= -_economicRankForkSize; downtierEconomicRank--)
+            for (var downtierEconomicRank = -Integer.Number.One; downtierEconomicRank >= -_economicRankForkSize; downtierEconomicRank--)
                 _colors.Add(downtierEconomicRank, getColor(downtierColors, -downtierEconomicRank));
 
-            for (var uptierEconomicRank = EInteger.Number.One; uptierEconomicRank <= _economicRankForkSize; uptierEconomicRank++)
+            for (var uptierEconomicRank = Integer.Number.One; uptierEconomicRank <= _economicRankForkSize; uptierEconomicRank++)
                 _colors.Add(uptierEconomicRank, getColor(uptierColors, uptierEconomicRank));
         }
 
@@ -68,7 +68,7 @@ namespace Client.Wpf.Controls
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Bottom,
                     TextAlignment = TextAlignment.Center,
-                    FontSize = EInteger.Number.Sixteen,
+                    FontSize = Integer.Number.Sixteen,
                     Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.NoData),
                 };
 
@@ -81,7 +81,7 @@ namespace Client.Wpf.Controls
 
             for (var economicRank = preset.EconomicRank - _economicRankForkSize; economicRank <= preset.EconomicRank + _economicRankForkSize; economicRank++)
             {
-                usageCounts.Add(economicRank, EInteger.Number.Zero);
+                usageCounts.Add(economicRank, Integer.Number.Zero);
 
                 foreach (var branch in preset.Branches)
                 {
@@ -94,7 +94,7 @@ namespace Client.Wpf.Controls
                     }
                     else
                     {
-                        usageCounts[economicRank] = -EInteger.Number.One;
+                        usageCounts[economicRank] = -Integer.Number.One;
                     }
                 }
             }
@@ -102,9 +102,9 @@ namespace Client.Wpf.Controls
             var totalUsageCount = usageCounts.Values.Sum();
             var ratios = usageCounts
                 .Where(usageCount => !usageCount.Value.IsNegative())
-                .ToDictionary(economicRank => economicRank.Key, economicRank => totalUsageCount.IsPositive() ? Convert.ToDouble(economicRank.Value) / totalUsageCount : EInteger.Number.Zero)
+                .ToDictionary(economicRank => economicRank.Key, economicRank => totalUsageCount.IsPositive() ? Convert.ToDouble(economicRank.Value) / totalUsageCount : Integer.Number.Zero)
             ;
-            var columnIndex = EInteger.Number.Zero;
+            var columnIndex = Integer.Number.Zero;
             var colorIndex = _colors.Keys.Min();
 
             foreach (var usageCountRecord in usageCounts)

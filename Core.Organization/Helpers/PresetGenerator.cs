@@ -32,7 +32,7 @@ namespace Core.Organization.Helpers
         /// The maximum difference in battle rating from the battle rating selected by user.
         /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
         /// </summary>
-        private const decimal _maximumBattleRatingDifference = EDecimal.Number.Three;
+        private const decimal _maximumBattleRatingDifference = Core.Enumerations.Decimal.Number.Three;
 
         #endregion Constants
         #region Fields
@@ -57,7 +57,7 @@ namespace Core.Organization.Helpers
             _randomiser = randomiser;
             _vehicleSelector = vehicleSelector;
 
-            LogDebug(ECoreLogMessage.Created.Format(EOrganizationLogCategory.PresetGenerator));
+            LogDebug(CoreLogMessage.Created.Format(EOrganizationLogCategory.PresetGenerator));
         }
 
         #endregion Constructors
@@ -79,7 +79,7 @@ namespace Core.Organization.Helpers
             if (filteredVehicles is null || filteredVehicles.IsEmpty())
             {
                 if (!suppressLogging)
-                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validItems.StringJoin(ESeparator.CommaAndSpace)));
+                    LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validItems.StringJoin(Separator.CommaAndSpace)));
 
                 return null;
             }
@@ -228,8 +228,8 @@ namespace Core.Organization.Helpers
             if (vehiclesWithEconomocRankFilter.IsEmpty())
             {
                 var parameterString = validEconomicRanks
-                    .Select(keyValuePair => $"{keyValuePair.Key}: {keyValuePair.Value.StringJoin(ESeparator.CommaAndSpace)}")
-                    .StringJoin(ESeparator.VerticalBarAndSpace)
+                    .Select(keyValuePair => $"{keyValuePair.Key}: {keyValuePair.Value.StringJoin(Separator.CommaAndSpace)}")
+                    .StringJoin(Separator.VerticalBarAndSpace)
                 ;
 
                 LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(parameterString));
@@ -254,11 +254,11 @@ namespace Core.Organization.Helpers
         {
             var mainBranch = _randomiser.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)), ERandomisationStep.MainBranchWhenSelectingByCategories);
 
-            LogDebug(ECoreLogMessage.Selected.Format(mainBranch));
+            LogDebug(CoreLogMessage.Selected.Format(mainBranch));
 
             if (mainBranch == EBranch.None)
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableBranches.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableBranches.StringJoin(Separator.CommaAndSpace)));
                 return EBranch.None;
             }
             return mainBranch;
@@ -275,14 +275,14 @@ namespace Core.Organization.Helpers
 
             if (nationSpecificationsWithValidBranches.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.Format(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(ESeparator.CommaAndSpace), mainBranch));
+                LogWarn(EOrganizationLogMessage.NationsHaveNoBranch.Format(specification.NationSpecifications.Values.Select(nationSpecification => nationSpecification.Nation).StringJoin(Separator.CommaAndSpace), mainBranch));
                 return null;
             }
 
             var nationSpecification = _randomiser.GetRandom(nationSpecificationsWithValidBranches.Where(nationSpecification => nationSpecification.Nation.IsIn(availableNations)));
 
             if (nationSpecification is null)
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableNations.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(availableNations.StringJoin(Separator.CommaAndSpace)));
 
             return nationSpecification;
         }
@@ -294,7 +294,7 @@ namespace Core.Organization.Helpers
         {
             var nation = nationSpecification.Nation;
 
-            LogDebug(ECoreLogMessage.Selected.Format(nation));
+            LogDebug(CoreLogMessage.Selected.Format(nation));
 
             return nation;
         }
@@ -311,7 +311,7 @@ namespace Core.Organization.Helpers
 
             if (validBranches.IsEmpty())
             {
-                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validBranches.StringJoin(ESeparator.CommaAndSpace)));
+                LogWarn(EOrganizationLogMessage.NoVehiclesAvailableFor.Format(validBranches.StringJoin(Separator.CommaAndSpace)));
                 return null;
             }
             return validBranches;
@@ -347,7 +347,7 @@ namespace Core.Organization.Helpers
         {
             var battleRating = Calculator.GetBattleRating(economicRank);
 
-            LogDebug(ECoreLogMessage.Selected.Format(getFormattedBattleRating(economicRank)));
+            LogDebug(CoreLogMessage.Selected.Format(getFormattedBattleRating(economicRank)));
 
             return battleRating;
         }
@@ -414,7 +414,7 @@ namespace Core.Organization.Helpers
                 if (gameMode == EGameMode.Simulator)
                     return presetComposition;
 
-                if (crewSlotAmount <= EInteger.Number.Three || !EBranch.Aviation.IsIn(allowedBranches))
+                if (crewSlotAmount <= Integer.Number.Three || !EBranch.Aviation.IsIn(allowedBranches))
                 {
                     setAll(mainBranch);
                 }
@@ -703,7 +703,7 @@ namespace Core.Organization.Helpers
             var validEconomicRanks = GetEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
 
             if (validEconomicRanks is null)
-                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(gameMode, nation, mainBranch, EInteger.Number.Zero, string.Empty, new List<IVehicle>()) } };
+                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(gameMode, nation, mainBranch, Integer.Number.Zero, string.Empty, new List<IVehicle>()) } };
 
             var economicRank = _randomiser.GetRandom(validEconomicRanks);
             var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);

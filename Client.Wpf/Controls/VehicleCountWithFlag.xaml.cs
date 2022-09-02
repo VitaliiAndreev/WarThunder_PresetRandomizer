@@ -41,7 +41,7 @@ namespace Client.Wpf.Controls
 
             Tag = nationCountryPair;
 
-            _grid.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(EInteger.Number.Zero, EInteger.Number.Zero, EInteger.Number.Five, EInteger.Number.Zero), useNationFlags));
+            _grid.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(Integer.Number.Zero, Integer.Number.Zero, Integer.Number.Five, Integer.Number.Zero), useNationFlags));
             _grid.Children.Add(_label);
 
             MouseDown += mouseDownHandler;

@@ -115,7 +115,7 @@ namespace Client.Wpf.Controls
         /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
         internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
-            loadingTracker.BranchesPopulated = EInteger.Number.Zero;
+            loadingTracker.BranchesPopulated = Integer.Number.Zero;
             loadingTracker.BranchesToPopulate = BranchTabs.Count;
 
             foreach (var branchTabKeyValuePair in BranchTabs)

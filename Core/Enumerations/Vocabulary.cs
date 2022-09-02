@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Constants used internally to form useable English words and sentences. </summary>
-    public class EVocabulary
+    public class Vocabulary
     {
         #region Characters
 
@@ -249,9 +249,9 @@
         protected const string _Disposing = _Dis + _pos + _ing;
         protected const string _do = _d + _o;
         protected const string _does = _do + _es;
-        protected const string _doesnt = _does + _n + ECharacterString.Apostrophe + _t;
-        protected const string _Dont = _D + _on + ECharacterString.Apostrophe + _t;
-        protected const string _dont = _d + _on + ECharacterString.Apostrophe + _t;
+        protected const string _doesnt = _does + _n + CharacterString.Apostrophe + _t;
+        protected const string _Dont = _D + _on + CharacterString.Apostrophe + _t;
+        protected const string _dont = _d + _on + CharacterString.Apostrophe + _t;
         protected const string _down = _d + _own;
         protected const string _Dummy = _D + _um + _my;
         protected const string _dur = _d + _u + _r;
@@ -413,7 +413,7 @@
         protected const string _Initialised = _Initialise + _d;
         protected const string _initialised = _initialise + _d;
         protected const string _Initialising = _In + _itialis + _ing;
-        protected const string _inmemory = _in + ECharacterString.Minus + _memory;
+        protected const string _inmemory = _in + CharacterString.Minus + _memory;
         protected const string _input = _in + _put;
         protected const string _install = _in + _s + _t + _all;
         protected const string _Instance = _In + _stance;
@@ -539,7 +539,7 @@
         protected const string _No = _N + _o;
         protected const string _no = _n + _o;
         protected const string _node = _no + _de;
-        protected const string _Non_ = _No + _n + ECharacterString.Minus;
+        protected const string _Non_ = _No + _n + CharacterString.Minus;
         protected const string _None = _No + _ne;
         protected const string _Not = _No + _t;
         protected const string _not = _no + _t;

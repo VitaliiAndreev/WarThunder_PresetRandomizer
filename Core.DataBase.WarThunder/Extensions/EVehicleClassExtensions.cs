@@ -13,7 +13,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="vehicleClass"> The vehicle class to check. </param>
         /// <returns></returns>
         public static bool IsValid(this EVehicleClass vehicleClass) =>
-            vehicleClass.CastTo<int>() > EInteger.Number.NinetyNine && !vehicleClass.ToString().StartsWith(EWord.All);
+            vehicleClass.CastTo<int>() > Integer.Number.NinetyNine && !vehicleClass.ToString().StartsWith(Word.All);
 
         /// <summary> Returns the vehicle branch to which the class belongs to. </summary>
         /// <param name="vehicleClass"> The vehicle class whose branch to get. </param>

@@ -33,7 +33,7 @@ namespace Core.Localization.Tests.Helpers
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
 
-            _localizationDirectory = $@"{Directory.GetCurrentDirectory()}\{EWord.Localisation}";
+            _localizationDirectory = $@"{Directory.GetCurrentDirectory()}\{Word.Localisation}";
 
             if (!Directory.Exists(_localizationDirectory))
                 Directory.CreateDirectory(_localizationDirectory);
@@ -44,7 +44,7 @@ namespace Core.Localization.Tests.Helpers
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
 
             _fileManager.DeleteDirectory(_localizationDirectory);
@@ -71,11 +71,11 @@ namespace Core.Localization.Tests.Helpers
             var key = "SomethingSomething";
             var value = "Ooh, it actually has something! :D";
             var expectedFileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<{EWord.Localisation}>
-  <{EWord.Line} {EWord.Key.ToLower()}=""{key}"" {EWord.Value.ToLower()}=""{value}""/>
-</{EWord.Localisation}>";
+<{Word.Localisation}>
+  <{Word.Line} {Word.Key.ToLower()}=""{key}"" {Word.Value.ToLower()}=""{value}""/>
+</{Word.Localisation}>";
 
-            var filePath = $@"{_localizationDirectory}\{fileName}{ECharacter.Period}{EFileExtension.Xml}";
+            var filePath = $@"{_localizationDirectory}\{fileName}{Character.Period}{FileExtension.Xml}";
             File.Create(filePath).Close();
 
             using (var streamWriter = new StreamWriter(filePath))

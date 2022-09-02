@@ -10,13 +10,13 @@ namespace Core.DataBase.WarThunder.Enumerations
         #region Constants
 
         /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
-        public const int MinimumnCrewSlots = EInteger.Number.Two;
+        public const int MinimumnCrewSlots = Integer.Number.Two;
 
         /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
-        public const int MaximumCrewSlotsForSilver = EInteger.Number.Five;
+        public const int MaximumCrewSlotsForSilver = Integer.Number.Five;
 
         /// <summary> The maximum amount of crew slots available for Silver Lions and Golder Eagles. </summary>
-        public const int MaximumCrewSlotsForGold = EInteger.Number.Ten;
+        public const int MaximumCrewSlotsForGold = Integer.Number.Ten;
 
         #endregion Constants
         #region Properties
@@ -146,7 +146,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Nation special character icons. </summary>
         public static IDictionary<ENation, char> NationIcons { get; } = new Dictionary<ENation, char>
         {
-            { ENation.None, ECharacter.Space },
+            { ENation.None, Character.Space },
             { ENation.Usa, EGaijinCharacter.StarInCircle },
             { ENation.Germany, EGaijinCharacter.GermanCross },
             { ENation.Ussr, EGaijinCharacter.Star },
@@ -208,7 +208,7 @@ namespace Core.DataBase.WarThunder.Enumerations
         /// <summary> Vehicle branch special character icons. </summary>
         public static IDictionary<EVehicleClass, char> ClassIcons { get; } = new Dictionary<EVehicleClass, char>
         {
-            { EVehicleClass.None, ECharacter.Space },
+            { EVehicleClass.None, Character.Space },
             { EVehicleClass.LightTank, EGaijinCharacter.LightTankPip },
             { EVehicleClass.MediumTank, EGaijinCharacter.MediumTankPip },
             { EVehicleClass.HeavyTank, EGaijinCharacter.HeavyTankPip },
@@ -251,11 +251,11 @@ namespace Core.DataBase.WarThunder.Enumerations
             { EVehicleAvailability.ResearchableInSquadron, EGaijinCharacter.Officer.ToString() },
             { EVehicleAvailability.PurchasableForGoldenEagles, EGaijinCharacter.GoldenEagle.ToString() },
             { EVehicleAvailability.StarterGift, EGaijinCharacter.Trumpet.ToString() },
-            { EVehicleAvailability.PurchasableInTheStore, ECharacter.DollarFullwidth.ToString() },
+            { EVehicleAvailability.PurchasableInTheStore, Character.DollarFullwidth.ToString() },
             { EVehicleAvailability.PurchasableOnTheMarket, EGaijinCharacter.GaijinCoin.ToString() },
             { EVehicleAvailability.Premium, EGaijinCharacter.Premium.ToString() },
             { EVehicleAvailability.ConsoleExclusive, EGaijinCharacter.Controller.ToString() },
-            { EVehicleAvailability.Hidden, ECharacter.Eye },
+            { EVehicleAvailability.Hidden, Character.Eye },
         };
 
         public static IDictionary<ECategory, string> EconomicCategoryIcons { get; } = new Dictionary<ECategory, string>

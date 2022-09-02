@@ -1,7 +1,7 @@
 ﻿namespace Core.Enumerations
 {
     /// <summary> Double precision floating point number constants. </summary>
-    public class EDouble
+    public class Double
     {
         /// <summary> Pure number constants. </summary>
         public class Number

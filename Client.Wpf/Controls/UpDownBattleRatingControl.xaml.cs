@@ -75,8 +75,8 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _upButton.Tag = EDirection.Up;
-            _downButton.Tag = EDirection.Down;
+            _upButton.Tag = Direction.Up;
+            _downButton.Tag = Direction.Down;
 
             _textBlock.Text = GetFormattedBattleRating(Value);
         }
@@ -89,7 +89,7 @@ namespace Client.Wpf.Controls
         /// <param name="eventArguments"> Not used. </param>
         private void OnButtonClick(object sender, RoutedEventArgs eventArguments)
         {
-            if (sender is Button button && button.Tag is EDirection direction)
+            if (sender is Button button && button.Tag is Direction direction)
                 AdjustValue(direction);
         }
 
@@ -99,10 +99,10 @@ namespace Client.Wpf.Controls
         private void OnMouseWheel(object sender, MouseWheelEventArgs eventArguments)
         {
             if (eventArguments.Delta.IsPositive())
-                AdjustValue(EDirection.Up);
+                AdjustValue(Direction.Up);
 
             else if (eventArguments.Delta.IsNegative())
-                AdjustValue(EDirection.Down);
+                AdjustValue(Direction.Down);
         }
 
         #endregion Methods: Event Handlers

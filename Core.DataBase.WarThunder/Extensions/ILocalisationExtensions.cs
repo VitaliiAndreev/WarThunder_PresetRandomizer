@@ -10,12 +10,12 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="localizationSet"> The localisation set to read from. </param>
         /// <param name="language"> The language to get a string for. </param>
         /// <returns></returns>
-        public static string GetLocalisation(this ILocalisation localizationSet, ELanguage language)
+        public static string GetLocalisation(this ILocalisation localizationSet, Language language)
         {
             return language switch
             {
-                ELanguage.English => localizationSet.English,
-                ELanguage.Russian => localizationSet.Russian,
+                Language.English => localizationSet.English,
+                Language.Russian => localizationSet.Russian,
                 _ => null,
             };
         }

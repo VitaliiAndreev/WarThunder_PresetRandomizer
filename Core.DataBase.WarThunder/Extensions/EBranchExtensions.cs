@@ -9,7 +9,7 @@ namespace Core.DataBase.WarThunder.Extensions
     public static class EBranchExtensions
     {
         public static bool IsValid(this EBranch branch) =>
-            branch.CastTo<int>() > EInteger.Number.Nine && !branch.ToString().StartsWith(EWord.All);
+            branch.CastTo<int>() > Integer.Number.Nine && !branch.ToString().StartsWith(Word.All);
 
         public static int GetSingleDigitCode(this EBranch branch)
         {

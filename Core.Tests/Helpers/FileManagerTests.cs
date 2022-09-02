@@ -37,7 +37,7 @@ namespace Core.Tests.Helpers
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
         }

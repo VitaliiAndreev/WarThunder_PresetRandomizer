@@ -36,7 +36,7 @@ namespace Client.Wpf.Windows
         private readonly IGuiLoadingWindowPresenter _loadingTracker;
 
         /// <summary> Indicates whether the window is still being initialized. </summary>
-        private readonly EInitializationStatus _initializationStatus = EInitializationStatus.NotInitialized;
+        private readonly InitializationStatus _initializationStatus = InitializationStatus.NotInitialized;
 
         /// <summary> A collection of boxed instances of <see cref="IList{T}"/> accessed by their generic types. </summary>
         private IDictionary<Type, object> _presenterToggleLists;
@@ -62,9 +62,9 @@ namespace Client.Wpf.Windows
         public MainWindow(IMainWindowPresenter presenter, IGuiLoadingWindowPresenter guiLoadingWindowPresenter)
             : base(EWpfClientLogCategory.MainWindow, null, presenter)
         {
-            _initializationStatus = EInitializationStatus.Initializing;
+            _initializationStatus = InitializationStatus.Initializing;
             {
-                Log.Trace(ECoreLogMessage.Initialising);
+                Log.Trace(CoreLogMessage.Initialising);
 
                 _loadingTracker = guiLoadingWindowPresenter;
 
@@ -89,9 +89,9 @@ namespace Client.Wpf.Windows
 
                 Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
-                Log.Debug(ECoreLogMessage.Initialised);
+                Log.Debug(CoreLogMessage.Initialised);
             }
-            _initializationStatus = EInitializationStatus.Initialized;
+            _initializationStatus = InitializationStatus.Initialized;
         }
 
         #endregion Constructors
@@ -101,14 +101,14 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(ECoreLogMessage.Shown);
+            Log.Debug(CoreLogMessage.Shown);
 
         /// <summary> Logs closing of the window. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosed(object sender, EventArgs eventArguments)
         {
-            Log.Debug(ECoreLogMessage.Closed);
+            Log.Debug(CoreLogMessage.Closed);
             ApplicationHelpers.Manager.Dispose();
         }
 
@@ -237,7 +237,7 @@ namespace Client.Wpf.Windows
 
             if (toggleButtonTagType.IsEnum)
             {
-                if (toggleButtonTagType.GetEnumValues().OfType<U>().FirstOrDefault(item => item.ToString() == EWord.All) is U toggleButtonKey)
+                if (toggleButtonTagType.GetEnumValues().OfType<U>().FirstOrDefault(item => item.ToString() == Word.All) is U toggleButtonKey)
                     toggleColumn.Toggle(toggleButtonKey, toggleAllOn);
             }
             else
@@ -260,7 +260,7 @@ namespace Client.Wpf.Windows
                 var vehicleClass = toggleButton.GetTag<EVehicleClass>();
                 var ownerBranch = vehicleClass.GetBranch();
 
-                if (vehicleClass.ToString().StartsWith(EWord.All))
+                if (vehicleClass.ToString().StartsWith(Word.All))
                 {
                     var toggleAllButton = toggleButton;
                     var buttons = _vehicleClassControl.ToggleColumns[ownerBranch].Buttons.Values;
@@ -451,7 +451,7 @@ namespace Client.Wpf.Windows
                 var country = nationCountryPair.Country;
                 var nation = nationCountryPair.Nation;
 
-                if (country.ToString().StartsWith(EWord.All))
+                if (country.ToString().StartsWith(Word.All))
                 {
                     var disabledButtons = _countryToggleControl.GetButtons(nation, !toggleButton.IsChecked(), false);
 
@@ -491,7 +491,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnBattleRatingValueChanged(object sender, RoutedEventArgs eventArguments)
         {
-            if (_initializationStatus != EInitializationStatus.Initialized)
+            if (_initializationStatus != InitializationStatus.Initialized)
                 return;
 
             var savingNeeded = false;
@@ -616,7 +616,7 @@ namespace Client.Wpf.Windows
             _nationToggleControl.Tag = ENation.None;
             _countryToggleControl.Tag = ECountry.None;
 
-            _battleRatingControl.Tag = $"{EWord.Battle} {EWord.Rating}";
+            _battleRatingControl.Tag = $"{Word.Battle} {Word.Rating}";
         }
 
         private void AttachCommands()

@@ -25,7 +25,7 @@ namespace Core.Tests.Helpers.DataBase
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(ECoreLogCategory.UnitTests, ECoreLogMessage.CleanUpAfterUnitTestStartsHere);
+            Presets.Logger.LogInfo(CoreLogCategory.UnitTests, CoreLogMessage.CleanUpAfterUnitTestStartsHere);
             Presets.CleanUp();
         }
 
@@ -37,7 +37,7 @@ namespace Core.Tests.Helpers.DataBase
         public void ConfiguredSessionFactory_NoMapping_ShouldThrow()
         {
             // arrange
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
             
             // act
             Action buildDataBase = () =>
@@ -55,7 +55,7 @@ namespace Core.Tests.Helpers.DataBase
         {
             // arrange
             var assemblyName = EAssembly.AssemblyWithMappingBase;
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, false, Assembly.Load(assemblyName), Presets.Logger);
@@ -82,7 +82,7 @@ namespace Core.Tests.Helpers.DataBase
             // arrange
             var firstAssemblyName = EAssembly.AssemblyWithMappingBase;
             var secondAssemblyName = EAssembly.AssemblyWithMappingAltered;
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory(string assemblyName) =>
                 new ConfiguredSessionFactory(fileName, false, Assembly.Load(assemblyName), Presets.Logger);
@@ -111,7 +111,7 @@ namespace Core.Tests.Helpers.DataBase
         {
             // arrange
             var assemblyName = EAssembly.AssemblyWithMappingBase;
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, false, Assembly.Load(assemblyName), Presets.Logger);
@@ -132,7 +132,7 @@ namespace Core.Tests.Helpers.DataBase
         {
             // arrange
             var assemblyName = EAssembly.AssemblyWithMappingBase;
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, true, Assembly.Load(assemblyName), Presets.Logger);
@@ -158,7 +158,7 @@ namespace Core.Tests.Helpers.DataBase
         {
             // arrange
             var assemblyName = EAssembly.AssemblyWithMappingBase;
-            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{EFileExtension.SqLite3}";
+            var fileName = $"{ToString()}.{MethodBase.GetCurrentMethod().Name}().{FileExtension.SqLite3}";
 
             IConfiguredSessionFactory createSessionFactory() =>
                 new ConfiguredSessionFactory(fileName, true, Assembly.Load(assemblyName), Presets.Logger);

@@ -30,7 +30,7 @@ namespace Client.Wpf.Controls
         #endregion Constructors
         #region Methods: Initialisation
 
-        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = EDouble.Number.Sixteen, bool iconIsBold = false, bool useStandardVerticalMargin = false)
+        private void Initialise<T>(string icon, T iconTag, Thickness margin, MouseButtonEventHandler leftMouseDownHandler, double? fontSize = Double.Number.Sixteen, bool iconIsBold = false, bool useStandardVerticalMargin = false)
         {
             _icon.FontWeight = iconIsBold ? FontWeights.Bold : FontWeights.Normal;
             _icon.Text = icon;

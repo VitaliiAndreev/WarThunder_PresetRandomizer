@@ -41,7 +41,7 @@ namespace Client.Wpf.Controls
             InitializeComponent();
 
             _maximumUpDownControl.MaximumValue = EReference.MaximumEconomicRank;
-            _minimumUpDownControl.MinimumValue = EInteger.Number.Zero;
+            _minimumUpDownControl.MinimumValue = Integer.Number.Zero;
         }
 
         #endregion Constructors
@@ -76,7 +76,7 @@ namespace Client.Wpf.Controls
         public void Initialize(Interval<int> interval)
         {
             _maximumUpDownControl.Value = Math.Min(interval.RightItem, EReference.MaximumEconomicRank);
-            _minimumUpDownControl.Value = Math.Max(interval.LeftItem, EInteger.Number.Zero);
+            _minimumUpDownControl.Value = Math.Max(interval.LeftItem, Integer.Number.Zero);
         }
     }
 }

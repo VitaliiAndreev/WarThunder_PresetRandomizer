@@ -42,7 +42,7 @@ namespace Client.Wpf.Commands.SettingsWindow
 
                 if (MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    presenter.Owner.Log.Debug(ECoreLogMessage.Closed);
+                    presenter.Owner.Log.Debug(CoreLogMessage.Closed);
                     Environment.Exit(0);
                 }
                 else

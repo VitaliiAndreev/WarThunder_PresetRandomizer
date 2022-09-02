@@ -15,7 +15,7 @@ namespace Core.Web.Helpers
     {
         #region Constants
 
-        private static readonly int _retryDelay = EInteger.Time.MillisecondsInSecond * EInteger.Number.Five;
+        private static readonly int _retryDelay = Integer.Time.MillisecondsInSecond * Integer.Number.Five;
 
         #endregion Constants
         #region Constructors
@@ -23,12 +23,12 @@ namespace Core.Web.Helpers
         public HtmlParser(params IConfiguredLogger[] loggers)
             : base(EWebLogCategory.HtmlParser, loggers)
         {
-            LogDebug(ECoreLogMessage.Created.Format(EWebLogCategory.HtmlParser));
+            LogDebug(CoreLogMessage.Created.Format(EWebLogCategory.HtmlParser));
         }
 
         #endregion Constructors
 
-        public HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = EInteger.Number.One, Exception internalException = null)
+        public HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = Integer.Number.One, Exception internalException = null)
         {
             if (retryAttempts.IsZero())
                 throw new TimeoutException(EWebLogMessage.FailedToRead.Format(url), internalException);

@@ -45,7 +45,7 @@ namespace Core.DataBase.WarThunder.Objects
         /// <returns></returns>
         public override string ToString()
         {
-            var baseRepresentation = base.ToString().Split(ECharacter.Space);
+            var baseRepresentation = base.ToString().Split(Character.Space);
             var type = baseRepresentation.First();
             var id = baseRepresentation.Last();
             return $"{type} [{GaijinId}] {id}";

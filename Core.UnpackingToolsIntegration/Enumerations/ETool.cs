@@ -7,7 +7,7 @@ namespace Core.UnpackingToolsIntegration.Enumerations
     {
         private const string _unpack = "_unpack";
         private const string _unpacker = _unpack + "er";
-        private const string _exe = ECharacterString.Period + EFileExtension.Exe;
+        private const string _exe = CharacterString.Period + FileExtension.Exe;
 
         public const string BlkUnpacker = "blk" + _unpack + "_ng" + _exe;
         public const string ClogUnpacker = "clog" + _unpack + _exe;

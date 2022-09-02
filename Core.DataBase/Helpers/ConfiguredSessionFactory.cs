@@ -72,7 +72,7 @@ namespace Core.DataBase.Helpers
                 EDatabaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().Format
                 (
                     DataBaseFileName,
-                    _overwriteExistingDataBase ? string.Empty : $"{EWord.Dont.ToLower()} ",
+                    _overwriteExistingDataBase ? string.Empty : $"{Word.Dont.ToLower()} ",
                     _assemblyWithMapping
                 )
             );
@@ -110,7 +110,7 @@ namespace Core.DataBase.Helpers
             }
             catch (Exception exception)
             {
-                LogError(ECoreLogMessage.AnErrorHasOccurred, exception);
+                LogError(CoreLogMessage.AnErrorHasOccurred, exception);
                 throw;
             }
 
@@ -144,7 +144,7 @@ namespace Core.DataBase.Helpers
             }
 
             new SchemaExport(configuration).Create(false, true);
-            LogDebug(ECoreLogMessage.Created.Format(EWord.Schema));
+            LogDebug(CoreLogMessage.Created.Format(Word.Schema));
         }
 
         #endregion Methods: Creation and Configuration
@@ -169,11 +169,11 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(ECoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheSessionFactoryFor.Format(DataBaseFileName)));
+            LogDebug(CoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheSessionFactoryFor.Format(DataBaseFileName)));
 
             if (_disposed)
             {
-                LogDebug(ECoreLogMessage.AlreadyDisposed);
+                LogDebug(CoreLogMessage.AlreadyDisposed);
                 return;
             }
 
@@ -181,26 +181,26 @@ namespace Core.DataBase.Helpers
             {
                 if (_sessionFactory == null)
                 {
-                    LogDebug(ECoreLogMessage.IsNull_DisposalAborted.Format(EDatabaseLogMessage.TheSessionFactory));
+                    LogDebug(CoreLogMessage.IsNull_DisposalAborted.Format(EDatabaseLogMessage.TheSessionFactory));
                     return;
                 }
 
                 if (_sessionFactory.IsClosed)
                 {
-                    LogDebug(ECoreLogMessage.AlreadyClosed);
+                    LogDebug(CoreLogMessage.AlreadyClosed);
                 }
                 else
                 {
-                    LogDebug(ECoreLogMessage.Closing);
+                    LogDebug(CoreLogMessage.Closing);
                     _sessionFactory.Close();
                 }
 
-                LogDebug(ECoreLogMessage.Disposing);
+                LogDebug(CoreLogMessage.Disposing);
                 _sessionFactory.Dispose();
             }
 
             _disposed = true;
-            LogDebug(ECoreLogMessage.SuccessfullyDisposed);
+            LogDebug(CoreLogMessage.SuccessfullyDisposed);
         }
 
         #endregion Methods: IDisposeable Members
