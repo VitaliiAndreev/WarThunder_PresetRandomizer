@@ -1,9 +1,9 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Extensions;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.Enumerations;
 using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,10 +3,11 @@ using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core.Enumerations;
+using Core;
 using Core.Extensions;
 using System;
 using System.Windows;
+using Decimal = Core.Decimal;
 
 namespace Client.Wpf.Windows
 {
@@ -63,7 +64,7 @@ namespace Client.Wpf.Windows
         #region NationsPopulatedDecimal
 
         public static readonly DependencyProperty NationsPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(NationsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Core.Enumerations.Decimal.Number.Zero));
+            DependencyProperty.Register(nameof(NationsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Decimal.Number.Zero));
 
         public decimal NationsPopulatedDecimal
         {
@@ -111,7 +112,7 @@ namespace Client.Wpf.Windows
         #region BranchesPopulatedDecimal
 
         public static readonly DependencyProperty BranchesPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(BranchesPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Core.Enumerations.Decimal.Number.Zero));
+            DependencyProperty.Register(nameof(BranchesPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Decimal.Number.Zero));
 
         public decimal BranchesPopulatedDecimal
         {
@@ -159,7 +160,7 @@ namespace Client.Wpf.Windows
         #region RanksPopulatedDecimal
 
         public static readonly DependencyProperty RanksPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(RanksPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Core.Enumerations.Decimal.Number.Zero));
+            DependencyProperty.Register(nameof(RanksPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Decimal.Number.Zero));
 
         public decimal RanksPopulatedDecimal
         {
@@ -207,7 +208,7 @@ namespace Client.Wpf.Windows
         #region RowsPopulatedDecimal
 
         public static readonly DependencyProperty RowsPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(RowsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Core.Enumerations.Decimal.Number.Zero));
+            DependencyProperty.Register(nameof(RowsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(Decimal.Number.Zero));
 
         public decimal RowsPopulatedDecimal
         {

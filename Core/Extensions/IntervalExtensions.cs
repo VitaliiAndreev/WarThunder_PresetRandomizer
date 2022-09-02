@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Objects;
+﻿using Core.Objects;
 using System.Collections.Generic;
 
 namespace Core.Extensions

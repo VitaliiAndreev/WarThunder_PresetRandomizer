@@ -1,10 +1,10 @@
 ﻿using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
-using Core.Enumerations;
 using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;

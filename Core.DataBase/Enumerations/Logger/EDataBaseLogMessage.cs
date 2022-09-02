@@ -1,6 +1,4 @@
-﻿using Core.Enumerations.Logger;
-
-namespace Core.DataBase.Enumerations.Logger
+﻿namespace Core.DataBase.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="DataBase"/>" assembly. </summary>
     public class EDatabaseLogMessage : CoreLogMessage

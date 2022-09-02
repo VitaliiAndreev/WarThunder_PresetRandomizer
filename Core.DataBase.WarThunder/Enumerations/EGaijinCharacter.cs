@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.DataBase.WarThunder.Enumerations
+﻿namespace Core.DataBase.WarThunder.Enumerations
 {
     public class EGaijinCharacter : Character
     {

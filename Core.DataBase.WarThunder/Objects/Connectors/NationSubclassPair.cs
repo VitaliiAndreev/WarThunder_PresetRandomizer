@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.Enumerations;
 using Core.Extensions;
 using System.Linq;
 

@@ -2,8 +2,6 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Tests.Enumerations;
 using Core.DataBase.Tests.Mapping.OneClass.IdAndName.Mapping;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
 using FluentAssertions;
 using FluentNHibernate.Cfg;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

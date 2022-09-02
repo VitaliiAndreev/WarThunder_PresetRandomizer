@@ -1,5 +1,5 @@
 ﻿using Client.Shared.Wpf.Enumerations.Logger;
-using Core.Enumerations;
+using Core;
 using System;
 using System.Linq;
 using System.Windows;

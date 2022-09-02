@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.DataBase.Enumerations.Logger
+﻿namespace Core.DataBase.Enumerations.Logger
 {
     /// <summary> Categories of events provided to a logger. </summary>
     public class EDatabaseLogCategory

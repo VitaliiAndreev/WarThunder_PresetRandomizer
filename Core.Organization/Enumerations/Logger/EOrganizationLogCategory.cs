@@ -1,7 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Enumerations.Logger;
-
-namespace Core.Organization.Enumerations.Logger
+﻿namespace Core.Organization.Enumerations.Logger
 {
     public class EOrganizationLogCategory : CoreLogCategory
     {

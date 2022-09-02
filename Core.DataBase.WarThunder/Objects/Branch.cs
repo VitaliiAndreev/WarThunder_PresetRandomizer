@@ -4,7 +4,6 @@ using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.DataBase;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using NHibernate.Mapping.Attributes;
 using NHibernate.Type;
 using System.Collections.Generic;

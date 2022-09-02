@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary>
     /// Constants storing usable English words.

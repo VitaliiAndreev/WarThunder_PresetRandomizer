@@ -1,8 +1,8 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
+using Core;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String;
-using Core.Enumerations;
 using System;
 using System.Windows;
 using System.Windows.Media;

@@ -4,8 +4,6 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
@@ -32,7 +30,7 @@ namespace Core.Organization.Helpers
         /// The maximum difference in battle rating from the battle rating selected by user.
         /// <para> Example: if the difference is 1 and the user chooses 5.7, vehicles of 4.7-5.7 are selected. </para>
         /// </summary>
-        private const decimal _maximumBattleRatingDifference = Core.Enumerations.Decimal.Number.Three;
+        private const decimal _maximumBattleRatingDifference = Decimal.Number.Three;
 
         #endregion Constants
         #region Fields

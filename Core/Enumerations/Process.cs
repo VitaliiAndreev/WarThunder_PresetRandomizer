@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Operating system processes. </summary>
     public class Process

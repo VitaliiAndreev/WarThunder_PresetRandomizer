@@ -1,5 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
-using Core.Enumerations;
+using Core;
 using System.Windows;
 using System.Windows.Input;
 

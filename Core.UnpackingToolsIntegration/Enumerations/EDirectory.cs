@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.UnpackingToolsIntegration.Enumerations
+﻿namespace Core.UnpackingToolsIntegration.Enumerations
 {
     public class EDirectory : Vocabulary
     {

@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Characters as strings (to serve as parts of other string constants). </summary>
     public class CharacterString

@@ -1,5 +1,5 @@
 ﻿using Client.Shared.Enumerations;
-using Core.Enumerations;
+using Core;
 
 namespace Client.Wpf.Enumerations
 {

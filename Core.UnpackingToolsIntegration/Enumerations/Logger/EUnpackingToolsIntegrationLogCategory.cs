@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations.Logger
+﻿namespace Core.UnpackingToolsIntegration.Enumerations.Logger
 {
     /// <summary> Categories of events provided to a logger. </summary>
     public class EUnpackingToolsIntegrationLogCategory : CoreLogCategory

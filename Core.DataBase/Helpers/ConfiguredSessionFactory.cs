@@ -1,7 +1,5 @@
 ﻿using Core.DataBase.Enumerations.Logger;
 using Core.DataBase.Helpers.Interfaces;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;

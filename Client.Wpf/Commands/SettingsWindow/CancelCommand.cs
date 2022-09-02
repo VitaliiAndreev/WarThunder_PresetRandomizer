@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core.Enumerations.Logger;
+using Core;
 using System;
 using System.Windows;
 using System.Windows.Input;

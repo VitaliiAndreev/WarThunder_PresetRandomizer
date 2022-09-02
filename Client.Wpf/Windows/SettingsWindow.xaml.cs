@@ -4,7 +4,7 @@ using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core.Enumerations.Logger;
+using Core;
 using Core.Extensions;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;

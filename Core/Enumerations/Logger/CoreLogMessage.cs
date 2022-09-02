@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations.Logger
+﻿namespace Core
 {
     /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
     public class CoreLogMessage : Vocabulary

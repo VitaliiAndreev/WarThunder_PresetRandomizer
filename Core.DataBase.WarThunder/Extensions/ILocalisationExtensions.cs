@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
-using Core.Enumerations;
 
 namespace Core.DataBase.WarThunder.Extensions
 {

@@ -5,10 +5,8 @@ using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
+using Core;
 using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -48,8 +46,8 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            this._buttonEnglishUsa.Tag = Core.Enumerations.Language.English;
-            this._buttonRussian.Tag = Core.Enumerations.Language.Russian;
+            this._buttonEnglishUsa.Tag = Core.Language.English;
+            this._buttonRussian.Tag = Core.Language.Russian;
 
             Log.Debug(CoreLogMessage.Initialised);
         }

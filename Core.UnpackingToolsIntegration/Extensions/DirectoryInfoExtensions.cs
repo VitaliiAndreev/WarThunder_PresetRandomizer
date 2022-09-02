@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Extensions;
+﻿using Core.Extensions;
 using System.Collections.Generic;
 using System.IO;
 

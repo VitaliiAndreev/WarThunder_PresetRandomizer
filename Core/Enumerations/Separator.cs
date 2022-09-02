@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Collection separators. </summary>
     public static class Separator

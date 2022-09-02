@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Objects.Json;
-using Core.Enumerations;
 using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;

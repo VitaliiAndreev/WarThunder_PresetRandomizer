@@ -10,7 +10,6 @@ using Core.DataBase.WarThunder.Objects.Json;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle;
 using Core.DataBase.WarThunder.Objects.Localization.Vehicle.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSets;
-using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Mapping;
 using NHibernate.Mapping.Attributes;

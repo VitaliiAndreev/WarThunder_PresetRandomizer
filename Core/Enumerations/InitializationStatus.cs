@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Statuses of initialization. </summary>
     public enum InitializationStatus

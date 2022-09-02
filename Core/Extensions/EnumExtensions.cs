@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Enumerations.Logger;
-using System;
+﻿using System;
 
 namespace Core.Extensions
 {

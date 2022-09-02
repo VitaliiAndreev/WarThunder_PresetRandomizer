@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Double precision floating point number constants. </summary>
     public class Double

@@ -1,7 +1,7 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
-using Core.Enumerations;
+using Core;
 using Core.Extensions;
 using System;
 using System.Collections;

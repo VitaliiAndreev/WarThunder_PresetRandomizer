@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.UnpackingToolsIntegration.Attributes;
+﻿using Core.UnpackingToolsIntegration.Attributes;
 using System.IO;
 
 namespace Core.WarThunderExtractionToolsIntegration
@@ -13,7 +12,7 @@ namespace Core.WarThunderExtractionToolsIntegration
         #region Constants
 
         /// <summary> A separator between items in a collection string. </summary>
-        public static string Separator = Enumerations.Separator.CommaAndSpace;
+        public static string Separator = Core.Separator.CommaAndSpace;
 
         #endregion Constants
         #region Fields

@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Enumerations.Logger;
+﻿using Core;
 
 namespace Client.Wpf.Enumerations.Logger
 {

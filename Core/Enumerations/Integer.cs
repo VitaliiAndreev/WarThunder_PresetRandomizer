@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.Enumerations
+namespace Core
 {
     /// <summary> Integer constants. </summary>
     public class Integer

@@ -1,5 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
-using Core.Enumerations;
+using Core;
 
 namespace Client.Wpf.Extensions
 {

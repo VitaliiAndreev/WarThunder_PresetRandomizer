@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using System;
 
 namespace Core.Web.Helpers.Interfaces

@@ -1,8 +1,7 @@
 ﻿using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
-using Core.Enumerations;
+using Core;
 using Core.Extensions;
-using System;
 using System.Windows.Threading;
 
 namespace Client.Wpf.Presenters

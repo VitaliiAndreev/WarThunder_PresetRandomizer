@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.Extensions
+﻿namespace Core.Extensions
 {
     public static class DoubleExtensions
     {

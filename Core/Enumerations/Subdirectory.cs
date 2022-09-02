@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Relative subdirectory paths. </summary>
     public class Subdirectory

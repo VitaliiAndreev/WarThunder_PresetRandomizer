@@ -1,5 +1,4 @@
-﻿using Core.Enumerations.Logger;
-using Core.Randomization.Helpers;
+﻿using Core.Randomization.Helpers;
 using Core.Randomization.Helpers.Interfaces;
 using Core.Tests;
 using FluentAssertions;

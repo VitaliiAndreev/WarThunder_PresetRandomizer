@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.DataBase.WarThunder.Enumerations

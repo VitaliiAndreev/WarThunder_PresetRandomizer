@@ -2,11 +2,11 @@
 using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using Core.Extensions;
 using NHibernate.Criterion;
 using System;
@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Double = Core.Double;
 
 namespace Client.Wpf.Controls
 {
@@ -308,7 +309,7 @@ namespace Client.Wpf.Controls
             return new Border
             {
                 BorderThickness = new Thickness(Integer.Number.One, Integer.Number.One, Integer.Number.One, Integer.Number.One),
-                BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = Core.Enumerations.Double.Number.PointOne },
+                BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = Double.Number.PointOne },
             };
         }
 

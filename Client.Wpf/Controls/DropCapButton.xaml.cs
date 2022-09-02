@@ -1,7 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Extensions;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Wpf.Controls

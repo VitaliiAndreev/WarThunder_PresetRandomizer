@@ -5,9 +5,8 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
 using Core.Exceptions;
 using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
@@ -21,6 +20,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using Separator = Core.Separator;
 
 namespace Client.Wpf
 {
@@ -169,7 +169,7 @@ namespace Client.Wpf
         /// <param name="newStandardStartupArguments"> Startup arguments following the new standard. </param>
         private string[] AdaptStartupArguments(string[] newStandardStartupArguments)
         {
-            StartupArguments = newStandardStartupArguments.StringJoin(Core.Enumerations.Separator.Space);
+            StartupArguments = newStandardStartupArguments.StringJoin(Separator.Space);
 
             var tip = "consult BAT files titled \"Mode 1\" through \"Mode 5\" for examples, or just execute those files directly";
             var oldStandardStartupArguments = new List<string>(); // -r and -w, i.e. read from and write to JSON, respectively, are considered on by default.

@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core.Enumerations;
+using Core;
 using Core.Extensions;
 using Core.Organization.Enumerations;
 using Core.Organization.Objects.SearchSpecifications;

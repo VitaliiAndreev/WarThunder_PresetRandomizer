@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects

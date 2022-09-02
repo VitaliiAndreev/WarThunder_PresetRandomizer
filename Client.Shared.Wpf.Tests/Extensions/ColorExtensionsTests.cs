@@ -1,5 +1,5 @@
 ﻿using Client.Shared.Wpf.Extensions;
-using Core.Enumerations;
+using Core;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

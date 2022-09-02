@@ -1,7 +1,7 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Core.Enumerations;
+using Core;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

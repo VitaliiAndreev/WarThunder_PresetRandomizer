@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations
+﻿namespace Core
 {
     /// <summary> Constants used internally to form useable English words and sentences. </summary>
     public class Vocabulary

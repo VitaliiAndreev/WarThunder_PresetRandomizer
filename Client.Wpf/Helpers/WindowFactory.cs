@@ -5,7 +5,7 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Strategies;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces;
-using Core.Enumerations.Logger;
+using Core;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;

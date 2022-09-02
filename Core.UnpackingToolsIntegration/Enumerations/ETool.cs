@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.UnpackingToolsIntegration.Enumerations
+﻿namespace Core.UnpackingToolsIntegration.Enumerations
 {
     /// <summary> Enumerates names of unpacking tools. </summary>
     public class ETool

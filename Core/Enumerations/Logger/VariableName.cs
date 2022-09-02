@@ -1,4 +1,4 @@
-﻿namespace Core.Enumerations.Logger
+﻿namespace Core
 {
     /// <summary> Names of XML variables. </summary>
     public class VariableName

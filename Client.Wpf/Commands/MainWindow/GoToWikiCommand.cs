@@ -1,10 +1,9 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
+using Core;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using Core.Extensions;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Client.Wpf.Commands.MainWindow

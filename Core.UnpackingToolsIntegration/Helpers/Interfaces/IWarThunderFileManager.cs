@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Helpers.Interfaces;
+﻿using Core.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System;

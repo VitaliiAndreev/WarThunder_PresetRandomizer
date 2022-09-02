@@ -1,6 +1,6 @@
-﻿using Core.DataBase.WarThunder.Enumerations;
+﻿using Core;
+using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations;
 using Core.Objects;
 using System;
 using System.Windows;

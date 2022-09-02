@@ -1,4 +1,4 @@
-﻿using Core.Enumerations;
+﻿using Core;
 using System;
 using System.Diagnostics;
 using System.Linq;

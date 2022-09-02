@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using System.IO;
+﻿using System.IO;
 
 namespace Core.Extensions
 {

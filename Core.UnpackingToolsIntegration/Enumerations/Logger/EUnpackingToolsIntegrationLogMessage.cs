@@ -1,4 +1,4 @@
-﻿using Core.Enumerations.Logger;
+﻿using Core;
 
 namespace UnpackingToolsIntegration.Enumerations.Logger
 {

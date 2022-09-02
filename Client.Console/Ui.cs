@@ -1,12 +1,11 @@
 ﻿using Client.Console.Enumerations;
 using Client.Console.Enumerations.Logger;
 using Client.Shared.Enumerations;
+using Core;
 using Core.Csv.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Helpers;
-using Core.Enumerations;
-using Core.Enumerations.Logger;
 using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;

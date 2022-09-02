@@ -1,5 +1,4 @@
-﻿using Core.Enumerations;
-using Core.Web.Enumerations.Logger;
+﻿using Core.Web.Enumerations.Logger;
 
 namespace Core.Web.WarThunder.Enumerations.Logger
 {

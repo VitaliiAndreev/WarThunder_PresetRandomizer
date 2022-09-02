@@ -1,6 +1,4 @@
-﻿using Core.Enumerations.Logger;
-
-namespace Core.Json.Enumerations.Logger
+﻿namespace Core.Json.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Json"/>" assembly. </summary>
     public class EJsonLogMessage : CoreLogMessage

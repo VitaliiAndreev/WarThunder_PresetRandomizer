@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.Helpers.Interfaces
+﻿namespace Core.Helpers.Interfaces
 {
     /// <summary> Handles work with settings files. </summary>
     public interface ISettingsManager

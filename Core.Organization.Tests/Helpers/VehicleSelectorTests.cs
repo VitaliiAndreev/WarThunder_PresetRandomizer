@@ -1,7 +1,6 @@
 ﻿using Core.DataBase.Extensions;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Enumerations.Logger;
 using Core.Objects;
 using Core.Organization.Extensions;
 using Core.Organization.Helpers;

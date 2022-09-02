@@ -1,6 +1,4 @@
-﻿using Core.Enumerations;
-
-namespace Core.Csv.WarThunder.Enumerations.Logger
+﻿namespace Core.Csv.WarThunder.Enumerations.Logger
 {
     public class ECsvLogCategory
     {

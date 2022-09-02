@@ -1,6 +1,4 @@
-﻿using Core.Enumerations.Logger;
-
-namespace Core.Localization.Enumerations.Logger
+﻿namespace Core.Localization.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
     public class ELocalisationLogMessage : CoreLogMessage
