@@ -182,7 +182,7 @@ namespace Core.Organization.Helpers
             ShowThunderSkillData = true;
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
-            LogDebug(CoreLogMessage.Created.Format(nameof(Manager)));
+            LogDebug($"{nameof(Manager)} created.");
         }
 
         #endregion Constructors
@@ -544,7 +544,7 @@ namespace Core.Organization.Helpers
             {
                 if (_gameClientVersion is null)
                 {
-                    LogWarn(CoreLogMessage.MemberNotInitialisedProperly.Format(nameof(_gameClientVersion)));
+                    LogWarn($"\"{nameof(_gameClientVersion)}\" not initialised properly.");
 
                     return null;
                 }

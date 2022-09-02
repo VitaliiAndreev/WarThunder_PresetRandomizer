@@ -1,4 +1,5 @@
 ﻿using Core.Extensions;
+using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
@@ -41,8 +42,6 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
             : base(nameof(Unpacker), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(Unpacker)));
-
             _fileManager = fileManager;
             _toolFileNames = new Dictionary<string, string>
             {
@@ -53,6 +52,8 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 { FileExtension.Bin, ETool.VromfsBinUnpacker },
                 { FileExtension.Wrpl, ETool.WrplUnpacker },
             };
+
+            LogDebug($"{nameof(Unpacker)} created.");
         }
 
         #endregion Constructors

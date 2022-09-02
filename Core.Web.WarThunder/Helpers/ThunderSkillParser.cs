@@ -37,7 +37,7 @@ namespace Core.Web.WarThunder.Helpers
             IsLoaded = false;
 
             SetCustomCategory(nameof(ThunderSkillParser));
-            LogDebug(CoreLogMessage.Created.Format(nameof(ThunderSkillParser)));
+            LogDebug($"{nameof(ThunderSkillParser)} created.");
         }
 
         #endregion Constructors
@@ -57,11 +57,11 @@ namespace Core.Web.WarThunder.Helpers
             }
             else
             {
-                LogDebug(CoreLogMessage.Reading.Format(url));
+                LogDebug($"Reading \"{url}\".");
                 {
                     _mainHtmlNode = GetHtmlDocumentNode(url);
                 }
-                LogDebug(CoreLogMessage.FinishedReading.Format(url));
+                LogDebug($"Finished reading \"{url}\".");
             }
 
             IsLoaded = true;

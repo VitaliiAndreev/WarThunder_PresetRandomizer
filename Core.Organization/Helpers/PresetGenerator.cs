@@ -55,7 +55,7 @@ namespace Core.Organization.Helpers
             _randomiser = randomiser;
             _vehicleSelector = vehicleSelector;
 
-            LogDebug(CoreLogMessage.Created.Format(nameof(PresetGenerator)));
+            LogDebug($"{nameof(PresetGenerator)} created.");
         }
 
         #endregion Constructors
@@ -252,7 +252,7 @@ namespace Core.Organization.Helpers
         {
             var mainBranch = _randomiser.GetRandom(specification.BranchSpecifications.Keys.Where(branch => branch.IsIn(availableBranches)), ERandomisationStep.MainBranchWhenSelectingByCategories);
 
-            LogDebug(CoreLogMessage.Selected.Format(mainBranch));
+            LogDebug($"\"{mainBranch}\" selected.");
 
             if (mainBranch == EBranch.None)
             {
@@ -292,7 +292,7 @@ namespace Core.Organization.Helpers
         {
             var nation = nationSpecification.Nation;
 
-            LogDebug(CoreLogMessage.Selected.Format(nation));
+            LogDebug($"\"{nation}\" selected.");
 
             return nation;
         }
@@ -345,7 +345,7 @@ namespace Core.Organization.Helpers
         {
             var battleRating = Calculator.GetBattleRating(economicRank);
 
-            LogDebug(CoreLogMessage.Selected.Format(getFormattedBattleRating(economicRank)));
+            LogDebug($"\"{getFormattedBattleRating(economicRank)}\" selected.");
 
             return battleRating;
         }

@@ -23,7 +23,7 @@ namespace Core.Helpers.Logger
         public string GetFormattedException(Exception exception)
         {
             if (exception == null)
-                return CoreLogMessage.ExceptionIsNull;
+                return "The exception is NULL.";
 
             var lines = new List<string>()
             {

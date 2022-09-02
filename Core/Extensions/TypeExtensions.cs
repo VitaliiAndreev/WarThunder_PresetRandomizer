@@ -57,7 +57,7 @@ namespace Core.Extensions
         public static bool ValidateAsEnum(this Type type, bool @throw = true)
         {
             if (!type.IsEnum)
-                return new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+                return CreateTypeIsNotEnumerationException(type).ThrowOrReturnFalse(@throw);
 
             return true;
         }
@@ -73,7 +73,7 @@ namespace Core.Extensions
                     var enumerationValueType = type.GetEnumUnderlyingType();
 
                     if (enumerationValueType != typeof(T))
-                        return new ArgumentException(CoreLogMessage.EnumValueMustBe.Format(enumerationValueType.ToStringLikeCode())).ThrowOrReturnFalse(@throw);
+                        return new ArgumentException($"Enum value must be of type \"{enumerationValueType.ToStringLikeCode()}\".").ThrowOrReturnFalse(@throw);
                 }
 
                 return false;
@@ -95,13 +95,13 @@ namespace Core.Extensions
             var genericType = typeof(T);
 
             if (!genericType.IsEnum)
-                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(genericType.ToStringLikeCode()));
+                throw CreateTypeIsNotEnumerationException(genericType);
 
             if (!type.IsEnum)
-                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.ToStringLikeCode()));
+                throw CreateTypeIsNotEnumerationException(type);
 
             if (genericType != type)
-                throw new ArgumentException(CoreLogMessage.GenericTypeParameterAndTypeParameterDontMatch.Format(genericType, type));
+                throw new ArgumentException($"Generic type \"{genericType}\" doesnt match type argument \"{type}\".");
 
             var enumerationItems = type.GetEnumValues().Cast<T>();
 
@@ -117,5 +117,8 @@ namespace Core.Extensions
         }
 
         #endregion Methods: For Enums
+
+        private static ArgumentException CreateTypeIsNotEnumerationException(Type type)
+            => new ArgumentException($"\"{type.ToStringLikeCode()}\" type is not an enumeration.");
     }
 }

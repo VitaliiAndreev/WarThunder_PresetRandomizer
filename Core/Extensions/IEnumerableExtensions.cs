@@ -169,7 +169,7 @@ namespace Core.Extensions
             var type = typeof(T);
 
             if (!type.IsEnum)
-                throw new ArgumentException(CoreLogMessage.TypeIsNotEnumeration.Format(type.Name));
+                throw new ArgumentException($"\"{type.Name}\" type is not an enumeration.");
 
             if (type.GetEnumerationItems<T>().Count() != tests.Count())
                 throw new NotImplementedException(cancellationMessage);

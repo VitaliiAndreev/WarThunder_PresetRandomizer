@@ -32,7 +32,7 @@ namespace Core.Organization.Helpers
         {
             _randomiser = randomiser;
 
-            LogDebug(CoreLogMessage.Created.Format(nameof(VehicleSelector)));
+            LogDebug($"{nameof(VehicleSelector)} created.");
         }
 
         #endregion Constructors

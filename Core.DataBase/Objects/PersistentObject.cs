@@ -40,7 +40,7 @@ namespace Core.DataBase.Objects
         #endregion Constructors
         #region Methods: Initialization
 
-        protected void LogCreation() => LogTrace(CoreLogMessage.Created.Format(ToString()));
+        protected void LogCreation() => LogTrace($"{this} created.");
 
         /// <summary> Sets the <see cref="_logCategory"/> for the object. </summary>
         protected void SetLogCategory() => _logCategory = GetType().ToStringLikeCode();

@@ -58,7 +58,7 @@ namespace Core.Helpers
             SettingsFileStatus = SettingsFileStatus.Pending;
             Initialize();
 
-            LogDebug(CoreLogMessage.Created.Format(nameof(SettingsManager)));
+            LogDebug($"{nameof(SettingsManager)} created.");
         }
 
         #endregion Constructors
@@ -76,11 +76,11 @@ namespace Core.Helpers
         {
             if (!_settingsFile.Exists)
             {
-                LogInfo(CoreLogMessage.SettingsFileNotFound_CreatingNewOne.Format(_settingsFile.Name));
+                LogInfo($"The settings file (\"{_settingsFile.Name}\") not found. Creating a new one.");
 
                 GenerateSettingsFile();
-
-                LogInfo(CoreLogMessage.Created.Format(Word.File));
+                
+                LogInfo("File created.");
                 SettingsFileStatus = SettingsFileStatus.NotFoundAndGenerated;
             }
             _settings.ReplaceBy(GetSettingsFromFile());
@@ -213,7 +213,7 @@ namespace Core.Helpers
             var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.Format(settingName));
 
             if (oldNode is null)
-                throw new XmlException(CoreLogMessage.XmlNodeNotFound.Format(settingName));
+                throw new XmlException($"{settingName} XML node not found.");
 
             oldNode.InnerText = newValue;
 
@@ -227,7 +227,9 @@ namespace Core.Helpers
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(CoreLogMessage.NotInitialisedProperly.Format(nameof(SettingsManager)), CoreLogMessage.SettingsCacheIsEmpty);
+                LogErrorAndThrow<NotInitializedException>(
+                    $"{nameof(SettingsManager)} not initialised properly.",
+                    "The settings cache is empty.");
         }
     }
 }

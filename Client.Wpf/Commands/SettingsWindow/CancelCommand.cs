@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -42,7 +41,7 @@ namespace Client.Wpf.Commands.SettingsWindow
 
                 if (MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    presenter.Owner.Log.Debug(CoreLogMessage.Closed);
+                    presenter.Owner.Log.Debug("Closed.");
                     Environment.Exit(0);
                 }
                 else

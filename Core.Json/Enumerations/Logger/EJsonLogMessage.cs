@@ -1,7 +1,7 @@
 ﻿namespace Core.Json.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="Json"/>" assembly. </summary>
-    public class EJsonLogMessage : CoreLogMessage
+    public class EJsonLogMessage : Vocabulary
     {
         #region Extension Methods
 
@@ -16,7 +16,7 @@
         #region JSON Helper
 
         private static readonly string _jsonString = $"{_JSON} {_string}";
-        private static readonly string _TryingToDeserializeJsonStringInto = $"{_TryingTo} {_deserialise} {_a} {_jsonString} {_of} {{0}} {_characters} {_into}";
+        private static readonly string _TryingToDeserializeJsonStringInto = $"Trying to {_deserialise} {_a} {_jsonString} {_of} {{0}} {_characters} {_into}";
 
         /// <summary>
         /// A message with formatting placeholders.

@@ -2,7 +2,6 @@
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core;
 using Core.Extensions;
 using System;
 using System.Windows;
@@ -35,7 +34,7 @@ namespace Client.Wpf.Windows
 
             Localise();
 
-            Log.Debug(CoreLogMessage.Initialised);
+            Log.Debug("Initialised.");
         }
 
         #endregion Constructors
@@ -45,13 +44,13 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(CoreLogMessage.Shown);
+            Log.Debug("Shown.");
 
         /// <summary> Logs closing of the window. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosed(object sender, EventArgs eventArguments) =>
-            Log.Debug(CoreLogMessage.Closed);
+            Log.Debug("Closed.");
 
         #endregion Methods: Event Handlers
 

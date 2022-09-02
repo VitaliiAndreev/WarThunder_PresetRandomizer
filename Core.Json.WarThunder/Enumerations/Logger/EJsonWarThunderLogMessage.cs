@@ -9,8 +9,8 @@ namespace Core.Json.WarThunder.Enumerations.Logger
         /// A message with formatting placeholders.
         /// <para> 1: branch name. </para>
         /// </summary>
-        public static readonly string BranchIsEmpty = $"{_Branch} \"{{0}}\" {_isEmpty}.";
-        public static readonly string ColumnIsEmpty = $"{_Column} {_isEmpty}.";
+        public static readonly string BranchIsEmpty = $"{_Branch} \"{{0}}\" is empty.";
+        public static readonly string ColumnIsEmpty = $"{_Column} is empty.";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: JSON text. </para>

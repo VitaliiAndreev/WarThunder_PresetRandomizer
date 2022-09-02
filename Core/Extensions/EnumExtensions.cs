@@ -19,7 +19,7 @@ namespace Core.Extensions
             if (enumerationValueType == typeof(int))
                 return source.CastTo<int>() > Integer.Number.Zero;
             else
-                throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(enumerationValueType.ToStringLikeCode()));
+                throw new NotImplementedException($"Explicit implementation required for \"{enumerationValueType.ToStringLikeCode()}\" type.");
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Core.Extensions
             }
             catch (Exception exception)
             {
-                throw new ArgumentException(CoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
+                throw CreateCantUpcastException(enumValue, outType, exception);
             }
         }
 
@@ -79,8 +79,11 @@ namespace Core.Extensions
             }
             catch (Exception exception)
             {
-                throw new ArgumentException(CoreLogMessage.EnumValueCouldntBeUpcastTo.Format(enumValue, outType), exception);
+                throw CreateCantUpcastException(enumValue, outType, exception);
             }
         }
+
+        private static ArgumentException CreateCantUpcastException<TIn>(TIn enumValue, Type outType, Exception innerException)
+            => new ArgumentException($"Enum value \"{enumValue}\" can't be upcast to \"{outType}\".", innerException);
     }
 }

@@ -63,7 +63,7 @@ namespace Client.Wpf.Windows
         {
             _initializationStatus = InitializationStatus.Initializing;
             {
-                Log.Trace(CoreLogMessage.Initialising);
+                Log.Trace("Initialising.");
 
                 _loadingTracker = guiLoadingWindowPresenter;
 
@@ -88,7 +88,7 @@ namespace Client.Wpf.Windows
 
                 Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
-                Log.Debug(CoreLogMessage.Initialised);
+                Log.Debug("Initialised.");
             }
             _initializationStatus = InitializationStatus.Initialized;
         }
@@ -100,14 +100,14 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(CoreLogMessage.Shown);
+            Log.Debug("Shown.");
 
         /// <summary> Logs closing of the window. </summary>
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosed(object sender, EventArgs eventArguments)
         {
-            Log.Debug(CoreLogMessage.Closed);
+            Log.Debug("Closed.");
             ApplicationHelpers.Manager.Dispose();
         }
 

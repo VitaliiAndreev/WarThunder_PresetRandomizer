@@ -50,7 +50,7 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer + 1).CastTo<T>(),
-                _ => throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
+                _ => throw CreateNotImplementedException<T>(),
             };
         }
 
@@ -63,9 +63,12 @@ namespace Core.Extensions
             return value switch
             {
                 int integer => (integer - 1).CastTo<T>(),
-                _ => throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T).FullName)),
+                _ => throw CreateNotImplementedException<T>(),
             };
         }
+
+        private static NotImplementedException CreateNotImplementedException<T>()
+            => new NotImplementedException($"Explicit implementation required for \"{typeof(T).FullName}\" type.");
 
         #endregion Methods: Increment() / Decrement()
     }

@@ -48,7 +48,7 @@ namespace Client.Wpf.Windows
             InitializeComponent();
             Localise();
 
-            Log.Debug(CoreLogMessage.Initialised);
+            Log.Debug("Initialised.");
         }
 
         #endregion Constructors
@@ -59,7 +59,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private async void OnLoaded(object sender, RoutedEventArgs eventArguments)
         {
-            Log.Debug(CoreLogMessage.Shown);
+            Log.Debug("Shown.");
 
             var prepareDataTask = new Task(PrepareData);
             Action prepareDataAsynchronously = () => prepareDataTask.Start();
@@ -128,7 +128,7 @@ namespace Client.Wpf.Windows
                 exit = true;
             }
 
-            Log.Debug(CoreLogMessage.Closed);
+            Log.Debug("Closed.");
 
             if (exit)
                 Environment.Exit(0);

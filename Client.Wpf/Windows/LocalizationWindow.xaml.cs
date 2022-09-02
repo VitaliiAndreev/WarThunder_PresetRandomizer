@@ -48,7 +48,7 @@ namespace Client.Wpf.Windows
             this._buttonEnglishUsa.Tag = Core.Language.English;
             this._buttonRussian.Tag = Core.Language.Russian;
 
-            Log.Debug(CoreLogMessage.Initialised);
+            Log.Debug("Initialised.");
         }
 
         #endregion Constructors
@@ -58,7 +58,7 @@ namespace Client.Wpf.Windows
         /// <param name="sender"> Not used. </param>
         /// <param name="eventArguments"> Not used. </param>
         private void OnLoaded(object sender, RoutedEventArgs eventArguments) =>
-            Log.Debug(CoreLogMessage.Shown);
+            Log.Debug("Shown.");
 
         /// <summary> Select US English as the localization language. </summary>
         /// <param name="sender"> Not used. </param>
@@ -74,7 +74,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs eventArguments)
         {
-            Log.Debug(CoreLogMessage.Closed);
+            LogClosure();
 
             if (string.IsNullOrWhiteSpace(Presenter.Language) && string.IsNullOrWhiteSpace(WpfSettings.Localization))
                 Environment.Exit(0);
@@ -91,6 +91,9 @@ namespace Client.Wpf.Windows
                 ? EClientApplicationName.WarThunderPresetRandomizerAbbreviated
                 : ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.ApplicationNameAbbreviated);
         }
+
+        private void LogClosure()
+            => Log.Debug("Closed.");
 
         /// <summary> Selects the given language for localization and restarts the application if it's not the first start. </summary>
         /// <param name="language"> The language to select for localization. </param>
@@ -112,7 +115,7 @@ namespace Client.Wpf.Windows
             {
                 System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, WpfClient.StartupArguments);
 
-                Log.Debug(CoreLogMessage.Closed);
+                LogClosure();
                 Environment.Exit(0);
             }
             else

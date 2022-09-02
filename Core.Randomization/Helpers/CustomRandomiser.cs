@@ -27,7 +27,7 @@ namespace Core.Randomization.Helpers
         {
             _generator = new Random();
 
-            LogDebug(CoreLogMessage.Created.Format(nameof(CustomRandomiser)));
+            LogDebug($"{nameof(CustomRandomiser)} created.");
         }
 
         #endregion Constructors
@@ -53,13 +53,13 @@ namespace Core.Randomization.Helpers
                     var defaultEnumerationItem = itemType.GetEnumerationItems<T>().FirstOrDefault(item => item.ToString() == Word.None);
 
                     if (defaultEnumerationItem is null)
-                        throw new Exception(CoreLogMessage.EnumerationHasNoDefaultItem.Format(itemType.ToStringLikeCode()));
+                        throw new Exception($"\"{itemType.ToStringLikeCode()}\" enumeration has no default items.");
 
                     return defaultEnumerationItem;
                 }
 
                 if (itemType.IsValueType)
-                    throw new Exception(CoreLogMessage.NothingToSelectFrom);
+                    throw new Exception("Nothing to select from.");
 
                 if (itemType.IsClass)
                     return default;

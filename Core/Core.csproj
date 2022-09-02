@@ -109,7 +109,6 @@
     <Compile Include="Helpers\FileManager.cs" />
     <Compile Include="Helpers\Interfaces\ISettingsManager.cs" />
     <Compile Include="Helpers\Logger\ConfiguredNLogger.cs" />
-    <Compile Include="Enumerations\Logger\CoreLogMessage.cs" />
     <Compile Include="Enumerations\Logger\LoggerName.cs" />
     <Compile Include="Enumerations\Logger\VariableName.cs" />
     <Compile Include="Helpers\Logger\ExceptionFormatter.cs" />

@@ -20,7 +20,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Parser(params IConfiguredLogger[] loggers)
             : base(nameof(Parser), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(Parser)));
+            LogDebug($"{nameof(Parser)} created.");
         }
 
         #endregion Constructors

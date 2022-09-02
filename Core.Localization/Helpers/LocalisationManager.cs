@@ -28,18 +28,18 @@ namespace Core.Localization.Helpers
         /// <param name="localizationFileName"> The name of the localization file to load into memory. </param>
         /// <param name="loggers"> Instancs of loggers. </param>
         public LocalisationManager(IFileReader fileReader, string localizationFileName, params IConfiguredLogger[] loggers)
-            : base(ELocalisationLogCategory.LocalisationManager, loggers)
+            : base(nameof(LocalisationManager), loggers)
         {
             _fileReader = fileReader;
 
             var localizationFile = new FileInfo(Path.Combine(Word.Localisation, $"{localizationFileName}{Character.Period}{FileExtension.Xml}"));
 
             if (!localizationFile.Exists)
-                throw new FileNotFoundException(CoreLogMessage.NotFound.Format(localizationFile.FullName));
+                throw new FileNotFoundException($"\"{localizationFile.FullName}\" not found.");
 
             _localisation = LoadLocalisation(localizationFile);
 
-            LogDebug(CoreLogMessage.Created.Format(ELocalisationLogCategory.LocalisationManager));
+            LogDebug($"{nameof(LocalisationManager)} created.");
         }
 
         #endregion Constructors

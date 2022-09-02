@@ -1,4 +1,5 @@
 ﻿using Core.Extensions;
+using Core.Helpers;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
@@ -18,7 +19,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         public Converter(params IConfiguredLogger[] loggers)
             : base(nameof(Converter), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(Converter)));
+            LogDebug($"{nameof(Converter)} created.");
         }
 
         #endregion Constructors

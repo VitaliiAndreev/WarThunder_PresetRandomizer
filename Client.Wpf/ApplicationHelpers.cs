@@ -6,12 +6,10 @@ using Core.Csv.WarThunder.Helpers;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Helpers;
-using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
-using Core.Localization.Enumerations.Logger;
 using Core.Localization.Helpers;
 using Core.Localization.Helpers.Interfaces;
 using Core.Organization.Helpers;
@@ -99,7 +97,7 @@ namespace Client.Wpf
 
             Log = CreateActiveLogger(nameof(ApplicationHelpers));
 
-            Log.Debug(CoreLogMessage.InstanceInitialised.Format(Word.Loggers));
+            Log.Debug("Loggers initialised.");
             _loggersInitialised = true;
         }
 
@@ -115,11 +113,11 @@ namespace Client.Wpf
             if (_helpersInitialised)
                 return;
 
-            Log.Debug(CoreLogMessage.InitialisingInstance.Format(Word.Helpers.ToLower()));
+            Log.Debug("Initialising helpers.");
 
             InitialiseHelpers(generateDatabase, readOnlyJson, readPreviouslyUnpackedJson);
 
-            Log.Debug(CoreLogMessage.InstanceInitialised.Format(Word.Helpers));
+            Log.Debug("Helpers initialised.");
             _helpersInitialised = true;
         }
 
@@ -187,7 +185,7 @@ namespace Client.Wpf
         {
             try
             {
-                Log.Debug(CoreLogMessage.TryingToInitialise.Format(ELocalisationLogCategory.LocalisationManager));
+                Log.Debug($"Trying to initialise {nameof(LocalisationManager)}.");
                 LocalisationManager = new LocalisationManager(FileReader, WpfSettings.Localization, Loggers);
             }
             catch (FileNotFoundException exception)

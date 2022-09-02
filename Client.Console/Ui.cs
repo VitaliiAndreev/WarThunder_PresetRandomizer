@@ -107,7 +107,7 @@ namespace Client.Console
             }
             catch
             {
-                System.Console.Write($"\n{CoreLogMessage.AnErrorHasOccurred} {EConsoleUiLogMessage.PressAnyKeyToExit} ");
+                System.Console.Write($"\nAn error has occurred. {EConsoleUiLogMessage.PressAnyKeyToExit} ");
                 System.Console.ReadKey(true);
                 Environment.Exit(0);
             }

@@ -262,17 +262,17 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(CoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheDataRepositoryFor.Format(SessionFactory?.DataBaseFileName ?? Word.NULL)));
+            LogDebug($"Preparing to dispose of the data repository for \"{SessionFactory?.DataBaseFileName ?? Word.NULL}\".");
 
             if (IsClosed)
             {
-                LogDebug(CoreLogMessage.AlreadyDisposed);
+                LogDebug("Already disposed of.");
                 return;
             }
 
             if (disposing)
             {
-                LogDebug(CoreLogMessage.Disposing);
+                LogDebug("Disposing.");
 
                 if (!(_session is null))
                 {
@@ -286,7 +286,7 @@ namespace Core.DataBase.Helpers
             }
 
             IsClosed = true;
-            LogDebug(CoreLogMessage.SuccessfullyDisposed);
+            LogDebug("Successfully disposed of.");
         }
 
         #endregion Methods: IDisposeable Members

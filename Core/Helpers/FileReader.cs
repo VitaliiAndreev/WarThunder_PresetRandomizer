@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Helpers.Interfaces;
+﻿using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Microsoft.VisualBasic.FileIO;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using File = System.IO.File;
 
 namespace Core.Helpers
 {
@@ -20,7 +20,7 @@ namespace Core.Helpers
         public FileReader(params IConfiguredLogger[] loggers)
             : base(nameof(FileReader), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(FileReader)));
+            LogDebug($"{nameof(FileReader)} created.");
         }
 
         #endregion Constructors
@@ -41,18 +41,16 @@ namespace Core.Helpers
             {
                 LogErrorAndThrow<FileNotFoundException>
                 (
-                    CoreLogMessage.NotFound.Format(file.FullName),
-                    CoreLogMessage.ErrorReadingFile
+                    $"\"{file.FullName}\" not found.",
+                    "Error reading file."
                 );
                 return null;
             }
 
-            LogDebug(CoreLogMessage.CreatingStreamReader.Format(file.FullName));
-
+            LogDebug($"Creating a stream reader from \"{file.FullName}\".");
             var streamReader = new StreamReader(file.FullName);
 
-            LogDebug(CoreLogMessage.StreamReaderCreated);
-
+            LogDebug("Stream reader created.");
             return streamReader;
         }
 
@@ -72,12 +70,12 @@ namespace Core.Helpers
         {
             var fileContents = default(string);
 
-            LogDebug(CoreLogMessage.Reading.Format(file.FullName));
+            LogDebug($"Reading \"{file.FullName}\".");
 
             using (var textReader = CreateTextReader(file.FullName))
                 fileContents = textReader.ReadToEnd();
 
-            LogDebug(CoreLogMessage.ReadCharacters.Format(fileContents.Count()));
+            LogDebug($"Read {fileContents.Count()} characters.");
 
             return fileContents;
         }
@@ -113,14 +111,14 @@ namespace Core.Helpers
 
         public byte[] ReadBytes(FileInfo file)
         {
-            LogTrace(CoreLogMessage.ReadingBytesFromFile.Format(file.FullName));
+            LogTrace($"Reading bytes from \"{file.FullName}\".");
 
             var bytes = File.ReadAllBytes(file.FullName);
 
             if (bytes is null)
-                LogWarn(CoreLogMessage.ErrorReadingBytesFromFile.Format(file.FullName));
+                LogWarn($"Error reading bytes from \"{file.FullName}\".");
             else
-                LogTrace(CoreLogMessage.ReadBytesFromFile.Format(bytes.Count(), file.FullName));
+                LogTrace($"Read {bytes.Count()} bytes from \"{file.FullName}\".");
 
             return bytes;
         }

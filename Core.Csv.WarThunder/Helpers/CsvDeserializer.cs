@@ -1,5 +1,4 @@
-﻿using Core.Csv.WarThunder.Enumerations.Logger;
-using Core.Csv.WarThunder.Helpers.Interfaces;
+﻿using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
@@ -26,9 +25,9 @@ namespace Core.Csv.WarThunder.Helpers
         /// <summary> Creates a new CSV deserializer. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public CsvDeserializer(params IConfiguredLogger[] loggers)
-            : base(ECsvLogCategory.CsvDeserializer, loggers)
+            : base(nameof(CsvDeserializer), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(ECsvLogCategory.CsvDeserializer));
+            LogDebug($"{nameof(CsvDeserializer)} created.");
         }
 
         #endregion Constructors

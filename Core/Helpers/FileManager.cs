@@ -19,7 +19,7 @@ namespace Core.Helpers
         public FileManager(params IConfiguredLogger[] loggers)
             : base(nameof(FileManager), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(FileManager)));
+            LogDebug($"{nameof(FileManager)} created.");
         }
 
         #endregion Constructors
@@ -46,29 +46,29 @@ namespace Core.Helpers
 
             if (!file.Exists)
             {
-                LogDebug(CoreLogMessage.DoesNotExist_CopyingAborted.Format(file.FullName));
+                LogDebug($"\"{file.FullName}\" doesnt exist. Copying safely aborted.");
                 return;
             }
             else if (!destinationDirectory.Exists)
             {
                 if (createDirectories)
                 {
-                    LogDebug(CoreLogMessage.Creating_InQuotes.Format(destinationDirectory.FullName));
+                    LogDebug($"Creating \"{destinationDirectory.FullName}\".");
 
                     destinationDirectory.Create();
 
-                    LogDebug(CoreLogMessage.Created_InQuotes.Format(destinationDirectory.FullName));
+                    LogDebug($"\"{destinationDirectory.FullName}\" created.");
                 }
                 else
                 {
-                    LogDebug(CoreLogMessage.DoesNotExist_CopyingSomethingAborted.ResetFormattingPlaceholders().Format(destinationDirectory.FullName, file.FullName));
+                    LogDebug($"\"{destinationDirectory.FullName}\" doesnt exist. Copying \"{file.FullName}\" safely aborted.");
                     return;
                 }
             }
 
             // Copying proper.
 
-            LogDebug(CoreLogMessage.Copying.ResetFormattingPlaceholders().Format(file.FullName, destinationDirectory.FullName));
+            LogDebug($"Copying \"{file.FullName}\" into \"{destinationDirectory.FullName}\".");
 
             var filePath = Path.Combine(destinationDirectory.FullName, file.Name);
 
@@ -76,14 +76,14 @@ namespace Core.Helpers
             {
                 if (!overwrite)
                 {
-                    LogDebug(CoreLogMessage.AlreadyExists_CopyingSkipped.Format(file.Name));
+                    LogDebug($"\"{file.Name}\" already exists. Copying skipped.");
                     return;
                 }
-                LogDebug(CoreLogMessage.Overwriting);
+                LogDebug("Overwriting.");
             }
             file.CopyTo(filePath, overwrite);
 
-            LogDebug(CoreLogMessage.Copied.Format(file.FullName));
+            LogDebug($"\"{file.FullName}\" copied.");
         }
 
         /// <summary> Creates a backup copy of the given file, with its name appended with ".bak". </summary>
@@ -103,7 +103,7 @@ namespace Core.Helpers
         /// <param name="file"> The file to delete. </param>
         public void DeleteFileSafely(FileInfo file)
         {
-            LogTrace(CoreLogMessage.Deleting.Format(file.Name));
+            LogTrace($"Deleting \"{file.Name}\".");
 
             try
             {
@@ -112,15 +112,15 @@ namespace Core.Helpers
                 if (file.Exists)
                     file.Delete();
                 else
-                    LogTrace(CoreLogMessage.DoesNotExist_NoNeedToDelete.Format(file.Name));
+                    LogTrace($"\"{file.FullName}\" doesnt exist. No need to delete it.");
             }
             catch (Exception exception)
             {
-                LogError(CoreLogMessage.ErrorDeletingFile, exception);
+                LogError("Error deleting file.", exception);
                 throw;
             }
 
-            LogTrace(CoreLogMessage.FileDeleted);
+            LogTrace("File deleted.");
         }
 
         #region DeleteFiles()
@@ -134,12 +134,12 @@ namespace Core.Helpers
         /// <param name="files"> A collection of file information. </param>
         private void DeleteFiles(IEnumerable<FileInfo> files)
         {
-            LogDebug(CoreLogMessage.DeletingFiles.Format(files.Count()));
+            LogDebug($"Deleting {files.Count()} file(s).");
 
             foreach (var file in files)
                 DeleteFileSafely(file);
 
-            LogDebug(CoreLogMessage.FilesDeleted);
+            LogDebug("All files deleted.");
         }
 
         /// <summary> Deletes all files in a directory. </summary>
@@ -166,18 +166,18 @@ namespace Core.Helpers
 
             if (!rootDirectory.Exists)
             {
-                LogDebug(CoreLogMessage.DirectoryDoesNotExist_DeletingAborted.Format(rootDirectory.FullName));
+                LogDebug($"The directory \"{rootDirectory.FullName}\" doesnt exist. Deleting files safely aborted.");
                 return;
             }
 
             // Reading all file information.
 
-            LogDebug(CoreLogMessage.SelectingAllFilesFromDirectory.Format(rootDirectory.FullName));
+            LogDebug($"Selecting all files from \"{rootDirectory.FullName}\".");
 
             var files = rootDirectory.GetFiles();
             if (files.IsEmpty())
             {
-                LogDebug(CoreLogMessage.DirectoryIsEmpty.Format(rootDirectory.FullName));
+                LogDebug($"The directory \"{rootDirectory.FullName}\" is empty.");
 
                 if (includeNested)
                     DeleteFilesInSubdirectories(rootDirectory, fileExtensions, deleteEmptyDirectories);
@@ -189,7 +189,7 @@ namespace Core.Helpers
 
             if (fileExtensions?.Any() ?? false)
             {
-                LogDebug(CoreLogMessage.FilteringFilesFromSelection.Format(fileExtensions.StringJoin(", ")));
+                LogDebug($"Filtering \"{fileExtensions.StringJoin(", ")}\" files from selection.");
                 files = files
                     .Where
                     (
@@ -202,14 +202,14 @@ namespace Core.Helpers
 
                 if (files.IsEmpty())
                 {
-                    LogDebug(CoreLogMessage.NoFilesOfSpecifiedFormatToDelete);
+                    LogDebug("No files of specified format to delete.");
                     return;
                 }
             }
 
             // Deleting files.
 
-            LogDebug(CoreLogMessage.SelectedFileCount.Format(files.Count()));
+            LogDebug($"Selected {files.Count()} file(s).");
             DeleteFiles(files);
 
             if (includeNested)
@@ -225,16 +225,16 @@ namespace Core.Helpers
         /// <param name="deleteEmptyDirectories"> Whether to delete directories if they are empty after file deletion regardless of whether they had files prior. </param>
         private void DeleteFilesInSubdirectories(DirectoryInfo directory, IEnumerable<string> fileExtensions, bool deleteEmptyDirectories = false)
         {
-            LogDebug(CoreLogMessage.CheckingSubdirectories);
+            LogDebug("Checking for subdirectories.");
 
             var subdirectories = directory.GetDirectories();
             if (subdirectories.IsEmpty())
             {
-                LogDebug(CoreLogMessage.NoSubdirectories);
+                LogDebug("No subdirectories.");
                 return;
             }
 
-            LogDebug(CoreLogMessage.SubdirectoriesFound.Format(subdirectories.Count()));
+            LogDebug($"{subdirectories.Count()} subdirectories found.");
 
             for (var i = 0; i < subdirectories.Count(); i++)
             {
@@ -252,11 +252,11 @@ namespace Core.Helpers
         /// <param name="path"> The path to a directory. </param>
         public void EmptyDirectory(string path)
         {
-            LogDebug(CoreLogMessage.EmptyingDirectory.Format(path));
+            LogDebug($"Emptying \"{path}\".");
 
             DeleteFiles(path, true, true);
 
-            LogDebug(CoreLogMessage.DirectoryEmptied.Format(path));
+            LogDebug($"{path}\" emptied.");
         }
 
         /// <summary> Deletes the specified directory. </summary>
@@ -265,15 +265,15 @@ namespace Core.Helpers
         {
             if (Directory.Exists(path))
             {
-                LogDebug(CoreLogMessage.DeletingEmptyDirectory.Format(path));
+                LogDebug($"Deleting \"{path}\".");
 
                 Directory.Delete(path, recursive: true);
 
-                LogDebug(CoreLogMessage.Deleted.Format(path));
+                LogDebug($"\"{path}\" deleted.");
             }
             else
             {
-                LogDebug(CoreLogMessage.DoesNotExist_NoNeedToDelete.Format(path));
+                LogDebug($"\"{path}\" doesnt exist. No need to delete it.");
             }
         }
 

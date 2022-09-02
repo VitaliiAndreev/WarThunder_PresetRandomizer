@@ -4,8 +4,6 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Strategies;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces;
-using Core;
-using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 
@@ -21,7 +19,7 @@ namespace Client.Wpf.Helpers
         public WindowFactory(params IConfiguredLogger[] loggers)
             : base(nameof(WindowFactory), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(nameof(WindowFactory)));
+            LogDebug($"{nameof(WindowFactory)} created.");
         }
 
         #endregion Constructors

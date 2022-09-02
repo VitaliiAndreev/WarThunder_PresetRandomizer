@@ -1,19 +1,11 @@
 ﻿namespace Core.DataBase.Enumerations.Logger
 {
     /// <summary> Log message strings related to the "<see cref="DataBase"/>" assembly. </summary>
-    public class EDatabaseLogMessage : CoreLogMessage
+    public class EDatabaseLogMessage : Vocabulary
     {
         #region DataRepository
 
-        private static readonly string _dataRepository = $"{_data} {_repository}";
-
-        public static readonly string TheInMemoryDataRepository = $"{_The} {_inmemory} {_data} {_repository}.";
         public static readonly string CreatingInMemoryDataRepository = $"{_Creating} {_an} {_inmemory} {_data} {_repository}.";
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: database file name. </para>
-        /// </summary>
-        public static readonly string TheDataRepositoryFor = $"{_the} {_dataRepository} {_for} \"{{0}}\"";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: database file name. </para>
@@ -104,11 +96,6 @@
         private static readonly string _sessionFactory = $"{_session} {_factory}";
 
         public static readonly string TheSessionFactory = $"{_The} {_sessionFactory}";
-        /// <summary>
-        /// A message with formatting placeholders.
-        /// <para> 1: database file name. </para>
-        /// </summary>
-        public static readonly string TheSessionFactoryFor = $"{_the} {_sessionFactory} {_for} \"{{0}}\"";
         /// <summary>
         /// A message with formatting placeholders.
         /// <para> 1: database file name. </para>

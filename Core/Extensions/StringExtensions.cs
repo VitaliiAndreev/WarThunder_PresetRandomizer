@@ -94,7 +94,7 @@ namespace Core.Extensions
             }
             else
             {
-                throw new NotImplementedException(CoreLogMessage.ExplicitImplementationRequiredForType.Format(typeof(T)));
+                throw new NotImplementedException($"Explicit implementation required for \"{typeof(T)}\" type.");
             }
         }
 

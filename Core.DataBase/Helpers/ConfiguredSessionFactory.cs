@@ -108,7 +108,7 @@ namespace Core.DataBase.Helpers
             }
             catch (Exception exception)
             {
-                LogError(CoreLogMessage.AnErrorHasOccurred, exception);
+                LogError("An error has occurred.", exception);
                 throw;
             }
 
@@ -142,7 +142,7 @@ namespace Core.DataBase.Helpers
             }
 
             new SchemaExport(configuration).Create(false, true);
-            LogDebug(CoreLogMessage.Created.Format(Word.Schema));
+            LogDebug($"Database schema created.");
         }
 
         #endregion Methods: Creation and Configuration
@@ -167,11 +167,11 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug(CoreLogMessage.PreparingToDisposeOf.Format(EDatabaseLogMessage.TheSessionFactoryFor.Format(DataBaseFileName)));
+            LogDebug($"Preparing to dispose of the session factory for \"{DataBaseFileName}\".");
 
             if (_disposed)
             {
-                LogDebug(CoreLogMessage.AlreadyDisposed);
+                LogDebug("Already disposed of.");
                 return;
             }
 
@@ -179,26 +179,26 @@ namespace Core.DataBase.Helpers
             {
                 if (_sessionFactory == null)
                 {
-                    LogDebug(CoreLogMessage.IsNull_DisposalAborted.Format(EDatabaseLogMessage.TheSessionFactory));
+                    LogDebug("The session factory is NULL. Disposal aborted.");
                     return;
                 }
 
                 if (_sessionFactory.IsClosed)
                 {
-                    LogDebug(CoreLogMessage.AlreadyClosed);
+                    LogDebug("Already closed.");
                 }
                 else
                 {
-                    LogDebug(CoreLogMessage.Closing);
+                    LogDebug("Closing.");
                     _sessionFactory.Close();
                 }
 
-                LogDebug(CoreLogMessage.Disposing);
+                LogDebug("Disposing.");
                 _sessionFactory.Dispose();
             }
 
             _disposed = true;
-            LogDebug(CoreLogMessage.SuccessfullyDisposed);
+            LogDebug("Successfully disposed of.");
         }
 
         #endregion Methods: IDisposeable Members

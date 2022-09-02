@@ -123,7 +123,7 @@ namespace Client.Wpf
                 ApplicationHelpers.InitialiseLoggers();
 
                 Log = ApplicationHelpers.CreateActiveLogger(nameof(WpfClient));
-                Log.Info(CoreLogMessage.Started);
+                Log.Info("Started.");
 
                 try
                 {
@@ -151,7 +151,7 @@ namespace Client.Wpf
             }
             catch (Exception exception)
             {
-                Log?.Fatal(CoreLogMessage.AnErrorHasOccurred, exception);
+                Log?.Fatal("An error has occurred.", exception);
                 ShowErrorMessage(exception);
                 Environment.Exit(1);
             }
@@ -269,7 +269,7 @@ namespace Client.Wpf
             else
             {
                 title = Word.Error;
-                message = $"{CoreLogMessage.FatalErrorShutdown}\n{getInstruction(CoreLogMessage.SeeLogsForDetails)}";
+                message = $"An error has occurred. The application will be shut down.\n{getInstruction(localizedString: "See the latest file in the \"Logs\" folder for details.")}";
             }
 
             MessageBox.Show(Current.Windows.OfType<BaseWindow>().LastOrDefault(), message, title, MessageBoxButton.OK, MessageBoxImage.Error);

@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Json.WarThunder.Enumerations.Logger;
+﻿using Core.Json.WarThunder.Enumerations.Logger;
 
 namespace Core.Organization.Enumerations.Logger
 {
@@ -84,8 +83,8 @@ namespace Core.Organization.Enumerations.Logger
         public static readonly string CachingObjects = $"{_Caching} {_objects}.";
         public static readonly string CachingComplete = $"{_Caching} {_complete}.";
 
-        public static readonly string InitialisingResearchTrees = InitialisingInstance.Format($"{_research} {_trees}");
-        public static readonly string ResearchTreesInitialized = InstanceInitialised.Format($"{_Research} {_trees}");
+        public static readonly string InitialisingResearchTrees = $"Initialising research trees.";
+        public static readonly string ResearchTreesInitialized = "Research trees initialised.";
 
         private static readonly string _vehicleUsageStatisticsFromThunderSkill = $" {_vehicle} {_usage} {_statistics} {_from} {_ThunderSkill}.";
         public static readonly string ReadingVehicleUsageStatisticsFromThunderSkill = $"{_Reading}{_vehicleUsageStatisticsFromThunderSkill}";
