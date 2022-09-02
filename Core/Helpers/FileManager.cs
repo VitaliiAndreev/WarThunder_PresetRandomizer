@@ -261,15 +261,15 @@ namespace Core.Helpers
             LogDebug(ECoreLogMessage.DirectoryEmptied.Format(path));
         }
 
-        /// <summary> Deletes an empty directory. It does not check whether the directory is empty or not. </summary>
+        /// <summary> Deletes the specified directory. </summary>
         /// <param name="path"> The path to a directory. </param>
-        private void DeleteEmptyDirectory(string path)
+        public void DeleteDirectory(string path)
         {
             if (Directory.Exists(path))
             {
                 LogDebug(ECoreLogMessage.DeletingEmptyDirectory.Format(path));
 
-                Directory.Delete(path);
+                Directory.Delete(path, true);
 
                 LogDebug(ECoreLogMessage.Deleted.Format(path));
             }
@@ -277,14 +277,6 @@ namespace Core.Helpers
             {
                 LogDebug(ECoreLogMessage.DoesNotExist_NoNeedToDelete.Format(path));
             }
-        }
-
-        /// <summary> Deletes the specified directory. </summary>
-        /// <param name="path"> The path to a directory. </param>
-        public void DeleteDirectory(string path)
-        {
-            EmptyDirectory(path);
-            DeleteEmptyDirectory(path);
         }
 
         /// <summary> Deletes all files (non-recursively) older than the given timestamp. </summary>
