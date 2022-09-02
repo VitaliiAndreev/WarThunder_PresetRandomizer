@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\Constants.cs" />
     <Compile Include="Enumerations\Character.cs" />
     <Compile Include="Enumerations\Decimal.cs" />
     <Compile Include="Enumerations\Direction.cs" />
