@@ -59,7 +59,7 @@ namespace Client.Wpf.Windows
         /// <param name="presenter"> The presenter to attach. </param>
         /// <param name="guiLoadingWindowPresenter"> An instance of a presenter to communicate with the GUI loading window. </param>
         public MainWindow(IMainWindowPresenter presenter, IGuiLoadingWindowPresenter guiLoadingWindowPresenter)
-            : base(EWpfClientLogCategory.MainWindow, null, presenter)
+            : base(nameof(MainWindow), null, presenter)
         {
             _initializationStatus = InitializationStatus.Initializing;
             {

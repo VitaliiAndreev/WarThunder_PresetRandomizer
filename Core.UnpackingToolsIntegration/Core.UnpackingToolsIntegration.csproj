@@ -77,7 +77,6 @@
     <Compile Include="Enumerations\EDirectory.cs" />
     <Compile Include="Enumerations\EFile.cs" />
     <Compile Include="Enumerations\ETool.cs" />
-    <Compile Include="Enumerations\Logger\EUnpackingToolsIntegrationLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EUnpackingToolsIntegrationLogMessage.cs" />
     <Compile Include="Exceptions\FileExtensionNotSupportedException.cs" />
     <Compile Include="Exceptions\OutputDirectoryNotFoundException.cs" />

@@ -1,7 +1,6 @@
 ﻿using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
-using Core.UnpackingToolsIntegration.Enumerations.Logger;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using Core.UnpackingToolsIntegration.Objects;
 using System;
@@ -17,9 +16,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Creates a new converter. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public Converter(params IConfiguredLogger[] loggers)
-            : base(EUnpackingToolsIntegrationLogCategory.Converter, loggers)
+            : base(nameof(Converter), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Converter));
+            LogDebug(CoreLogMessage.Created.Format(nameof(Converter)));
         }
 
         #endregion Constructors

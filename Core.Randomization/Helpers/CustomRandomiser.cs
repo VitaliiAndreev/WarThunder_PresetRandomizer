@@ -2,7 +2,6 @@
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Randomization.Enumerations;
-using Core.Randomization.Enumerations.Logger;
 using Core.Randomization.Helpers.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,11 +23,11 @@ namespace Core.Randomization.Helpers
         /// <summary> Creates a new randomiser. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public CustomRandomiser(params IConfiguredLogger[] loggers)
-            : base(ERandomizerLogCategory.Randomiser, loggers)
+            : base(nameof(CustomRandomiser), loggers)
         {
             _generator = new Random();
 
-            LogDebug(CoreLogMessage.Created.Format(ERandomizerLogCategory.Randomiser));
+            LogDebug(CoreLogMessage.Created.Format(nameof(CustomRandomiser)));
         }
 
         #endregion Constructors

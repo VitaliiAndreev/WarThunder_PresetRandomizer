@@ -1,7 +1,6 @@
 ﻿using Client.Shared.Enumerations;
 using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -37,7 +36,7 @@ namespace Client.Wpf.Windows
         /// <param name="parentWindow"> The window that owns this one. </param>
         /// <param name="restartAfterSelection"> Whether the application is to be restarted after selecting a language. </param>
         public LocalizationWindow(ILocalizationWindowPresenter presenter, IBaseWindow parentWindow, bool restartAfterSelection = false)
-            : base(EWpfClientLogCategory.LocalizationWindow, parentWindow, presenter)
+            : base(nameof(LocalizationWindow), parentWindow, presenter)
         {
             _restartAfterSelection = restartAfterSelection;
 

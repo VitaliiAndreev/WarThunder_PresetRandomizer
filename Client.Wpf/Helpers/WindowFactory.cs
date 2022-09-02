@@ -1,5 +1,4 @@
-﻿using Client.Wpf.Enumerations.Logger;
-using Client.Wpf.Helpers.Interfaces;
+﻿using Client.Wpf.Helpers.Interfaces;
 using Client.Wpf.Presenters;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Strategies;
@@ -20,9 +19,9 @@ namespace Client.Wpf.Helpers
         /// <summary> Creates a new windows factory. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public WindowFactory(params IConfiguredLogger[] loggers)
-            : base(EWpfClientLogCategory.WindowFactory, loggers)
+            : base(nameof(WindowFactory), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(EWpfClientLogCategory.WindowFactory));
+            LogDebug(CoreLogMessage.Created.Format(nameof(WindowFactory)));
         }
 
         #endregion Constructors

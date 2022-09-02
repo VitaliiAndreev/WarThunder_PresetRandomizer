@@ -4,7 +4,6 @@ using Core.Helpers.Logger.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using Core.Web.Extensions;
 using Core.Web.Helpers;
-using Core.Web.WarThunder.Enumerations.Logger;
 using Core.Web.WarThunder.Helpers.Interfaces;
 using Core.Web.WarThunder.Objects;
 using HtmlAgilityPack;
@@ -37,8 +36,8 @@ namespace Core.Web.WarThunder.Helpers
         {
             IsLoaded = false;
 
-            SetCustomCategory(EWebWarThunderLogCategory.ThunderSkillParser);
-            LogDebug(CoreLogMessage.Created.Format(EWebWarThunderLogCategory.ThunderSkillParser));
+            SetCustomCategory(nameof(ThunderSkillParser));
+            LogDebug(CoreLogMessage.Created.Format(nameof(ThunderSkillParser)));
         }
 
         #endregion Constructors

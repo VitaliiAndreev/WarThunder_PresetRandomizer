@@ -18,9 +18,9 @@ namespace Core.Helpers
         /// <summary> Creates a new file reader. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public FileReader(params IConfiguredLogger[] loggers)
-            : base(CoreLogCategory.FileReader, loggers)
+            : base(nameof(FileReader), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.FileReader));
+            LogDebug(CoreLogMessage.Created.Format(nameof(FileReader)));
         }
 
         #endregion Constructors

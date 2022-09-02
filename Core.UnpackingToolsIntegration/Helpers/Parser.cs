@@ -1,7 +1,6 @@
 ﻿using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
-using Core.UnpackingToolsIntegration.Enumerations.Logger;
 using Core.UnpackingToolsIntegration.Exceptions;
 using Core.UnpackingToolsIntegration.Helpers.Interfaces;
 using System;
@@ -19,9 +18,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Creates a new parser. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public Parser(params IConfiguredLogger[] loggers)
-            : base(EUnpackingToolsIntegrationLogCategory.Parser, loggers)
+            : base(nameof(Parser), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(EUnpackingToolsIntegrationLogCategory.Parser));
+            LogDebug(CoreLogMessage.Created.Format(nameof(Parser)));
         }
 
         #endregion Constructors

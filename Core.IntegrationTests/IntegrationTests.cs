@@ -115,7 +115,6 @@ namespace Core.IntegrationTests
         [TestCleanup]
         public void CleanUp()
         {
-            Presets.Logger.LogInfo(CoreLogCategory.IntegrationTests, CoreLogMessage.CleanUpAfterIntegrationTestStartsHere);
             Presets.CleanUp();
             _fileManager.DeleteDirectory(_rootDirectory);
 

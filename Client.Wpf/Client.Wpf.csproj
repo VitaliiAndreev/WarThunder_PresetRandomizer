@@ -476,7 +476,6 @@
     <Compile Include="Enumerations\EVectorImageKey.cs" />
     <Compile Include="Enumerations\EVehicleCard.cs" />
     <Compile Include="Enumerations\EVehicleResearchType.cs" />
-    <Compile Include="Enumerations\Logger\EWpfClientLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
     <Compile Include="Extensions\DataGridRowExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />

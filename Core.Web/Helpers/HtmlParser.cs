@@ -19,9 +19,9 @@ namespace Core.Web.Helpers
         #region Constructors
 
         public HtmlParser(params IConfiguredLogger[] loggers)
-            : base(EWebLogCategory.HtmlParser, loggers)
+            : base(nameof(HtmlParser), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(EWebLogCategory.HtmlParser));
+            LogDebug(CoreLogMessage.Created.Format(nameof(HtmlParser)));
         }
 
         #endregion Constructors

@@ -119,7 +119,7 @@ namespace Core.Organization.Helpers
             bool readOnlyJson,
             bool readPreviouslyUnpackedJson,
             params IConfiguredLogger[] loggers
-        ) : base(EOrganizationLogCategory.Manager, loggers)
+        ) : base(nameof(Manager), loggers)
         {
             _generateDatabase = generateDatabase;
             _readOnlyJson = readOnlyJson;
@@ -182,7 +182,7 @@ namespace Core.Organization.Helpers
             ShowThunderSkillData = true;
             ResearchTrees = new Dictionary<ENation, ResearchTree>();
 
-            LogDebug(CoreLogMessage.Created.Format(EOrganizationLogCategory.Manager));
+            LogDebug(CoreLogMessage.Created.Format(nameof(Manager)));
         }
 
         #endregion Constructors

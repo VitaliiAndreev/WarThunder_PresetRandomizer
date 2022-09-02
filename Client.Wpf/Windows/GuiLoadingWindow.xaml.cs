@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -258,13 +257,13 @@ namespace Client.Wpf.Windows
         #region Constructors
 
         public GuiLoadingWindow()
-            : base(EWpfClientLogCategory.GuiLoadingWindow, null, null)
+            : base(nameof(GuiLoadingWindow), null, null)
         {
             InitializeComponent();
         }
 
         public GuiLoadingWindow(IGuiLoadingWindowPresenter presenter)
-            : base(EWpfClientLogCategory.GuiLoadingWindow, null, presenter)
+            : base(nameof(GuiLoadingWindow), null, presenter)
         {
             InitializeComponent();
             Localise();

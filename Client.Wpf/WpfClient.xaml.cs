@@ -122,7 +122,7 @@ namespace Client.Wpf
 
                 ApplicationHelpers.InitialiseLoggers();
 
-                Log = ApplicationHelpers.CreateActiveLogger(EWpfClientLogCategory.WpfClient);
+                Log = ApplicationHelpers.CreateActiveLogger(nameof(WpfClient));
                 Log.Info(CoreLogMessage.Started);
 
                 try

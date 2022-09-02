@@ -51,7 +51,6 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Enumerations\ERandomisationStep.cs" />
-    <Compile Include="Enumerations\Logger\ERandomizerLogCategory.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\Interfaces\IRandomiser.cs" />
     <Compile Include="Helpers\CustomRandomiser.cs" />

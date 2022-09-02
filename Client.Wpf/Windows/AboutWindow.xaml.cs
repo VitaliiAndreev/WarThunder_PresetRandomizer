@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -28,7 +27,7 @@ namespace Client.Wpf.Windows
         /// <param name="presenter"> The presenter to attach. </param>
         /// <param name="parentWindow"> The window that owns this one. </param>
         public AboutWindow(IAboutWindowPresenter presenter, IBaseWindow parentWindow)
-            : base(EWpfClientLogCategory.AboutWindow, parentWindow, presenter)
+            : base(nameof(AboutWindow), parentWindow, presenter)
         {
             InitializeComponent();
 

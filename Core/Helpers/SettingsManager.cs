@@ -48,7 +48,7 @@ namespace Core.Helpers
         /// <param name="requiredSettingNames"> Names of required settings. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public SettingsManager(IFileManager fileManager, string settingsFileName, IEnumerable<string> requiredSettingNames, params IConfiguredLogger[] loggers)
-            : base(CoreLogCategory.SettingsManager, loggers)
+            : base(nameof(SettingsManager), loggers)
         {
             _fileManager = fileManager;
             _requiredSettingNames = requiredSettingNames;
@@ -58,7 +58,7 @@ namespace Core.Helpers
             SettingsFileStatus = SettingsFileStatus.Pending;
             Initialize();
 
-            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.SettingsManager));
+            LogDebug(CoreLogMessage.Created.Format(nameof(SettingsManager)));
         }
 
         #endregion Constructors
@@ -227,7 +227,7 @@ namespace Core.Helpers
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(CoreLogMessage.NotInitialisedProperly.Format(CoreLogCategory.SettingsManager), CoreLogMessage.SettingsCacheIsEmpty);
+                LogErrorAndThrow<NotInitializedException>(CoreLogMessage.NotInitialisedProperly.Format(nameof(SettingsManager)), CoreLogMessage.SettingsCacheIsEmpty);
         }
     }
 }

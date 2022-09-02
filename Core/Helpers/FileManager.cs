@@ -17,9 +17,9 @@ namespace Core.Helpers
         /// <summary> Creates a new file manager. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public FileManager(params IConfiguredLogger[] loggers)
-            : base(CoreLogCategory.FileManager, loggers)
+            : base(nameof(FileManager), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.FileManager));
+            LogDebug(CoreLogMessage.Created.Format(nameof(FileManager)));
         }
 
         #endregion Constructors

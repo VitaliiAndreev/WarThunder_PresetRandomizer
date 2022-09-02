@@ -50,12 +50,12 @@ namespace Core.Organization.Helpers
         /// <param name="randomiser"> An instance of a randomiser. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public PresetGenerator(IRandomiser randomiser, IVehicleSelector vehicleSelector, params IConfiguredLogger[] loggers)
-            : base(EOrganizationLogCategory.PresetGenerator, loggers)
+            : base(nameof(PresetGenerator), loggers)
         {
             _randomiser = randomiser;
             _vehicleSelector = vehicleSelector;
 
-            LogDebug(CoreLogMessage.Created.Format(EOrganizationLogCategory.PresetGenerator));
+            LogDebug(CoreLogMessage.Created.Format(nameof(PresetGenerator)));
         }
 
         #endregion Constructors

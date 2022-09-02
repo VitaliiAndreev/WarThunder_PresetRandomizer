@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Commands.Interfaces;
 using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
@@ -44,7 +43,7 @@ namespace Client.Wpf.Windows
         /// <param name="presenter"> The presenter to attach. </param>
         /// <param name="parentWindow"> The window that owns this one. </param>
         public SettingsWindow(ISettingsWindowPresenter presenter, IBaseWindow parentWindow)
-            : base(EWpfClientLogCategory.SettingsWindow, parentWindow, presenter)
+            : base(nameof(SettingsWindow), parentWindow, presenter)
         {
             Presenter.ClosingState = ESettingsWindowClosureState.NotClosing;
 

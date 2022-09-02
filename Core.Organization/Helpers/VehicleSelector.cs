@@ -5,7 +5,6 @@ using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Objects;
-using Core.Organization.Enumerations.Logger;
 using Core.Organization.Helpers.Interfaces;
 using Core.Randomization.Extensions;
 using Core.Randomization.Helpers.Interfaces;
@@ -29,11 +28,11 @@ namespace Core.Organization.Helpers
         /// <param name="randomiser"> An instance of a randomiser. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public VehicleSelector(IRandomiser randomiser, params IConfiguredLogger[] loggers)
-            : base(EOrganizationLogCategory.VehicleSelector, loggers)
+            : base(nameof(VehicleSelector), loggers)
         {
             _randomiser = randomiser;
 
-            LogDebug(CoreLogMessage.Created.Format(EOrganizationLogCategory.VehicleSelector));
+            LogDebug(CoreLogMessage.Created.Format(nameof(VehicleSelector)));
         }
 
         #endregion Constructors

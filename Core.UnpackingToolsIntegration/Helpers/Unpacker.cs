@@ -39,9 +39,9 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <param name="fileManager"> An instance of a file manager. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public Unpacker(IFileManager fileManager, params IConfiguredLogger[] loggers)
-            : base(CoreLogCategory.Unpacker, loggers)
+            : base(nameof(Unpacker), loggers)
         {
-            LogDebug(CoreLogMessage.Created.Format(CoreLogCategory.Unpacker));
+            LogDebug(CoreLogMessage.Created.Format(nameof(Unpacker)));
 
             _fileManager = fileManager;
             _toolFileNames = new Dictionary<string, string>

@@ -43,7 +43,7 @@ namespace Client.Wpf.Windows
         /// <summary> Creates a new loading window. </summary>
         /// <param name="presenter"> The presenter to attach. </param>
         public LoadingWindow(ILoadingWindowPresenter presenter)
-            : base(EWpfClientLogCategory.LoadingWindow, null, presenter)
+            : base(nameof(LoadingWindow), null, presenter)
         {
             InitializeComponent();
             Localise();

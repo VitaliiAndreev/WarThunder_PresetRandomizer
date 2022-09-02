@@ -1,5 +1,4 @@
 ﻿using Client.Wpf.Enumerations;
-using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Helpers;
 using Client.Wpf.Helpers.Interfaces;
 using Core;
@@ -98,7 +97,7 @@ namespace Client.Wpf
                 wpfLogger,
             };
 
-            Log = CreateActiveLogger(EWpfClientLogCategory.ApplicationHelpers);
+            Log = CreateActiveLogger(nameof(ApplicationHelpers));
 
             Log.Debug(CoreLogMessage.InstanceInitialised.Format(Word.Loggers));
             _loggersInitialised = true;

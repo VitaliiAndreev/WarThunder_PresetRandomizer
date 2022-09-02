@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\Logger\EWebWarThunderLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EWebWarThunderLogMessage.cs" />
     <Compile Include="Helpers\Interfaces\IThunderSkillParser.cs" />
     <Compile Include="Helpers\ThunderSkillParser.cs" />

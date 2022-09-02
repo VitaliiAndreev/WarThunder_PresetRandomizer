@@ -61,7 +61,7 @@ namespace Core.Helpers.Logger
         /// <summary> Logs intantiation of this logger. It is done here so that the event of intantiation could be logged by any logger. </summary>
         /// <param name="logger"> The logger to log with. </param>
         public void LogInstantiation(IConfiguredLogger logger) =>
-            logger.LogDebug(CoreLogCategory.Logger, CoreLogMessage.Created.Format(_logger.Name));
+            logger.LogDebug(nameof(ConfiguredNLogger), CoreLogMessage.Created.Format(_logger.Name));
 
         /// <summary> A wrapper around <see cref="ILoggerBase.Log(LogLevel, string, Exception)"/> that forms a customized message string before logging it. </summary>
         /// <param name="level"> A log level. </param>
