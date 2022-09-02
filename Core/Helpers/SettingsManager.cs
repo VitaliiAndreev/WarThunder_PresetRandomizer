@@ -14,12 +14,9 @@ namespace Core.Helpers
     /// <summary> Handles work with settings files. </summary>
     public class SettingsManager : LoggerFluency, ISettingsManager
     {
-        #region Constants
-
         /// <summary> A template for settings expressions. </summary>
-        protected const string _settingsExpressionTemplate = CharacterString.Slash + "Settings" + CharacterString.Slash + "{0}";
-
-        #endregion Constants
+        protected const string settingsExpressionTemplate = "/Settings/{0}";
+        
         #region Fields
 
         /// <summary> Names of required settings. </summary>
@@ -210,7 +207,7 @@ namespace Core.Helpers
             var document = ReadFile();
             var rootElement = document.DocumentElement;
 
-            var oldNode = rootElement.SelectSingleNode(_settingsExpressionTemplate.Format(settingName));
+            var oldNode = rootElement.SelectSingleNode(settingsExpressionTemplate.Format(settingName));
 
             if (oldNode is null)
                 throw new XmlException($"{settingName} XML node not found.");

@@ -11,6 +11,6 @@ namespace Core.UnpackingToolsIntegration.Extensions
         /// <param name="directory"> The directory to search in. </param>
         /// <returns></returns>
         public static IEnumerable<FileInfo> GetWarThunderDatabaseFiles(this DirectoryInfo directory) =>
-            directory.GetFiles(file => file.GetExtensionWithoutPeriod() == FileExtension.SqLite3 && file.GetNameWithoutExtension().Matches(RegularExpression.VersionFull));
+            directory.GetFiles(file => file.GetExtensionWithoutPeriod() == FileExtension.SqLite3 && file.GetNameWithoutExtension().Matches(RegularExpressionPattern.VersionFull));
     }
 }

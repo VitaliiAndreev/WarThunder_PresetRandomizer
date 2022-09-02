@@ -2,8 +2,8 @@
 
 namespace Client.Wpf.Enumerations
 {
-    public partial class EWpfClientFile
+    public static class EWpfClientFile
     {
-        public static readonly string Settings = $"{nameof(Client)}{CharacterString.Period}{nameof(Wpf)}{CharacterString.Period}{nameof(Core.WarThunderExtractionToolsIntegration.Settings)}{CharacterString.Period}{FileExtension.Xml}";
+        public static readonly string Settings = $"Client.Wpf.Settings.{FileExtension.Xml}";
     }
 }

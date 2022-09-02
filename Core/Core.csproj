@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\Constants.cs" />
-    <Compile Include="Enumerations\CharacterString.cs" />
     <Compile Include="Enumerations\Character.cs" />
     <Compile Include="Enumerations\Decimal.cs" />
     <Compile Include="Enumerations\Direction.cs" />
@@ -68,8 +67,7 @@
     <Compile Include="Enumerations\InitializationStatus.cs" />
     <Compile Include="Enumerations\Integer.cs" />
     <Compile Include="Enumerations\Language.cs" />
-    <Compile Include="Enumerations\Process.cs" />
-    <Compile Include="Enumerations\RegularExpression.cs" />
+    <Compile Include="Enumerations\RegularExpressionPattern.cs" />
     <Compile Include="Enumerations\Separator.cs" />
     <Compile Include="Enumerations\SettingsFileStatus.cs" />
     <Compile Include="Enumerations\Subdirectory.cs" />

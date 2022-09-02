@@ -37,7 +37,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
             try
             {
-                var regularExpression = new Regex("(version" + RegularExpression.AtLeastOneNumber + ":" + RegularExpression.VersionFull + ":yup_version)");
+                var regularExpression = new Regex("(version" + RegularExpressionPattern.AtLeastOneNumber + ":" + RegularExpressionPattern.VersionFull + ":yup_version)");
                 var match = regularExpression.Match(rawFileContents);
 
                 if (match is null)

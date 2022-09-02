@@ -1,17 +1,17 @@
 ﻿namespace Core.UnpackingToolsIntegration.Enumerations
 {
-    /// <summary> Enumerates names of unpacking tools. </summary>
-    public class ETool
+    public static class ETool
     {
-        private const string _unpack = "_unpack";
-        private const string _unpacker = _unpack + "er";
-        private const string _exe = CharacterString.Period + FileExtension.Exe;
+        private const string unpack = "_unpack";
+        private const string unpacker = "_unpacker";
 
-        public const string BlkUnpacker = "blk" + _unpack + "_ng" + _exe;
-        public const string ClogUnpacker = "clog" + _unpack + _exe;
-        public const string DdsxUnpacker = "ddsx" + _unpack + _exe;
-        public const string DxpUnpacker = "dxp" + _unpack + _exe;
-        public const string VromfsBinUnpacker = EFile.Vromfs + _unpacker + _exe;
-        public const string WrplUnpacker = "wrpl" + _unpacker + _exe;
+        private static readonly string exe = $".{FileExtension.Exe}";
+
+        public static readonly string BlkUnpacker = $"blk{unpack}_ng{exe}";
+        public static readonly string ClogUnpacker = $"clog{unpack}{exe}";
+        public static readonly string DdsxUnpacker = $"ddsx{unpack}{exe}";
+        public static readonly string DxpUnpacker = $"dxp{unpack}{exe}";
+        public static readonly string VromfsBinUnpacker = $"{EFile.Vromfs}{unpacker}{exe}";
+        public static readonly string WrplUnpacker = $"wrpl{unpacker}{exe}";
     }
 }
