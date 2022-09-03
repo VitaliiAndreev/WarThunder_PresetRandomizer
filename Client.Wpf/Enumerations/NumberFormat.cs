@@ -1,6 +1,6 @@
-﻿namespace Core
+﻿namespace Client.Wpf
 {
-    public static class Format
+    public static class NumberFormat
     {
         public const string Multiplier = "0.00";
     }

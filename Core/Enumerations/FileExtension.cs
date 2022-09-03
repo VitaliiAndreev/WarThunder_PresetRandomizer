@@ -1,7 +1,6 @@
 ﻿namespace Core
 {
-    /// <summary> File extensions. </summary>
-    public class FileExtension
+    public static class FileExtension
     {
         public const string Bak = "bak";
         public const string Bin = "bin";

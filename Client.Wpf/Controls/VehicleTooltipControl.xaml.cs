@@ -4,7 +4,6 @@ using Client.Wpf.Controls.Strategies.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -76,7 +75,7 @@ namespace Client.Wpf.Controls
             _regularCrewRequirements.Text = _displayStrategy.GetVehicleCardRegularCrewRequirements(_vehicle);
             _expertCrewRequirements.Text = _displayStrategy.GetVehicleCardExpertCrewRequirements(_vehicle);
             _aceCrewRequirements.Text = _displayStrategy.GetVehicleCardAceCrewRequirements(_vehicle);
-            _researchMultiplier.Text = _vehicle.EconomyData.ResearchGainMultiplier.ToString(Format.Multiplier);
+            _researchMultiplier.Text = _vehicle.EconomyData.ResearchGainMultiplier.ToString(NumberFormat.Multiplier);
 
             if (string.IsNullOrWhiteSpace(_tags.Text))
                 _tags.Visibility = Visibility.Collapsed;
@@ -146,7 +145,7 @@ namespace Client.Wpf.Controls
                 _repairCost.Text = _displayStrategy.GetVehicleCardRepairCost(_vehicle, gameMode);
 
                 if (_vehicle.EconomyData.SilverGainMultiplier[gameMode] is decimal a )
-                    _silverMultiplier.Text = a.ToString(Format.Multiplier);
+                    _silverMultiplier.Text = a.ToString(NumberFormat.Multiplier);
 
                 _requiredVehicle?.UpdateFor(_gameMode);
             }

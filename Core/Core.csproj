@@ -59,7 +59,6 @@
     <Compile Include="Enumerations\Character.cs" />
     <Compile Include="Enumerations\Domain.cs" />
     <Compile Include="Enumerations\FileExtension.cs" />
-    <Compile Include="Enumerations\Format.cs" />
     <Compile Include="Enumerations\InitializationStatus.cs" />
     <Compile Include="Enumerations\Integer.cs" />
     <Compile Include="Enumerations\Language.cs" />
