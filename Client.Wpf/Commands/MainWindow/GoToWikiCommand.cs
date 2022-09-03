@@ -51,7 +51,7 @@ namespace Client.Wpf.Commands.MainWindow
             var nameParts = vehicle.ResearchTreeName.GetLocalisation(language).Split(' ').ToList();
             var firstNamePart = nameParts.First();
 
-            if (!firstNamePart.First().IsLetterOrDigitFluently())
+            if (!char.IsLetterOrDigit(firstNamePart.First()))
             {
                 nameParts[0] = firstNamePart.Substring(1);
                 nameParts.Add($"({ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)})");

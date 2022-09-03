@@ -91,7 +91,6 @@
     <Compile Include="Helpers\Logger\Interfaces\IActiveLogger.cs" />
     <Compile Include="Helpers\Interfaces\IFileManager.cs" />
     <Compile Include="Helpers\Interfaces\IFileReader.cs" />
-    <Compile Include="Extensions\CharExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\FileManager.cs" />

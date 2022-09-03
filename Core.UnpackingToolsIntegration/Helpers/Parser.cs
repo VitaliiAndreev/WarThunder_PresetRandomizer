@@ -44,7 +44,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
                 var matchStrings = match.Value.Split(':');
 
-                var versionParameterNumberString = matchStrings.First().Where(character => character.IsDigitFluently()).StringJoin();
+                var versionParameterNumberString = matchStrings.First().Where(character => char.IsDigit(character)).StringJoin();
                 var versionParameterNumber = int.Parse(versionParameterNumberString);
 
                 var versionStringRaw = matchStrings[1];

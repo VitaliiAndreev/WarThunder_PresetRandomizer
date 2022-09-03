@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -158,7 +157,7 @@ namespace Core
                     new char[] { '\r', '\n' },
                     StringSplitOptions.RemoveEmptyEntries
                 )
-                .Where(line => !line.All(character => character.IsWhiteSpaceFluently() || character.IsPunctuationFluently()))
+                .Where(line => !line.All(character => char.IsWhiteSpace(character) || char.IsPunctuation(character)))
                 .Select(line => line.Trim())
                 .StringJoin(' ')
             ;
@@ -236,7 +235,6 @@ namespace Core
         /// <summary> Creates a new text reader with the given string. </summary>
         /// <param name="sourceString"> A source string. </param>
         /// <returns></returns>
-        [SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "StreamWriter cannot be closed here.")]
         public static TextReader CreateTextReader(this string sourceString)
         {
             var memoryStream = new MemoryStream();
