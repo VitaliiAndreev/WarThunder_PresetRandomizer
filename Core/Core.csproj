@@ -74,7 +74,6 @@
     <Compile Include="Extensions\IComparableExtensions.cs" />
     <Compile Include="Extensions\IConvertibleExtensions.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
-    <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Extensions\FileInfoExtensions.cs" />
     <Compile Include="Extensions\GenericExtensions.cs" />
     <Compile Include="Extensions\IListExtensions.cs" />

@@ -587,7 +587,12 @@ namespace WarThunderSimpleUpdateChecker
 
             _logger.LogInfo($"Decompressing DDSX files and converting to PNG in \"{unpackedDirectory.Name}\"...");
 
-            foreach (var subdirectory in unpackedDirectory.GetDirectories(SearchOption.AllDirectories).Including(unpackedDirectory))
+            var subdirectories = unpackedDirectory
+                .GetDirectories("*", SearchOption.AllDirectories)
+                .Including(unpackedDirectory)
+                .ToList();
+
+            foreach (var subdirectory in subdirectories)
             {
                 if (!directoryContainsDdsxFiles(subdirectory))
                     continue;
@@ -646,7 +651,10 @@ namespace WarThunderSimpleUpdateChecker
 
                 _logger.LogInfo($"Looking up filtered out files...");
 
-                var unwantedFiles = gameFileCopyDirectory.GetFiles(file => !file.Name.IsIn(fileNames), SearchOption.AllDirectories).ToList();
+                var unwantedFiles = gameFileCopyDirectory
+                    .GetFiles()
+                    .Where(file => !file.Name.IsIn(fileNames))
+                    .ToList();
 
                 _logger.LogInfo($"{unwantedFiles.Count()} found.");
 
@@ -691,7 +699,11 @@ namespace WarThunderSimpleUpdateChecker
             }
 
             var unwantedFiles = gameFileCopyDirectory
-                .GetFiles(file => !string.IsNullOrWhiteSpace(file.Extension) && file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions) && !file.Name.IsIn(fileNames), SearchOption.AllDirectories)
+                .GetFiles("*", SearchOption.AllDirectories)
+                .Where(file =>
+                    !string.IsNullOrWhiteSpace(file.Extension) &&
+                    file.GetExtensionWithoutPeriod().IsIn(unwantedFileExtensions) &&
+                    !file.Name.IsIn(fileNames))
                 .ToList()
             ;
 

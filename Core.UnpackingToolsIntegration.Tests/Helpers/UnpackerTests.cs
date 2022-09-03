@@ -72,7 +72,14 @@ namespace Core.UnpackingToolsIntegration.Tests.Helpers
             // arrange
             var sourceFile = _fileManager.GetFileInfo(Settings.WarThunderLocation, EFile.WarThunder.WorldWarParameters);
             var binOutputDirectory = new DirectoryInfo(_unpacker.Unpack(sourceFile));
-            var blkFile = binOutputDirectory.GetDirectories().First().GetDirectories().First().GetFiles(file => file.Extension.ToLower().Contains(FileExtension.Blk)).First();
+            var blkFile = binOutputDirectory
+                .GetDirectories()
+                .First()
+                .GetDirectories()
+                .First()
+                .GetFiles()
+                .Where(file => file.Extension.ToLower().Contains(FileExtension.Blk))
+                .First();
 
             // act
             var blkxOutput = new FileInfo(_unpacker.Unpack(blkFile));
