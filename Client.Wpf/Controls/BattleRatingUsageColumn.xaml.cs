@@ -1,4 +1,4 @@
-﻿using Client.Shared.Wpf.Extensions;
+﻿using Client.Shared.Wpf;
 using Client.Wpf.Controls.Base;
 using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String;

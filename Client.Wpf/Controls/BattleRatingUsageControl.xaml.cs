@@ -1,4 +1,5 @@
-﻿using Client.Shared.Wpf.Extensions;
+﻿using Client.Shared.Wpf;
+using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Core;
@@ -37,8 +38,8 @@ namespace Client.Wpf.Controls
                 { 0, _sameTierColor },
             };
 
-            var downtierColors = _sameTierColor.InterpolateTo(_downtierColor, economicRankForkSize);
-            var uptierColors = _sameTierColor.InterpolateTo(_uptierColor, economicRankForkSize);
+            var downtierColors = _sameTierColor.GetInterpolatedRangeTo(_downtierColor, economicRankForkSize);
+            var uptierColors = _sameTierColor.GetInterpolatedRangeTo(_uptierColor, economicRankForkSize);
 
             static Color getColor(IEnumerable<Color> colors, int index) => colors.At(index - 1);
 

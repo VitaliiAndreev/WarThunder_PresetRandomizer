@@ -22,7 +22,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             var stepCount = int.MinValue;
 
             // act
-            var colors = black.InterpolateTo(white, stepCount);
+            var colors = black.GetInterpolatedRangeTo(white, stepCount);
 
             // assert
             colors.Should().BeEmpty();
@@ -37,7 +37,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             var stepCount = int.MinValue;
 
             // act
-            var colors = black.InterpolateTo(white, stepCount);
+            var colors = black.GetInterpolatedRangeTo(white, stepCount);
 
             // assert
             colors.Should().BeEmpty();
@@ -52,7 +52,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             var stepCount = 10;
 
             // act
-            var colors = blackOriginal.InterpolateTo(blackClone, stepCount);
+            var colors = blackOriginal.GetInterpolatedRangeTo(blackClone, stepCount);
 
             // assert
             colors.Count().Should().Be(stepCount);
@@ -71,7 +71,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             var expectedColors = new List<Color> { new Color().From(expectedFirstStep), new Color().From(expectedSecondStep) };
 
             // act
-            var colors = black.InterpolateTo(white, stepCount);
+            var colors = black.GetInterpolatedRangeTo(white, stepCount);
 
             // assert
             colors.Should().BeEquivalentTo(expectedColors);
@@ -89,7 +89,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             var expectedColors = new List<Color> { new Color().From(expectedFirstStep), new Color().From(expectedSecondStep) };
 
             // act
-            var colors = white.InterpolateTo(black, stepCount);
+            var colors = white.GetInterpolatedRangeTo(black, stepCount);
 
             // assert
             colors.Should().BeEquivalentTo(expectedColors);
@@ -111,7 +111,7 @@ namespace Client.Shared.Wpf.Tests.Extensions
             };
 
             // act
-            var colors = red.InterpolateTo(green, stepCount);
+            var colors = red.GetInterpolatedRangeTo(green, stepCount);
 
             // assert
             colors.Should().BeEquivalentTo(expectedColors);
