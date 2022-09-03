@@ -65,7 +65,7 @@
     <Compile Include="Enumerations\Separator.cs" />
     <Compile Include="Enumerations\SettingsFileStatus.cs" />
     <Compile Include="Enumerations\Subdirectory.cs" />
-    <Compile Include="Exceptions\NotInitializedException.cs" />
+    <Compile Include="Exceptions\NotInitialisedException.cs" />
     <Compile Include="Exceptions\SettingsFileRegeneratedException.cs" />
     <Compile Include="Extensions\AnonymousObjectExtensions.cs" />
     <Compile Include="Extensions\ByteExtensions.cs" />

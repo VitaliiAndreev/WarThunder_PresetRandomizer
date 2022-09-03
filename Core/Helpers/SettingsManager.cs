@@ -1,5 +1,4 @@
-﻿using Core.Exceptions;
-using Core.Extensions;
+﻿using Core.Extensions;
 using Core.Helpers.Interfaces;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
@@ -222,11 +221,11 @@ namespace Core.Helpers
 
         #endregion Methods: Writing
 
-        /// <summary> Throws a <see cref="NotInitializedException"/>. </summary>
+        /// <summary> Throws a <see cref="NotInitialisedException"/>. </summary>
         private void LogErrorAndThrowIfSettingsNotInitialized()
         {
             if (_settings is null || _settings.IsEmpty())
-                LogErrorAndThrow<NotInitializedException>(
+                LogErrorAndThrow<NotInitialisedException>(
                     $"{nameof(SettingsManager)} not initialised properly.",
                     "The settings cache is empty.");
         }
