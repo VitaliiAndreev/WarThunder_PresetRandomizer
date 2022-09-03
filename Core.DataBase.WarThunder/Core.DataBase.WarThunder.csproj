@@ -92,6 +92,7 @@
     <Compile Include="Enumerations\EVehicleImage.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseWarThunderLogMessage.cs" />
     <Compile Include="Enumerations\EVehicleSubclass.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EVehicleCategoryExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ECategoryExtensions.cs" />

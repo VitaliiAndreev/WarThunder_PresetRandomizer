@@ -8,7 +8,7 @@ namespace Core.DataBase.WarThunder.Extensions
     public static class EVehicleCategoryExtensions
     {
         public static bool IsValid(this EVehicleCategory category) =>
-            category.EnumerationItemValueIsPositive();
+            category.ValueIsPositive();
 
         public static IEnumerable<EVehicleBranchTag> GetVehicleBranchTags(this EBranch branch, bool selectOnlyValidItems = true) =>
             typeof(EVehicleBranchTag)

@@ -11,7 +11,7 @@ namespace Core.DataBase.WarThunder.Extensions
         /// <param name="rank"> The rank to check. </param>
         /// <returns></returns>
         public static bool IsValid(this ERank rank) =>
-            rank.EnumerationItemValueIsPositive();
+            rank.ValueIsPositive();
 
         /// <summary> Returns the previous rank enumeration item. </summary>
         /// <param name="currentRank"> The current rank enumeration item. </param>

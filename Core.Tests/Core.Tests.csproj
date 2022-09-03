@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FileInfoExtensionsTests.cs" />
-    <Compile Include="Extensions\GenericExtensionsTests.cs" />
     <Compile Include="Extensions\ICollectionExtensionsTests.cs" />
     <Compile Include="Extensions\IConvertibleExtensionsTests.cs" />
     <Compile Include="Extensions\IDictionaryExtensionsTests.cs" />

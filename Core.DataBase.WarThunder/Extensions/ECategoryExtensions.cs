@@ -7,7 +7,7 @@ namespace Core.DataBase.WarThunder.Extensions
     public static class ECategoryExtensions
     {
         public static bool IsValid(this ECategory category) =>
-            category.EnumerationItemValueIsPositive();
+            category.ValueIsPositive();
 
         public static IEnumerable GetItems<T>(this ECategory category)
         {

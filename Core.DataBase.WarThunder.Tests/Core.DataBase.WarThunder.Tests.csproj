@@ -122,6 +122,7 @@
     <Compile Include="Extensions\EVehicleBranchTagExtensionsTests.cs" />
     <Compile Include="Extensions\EVehicleSubclassExtensionsTests.cs" />
     <Compile Include="Extensions\EVehicleClassExtensionsTests.cs" />
+    <Compile Include="Extensions\EnumExtensionsTests.cs" />
     <Compile Include="Helpers\CalculatorTests.cs" />
     <Compile Include="Objects\BranchTests.cs" />
     <Compile Include="Objects\NationTests.cs" />

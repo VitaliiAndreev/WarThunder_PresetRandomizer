@@ -67,7 +67,6 @@
     <Compile Include="Enumerations\Subdirectory.cs" />
     <Compile Include="Exceptions\NotInitialisedException.cs" />
     <Compile Include="Exceptions\SettingsFileRegeneratedException.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="Extensions\IComparableExtensions.cs" />

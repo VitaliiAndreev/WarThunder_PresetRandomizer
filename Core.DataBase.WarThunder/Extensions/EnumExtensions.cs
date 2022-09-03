@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace Core.DataBase.WarThunder
 {
     public static class EnumExtensions
     {
@@ -8,7 +8,7 @@ namespace Core
         /// <typeparam name="T"> The enumeration type of the <paramref name="source"/>. </typeparam>
         /// <param name="source"> The enumeration item to check. </param>
         /// <returns></returns>
-        public static bool EnumerationItemValueIsPositive<T>(this T source) where T : struct
+        public static bool ValueIsPositive<T>(this T source) where T : struct
         {
             var type = typeof(T);
 
