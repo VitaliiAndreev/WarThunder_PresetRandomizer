@@ -83,6 +83,7 @@
     <Compile Include="Exceptions\OutputFileNotFoundException.cs" />
     <Compile Include="Exceptions\YupFileParsingException.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
+    <Compile Include="Extensions\FuncExtensions.cs" />
     <Compile Include="Helpers\Converter.cs" />
     <Compile Include="Helpers\Interfaces\IConverter.cs" />
     <Compile Include="Helpers\Interfaces\IWarThunderFileManager.cs" />

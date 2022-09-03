@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Core
+namespace Core.UnpackingToolsIntegration
 {
-    public static class DelegateExtensions
+    public static class FuncExtensions
     {
         public static bool TryExecuting<T>(this Func<T> function, out T result, out Exception caughtException) where T : class
         {
