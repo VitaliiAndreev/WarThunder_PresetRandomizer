@@ -9,7 +9,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
     public class EnumExtensionsTests
     {
         [TestMethod]
-        public void EnumerationItemValueIsPositive_TestEnum_Negative1_ReturnsFalse()
+        public void ValueIsPositive_ReturnsFalse_IfNegativeOne()
         {
             // arrange
             var enumerationitem = TestEnumerationOfIntegers.NegativeOne;
@@ -22,7 +22,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         [TestMethod]
-        public void ValueIsPositive_TestEnum_0_ReturnsFalse()
+        public void ValueIsPositive_ReturnsFalse_IfZero()
         {
             // arrange
             var enumerationitem = TestEnumerationOfIntegers.Zero;
@@ -35,7 +35,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         [TestMethod]
-        public void ValueIsPositive_TestEnum_1_ReturnsTrue()
+        public void ValueIsPositive_ReturnsTrue_IfPositiveOne()
         {
             // arrange
             var enumerationitem = TestEnumerationOfIntegers.PositiveOne;
@@ -48,7 +48,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         [TestMethod]
-        public void ValueIsPositive_NotEnumeration_ThrowsArgumentException()
+        public void ValueIsPositive_ThrowsArgumentException_IfNotEnumeration()
         {
             // arrange
             var value = 17;
@@ -61,7 +61,7 @@ namespace Core.DataBase.WarThunder.Tests.Extensions
         }
 
         [TestMethod]
-        public void ValueIsPositive_UnderlyingTypeNotSupported_ThrowsNotImplementedException()
+        public void ValueIsPositive_ThrowsNotImplementedException_IfUnderlyingTypeNotSupported()
         {
             // arrange
             var value = TestEnumerationOfUnsignedIntegers.Item;
