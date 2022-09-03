@@ -1,5 +1,4 @@
 ﻿using Client.Shared.Wpf.Enumerations.Logger;
-using Core;
 using System;
 using System.Linq;
 using System.Windows;
@@ -40,14 +39,14 @@ namespace Client.Shared.Wpf.Extensions
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
                 grid.Children.Add(uiElement);
 
-                Grid.SetColumn(uiElement, grid.ColumnDefinitions.Count() - Integer.Number.One);
+                Grid.SetColumn(uiElement, grid.ColumnDefinitions.Count() - 1);
             }
             else
             {
                 grid.RowDefinitions.Add(new RowDefinition());
                 grid.Children.Add(uiElement);
 
-                Grid.SetRow(uiElement, grid.RowDefinitions.Count() - Integer.Number.One);
+                Grid.SetRow(uiElement, grid.RowDefinitions.Count() - 1);
             }
         }
     }

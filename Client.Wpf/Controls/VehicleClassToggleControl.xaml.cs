@@ -1,7 +1,6 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Extensions;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Extensions;
@@ -15,13 +14,10 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for VehicleClassToggleControl.xaml. </summary>
     public partial class VehicleClassToggleControl : ColumnToggleGroupControl<EBranch, EVehicleClass>
     {
-        #region Constants
-
-        private const double _vehicleClassIconFontSize = Integer.Number.Eight;
-        private const double _buttonLeftColumnWidth = Integer.Number.Thirteen;
-        private const double _buttonRightColumnWidth = Integer.Number.Fifteen;
-
-        #endregion Constants
+        private const double buttonLeftColumnWidth = 13;
+        private const double buttonRightColumnWidth = 15;
+        private const double vehicleClassIconFontSize = 8;
+        
         #region Fields
 
         /// <summary> Togglable vehicle subclass menu items indexed by vehicle subclass keys. </summary>
@@ -160,10 +156,10 @@ namespace Client.Wpf.Controls
                 foreach (var button in toggleColumn.Value.Buttons.Values)
                 {
                     if (button.ContextMenu is null && button.Tag.CastTo<EVehicleClass>().IsValid())
-                        button.ReplaceContentWithGrid(_buttonLeftColumnWidth, _buttonRightColumnWidth);
+                        button.ReplaceContentWithGrid(buttonLeftColumnWidth, buttonRightColumnWidth);
 
                     else
-                        button.UpdateContextMenuItemCount(_buttonLeftColumnWidth, _buttonRightColumnWidth, _vehicleClassIconFontSize);
+                        button.UpdateContextMenuItemCount(buttonLeftColumnWidth, buttonRightColumnWidth, vehicleClassIconFontSize);
                 }
             }
         }
@@ -171,7 +167,7 @@ namespace Client.Wpf.Controls
         public void UpdateContextMenuItemCount(EBranch branch, EVehicleClass vehicleClass)
         {
             if (ToggleColumns.TryGetValue(branch, out var toggleColumn) && toggleColumn.Buttons.TryGetValue(vehicleClass, out var toggleButton))
-                toggleButton.UpdateContextMenuItemCount(_buttonLeftColumnWidth, _buttonRightColumnWidth, _vehicleClassIconFontSize);
+                toggleButton.UpdateContextMenuItemCount(buttonLeftColumnWidth, buttonRightColumnWidth, vehicleClassIconFontSize);
         }
 
         #endregion Methods: UpdateContextMenuItemCount()

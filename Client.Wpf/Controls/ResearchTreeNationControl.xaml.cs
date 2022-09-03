@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Extensions;
@@ -115,7 +114,7 @@ namespace Client.Wpf.Controls
         /// <param name="loadingTracker"> An instance of a presenter to communicate with the GUI loading window. </param>
         internal void Populate(ResearchTree researchTree, IEnumerable<string> enabledVehicleGaijinIds, IGuiLoadingWindowPresenter loadingTracker)
         {
-            loadingTracker.BranchesPopulated = Integer.Number.Zero;
+            loadingTracker.BranchesPopulated = 0;
             loadingTracker.BranchesToPopulate = BranchTabs.Count;
 
             foreach (var branchTabKeyValuePair in BranchTabs)

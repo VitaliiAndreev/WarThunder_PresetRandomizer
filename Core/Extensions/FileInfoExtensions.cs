@@ -11,7 +11,7 @@ namespace Core.Extensions
         public static string GetExtensionWithoutPeriod(this FileInfo fileInfo) =>
             fileInfo
                 .Extension
-                .Substring(Integer.Number.One)
+                .Substring(1)
             ;
 
         /// <summary> Get the file name without an extension (if any). </summary>

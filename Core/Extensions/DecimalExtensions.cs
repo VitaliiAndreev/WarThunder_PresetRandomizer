@@ -19,7 +19,7 @@ namespace Core.Extensions
             number > 0m;
 
         public static bool IsInteger(this decimal number) =>
-            number % Integer.Number.One == Integer.Number.Zero;
+            number % 1 == 0;
 
         #endregion Math
 

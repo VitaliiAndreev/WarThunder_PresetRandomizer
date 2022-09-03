@@ -1,6 +1,5 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.Extensions;
 using Core.Organization.Enumerations;
 using Core.Organization.Objects.SearchSpecifications;
@@ -70,7 +69,7 @@ namespace Client.Wpf.Commands.MainWindow
                             nation,
                             presenter.EnabledCountries.Where(nationCountryPair => nationCountryPair.Nation == nation).Select(nationCountryPair => nationCountryPair.Country),
                             presenter.EnabledBranches.Except(emptyBranches[nation]),
-                            Integer.Number.Ten
+                            crewSlots: 10
                         )
                     );
                 var specification = new Specification

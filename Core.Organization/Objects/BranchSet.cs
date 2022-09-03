@@ -27,33 +27,24 @@ namespace Core.Organization.Objects
         }
 
         #endregion Constructors
-        #region Methods: Overrides
 
         public override bool Equals(object obj)
         {
-            if (obj is BranchSet otherBranchSet)
-                return Branches.OrderBy(branch => branch).SequenceEqual(otherBranchSet.Branches.OrderBy(branch => branch));
+            return 
+                obj is BranchSet other &&
+                Equals(other);
+        }
 
-            return false;
+        public bool Equals(BranchSet other)
+        {
+            return Equals(Branches, other.Branches);
         }
 
         public override int GetHashCode()
         {
-            var branchesIncluded = Branches.OrderBy(branch => branch).ToList();
-            var primes = Integer.Number.PrimesAboveHundred.ToList();
-            var hashCode = Integer.Number.One;
-
-            for (var index = Integer.Number.Zero; index < Branches.Count(); index++)
-            {
-                var prime = primes[index];
-                var branch = branchesIncluded[index];
-
-                hashCode *= prime + branch.GetHashCode();
-            }
-
-            return hashCode;
+            return Branches != null
+                ? Branches.GetHashCode()
+                : 0;
         }
-
-        #endregion Methods: Overrides
     }
 }

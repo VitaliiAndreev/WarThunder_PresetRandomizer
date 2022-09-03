@@ -334,7 +334,7 @@ namespace WarThunderSimpleUpdateChecker
             if (cacheDirectoriesExist)
             {
                 var cacheDirectories = Directory
-                    .GetDirectories(cacheDirectoriesPath, $"binary.{clientVersion.ToString(Integer.Number.Three)}*", SearchOption.TopDirectoryOnly)
+                    .GetDirectories(cacheDirectoriesPath, $"binary.{clientVersion.ToString(fieldCount: 3)}*", SearchOption.TopDirectoryOnly)
                     .Select(path => new DirectoryInfo(path))
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
@@ -407,7 +407,7 @@ namespace WarThunderSimpleUpdateChecker
 
             if (sourceFilesInCache.Any())
             {
-                for (var fileIndex = Integer.Number.Zero; fileIndex < sourceFiles.Count(); fileIndex++)
+                for (var fileIndex = 0; fileIndex < sourceFiles.Count(); fileIndex++)
                 {
                     var sourceFile = sourceFiles[fileIndex];
                     var sourceFileName = sourceFile.Name;
@@ -593,8 +593,8 @@ namespace WarThunderSimpleUpdateChecker
                 if (!directoryContainsDdsxFiles(subdirectory))
                     continue;
 
-                var retryAttempts = Integer.Number.Ten;
-                var retryAttempt = Integer.Number.One;
+                var retryAttempts = 10;
+                var retryAttempt = 1;
 
                 void Try(Action method)
                 {

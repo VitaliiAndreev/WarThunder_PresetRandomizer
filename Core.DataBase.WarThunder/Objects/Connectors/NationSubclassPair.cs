@@ -1,6 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
-using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects.Connectors
 {
@@ -22,32 +20,36 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         }
 
         #endregion Constructors
-        #region Methods: Equality Comparison
 
         public override bool Equals(object obj)
         {
-            if (!(obj is NationSubclassPair otherPair))
+            if (obj is null)
                 return false;
 
-            return Nation.Equals(otherPair.Nation)
-                && Subclass.Equals(otherPair.Subclass);
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != this.GetType())
+                return false;
+
+            return Equals((NationSubclassPair)obj);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hash = Integer.Number.PrimesAboveHundred.First();
-
-                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
-                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Subclass.GetHashCode();
-
-                return hash;
+                return ((int)Nation * 397) ^ (int)Subclass;
             }
         }
 
-        #endregion Methods: Equality Comparison
-
         public override string ToString() => $"{Nation}_{Subclass}";
+
+        protected bool Equals(NationSubclassPair other)
+        {
+            return
+                Nation == other.Nation &&
+                Subclass == other.Subclass;
+        }
     }
 }

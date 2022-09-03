@@ -12,8 +12,14 @@ namespace Core.Extensions
         public static IEnumerable<int> AsEnumerable(this Interval<int> interval)
         {
             var integers = new List<int>();
+            var firstInteger = interval.LeftBounded
+                ? interval.LeftItem
+                : interval.LeftItem + 1;
+            var lastInteger = interval.RightBounded
+                ? interval.RightItem
+                : interval.RightItem - 1;
 
-            for (var integer = interval.LeftBounded ? interval.LeftItem : interval.LeftItem + Integer.Number.One; integer <= (interval.RightBounded ? interval.RightItem : interval.RightItem - Integer.Number.One); integer++)
+            for (var integer = firstInteger; integer <= lastInteger; integer++)
                 integers.Add(integer);
 
             return integers;

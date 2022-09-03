@@ -7,7 +7,7 @@ namespace Core.DataBase.WarThunder.Extensions
     public static class EVehicleBranchTagExtensions
     {
         public static bool IsValid(this EVehicleBranchTag vehicleBranchTag) =>
-            vehicleBranchTag.CastTo<int>() > Integer.Number.Nine && !vehicleBranchTag.ToString().StartsWith(Word.All);
+            vehicleBranchTag.CastTo<int>() > 9 && !vehicleBranchTag.ToString().StartsWith(Word.All);
 
         public static bool IsDefault(this EVehicleBranchTag tag) =>
             tag.ToString().Contains(Word.Untagged);

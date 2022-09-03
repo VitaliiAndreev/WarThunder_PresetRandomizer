@@ -250,8 +250,8 @@ namespace Core.Organization.Helpers
         {
             static IDictionary<int, int> createDictionary() =>
                 Enumerable
-                    .Range(Integer.Number.Zero, EReference.MaximumEconomicRank + Integer.Number.One)
-                    .ToDictionary(number => number, number => Integer.Number.Zero);
+                    .Range(0, EReference.MaximumEconomicRank + 1)
+                    .ToDictionary(number => number, number => 0);
 
             foreach (var branchDictionary in EconomicRankUsage.Values)
             {
@@ -461,7 +461,7 @@ namespace Core.Organization.Helpers
                 LogInfo(EOrganizationLogMessage.ReadingVehicleUsageStatisticsFromThunderSkill);
                 {
                     var task = Task.Factory.StartNew(() => _thunderSkillParser.Load());
-                    var timeout = Integer.Time.MillisecondsInSecond * Integer.Number.Thirty;
+                    var timeout = Integer.Time.MillisecondsInSecond * 30;
 
                     if (await Task.WhenAny(task, Task.Delay(timeout)) == task)
                     {
@@ -550,7 +550,7 @@ namespace Core.Organization.Helpers
                 }
 
                 var cacheDirectories = cacheDirectory
-                    .GetDirectories($"binary.{_gameClientVersion.ToString(Integer.Number.Three)}*", SearchOption.TopDirectoryOnly)
+                    .GetDirectories($"binary.{_gameClientVersion.ToString(fieldCount: 3)}*", SearchOption.TopDirectoryOnly)
                     .OrderByDescending(directory => directory.LastWriteTimeUtc);
 
                 if (cacheDirectories.Any())
@@ -1007,7 +1007,7 @@ namespace Core.Organization.Helpers
             _fileManager.DeleteOldFiles
             (
                 Path.Combine(Directory.GetCurrentDirectory(), Subdirectory.Logs),
-                DateTime.Now.AddDays(-Integer.Number.Seven)
+                DateTime.Now.AddDays(-7)
             );
 
         /// <summary> Generates two vehicle presets (primary and fallback) based on the given specification. </summary>

@@ -1,6 +1,5 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Enumerations;
-using Core;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,7 +38,7 @@ namespace Client.Wpf.Extensions
 
             var iconTextBlock = new TextBlock { Style = button.GetStyle(EStyleKey.TextBlock.TextBlockWithSkyQuake), Text = button.Content.ToString() };
 
-            newGrid.Add(iconTextBlock, Integer.Number.Zero);
+            newGrid.Add(iconTextBlock, columnIndex: 0);
 
             button.Content = newGrid;
 
@@ -76,13 +75,13 @@ namespace Client.Wpf.Extensions
                     var lastTextBlock = grid.Children.OfType<TextBlock>().Last();
 
                     grid.Children.Remove(lastTextBlock);
-                    grid.Add(newTextBlock, Integer.Number.One);
+                    grid.Add(newTextBlock, columnIndex: 1);
                 }
                 else
                 {
                     button
                         .ReplaceContentWithGrid(leftColumnWidth, rightColumnWidth)
-                        .Add(newTextBlock, Integer.Number.One)
+                        .Add(newTextBlock, columnIndex: 1)
                     ;
                 }
             }

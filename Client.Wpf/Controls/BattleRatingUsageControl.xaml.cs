@@ -1,7 +1,6 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Extensions;
 using Core.Organization.Collections;
@@ -16,15 +15,14 @@ namespace Client.Wpf.Controls
 {
     public partial class BattleRatingUsageControl : LocalisedUserControl
     {
-        #region Constants
-
-        private const int _economicRankForkSize = Integer.Number.Three;
+        private const int economicRankForkSize = 3;
+        private const int placeholderCount = -1;
+        private const int thunderSkillDataFontSize = 16;
 
         private static readonly Color _downtierColor = new Color().From(0, 255, 0);
         private static readonly Color _sameTierColor = new Color().From(255, 255, 0);
         private static readonly Color _uptierColor = new Color().From(255, 0, 0);
-
-        #endregion Constants
+        
         #region Fields
 
         private static readonly IDictionary<int, Color> _colors;
@@ -36,18 +34,18 @@ namespace Client.Wpf.Controls
         {
             _colors = new Dictionary<int, Color>
             {
-                { Integer.Number.Zero, _sameTierColor }
+                { 0, _sameTierColor },
             };
 
-            var downtierColors = _sameTierColor.InterpolateTo(_downtierColor, _economicRankForkSize);
-            var uptierColors = _sameTierColor.InterpolateTo(_uptierColor, _economicRankForkSize);
+            var downtierColors = _sameTierColor.InterpolateTo(_downtierColor, economicRankForkSize);
+            var uptierColors = _sameTierColor.InterpolateTo(_uptierColor, economicRankForkSize);
 
-            static Color getColor(IEnumerable<Color> colors, int index) => colors.At(index - Integer.Number.One);
+            static Color getColor(IEnumerable<Color> colors, int index) => colors.At(index - 1);
 
-            for (var downtierEconomicRank = -Integer.Number.One; downtierEconomicRank >= -_economicRankForkSize; downtierEconomicRank--)
+            for (var downtierEconomicRank = -1; downtierEconomicRank >= -economicRankForkSize; downtierEconomicRank--)
                 _colors.Add(downtierEconomicRank, getColor(downtierColors, -downtierEconomicRank));
 
-            for (var uptierEconomicRank = Integer.Number.One; uptierEconomicRank <= _economicRankForkSize; uptierEconomicRank++)
+            for (var uptierEconomicRank = 1; uptierEconomicRank <= economicRankForkSize; uptierEconomicRank++)
                 _colors.Add(uptierEconomicRank, getColor(uptierColors, uptierEconomicRank));
         }
 
@@ -68,7 +66,7 @@ namespace Client.Wpf.Controls
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Bottom,
                     TextAlignment = TextAlignment.Center,
-                    FontSize = Integer.Number.Sixteen,
+                    FontSize = thunderSkillDataFontSize,
                     Text = ApplicationHelpers.LocalisationManager.GetLocalisedString(ELocalisationKey.NoData),
                 };
 
@@ -79,9 +77,9 @@ namespace Client.Wpf.Controls
 
             var usageCounts = new Dictionary<int, int>();
 
-            for (var economicRank = preset.EconomicRank - _economicRankForkSize; economicRank <= preset.EconomicRank + _economicRankForkSize; economicRank++)
+            for (var economicRank = preset.EconomicRank - economicRankForkSize; economicRank <= preset.EconomicRank + economicRankForkSize; economicRank++)
             {
-                usageCounts.Add(economicRank, Integer.Number.Zero);
+                usageCounts.Add(economicRank, 0);
 
                 foreach (var branch in preset.Branches)
                 {
@@ -94,7 +92,7 @@ namespace Client.Wpf.Controls
                     }
                     else
                     {
-                        usageCounts[economicRank] = -Integer.Number.One;
+                        usageCounts[economicRank] = placeholderCount;
                     }
                 }
             }
@@ -102,9 +100,9 @@ namespace Client.Wpf.Controls
             var totalUsageCount = usageCounts.Values.Sum();
             var ratios = usageCounts
                 .Where(usageCount => !usageCount.Value.IsNegative())
-                .ToDictionary(economicRank => economicRank.Key, economicRank => totalUsageCount.IsPositive() ? Convert.ToDouble(economicRank.Value) / totalUsageCount : Integer.Number.Zero)
+                .ToDictionary(economicRank => economicRank.Key, economicRank => totalUsageCount.IsPositive() ? Convert.ToDouble(economicRank.Value) / totalUsageCount : 0)
             ;
-            var columnIndex = Integer.Number.Zero;
+            var columnIndex = 0;
             var colorIndex = _colors.Keys.Min();
 
             foreach (var usageCountRecord in usageCounts)

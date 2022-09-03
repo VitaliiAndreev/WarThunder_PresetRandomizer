@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.DataBase.WarThunder.Enumerations;
+﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.Objects;
 using System;
@@ -11,6 +10,8 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for UpDownBattleRatingPairControl.xaml. </summary>
     public partial class UpDownBattleRatingPairControl : UserControl
     {
+        private const int minimumEconomicRank = 0;
+
         #region Properties
 
         /// <summary> The maximum allowed <see cref="IVehicle.EconomicRank"/> defined by the control's state. </summary>
@@ -41,7 +42,7 @@ namespace Client.Wpf.Controls
             InitializeComponent();
 
             _maximumUpDownControl.MaximumValue = EReference.MaximumEconomicRank;
-            _minimumUpDownControl.MinimumValue = Integer.Number.Zero;
+            _minimumUpDownControl.MinimumValue = minimumEconomicRank;
         }
 
         #endregion Constructors
@@ -75,8 +76,8 @@ namespace Client.Wpf.Controls
         /// <param name="interval"> The interval to use for initialization. </param>
         public void Initialize(Interval<int> interval)
         {
-            _maximumUpDownControl.Value = Math.Min(interval.RightItem, EReference.MaximumEconomicRank);
-            _minimumUpDownControl.Value = Math.Max(interval.LeftItem, Integer.Number.Zero);
+            _maximumUpDownControl.Value = Math.Min(interval.RightItem, _maximumUpDownControl.MaximumValue);
+            _minimumUpDownControl.Value = Math.Max(interval.LeftItem, _minimumUpDownControl.MinimumValue);
         }
     }
 }

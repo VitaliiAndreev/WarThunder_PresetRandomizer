@@ -2,7 +2,6 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using System.Windows;
@@ -43,7 +42,7 @@ namespace Client.Wpf.Controls
 
             Tag = nationCountryPair;
 
-            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(Integer.Number.Zero, Integer.Number.Zero, Integer.Number.Five, Integer.Number.Zero), useNationFlags, createTooltip));
+            _panel.Children.Add(nationCountryPair.CreateFlag(_flagStyle, Wpf.Margin.NationFlagNameMargin, useNationFlags, createTooltip));
             _panel.Children.Add(_label);
 
             MouseDown += mouseDownHandler;

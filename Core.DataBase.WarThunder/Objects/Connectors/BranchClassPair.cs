@@ -1,6 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
-using System.Linq;
 
 namespace Core.DataBase.WarThunder.Objects.Connectors
 {
@@ -22,32 +20,36 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         }
 
         #endregion Constructors
-        #region Methods: Equality Comparison
 
         public override bool Equals(object obj)
         {
-            if (!(obj is BranchClassPair otherPair))
+            if (obj is null)
                 return false;
 
-            return Branch.Equals(otherPair.Branch)
-                && Class.Equals(otherPair.Class);
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != GetType())
+                return false;
+
+            return Equals((BranchClassPair)obj);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hash = Integer.Number.PrimesAboveHundred.First();
-
-                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Branch.GetHashCode();
-                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Class.GetHashCode();
-
-                return hash;
+                return ((int)Branch * 397) ^ (int)Class;
             }
         }
 
-        #endregion Methods: Equality Comparison
-
         public override string ToString() => $"{Branch}_{Class}";
+
+        protected bool Equals(BranchClassPair other)
+        {
+            return
+                Branch == other.Branch &&
+                Class == other.Class;
+        }
     }
 }

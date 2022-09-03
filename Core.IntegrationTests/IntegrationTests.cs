@@ -238,9 +238,9 @@ namespace Core.IntegrationTests
                     vehicleCollection.Any(vehicle => vehicle.GraphicsData.WeaponMask < 0).Should().BeFalse();
 
                     // localization
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(Integer.Number.Thousand);
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(Integer.Number.Thousand);
-                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(Integer.Number.Thousand);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.FullName?.English)).Should().BeGreaterThan(1_000);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ResearchTreeName?.French)).Should().BeGreaterThan(1_000);
+                    vehicleCollection.Count(vehicle => !string.IsNullOrWhiteSpace(vehicle.ShortName?.Italian)).Should().BeGreaterThan(1_000);
 
                     // modifications
                     vehicleCollection.Any(vehicle => vehicle.ModificationsData is null).Should().BeFalse();

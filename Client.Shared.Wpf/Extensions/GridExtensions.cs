@@ -1,5 +1,4 @@
-﻿using Core;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +13,7 @@ namespace Client.Shared.Wpf.Extensions
 
             if (columnIndex.HasValue)
             {
-                for (var newColumnIndex = grid.ColumnDefinitions.Count() - Integer.Number.One; newColumnIndex < columnIndex; newColumnIndex++)
+                for (var newColumnIndex = grid.ColumnDefinitions.Count() - 1; newColumnIndex < columnIndex; newColumnIndex++)
                     grid.ColumnDefinitions.Add(new ColumnDefinition());
 
                 Grid.SetColumn(element, columnIndex.Value);
@@ -22,7 +21,7 @@ namespace Client.Shared.Wpf.Extensions
 
             if (rowIndex.HasValue)
             {
-                for (var newRowIndex = grid.RowDefinitions.Count() - Integer.Number.One; newRowIndex < rowIndex; newRowIndex++)
+                for (var newRowIndex = grid.RowDefinitions.Count() - 1; newRowIndex < rowIndex; newRowIndex++)
                     grid.RowDefinitions.Add(new RowDefinition());
 
                 Grid.SetRow(element, rowIndex.Value);

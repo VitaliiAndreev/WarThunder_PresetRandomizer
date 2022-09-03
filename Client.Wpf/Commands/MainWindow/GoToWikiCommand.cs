@@ -54,7 +54,7 @@ namespace Client.Wpf.Commands.MainWindow
 
             if (!firstNamePart.First().IsLetterOrDigitFluently())
             {
-                nameParts[Integer.Number.Zero] = firstNamePart.Substring(Integer.Number.One);
+                nameParts[0] = firstNamePart.Substring(1);
                 nameParts.Add($"({ApplicationHelpers.LocalisationManager.GetLocalisedString(vehicle.Nation.AsEnumerationItem)})");
             }
             return nameParts.StringJoin('+');

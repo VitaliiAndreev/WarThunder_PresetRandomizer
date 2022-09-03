@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.Extensions;
+﻿using Core.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -21,7 +20,7 @@ namespace Client.Shared.Wpf.Extensions
 
             var target = default(T);
 
-            for (var childIndex = Integer.Number.Zero; childIndex < VisualTreeHelper.GetChildrenCount(parent); childIndex++)
+            for (var childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount(parent); childIndex++)
             {
                 var child = VisualTreeHelper.GetChild(parent, childIndex) as FrameworkElement;
 

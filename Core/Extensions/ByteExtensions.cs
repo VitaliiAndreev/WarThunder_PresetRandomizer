@@ -17,7 +17,7 @@ namespace Core.Extensions
         public static IEnumerable<byte> InterpolateTo(this byte start, byte end, int stepCount)
         {
             if (start == end)
-                return Enumerable.Range(Integer.Number.Zero, stepCount).Select(number => start);
+                return Enumerable.Range(0, stepCount).Select(number => start);
 
             var reversed = start > end;
             var steps = new List<byte>();
@@ -25,9 +25,9 @@ namespace Core.Extensions
             var actualStart = reversed ? end : start;
             var actualEnd = reversed ? start : end;
 
-            for (var stepNumber = Integer.Number.One; stepNumber <= stepCount; stepNumber++)
+            for (var stepNumber = 1; stepNumber <= stepCount; stepNumber++)
             {
-                var step = Convert.ToByte(actualStart + ((actualEnd - actualStart) * stepNumber / (stepCount + Integer.Number.One)));
+                var step = Convert.ToByte(actualStart + ((actualEnd - actualStart) * stepNumber / (stepCount + 1)));
                 steps.Add(step);
             }
 

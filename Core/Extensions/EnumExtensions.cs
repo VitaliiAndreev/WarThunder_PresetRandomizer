@@ -17,7 +17,7 @@ namespace Core.Extensions
             var enumerationValueType = type.GetEnumUnderlyingType();
 
             if (enumerationValueType == typeof(int))
-                return source.CastTo<int>() > Integer.Number.Zero;
+                return source.CastTo<int>() > 0;
             else
                 throw new NotImplementedException($"Explicit implementation required for \"{enumerationValueType.ToStringLikeCode()}\" type.");
         }

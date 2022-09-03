@@ -5,6 +5,6 @@ namespace Core.Web.Helpers.Interfaces
 {
     public interface IHtmlParser
     {
-        HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = Integer.Number.One, Exception internalException = null);
+        HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = 1, Exception internalException = null);
     }
 }

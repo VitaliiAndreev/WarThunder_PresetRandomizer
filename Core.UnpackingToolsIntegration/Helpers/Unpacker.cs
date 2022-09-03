@@ -98,7 +98,11 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <returns></returns>
         private string GetToolFileNameByFileExtension(string fileExtension)
         {
-            if (_toolFileNames.TryGetValue(fileExtension.ToLower().Skip(Integer.Number.One).StringJoin(), out var toolFileName))
+            var fileExtensionWithoutPeriod = fileExtension.StartsWith(".")
+                ? fileExtension.Substring(startIndex: 1).ToLower()
+                : fileExtension;
+
+            if (_toolFileNames.TryGetValue(fileExtensionWithoutPeriod, out var toolFileName))
             {
                 LogDebug(EUnpackingToolsIntegrationLogMessage.UnpackingToolSelected.Format(toolFileName));
                 return toolFileName;

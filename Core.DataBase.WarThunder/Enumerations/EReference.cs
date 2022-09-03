@@ -6,18 +6,15 @@ namespace Core.DataBase.WarThunder.Enumerations
     /// <summary> Contains static dictionaries with reference data. </summary>
     public class EReference
     {
-        #region Constants
+        /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
+        public const int MinimumnCrewSlots = 2;
 
         /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
-        public const int MinimumnCrewSlots = Integer.Number.Two;
-
-        /// <summary> The maximum amount of crew slots available only for Silver Lions. </summary>
-        public const int MaximumCrewSlotsForSilver = Integer.Number.Five;
+        public const int MaximumCrewSlotsForSilver = 5;
 
         /// <summary> The maximum amount of crew slots available for Silver Lions and Golder Eagles. </summary>
-        public const int MaximumCrewSlotsForGold = Integer.Number.Ten;
-
-        #endregion Constants
+        public const int MaximumCrewSlotsForGold = 10;
+        
         #region Properties
 
         /// <summary> The maximum <see cref="IVehicle.EconomicRank"/> (zero-based). </summary>

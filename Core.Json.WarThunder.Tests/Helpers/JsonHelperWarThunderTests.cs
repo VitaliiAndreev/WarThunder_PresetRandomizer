@@ -285,7 +285,7 @@ namespace Core.Json.WarThunder.Tests.Helpers
             var researchTrees = _jsonHelper.DeserializeResearchTrees(jsonText);
 
             // assert
-            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - Integer.Number.Two);
+            researchTrees.Count().Should().BeGreaterOrEqualTo(Enum.GetValues(typeof(ENation)).Length - 2);
             foreach (var tree in researchTrees)
             {
                 tree.Branches.Any().Should().BeTrue();
@@ -295,13 +295,13 @@ namespace Core.Json.WarThunder.Tests.Helpers
                     foreach (var column in branch.Columns)
                     {
                         column.Cells.Any().Should().BeTrue();
-                        column.Cells.All(cell => cell.Rank > Integer.Number.Zero).Should().BeTrue();
-                        column.Cells.All(cell => cell.RowWithinRank > Integer.Number.Zero).Should().BeTrue();
+                        column.Cells.All(cell => cell.Rank > 0).Should().BeTrue();
+                        column.Cells.All(cell => cell.RowWithinRank > 0).Should().BeTrue();
                         column.Cells.All(cell => cell.Vehicles.Any()).Should().BeTrue();
 
                         foreach (var cell in column.Cells)
                         {
-                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == Integer.Number.Two).Should().BeTrue();
+                            cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.Count() == 2).Should().BeTrue();
                             cell.Vehicles.All(vehicle => vehicle.CellCoordinatesWithinRank.First().IsIn(new Interval<int>(true, 1, 7, true))).Should().BeTrue();
                         }
                     }

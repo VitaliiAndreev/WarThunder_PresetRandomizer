@@ -93,7 +93,7 @@ namespace Client.Wpf.Controls
         {
             if (_grid.ItemsSource is null || _grid.ItemsSource.IsEmpty())
             {
-                _panel.Children.Insert(Integer.Number.Zero, _hint);
+                _panel.Children.Insert(index: 0, _hint);
                 _grid.Visibility
                     = _includeHeadersOnCopyPanel.Visibility
                     = Visibility.Hidden;

@@ -34,10 +34,10 @@ namespace Core.Csv.WarThunder.Helpers
 
         private Tuple<int, int> GetLocalisationIndeces(IList<IList<string>> localisationRecords, int index, string gaijinId)
         {
-            var fullNameRecordIndex = -Integer.Number.One;
-            var shortNameRecordIndex = -Integer.Number.One;
+            var fullNameRecordIndex = -1;
+            var shortNameRecordIndex = -1;
 
-            for (var lineIndex = index - Integer.Number.One; !lineIndex.IsNegative(); lineIndex -= Integer.Number.One)
+            for (var lineIndex = index - 1; !lineIndex.IsNegative(); lineIndex -= 1)
             {
                 var currentRecord = localisationRecords[lineIndex];
                 var recordId = currentRecord.First();
@@ -77,14 +77,14 @@ namespace Core.Csv.WarThunder.Helpers
             };
 
             var sortedCsvRecords = csvRecords
-                .Skip(Integer.Number.One)
+                .Skip(1)
                 .Where(record => !record.First().ContainsAny(gaijinIdPartsToSkip))
                 .AsParallel()
                 .ToList()
                 .OrderBy(record => record.First())
                 .ToList();
 
-            for (var lineIndex = Integer.Number.One; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
+            for (var lineIndex = 1; lineIndex < sortedCsvRecords.Count(); lineIndex++) // Starts at 1 to skip headers.
             {
                 var record = sortedCsvRecords[lineIndex];
                 var recordGaijinId = record.First();

@@ -24,7 +24,7 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         {
             var strings = nationCountryString.Split('_', StringSplitOptions.RemoveEmptyEntries);
 
-            if (strings.Count() != Integer.Number.Two)
+            if (strings.Count() != 2)
                 throw new ArgumentException(EDatabaseWarThunderLogMessage.NationCountryFormatIsInvalid.Format(nationCountryString));
 
             Initialise(strings.First(), strings.Last());
@@ -74,37 +74,36 @@ namespace Core.DataBase.WarThunder.Objects.Connectors
         }
 
         #endregion Methods: Initialisation
-        #region Methods: Equality Comparison
 
-        /// <summary> Determines whether the specified object is equal to the current object. </summary>
-        /// <param name="obj"> The object to compare with the current object. </param>
-        /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is NationCountryPair otherPair))
+            if (obj is null)
                 return false;
 
-            return Nation.Equals(otherPair.Nation)
-                && Country.Equals(otherPair.Country);
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != this.GetType())
+                return false;
+
+            return Equals((NationCountryPair)obj);
         }
 
-        /// <summary> Serves as the default hash function. </summary>
-        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked
             {
-                var hash = Integer.Number.PrimesAboveHundred.First();
-
-                hash = hash * Integer.Number.PrimesAboveHundred.Second() + Nation.GetHashCode();
-                hash = hash * Integer.Number.PrimesAboveHundred.Third() + Country.GetHashCode();
-
-                return hash;
+                return ((int)Nation * 397) ^ (int)Country;
             }
         }
 
-        #endregion Methods: Equality Comparison
-        
         public override string ToString() => $"{Nation}_{Country}";
+
+        protected bool Equals(NationCountryPair other)
+        {
+            return
+                Nation == other.Nation &&
+                Country == other.Country;
+        }
     }
 }

@@ -412,7 +412,7 @@ namespace Core.Organization.Helpers
                 if (gameMode == EGameMode.Simulator)
                     return presetComposition;
 
-                if (crewSlotAmount <= Integer.Number.Three || !EBranch.Aviation.IsIn(allowedBranches))
+                if (crewSlotAmount <= 3 || !EBranch.Aviation.IsIn(allowedBranches))
                 {
                     setAll(mainBranch);
                 }
@@ -701,7 +701,19 @@ namespace Core.Organization.Helpers
             var validEconomicRanks = GetEconomicRanks(enabledEconomicRanks, economicRanksWithVehicles, getFormattedBattleRating, nation, mainBranch);
 
             if (validEconomicRanks is null)
-                return new Dictionary<EPreset, Preset> { { EPreset.Primary, new Preset(gameMode, nation, mainBranch, Integer.Number.Zero, string.Empty, new List<IVehicle>()) } };
+                return new Dictionary<EPreset, Preset>
+                {
+                    {
+                        EPreset.Primary, 
+                        new Preset(
+                            gameMode, 
+                            nation, 
+                            mainBranch, 
+                            economicRank: 0, 
+                            battleRating: string.Empty, 
+                            vehicleList: new List<IVehicle>())
+                    }
+                };
 
             var economicRank = _randomiser.GetRandom(validEconomicRanks);
             var battleRating = GetBattleRating(economicRank, getFormattedBattleRating);

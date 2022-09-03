@@ -13,7 +13,7 @@ namespace Core.Web.Helpers
     {
         #region Constants
 
-        private static readonly int _retryDelay = Integer.Time.MillisecondsInSecond * Integer.Number.Five;
+        private static readonly int _retryDelay = Integer.Time.MillisecondsInSecond * 5;
 
         #endregion Constants
         #region Constructors
@@ -26,7 +26,7 @@ namespace Core.Web.Helpers
 
         #endregion Constructors
 
-        public HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = Integer.Number.One, Exception internalException = null)
+        public HtmlNode GetHtmlDocumentNode(string url, int retryAttempts = 1, Exception internalException = null)
         {
             if (retryAttempts.IsZero())
                 throw new TimeoutException(EWebLogMessage.FailedToRead.Format(url), internalException);

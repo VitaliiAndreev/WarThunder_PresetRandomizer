@@ -1,7 +1,6 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Core;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -64,7 +63,7 @@ namespace Client.Wpf.Controls
             var iconControl = new TextBlock
             {
                 Style = _iconStyle,
-                Margin = new Thickness(Integer.Number.Zero, -Integer.Number.Ten, Integer.Number.Three, -Integer.Number.Ten),
+                Margin = Wpf.Margin.GaijinIconWithLabelMargin,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 TextAlignment = TextAlignment.Center,
@@ -74,8 +73,8 @@ namespace Client.Wpf.Controls
                 ToolTip = ApplicationHelpers.LocalisationManager.GetLocalisedString(iconTag.ToString()),
             };
 
-            _grid.Add(iconControl, Integer.Number.Zero, Integer.Number.Zero);
-            _grid.Add(_label, Integer.Number.One, Integer.Number.Zero);
+            _grid.Add(iconControl, columnIndex: 0, rowIndex: 0);
+            _grid.Add(_label, columnIndex: 1, rowIndex: 0);
 
             if (!(mouseButtonHandler is null))
                 MouseDown += mouseButtonHandler;

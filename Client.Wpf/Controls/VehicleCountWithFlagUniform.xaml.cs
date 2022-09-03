@@ -2,7 +2,6 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using System.Windows;
@@ -45,8 +44,14 @@ namespace Client.Wpf.Controls
 
             Tag = nationCountryPair;
 
-            _grid.Add(nationCountryPair.CreateFlag(_flagStyle, new Thickness(Integer.Number.Zero, Integer.Number.Zero, Integer.Number.Five, Integer.Number.Zero), useNationFlags), Integer.Number.Zero, Integer.Number.Zero);
-            _grid.Add(_label, Integer.Number.One, Integer.Number.Zero);
+            _grid.Add(
+                nationCountryPair.CreateFlag(_flagStyle, Wpf.Margin.NationFlagNameMargin, useNationFlags),
+                columnIndex: 0,
+                rowIndex: 0);
+            _grid.Add(
+                _label, 
+                columnIndex: 1, 
+                rowIndex: 0);
 
             MouseDown += mouseDownHandler;
         }

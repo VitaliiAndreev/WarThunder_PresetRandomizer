@@ -73,7 +73,7 @@ namespace Client.Wpf.Windows
             // To work around the not functional await a delay is implemented.
             while (prepareDataTask.Status != TaskStatus.RanToCompletion)
             {
-                await Task.Delay(Integer.Time.MillisecondsInSecond / Integer.Number.Hundred);
+                await Task.Delay(Integer.Time.MillisecondsInSecond / 100);
 
                 if (_asynchronousException is Exception)
                     throw _asynchronousException;
@@ -96,7 +96,7 @@ namespace Client.Wpf.Windows
                 closeImmediately = true;
 
                 while (_messageBoxIsUp)
-                    await Task.Delay(Integer.Time.MillisecondsInSecond / Integer.Number.Four);
+                    await Task.Delay(Integer.Time.MillisecondsInSecond / 4);
             }
 
             if (!closeImmediately)

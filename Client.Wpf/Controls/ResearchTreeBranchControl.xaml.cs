@@ -2,7 +2,6 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
@@ -23,6 +22,10 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for ResearchTreeBranchControl.xaml. </summary>
     public partial class ResearchTreeBranchControl : LocalisedUserControl
     {
+        private const int researchTreeBranchFirstColumnWidth = 30;
+
+        private static readonly Thickness rankHeaderThickness = new Thickness(left: 0, top: 1, right: 0, bottom: 1);
+
         #region Fields
 
         /// <summary> The map of the rank enumeration onto corresponding style keys. </summary>
@@ -193,7 +196,7 @@ namespace Client.Wpf.Controls
         /// <param name="columnIndex"> The index of the current column. </param>
         private void AddCell(ResearchTreeCellControl cell, ResearchTreeRank rank, int rowIndex, int columnIndex)
         {
-            var rowNumber = rowIndex + Integer.Number.One;
+            var rowNumber = rowIndex + 1;
 
             if (rowNumber == rank.MaximumRowNumber)
             {
@@ -213,7 +216,11 @@ namespace Client.Wpf.Controls
 
         private void PopulateRankHeader(ERank rankKey, ResearchTreeRank rank)
         {
-            var cellWithBorder = new Border { BorderThickness = new Thickness(Integer.Number.Zero, Integer.Number.One, Integer.Number.Zero, Integer.Number.One), BorderBrush = new SolidColorBrush(Colors.DarkGray) };
+            var cellWithBorder = new Border
+            {
+                BorderThickness = rankHeaderThickness, 
+                BorderBrush = new SolidColorBrush(Colors.DarkGray),
+            };
 
             new TextBlock
             {
@@ -224,9 +231,12 @@ namespace Client.Wpf.Controls
                 Text = rankKey.ToString(),
             }.PutInto(cellWithBorder);
 
-            _grid.Add(cellWithBorder, Integer.Number.Zero, rank.StartingRowNumber.Value - Integer.Number.One);
+            _grid.Add(
+                cellWithBorder, 
+                columnIndex: 0, 
+                rowIndex: rank.StartingRowNumber.Value - 1);
 
-            Grid.SetRowSpan(cellWithBorder, rank.MaximumRowNumber - rank.StartingRowNumber.Value + Integer.Number.One);
+            Grid.SetRowSpan(cellWithBorder, rank.MaximumRowNumber - rank.StartingRowNumber.Value + 1);
         }
 
         /// <summary> Populates the <see cref="_grid"/> with content cells. </summary>
@@ -240,7 +250,7 @@ namespace Client.Wpf.Controls
 
             _researchTreeBranch = branch;
 
-            loadingTracker.RanksPopulated = Integer.Number.Zero;
+            loadingTracker.RanksPopulated = 0;
             loadingTracker.RanksToPopulate = _researchTreeBranch.Count;
 
             foreach (var rankKeyValuePair in _researchTreeBranch)
@@ -249,21 +259,21 @@ namespace Client.Wpf.Controls
                 var rank = rankKeyValuePair.Value;
 
                 loadingTracker.CurrentlyPopulatedRank = rankKey.ToString();
-                loadingTracker.RowsPopulated = Integer.Number.Zero;
-                loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + Integer.Number.One;
+                loadingTracker.RowsPopulated = 0;
+                loadingTracker.RowsToPopulate = rank.MaximumRowNumber - rank.StartingRowNumber.Value + 1;
 
                 PopulateRankHeader(rankKey, rank);
 
                 for (var rowNumber = rank.StartingRowNumber.Value; rowNumber <= rank.MaximumRowNumber; rowNumber++)
                 {
-                    var rowIndex = rowNumber - Integer.Number.One;
+                    var rowIndex = rowNumber - 1;
 
-                    loadingTracker.ColumnsPopulated = Integer.Number.Zero;
+                    loadingTracker.ColumnsPopulated = 0;
                     loadingTracker.ColumnsToPopulate = _researchTreeBranch.ColumnCount;
 
-                    for (var columnNumber = Integer.Number.One; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
+                    for (var columnNumber = 1; columnNumber <= _researchTreeBranch.ColumnCount; columnNumber++)
                     {
-                        var rowNumberRelativeToRank = rowNumber - rank.StartingRowNumber.Value + Integer.Number.One;
+                        var rowNumberRelativeToRank = rowNumber - rank.StartingRowNumber.Value + 1;
                         var columnIndex = columnNumber;
                         var cell = new ResearchTreeCellControl()
                         {
@@ -294,7 +304,7 @@ namespace Client.Wpf.Controls
                 loadingTracker.RanksPopulated++;
             }
 
-            _grid.ColumnDefinitions.First().Width = new GridLength(Integer.Number.Thirty, GridUnitType.Pixel);
+            _grid.ColumnDefinitions.First().Width = new GridLength(researchTreeBranchFirstColumnWidth, GridUnitType.Pixel);
 
             InitialiseButtons();
         }

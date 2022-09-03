@@ -4,7 +4,6 @@ using Client.Wpf.Controls.Base;
 using Client.Wpf.Controls.Strategies;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.Extensions;
@@ -95,7 +94,7 @@ namespace Client.Wpf.Controls
         #region Methods: Event Raisers
 
         private MouseEventArgs GetMouseEventArgs(RoutedEvent routedEvent, ResearchTreeCellVehicleControl vehicleControl) =>
-            new MouseEventArgs(Mouse.PrimaryDevice, Integer.Number.Zero) { RoutedEvent = routedEvent, Source = vehicleControl };
+            new MouseEventArgs(Mouse.PrimaryDevice, timestamp: 0) { RoutedEvent = routedEvent, Source = vehicleControl };
 
         /// <summary> Raises the <see cref="UIElement.MouseEnterEvent"/> for the given vehicle control. </summary>
         /// <param name="vehicleControl"> The vehicle control to raise the event for. </param>

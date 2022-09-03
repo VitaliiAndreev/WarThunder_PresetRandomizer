@@ -27,6 +27,8 @@ namespace Client.Console
 {
     class Ui
     {
+        private const int defaultCrewSlotAmount = 10;
+
         /// <summary> The entry point. </summary>
         static void Main()
         {
@@ -168,7 +170,11 @@ namespace Client.Console
             (
                 ERandomisation.VehicleBased,
                 gamemode,
-                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(nation, EReference.CountriesByNation[nation], new List<EBranch> { branch }, Integer.Number.Ten) } },
+                new Dictionary<ENation, NationSpecification> { { nation, new NationSpecification(
+                    nation, 
+                    countries: EReference.CountriesByNation[nation], 
+                    branches: new List<EBranch> { branch }, 
+                    crewSlots: defaultCrewSlotAmount) } },
                 new Dictionary<EBranch, BranchSpecification> { { branch, new BranchSpecification(branch, vehicleClasses) } },
                 branch.GetVehicleBranchTags(),
                 vehicleClasses.SelectMany(vehicleClass => vehicleClass.GetVehicleSubclasses()),

@@ -127,7 +127,7 @@ namespace Core.Extensions
             if (dictionary.ContainsKey(key))
                 dictionary[key] += incrementValue;
             else
-                dictionary.Add(key, Integer.Number.One);
+                dictionary.Add(key, 1);
         }
 
         #endregion Methods: Adding

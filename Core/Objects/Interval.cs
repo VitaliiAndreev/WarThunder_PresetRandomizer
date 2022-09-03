@@ -45,8 +45,8 @@ namespace Core.Objects
                 return false;
 
             return LeftBounded == otherInterval.LeftBounded
-                && LeftItem.CompareTo(otherInterval.LeftItem) == Integer.Number.Zero
-                && RightItem.CompareTo(otherInterval.RightItem) == Integer.Number.Zero
+                && LeftItem.CompareTo(otherInterval.LeftItem) == 0
+                && RightItem.CompareTo(otherInterval.RightItem) == 0
                 && RightBounded == otherInterval.RightBounded;
         }
 

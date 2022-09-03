@@ -2,7 +2,6 @@
 using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Connectors;
@@ -24,44 +23,57 @@ namespace Client.Wpf.Controls
     /// <summary> Interaction logic for VehicleCountsStatisticsControl.xaml. </summary>
     public partial class VehicleCountsStatisticsControl : LocalisedUserControl
     {
+        private const double availabilityCategoryIconColumnWidth = 30;
+        private const double availabilityCategoryIconFontSize = 12;
+        private const double branchIconHeaderFontSize = 20;
+        private const int categoryHorizontalMargin = 5;
+        private const double classIconColumnWidth = 20;
+        private const double countColumnWidthForThreeDigits = 20;
+        private const double flagColumnWidth = 17;
+        private const double gaijinCharacterIconFontSize = 12;
         private const double gridCellBorderOpacity = 0.1;
+
+        private static readonly Thickness categoryColumnHeaderMarginDoubled = new Thickness(
+            left: categoryHorizontalMargin * 2,
+            top: 0,
+            right: categoryHorizontalMargin * 2,
+            bottom: 5);
+        private static readonly Thickness categoryMargin = new Thickness(
+            left: categoryHorizontalMargin,
+            top: 0,
+            right: categoryHorizontalMargin,
+            bottom: 0);
+        private static readonly Thickness categoryMarginDoubled = new Thickness(
+            left: categoryHorizontalMargin * 2,
+            top: 0,
+            right: categoryHorizontalMargin * 2,
+            bottom: 0);
+        private static readonly Thickness categoryRowHeaderMargin = new Thickness(
+            left: 0,
+            top: 0,
+            right: categoryHorizontalMargin * 2,
+            bottom: 0);
+        private static readonly Thickness gridCellBorderThickness = new Thickness(
+            left: 1,
+            top: 1,
+            right: 1,
+            bottom: 1);
+        private static readonly Thickness internalDividerMargin = new Thickness(
+            left: 0,
+            top: 0,
+            right: 5,
+            bottom: 0);
 
         #region Fields
 
-        #region Readonly
-
-        private readonly int _categoryHorizontalMargin;
-        private readonly int _categoryVerticalMargin;
-        private readonly int _internalDividerMarginRightMargin;
-
-        private readonly Thickness _internalDividerMargin;
-        private readonly Thickness _categoryColumnHeaderMarginDoubled;
-        private readonly Thickness _categoryRowHeaderMargin;
-        private readonly Thickness _categoryMargin;
-        private readonly Thickness _categoryMarginDoubled;
-
         private readonly Style _categoryTextStyle;
-
-        private readonly double _flagColumnWidth;
-
-        private readonly double _countColumnWidthForThreeDigits;
-
-        private readonly double _branchIconHeaderFontSize;
-
-        private readonly double _availabilityCategoryIconFontSize;
-        private readonly double _gaijinCharacterIconFontSize;
-
-        private readonly double _availabilityCategoryIconColumnWidth;
-        private readonly double _classIconColumnWidth;
-
-        #endregion Readonly
 
         private bool _initialised;
 
         private StatisticsControl _statisticsControl;
 
-        private double _savedVerticalScrollOffset = Integer.Number.Zero;
-        private double _savedHorizontalScrollOffset = Integer.Number.Zero;
+        private double savedVerticalScrollOffset = 0;
+        private double savedHorizontalScrollOffset = 0;
 
         #endregion Fields
         #region Constructors
@@ -70,29 +82,7 @@ namespace Client.Wpf.Controls
         {
             InitializeComponent();
 
-            _categoryHorizontalMargin = Integer.Number.Five;
-            _categoryVerticalMargin = Integer.Number.Five;
-            _internalDividerMarginRightMargin = Integer.Number.Five;
-
-            _internalDividerMargin = new Thickness(Integer.Number.Zero, Integer.Number.Zero, _internalDividerMarginRightMargin, Integer.Number.Zero);
-            _categoryColumnHeaderMarginDoubled = new Thickness(_categoryHorizontalMargin * Integer.Number.Two, Integer.Number.Zero, _categoryHorizontalMargin * Integer.Number.Two, _categoryVerticalMargin);
-            _categoryRowHeaderMargin = new Thickness(Integer.Number.Zero, Integer.Number.Zero, _categoryHorizontalMargin * Integer.Number.Two, Integer.Number.Zero);
-            _categoryMargin = new Thickness(_categoryHorizontalMargin, Integer.Number.Zero, _categoryHorizontalMargin, Integer.Number.Zero);
-            _categoryMarginDoubled = new Thickness(_categoryHorizontalMargin * Integer.Number.Two, Integer.Number.Zero, _categoryHorizontalMargin * Integer.Number.Two, Integer.Number.Zero);
-
             _categoryTextStyle = this.GetStyle(EStyleKey.TextBlock.TextBlock12px);
-
-            _flagColumnWidth = Integer.Number.Seventeen;
-
-            _countColumnWidthForThreeDigits = Integer.Number.Twenty;
-
-            _branchIconHeaderFontSize = Integer.Number.Twenty;
-
-            _availabilityCategoryIconFontSize = Integer.Number.Twelve;
-            _availabilityCategoryIconColumnWidth = Integer.Number.Thirty;
-
-            _gaijinCharacterIconFontSize = Integer.Number.Twelve;
-            _classIconColumnWidth = Integer.Number.Twenty;
         }
 
         #endregion Constructors
@@ -309,7 +299,7 @@ namespace Client.Wpf.Controls
         {
             return new Border
             {
-                BorderThickness = new Thickness(Integer.Number.One, Integer.Number.One, Integer.Number.One, Integer.Number.One),
+                BorderThickness = gridCellBorderThickness,
                 BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = gridCellBorderOpacity },
             };
         }
@@ -362,7 +352,7 @@ namespace Client.Wpf.Controls
 
         private TextBlock CreateNameRowHeader<T>(T tag, MouseButtonEventHandler leftMouseDownHandler)
         {
-            return CreateTextBlock(ApplicationHelpers.LocalisationManager.GetLocalisedString(tag.ToString()), tag, _categoryRowHeaderMargin, leftMouseDownHandler, isBold: true);
+            return CreateTextBlock(ApplicationHelpers.LocalisationManager.GetLocalisedString(tag.ToString()), tag, categoryRowHeaderMargin, leftMouseDownHandler, isBold: true);
         }
 
         private TextBlock CreateBranchNameRowHeader(EBranch branch)
@@ -379,12 +369,12 @@ namespace Client.Wpf.Controls
             if (iconTag is EBranch branch)
             {
                 icon = EReference.SmallerBranchIcons[branch];
-                iconFontSize = _gaijinCharacterIconFontSize;
+                iconFontSize = gaijinCharacterIconFontSize;
             }
             else if (iconTag is EVehicleClass vehicleClass)
             {
                 icon = EReference.ClassIcons[vehicleClass];
-                iconFontSize = _gaijinCharacterIconFontSize;
+                iconFontSize = gaijinCharacterIconFontSize;
             }
             else
             {
@@ -397,7 +387,7 @@ namespace Client.Wpf.Controls
                 ApplicationHelpers.LocalisationManager.GetLocalisedString(useIconForLocalisation ? iconTag.ToString() : controlTag.ToString()),
                 margin,
                 leftMouseDownHandler,
-                _classIconColumnWidth,
+                classIconColumnWidth,
                 iconFontSize: iconFontSize,
                 isBold: true
             ).WithTag(controlTag);
@@ -405,17 +395,17 @@ namespace Client.Wpf.Controls
 
         private TextBlock CreateVehicleCountHeader<T>(int vehicleCount, T tag, MouseButtonEventHandler leftMouseDownHandler)
         {
-            return CreateTextBlock(vehicleCount.ToString(), tag, _categoryRowHeaderMargin, leftMouseDownHandler, HorizontalAlignment.Right, isBold: true);
+            return CreateTextBlock(vehicleCount.ToString(), tag, categoryRowHeaderMargin, leftMouseDownHandler, HorizontalAlignment.Right, isBold: true);
         }
 
         private TextBlock CreateVehicleCount<T>(int vehicleCount, T tag, MouseButtonEventHandler leftMouseDownHandler, bool useDoubleMargin)
         {
-            return CreateTextBlock(vehicleCount, tag, useDoubleMargin ? _categoryMarginDoubled : _categoryMargin, leftMouseDownHandler, HorizontalAlignment.Right, TextAlignment.Right, _countColumnWidthForThreeDigits);
+            return CreateTextBlock(vehicleCount, tag, useDoubleMargin ? categoryMarginDoubled : categoryMargin, leftMouseDownHandler, HorizontalAlignment.Right, TextAlignment.Right, countColumnWidthForThreeDigits);
         }
 
         private TextLabelWithFlag CreateCountryFlagAndNameRowHeader(ECountry country)
         {
-            return new TextLabelWithFlag(country, ApplicationHelpers.LocalisationManager.GetLocalisedString(country.ToString()), _categoryRowHeaderMargin, OnVehiclesByCountriesLeftMouseDown, isBold: true, createTooltip: false);
+            return new TextLabelWithFlag(country, ApplicationHelpers.LocalisationManager.GetLocalisedString(country.ToString()), categoryRowHeaderMargin, OnVehiclesByCountriesLeftMouseDown, isBold: true, createTooltip: false);
         }
 
         [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Implicit variable declarations.")]
@@ -433,24 +423,24 @@ namespace Client.Wpf.Controls
                 iconIsBold = availabilityCategory == EVehicleAvailability.PurchasableInTheStore;
                 iconFontSize = availabilityCategory switch
                 {
-                    EVehicleAvailability.All => _availabilityCategoryIconFontSize + Integer.Number.One,
-                    EVehicleAvailability.Researchable => _availabilityCategoryIconFontSize + Integer.Number.Three,
-                    EVehicleAvailability.Reserve => _availabilityCategoryIconFontSize + Integer.Number.Three,
-                    EVehicleAvailability.ResearchableInSquadron => _availabilityCategoryIconFontSize + Integer.Number.Three,
-                    EVehicleAvailability.PurchasableForGoldenEagles => _availabilityCategoryIconFontSize + Integer.Number.Two,
-                    EVehicleAvailability.Premium => _availabilityCategoryIconFontSize + Integer.Number.Two,
-                    _ => _availabilityCategoryIconFontSize
+                    EVehicleAvailability.All => availabilityCategoryIconFontSize + 1,
+                    EVehicleAvailability.Researchable => availabilityCategoryIconFontSize + 3,
+                    EVehicleAvailability.Reserve => availabilityCategoryIconFontSize + 3,
+                    EVehicleAvailability.ResearchableInSquadron => availabilityCategoryIconFontSize + 3,
+                    EVehicleAvailability.PurchasableForGoldenEagles => availabilityCategoryIconFontSize + 2,
+                    EVehicleAvailability.Premium => availabilityCategoryIconFontSize + 2,
+                    _ => availabilityCategoryIconFontSize
                 };
-                iconColumnWidth = _availabilityCategoryIconColumnWidth;
+                iconColumnWidth = availabilityCategoryIconColumnWidth;
                 countColumnWidth = default;
             }
             else if (iconTag is EVehicleClass vehicleClass)
             {
                 icon = EReference.ClassIcons[vehicleClass].ToString();
                 iconIsBold = false;
-                iconFontSize = _gaijinCharacterIconFontSize;
-                iconColumnWidth = _classIconColumnWidth;
-                countColumnWidth = _countColumnWidthForThreeDigits;
+                iconFontSize = gaijinCharacterIconFontSize;
+                iconColumnWidth = classIconColumnWidth;
+                countColumnWidth = countColumnWidthForThreeDigits;
             }
             else
             {
@@ -473,9 +463,9 @@ namespace Client.Wpf.Controls
             {
                 icon = EReference.ClassIcons[vehicleClass].ToString();
                 iconIsBold = false;
-                iconFontSize = _gaijinCharacterIconFontSize;
-                iconColumnWidth = _classIconColumnWidth;
-                countColumnWidth = _countColumnWidthForThreeDigits;
+                iconFontSize = gaijinCharacterIconFontSize;
+                iconColumnWidth = classIconColumnWidth;
+                countColumnWidth = countColumnWidthForThreeDigits;
             }
             else
             {
@@ -490,26 +480,32 @@ namespace Client.Wpf.Controls
 
         private void PopulateNationFlagColumnHeaders(IEnumerable<ENation> nations, Grid grid, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Right, double? width = null)
         {
-            var nationHeaderIndex = Integer.Number.Two;
+            var nationHeaderIndex = 2;
 
             foreach (var nation in nations)
             {
-                var nationHeader = new FlagControl(nation, _categoryColumnHeaderMarginDoubled, OnVehiclesByNationsLeftMouseDown, horizontalAlignment, width ?? _flagColumnWidth);
+                var nationHeader = new FlagControl(nation, categoryColumnHeaderMarginDoubled, OnVehiclesByNationsLeftMouseDown, horizontalAlignment, width ?? flagColumnWidth);
 
-                grid.Add(nationHeader, nationHeaderIndex++, Integer.Number.Zero);
+                grid.Add(
+                    nationHeader, 
+                    columnIndex: nationHeaderIndex++, 
+                    rowIndex: 0);
             }
         }
 
         private void PopulateBranchIconColumnHeaders(IEnumerable<EBranch> branches, Grid grid, bool doubleMargin)
         {
-            var nationHeaderIndex = Integer.Number.Two;
+            var nationHeaderIndex = 2;
 
             foreach (var branch in branches)
             {
-                var margin = doubleMargin ? _categoryMarginDoubled : _categoryMargin;
-                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, margin, OnVehiclesByBranchesLeftMouseDown, _branchIconHeaderFontSize, useStandardVerticalMargin: true).WithTag(branch);
+                var margin = doubleMargin ? categoryMarginDoubled : categoryMargin;
+                var branchHeader = new GaijinCharactreIconControl(EReference.BranchIcons[branch], branch, margin, OnVehiclesByBranchesLeftMouseDown, branchIconHeaderFontSize, useStandardVerticalMargin: true).WithTag(branch);
 
-                grid.Add(branchHeader, nationHeaderIndex++, Integer.Number.Zero);
+                grid.Add(
+                    branchHeader, 
+                    columnIndex: nationHeaderIndex++, 
+                    rowIndex: 0);
             }
         }
 
@@ -518,11 +514,11 @@ namespace Client.Wpf.Controls
 
         private void PopulateCategoryIconCountRowHeader(EVehicleAvailability category, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateGaijinCharacterIconRowHeader(category, category, _internalDividerMargin, OnVehiclesByAvailabilityLeftMouseDown);
+            var header = CreateGaijinCharacterIconRowHeader(category, category, internalDividerMargin, OnVehiclesByAvailabilityLeftMouseDown);
             var count = CreateVehicleCountHeader(vehicleCount, category, OnVehiclesByAvailabilityLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 0, rowIndex);
         }
 
         private void PopulateCountryFlagNameCountRowHeader(ECountry country, int vehicleCount, Grid grid, int rowIndex)
@@ -530,8 +526,8 @@ namespace Client.Wpf.Controls
             var header = CreateCountryFlagAndNameRowHeader(country);
             var count = CreateVehicleCountHeader(vehicleCount, country, OnVehiclesByCountriesLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 1, rowIndex);
         }
 
         private void PopulateBranchNameCountRowHeader(EBranch branch, int vehicleCount, Grid grid, int rowIndex)
@@ -539,35 +535,35 @@ namespace Client.Wpf.Controls
             var header = CreateBranchNameRowHeader(branch);
             var count = CreateVehicleCountHeader(vehicleCount, branch, OnVehiclesByBranchesLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 1, rowIndex);
         }
 
         private void PopulateVehicleClassIconAndNameRowHeader(EVehicleClass vehicleClass, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateGaijinCharacterIconAndNameRowHeader(vehicleClass, vehicleClass, _internalDividerMargin, OnVehiclesByClassesLeftMouseDown);
+            var header = CreateGaijinCharacterIconAndNameRowHeader(vehicleClass, vehicleClass, internalDividerMargin, OnVehiclesByClassesLeftMouseDown);
             var count = CreateVehicleCountHeader(vehicleCount, vehicleClass, OnVehiclesByClassesLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 1, rowIndex);
         }
 
         private void PopulateVehicleClassIconAndSubclassNameCountRowHeader(EVehicleSubclass subclass, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateGaijinCharacterIconAndNameRowHeader(subclass, subclass.GetVehicleClass(), _internalDividerMargin, OnVehiclesBySubclassesLeftMouseDown, false);
+            var header = CreateGaijinCharacterIconAndNameRowHeader(subclass, subclass.GetVehicleClass(), internalDividerMargin, OnVehiclesBySubclassesLeftMouseDown, false);
             var count = CreateVehicleCountHeader(vehicleCount, subclass, OnVehiclesBySubclassesLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 1, rowIndex);
         }
 
         private void PopulateBranchIconAndTagNameCountRowHeader(EVehicleBranchTag tag, int vehicleCount, Grid grid, int rowIndex)
         {
-            var header = CreateGaijinCharacterIconAndNameRowHeader(tag, tag.GetBranch(), _internalDividerMargin, OnVehiclesByTagsLeftMouseDown, false);
+            var header = CreateGaijinCharacterIconAndNameRowHeader(tag, tag.GetBranch(), internalDividerMargin, OnVehiclesByTagsLeftMouseDown, false);
             var count = CreateVehicleCountHeader(vehicleCount, tag, OnVehiclesByBranchesLeftMouseDown);
 
-            grid.Add(header, Integer.Number.Zero, rowIndex);
-            grid.Add(count, Integer.Number.One, rowIndex);
+            grid.Add(header, columnIndex: 0, rowIndex);
+            grid.Add(count, columnIndex: 1, rowIndex);
         }
 
         #endregion Row Headers
@@ -578,7 +574,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByAvailabilityAndNationsControls(IEnumerable<EVehicleAvailability> availabilityCategories, IEnumerable<ENation> nations)
         {
             var vehiclesByAvailabilityAndNations = _statisticsControl.VehiclesByAvailabilityAndNations;
-            var categoryIndex = Integer.Number.One;
+            var categoryIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesByAvailabilityAndNationsGrid);
 
@@ -586,7 +582,7 @@ namespace Client.Wpf.Controls
             {
                 var categoryKeys = vehiclesByAvailabilityAndNations.Keys.Where(item => item.Availability == category);
                 var headerVehicleCount = vehiclesByAvailabilityAndNations.Where(item => item.Key.Availability == category).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
 
                 foreach (var categoryKey in categoryKeys)
                 {
@@ -607,7 +603,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByNationsAndCountriesControls(IEnumerable<ENation> nations)
         {
             var vehiclesByNationsAndCountries = _statisticsControl.VehiclesByNationsAndCountries;
-            var nationIndex = Integer.Number.Zero;
+            var nationIndex = 0;
 
             foreach (var nation in nations)
             {
@@ -616,7 +612,7 @@ namespace Client.Wpf.Controls
                 (
                     ApplicationHelpers.LocalisationManager.GetLocalisedString(nation.ToString()),
                     nation,
-                    _categoryRowHeaderMargin,
+                    categoryRowHeaderMargin,
                     OnVehiclesByNationsLeftMouseDown,
                     isBold: true
                 );
@@ -624,21 +620,21 @@ namespace Client.Wpf.Controls
                 (
                     vehiclesByNationsAndCountries.Where(item => item.Key.IsIn(nationKeys)).Sum(item => item.Value.Count()).ToString(),
                     nation,
-                    _categoryRowHeaderMargin,
+                    categoryRowHeaderMargin,
                     OnVehiclesByNationsLeftMouseDown,
                     HorizontalAlignment.Right,
                     isBold: true
                 );
-                var countryIndex = Integer.Number.Two;
+                var countryIndex = 2;
 
                 foreach (var nationKey in nationKeys)
                 {
-                    var countryControl = new VehicleCountWithFlag(nationKey, vehiclesByNationsAndCountries[nationKey].Count(), _categoryMargin, OnVehiclesByNationsAndCountriesLeftMouseDown);
+                    var countryControl = new VehicleCountWithFlag(nationKey, vehiclesByNationsAndCountries[nationKey].Count(), categoryMargin, OnVehiclesByNationsAndCountriesLeftMouseDown);
 
                     _vehiclesByNationsAndCountriesGrid.Add(countryControl, countryIndex++, nationIndex);
                 }
-                _vehiclesByNationsAndCountriesGrid.Add(header, Integer.Number.Zero, nationIndex);
-                _vehiclesByNationsAndCountriesGrid.Add(count, Integer.Number.One, nationIndex++);
+                _vehiclesByNationsAndCountriesGrid.Add(header, columnIndex: 0, rowIndex: nationIndex);
+                _vehiclesByNationsAndCountriesGrid.Add(count, columnIndex: 1, rowIndex: nationIndex++);
             }
         }
 
@@ -646,7 +642,7 @@ namespace Client.Wpf.Controls
         {
             var vehiclesByCountriesAndNations = _statisticsControl.VehiclesByCountriesAndNations;
             var countries = vehiclesByCountriesAndNations.Keys.Select(nationCountryPair => nationCountryPair.Country).Distinct();
-            var countryIndex = Integer.Number.One;
+            var countryIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesByCountriesAndNationsGrid, HorizontalAlignment.Center, 17);
 
@@ -654,7 +650,7 @@ namespace Client.Wpf.Controls
             {
                 var countryKeys = vehiclesByCountriesAndNations.Keys.Where(key => key.Country == country);
                 var countryVehicleCount = vehiclesByCountriesAndNations.Where(item => item.Key.IsIn(countryKeys)).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
                 var nationsByCountires = countryKeys.GroupBy(item => item.Country, item => item.Nation).ToDictionary(group => group.Key, group => group.AsEnumerable());
 
                 foreach (var nation in nations)
@@ -670,7 +666,7 @@ namespace Client.Wpf.Controls
                         (
                             countryKey,
                             vehiclesByCountriesAndNations[countryKey].Count(),
-                            _categoryMargin,
+                            categoryMargin,
                             OnVehiclesByCountriesAndNationsLeftMouseDown,
                             useNationFlags: true
                         ).PutInto(cellWithBorder);
@@ -684,7 +680,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByBranchesAndNationsControls(IEnumerable<EBranch> branches, IEnumerable<ENation> nations)
         {
             var vehicleByBranchesAndCountries = _statisticsControl.VehiclesByBranchesAndNations;
-            var branchIndex = Integer.Number.One;
+            var branchIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesByBranchesAndNationsGrid);
 
@@ -692,7 +688,7 @@ namespace Client.Wpf.Controls
             {
                 var branchKeys = vehicleByBranchesAndCountries.Keys.Where(key => key.Branch == branch);
                 var headerVehicleCount = vehicleByBranchesAndCountries.Where(item => item.Key.IsIn(branchKeys)).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
 
                 foreach (var branchKey in branchKeys)
                 {
@@ -713,7 +709,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByCountriesAndBranchesControls(IEnumerable<ECountry> countries, IEnumerable<EBranch> branches)
         {
             var vehiclesByCountriesAndBranches = _statisticsControl.VehiclesByCountriesAndBranches;
-            var countryIndex = Integer.Number.One;
+            var countryIndex = 1;
 
             PopulateBranchIconColumnHeaders(branches, _vehiclesByCountriesAndBranchesGrid, false);
 
@@ -724,7 +720,7 @@ namespace Client.Wpf.Controls
 
                 if (countryVehicleCount.IsZero()) continue;
 
-                var branchIndex = Integer.Number.Two;
+                var branchIndex = 2;
                 var branchesByCountires = countryKeys.GroupBy(item => item.Country, item => item.Branch).ToDictionary(group => group.Key, group => group.AsEnumerable());
 
                 foreach (var branch in branches)
@@ -748,13 +744,13 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByBranchesAndClassesControls(IEnumerable<EBranch> branches)
         {
             var vehicleByBranchesAndClasses = _statisticsControl.VehiclesByBranchesAndClasses;
-            var branchIndex = Integer.Number.One;
+            var branchIndex = 1;
 
             foreach (var branch in branches)
             {
                 var branchKeys = vehicleByBranchesAndClasses.Keys.Where(key => key.Branch == branch);
                 var headerVehicleCount = vehicleByBranchesAndClasses.Where(item => item.Key.IsIn(branchKeys)).Sum(item => item.Value.Count());
-                var classIndex = Integer.Number.Two;
+                var classIndex = 2;
 
                 foreach (var branchKey in branchKeys)
                 {
@@ -762,7 +758,7 @@ namespace Client.Wpf.Controls
 
                     if (vehicles.Any())
                     {
-                        var classControl = CreateVehicleCountWithGaijinCharacterIcon(branchKey, branchKey.Class, vehicles.Count(), _categoryMargin, OnVehiclesByBranchesAndClassesLeftMouseDown);
+                        var classControl = CreateVehicleCountWithGaijinCharacterIcon(branchKey, branchKey.Class, vehicles.Count(), categoryMargin, OnVehiclesByBranchesAndClassesLeftMouseDown);
 
                         _vehiclesByBranchesAndClassesGrid.Add(classControl, classIndex++, branchIndex);
 
@@ -777,7 +773,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByClassesAndNationsControls(IEnumerable<EVehicleClass> classes, IEnumerable<ENation> nations)
         {
             var vehicleByClassesAndNations = _statisticsControl.VehiclesByClassesAndNations;
-            var classIndex = Integer.Number.One;
+            var classIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesByClassesAndNationsGrid);
 
@@ -785,7 +781,7 @@ namespace Client.Wpf.Controls
             {
                 var classKeys = vehicleByClassesAndNations.Keys.Where(key => key.Class == vehicleClass);
                 var headerVehicleCount = vehicleByClassesAndNations.Where(item => item.Key.IsIn(classKeys)).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
 
                 foreach (var classKey in classKeys)
                 {
@@ -806,7 +802,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesByTagsAndNationsControls(IEnumerable<EVehicleBranchTag> tags, IEnumerable<ENation> nations)
         {
             var vehicleByTagsAndNations = _statisticsControl.VehiclesByTagsAndNations;
-            var tagIndex = Integer.Number.One;
+            var tagIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesByTagsAndNationsGrid);
 
@@ -814,7 +810,7 @@ namespace Client.Wpf.Controls
             {
                 var tagKeys = vehicleByTagsAndNations.Keys.Where(key => key.Tag == tag);
                 var headerVehicleCount = vehicleByTagsAndNations.Where(item => item.Key.IsIn(tagKeys)).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
 
                 foreach (var tagKey in tagKeys)
                 {
@@ -835,7 +831,7 @@ namespace Client.Wpf.Controls
         private void PopulateVehiclesBySubclassesAndNationsControls(IEnumerable<EVehicleSubclass> subclasses, IEnumerable<ENation> nations)
         {
             var vehicleBySubclassesAndNations = _statisticsControl.VehiclesBySubclassesAndNations;
-            var subclassIndex = Integer.Number.One;
+            var subclassIndex = 1;
 
             PopulateNationFlagColumnHeaders(nations, _vehiclesBySubclassesAndNationsGrid);
 
@@ -843,7 +839,7 @@ namespace Client.Wpf.Controls
             {
                 var subclassKeys = vehicleBySubclassesAndNations.Keys.Where(key => key.Subclass == subclass);
                 var headerVehicleCount = vehicleBySubclassesAndNations.Where(item => item.Key.IsIn(subclassKeys)).Sum(item => item.Value.Count());
-                var nationIndex = Integer.Number.Two;
+                var nationIndex = 2;
 
                 foreach (var subclassKey in subclassKeys)
                 {
@@ -868,7 +864,7 @@ namespace Client.Wpf.Controls
 
         private void OnScrollViewerLoaded(object sender, RoutedEventArgs e)
         {
-            if (_scroll.VerticalOffset != _savedVerticalScrollOffset || _scroll.HorizontalOffset != _savedHorizontalScrollOffset)
+            if (_scroll.VerticalOffset != savedVerticalScrollOffset || _scroll.HorizontalOffset != savedHorizontalScrollOffset)
                 RestoreScrollOffset();
         }
 
@@ -1208,14 +1204,14 @@ namespace Client.Wpf.Controls
 
         internal void SaveScrollOffset()
         {
-            _savedVerticalScrollOffset = _scroll.VerticalOffset;
-            _savedHorizontalScrollOffset = _scroll.HorizontalOffset;
+            savedVerticalScrollOffset = _scroll.VerticalOffset;
+            savedHorizontalScrollOffset = _scroll.HorizontalOffset;
         }
 
         public void RestoreScrollOffset()
         {
-            _scroll.ScrollToVerticalOffset(_savedVerticalScrollOffset);
-            _scroll.ScrollToHorizontalOffset(_savedHorizontalScrollOffset);
+            _scroll.ScrollToVerticalOffset(savedVerticalScrollOffset);
+            _scroll.ScrollToHorizontalOffset(savedHorizontalScrollOffset);
         }
 
         #endregion Methods: Scrolling

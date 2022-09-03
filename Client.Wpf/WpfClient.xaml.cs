@@ -27,6 +27,9 @@ namespace Client.Wpf
     /// <summary> Interaction logic for App.xaml. </summary>
     public partial class WpfClient : Application, IWpfClient
     {
+        /// <summary> The default <see cref="TextBlock.FontSize"/>.</summary>
+        public const int DefaultFontSize = 16;
+
         #region Fields
 
         /// <summary> Whether to read data from JSON instead of the database. </summary>
@@ -42,12 +45,6 @@ namespace Client.Wpf
         internal static string StartupArguments;
 
         #endregion Fields
-        #region Constants
-
-        /// <summary> The default <see cref="TextBlock.FontSize"/>.</summary>
-        public const int DefaultFontSize = Integer.Number.Sixteen;
-
-        #endregion Constants
         #region Properties
 
         /// <summary> An instance of an active logger. </summary>
@@ -99,7 +96,7 @@ namespace Client.Wpf
 
             #endregion Starting GuiLoadingWindow to display progress of creating and initialising MainWindow.
 
-            while (guiLoadingWindowPresenter is null) Thread.Sleep(Integer.Number.One);
+            while (guiLoadingWindowPresenter is null) Thread.Sleep(1);
 
             var mainWindow = ApplicationHelpers.WindowFactory.CreateMainWindow(guiLoadingWindowPresenter);
 

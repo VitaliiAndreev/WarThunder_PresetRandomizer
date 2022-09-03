@@ -33,7 +33,7 @@ namespace Core.Tests.Extensions
             // arrange
             var start = byte.MinValue;
             var end = byte.MaxValue;
-            var stepCount = Integer.Number.Zero;
+            var stepCount = 0;
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -48,7 +48,7 @@ namespace Core.Tests.Extensions
             // arrange
             var start = byte.MinValue;
             var end = start;
-            var stepCount = Integer.Number.Hundred;
+            var stepCount = 100;
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -62,10 +62,10 @@ namespace Core.Tests.Extensions
         public void InterpolateTo_0To5_4Steps_ShouldBe1234()
         {
             // arrange
-            var start = Convert.ToByte(Integer.Number.Zero);
-            var end = Convert.ToByte(Integer.Number.Five);
-            var stepCount = Integer.Number.Four;
-            var expectedSteps = new List<byte> { Integer.Number.One, Integer.Number.Two, Integer.Number.Three, Integer.Number.Four };
+            var start = Convert.ToByte(0);
+            var end = Convert.ToByte(5);
+            var stepCount = 4;
+            var expectedSteps = new List<byte> { 1, 2, 3, 4 };
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
@@ -79,10 +79,10 @@ namespace Core.Tests.Extensions
         public void InterpolateTo_5To0_4Steps_ShouldBe4321()
         {
             // arrange
-            var start = Convert.ToByte(Integer.Number.Five);
-            var end = Convert.ToByte(Integer.Number.Zero);
-            var stepCount = Integer.Number.Four;
-            var expectedSteps = new List<byte> { Integer.Number.Four, Integer.Number.Three, Integer.Number.Two, Integer.Number.One };
+            var start = Convert.ToByte(5);
+            var end = Convert.ToByte(0);
+            var stepCount = 4;
+            var expectedSteps = new List<byte> { 4, 3, 2, 1 };
 
             // act
             var steps = start.InterpolateTo(end, stepCount);
