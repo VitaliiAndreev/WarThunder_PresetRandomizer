@@ -35,7 +35,7 @@ namespace Client.Wpf.Windows
         private readonly IGuiLoadingWindowPresenter _loadingTracker;
 
         /// <summary> Indicates whether the window is still being initialized. </summary>
-        private readonly InitializationStatus _initializationStatus = InitializationStatus.NotInitialized;
+        private readonly InitialisationStatus _initializationStatus = InitialisationStatus.NotInitialised;
 
         /// <summary> A collection of boxed instances of <see cref="IList{T}"/> accessed by their generic types. </summary>
         private IDictionary<Type, object> _presenterToggleLists;
@@ -61,7 +61,7 @@ namespace Client.Wpf.Windows
         public MainWindow(IMainWindowPresenter presenter, IGuiLoadingWindowPresenter guiLoadingWindowPresenter)
             : base(nameof(MainWindow), null, presenter)
         {
-            _initializationStatus = InitializationStatus.Initializing;
+            _initializationStatus = InitialisationStatus.Initialising;
             {
                 Log.Trace("Initialising.");
 
@@ -90,7 +90,7 @@ namespace Client.Wpf.Windows
 
                 Log.Debug("Initialised.");
             }
-            _initializationStatus = InitializationStatus.Initialized;
+            _initializationStatus = InitialisationStatus.Initialised;
         }
 
         #endregion Constructors
@@ -490,7 +490,7 @@ namespace Client.Wpf.Windows
         /// <param name="eventArguments"> Not used. </param>
         private void OnBattleRatingValueChanged(object sender, RoutedEventArgs eventArguments)
         {
-            if (_initializationStatus != InitializationStatus.Initialized)
+            if (_initializationStatus != InitialisationStatus.Initialised)
                 return;
 
             var savingNeeded = false;

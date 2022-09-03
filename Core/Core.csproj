@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Enumerations\Character.cs" />
     <Compile Include="Enumerations\FileExtension.cs" />
-    <Compile Include="Enumerations\InitializationStatus.cs" />
     <Compile Include="Enumerations\Integer.cs" />
     <Compile Include="Enumerations\Language.cs" />
     <Compile Include="Enumerations\RegularExpressionPattern.cs" />
