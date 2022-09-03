@@ -1,25 +1,13 @@
 ﻿using Client.Shared.Interfaces;
 using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Enumerations;
-using Core;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using System.Windows.Controls;
 
-namespace Client.Wpf.Extensions
+namespace Client.Wpf
 {
-    public static class DataGridRowExtensions
+    public static partial class DataGridRowExtensions
     {
-        #region Methods: Editing
-
-        public static void Localise(this DataGridRow row)
-        {
-            var rowItem = row.Item;
-
-            foreach (var property in rowItem.GetType().GetProperties())
-                rowItem.Set(property, ApplicationHelpers.LocalisationManager.GetLocalisedString(property.GetValue(rowItem).ToString(), true));
-        }
-
-        #endregion Methods: Editing
         #region Methods: Reading
 
         public static bool TryGetVehicle(this DataGridRow row, out IVehicle vehicle)
