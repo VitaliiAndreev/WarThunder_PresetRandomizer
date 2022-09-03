@@ -36,7 +36,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
 
                 if (readFile.TryExecuting(out var ddsImage, out var exception))
                 {
-                    ddsImage.Save(Path.Combine(file.DirectoryName, $"{file.GetNameWithoutExtension()}.{FileExtension.Png}"));
+                    ddsImage.Save(Path.Combine(file.DirectoryName, $"{Path.GetFileNameWithoutExtension(file.Name)}.{FileExtension.Png}"));
                 }
                 else if (!(exception is ArgumentException argumentException) || !exception.Message.ContainsAny(ignoredReadErrorParts))
                 {

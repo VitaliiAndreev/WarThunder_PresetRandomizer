@@ -4,19 +4,13 @@ namespace Core
 {
     public static class FileInfoExtensions
     {
-        /// <summary> Get the file name without an extension (if any). </summary>
-        /// <param name="fileInfo"> A source file information instance. </param>
-        /// <returns></returns>
-        public static string GetExtensionWithoutPeriod(this FileInfo fileInfo) =>
-            fileInfo
-                .Extension
-                .Substring(1)
-            ;
+        public static string GetExtensionWithoutPeriod(this FileInfo fileInfo)
+        {
+            var extension = fileInfo.Extension;
 
-        /// <summary> Get the file name without an extension (if any). </summary>
-        /// <param name="fileInfo"> A source file information instance. </param>
-        /// <returns></returns>
-        public static string GetNameWithoutExtension(this FileInfo fileInfo) =>
-            Path.GetFileNameWithoutExtension(fileInfo.Name);
+            return string.IsNullOrEmpty(extension)
+                ? string.Empty
+                : extension.Substring(1);
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
         /// <summary> Gets all client versions for which a database is found. </summary>
         /// <returns></returns>
         public IEnumerable<Version> GetWarThunderDatabaseVersions() =>
-            GetWarThunderDatabaseFiles().Select(file => new Version(file.GetNameWithoutExtension()));
+            GetWarThunderDatabaseFiles().Select(file => new Version(Path.GetFileNameWithoutExtension(file.Name)));
 
         /// <summary> Checks whether the directory with the specified path has all required files as listed with public constants in the given type (See <see cref="EFile"/>). </summary>
         /// <param name="path"> The path of the directory to validate. </param>

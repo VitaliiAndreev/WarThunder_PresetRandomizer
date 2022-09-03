@@ -13,7 +13,7 @@ namespace Core.UnpackingToolsIntegration.Extensions
             directory
                 .GetFiles("*", SearchOption.TopDirectoryOnly)
                 .Where(file => 
-                    file.GetExtensionWithoutPeriod() == FileExtension.SqLite3 && 
-                    file.GetNameWithoutExtension().Matches(RegularExpressionPattern.VersionFull));
+                    file.GetExtensionWithoutPeriod() == FileExtension.SqLite3 &&
+                    Path.GetFileNameWithoutExtension(file.Name).Matches(RegularExpressionPattern.VersionFull));
     }
 }

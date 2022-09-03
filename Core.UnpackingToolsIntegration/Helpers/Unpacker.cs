@@ -138,7 +138,7 @@ namespace Core.UnpackingToolsIntegration.Helpers
                 }
                 case FileExtension.Ddsx:
                 {
-                    outputPath = $@"{file.Directory}\{file.GetNameWithoutExtension()}.{FileExtension.Dds}";
+                    outputPath = $@"{file.Directory}\{Path.GetFileNameWithoutExtension(file.Name)}.{FileExtension.Dds}";
                     break;
                 }
                 default:

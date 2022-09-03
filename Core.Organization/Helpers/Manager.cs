@@ -808,7 +808,7 @@ namespace Core.Organization.Helpers
                 if (!_readPreviouslyUnpackedJson)
                     LogDebug(EOrganizationLogMessage.PreparingVehicleIcons);
 
-                var icons = GetVehicleIcons(EFile.WarThunderUi.Icons, readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+                var icons = GetVehicleIcons(EFile.WarThunderUi.Icons, readAlreadyUnpackedFiles).ToDictionary(file => Path.GetFileNameWithoutExtension(file.Name).ToLower());
 
                 if (!_readPreviouslyUnpackedJson)
                     LogDebug(EOrganizationLogMessage.VehicleIconsPrepared);
@@ -823,7 +823,7 @@ namespace Core.Organization.Helpers
                 if (!_readPreviouslyUnpackedJson)
                     LogDebug(EOrganizationLogMessage.PreparingVehiclePortraits);
 
-                var vehiclePortraits = GetVehiclePortraits(readAlreadyUnpackedFiles).ToDictionary(file => file.GetNameWithoutExtension().ToLower());
+                var vehiclePortraits = GetVehiclePortraits(readAlreadyUnpackedFiles).ToDictionary(file => Path.GetFileNameWithoutExtension(file.Name).ToLower());
 
                 if (!_readPreviouslyUnpackedJson)
                     LogDebug(EOrganizationLogMessage.VehiclePortraitsPrepared);

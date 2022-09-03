@@ -8,8 +8,6 @@ namespace Core.Tests.Extensions
     [TestClass]
     public class FileInfoExtensionsTests
     {
-        #region Tests: GetExtensionWithoutPeriod()
-
         [TestMethod]
         public void GetExtensionWithoutPeriod()
         {
@@ -23,24 +21,5 @@ namespace Core.Tests.Extensions
             // assert
             actualFileExtensionWithoutPeriod.Should().Be(exectedFileExtensionWithoutPeriod);
         }
-
-        #endregion Tests: GetExtensionWithoutPeriod()
-        #region Tests: GetFileNameWithoutExtension()
-
-        [TestMethod]
-        public void GetFileNameWithoutExtension()
-        {
-            // arrange
-            var expectedFileNameWithoutExtension = "whatsitsface";
-            var fileInfo = new FileInfo($@"{Directory.GetCurrentDirectory()}\{expectedFileNameWithoutExtension}.gif");
-
-            // act
-            var actualFileNameWithoutExtension = fileInfo.GetNameWithoutExtension();
-
-            // assert
-            actualFileNameWithoutExtension.Should().Be(expectedFileNameWithoutExtension);
-        }
-
-        #endregion Tests: GetFileNameWithoutExtension()
     }
 }
