@@ -468,6 +468,7 @@
       <DependentUpon>VehicleTooltipControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\Direction.cs" />
+    <Compile Include="Enumerations\Domain.cs" />
     <Compile Include="Enumerations\EApplicationData.cs" />
     <Compile Include="Enumerations\EColor.cs" />
     <Compile Include="Enumerations\EBitmapImageKey.cs" />

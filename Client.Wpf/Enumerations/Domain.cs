@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace Client.Wpf
 {
     public static class Domain
     {
