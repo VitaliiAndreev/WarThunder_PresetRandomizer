@@ -2,7 +2,6 @@
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.Objects;
 using Core.DataBase.Objects.Interfaces;
-using Core.Extensions;
 using Core.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

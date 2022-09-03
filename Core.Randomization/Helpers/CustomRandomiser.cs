@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Helpers.Logger;
+﻿using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Randomization.Enumerations;
 using Core.Randomization.Helpers.Interfaces;

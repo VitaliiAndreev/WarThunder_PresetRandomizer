@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Objects.Abstract;
+﻿using Core.Objects.Abstract;
 using System;
 
 namespace Core.Objects

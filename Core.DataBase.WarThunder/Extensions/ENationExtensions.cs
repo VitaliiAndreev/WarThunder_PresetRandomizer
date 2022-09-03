@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Connectors;
-using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 

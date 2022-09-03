@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="IEnumerable{T}"/> interface. </summary>
     public static class IEnumerableExtensions
     {
         #region Methods: Fluency

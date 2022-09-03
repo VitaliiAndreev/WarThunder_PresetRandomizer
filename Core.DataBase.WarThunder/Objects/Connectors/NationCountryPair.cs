@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Enumerations.Logger;
-using Core.Extensions;
 using System;
 using System.Linq;
 

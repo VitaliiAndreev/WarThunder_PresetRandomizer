@@ -1,4 +1,4 @@
-﻿namespace Core.Extensions
+﻿namespace Core
 {
     public static class DoubleExtensions
     {

@@ -1,4 +1,4 @@
-﻿using Core.Extensions;
+﻿using Core;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

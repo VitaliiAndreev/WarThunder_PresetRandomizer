@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core
 {
     public static class ByteExtensions
     {

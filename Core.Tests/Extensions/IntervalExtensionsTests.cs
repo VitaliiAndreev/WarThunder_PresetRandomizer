@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Objects;
+﻿using Core.Objects;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;

@@ -1,8 +1,7 @@
 ﻿using System.Globalization;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="int"/> class. </summary>
     public static class IntExtensions
     {
         #region Fluency

@@ -1,7 +1,6 @@
 ﻿using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.Enumerations.Logger;
 using Core.Json.Exceptions;

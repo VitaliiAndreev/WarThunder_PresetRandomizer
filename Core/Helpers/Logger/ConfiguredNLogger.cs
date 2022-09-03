@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Helpers.Logger.Interfaces;
+﻿using Core.Helpers.Logger.Interfaces;
 using NLog;
 using System;
 

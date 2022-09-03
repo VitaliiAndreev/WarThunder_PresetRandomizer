@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="Type"/> class. </summary>
     public static class TypeExtensions
     {
         #region Methods: Instantiation

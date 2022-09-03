@@ -1,9 +1,8 @@
 ﻿using Core.Objects;
 using System.Collections.Generic;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="Interval{T}"/> class. </summary>
     public static class IntervalExtensions
     {
         /// <summary> Returns integers in the interval. </summary>

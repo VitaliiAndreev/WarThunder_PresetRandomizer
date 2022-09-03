@@ -1,6 +1,5 @@
-﻿namespace Core.Extensions
+﻿namespace Core
 {
-    /// <summary> Methods extending the <see cref="object"/> class. </summary>
     public static class ObjectExtensions
     {
         /// <summary> Gets the object's type name as a string. If the object is of generic class, type arguments are appended. </summary>

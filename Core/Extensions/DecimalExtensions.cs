@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="decimal"/> structure. </summary>
     public static class DecimalExtensions
     {
         #region Fluency

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="ISet{T}"/> interface. </summary>
     public static class ISetExtensions
     {
         /// <summary> Adds elements from the specified collection to the set. </summary>

@@ -2,11 +2,11 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Enumerations.Logger;
 using Client.Wpf.Helpers.Interfaces;
+using Core;
 using Core.Csv.WarThunder.Helpers.Interfaces;
 using Core.DataBase.Helpers.Interfaces;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Helpers;

@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using System;
+﻿using System;
 
 namespace Core.DataBase.WarThunder.Helpers
 {

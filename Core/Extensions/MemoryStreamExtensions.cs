@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="MemoryStream"/> class. </summary>
     public static class MemoryStreamExtensions
     {
         /// <summary> Reads all characters from the current position to the end of the <paramref name="memoryStream"/>. </summary>

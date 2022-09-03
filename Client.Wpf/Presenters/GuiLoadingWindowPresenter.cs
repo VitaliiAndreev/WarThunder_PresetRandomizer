@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
-using Core.Extensions;
+using Core;
 using System.Windows.Threading;
 
 namespace Client.Wpf.Presenters

@@ -1,6 +1,5 @@
-﻿namespace Core.Extensions
+﻿namespace Core
 {
-    /// <summary> Methods extending the <see cref="char"/> class. </summary>
     public static class CharExtensions
     {
         #region Methods: Fluency

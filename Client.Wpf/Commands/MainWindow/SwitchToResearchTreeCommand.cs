@@ -1,8 +1,8 @@
 ﻿using Client.Wpf.Commands.MainWindow.Interfaces;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
+using Core;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 
 namespace Client.Wpf.Commands.MainWindow
 {

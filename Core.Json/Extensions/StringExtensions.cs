@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Core.Json.Extensions
 {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="ICollection{T}"/> interface. </summary>
     public static class ICollectionExtensions
     {
         public static void AddRange<T>(this ICollection<T> sourceCollection, IEnumerable<T> elementsToAdd)

@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.Extensions;
 using Core.Organization.Objects;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

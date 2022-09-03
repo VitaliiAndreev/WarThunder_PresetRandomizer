@@ -4,7 +4,6 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core;
-using Core.Extensions;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;

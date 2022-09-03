@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core.Extensions;
+using Core;
 using Core.Organization.Enumerations;
 using System.Linq;
 

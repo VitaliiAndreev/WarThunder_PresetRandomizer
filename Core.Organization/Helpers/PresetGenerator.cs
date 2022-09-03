@@ -4,7 +4,6 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects.Connectors;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.VehicleGameModeParameterSet.String;
-using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using Core.Objects;

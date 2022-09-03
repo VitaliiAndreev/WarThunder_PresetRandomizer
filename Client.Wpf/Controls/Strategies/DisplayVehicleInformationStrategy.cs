@@ -5,7 +5,6 @@ using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
-using Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

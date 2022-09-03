@@ -7,7 +7,6 @@ using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
 using Core;
 using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.Localization.Helpers.Interfaces;
 using System;

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="IDictionary{TKey, TValue}"/> interface. </summary>
     public static class IDictionaryExtensions
     {
         #region Methods: Adding

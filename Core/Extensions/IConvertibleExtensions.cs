@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="IConvertible"/> interface. </summary>
     public static class IConvertibleExtensions
     {
         /// <summary> Coverts the value into the equivalent one of the given type. </summary>

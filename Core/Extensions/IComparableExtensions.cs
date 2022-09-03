@@ -1,9 +1,8 @@
 ﻿using Core.Objects;
 using System;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="IComparable"/> interface. </summary>
     public static class IComparableExtensions
     {
         /// <summary> Checks whether the given value is within the interval. </summary>

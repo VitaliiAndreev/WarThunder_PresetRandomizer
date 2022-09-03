@@ -9,7 +9,6 @@ using Core.DataBase.WarThunder.Helpers;
 using Core.DataBase.WarThunder.Objects;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.Extensions;
 using Core.Json.Helpers;
 using Core.Json.WarThunder.Helpers.Interfaces;
 using Core.Organization.Helpers;

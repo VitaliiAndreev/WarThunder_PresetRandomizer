@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending a generics. </summary>
     public static class GenericExtensions
     {
         #region Methods: Fluency

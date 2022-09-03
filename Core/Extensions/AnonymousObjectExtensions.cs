@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Core.Extensions
+namespace Core
 {
     public static class AnonymousObjectExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Extensions
+namespace Core
 {
     public static class DelegateExtensions
     {

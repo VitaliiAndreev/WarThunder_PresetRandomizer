@@ -9,7 +9,6 @@ using Client.Wpf.Extensions;
 using Client.Wpf.Presenters.Interfaces;
 using Core;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;

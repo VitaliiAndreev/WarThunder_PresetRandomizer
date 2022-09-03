@@ -1,8 +1,8 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
-using Core.Extensions;
 using System.Linq;
 
 namespace Client.Wpf.Controls

@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using Core.WarThunderExtractionToolsIntegration;
 using Core.Web.Extensions;

@@ -1,6 +1,6 @@
 ﻿using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
-using Core.Extensions;
+using Core;
 using Core.WarThunderExtractionToolsIntegration;
 using System.Linq;
 

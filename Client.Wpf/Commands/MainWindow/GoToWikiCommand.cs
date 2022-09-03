@@ -3,7 +3,6 @@ using Client.Wpf.Presenters.Interfaces;
 using Core;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using System.Linq;
 
 namespace Client.Wpf.Commands.MainWindow

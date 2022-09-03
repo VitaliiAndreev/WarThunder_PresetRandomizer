@@ -2,10 +2,10 @@
 using Client.Wpf.Controls.Base;
 using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Extensions;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;

@@ -6,9 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="string"/> class. </summary>
     public static class StringExtensions
     {
         #region Methods: Comparing

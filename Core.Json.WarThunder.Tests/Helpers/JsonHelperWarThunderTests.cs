@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Json;
-using Core.Extensions;
 using Core.Helpers;
 using Core.Helpers.Interfaces;
 using Core.Json.Helpers;

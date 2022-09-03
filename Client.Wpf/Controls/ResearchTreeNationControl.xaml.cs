@@ -1,8 +1,8 @@
 ﻿using Client.Wpf.Controls.Base;
 using Client.Wpf.Presenters.Interfaces;
+using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.DataBase.WarThunder.Objects.Interfaces;
-using Core.Extensions;
 using Core.Organization.Objects;
 using System.Collections.Generic;
 using System.Linq;

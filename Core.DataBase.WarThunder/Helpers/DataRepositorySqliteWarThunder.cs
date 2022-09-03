@@ -2,7 +2,6 @@
 using Core.DataBase.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Interfaces;
 using Core.DataBase.WarThunder.Objects.Localization.Interfaces;
-using Core.Extensions;
 using Core.Helpers.Logger.Interfaces;
 using System.Collections.Generic;
 using System.Linq;

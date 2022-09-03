@@ -1,8 +1,7 @@
 ﻿using System.IO;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="FileInfo"/> class. </summary>
     public static class FileInfoExtensions
     {
         /// <summary> Get the file name without an extension (if any). </summary>

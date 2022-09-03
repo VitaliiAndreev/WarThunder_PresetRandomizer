@@ -3,7 +3,7 @@ using Client.Wpf.Enumerations;
 using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core.Extensions;
+using Core;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.WarThunderExtractionToolsIntegration;
 using System;

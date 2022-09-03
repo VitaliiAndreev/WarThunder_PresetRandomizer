@@ -1,5 +1,4 @@
 ﻿using Core.DataBase.WarThunder.Enumerations;
-using Core.Extensions;
 
 namespace Core.DataBase.WarThunder.Extensions
 {

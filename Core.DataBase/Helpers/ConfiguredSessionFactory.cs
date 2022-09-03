@@ -1,6 +1,5 @@
 ﻿using Core.DataBase.Enumerations.Logger;
 using Core.DataBase.Helpers.Interfaces;
-using Core.Extensions;
 using Core.Helpers.Logger;
 using Core.Helpers.Logger.Interfaces;
 using FluentNHibernate.Cfg;

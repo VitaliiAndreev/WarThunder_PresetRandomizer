@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

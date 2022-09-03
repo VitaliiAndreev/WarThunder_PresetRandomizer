@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.Extensions
+namespace Core
 {
-    /// <summary> Methods extending the <see cref="IList{T}"/> interface. </summary>
     public static class IListExtensions
     {
         #region Methods: Fluency

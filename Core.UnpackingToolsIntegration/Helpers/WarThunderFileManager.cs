@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Helpers;
+﻿using Core.Helpers;
 using Core.Helpers.Logger.Interfaces;
 using Core.UnpackingToolsIntegration.Enumerations;
 using Core.UnpackingToolsIntegration.Extensions;

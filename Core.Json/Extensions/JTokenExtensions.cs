@@ -1,5 +1,4 @@
-﻿using Core.Extensions;
-using Core.Json.Enumerations.Logger;
+﻿using Core.Json.Enumerations.Logger;
 using Newtonsoft.Json.Linq;
 using System;
 

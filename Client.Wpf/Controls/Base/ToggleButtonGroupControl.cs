@@ -2,7 +2,6 @@
 using Client.Wpf.Enumerations;
 using Client.Wpf.Extensions;
 using Core;
-using Core.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;

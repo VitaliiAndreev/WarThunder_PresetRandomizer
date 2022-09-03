@@ -1,6 +1,6 @@
 ﻿using Client.Shared.Wpf.Extensions;
 using Client.Wpf.Controls.Base.Interfaces;
-using Core.Extensions;
+using Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
