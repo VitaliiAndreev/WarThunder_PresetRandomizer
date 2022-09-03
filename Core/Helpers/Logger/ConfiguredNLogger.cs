@@ -31,8 +31,8 @@ namespace Core.Helpers.Logger
         /// <summary> Creates and configures a new logger. </summary>
         /// <param name="loggerName"> The name of the logger. </param>
         /// <param name="exceptionFormatter"> An instance of an exception formatter. </param>
-        /// <param name="logCreation"> Whether to immediately log its creation. </param>
-        public ConfiguredNLogger(NLogLoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logCreation = false)
+        /// <param name="logConstructor"> Whether to immediately log its creation. </param>
+        public ConfiguredNLogger(NLogLoggerName loggerName, IExceptionFormatter exceptionFormatter, string subdirectory = "", bool logConstructor = false)
         {
             ExceptionFormatter = exceptionFormatter;
 
@@ -51,7 +51,7 @@ namespace Core.Helpers.Logger
                 nlogConfigurationVariables[NLogVariableName.ConsoleLayout] = "${time} ${level:upperCase=true} / ${message}";
             }
 
-            if (logCreation)
+            if (logConstructor)
                 LogInstantiation(this);
         }
 

@@ -5,7 +5,6 @@
         public const string CommaAndSpace = ", ";
         public const string VerticalBarAndSpace = "| ";
         public const string Space = " ";
-        public const string SpaceMinusSpace = " - ";
         public const string SpaceSlashSpace = " / ";
     }
 }

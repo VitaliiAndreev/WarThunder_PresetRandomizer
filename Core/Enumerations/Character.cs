@@ -1,6 +1,6 @@
 ﻿namespace Core
 {
-    public class Character
+    public static class Character
     {
         public static char DollarFullwidth { get; } = '＄';
         public static string Eye { get; } = "👁";
