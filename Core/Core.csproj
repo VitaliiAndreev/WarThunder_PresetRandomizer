@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\Character.cs" />
+    <Compile Include="Enumerations\EnumerationItem.cs" />
     <Compile Include="Enumerations\FileExtension.cs" />
     <Compile Include="Enumerations\Integer.cs" />
     <Compile Include="Enumerations\Language.cs" />
@@ -64,8 +65,6 @@
     <Compile Include="Enumerations\Separator.cs" />
     <Compile Include="Enumerations\SettingsFileStatus.cs" />
     <Compile Include="Enumerations\Subdirectory.cs" />
-    <Compile Include="Enumerations\Vocabulary.cs" />
-    <Compile Include="Enumerations\Word.cs" />
     <Compile Include="Exceptions\NotInitializedException.cs" />
     <Compile Include="Exceptions\SettingsFileRegeneratedException.cs" />
     <Compile Include="Extensions\AnonymousObjectExtensions.cs" />

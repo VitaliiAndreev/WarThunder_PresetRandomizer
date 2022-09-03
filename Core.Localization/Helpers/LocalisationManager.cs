@@ -32,7 +32,7 @@ namespace Core.Localization.Helpers
         {
             _fileReader = fileReader;
 
-            var localizationFile = new FileInfo(Path.Combine(Word.Localisation, $"{localizationFileName}.{FileExtension.Xml}"));
+            var localizationFile = new FileInfo(Path.Combine(Subdirectory.Localisation, $"{localizationFileName}.{FileExtension.Xml}"));
 
             if (!localizationFile.Exists)
                 throw new FileNotFoundException($"\"{localizationFile.FullName}\" not found.");
@@ -53,11 +53,11 @@ namespace Core.Localization.Helpers
 
             return XElement
                 .Parse(fileContents)
-                .Elements(Word.Line)
+                .Elements("Line")
                 .ToDictionary
                 (
-                    element => (string)element.Attribute(Word.Key.ToLower()),
-                    element => (string)element.Attribute(Word.Value.ToLower())
+                    element => (string)element.Attribute("key"),
+                    element => (string)element.Attribute("value")
                 )
             ;
         }

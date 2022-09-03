@@ -50,7 +50,7 @@ namespace Core.Randomization.Helpers
             {
                 if (itemType.IsEnum)
                 {
-                    var defaultEnumerationItem = itemType.GetEnumerationItems<T>().FirstOrDefault(item => item.ToString() == Word.None);
+                    var defaultEnumerationItem = itemType.GetEnumerationItems<T>().FirstOrDefault(item => item.ToString() == EnumerationItem.None);
 
                     if (defaultEnumerationItem is null)
                         throw new Exception($"\"{itemType.ToStringLikeCode()}\" enumeration has no default items.");

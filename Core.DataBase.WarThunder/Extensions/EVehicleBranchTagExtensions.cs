@@ -7,10 +7,10 @@ namespace Core.DataBase.WarThunder.Extensions
     public static class EVehicleBranchTagExtensions
     {
         public static bool IsValid(this EVehicleBranchTag vehicleBranchTag) =>
-            vehicleBranchTag.CastTo<int>() > 9 && !vehicleBranchTag.ToString().StartsWith(Word.All);
+            vehicleBranchTag.CastTo<int>() > 9 && !vehicleBranchTag.ToString().StartsWith(EnumerationItem.All);
 
         public static bool IsDefault(this EVehicleBranchTag tag) =>
-            tag.ToString().Contains(Word.Untagged);
+            tag.ToString().Contains(EnumerationItem.Untagged);
 
         /// <summary> Returns the vehicle branch to which the branch tag belongs to. </summary>
         /// <param name="vehicleBranchTag"> The vehicle branch tag whose branch to get. </param>

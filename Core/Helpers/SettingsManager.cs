@@ -14,8 +14,10 @@ namespace Core.Helpers
     /// <summary> Handles work with settings files. </summary>
     public class SettingsManager : LoggerFluency, ISettingsManager
     {
+        private const string settingsNodeName = "Settings";
+
         /// <summary> A template for settings expressions. </summary>
-        protected const string settingsExpressionTemplate = "/Settings/{0}";
+        protected static readonly string settingsExpressionTemplate = $"/{settingsNodeName}/{{0}}";
         
         #region Fields
 
@@ -137,7 +139,7 @@ namespace Core.Helpers
 
             using var xmlTextWriter = new XmlTextWriter(_settingsFile.FullName, Encoding.UTF8);
             {
-                xmlTextWriter.WriteStartElement(Word.Settings);
+                xmlTextWriter.WriteStartElement(settingsNodeName);
                 {
                     foreach (var requiredSetting in _requiredSettingNames)
                     {
@@ -161,7 +163,7 @@ namespace Core.Helpers
             var nodes = xmlDocument
                 .ChildNodes
                 .OfType<XmlNode>()
-                .FirstOrDefault(node => node.Name == Word.Settings)
+                .FirstOrDefault(node => node.Name == settingsNodeName)
                 .ChildNodes
                 .OfType<XmlNode>()
             ;

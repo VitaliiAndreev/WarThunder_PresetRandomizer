@@ -1,7 +1,7 @@
 ﻿namespace Core.Web.Enumerations.Logger
 {
-    public class EWebLogMessage : Vocabulary
+    public class EWebLogMessage
     {
-        public static readonly string FailedToRead = $"{_Failed} {_to} {_read} \"{{0}}\".";
+        public static readonly string FailedToRead = $"Failed to read \"{{0}}\".";
     }
 }

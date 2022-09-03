@@ -29,7 +29,7 @@ namespace Core.Localization.Tests.Helpers
             _fileManager = new FileManager(Presets.Logger);
             _fileReader = new FileReader(Presets.Logger);
 
-            _localizationDirectory = $@"{Directory.GetCurrentDirectory()}\{Word.Localisation}";
+            _localizationDirectory = Path.Combine(Directory.GetCurrentDirectory(), Subdirectory.Localisation);
 
             if (!Directory.Exists(_localizationDirectory))
                 Directory.CreateDirectory(_localizationDirectory);
@@ -66,9 +66,9 @@ namespace Core.Localization.Tests.Helpers
             var key = "SomethingSomething";
             var value = "Ooh, it actually has something! :D";
             var expectedFileContents = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<{Word.Localisation}>
-  <{Word.Line} {Word.Key.ToLower()}=""{key}"" {Word.Value.ToLower()}=""{value}""/>
-</{Word.Localisation}>";
+<Localisation>
+  <Line key=""{key}"" value=""{value}""/>
+</Localisation>";
 
             var filePath = $@"{_localizationDirectory}\{fileName}.{FileExtension.Xml}";
             File.Create(filePath).Close();

@@ -107,7 +107,6 @@
     </Compile>
     <Compile Include="Enumerations\EDataRepository.cs" />
     <Compile Include="Enumerations\EIdGenerator.cs" />
-    <Compile Include="Enumerations\Logger\EDatabaseLogCategory.cs" />
     <Compile Include="Enumerations\Logger\EDatabaseLogMessage.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\ConfiguredSessionFactory.cs" />

@@ -1,10 +1,8 @@
-﻿using Core;
-
-namespace Client.Shared.Wpf.Enumerations.Logger
+﻿namespace Client.Shared.Wpf.Enumerations.Logger
 {
-    public class EWpfCoreLogMessage : Vocabulary
+    public class EWpfCoreLogMessage
     {
-        public static readonly string StackPanelCantBeHorizontal = $"{_Stack} {_panel} {_cant} {_be} {_horizontal}.";
-        public static readonly string WrapPanelCantBeVertical = $"{_Wrap} {_panel} {_cant} {_be} {_vertical}.";
+        public static readonly string StackPanelCantBeHorizontal = $"Stack panel can't be horizontal.";
+        public static readonly string WrapPanelCantBeVertical = $"Wrap panel can't be vertical.";
     }
 }

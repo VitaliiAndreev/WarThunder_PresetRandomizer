@@ -1,22 +1,19 @@
-﻿using Core;
-
-namespace UnpackingToolsIntegration.Enumerations.Logger
+﻿namespace UnpackingToolsIntegration.Enumerations.Logger
 {
-    /// <summary> Log message strings related to the "<see cref="UnpackingToolsIntegration"/>" assembly. </summary>
-    public class EUnpackingToolsIntegrationLogMessage : Vocabulary
+    public class EUnpackingToolsIntegrationLogMessage
     {
         #region Parser
 
-        public static readonly string ReadingClientVersion = $"{_Reading} {_the} {_client} {_version}.";
+        public static readonly string ReadingClientVersion = $"Reading the client version.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: client version. </para>
         /// </summary>
-        public static readonly string ClientVersionIs = $"{_Client} {_version} {_is} {{0}}.";
+        public static readonly string ClientVersionIs = $"Client version is {{0}}.";
 
-        public static readonly string VersionNotFoundInSourceString = $"{_Client} {_version} {_markers} {_not} {_found} {_in} {_the} {_source} {_string}.";
-        public static readonly string ErrorReadingRawInstallData = $"{_Error} {_reading} {_raw} {_install} {_data}.";
-        public static readonly string ErrorParsingVersionString = $"{_Error} {_parsing} {_version} {_string}.";
+        public static readonly string VersionNotFoundInSourceString = $"Client version markers not found in the source string.";
+        public static readonly string ErrorReadingRawInstallData = $"Error reading raw install data.";
+        public static readonly string ErrorParsingVersionString = $"Error parsing version string.";
 
         #endregion Parser
         #region Unpacker
@@ -25,35 +22,35 @@ namespace UnpackingToolsIntegration.Enumerations.Logger
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public static readonly string PreparingToUnpack = $"{_Preparing} {_to} {_unpack} \"{{0}}\".";
+        public static readonly string PreparingToUnpack = $"Preparing to unpack \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public static readonly string Unpacking = $"{_Unpacking} \"{{0}}\".";
+        public static readonly string Unpacking = $"Unpacking \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file name. </para>
         /// </summary>
-        public static readonly string Unpacked = $"{_Unpacked} \"{{0}}\".";
+        public static readonly string Unpacked = $"Unpacked \"{{0}}\".";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: unpacking tool file name. </para>
         /// </summary>
-        public static readonly string UnpackingToolSelected = $"{{0}} {_selected}.";
+        public static readonly string UnpackingToolSelected = $"{{0}} selected.";
 
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file extension. </para>
         /// </summary>
-        public static readonly string FileExtensionNotSupportedByUnpackingTools = $"{_No} {_unpacking} {_tools} {_found} {_for} \"{{0}}\" {_files}.";
+        public static readonly string FileExtensionNotSupportedByUnpackingTools = $"No unpacking tools found for \"{{0}}\" files.";
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: file extension. </para>
         /// </summary>
-        public static readonly string OutputPathGenerationForFileExtensionNotYetImplemented = $"{_Output} {_path} {_generation} {_for} \"{{0}}\" {_files} {_is} {_not} {_yet} {_implemented}.";
-        public static readonly string ErrorMatchingUnpakingToolToFileExtension = $"{_Error} {_matching} {_an} {_unpacking} {_tool} {_to} {_a} {_file} {_extension}.";
-        public static readonly string ErrorRunningUnpackingTool = $"{_Error} {_running} {_the} {_unpacking} {_tool}.";
+        public static readonly string OutputPathGenerationForFileExtensionNotYetImplemented = $"Output path generation for \"{{0}}\" files is not yet implemented.";
+        public static readonly string ErrorMatchingUnpakingToolToFileExtension = $"Error matching an unpacking tool to a file extension.";
+        public static readonly string ErrorRunningUnpackingTool = $"Error running the unpacking tool.";
 
         #endregion Unpacker
     }

@@ -1,12 +1,11 @@
 ﻿namespace Core.Localization.Enumerations.Logger
 {
-    /// <summary> Log message strings related to the "<see cref="Core"/>" assembly. </summary>
-    public class ELocalisationLogMessage : Vocabulary
+    public class ELocalisationLogMessage
     {
         /// <summary> 
         /// A message with formatting placeholders.
         /// <para> 1: localization key. </para>
         /// </summary>
-        public static readonly string LocalisationKeyNotFound = $"{_Localisation} {_key} \"{{0}}\" {_not} {_found}.";
+        public static readonly string LocalisationKeyNotFound = $"Localisation key \"{{0}}\" not found.";
     }
 }

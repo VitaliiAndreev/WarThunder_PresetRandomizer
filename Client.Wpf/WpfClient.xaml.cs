@@ -5,7 +5,6 @@ using Client.Wpf.Presenters.Interfaces;
 using Client.Wpf.Windows;
 using Client.Wpf.Windows.Interfaces;
 using Client.Wpf.Windows.Interfaces.Base;
-using Core;
 using Core.DataBase.WarThunder.Enumerations;
 using Core.Exceptions;
 using Core.Extensions;
@@ -265,7 +264,7 @@ namespace Client.Wpf
             }
             else
             {
-                title = Word.Error;
+                title = "Error";
                 message = $"An error has occurred. The application will be shut down.\n{getInstruction(localizedString: "See the latest file in the \"Logs\" folder for details.")}";
             }
 

@@ -50,14 +50,14 @@ namespace Core.DataBase.Helpers
         /// <param name="singleSession"> Whether to use a create one session at the start and use throughout the lifecycle of the repository. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public DataRepositorySqlite(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, bool singleSession, params IConfiguredLogger[] loggers)
-            : base(EDatabaseLogCategory.DataRepository, loggers)
+            : base(nameof(DataRepositorySqlite), loggers)
         {
             LogDebug
             (
                 EDatabaseLogMessage.CreatingDataRepository.ResetFormattingPlaceholders().Format
                 (
                     $"{dataBaseFileName}.{FileExtension.SqLite3}",
-                    overwriteExistingDataBase ? string.Empty : $"{Word.Dont.ToLower()} ",
+                    overwriteExistingDataBase ? string.Empty : $"don't ",
                     assemblyWithMapping
                 )
             );
@@ -262,7 +262,7 @@ namespace Core.DataBase.Helpers
         /// <param name="disposing"> Indicates whether this method is being called from <see cref="Dispose"/>. </param>
         protected virtual void Dispose(bool disposing)
         {
-            LogDebug($"Preparing to dispose of the data repository for \"{SessionFactory?.DataBaseFileName ?? Word.NULL}\".");
+            LogDebug($"Preparing to dispose of the data repository for \"{SessionFactory?.DataBaseFileName ?? "NULL"}\".");
 
             if (IsClosed)
             {

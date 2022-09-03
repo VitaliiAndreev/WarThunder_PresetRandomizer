@@ -1,6 +1,6 @@
 ﻿namespace Core.DataBase.WarThunder.Enumerations
 {
-    public class EGaijinCharacter : Character
+    public static class EGaijinCharacter
     {
         public const char Anchor = '⋜';
         public const char AttackerPip = '┞';

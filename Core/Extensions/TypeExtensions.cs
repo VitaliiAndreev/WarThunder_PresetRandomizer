@@ -107,10 +107,10 @@ namespace Core.Extensions
 
             if (skipInvalidItems)
             {
-                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != Word.None);
+                enumerationItems = enumerationItems.Where(enumerationItem => enumerationItem.ToString() != EnumerationItem.None);
 
                 if (!allItemIsValid)
-                    enumerationItems = enumerationItems.Where(enumerationItem => !enumerationItem.ToString().StartsWith(Word.All));
+                    enumerationItems = enumerationItems.Where(enumerationItem => !enumerationItem.ToString().StartsWith(EnumerationItem.All));
             }
 
             return enumerationItems;

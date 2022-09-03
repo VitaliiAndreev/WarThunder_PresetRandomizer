@@ -43,7 +43,7 @@ namespace Core.DataBase.Helpers
         /// <summary> Creates a new repository, as well as creates and configures a <see cref="ISessionFactory"/> for it. </summary>
         /// <param name="loggers"> Instances of loggers. </param>
         public DataRepositoryInMemory(params IConfiguredLogger[] loggers)
-            : base(EDatabaseLogCategory.DataRepository, loggers)
+            : base(nameof(DataRepositoryInMemory), loggers)
         {
             LogDebug(EDatabaseLogMessage.CreatingInMemoryDataRepository);
 

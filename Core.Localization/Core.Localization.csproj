@@ -48,7 +48,6 @@
     <Compile Include="..\Core\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Enumerations\Logger\ELocalisationLogCategory.cs" />
     <Compile Include="Enumerations\Logger\ELocalisationLogMessage.cs" />
     <Compile Include="Exceptions\LanguageNotRecognizedException.cs" />
     <Compile Include="Helpers\Interfaces\ILocalisationManager.cs" />

@@ -1,10 +1,9 @@
 ﻿using Client.Shared.Enumerations;
-using Core;
 
 namespace Client.Wpf.Enumerations
 {
-    public class EUnlocalisedMessage : Vocabulary
+    public class EUnlocalisedMessage
     {
-        public static readonly string SettingFileRegenerated = $"{_The} {_settings} {_file} ({EWpfClientFile.Settings}) {_has} {_been} {_adapted} {_to} {_the} {_new} {_version} {_of} {_the} {EClientApplicationName.WarThunderPresetRandomizerAbbreviated}\n\n{_Please} {_restart} {_the} {_application}.\n\n{_Manual} {_migration} {_of} {_settings} {_may} {_or} {_may} {_not} {_be} {_required}.";
+        public static readonly string SettingFileRegenerated = $"The settings file ({EWpfClientFile.Settings}) has been adapted to the new version of the {EClientApplicationName.WarThunderPresetRandomizerAbbreviated}\n\nPlease restart the application.\n\nManual migration of settings may be required.";
     }
 }

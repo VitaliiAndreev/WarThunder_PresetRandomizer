@@ -141,12 +141,12 @@ namespace Client.Wpf.Controls.Base
 
             if (tagType.IsEnum)
             {
-                var enumerationItem = typeof(T).GetEnumValues().OfType<T>().FirstOrDefault(item => item.ToString() == Word.All);
+                var enumerationItem = typeof(T).GetEnumValues().OfType<T>().FirstOrDefault(item => item.ToString() == EnumerationItem.All);
                 _toggleAllButton = CreateToggleButton(panel, enumerationItem, enumerationItem.ToString(), styleKey, horizontal);
             }
             else
             {
-                _toggleAllButton = CreateToggleButton(panel, default, Word.All, styleKey, horizontal);
+                _toggleAllButton = CreateToggleButton(panel, default, EnumerationItem.All, styleKey, horizontal);
             }
         }
 
@@ -154,10 +154,17 @@ namespace Client.Wpf.Controls.Base
         /// <param name="panel"> The panel to add the button onto. </param>
         /// <param name="enumerationItem"> The enumeration item to create the toggle button for. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
-        /// <param name="horizontal"> Whether other buttons are arranged in a row or in a column. </param>
-        protected virtual void CreateToggleAllButton(Panel panel, T enumerationItem, string styleKey, bool horizontal)
+        /// <param name="isHorizontal"> Whether other buttons are arranged in a row or in a column. </param>
+        protected virtual void CreateToggleAllButton(Panel panel, T enumerationItem, string styleKey, bool isHorizontal)
         {
-            _toggleAllButton = CreateToggleButton(panel, enumerationItem, typeof(T).IsEnum ? enumerationItem.ToString() : Word.All, $"{styleKey}{Word.All}", horizontal);
+            _toggleAllButton = CreateToggleButton(
+                panel, 
+                enumerationItem, 
+                content: typeof(T).IsEnum
+                    ? enumerationItem.ToString()
+                    : EnumerationItem.All,
+                styleKey: $"{styleKey}{EnumerationItem.All}",
+                isHorizontal);
         }
 
         /// <summary> Creates toggle buttons for given <paramref name="enumerationItems"/>, with <paramref name="characterIcons"/>. </summary>
@@ -177,18 +184,25 @@ namespace Client.Wpf.Controls.Base
         /// <param name="enumerationItems"> Enumeration items to create toggle buttons for. </param>
         /// <param name="displayStrings"> Character icons for <paramref name="enumerationItems"/>. </param>
         /// <param name="styleKey"> The key of the style (defined in <see cref="WpfClient"/> and referenced by <see cref="EStyleKey"/>) to apply. </param>
-        /// <param name="horizontal"> Whether to arrange buttons in a row or in a column. </param>
+        /// <param name="isHorizontal"> Whether to arrange buttons in a row or in a column. </param>
         /// <param name="createToggleAllButton"> Whether to create the toggle-all button. </param>
-        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> displayStrings, string styleKey, bool horizontal = true, bool createToggleAllButton = false)
+        public void CreateToggleButtons(Panel panel, IEnumerable<T> enumerationItems, IDictionary<T, string> displayStrings, string styleKey, bool isHorizontal = true, bool createToggleAllButton = false)
         {
             if (createToggleAllButton)
-                CreateToggleAllButton(panel, $"{styleKey}{Word.All}", horizontal);
+                CreateToggleAllButton(panel, $"{styleKey}{EnumerationItem.All}", isHorizontal);
 
             foreach (var enumerationItem in enumerationItems)
             {
                 try
                 {
-                    CreateToggleButton(panel, enumerationItem, (displayStrings is null || !displayStrings.TryGetValue(enumerationItem, out var displayString)) ? enumerationItem.ToString() : displayString, styleKey, horizontal);
+                    CreateToggleButton(
+                        panel, 
+                        enumerationItem, 
+                        content: (displayStrings is null || !displayStrings.TryGetValue(enumerationItem, out var displayString))
+                            ? enumerationItem.ToString()
+                            : displayString, 
+                        styleKey, 
+                        isHorizontal);
                 }
                 catch (Exception e)
                 {

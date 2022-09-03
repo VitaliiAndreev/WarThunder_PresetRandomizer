@@ -47,7 +47,7 @@ namespace Core.DataBase.Helpers
         /// <param name="assemblyWithMapping"> An assembly containing mapped classes. </param>
         /// <param name="loggers"> Instances of loggers. </param>
         public ConfiguredSessionFactory(string dataBaseFileName, bool overwriteExistingDataBase, Assembly assemblyWithMapping, params IConfiguredLogger[] loggers)
-            : base(EDatabaseLogCategory.SessionFactory, loggers)
+            : base(nameof(ConfiguredSessionFactory), loggers)
         {
             DataBaseFileName = dataBaseFileName;
             _overwriteExistingDataBase = overwriteExistingDataBase;
@@ -70,7 +70,7 @@ namespace Core.DataBase.Helpers
                 EDatabaseLogMessage.CreatingSessionFactory.ResetFormattingPlaceholders().Format
                 (
                     DataBaseFileName,
-                    _overwriteExistingDataBase ? string.Empty : $"{Word.Dont.ToLower()} ",
+                    _overwriteExistingDataBase ? string.Empty : $"don't ",
                     _assemblyWithMapping
                 )
             );

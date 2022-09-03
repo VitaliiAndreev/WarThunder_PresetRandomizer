@@ -236,7 +236,7 @@ namespace Client.Wpf.Windows
 
             if (toggleButtonTagType.IsEnum)
             {
-                if (toggleButtonTagType.GetEnumValues().OfType<U>().FirstOrDefault(item => item.ToString() == Word.All) is U toggleButtonKey)
+                if (toggleButtonTagType.GetEnumValues().OfType<U>().FirstOrDefault(item => item.ToString() == EnumerationItem.All) is U toggleButtonKey)
                     toggleColumn.Toggle(toggleButtonKey, toggleAllOn);
             }
             else
@@ -259,7 +259,7 @@ namespace Client.Wpf.Windows
                 var vehicleClass = toggleButton.GetTag<EVehicleClass>();
                 var ownerBranch = vehicleClass.GetBranch();
 
-                if (vehicleClass.ToString().StartsWith(Word.All))
+                if (vehicleClass.ToString().StartsWith(EnumerationItem.All))
                 {
                     var toggleAllButton = toggleButton;
                     var buttons = _vehicleClassControl.ToggleColumns[ownerBranch].Buttons.Values;
@@ -450,7 +450,7 @@ namespace Client.Wpf.Windows
                 var country = nationCountryPair.Country;
                 var nation = nationCountryPair.Nation;
 
-                if (country.ToString().StartsWith(Word.All))
+                if (country.ToString().StartsWith(EnumerationItem.All))
                 {
                     var disabledButtons = _countryToggleControl.GetButtons(nation, !toggleButton.IsChecked(), false);
 
@@ -615,7 +615,7 @@ namespace Client.Wpf.Windows
             _nationToggleControl.Tag = ENation.None;
             _countryToggleControl.Tag = ECountry.None;
 
-            _battleRatingControl.Tag = $"{Word.Battle} {Word.Rating}";
+            _battleRatingControl.Tag = $"Battle Rating";
         }
 
         private void AttachCommands()

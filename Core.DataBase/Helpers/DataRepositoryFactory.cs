@@ -14,7 +14,7 @@ namespace Core.DataBase.Helpers
         #region Constructors
 
         public DataRepositoryFactory(params IConfiguredLogger[] loggers)
-            : base(EDatabaseLogCategory.DataRepositoryFactory, loggers)
+            : base(nameof(DataRepositoryFactory), loggers)
         {
         }
 

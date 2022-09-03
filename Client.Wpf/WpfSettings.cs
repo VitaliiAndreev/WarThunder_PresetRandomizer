@@ -21,6 +21,8 @@ namespace Client.Wpf
     /// </summary>
     public class WpfSettings : Settings
     {
+        private const string britainString = "Britain";
+
         #region Properties
 
         [RequiredSetting]
@@ -100,7 +102,7 @@ namespace Client.Wpf
             {
                 static string patchString(string @string)
                 {
-                    if (@string == Word.Britain)
+                    if (@string == britainString)
                         return ENation.GreatBritain.ToString();
 
                     return @string;
@@ -130,10 +132,10 @@ namespace Client.Wpf
                     var nationPart = valueParts.First();
                     var countryPart = valueParts.Last();
 
-                    if (nationPart == Word.Britain)
+                    if (nationPart == britainString)
                         nationPart = ENation.GreatBritain.ToString();
 
-                    if (countryPart == Word.Britain)
+                    if (countryPart == britainString)
                         countryPart = ECountry.GreatBritain.ToString();
 
                     return $"{nationPart}{separator}{countryPart}";

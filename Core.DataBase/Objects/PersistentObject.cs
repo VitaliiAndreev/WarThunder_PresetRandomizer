@@ -143,7 +143,7 @@ namespace Core.DataBase.Objects
             var thisType = thisValue.GetType();
             var comparedType = comparedValue.GetType();
 
-            if (!thisType.ToString().Contains(Word.Proxy) && !comparedType.ToString().Contains(Word.Proxy) && thisType != comparedType)
+            if (!thisType.ToString().Contains("Proxy") && !comparedType.ToString().Contains("Proxy") && thisType != comparedType)
                 return false;
 
             var includeNestedObjects = recursionLevel.IsPositive();
