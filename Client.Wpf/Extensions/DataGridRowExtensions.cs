@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace Client.Wpf
 {
-    public static partial class DataGridRowExtensions
+    public static class DataGridRowExtensions
     {
         #region Methods: Reading
 

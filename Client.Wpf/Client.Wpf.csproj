@@ -482,7 +482,6 @@
     <Compile Include="Enumerations\Margin.cs" />
     <Compile Include="Enumerations\NumberFormat.cs" />
     <Compile Include="Enumerations\Logger\EWpfClientLogMessage.cs" />
-    <Compile Include="Extensions\DataGridRowExtensions.Localisation.cs" />
     <Compile Include="Extensions\DataGridRowExtensions.cs" />
     <Compile Include="Extensions\ECountryExtensions.cs" />
     <Compile Include="Extensions\ELanguageExtensions.cs" />
