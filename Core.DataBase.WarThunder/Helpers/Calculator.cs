@@ -32,7 +32,7 @@ namespace Core.DataBase.WarThunder.Helpers
         /// <returns></returns>
         public static decimal GetRoundedBattleRating(decimal number)
         {
-            var integralPart = number.Floor();
+            var integralPart = Math.Floor(number);
             var franctionalPart = number - integralPart;
 
             var roundedBattleRating = integralPart;
