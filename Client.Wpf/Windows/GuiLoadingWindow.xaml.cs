@@ -12,6 +12,8 @@ namespace Client.Wpf.Windows
     /// <summary> Interaction logic for GuiLoadingWindow.xaml. </summary>
     public partial class GuiLoadingWindow : BaseWindow, IGuiLoadingWindow
     {
+        private const decimal defaultUiPropertyMetadataValue = 0m;
+
         #region Properties
 
         new public IGuiLoadingWindowPresenter Presenter => base.Presenter as IGuiLoadingWindowPresenter;
@@ -62,7 +64,11 @@ namespace Client.Wpf.Windows
         #region NationsPopulatedDecimal
 
         public static readonly DependencyProperty NationsPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(NationsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(0m));
+            DependencyProperty.Register(
+                nameof(NationsPopulatedDecimal), 
+                typeof(decimal), 
+                typeof(GuiLoadingWindow), 
+                new UIPropertyMetadata(defaultUiPropertyMetadataValue));
 
         public decimal NationsPopulatedDecimal
         {
@@ -110,7 +116,11 @@ namespace Client.Wpf.Windows
         #region BranchesPopulatedDecimal
 
         public static readonly DependencyProperty BranchesPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(BranchesPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(0m));
+            DependencyProperty.Register(
+                nameof(BranchesPopulatedDecimal), 
+                typeof(decimal), 
+                typeof(GuiLoadingWindow), 
+                new UIPropertyMetadata(defaultUiPropertyMetadataValue));
 
         public decimal BranchesPopulatedDecimal
         {
@@ -158,7 +168,11 @@ namespace Client.Wpf.Windows
         #region RanksPopulatedDecimal
 
         public static readonly DependencyProperty RanksPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(RanksPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(0m));
+            DependencyProperty.Register(
+                nameof(RanksPopulatedDecimal), 
+                typeof(decimal), 
+                typeof(GuiLoadingWindow), 
+                new UIPropertyMetadata(defaultUiPropertyMetadataValue));
 
         public decimal RanksPopulatedDecimal
         {
@@ -206,7 +220,11 @@ namespace Client.Wpf.Windows
         #region RowsPopulatedDecimal
 
         public static readonly DependencyProperty RowsPopulatedDecimalProperty =
-            DependencyProperty.Register(nameof(RowsPopulatedDecimal), typeof(decimal), typeof(GuiLoadingWindow), new UIPropertyMetadata(0m));
+            DependencyProperty.Register(
+                nameof(RowsPopulatedDecimal), 
+                typeof(decimal), 
+                typeof(GuiLoadingWindow), 
+                new UIPropertyMetadata(defaultUiPropertyMetadataValue));
 
         public decimal RowsPopulatedDecimal
         {

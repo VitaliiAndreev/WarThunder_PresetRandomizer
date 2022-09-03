@@ -11,6 +11,8 @@ namespace Client.Shared.Objects
 {
     public class VehicleLite : IVehicleLite
     {
+        private const decimal placeholderBattleRating = -1m;
+
         #region Properties
 
         public string GaijinIdLite { get; }
@@ -65,9 +67,9 @@ namespace Client.Shared.Objects
             Country = localise(vehicle.Country);
             Branch = localise(vehicle.Category.AsEnumerationItem);
             Rank = vehicle.RankAsEnumerationItem;
-            BattleRatingInArcade = vehicle.BattleRating.Arcade ?? -1m;
-            BattleRatingInRealistic = vehicle.BattleRating.Realistic ?? -1m;
-            BattleRatingInSimulator = vehicle.BattleRating.Simulator ?? -1m;
+            BattleRatingInArcade = vehicle.BattleRating.Arcade ?? placeholderBattleRating;
+            BattleRatingInRealistic = vehicle.BattleRating.Realistic ?? placeholderBattleRating;
+            BattleRatingInSimulator = vehicle.BattleRating.Simulator ?? placeholderBattleRating;
             Class = localise(vehicle.Class);
             Subclass1 = localise(vehicle.Subclasses.First);
             Subclass2 = localise(vehicle.Subclasses.Second);
@@ -109,9 +111,9 @@ namespace Client.Shared.Objects
             RepairCostInRealistic = vehicle.EconomyData.RepairCost.Realistic ?? -Integer.Number.One;
             RepairCostInSimulator = vehicle.EconomyData.RepairCost.Simulator ?? -Integer.Number.One;
             ResearchGainMultiplierLite = vehicle.EconomyData.ResearchGainMultiplier;
-            SilverGainMultiplierInArcade = vehicle.EconomyData.SilverGainMultiplier.Arcade ?? -1m;
-            SilverGainMultiplierInRealistic = vehicle.EconomyData.SilverGainMultiplier.Realistic ?? -1m;
-            SilverGainMultiplierInSimulator = vehicle.EconomyData.SilverGainMultiplier.Simulator ?? -1m;
+            SilverGainMultiplierInArcade = vehicle.EconomyData.SilverGainMultiplier.Arcade ?? placeholderBattleRating;
+            SilverGainMultiplierInRealistic = vehicle.EconomyData.SilverGainMultiplier.Realistic ?? placeholderBattleRating;
+            SilverGainMultiplierInSimulator = vehicle.EconomyData.SilverGainMultiplier.Simulator ?? placeholderBattleRating;
         }
 
         #endregion Constructors
